@@ -1,0 +1,81 @@
+html {
+    font-size: calc(var(--width) / 200);
+}
+
+body {
+    background-color: #000033;
+    overflow: hidden;
+    text-align: center;
+}
+
+main {
+    background-color: #000000;
+    border-color: #0000ff;
+    border-style: solid;
+    width: var(--width);
+    height: var(--height);
+    margin-left: var(--main_center);
+}
+
+h1 {
+    color: white;
+    font-size: 22rem;
+    font-weight: normal;
+    margin-top: var(--hu_2);
+}
+
+h2 {
+    color: #00ffff;
+    font-size: 9rem;
+    font-weight: bold;
+    margin-top: var(--hu_2);
+    margin-bottom: var(--hu_2);
+}
+
+img.current {
+    display: block;
+    height: var(--hu_28);
+    margin-left: 5%;
+    max-width: 90%;
+}
+
+button {
+    all: unset;
+    appearance: none;
+    border-style: solid;
+    display: block;
+    font-weight: bold;
+    width: 84%;
+    height: var(--hu_8);
+    margin: 0 auto;
+    margin-top: var(--hu_3);
+    padding: 0;
+}
+
+button.normal {
+    background-color: #444477;
+    border-color: #444499;
+    color: #ffffff;
+    font-size: 10rem;
+}
+
+button.correct {
+    background-color: #00ff0022;
+    border-color: #009900;
+    color: #00ff00;
+    font-size: 12rem;
+}
+
+button.dimmed {
+    background-color: #44447722;
+    border-color: #44447722;
+    color: #ffffff66;
+    font-size: 10rem;
+}
+
+button.wrong {
+    background-color: #ff000022;
+    border-color: #990000;
+    color: #ff0000;
+    font-size: 12rem;
+}

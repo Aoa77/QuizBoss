@@ -1,0 +1,14 @@
+* {
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+
+    box-sizing: border-box;
+    font-family: "Tahoma", sans-serif;
+    font-weight: normal;
+    margin: 0;
+    padding: 0;
+}
