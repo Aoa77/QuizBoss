@@ -17,6 +17,10 @@ main {
     margin-left: var(--main_center);
 }
 
+section.hidden {
+    display: none;
+}
+
 h1 {
     color: white;
     font-size: 22rem;
