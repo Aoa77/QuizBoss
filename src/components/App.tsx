@@ -1,7 +1,7 @@
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useGuessButtons } from "./GuessButton";
 import { GameState } from "./GameState";
-import { QuizItem, loadQuizData } from "./QuizItem";
+import { QuizItem, loadQuizData, loadQuizImages } from "./QuizItem";
 import { useQuizFlow } from "./QuizFlow";
 import "../styles";
 
@@ -9,13 +9,23 @@ export interface AppProps {
     quizTitle: string;
     itemQuestion: string;
     jsonData: Record<string, string>;
+    imageLoadThrottle: number;
+    resultDisplayTime: number;
+    spinnerPollingDelay: number;
+    spinnerPollingInterval: number;
 }
 
 export function App(props: AppProps) {
-    const quizItems: QuizItem[] = useMemo(
-        () => loadQuizData(props.jsonData),
-        [props.jsonData],
-    );
+    const quizItems: QuizItem[] = useMemo(() => {
+        console.debug("useMemo called...");
+        const data = loadQuizData(props.jsonData);
+        return data;
+    }, [props.jsonData]);
+    
+    useEffect(() => {
+        console.debug("useEffect called...");
+        loadQuizImages(props.imageLoadThrottle, quizItems);
+    }, [props.imageLoadThrottle, quizItems]);
 
     const loadingArea = useRef(null);
     const quizArea = useRef(null);
@@ -40,6 +50,9 @@ export function App(props: AppProps) {
         loadingArea,
         quizArea,
         quizItems,
+        props.resultDisplayTime,
+        props.spinnerPollingDelay,
+        props.spinnerPollingInterval,
         setGameState,
         setIndex,
     );

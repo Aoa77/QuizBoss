@@ -14,3 +14,11 @@ export function shuffle<T>(array: T[]) {
         [array[i], array[j]] = [array[j], array[i]];
     }
 }
+
+const HIDDEN = "hidden";
+export function hideElement(element: HTMLElement) {
+    element.classList.add(HIDDEN);
+}
+export function showElement(element: HTMLElement) {
+    element.classList.remove(HIDDEN);
+}

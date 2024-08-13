@@ -3,14 +3,14 @@ html {
 }
 
 body {
-    background-color: #000033;
+    background-color: #000000;
     overflow: hidden;
     text-align: center;
 }
 
 main {
     background-color: #000000;
-    border-color: #0000ff;
+    border-color: #000000;
     border-style: solid;
     width: var(--width);
     height: var(--height);

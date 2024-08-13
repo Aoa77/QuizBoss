@@ -1,12 +1,11 @@
 import { useRef } from "react";
 
-
 export const GuessButtonCount: number = 4;
 export enum GuessButtonState {
     NORMAL = "normal",
     DIMMED = "dimmed",
     CORRECT = "correct",
-    WRONG = "wrong"
+    WRONG = "wrong",
 }
 
 export interface GuessButton {
@@ -15,7 +14,7 @@ export interface GuessButton {
 }
 
 export function useGuessButtons(
-    onPointerDown: (ref: React.RefObject<HTMLButtonElement>) => void
+    onPointerDown: (ref: React.RefObject<HTMLButtonElement>) => void,
 ): GuessButton[] {
     const buttons: GuessButton[] = [];
     for (let i = 0; i < GuessButtonCount; i++) {
@@ -25,7 +24,7 @@ export function useGuessButtons(
 }
 function GuessButtonFactory(
     index: number,
-    onPointerDown: (ref: React.RefObject<HTMLButtonElement>) => void
+    onPointerDown: (ref: React.RefObject<HTMLButtonElement>) => void,
 ): GuessButton {
     const ref = useRef(null);
     const key = "button" + index;
