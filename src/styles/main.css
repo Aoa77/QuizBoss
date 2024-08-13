@@ -17,8 +17,12 @@ main {
     margin-left: var(--main_center);
 }
 
-section.hidden {
+.hidden {
     display: none;
+}
+
+section.loadingArea {
+    margin-top: var(--hu_6);
 }
 
 h1 {
