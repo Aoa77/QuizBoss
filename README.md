@@ -11,3 +11,8 @@ QuizBoss is a single-page web application framework for crafting engaging multip
 * **Async SVG Loading:** SVG image data is loaded asynchronuosly to minimize startup wait times.
 
 * **Mobile-First Responsive Design:** The UI layout is designed to look great on mobile devices. It is built with pure vanilla CSS.
+
+## Demo Video
+
+https://github.com/user-attachments/assets/262cd682-4f4a-44f0-8f35-7aca80f149b4
+
