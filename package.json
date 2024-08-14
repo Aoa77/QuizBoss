@@ -18,8 +18,8 @@
         "web-vitals": "^2.1.4"
     },
     "scripts": {
-        "build-local": "rm -rf public/quizzes && mkdir public/quizzes && cp -R local_modules/quizboss-* public/quizzes && react-scripts build",
-        "build": "rm -rf public/quizzes && mkdir public/quizzes && cp -R node_modules/quizboss-* public/quizzes && react-scripts build",
+        "build-local": "rm -rf public/quizzes && mkdir public/quizzes && touch public/quizzes/.placeholder && cp -R local_modules/quizboss-* public/quizzes && react-scripts build",
+        "build": "rm -rf public/quizzes && mkdir public/quizzes && touch public/quizzes/.placeholder && cp -R node_modules/quizboss-* public/quizzes && react-scripts build",
         "start": "react-scripts start"
     },
     "eslintConfig": {
