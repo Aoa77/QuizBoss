@@ -75,14 +75,14 @@ button.correct {
 }
 
 button.dimmed {
-    background-color: #44447722;
+    background-color: #44447744;
     border-color: #44447722;
     color: #ffffff66;
     font-size: 10rem;
 }
 
 button.wrong {
-    background-color: #ff000022;
+    background-color: #ff000044;
     border-color: #990000;
     color: #ff0000;
     font-size: 12rem;

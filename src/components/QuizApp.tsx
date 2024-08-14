@@ -1,31 +1,34 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { useGuessButtons } from "./GuessButton";
-import { GameState } from "./GameState";
-import { QuizItem, loadQuizData, loadQuizImages } from "./QuizItem";
-import { useQuizFlow } from "./QuizFlow";
 import "../styles";
+import { GameState } from "./GameState";
+import { QuizConfig } from "./QuizConfig";
+import { QuizItem, loadQuizData, loadQuizImages } from "./QuizItem";
+import { useGuessButtons } from "./GuessButton";
+import { useQuizFlow } from "./QuizFlow";
 
-export interface AppProps {
-    quizTitle: string;
-    itemQuestion: string;
-    jsonData: Record<string, string>;
-    imageLoadThrottle: number;
-    resultDisplayTime: number;
-    spinnerPollingDelay: number;
-    spinnerPollingInterval: number;
-}
+export function QuizApp(props: QuizConfig) {
+    let {
+        imageLoadThrottle,
+        resultDisplayTime,
+        spinnerPollingDelay,
+        spinnerPollingInterval,
+    } = props;
 
-export function App(props: AppProps) {
+    imageLoadThrottle ??= 50;
+    resultDisplayTime ??= 1500;
+    spinnerPollingDelay ??= 500;
+    spinnerPollingInterval ??= 100;
+
     const quizItems: QuizItem[] = useMemo(() => {
         console.debug("useMemo called...");
         const data = loadQuizData(props.jsonData);
         return data;
     }, [props.jsonData]);
-    
+
     useEffect(() => {
         console.debug("useEffect called...");
-        loadQuizImages(props.imageLoadThrottle, quizItems);
-    }, [props.imageLoadThrottle, quizItems]);
+        loadQuizImages(imageLoadThrottle!, quizItems);
+    }, [imageLoadThrottle, quizItems]);
 
     const loadingArea = useRef(null);
     const quizArea = useRef(null);
@@ -50,14 +53,16 @@ export function App(props: AppProps) {
         loadingArea,
         quizArea,
         quizItems,
-        props.resultDisplayTime,
-        props.spinnerPollingDelay,
-        props.spinnerPollingInterval,
+        resultDisplayTime,
+        spinnerPollingDelay,
+        spinnerPollingInterval,
         setGameState,
         setIndex,
     );
     return (
         <main>
+            
+
             <h1>{props.quizTitle}</h1>
             <section ref={loadingArea} className="loadingArea">
                 <div className="spinner"></div>

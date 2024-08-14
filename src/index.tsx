@@ -1,4 +1,4 @@
-import { App } from "./components/App";
+import { QuizApp } from "./components/QuizApp";
 import ReactDOM from "react-dom/client";
 import jsonData from "./data/WorldFlags.json";
 
@@ -7,13 +7,13 @@ const root = ReactDOM.createRoot(
 );
 
 root.render(
-    <App
+    <QuizApp
         quizTitle="World Flags Quiz"
         itemQuestion="Which country does this flag belong to?"
         jsonData={jsonData}
-        imageLoadThrottle={50}
-        resultDisplayTime={1500}
-        spinnerPollingDelay={500}
-        spinnerPollingInterval={100}
+        // imageLoadThrottle={50}
+        // resultDisplayTime={1500}
+        // spinnerPollingDelay={500}
+        // spinnerPollingInterval={100}
     />,
 );
