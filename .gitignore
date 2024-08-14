@@ -11,6 +11,9 @@
 # production
 /build
 
+# quiz packages copied from node_modules
+/public/quizzes
+
 # misc
 .DS_Store
 .env.local

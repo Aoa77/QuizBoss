@@ -10,6 +10,7 @@
         "@types/node": "^16.18.105",
         "@types/react": "^18.3.3",
         "@types/react-dom": "^18.3.0",
+        "copyfiles": "^2.4.1",
         "react": "^18.3.1",
         "react-dom": "^18.3.1",
         "react-scripts": "5.0.1",
@@ -17,11 +18,9 @@
         "web-vitals": "^2.1.4"
     },
     "scripts": {
-        "build-local": "react-scripts build && copyfiles -u 1 local_modules/package-name/dist/**/* public/quizzes",
-        "start": "react-scripts start",
+        "build-local": "react-scripts build && copyfiles -u 1 local_modules/quizboss-*/**/* public/quizzes",
         "build": "react-scripts build",
-        "test": "react-scripts test",
-        "eject": "react-scripts eject"
+        "start": "react-scripts start"
     },
     "eslintConfig": {
         "extends": [
