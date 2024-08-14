@@ -1,0 +1,10 @@
+{
+    "name": "quizboss-us-president-names",
+    "version": "1.0.0",
+    "quizboss_config": {
+        "title": "xxxxxxxxxxxxx    World Flags Quiz",
+        "description": "Test your knowledge of world flags with this quiz!",
+        "item_question": "Which country does this flag belong to?",
+        "items": []
+    }
+}
