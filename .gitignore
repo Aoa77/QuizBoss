@@ -12,7 +12,8 @@
 /build
 
 # quiz packages copied from node_modules
-/public/quizzes
+/public/quizzes/**
+!/public/quizzes/.placeholder
 
 # misc
 .DS_Store

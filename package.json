@@ -18,8 +18,8 @@
         "web-vitals": "^2.1.4"
     },
     "scripts": {
-        "build-local": "react-scripts build && copyfiles -u 1 local_modules/quizboss-*/**/* public/quizzes",
-        "build": "react-scripts build",
+        "build-local": "rm -rf public/quizzes && mkdir public/quizzes && cp -R local_modules/quizboss-* public/quizzes && react-scripts build",
+        "build": "rm -rf public/quizzes && mkdir public/quizzes && cp -R node_modules/quizboss-* public/quizzes && react-scripts build",
         "start": "react-scripts start"
     },
     "eslintConfig": {
@@ -35,7 +35,7 @@
             "not op_mini all"
         ],
         "development": [
-            "last 1 chrome version",
+            "last 1 chrome ve`rsion",
             "last 1 firefox version",
             "last 1 safari version"
         ]
