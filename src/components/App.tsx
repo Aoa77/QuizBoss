@@ -9,7 +9,7 @@ import { useRef, useState } from "react";
 export default function App(props: Config) {
     const config = ConfigDefaults.setDefaults(props);
 
-    const [gameState, setGameState] = useState<GameState>(GameState.LOADING);
+    const [gameState, setGameState] = useState<GameState>(GameState.STARTUP);
     const [guessValue, setGuessValue] = useState<string>("");
     const [index, setIndex] = useState<number>(0);
     const [module, setModule] = useState<QuizModule | null>(null);
@@ -35,19 +35,20 @@ export default function App(props: Config) {
         guessValue,
         index,
         module?.quiz.items ?? [],
-        config.resultDisplayTime!,
-        config.spinnerPollingDelay!,
-        config.spinnerPollingInterval!,
+        config,
         refButtons,
         refImage,
         refLoading,
         refQuestion,
+        refTitle,
         setGameState,
         setIndex,
     );
     return (
         <main>
-            <h1 ref={refTitle}>{module?.quiz.title}</h1>
+            <h1 ref={refTitle} className="hidden">
+                {module?.quiz.title}
+            </h1>
             <h2 ref={refQuestion} className="hidden">
                 {module?.quiz.question}
             </h2>

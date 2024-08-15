@@ -1,6 +1,6 @@
-import { delay, randomInt, hideElement, showElement } from "./Util";
-import { GameState } from "./GameState";
-import { GuessButton, GuessButtonCount, GuessButtonState } from "./GuessButton";
+import { Config } from "./Config";
+import { GameState, onLoading, onNext, onResult, onStartup } from "./GameState";
+import { GuessButton } from "./GuessButton";
 import { QuizItem } from "./QuizModule";
 import { useEffect } from "react";
 
@@ -10,13 +10,12 @@ export function useQuizFlow(
     guessValue: string,
     index: number,
     quizItems: QuizItem[],
-    resultDisplayTime: number,
-    spinnerPollingDelay: number,
-    spinnerPollingInterval: number,
+    config: Config,
     refButtons: React.RefObject<HTMLDivElement>,
     refImage: React.RefObject<HTMLDivElement>,
     refLoading: React.RefObject<HTMLDivElement>,
-    refQuestion: React.RefObject<HTMLHeadingElement>,   
+    refQuestion: React.RefObject<HTMLHeadingElement>,
+    refTitle: React.RefObject<HTMLHeadingElement>,
     setGameState: (value: GameState) => void,
     setIndex: (value: number) => void,
 ) {
@@ -24,21 +23,25 @@ export function useQuizFlow(
         console.debug("useQuizFlow", gameState);
         switch (gameState) {
             case GameState.INPUT:
-            case GameState.END:
                 return;
+
+            case GameState.STARTUP:
+                onStartup(config, refTitle, setGameState);
+                return;
+
             case GameState.LOADING:
-                processLoading(
+                onLoading(
                     index,
                     quizItems,
-                    spinnerPollingDelay,
-                    spinnerPollingInterval,
+                    config,
                     refImage,
                     refLoading,
                     setGameState,
                 );
                 return;
+
             case GameState.NEXT:
-                processNext(
+                onNext(
                     guessButtons,
                     index,
                     quizItems,
@@ -49,17 +52,19 @@ export function useQuizFlow(
                     setGameState,
                 );
                 return;
+
             case GameState.RESULT:
-                processResult(
+                onResult(
                     guessButtons,
                     guessValue,
                     index,
                     quizItems,
-                    resultDisplayTime,
+                    config,
                     setGameState,
                     setIndex,
                 );
                 return;
+
             default:
                 throw new Error(`Invalid game state: ${gameState}`);
         }
@@ -69,103 +74,13 @@ export function useQuizFlow(
         guessValue,
         index,
         quizItems,
-        resultDisplayTime,
-        spinnerPollingDelay,
-        spinnerPollingInterval,
+        config,
         refButtons,
         refImage,
         refLoading,
         refQuestion,
+        refTitle,
         setGameState,
         setIndex,
     ]);
-}
-
-async function processLoading(
-    index: number,
-    quizItems: QuizItem[],
-    spinnerPollingDelay: number,
-    spinnerPollingInterval: number,
-    refImage: React.RefObject<HTMLDivElement>,
-    refLoading: React.RefObject<HTMLDivElement>,
-    setGameState: (value: GameState) => void,
-) {
-    hideElement(refImage.current!);
-    showElement(refLoading.current!);
-    await delay(spinnerPollingDelay);
-
-    while (!quizItems[index] || !quizItems[index].isLoaded) {
-        await delay(spinnerPollingInterval);
-    }
-    setGameState(GameState.NEXT);
-}
-
-async function processResult(
-    guessButtons: GuessButton[],
-    guessValue: string,
-    index: number,
-    quizItems: QuizItem[],
-    resultDisplayTime: number,
-    setGameState: (value: GameState) => void,
-    setIndex: (value: number) => void,
-) {
-    const correctAnswer = quizItems[index].name;
-    for (let guess = 0; guess < GuessButtonCount; guess++) {
-        const ref = guessButtons[guess].ref.current!;
-        if (guessValue !== ref.value) {
-            ref.className = GuessButtonState.DIMMED;
-            continue;
-        }
-        if (guessValue === correctAnswer) {
-            ref.className = GuessButtonState.CORRECT;
-            quizItems[index].answeredCorrectly = true;
-        } else {
-            ref.className = GuessButtonState.WRONG;
-        }
-    }
-    await delay(resultDisplayTime);
-    setIndex(index + 1);
-    setGameState(GameState.LOADING);
-}
-
-function processNext(
-    guessButtons: GuessButton[],
-    index: number,
-    quizItems: QuizItem[],
-    refButtons: React.RefObject<HTMLDivElement>,
-    refImage: React.RefObject<HTMLDivElement>,
-    refLoading: React.RefObject<HTMLDivElement>,
-    refQuestion: React.RefObject<HTMLHeadingElement>,
-    setGameState: (value: GameState) => void,
-) {
-    hideElement(refLoading.current!);
-    showElement(refButtons.current!);
-    showElement(refImage.current!);
-    showElement(refQuestion.current!);
-
-    const items: number[] = [];
-    const answerSpot: number = randomInt(0, GuessButtonCount);
-    console.debug("answerSpot: ", answerSpot);
-
-    for (let guess = 0; guess < GuessButtonCount; guess++) {
-        let item = index;
-        if (guess !== answerSpot) {
-            while (true) {
-                item = randomInt(0, quizItems.length);
-                if (
-                    item !== index &&
-                    !items.includes(item) &&
-                    !quizItems[item].answeredCorrectly
-                ) {
-                    break;
-                }
-            }
-        }
-        items.push(item);
-        const ref = guessButtons[guess].ref.current!;
-        ref.innerHTML = quizItems[item].name;
-        ref.value = quizItems[item].name;
-        ref.className = GuessButtonState.NORMAL;
-    }
-    setGameState(GameState.INPUT);
 }
