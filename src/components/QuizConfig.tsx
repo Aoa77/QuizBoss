@@ -1,13 +1,7 @@
 
 export interface QuizConfig {
-    /** Required. Sets the title of the quiz. */
-    quizTitle: string;
-
-    /** Required. Sets the question text for each quiz item. */
-    itemQuestion: string;
-
-    /** Required. Key/value for each quiz item. */
-    jsonData: Record<string, string>;
+    /** Required. Specifies the quiz module name. */
+    quizModuleName: string;
 
     /** Optional. Default value is 50. */
     imageLoadThrottle?: number;
