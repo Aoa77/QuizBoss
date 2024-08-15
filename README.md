@@ -14,5 +14,7 @@ QuizBoss is a single-page web application framework for crafting engaging multip
 
 ## Demo Video
 
-https://github.com/user-attachments/assets/262cd682-4f4a-44f0-8f35-7aca80f149b4
+https://github.com/user-attachments/assets/492a687b-e88c-4942-8a30-d79d5619fbd6
+
+
 
