@@ -77,6 +77,7 @@ export function onNext(
         items.push(item);
         const ref = guessButtons[guess].ref.current!;
         ref.innerHTML = quizItems[item].name;
+        //ref.innerHTML = "South Georgia and the South Sandwich Islands"; // longest value for testing
         ref.value = quizItems[item].name;
         ref.className = GuessButtonState.NORMAL;
     }

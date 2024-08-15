@@ -1,12 +1,12 @@
 .spinner,
 .spinner:after {
     box-sizing: border-box;
-    color: #ffffff;
+    color: #a5a5c8cc;
 }
 .spinner {
     display: inline-block;
-    width: 80px;
-    height: 80px;
+    width: 48rem;
+    height: 48rem;
 }
 .spinner:after {
     content: " ";
@@ -14,9 +14,11 @@
     border-radius: 50%;
     width: 0;
     height: 0;
-    margin: 8px;
+    border-width: 20rem;
+    margin: 4rem;
+    margin-top: 24rem;
     box-sizing: border-box;
-    border: 32px solid currentColor;
+    border-style: solid;
     border-color: currentColor transparent currentColor transparent;
     animation: spinner 1.2s infinite;
 }

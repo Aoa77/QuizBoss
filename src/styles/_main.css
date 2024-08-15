@@ -16,14 +16,14 @@ main {
 h1 {
     color: white;
     font-family: "Garamond", serif;
-    font-size: 22rem;
+    font-size: 19rem;
     font-weight: normal;
-    margin-top: var(--hu_10);
+    margin-top: var(--hu_6);
 }
 h2 {
     color: #00ffff;
     font-family: "Tahoma", sans-serif;
-    font-size: 9rem;
+    font-size: 7rem;
     font-weight: normal;
     margin-top: var(--hu_2);
     margin-bottom: var(--hu_3);
@@ -34,14 +34,17 @@ h2 {
 /********************************************************************/
 section.image,
 section.loading {
-    background-color: #009900;
-    height: var(--hu_62);
+    background-color: #00990000;
+    height: var(--hu_52);
+    display: flex;
+    justify-content: center;
 }
 img {
-    box-shadow: 0 0 6rem 3rem #0000ff89;
+    box-shadow: 0 0 16rem 3rem #a5a5c8cc;
     display: block;
-    margin: 0 auto;
+    margin: auto;
     max-height: 90%;
+    max-width: 90%;
 }
 
 /************************/
@@ -53,13 +56,13 @@ button {
     border-style: solid;
     display: block;
     font-family: "Tahoma", sans-serif;
-    font-size: 8rem;
+    font-size: 7rem;
     font-weight: normal;
-    width: 62rem;
-    height: var(--hu_6);
+    width: 116rem;
+    height: var(--hu_12);
     margin: 0 auto;
-    margin-top: var(--hu_3);
-    padding: 0 2%;
+    margin-top: var(--hu_5);
+    padding: 1rem;
 }
 button.normal {
     background-color: #444477;
