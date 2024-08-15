@@ -1,13 +1,13 @@
 import "../styles";
+import { Config, ConfigDefaults } from "./Config";
 import { GameState } from "./GameState";
-import { QuizConfig, QuizConfigDefaults } from "./QuizConfig";
+import { QuizModule, useQuizModule } from "./QuizModule";
 import { useGuessButtons } from "./GuessButton";
 import { useQuizFlow } from "./QuizFlow";
-import { QuizModule, useQuizModule } from "./QuizModule";
 import { useRef, useState } from "react";
 
-export function QuizApp(props: QuizConfig) {
-    const config = QuizConfigDefaults.setDefaults(props);
+export default function App(props: Config) {
+    const config = ConfigDefaults.setDefaults(props);
 
     const [gameState, setGameState] = useState<GameState>(GameState.LOADING);
     const [guessValue, setGuessValue] = useState<string>("");
@@ -51,13 +51,13 @@ export function QuizApp(props: QuizConfig) {
             <h2 ref={refQuestion} className="hidden">
                 {module?.quiz.question}
             </h2>
-            <section ref={refLoading} className="loadingArea hidden">
+            <section ref={refLoading} className="loading hidden">
                 <div className="spinner"></div>
             </section>
-            <section ref={refImage} className="imageArea hidden">
+            <section ref={refImage} className="image hidden">
                 {module?.quiz.items[index].imageJsx}
             </section>
-            <section ref={refButtons} className="buttonArea hidden">
+            <section ref={refButtons} className="buttons hidden">
                 {guessButtons.map((b) => b.element)}
             </section>
         </main>

@@ -1,4 +1,4 @@
-export interface QuizConfig {
+export interface Config {
     /** Required. Specifies the quiz module name. */
     quizModuleName: string;
 
@@ -15,27 +15,27 @@ export interface QuizConfig {
     spinnerPollingInterval?: number;
 }
 
-export const QuizConfigDefaults = {
+export const ConfigDefaults = {
     imageLoadThrottle: 50,
     resultDisplayTime: 500,
     spinnerPollingDelay: 2500,
     spinnerPollingInterval: 100,
 
-    setDefaults: (config: QuizConfig): QuizConfig => {
+    setDefaults: (config: Config): Config => {
         return {
             quizModuleName: config.quizModuleName,
             imageLoadThrottle:
                 config.imageLoadThrottle ??
-                QuizConfigDefaults.imageLoadThrottle,
+                ConfigDefaults.imageLoadThrottle,
             resultDisplayTime:
                 config.resultDisplayTime ??
-                QuizConfigDefaults.resultDisplayTime,
+                ConfigDefaults.resultDisplayTime,
             spinnerPollingDelay:
                 config.spinnerPollingDelay ??
-                QuizConfigDefaults.spinnerPollingDelay,
+                ConfigDefaults.spinnerPollingDelay,
             spinnerPollingInterval:
                 config.spinnerPollingInterval ??
-                QuizConfigDefaults.spinnerPollingInterval,
+                ConfigDefaults.spinnerPollingInterval,
         };
     },
 };

@@ -1,4 +1,4 @@
-import { QuizApp } from "./components/QuizApp";
+import App from "./components/App";
 import ReactDOM from "react-dom/client";
 
 const root = ReactDOM.createRoot(
@@ -6,7 +6,7 @@ const root = ReactDOM.createRoot(
 );
 
 root.render(
-    <QuizApp
+    <App
         quizModuleName="quizboss-world-flags"
         // imageLoadThrottle={50}
         // resultDisplayTime={1500}
