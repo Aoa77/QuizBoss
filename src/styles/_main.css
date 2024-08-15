@@ -17,14 +17,6 @@ main {
     margin-left: var(--main_center);
 }
 
-.hidden {
-    display: none;
-}
-
-section.loadingArea {
-    margin-top: var(--hu_6);
-}
-
 h1 {
     color: white;
     font-size: 22rem;
@@ -35,16 +27,29 @@ h1 {
 h2 {
     color: #00ffff;
     font-size: 9rem;
-    font-weight: bold;
+    font-weight: normal;
     margin-top: var(--hu_2);
-    margin-bottom: var(--hu_2);
+    margin-bottom: var(--hu_3);
 }
 
-img.current {
+section.loadingArea {
+    height: var(--hu_16);
+}
+
+img {
+    box-shadow: 0 0 var(--wu_6) var(--wu_3) #0000ff89;
     display: block;
-    height: var(--hu_28);
-    margin-left: 5%;
-    max-width: 90%;
+    margin: 0 auto;
+    height: var(--hu_16);
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+section.loadingArea.hidden,
+section.imageArea.hidden {
+    display: none;
 }
 
 button {
@@ -52,38 +57,35 @@ button {
     appearance: none;
     border-style: solid;
     display: block;
-    font-weight: bold;
-    width: 84%;
-    height: var(--hu_8);
+    font-size: 8rem;
+    font-weight: normal;
+    width: var(--wu_62);
+    height: var(--hu_6);
     margin: 0 auto;
     margin-top: var(--hu_3);
-    padding: 0;
+    padding: 0 2%;
 }
 
 button.normal {
     background-color: #444477;
     border-color: #444499;
     color: #ffffff;
-    font-size: 10rem;
 }
 
 button.correct {
     background-color: #00ff0022;
     border-color: #009900;
     color: #00ff00;
-    font-size: 12rem;
 }
 
 button.dimmed {
     background-color: #44447744;
     border-color: #44447722;
     color: #ffffff66;
-    font-size: 10rem;
 }
 
 button.wrong {
     background-color: #ff000044;
     border-color: #990000;
     color: #ff0000;
-    font-size: 12rem;
 }

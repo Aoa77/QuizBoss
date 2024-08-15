@@ -1,32 +1,26 @@
 import "../styles";
 import { GameState } from "./GameState";
-import { QuizConfig } from "./QuizConfig";
+import { QuizConfig, QuizConfigDefaults } from "./QuizConfig";
 import { useGuessButtons } from "./GuessButton";
 import { useQuizFlow } from "./QuizFlow";
 import { QuizModule, useQuizModule } from "./QuizModule";
 import { useRef, useState } from "react";
 
 export function QuizApp(props: QuizConfig) {
-    let {
-        imageLoadThrottle,
-        resultDisplayTime,
-        spinnerPollingDelay,
-        spinnerPollingInterval,
-    } = props;
-
-    imageLoadThrottle ??= 50;
-    resultDisplayTime ??= 1500;
-    spinnerPollingDelay ??= 500;
-    spinnerPollingInterval ??= 100;
+    const config = QuizConfigDefaults.setDefaults(props);
 
     const [gameState, setGameState] = useState<GameState>(GameState.LOADING);
     const [guessValue, setGuessValue] = useState<string>("");
     const [index, setIndex] = useState<number>(0);
     const [module, setModule] = useState<QuizModule | null>(null);
-    const loadingArea = useRef(null);
-    const quizArea = useRef(null);
 
-    useQuizModule(imageLoadThrottle, props.quizModuleName, setModule);
+    const refButtons = useRef<HTMLDivElement>(null);
+    const refImage = useRef<HTMLDivElement>(null);
+    const refLoading = useRef<HTMLDivElement>(null);
+    const refQuestion = useRef<HTMLHeadingElement>(null);
+    const refTitle = useRef<HTMLHeadingElement>(null);
+
+    useQuizModule(config.imageLoadThrottle!, props.quizModuleName, setModule);
     const guessButtons = useGuessButtons((ref) => {
         if (gameState !== GameState.INPUT) {
             return;
@@ -40,24 +34,30 @@ export function QuizApp(props: QuizConfig) {
         guessButtons,
         guessValue,
         index,
-        loadingArea,
-        quizArea,
         module?.quiz.items ?? [],
-        resultDisplayTime,
-        spinnerPollingDelay,
-        spinnerPollingInterval,
+        config.resultDisplayTime!,
+        config.spinnerPollingDelay!,
+        config.spinnerPollingInterval!,
+        refButtons,
+        refImage,
+        refLoading,
+        refQuestion,
         setGameState,
         setIndex,
     );
     return (
         <main>
-            <h1>{module?.quiz.title}</h1>
-            <section ref={loadingArea} className="loadingArea">
+            <h1 ref={refTitle}>{module?.quiz.title}</h1>
+            <h2 ref={refQuestion} className="hidden">
+                {module?.quiz.question}
+            </h2>
+            <section ref={refLoading} className="loadingArea hidden">
                 <div className="spinner"></div>
             </section>
-            <section ref={quizArea} className="quizArea hidden">
-                <h2>{module?.quiz.question}</h2>
+            <section ref={refImage} className="imageArea hidden">
                 {module?.quiz.items[index].imageJsx}
+            </section>
+            <section ref={refButtons} className="buttonArea hidden">
                 {guessButtons.map((b) => b.element)}
             </section>
         </main>

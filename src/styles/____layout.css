@@ -1,0 +1,14 @@
+:root {
+    /*
+    --width: min(100vw, calc(0.5625 * 100vh));
+    --height: min(100vh, calc(1.777 * 100vw));
+    */
+
+    --width: min(100vw, calc(0.4618226600985222 * 100vh));
+    --height: min(100vh, calc(2.1653333333333333 * 100vw));
+
+    --device_center: calc(100vw / 2);
+    --app_center: calc(var(--width) / 2);
+    --main_center: calc(var(--device_center) - var(--app_center));
+
+}

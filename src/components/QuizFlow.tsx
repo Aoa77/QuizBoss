@@ -9,12 +9,14 @@ export function useQuizFlow(
     guessButtons: GuessButton[],
     guessValue: string,
     index: number,
-    loadingArea: React.RefObject<HTMLDivElement>,
-    quizArea: React.RefObject<HTMLDivElement>,
     quizItems: QuizItem[],
     resultDisplayTime: number,
     spinnerPollingDelay: number,
     spinnerPollingInterval: number,
+    refButtons: React.RefObject<HTMLDivElement>,
+    refImage: React.RefObject<HTMLDivElement>,
+    refLoading: React.RefObject<HTMLDivElement>,
+    refQuestion: React.RefObject<HTMLHeadingElement>,   
     setGameState: (value: GameState) => void,
     setIndex: (value: number) => void,
 ) {
@@ -27,11 +29,11 @@ export function useQuizFlow(
             case GameState.LOADING:
                 processLoading(
                     index,
-                    loadingArea,
-                    quizArea,
                     quizItems,
                     spinnerPollingDelay,
                     spinnerPollingInterval,
+                    refImage,
+                    refLoading,
                     setGameState,
                 );
                 return;
@@ -39,9 +41,11 @@ export function useQuizFlow(
                 processNext(
                     guessButtons,
                     index,
-                    loadingArea,
-                    quizArea,
                     quizItems,
+                    refButtons,
+                    refImage,
+                    refLoading,
+                    refQuestion,
                     setGameState,
                 );
                 return;
@@ -64,12 +68,14 @@ export function useQuizFlow(
         guessButtons,
         guessValue,
         index,
-        loadingArea,
-        quizArea,
         quizItems,
         resultDisplayTime,
         spinnerPollingDelay,
         spinnerPollingInterval,
+        refButtons,
+        refImage,
+        refLoading,
+        refQuestion,
         setGameState,
         setIndex,
     ]);
@@ -77,15 +83,15 @@ export function useQuizFlow(
 
 async function processLoading(
     index: number,
-    loadingArea: React.RefObject<HTMLDivElement>,
-    quizArea: React.RefObject<HTMLDivElement>,
     quizItems: QuizItem[],
     spinnerPollingDelay: number,
     spinnerPollingInterval: number,
+    refImage: React.RefObject<HTMLDivElement>,
+    refLoading: React.RefObject<HTMLDivElement>,
     setGameState: (value: GameState) => void,
 ) {
-    hideElement(quizArea.current!);
-    showElement(loadingArea.current!);
+    hideElement(refImage.current!);
+    showElement(refLoading.current!);
     await delay(spinnerPollingDelay);
 
     while (!quizItems[index] || !quizItems[index].isLoaded) {
@@ -125,13 +131,17 @@ async function processResult(
 function processNext(
     guessButtons: GuessButton[],
     index: number,
-    loadingArea: React.RefObject<HTMLDivElement>,
-    quizArea: React.RefObject<HTMLDivElement>,
     quizItems: QuizItem[],
+    refButtons: React.RefObject<HTMLDivElement>,
+    refImage: React.RefObject<HTMLDivElement>,
+    refLoading: React.RefObject<HTMLDivElement>,
+    refQuestion: React.RefObject<HTMLHeadingElement>,
     setGameState: (value: GameState) => void,
 ) {
-    hideElement(loadingArea.current!);
-    showElement(quizArea.current!);
+    hideElement(refLoading.current!);
+    showElement(refButtons.current!);
+    showElement(refImage.current!);
+    showElement(refQuestion.current!);
 
     const items: number[] = [];
     const answerSpot: number = randomInt(0, GuessButtonCount);
