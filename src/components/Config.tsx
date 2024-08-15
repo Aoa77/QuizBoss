@@ -19,11 +19,11 @@ export interface Config {
 }
 
 export const ConfigDefaults = {
-    imageLoadThrottle: 25,
-    resultDisplayTime: 250,
+    imageLoadThrottle: 50,
+    resultDisplayTime: 1000,
     spinnerPollingDelay: 500,
-    spinnerPollingInterval: 50,
-    startupDelay: 2500,
+    spinnerPollingInterval: 100,
+    startupDelay: 2000,
 
     setDefaults: (config: Config): Config => {
         return {

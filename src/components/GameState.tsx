@@ -2,6 +2,7 @@ import { GuessButton, GuessButtonCount, GuessButtonState } from "./GuessButton";
 import { hideElement, showElement, delay, randomInt } from "./Util";
 import { QuizItem } from "./QuizModule";
 import { Config } from "./Config";
+import { HtmlElementRefs } from "./HtmlElementRefs";
 
 export enum GameState {
     STARTUP = "STARTUP",
@@ -14,10 +15,13 @@ export enum GameState {
 
 export async function onStartup(
     config: Config,
-    refTitle: React.RefObject<HTMLHeadingElement>,
+    refs: HtmlElementRefs,
     setGameState: (value: GameState) => void,
 ) {
-    showElement(refTitle.current!);
+    hideElement(refs.image);
+    showElement(refs.title);
+    await delay(config.spinnerPollingDelay!);
+    showElement(refs.loading);
     await delay(config.startupDelay!);
     setGameState(GameState.LOADING);
 }
@@ -26,12 +30,11 @@ export async function onLoading(
     index: number,
     quizItems: QuizItem[],
     config: Config,
-    refImage: React.RefObject<HTMLDivElement>,
-    refLoading: React.RefObject<HTMLDivElement>,
+    refs: HtmlElementRefs,
     setGameState: (value: GameState) => void,
 ) {
-    hideElement(refImage.current!);
-    showElement(refLoading.current!);
+    hideElement(refs.image);
+    showElement(refs.loading);
 
     await delay(config.spinnerPollingDelay!);
 
@@ -45,16 +48,13 @@ export function onNext(
     guessButtons: GuessButton[],
     index: number,
     quizItems: QuizItem[],
-    refButtons: React.RefObject<HTMLDivElement>,
-    refImage: React.RefObject<HTMLDivElement>,
-    refLoading: React.RefObject<HTMLDivElement>,
-    refQuestion: React.RefObject<HTMLHeadingElement>,
+    refs: HtmlElementRefs,
     setGameState: (value: GameState) => void,
 ) {
-    hideElement(refLoading.current!);
-    showElement(refButtons.current!);
-    showElement(refImage.current!);
-    showElement(refQuestion.current!);
+    hideElement(refs.loading);
+    showElement(refs.buttons);
+    showElement(refs.image);
+    showElement(refs.question);
 
     const items: number[] = [];
     const answerSpot: number = randomInt(0, GuessButtonCount);
