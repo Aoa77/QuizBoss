@@ -16,16 +16,16 @@ main {
 h1 {
     color: white;
     font-family: "Garamond", serif;
-    font-size: 19rem;
+    font-size: 21rem;
     font-weight: normal;
     margin-top: var(--hu_6);
 }
 h2 {
     color: #00ffff;
     font-family: "Tahoma", sans-serif;
-    font-size: 7rem;
+    font-size: 9rem;
     font-weight: normal;
-    margin-top: var(--hu_2);
+    margin-top: var(--hu_6);
     margin-bottom: var(--hu_3);
 }
 
@@ -38,6 +38,8 @@ section.loading {
     height: var(--hu_52);
     display: flex;
     justify-content: center;
+    margin-top: var(--hu_8);
+    margin-bottom: var(--hu_12);
 }
 img {
     box-shadow: 0 0 16rem 3rem #a5a5c8cc;
@@ -56,7 +58,7 @@ button {
     border-style: solid;
     display: block;
     font-family: "Tahoma", sans-serif;
-    font-size: 7rem;
+    font-size: 9rem;
     font-weight: normal;
     width: 116rem;
     height: var(--hu_12);

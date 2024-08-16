@@ -53,7 +53,7 @@ export function useQuizFlow(
                     guessValue,
                     index,
                     quizItems,
-                    config,
+                    refs,
                     setGameState,
                     setIndex,
                 );

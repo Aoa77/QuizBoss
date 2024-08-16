@@ -20,7 +20,7 @@ export default function App(props: Config) {
     const refQuestion = useRef<HTMLHeadingElement>(null);
     const refTitle = useRef<HTMLHeadingElement>(null);
 
-    useQuizModule(config.imageLoadThrottle!, props.quizModuleName, setModule);
+    useQuizModule(config.loadThrottle!, props.quizModuleName, setModule);
     const guessButtons = useGuessButtons((ref) => {
         if (gameState !== GameState.INPUT) {
             return;

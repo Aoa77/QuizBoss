@@ -20,18 +20,20 @@
     box-sizing: border-box;
     border-style: solid;
     border-color: currentColor transparent currentColor transparent;
-    animation: spinner 1.2s infinite;
+    
+    animation-name: startSpin, continueSpin;
+animation-duration: 2000ms, 10000ms;
+animation-delay: 0ms, 2000ms; /* add this */
+animation-timing-function: ease-in, linear;
+animation-iteration-count: 1, infinite;
 }
-@keyframes spinner {
-    0% {
-        transform: rotate(0);
-        animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
-    }
-    50% {
-        transform: rotate(900deg);
-        animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
-    }
-    100% {
-        transform: rotate(1800deg);
-    }
+
+@keyframes startSpin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(3600deg); }
+}
+
+@keyframes continueSpin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(3600deg); }
 }

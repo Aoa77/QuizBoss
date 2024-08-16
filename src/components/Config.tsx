@@ -3,47 +3,26 @@ export interface Config {
     quizModuleName: string;
 
     /** Default value is 50. */
-    imageLoadThrottle?: number;
+    loadThrottle?: number;
 
-    /** Default value is 500. */
-    resultDisplayTime?: number;
-
-    /** Default value is 500. */
-    spinnerPollingDelay?: number;
+    /** Default value is 1000. */
+    nextDelay?: number;
 
     /** Default value is 100. */
-    spinnerPollingInterval?: number;
-
-    /** Default value is 500. */
-    startupDelay?: number;
+    spinnerPoll?: number;
 }
 
 export const ConfigDefaults = {
-    imageLoadThrottle: 50,
-    resultDisplayTime: 1000,
-    spinnerPollingDelay: 500,
-    spinnerPollingInterval: 100,
-    startupDelay: 2000,
+    loadThrottle: 25,
+    nextDelay: 500,
+    spinnerPoll: 100,
 
     setDefaults: (config: Config): Config => {
         return {
             quizModuleName: config.quizModuleName,
-
-            imageLoadThrottle:
-                config.imageLoadThrottle ?? ConfigDefaults.imageLoadThrottle,
-
-            resultDisplayTime:
-                config.resultDisplayTime ?? ConfigDefaults.resultDisplayTime,
-
-            spinnerPollingDelay:
-                config.spinnerPollingDelay ??
-                ConfigDefaults.spinnerPollingDelay,
-
-            spinnerPollingInterval:
-                config.spinnerPollingInterval ??
-                ConfigDefaults.spinnerPollingInterval,
-
-            startupDelay: config.startupDelay ?? ConfigDefaults.startupDelay,
+            loadThrottle: config.loadThrottle ?? ConfigDefaults.loadThrottle,
+            nextDelay: config.nextDelay ?? ConfigDefaults.nextDelay,
+            spinnerPoll: config.spinnerPoll ?? ConfigDefaults.spinnerPoll,
         };
     },
 };

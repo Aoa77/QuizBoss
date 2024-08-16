@@ -20,11 +20,11 @@ export async function onStartup(
 ) {
     hideElement(refs.image);
     showElement(refs.title);
-    await delay(config.spinnerPollingDelay!);
-    showElement(refs.loading);
-    await delay(config.startupDelay!);
+    await delay(config.spinnerPoll!);
     setGameState(GameState.LOADING);
 }
+
+var first = true;
 
 export async function onLoading(
     index: number,
@@ -34,13 +34,18 @@ export async function onLoading(
     setGameState: (value: GameState) => void,
 ) {
     hideElement(refs.image);
-    showElement(refs.loading);
-
-    await delay(config.spinnerPollingDelay!);
-
-    while (!quizItems[index] || !quizItems[index].isLoaded) {
-        await delay(config.spinnerPollingInterval!);
+    if (first) {
+    await delay(config.spinnerPoll! * 4);
     }
+    first = false;
+    showElement(refs.loading);
+    
+    await delay(config.spinnerPoll! * 3);
+    while (!quizItems[index] || !quizItems[index].isLoaded) {
+        await delay(config.spinnerPoll!);
+    }
+
+    await delay(config.nextDelay!);
     setGameState(GameState.NEXT);
 }
 
@@ -89,7 +94,7 @@ export async function onResult(
     guessValue: string,
     index: number,
     quizItems: QuizItem[],
-    config: Config,
+    refs: HtmlElementRefs,
     setGameState: (value: GameState) => void,
     setIndex: (value: number) => void,
 ) {
@@ -107,7 +112,7 @@ export async function onResult(
             ref.className = GuessButtonState.WRONG;
         }
     }
-    await delay(config.resultDisplayTime!);
+    hideElement(refs.image);
     setIndex(index + 1);
     setGameState(GameState.LOADING);
 }
