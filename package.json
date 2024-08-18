@@ -18,8 +18,17 @@
         "web-vitals": "^2.1.4"
     },
     "scripts": {
-        "build-local": "rm -rf public/quizzes && mkdir public/quizzes && touch public/quizzes/.placeholder && cp -R local_modules/quizboss-* public/quizzes && react-scripts build",
-        "build": "rm -rf public/quizzes && mkdir public/quizzes && touch public/quizzes/.placeholder && cp -R node_modules/quizboss-* public/quizzes && react-scripts build",
+
+        "hello": "node scripts/_hello.js",
+        "hellotest": "npm run hello -- --name='TEST 123!'",
+        
+        "find": "node scripts/findQuizModules.js",
+        "findlocal": "npm run find -- --src=local_modules",
+        "findnode": "npm run find -- --src=node_modules",
+
+        "build": "npm run clean && npm run update && react-scripts build",
+        "clean": "node scripts/cleanQuizModules.js",
+        "update": "node scripts/updateQuizModules.js",
         "start": "react-scripts start"
     },
     "eslintConfig": {
@@ -41,6 +50,8 @@
         ]
     },
     "devDependencies": {
-        "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
-    }
+        "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+        "minimalist": "^1.0.0"
+    },
+    "type": "module"
 }

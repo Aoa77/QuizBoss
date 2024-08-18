@@ -33,13 +33,14 @@ export async function onLoading(
     refs: HtmlElementRefs,
     setGameState: (value: GameState) => void,
 ) {
+    console.log("onLoading", quizItems);
     hideElement(refs.image);
     if (first) {
-    await delay(config.spinnerPoll! * 4);
+        await delay(config.spinnerPoll! * 4);
     }
     first = false;
     showElement(refs.loading);
-    
+
     await delay(config.spinnerPoll! * 3);
     while (!quizItems[index] || !quizItems[index].isLoaded) {
         await delay(config.spinnerPoll!);

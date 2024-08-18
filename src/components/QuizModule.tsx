@@ -5,10 +5,10 @@ import { delay, shuffle } from "./Util";
 export interface QuizModule {
     name: string;
     version: string;
-    quiz: Quiz;
+    quizdata: QuizData;
 }
 
-export interface Quiz {
+export interface QuizData {
     title: string;
     description: string;
     question: string;
@@ -31,8 +31,11 @@ export function useQuizModule(
 ): void {
     useEffect(() => {
         fetchQuizModule(moduleName).then((module) => {
-            module.quiz.items.forEach((item) => {
+            console.info(`Quiz module loaded: ${module.name}`);
+            console.info(module);
+            module.quizdata.items.forEach((item) => {
                 item.imageSrc = `quizzes/${module.name}/${item.imageSrc}`;
+                console.info(`Image source: ${item.imageSrc}`);
                 item.image = new Image();
                 item.image.onload = () => {
                     console.debug(`Image loaded: ${item.image.src}`);
@@ -40,9 +43,9 @@ export function useQuizModule(
                     item.isLoaded = true;
                 };
             });
-            shuffle(module.quiz.items);
+            shuffle(module.quizdata.items);
             setModule(module);
-            loadQuizImages(imageLoadThrottle, module.quiz.items);
+            loadQuizImages(imageLoadThrottle, module.quizdata.items);
         });
     }, [imageLoadThrottle, moduleName, setModule]);
 }

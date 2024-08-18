@@ -34,7 +34,7 @@ export default function App(props: Config) {
         guessButtons,
         guessValue,
         index,
-        module?.quiz.items ?? [],
+        module?.quizdata.items ?? [],
         config,
         refButtons,
         refImage,
@@ -47,16 +47,16 @@ export default function App(props: Config) {
     return (
         <main>
             <h1 ref={refTitle} className="hidden">
-                {module?.quiz.title}
+                {module?.quizdata.title}
             </h1>
             <h2 ref={refQuestion} className="hidden">
-                {module?.quiz.question}
+                {module?.quizdata.question}
             </h2>
             <section ref={refLoading} className="loading hidden">
                 <div className="spinner"></div>
             </section>
             <section ref={refImage} className="image hidden">
-                {module?.quiz.items[index].imageJsx}
+                {module?.quizdata.items[index].imageJsx}
             </section>
             <section ref={refButtons} className="buttons hidden">
                 {guessButtons.map((b) => b.element)}
