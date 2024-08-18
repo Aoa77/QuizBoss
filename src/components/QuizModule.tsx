@@ -32,10 +32,9 @@ export function useQuizModule(
     useEffect(() => {
         fetchQuizModule(moduleName).then((module) => {
             console.info(`Quiz module loaded: ${module.name}`);
-            console.info(module);
             module.quizdata.items.forEach((item) => {
                 item.imageSrc = `quizzes/${module.name}/${item.imageSrc}`;
-                console.info(`Image source: ${item.imageSrc}`);
+                console.debug(`Image source: ${item.imageSrc}`);
                 item.image = new Image();
                 item.image.onload = () => {
                     console.debug(`Image loaded: ${item.image.src}`);
@@ -61,7 +60,6 @@ async function fetchQuizModule(moduleName: string): Promise<QuizModule> {
         throw new Error(`Failed to fetch quiz module: ${moduleName}`);
     }
     const module:QuizModule = await response.json();
-    console.debug("module: ", module);
     return module;
 }
 

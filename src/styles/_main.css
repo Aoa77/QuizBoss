@@ -39,13 +39,13 @@ section.loading {
     display: flex;
     justify-content: center;
     margin-top: var(--hu_8);
-    margin-bottom: var(--hu_12);
+    margin-bottom: var(--hu_6);
 }
 img {
     box-shadow: 0 0 16rem 3rem #a5a5c8cc;
     display: block;
     margin: auto;
-    max-height: 90%;
+    max-height: 80%;
     max-width: 90%;
 }
 

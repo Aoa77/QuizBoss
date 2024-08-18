@@ -33,7 +33,6 @@ export async function onLoading(
     refs: HtmlElementRefs,
     setGameState: (value: GameState) => void,
 ) {
-    console.log("onLoading", quizItems);
     hideElement(refs.image);
     if (first) {
         await delay(config.spinnerPoll! * 4);
@@ -64,7 +63,7 @@ export function onNext(
 
     const items: number[] = [];
     const answerSpot: number = randomInt(0, GuessButtonCount);
-    console.debug("answerSpot: ", answerSpot);
+    console.info("answerSpot: ", answerSpot);
 
     for (let guess = 0; guess < GuessButtonCount; guess++) {
         let item = index;

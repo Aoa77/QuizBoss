@@ -21,11 +21,11 @@ export function useQuizFlow(
     setIndex: (value: number) => void,
 ) {
     useEffect(() => {
-        console.debug("useQuizFlow", gameState);
+        console.info("useQuizFlow", gameState);
 
         const refs: HtmlElementRefs = {
             buttons: refButtons.current!,
-            image: refImage.current!,
+            image: refImage.current!,   
             loading: refLoading.current!,
             question: refQuestion.current!,
             title: refTitle.current!,
