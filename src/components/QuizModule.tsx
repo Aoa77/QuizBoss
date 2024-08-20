@@ -24,6 +24,10 @@ export interface QuizItem {
     answeredCorrectly: boolean;
 }
 
+export function extractQuizItems(quizModule: QuizModule | null): QuizItem[] {
+    return quizModule?.quizdata.items ?? [];
+}   
+
 export function useQuizModule(
     imageLoadThrottle: number,
     moduleName: string,

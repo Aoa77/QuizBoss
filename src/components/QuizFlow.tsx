@@ -1,29 +1,26 @@
 import { Config } from "./Config";
+import { Elements } from "./Elements";
 import { GameState } from "./GameState";
 import { GuessButton } from "./GuessButton";
-import { Elements } from "./Elements";
 import { onLoading, onNext, onResult, onStartup } from "./Events";
 import { QuizModule } from "./QuizModule";
 import { useEffect } from "react";
+import { Context } from "./Context";
 
 export function useQuizFlow(
     config: Config,
-
     currentItemIndex: number,
-    setCurrentItemIndex: (value: number) => void,
-
     gameState: GameState,
-    setGameState: (value: GameState) => void,
-
     guessButtons: GuessButton[],
     guessValue: string,
     quizModule: QuizModule | null,
-
     refButtons: React.RefObject<HTMLDivElement>,
     refImage: React.RefObject<HTMLDivElement>,
     refLoading: React.RefObject<HTMLDivElement>,
     refQuestion: React.RefObject<HTMLHeadingElement>,
     refTitle: React.RefObject<HTMLHeadingElement>,
+    setCurrentItemIndex: (value: number) => void,
+    setGameState: (value: GameState) => void,
 ) {
     useEffect(() => {
         console.info("useQuizFlow", gameState);
@@ -35,51 +32,42 @@ export function useQuizFlow(
             question: refQuestion.current!,
             title: refTitle.current!,
         };
-        const quizItems = quizModule?.quizdata.items ?? [];
+
+        const context: Context = {
+            config,
+            currentItemIndex,
+            elements,
+            gameState,
+            guessButtons,
+            guessValue,
+            quizModule,
+            setCurrentItemIndex,
+            setGameState,
+        };
 
         switch (gameState) {
             case GameState.INPUT:
                 return;
 
             case GameState.STARTUP:
-                onStartup(config, elements, setGameState);
+                onStartup(context);
                 return;
 
             case GameState.LOADING:
-                onLoading(
-                    currentItemIndex,
-                    quizItems,
-                    config,
-                    elements,
-                    setGameState,
-                );
+                onLoading(context);
                 return;
 
             case GameState.NEXT:
-                onNext(
-                    guessButtons,
-                    currentItemIndex,
-                    quizItems,
-                    elements,
-                    setGameState,
-                );
+                onNext(context);
                 return;
 
             case GameState.RESULT:
-                onResult(
-                    guessButtons,
-                    guessValue,
-                    currentItemIndex,
-                    quizItems,
-                    elements,
-                    setGameState,
-                    setCurrentItemIndex,
-                );
+                onResult(context);
                 return;
 
             default:
                 throw new Error(`Invalid game state: ${gameState}`);
         }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [...arguments]);
 }

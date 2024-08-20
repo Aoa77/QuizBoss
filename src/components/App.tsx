@@ -37,9 +37,7 @@ export default function App(props: Config) {
     useQuizFlow(
         config,
         currentItemIndex,
-        setCurrentItemIndex,
         gameState,
-        setGameState,
         guessButtons,
         guessValue,
         quizModule,
@@ -48,8 +46,10 @@ export default function App(props: Config) {
         refLoading,
         refQuestion,
         refTitle,
-        
+        setCurrentItemIndex,
+        setGameState,
     );
+    
     return (
         <main>
             <h1 ref={refTitle} className="hidden">

@@ -1,42 +1,35 @@
-import { Config } from "./Config";
+import { Context } from "./Context";
+import { extractQuizItems } from "./QuizModule";
 import { GameState } from "./GameState";
-import { GuessButton, GuessButtonCount, GuessButtonState } from "./GuessButton";
+import { GuessButtonCount, GuessButtonState } from "./GuessButton";
 import { hideElement, showElement, delay, randomInt } from "./Util";
-import { Elements } from "./Elements";
-import { QuizItem } from "./QuizModule";
 
 var first = true;
 var wrongGuesses: number[] = [];
 
-
-export async function onStartup(
-    config: Config,
-    refs: Elements,
-    setGameState: (value: GameState) => void,
-) { 
-    hideElement(refs.image);
-    showElement(refs.title);
+export async function onStartup(context: Context) {
+    const { config, elements, setGameState } = context;
+    hideElement(elements.image);
+    showElement(elements.title);
     await delay(config.spinnerPoll!);
     setGameState(GameState.LOADING);
 }
 
+export async function onLoading(context: Context) {
+    const { config, currentItemIndex, elements, quizModule, setGameState } =
+        context;
+    const quizItems = extractQuizItems(quizModule);
+    const currentItem = quizItems[currentItemIndex];
 
-export async function onLoading(
-    index: number,
-    quizItems: QuizItem[],
-    config: Config,
-    refs: Elements,
-    setGameState: (value: GameState) => void,
-) {
-    hideElement(refs.image);
+    hideElement(elements.image);
     if (first) {
         await delay(config.spinnerPoll! * 4);
     }
     first = false;
-    showElement(refs.loading);
+    showElement(elements.loading);
 
     await delay(config.spinnerPoll! * 3);
-    while (!quizItems[index] || !quizItems[index].isLoaded) {
+    while (!currentItem || !currentItem.isLoaded) {
         await delay(config.spinnerPoll!);
     }
 
@@ -44,58 +37,65 @@ export async function onLoading(
     setGameState(GameState.NEXT);
 }
 
-export function onNext(
-    guessButtons: GuessButton[],
-    index: number,
-    quizItems: QuizItem[],
-    refs: Elements,
-    setGameState: (value: GameState) => void,
-) {
-    hideElement(refs.loading);
-    showElement(refs.buttons);
-    showElement(refs.image);
-    showElement(refs.question);
+export function onNext(context: Context) {
+    const {
+        currentItemIndex,
+        elements,
+        guessButtons,
+        quizModule,
+        setGameState,
+    } = context;
+    const quizItems = extractQuizItems(quizModule);
 
-    const items: number[] = [];
+    hideElement(elements.loading);
+    showElement(elements.buttons);
+    showElement(elements.image);
+    showElement(elements.question);
+
+    const currentQuestionItemIndexChoices: number[] = [];
     const answerSpot: number = randomInt(0, GuessButtonCount);
     console.info("answerSpot: ", answerSpot);
 
     for (let guess = 0; guess < GuessButtonCount; guess++) {
-        let item = index;
+        let choiceItemIndex = currentItemIndex;
         if (guess !== answerSpot) {
             while (true) {
-                item = randomInt(0, quizItems.length);
+                choiceItemIndex = randomInt(0, quizItems.length);
                 if (
-                    item !== index &&
-                    !items.includes(item) &&
-                    !quizItems[item].answeredCorrectly
+                    choiceItemIndex !== currentItemIndex &&
+                    !currentQuestionItemIndexChoices.includes(
+                        choiceItemIndex,
+                    ) &&
+                    !quizItems[choiceItemIndex].answeredCorrectly
                 ) {
                     break;
                 }
             }
         }
-        items.push(item);
+        currentQuestionItemIndexChoices.push(choiceItemIndex);
         const ref = guessButtons[guess].ref.current!;
-        ref.innerHTML = quizItems[item].name;
+        ref.innerHTML = quizItems[choiceItemIndex].name;
         //ref.innerHTML = "South Georgia and the South Sandwich Islands"; // longest value for testing
-        ref.value = quizItems[item].name;
+        ref.value = quizItems[choiceItemIndex].name;
         ref.className = GuessButtonState.NORMAL;
     }
     setGameState(GameState.INPUT);
 }
 
-export async function onResult(
-    guessButtons: GuessButton[],
-    //guessPoints: number,
-    guessValue: string,
-    index: number,
-    quizItems: QuizItem[],
-    refs: Elements,
-    setGameState: (value: GameState) => void,
-    //setGuessPoints: (value: number) => void,
-    setIndex: (value: number) => void,
-) {
-    const correctAnswer = quizItems[index].name;
+export async function onResult(context: Context) {
+    const {
+        currentItemIndex,
+        elements,
+        guessButtons,
+        guessValue,
+        quizModule,
+        setCurrentItemIndex,
+        setGameState,
+    } = context;
+    const quizItems = extractQuizItems(quizModule);
+    const currentItem = quizItems[currentItemIndex];
+    const correctAnswer = currentItem.name;
+
     for (let guess = 0; guess < GuessButtonCount; guess++) {
         const ref = guessButtons[guess].ref.current!;
         if (guessValue !== ref.value) {
@@ -105,7 +105,7 @@ export async function onResult(
 
         if (guessValue === correctAnswer) {
             ref.className = GuessButtonState.CORRECT;
-            quizItems[index].answeredCorrectly = true;
+            currentItem.answeredCorrectly = true;
             continue;
         }
 
@@ -115,8 +115,8 @@ export async function onResult(
     }
 
     if (guessValue === correctAnswer) {
-        hideElement(refs.image);
-        setIndex(index + 1);
+        hideElement(elements.image);
+        setCurrentItemIndex(currentItemIndex + 1);
         wrongGuesses = [];
         setGameState(GameState.LOADING);
         return;
