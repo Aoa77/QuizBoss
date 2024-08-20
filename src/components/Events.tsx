@@ -4,7 +4,6 @@ import { GameState } from "./GameState";
 import { GuessButtonCount, GuessButtonState } from "./GuessButton";
 import { hideElement, showElement, delay, randomInt } from "./Util";
 
-var first = true;
 var wrongGuesses: number[] = [];
 
 export async function onStartup(context: Context) {
@@ -16,24 +15,28 @@ export async function onStartup(context: Context) {
 }
 
 export async function onLoading(context: Context) {
-    const { config, currentItemIndex, elements, quizModule, setGameState } =
-        context;
+    const {
+        config,
+        currentItemIndex, //
+        elements,
+        quizModule,
+        setGameState,
+    } = context;
+
+    const nextDelay: number = config.nextDelay!;
+    const spinnerPoll: number = config.spinnerPoll!;
     const quizItems = extractQuizItems(quizModule);
     const currentItem = quizItems[currentItemIndex];
 
     hideElement(elements.image);
-    if (first) {
-        await delay(config.spinnerPoll! * 4);
-    }
-    first = false;
     showElement(elements.loading);
 
-    await delay(config.spinnerPoll! * 3);
+    await delay(nextDelay);
     while (!currentItem || !currentItem.isLoaded) {
-        await delay(config.spinnerPoll!);
+        await delay(spinnerPoll);
     }
 
-    await delay(config.nextDelay!);
+    await delay(nextDelay);
     setGameState(GameState.NEXT);
 }
 

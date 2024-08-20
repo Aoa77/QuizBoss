@@ -8,9 +8,8 @@ const root = ReactDOM.createRoot(
 root.render(
     <App
         quizModuleName="quizboss-world-flags"
-        // imageLoadThrottle={50}
-        // resultDisplayTime={1500}
-        // spinnerPollingDelay={500}
-        // spinnerPollingInterval={100}
+        loadThrottle={50}
+        nextDelay={500}
+        spinnerPoll={100}
     />,
 );

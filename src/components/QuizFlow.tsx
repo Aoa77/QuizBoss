@@ -1,11 +1,11 @@
 import { Config } from "./Config";
+import { Context } from "./Context";
 import { Elements } from "./Elements";
 import { GameState } from "./GameState";
 import { GuessButton } from "./GuessButton";
 import { onLoading, onNext, onResult, onStartup } from "./Events";
 import { QuizModule } from "./QuizModule";
 import { useEffect } from "react";
-import { Context } from "./Context";
 
 export function useQuizFlow(
     config: Config,

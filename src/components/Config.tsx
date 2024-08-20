@@ -5,7 +5,7 @@ export interface Config {
     /** Default value is 50. */
     loadThrottle?: number;
 
-    /** Default value is 1000. */
+    /** Default value is 500. */
     nextDelay?: number;
 
     /** Default value is 100. */
@@ -13,7 +13,7 @@ export interface Config {
 }
 
 export const ConfigDefaults = {
-    loadThrottle: 25,
+    loadThrottle: 50,
     nextDelay: 500,
     spinnerPoll: 100,
 
