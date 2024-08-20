@@ -4,6 +4,10 @@ import { QuizItem } from "./QuizModule";
 import { Config } from "./Config";
 import { HtmlElementRefs } from "./HtmlElementRefs";
 
+var first = true;
+var wrongGuesses: number[] = [];
+
+
 export enum GameState {
     STARTUP = "STARTUP",
     LOADING = "LOADING",
@@ -17,14 +21,13 @@ export async function onStartup(
     config: Config,
     refs: HtmlElementRefs,
     setGameState: (value: GameState) => void,
-) {
+) { 
     hideElement(refs.image);
     showElement(refs.title);
     await delay(config.spinnerPoll!);
     setGameState(GameState.LOADING);
 }
 
-var first = true;
 
 export async function onLoading(
     index: number,
@@ -91,11 +94,13 @@ export function onNext(
 
 export async function onResult(
     guessButtons: GuessButton[],
+    //guessPoints: number,
     guessValue: string,
     index: number,
     quizItems: QuizItem[],
     refs: HtmlElementRefs,
     setGameState: (value: GameState) => void,
+    //setGuessPoints: (value: number) => void,
     setIndex: (value: number) => void,
 ) {
     const correctAnswer = quizItems[index].name;
@@ -105,14 +110,43 @@ export async function onResult(
             ref.className = GuessButtonState.DIMMED;
             continue;
         }
+
         if (guessValue === correctAnswer) {
             ref.className = GuessButtonState.CORRECT;
             quizItems[index].answeredCorrectly = true;
-        } else {
-            ref.className = GuessButtonState.WRONG;
+            continue;
+        }
+
+        //setGuessPoints(guessPoints - 1);
+        wrongGuesses.push(guess);
+        ref.className = GuessButtonState.WRONG;
+    }
+
+    if (guessValue === correctAnswer) {
+        hideElement(refs.image);
+        setIndex(index + 1);
+        wrongGuesses = [];
+        setGameState(GameState.LOADING);
+        return;
+    }
+
+    await delay(1000);
+
+    for (let guess = 0; guess < GuessButtonCount; guess++) {
+        const ref = guessButtons[guess].ref.current!;
+        switch (ref.className) {
+            case GuessButtonState.DIMMED:
+                if (!wrongGuesses.includes(guess)) {
+                    ref.className = GuessButtonState.NORMAL;
+                }
+                break;
+            case GuessButtonState.WRONG:
+                ref.className = GuessButtonState.DIMMED;
+                break;
+            default:
+                break;
         }
     }
-    hideElement(refs.image);
-    setIndex(index + 1);
-    setGameState(GameState.LOADING);
+
+    setGameState(GameState.INPUT);
 }

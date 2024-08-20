@@ -2,7 +2,7 @@ import "../styles";
 import { Config, ConfigDefaults } from "./Config";
 import { GameState } from "./GameState";
 import { QuizModule, useQuizModule } from "./QuizModule";
-import { useGuessButtons } from "./GuessButton";
+import { GuessButtonState, useGuessButtons } from "./GuessButton";
 import { useQuizFlow } from "./QuizFlow";
 import { useRef, useState } from "react";
 
@@ -25,7 +25,11 @@ export default function App(props: Config) {
         if (gameState !== GameState.INPUT) {
             return;
         }
-        setGuessValue(ref.current!.value);
+        const clickedButton = ref.current!;
+        if (clickedButton.className !== GuessButtonState.NORMAL) {
+            return;
+        }
+        setGuessValue(clickedButton.value);
         setGameState(GameState.RESULT);
     });
 
