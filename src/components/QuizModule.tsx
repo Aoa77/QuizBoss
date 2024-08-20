@@ -8,7 +8,7 @@ export interface QuizModule {
     quizdata: QuizData;
 }
 
-export interface QuizData {
+interface QuizData {
     title: string;
     description: string;
     question: string;

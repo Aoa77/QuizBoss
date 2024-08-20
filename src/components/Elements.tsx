@@ -1,4 +1,4 @@
-export interface HtmlElementRefs {
+export interface Elements {
     buttons: HTMLDivElement;
     image: HTMLDivElement;
     loading: HTMLDivElement;
