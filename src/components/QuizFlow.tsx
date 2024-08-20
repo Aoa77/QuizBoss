@@ -4,9 +4,9 @@ import { useEffect } from "react";
 import * as Events from "./Events";
 
 export function useQuizFlow(context: Context) {
-    const gameState = context.gameState;
-
+    
     useEffect(() => {
+        const gameState = context.gameState;
         console.info("useQuizFlow", gameState);
 
         switch (gameState) {
@@ -36,5 +36,5 @@ export function useQuizFlow(context: Context) {
             default:
                 throw new Error(`Invalid game state: ${gameState}`);
         }
-    }, [context, gameState]);
+    }, [context]);
 }
