@@ -7,20 +7,19 @@ import { useQuizFlow } from "./QuizFlow";
 import { useRef, useState } from "react";
 
 export default function App(props: Config) {
+    //
     const config = ConfigDefaults.setDefaults(props);
-
     const [currentItemIndex, setCurrentItemIndex] = useState<number>(0);
     const [gameState, setGameState] = useState<GameState>(GameState.STARTUP);
     const [guessValue, setGuessValue] = useState<string>("");
     const [quizModule, setQuizModule] = useState<QuizModule | null>(null);
+    useQuizModule(config, setQuizModule);
 
     const refButtons = useRef<HTMLDivElement>(null);
     const refImage = useRef<HTMLDivElement>(null);
     const refLoading = useRef<HTMLDivElement>(null);
     const refQuestion = useRef<HTMLHeadingElement>(null);
     const refTitle = useRef<HTMLHeadingElement>(null);
-
-    useQuizModule(config.loadThrottle!, props.quizModuleName, setQuizModule);
 
     const guessButtons = useGuessButtons((clickedButtonRef) => {
         if (gameState !== GameState.INPUT) {
@@ -49,7 +48,7 @@ export default function App(props: Config) {
         setCurrentItemIndex,
         setGameState,
     );
-    
+
     return (
         <main>
             <h1 ref={refTitle} className="hidden">

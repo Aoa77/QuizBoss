@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { delay, shuffle } from "./Util";
-
+import { Config } from "./Config";
 
 export interface QuizModule {
     name: string;
@@ -26,15 +26,16 @@ export interface QuizItem {
 
 export function extractQuizItems(quizModule: QuizModule | null): QuizItem[] {
     return quizModule?.quizdata.items ?? [];
-}   
+}
 
 export function useQuizModule(
-    imageLoadThrottle: number,
-    moduleName: string,
+    config: Config,
     setModule: (module: QuizModule) => void,
 ): void {
+    const quizModuleName: string = config.quizModuleName;
+    const loadThrottle: number = config.loadThrottle!;
     useEffect(() => {
-        fetchQuizModule(moduleName).then((module) => {
+        fetchQuizModule(quizModuleName).then((module) => {
             console.info(`Quiz module loaded: ${module.name}`);
             module.quizdata.items.forEach((item) => {
                 item.imageSrc = `quizzes/${module.name}/${item.imageSrc}`;
@@ -48,9 +49,9 @@ export function useQuizModule(
             });
             shuffle(module.quizdata.items);
             setModule(module);
-            loadQuizImages(imageLoadThrottle, module.quizdata.items);
+            loadQuizImages(loadThrottle, module.quizdata.items);
         });
-    }, [imageLoadThrottle, moduleName, setModule]);
+    }, [loadThrottle, quizModuleName, setModule]);
 }
 
 async function fetchQuizModule(moduleName: string): Promise<QuizModule> {
@@ -63,16 +64,16 @@ async function fetchQuizModule(moduleName: string): Promise<QuizModule> {
     if (!response.ok) {
         throw new Error(`Failed to fetch quiz module: ${moduleName}`);
     }
-    const module:QuizModule = await response.json();
+    const module: QuizModule = await response.json();
     return module;
 }
 
 async function loadQuizImages(
-    imageLoadThrottle: number,
+    loadThrottle: number,
     quizItems: QuizItem[],
 ): Promise<void> {
     for (const item of quizItems) {
         item.image.src = item.imageSrc;
-        await delay(imageLoadThrottle);
+        await delay(loadThrottle);
     }
 }
