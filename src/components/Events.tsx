@@ -6,6 +6,11 @@ import { hideElement, showElement, delay, randomInt } from "./Util";
 
 var wrongGuesses: number[] = [];
 
+
+export async function onInit(context: Context) {
+    context.setGameState(GameState.STARTUP);
+}
+
 export async function onStartup(context: Context) {
     const { config, elements, setGameState } = context;
     hideElement(elements.image);

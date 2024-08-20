@@ -3,35 +3,23 @@ import { Context } from "./Context";
 import { Elements } from "./Elements";
 import { GameState } from "./GameState";
 import { GuessButton } from "./GuessButton";
-import { onLoading, onNext, onResult, onStartup } from "./Events";
+import { onInit, onLoading, onNext, onResult, onStartup } from "./Events";
 import { QuizModule } from "./QuizModule";
 import { useEffect } from "react";
 
 export function useQuizFlow(
     config: Config,
     currentItemIndex: number,
+    elements: Elements,
     gameState: GameState,
     guessButtons: GuessButton[],
     guessValue: string,
     quizModule: QuizModule | null,
-    refButtons: React.RefObject<HTMLDivElement>,
-    refImage: React.RefObject<HTMLDivElement>,
-    refLoading: React.RefObject<HTMLDivElement>,
-    refQuestion: React.RefObject<HTMLHeadingElement>,
-    refTitle: React.RefObject<HTMLHeadingElement>,
     setCurrentItemIndex: (value: number) => void,
     setGameState: (value: GameState) => void,
 ) {
     useEffect(() => {
         console.info("useQuizFlow", gameState);
-
-        const elements: Elements = {
-            buttons: refButtons.current!,
-            image: refImage.current!,
-            loading: refLoading.current!,
-            question: refQuestion.current!,
-            title: refTitle.current!,
-        };
 
         const context: Context = {
             config,
@@ -47,6 +35,10 @@ export function useQuizFlow(
 
         switch (gameState) {
             case GameState.INPUT:
+                return;
+
+            case GameState.INIT:
+                onInit(context);
                 return;
 
             case GameState.STARTUP:
@@ -68,5 +60,15 @@ export function useQuizFlow(
             default:
                 throw new Error(`Invalid game state: ${gameState}`);
         }
-    }, [config, currentItemIndex, gameState, guessButtons, guessValue, quizModule, refButtons, refImage, refLoading, refQuestion, refTitle, setCurrentItemIndex, setGameState]);
+    }, [
+        config,
+        currentItemIndex,
+        elements,
+        gameState,
+        guessButtons,
+        guessValue,
+        quizModule,
+        setCurrentItemIndex,
+        setGameState,
+    ]);
 }

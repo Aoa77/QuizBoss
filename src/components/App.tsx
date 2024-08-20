@@ -5,12 +5,13 @@ import { GuessButtonState, useGuessButtons } from "./GuessButton";
 import { QuizModule, useQuizModule } from "./QuizModule";
 import { useQuizFlow } from "./QuizFlow";
 import { useRef, useState } from "react";
+import { Elements } from "./Elements";
 
 export default function App(props: Config) {
     //
     const config = ConfigDefaults.setDefaults(props);
     const [currentItemIndex, setCurrentItemIndex] = useState<number>(0);
-    const [gameState, setGameState] = useState<GameState>(GameState.STARTUP);
+    const [gameState, setGameState] = useState<GameState>(GameState.INIT);
     const [guessValue, setGuessValue] = useState<string>("");
     const [quizModule, setQuizModule] = useState<QuizModule | null>(null);
     useQuizModule(config, setQuizModule);
@@ -20,6 +21,14 @@ export default function App(props: Config) {
     const refLoading = useRef<HTMLDivElement>(null);
     const refQuestion = useRef<HTMLHeadingElement>(null);
     const refTitle = useRef<HTMLHeadingElement>(null);
+
+    const elements: Elements = {
+        buttons: refButtons.current!,
+        image: refImage.current!,
+        loading: refLoading.current!,
+        question: refQuestion.current!,
+        title: refTitle.current!,
+    };
 
     const guessButtons = useGuessButtons((clickedButtonRef) => {
         if (gameState !== GameState.INPUT) {
@@ -33,18 +42,16 @@ export default function App(props: Config) {
         setGameState(GameState.RESULT);
     });
 
+
+
     useQuizFlow(
         config,
         currentItemIndex,
+        elements,
         gameState,
         guessButtons,
         guessValue,
         quizModule,
-        refButtons,
-        refImage,
-        refLoading,
-        refQuestion,
-        refTitle,
         setCurrentItemIndex,
         setGameState,
     );
