@@ -68,6 +68,5 @@ export function useQuizFlow(
             default:
                 throw new Error(`Invalid game state: ${gameState}`);
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [...arguments]);
+    }, [config, currentItemIndex, gameState, guessButtons, guessValue, quizModule, refButtons, refImage, refLoading, refQuestion, refTitle, setCurrentItemIndex, setGameState]);
 }
