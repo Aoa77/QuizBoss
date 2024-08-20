@@ -1,11 +1,12 @@
 import "../styles";
 import { Config, ConfigDefaults } from "./Config";
+import { Context } from "./Context";
+import { Elements } from "./Elements";
 import { GameState } from "./GameState";
 import { GuessButtonState, useGuessButtons } from "./GuessButton";
 import { QuizModule, useQuizModule } from "./QuizModule";
 import { useQuizFlow } from "./QuizFlow";
 import { useRef, useState } from "react";
-import { Elements } from "./Elements";
 
 export default function App(props: Config) {
     //
@@ -42,9 +43,7 @@ export default function App(props: Config) {
         setGameState(GameState.RESULT);
     });
 
-
-
-    useQuizFlow(
+    const context: Context = {
         config,
         currentItemIndex,
         elements,
@@ -54,7 +53,9 @@ export default function App(props: Config) {
         quizModule,
         setCurrentItemIndex,
         setGameState,
-    );
+    };
+
+    useQuizFlow(context);
 
     return (
         <main>

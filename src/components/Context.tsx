@@ -15,3 +15,4 @@ export interface Context {
     setCurrentItemIndex: (value: number) => void;
     setGameState: (value: GameState) => void;
 }
+
