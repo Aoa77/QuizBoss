@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { delay, shuffle } from "./Util";
 import { Config } from "./Config";
 
@@ -13,12 +12,13 @@ interface QuizData {
     description: string;
     questionText: string;
     progressText: string;
+    scoreText: string;
     items: QuizItem[];
 }
 
 export interface QuizItem {
     key: string;
-    duplicateItemKeys: string[]; 
+    duplicateItemKeys: string[];
     name: string;
     image: HTMLImageElement;
     imageJsx: JSX.Element;
@@ -27,31 +27,48 @@ export interface QuizItem {
     answeredCorrectly: boolean;
 }
 
-export function useQuizModule(
+export function formatProgressText(
+    currentItemIndex: number,
+    module: QuizModule | null,
+): JSX.Element {
+    if (module === null) {
+        return <></>;
+    }
+
+
+
+
+    const { quizData } = module;
+    return (
+        <>
+            {quizData.progressText} {quizData.items.length}
+        </>
+    );
+}
+
+export async function initQuizModule(
     config: Config,
     setModule: (module: QuizModule) => void,
-): void {
-    const quizModuleName: string = config.quizModuleName;
-    const loadThrottle: number = config.loadThrottle!;
-    useEffect(() => {
-        fetchQuizModule(quizModuleName).then((module) => {
-            console.info(`Quiz module loaded: ${module.name}`, module);
-            module.quizData.items.forEach((item) => {
-                item.duplicateItemKeys ??= [];
-                item.imageSrc = `quizzes/${module.name}/${item.imageSrc}`;
-                console.debug(`Image source: ${item.imageSrc}`);
-                item.image = new Image();
-                item.image.onload = () => {
-                    console.debug(`Image loaded: ${item.image.src}`);
-                    item.imageJsx = <img src={item.image.src} alt="" />;
-                    item.isLoaded = true;
-                };
-            });
-            shuffle(module.quizData.items);
-            setModule(module);
-            loadQuizImages(loadThrottle, module.quizData.items);
-        });
-    }, [loadThrottle, quizModuleName, setModule]);
+): Promise<void> {
+    const { loadThrottle, quizModuleName } = config;
+    const module = await fetchQuizModule(quizModuleName);
+
+    console.info(`Quiz module loaded: ${module.name}`, module);
+    module.quizData.items.forEach((item) => {
+        item.duplicateItemKeys ??= [];
+        item.imageSrc = `quizzes/${module.name}/${item.imageSrc}`;
+        console.debug(`Image source: ${item.imageSrc}`);
+        item.image = new Image();
+        item.image.onload = () => {
+            console.debug(`Image loaded: ${item.image.src}`);
+            item.imageJsx = <img src={item.image.src} alt="" />;
+            item.isLoaded = true;
+        };
+    });
+
+    shuffle(module.quizData.items);
+    setModule(module);
+    loadQuizImages(loadThrottle, module.quizData.items);
 }
 
 async function fetchQuizModule(moduleName: string): Promise<QuizModule> {
@@ -69,7 +86,7 @@ async function fetchQuizModule(moduleName: string): Promise<QuizModule> {
 }
 
 async function loadQuizImages(
-    loadThrottle: number,
+    loadThrottle: number | undefined,
     quizItems: QuizItem[],
 ): Promise<void> {
     for (const item of quizItems) {

@@ -87,6 +87,30 @@ button.wrong {
     color: #ff0000;
 }
 
+/***************************/
+/* score                   */
+/***************************/
+section.score {
+    color: #00ffff;
+    font-family: "Tahoma", sans-serif;
+    font-size: 9rem;
+    font-weight: normal;
+    margin-top: var(--hu_6);
+    margin-bottom: var(--hu_3);
+}
+
+/****************************/
+/* progress                 */
+/****************************/
+section.progress {
+    color: #00ffff;
+    font-family: "Tahoma", sans-serif;
+    font-size: 9rem;
+    font-weight: normal;
+    margin-top: var(--hu_6);
+    margin-bottom: var(--hu_3);
+}
+
 /*****************************/
 /* rules for hiding elements */
 /*****************************/

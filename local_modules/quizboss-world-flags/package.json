@@ -5,7 +5,8 @@
         "title": "World Flags Quiz",
         "description": "Test your knowledge of world flags with this quiz!",
         "questionText": "Whose flag is this?",
-        "progressText": "Flags",
+        "progressText": "Flag",
+        "scoreText": "Score:",
         "items": [
             {
                 "key": "AD",

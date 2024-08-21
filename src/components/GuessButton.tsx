@@ -1,6 +1,6 @@
 import { useRef } from "react";
+import { Config } from "./Config";
 
-export const GuessButtonCount: number = 4;
 export enum GuessButtonState {
     NORMAL = "normal",
     DIMMED = "dimmed",
@@ -14,10 +14,11 @@ export interface GuessButton {
 }
 
 export function useGuessButtons(
+    config: Config,
     onPointerDown: (ref: React.RefObject<HTMLButtonElement>) => void,
 ): GuessButton[] {
     const buttons: GuessButton[] = [];
-    for (let i = 0; i < GuessButtonCount; i++) {
+    for (let i = 0; i < config.guessButtonCount!; i++) {
         buttons.push(GuessButtonFactory(i, onPointerDown));
     }
     return buttons;

@@ -12,7 +12,10 @@ export interface Context {
     guessButtons: GuessButton[];
     guessValue: string;
     quizModule: QuizModule | null;
+    score: number;
     setCurrentItemIndex: (value: number) => void;
     setGameState: (value: GameState) => void;
+    setQuizModule: (value: QuizModule) => void;
+    setScore: (value: number) => void;
 }
 

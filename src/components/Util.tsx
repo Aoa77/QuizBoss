@@ -1,14 +1,27 @@
+export function assertInteger(value: number | null | undefined): number {
+    if (value === null || value === undefined) {
+        throw new Error("Invalid integer parameter");
+    }
+    if (!Number.isInteger(value)) {
+        throw new Error("Invalid integer parameter");
+    }
+    return value;
+}
+
 export function booleanAll(values: boolean[]): boolean {
     return values.every((value) => value);
 }
 
-export function delay(ms: number): Promise<void> {
-    return new Promise((resolve) => setTimeout(resolve, ms));
+export function delay(ms: number | null | undefined): Promise<void> {
+    return new Promise((resolve) => setTimeout(resolve, assertInteger(ms)));
 }
 
-export function randomInt(min: number, max: number): number {
-    min = Math.ceil(min);
-    max = Math.floor(max);
+export function randomInteger(
+    min: number | null | undefined,
+    max: number | null | undefined,
+): number {
+    min = assertInteger(min);
+    max = assertInteger(max);
     return Math.floor(Math.random() * (max - min)) + min;
 }
 
@@ -20,9 +33,15 @@ export function shuffle<T>(array: T[]) {
 }
 
 const HIDDEN = "hidden";
-export function hideElement(element: HTMLElement) {
+export function hideElement(element: HTMLElement | null | undefined) {
+    if (!element) {
+        return;
+    }
     element.classList.add(HIDDEN);
 }
-export function showElement(element: HTMLElement) {
+export function showElement(element: HTMLElement | null | undefined) {
+    if (!element) {
+        return;
+    }
     element.classList.remove(HIDDEN);
 }
