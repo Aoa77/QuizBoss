@@ -3,5 +3,6 @@ export interface Elements {
     image: HTMLDivElement;
     loading: HTMLDivElement;
     question: HTMLHeadingElement;
+    stats: HTMLDivElement;
     title: HTMLHeadingElement;
 }

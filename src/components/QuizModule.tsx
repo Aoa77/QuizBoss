@@ -5,27 +5,26 @@ import { Config } from "./Config";
 export interface QuizModule {
     name: string;
     version: string;
-    quizdata: QuizData;
+    quizData: QuizData;
 }
 
 interface QuizData {
     title: string;
     description: string;
-    question: string;
+    questionText: string;
+    progressText: string;
     items: QuizItem[];
 }
 
 export interface QuizItem {
+    key: string;
+    duplicateItemKeys: string[]; 
     name: string;
     image: HTMLImageElement;
     imageJsx: JSX.Element;
     imageSrc: string;
     isLoaded: boolean;
     answeredCorrectly: boolean;
-}
-
-export function extractQuizItems(quizModule: QuizModule | null): QuizItem[] {
-    return quizModule?.quizdata.items ?? [];
 }
 
 export function useQuizModule(
@@ -36,8 +35,9 @@ export function useQuizModule(
     const loadThrottle: number = config.loadThrottle!;
     useEffect(() => {
         fetchQuizModule(quizModuleName).then((module) => {
-            console.info(`Quiz module loaded: ${module.name}`);
-            module.quizdata.items.forEach((item) => {
+            console.info(`Quiz module loaded: ${module.name}`, module);
+            module.quizData.items.forEach((item) => {
+                item.duplicateItemKeys ??= [];
                 item.imageSrc = `quizzes/${module.name}/${item.imageSrc}`;
                 console.debug(`Image source: ${item.imageSrc}`);
                 item.image = new Image();
@@ -47,9 +47,9 @@ export function useQuizModule(
                     item.isLoaded = true;
                 };
             });
-            shuffle(module.quizdata.items);
+            shuffle(module.quizData.items);
             setModule(module);
-            loadQuizImages(loadThrottle, module.quizdata.items);
+            loadQuizImages(loadThrottle, module.quizData.items);
         });
     }, [loadThrottle, quizModuleName, setModule]);
 }

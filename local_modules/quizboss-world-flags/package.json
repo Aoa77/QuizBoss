@@ -1,1032 +1,1289 @@
 {
     "name": "quizboss-world-flags",
     "version": "1.0.0",
-    "quizdata": {
+    "quizData": {
         "title": "World Flags Quiz",
         "description": "Test your knowledge of world flags with this quiz!",
-        "question": "Whose flag is this?",
+        "questionText": "Whose flag is this?",
+        "progressText": "Flags",
         "items": [
             {
+                "key": "AD",
                 "name": "Andorra",
                 "imageSrc": "images/ad.svg"
             },
             {
+                "key": "AE",
                 "name": "United Arab Emirates",
                 "imageSrc": "images/ae.svg"
             },
             {
+                "key": "AF",
                 "name": "Afghanistan",
                 "imageSrc": "images/af.svg"
             },
             {
+                "key": "AG",
                 "name": "Antigua and Barbuda",
                 "imageSrc": "images/ag.svg"
             },
             {
+                "key": "AI",
                 "name": "Anguilla",
                 "imageSrc": "images/ai.svg"
             },
             {
+                "key": "AL",
                 "name": "Albania",
                 "imageSrc": "images/al.svg"
             },
             {
+                "key": "AM",
                 "name": "Armenia",
                 "imageSrc": "images/am.svg"
             },
             {
+                "key": "AN",
                 "name": "Netherlands Antilles",
                 "imageSrc": "images/an.svg"
             },
             {
+                "key": "AO",
                 "name": "Angola",
                 "imageSrc": "images/ao.svg"
             },
             {
+                "key": "AQ",
                 "name": "Antarctica",
                 "imageSrc": "images/aq.svg"
             },
             {
+                "key": "AR",
                 "name": "Argentina",
                 "imageSrc": "images/ar.svg"
             },
             {
+                "key": "AS",
                 "name": "American Samoa",
                 "imageSrc": "images/as.svg"
             },
             {
+                "key": "AT",
                 "name": "Austria",
                 "imageSrc": "images/at.svg"
             },
             {
+                "key": "AU",
                 "name": "Australia",
                 "imageSrc": "images/au.svg"
             },
             {
+                "key": "AW",
                 "name": "Aruba",
                 "imageSrc": "images/aw.svg"
             },
             {
+                "key": "AX",
                 "name": "Åland Islands",
                 "imageSrc": "images/ax.svg"
             },
             {
+                "key": "AZ",
                 "name": "Azerbaijan",
                 "imageSrc": "images/az.svg"
             },
             {
+                "key": "BA",
                 "name": "Bosnia and Herzegovina",
                 "imageSrc": "images/ba.svg"
             },
             {
+                "key": "BB",
                 "name": "Barbados",
                 "imageSrc": "images/bb.svg"
             },
             {
+                "key": "BD",
                 "name": "Bangladesh",
                 "imageSrc": "images/bd.svg"
             },
             {
+                "key": "BE",
                 "name": "Belgium",
                 "imageSrc": "images/be.svg"
             },
             {
+                "key": "BF",
                 "name": "Burkina Faso",
                 "imageSrc": "images/bf.svg"
             },
             {
+                "key": "BG",
                 "name": "Bulgaria",
                 "imageSrc": "images/bg.svg"
             },
             {
+                "key": "BH",
                 "name": "Bahrain",
                 "imageSrc": "images/bh.svg"
             },
             {
+                "key": "BI",
                 "name": "Burundi",
                 "imageSrc": "images/bi.svg"
             },
             {
+                "key": "BJ",
                 "name": "Benin",
                 "imageSrc": "images/bj.svg"
             },
             {
+                "key": "BL",
                 "name": "Saint Barthélemy",
                 "imageSrc": "images/bl.svg"
             },
             {
+                "key": "BM",
                 "name": "Bermuda",
                 "imageSrc": "images/bm.svg"
             },
             {
+                "key": "BN",
                 "name": "Brunei Darussalam",
                 "imageSrc": "images/bn.svg"
             },
             {
+                "key": "BO",
                 "name": "Bolivia, Plurinational State of",
                 "imageSrc": "images/bo.svg"
             },
             {
+                "key": "BQ",
                 "name": "Caribbean Netherlands",
                 "imageSrc": "images/bq.svg"
             },
             {
+                "key": "BR",
                 "name": "Brazil",
                 "imageSrc": "images/br.svg"
             },
             {
+                "key": "BS",
                 "name": "Bahamas",
                 "imageSrc": "images/bs.svg"
             },
             {
+                "key": "BT",
                 "name": "Bhutan",
                 "imageSrc": "images/bt.svg"
             },
             {
+                "key": "BV",
                 "name": "Bouvet Island",
                 "imageSrc": "images/bv.svg"
             },
             {
+                "key": "BW",
                 "name": "Botswana",
                 "imageSrc": "images/bw.svg"
             },
             {
+                "key": "BY",
                 "name": "Belarus",
                 "imageSrc": "images/by.svg"
             },
             {
+                "key": "BZ",
                 "name": "Belize",
                 "imageSrc": "images/bz.svg"
             },
             {
+                "key": "CA",
                 "name": "Canada",
                 "imageSrc": "images/ca.svg"
             },
             {
+                "key": "CC",
                 "name": "Cocos (Keeling) Islands",
                 "imageSrc": "images/cc.svg"
             },
             {
+                "key": "CD",
                 "name": "Congo, the Democratic Republic of the",
                 "imageSrc": "images/cd.svg"
             },
             {
+                "key": "CF",
                 "name": "Central African Republic",
                 "imageSrc": "images/cf.svg"
             },
             {
+                "key": "CG",
                 "name": "Congo",
                 "imageSrc": "images/cg.svg"
             },
             {
+                "key": "CH",
                 "name": "Switzerland",
                 "imageSrc": "images/ch.svg"
             },
             {
+                "key": "CI",
                 "name": "Côte d'Ivoire",
                 "imageSrc": "images/ci.svg"
             },
             {
+                "key": "CK",
                 "name": "Cook Islands",
                 "imageSrc": "images/ck.svg"
             },
             {
+                "key": "CL",
                 "name": "Chile",
                 "imageSrc": "images/cl.svg"
             },
             {
+                "key": "CM",
                 "name": "Cameroon",
                 "imageSrc": "images/cm.svg"
             },
             {
+                "key": "CN",
                 "name": "China",
                 "imageSrc": "images/cn.svg"
             },
             {
+                "key": "CO",
                 "name": "Colombia",
                 "imageSrc": "images/co.svg"
             },
             {
+                "key": "CR",
                 "name": "Costa Rica",
                 "imageSrc": "images/cr.svg"
             },
             {
+                "key": "CU",
                 "name": "Cuba",
                 "imageSrc": "images/cu.svg"
             },
             {
+                "key": "CV",
                 "name": "Cape Verde",
                 "imageSrc": "images/cv.svg"
             },
             {
+                "key": "CW",
                 "name": "Curaçao",
                 "imageSrc": "images/cw.svg"
             },
             {
+                "key": "CX",
                 "name": "Christmas Island",
                 "imageSrc": "images/cx.svg"
             },
             {
+                "key": "CY",
                 "name": "Cyprus",
                 "imageSrc": "images/cy.svg"
             },
             {
+                "key": "CZ",
                 "name": "Czech Republic",
                 "imageSrc": "images/cz.svg"
             },
             {
+                "key": "DE",
                 "name": "Germany",
                 "imageSrc": "images/de.svg"
             },
             {
+                "key": "DJ",
                 "name": "Djibouti",
                 "imageSrc": "images/dj.svg"
             },
             {
+                "key": "DK",
                 "name": "Denmark",
                 "imageSrc": "images/dk.svg"
             },
             {
+                "key": "DM",
                 "name": "Dominica",
                 "imageSrc": "images/dm.svg"
             },
             {
+                "key": "DO",
                 "name": "Dominican Republic",
                 "imageSrc": "images/do.svg"
             },
             {
+                "key": "DZ",
                 "name": "Algeria",
                 "imageSrc": "images/dz.svg"
             },
             {
+                "key": "EC",
                 "name": "Ecuador",
                 "imageSrc": "images/ec.svg"
             },
             {
+                "key": "EE",
                 "name": "Estonia",
                 "imageSrc": "images/ee.svg"
             },
             {
+                "key": "EG",
                 "name": "Egypt",
                 "imageSrc": "images/eg.svg"
             },
             {
+                "key": "EH",
                 "name": "Western Sahara",
                 "imageSrc": "images/eh.svg"
             },
             {
+                "key": "ER",
                 "name": "Eritrea",
                 "imageSrc": "images/er.svg"
             },
             {
+                "key": "ES",
                 "name": "Spain",
                 "imageSrc": "images/es.svg"
             },
             {
+                "key": "ET",
                 "name": "Ethiopia",
                 "imageSrc": "images/et.svg"
             },
             {
+                "key": "EU",
                 "name": "Europe",
                 "imageSrc": "images/eu.svg"
             },
             {
+                "key": "FI",
                 "name": "Finland",
                 "imageSrc": "images/fi.svg"
             },
             {
+                "key": "FJ",
                 "name": "Fiji",
                 "imageSrc": "images/fj.svg"
             },
             {
+                "key": "FK",
                 "name": "Falkland Islands (Malvinas)",
                 "imageSrc": "images/fk.svg"
             },
             {
+                "key": "FM",
                 "name": "Micronesia, Federated States of",
                 "imageSrc": "images/fm.svg"
             },
             {
+                "key": "FO",
                 "name": "Faroe Islands",
                 "imageSrc": "images/fo.svg"
             },
             {
+                "key": "FR",
                 "name": "France",
                 "imageSrc": "images/fr.svg"
             },
             {
+                "key": "GA",
                 "name": "Gabon",
                 "imageSrc": "images/ga.svg"
             },
             {
+                "key": "GB-ENG",
                 "name": "England",
                 "imageSrc": "images/gb-eng.svg"
             },
             {
+                "key": "GB-NIR",
                 "name": "Northern Ireland",
                 "imageSrc": "images/gb-nir.svg"
             },
             {
+                "key": "GB-SCT",
                 "name": "Scotland",
                 "imageSrc": "images/gb-nir.svg"
             },
             {
+                "key": "GB-WLS",
                 "name": "Wales",
                 "imageSrc": "images/gb-nir.svg"
             },
             {
+                "key": "GB",
                 "name": "United Kingdom",
                 "imageSrc": "images/gb.svg"
             },
             {
+                "key": "GD",
                 "name": "Grenada",
                 "imageSrc": "images/gd.svg"
             },
             {
+                "key": "GE",
                 "name": "Georgia",
                 "imageSrc": "images/ge.svg"
             },
             {
+                "key": "GF",
                 "name": "French Guiana",
                 "imageSrc": "images/gf.svg"
             },
             {
+                "key": "GG",
                 "name": "Guernsey",
                 "imageSrc": "images/gg.svg"
             },
             {
+                "key": "GH",
                 "name": "Ghana",
                 "imageSrc": "images/gh.svg"
             },
             {
+                "key": "GI",
                 "name": "Gibraltar",
                 "imageSrc": "images/gi.svg"
             },
             {
+                "key": "GL",
                 "name": "Greenland",
                 "imageSrc": "images/gl.svg"
             },
             {
+                "key": "GM",
                 "name": "Gambia",
                 "imageSrc": "images/gm.svg"
             },
             {
+                "key": "GN",
                 "name": "Guinea",
                 "imageSrc": "images/gn.svg"
             },
             {
+                "key": "GP",
                 "name": "Guadeloupe",
                 "imageSrc": "images/gp.svg"
             },
             {
+                "key": "GQ",
                 "name": "Equatorial Guinea",
                 "imageSrc": "images/gq.svg"
             },
             {
+                "key": "GR",
                 "name": "Greece",
                 "imageSrc": "images/gr.svg"
             },
             {
+                "key": "GS",
                 "name": "South Georgia and the South Sandwich Islands",
                 "imageSrc": "images/gs.svg"
             },
             {
+                "key": "GT",
                 "name": "Guatemala",
                 "imageSrc": "images/gt.svg"
             },
             {
+                "key": "GU",
                 "name": "Guam",
                 "imageSrc": "images/gu.svg"
             },
             {
+                "key": "GW",
                 "name": "Guinea-Bissau",
                 "imageSrc": "images/gw.svg"
             },
             {
+                "key": "GY",
                 "name": "Guyana",
                 "imageSrc": "images/gy.svg"
             },
             {
+                "key": "HK",
                 "name": "Hong Kong",
                 "imageSrc": "images/hk.svg"
             },
             {
+                "key": "HM",
                 "name": "Heard Island and McDonald Islands",
                 "imageSrc": "images/hm.svg"
             },
             {
+                "key": "HN",
                 "name": "Honduras",
                 "imageSrc": "images/hn.svg"
             },
             {
+                "key": "HR",
                 "name": "Croatia",
                 "imageSrc": "images/hr.svg"
             },
             {
+                "key": "HT",
                 "name": "Haiti",
                 "imageSrc": "images/ht.svg"
             },
             {
+                "key": "HU",
                 "name": "Hungary",
                 "imageSrc": "images/hu.svg"
             },
             {
+                "key": "ID",
                 "name": "Indonesia",
                 "imageSrc": "images/id.svg"
             },
             {
+                "key": "IE",
                 "name": "Ireland",
                 "imageSrc": "images/ie.svg"
             },
             {
+                "key": "IL",
                 "name": "Israel",
                 "imageSrc": "images/il.svg"
             },
             {
+                "key": "IM",
                 "name": "Isle of Man",
                 "imageSrc": "images/im.svg"
             },
             {
+                "key": "IN",
                 "name": "India",
                 "imageSrc": "images/in.svg"
             },
             {
+                "key": "IO",
                 "name": "British Indian Ocean Territory",
                 "imageSrc": "images/io.svg"
             },
             {
+                "key": "IQ",
                 "name": "Iraq",
                 "imageSrc": "images/iq.svg"
             },
             {
+                "key": "IR",
                 "name": "Iran, Islamic Republic of",
                 "imageSrc": "images/ir.svg"
             },
             {
+                "key": "IS",
                 "name": "Iceland",
                 "imageSrc": "images/is.svg"
             },
             {
+                "key": "IT",
                 "name": "Italy",
                 "imageSrc": "images/it.svg"
             },
             {
+                "key": "JE",
                 "name": "Jersey",
                 "imageSrc": "images/je.svg"
             },
             {
+                "key": "JM",
                 "name": "Jamaica",
                 "imageSrc": "images/jm.svg"
             },
             {
+                "key": "JO",
                 "name": "Jordan",
                 "imageSrc": "images/jo.svg"
             },
             {
+                "key": "JP",
                 "name": "Japan",
                 "imageSrc": "images/jp.svg"
             },
             {
+                "key": "KE",
                 "name": "Kenya",
                 "imageSrc": "images/ke.svg"
             },
             {
+                "key": "KG",
                 "name": "Kyrgyzstan",
                 "imageSrc": "images/kg.svg"
             },
             {
+                "key": "KH",
                 "name": "Cambodia",
                 "imageSrc": "images/kh.svg"
             },
             {
+                "key": "KI",
                 "name": "Kiribati",
                 "imageSrc": "images/ki.svg"
             },
             {
+                "key": "KM",
                 "name": "Comoros",
                 "imageSrc": "images/km.svg"
             },
             {
+                "key": "KN",
                 "name": "Saint Kitts and Nevis",
                 "imageSrc": "images/kn.svg"
             },
             {
+                "key": "KP",
                 "name": "Korea, Democratic People's Republic of",
                 "imageSrc": "images/kp.svg"
             },
             {
+                "key": "KR",
                 "name": "Korea, Republic of",
                 "imageSrc": "images/kr.svg"
             },
             {
+                "key": "KW",
                 "name": "Kuwait",
                 "imageSrc": "images/kw.svg"
             },
             {
+                "key": "KY",
                 "name": "Cayman Islands",
                 "imageSrc": "images/ky.svg"
             },
             {
+                "key": "KZ",
                 "name": "Kazakhstan",
                 "imageSrc": "images/kz.svg"
             },
             {
+                "key": "LA",
                 "name": "Lao People's Democratic Republic",
                 "imageSrc": "images/la.svg"
             },
             {
+                "key": "LB",
                 "name": "Lebanon",
                 "imageSrc": "images/lb.svg"
             },
             {
+                "key": "LC",
                 "name": "Saint Lucia",
                 "imageSrc": "images/lc.svg"
             },
             {
+                "key": "LI",
                 "name": "Liechtenstein",
                 "imageSrc": "images/li.svg"
             },
             {
+                "key": "LK",
                 "name": "Sri Lanka",
                 "imageSrc": "images/lk.svg"
             },
             {
+                "key": "LR",
                 "name": "Liberia",
                 "imageSrc": "images/lr.svg"
             },
             {
+                "key": "LS",
                 "name": "Lesotho",
                 "imageSrc": "images/ls.svg"
             },
             {
+                "key": "LT",
                 "name": "Lithuania",
                 "imageSrc": "images/lt.svg"
             },
             {
+                "key": "LU",
                 "name": "Luxembourg",
                 "imageSrc": "images/lu.svg"
             },
             {
+                "key": "LV",
                 "name": "Latvia",
                 "imageSrc": "images/lv.svg"
             },
             {
+                "key": "LY",
                 "name": "Libya",
                 "imageSrc": "images/ly.svg"
             },
             {
+                "key": "MA",
                 "name": "Morocco",
                 "imageSrc": "images/ma.svg"
             },
             {
+                "key": "MC",
                 "name": "Monaco",
                 "imageSrc": "images/mc.svg"
             },
             {
+                "key": "MD",
                 "name": "Moldova, Republic of",
                 "imageSrc": "images/md.svg"
             },
             {
+                "key": "ME",
                 "name": "Montenegro",
                 "imageSrc": "images/me.svg"
             },
             {
+                "key": "MF",
                 "name": "Saint Martin",
                 "imageSrc": "images/mf.svg"
             },
             {
+                "key": "MG",
                 "name": "Madagascar",
                 "imageSrc": "images/mg.svg"
             },
             {
+                "key": "MH",
                 "name": "Marshall Islands",
                 "imageSrc": "images/mh.svg"
             },
             {
+                "key": "MK",
                 "name": "Macedonia, the former Yugoslav Republic of",
                 "imageSrc": "images/mk.svg"
             },
             {
+                "key": "ML",
                 "name": "Mali",
                 "imageSrc": "images/ml.svg"
             },
             {
+                "key": "MM",
                 "name": "Myanmar",
                 "imageSrc": "images/mm.svg"
             },
             {
+                "key": "MN",
                 "name": "Mongolia",
                 "imageSrc": "images/mn.svg"
             },
             {
+                "key": "MO",
                 "name": "Macao",
                 "imageSrc": "images/mo.svg"
             },
             {
+                "key": "MP",
                 "name": "Northern Mariana Islands",
                 "imageSrc": "images/mp.svg"
             },
             {
+                "key": "MQ",
                 "name": "Martinique",
                 "imageSrc": "images/mq.svg"
             },
             {
+                "key": "MR",
                 "name": "Mauritania",
                 "imageSrc": "images/mr.svg"
             },
             {
+                "key": "MS",
                 "name": "Montserrat",
                 "imageSrc": "images/ms.svg"
             },
             {
+                "key": "MT",
                 "name": "Malta",
                 "imageSrc": "images/mt.svg"
             },
             {
+                "key": "MU",
                 "name": "Mauritius",
                 "imageSrc": "images/mu.svg"
             },
             {
+                "key": "MV",
                 "name": "Maldives",
                 "imageSrc": "images/mv.svg"
             },
             {
+                "key": "MW",
                 "name": "Malawi",
                 "imageSrc": "images/mw.svg"
             },
             {
+                "key": "MX",
                 "name": "Mexico",
                 "imageSrc": "images/mx.svg"
             },
             {
+                "key": "MY",
                 "name": "Malaysia",
                 "imageSrc": "images/my.svg"
             },
             {
+                "key": "MZ",
                 "name": "Mozambique",
                 "imageSrc": "images/mz.svg"
             },
             {
+                "key": "NA",
                 "name": "Namibia",
                 "imageSrc": "images/na.svg"
             },
             {
+                "key": "NC",
                 "name": "New Caledonia",
                 "imageSrc": "images/nc.svg"
             },
             {
+                "key": "NE",
                 "name": "Niger",
                 "imageSrc": "images/ne.svg"
             },
             {
+                "key": "NF",
                 "name": "Norfolk Island",
                 "imageSrc": "images/nf.svg"
             },
             {
+                "key": "NG",
                 "name": "Nigeria",
                 "imageSrc": "images/ng.svg"
             },
             {
+                "key": "NI",
                 "name": "Nicaragua",
                 "imageSrc": "images/ni.svg"
             },
             {
+                "key": "NL",
                 "name": "Netherlands",
                 "imageSrc": "images/nl.svg"
             },
             {
+                "key": "NO",
                 "name": "Norway",
                 "imageSrc": "images/no.svg"
             },
             {
+                "key": "NP",
                 "name": "Nepal",
                 "imageSrc": "images/np.svg"
             },
             {
+                "key": "NR",
                 "name": "Nauru",
                 "imageSrc": "images/nr.svg"
             },
             {
+                "key": "NU",
                 "name": "Niue",
                 "imageSrc": "images/nu.svg"
             },
             {
+                "key": "NZ",
                 "name": "New Zealand",
                 "imageSrc": "images/nz.svg"
             },
             {
+                "key": "OM",
                 "name": "Oman",
                 "imageSrc": "images/om.svg"
             },
             {
+                "key": "PA",
                 "name": "Panama",
                 "imageSrc": "images/pa.svg"
             },
             {
+                "key": "PE",
                 "name": "Peru",
                 "imageSrc": "images/pe.svg"
             },
             {
+                "key": "PF",
                 "name": "French Polynesia",
                 "imageSrc": "images/pf.svg"
             },
             {
+                "key": "PG",
                 "name": "Papua New Guinea",
                 "imageSrc": "images/pg.svg"
             },
             {
+                "key": "PH",
                 "name": "Philippines",
                 "imageSrc": "images/ph.svg"
             },
             {
+                "key": "PK",
                 "name": "Pakistan",
                 "imageSrc": "images/pk.svg"
             },
             {
+                "key": "PL",
                 "name": "Poland",
                 "imageSrc": "images/pl.svg"
             },
             {
+                "key": "PM",
                 "name": "Saint Pierre and Miquelon",
                 "imageSrc": "images/pm.svg"
             },
             {
+                "key": "PN",
                 "name": "Pitcairn",
                 "imageSrc": "images/pn.svg"
             },
             {
+                "key": "PR",
                 "name": "Puerto Rico",
                 "imageSrc": "images/pr.svg"
             },
             {
+                "key": "PS",
                 "name": "Palestine",
                 "imageSrc": "images/ps.svg"
             },
             {
+                "key": "PT",
                 "name": "Portugal",
                 "imageSrc": "images/pt.svg"
             },
             {
+                "key": "PW",
                 "name": "Palau",
                 "imageSrc": "images/pw.svg"
             },
             {
+                "key": "PY",
                 "name": "Paraguay",
                 "imageSrc": "images/py.svg"
             },
             {
+                "key": "QA",
                 "name": "Qatar",
                 "imageSrc": "images/qa.svg"
             },
             {
+                "key": "RE",
                 "name": "Réunion",
                 "imageSrc": "images/re.svg"
             },
             {
+                "key": "RO",
                 "name": "Romania",
                 "imageSrc": "images/ro.svg"
             },
             {
+                "key": "RS",
                 "name": "Serbia",
                 "imageSrc": "images/rs.svg"
             },
             {
+                "key": "RU",
                 "name": "Russian Federation",
                 "imageSrc": "images/ru.svg"
             },
             {
+                "key": "RW",
                 "name": "Rwanda",
                 "imageSrc": "images/rw.svg"
             },
             {
+                "key": "SA",
                 "name": "Saudi Arabia",
                 "imageSrc": "images/sa.svg"
             },
             {
+                "key": "SB",
                 "name": "Solomon Islands",
                 "imageSrc": "images/sb.svg"
             },
             {
+                "key": "SC",
                 "name": "Seychelles",
                 "imageSrc": "images/sc.svg"
             },
             {
+                "key": "SD",
                 "name": "Sudan",
                 "imageSrc": "images/sd.svg"
             },
             {
+                "key": "SE",
                 "name": "Sweden",
                 "imageSrc": "images/se.svg"
             },
             {
+                "key": "SG",
                 "name": "Singapore",
                 "imageSrc": "images/sg.svg"
             },
             {
+                "key": "SH",
                 "name": "Saint Helena, Ascension and Tristan da Cunha",
                 "imageSrc": "images/sh.svg"
             },
             {
+                "key": "SI",
                 "name": "Slovenia",
                 "imageSrc": "images/si.svg"
             },
             {
+                "key": "SJ",
                 "name": "Svalbard and Jan Mayen Islands",
                 "imageSrc": "images/sj.svg"
             },
             {
+                "key": "SK",
                 "name": "Slovakia",
                 "imageSrc": "images/sk.svg"
             },
             {
+                "key": "SL",
                 "name": "Sierra Leone",
                 "imageSrc": "images/sl.svg"
             },
             {
+                "key": "SM",
                 "name": "San Marino",
                 "imageSrc": "images/sm.svg"
             },
             {
+                "key": "SN",
                 "name": "Senegal",
                 "imageSrc": "images/sn.svg"
             },
             {
+                "key": "SO",
                 "name": "Somalia",
                 "imageSrc": "images/so.svg"
             },
             {
+                "key": "SR",
                 "name": "Suriname",
                 "imageSrc": "images/sr.svg"
             },
             {
+                "key": "SS",
                 "name": "South Sudan",
                 "imageSrc": "images/ss.svg"
             },
             {
+                "key": "ST",
                 "name": "Sao Tome and Principe",
                 "imageSrc": "images/st.svg"
             },
             {
+                "key": "SV",
                 "name": "El Salvador",
                 "imageSrc": "images/sv.svg"
             },
             {
+                "key": "SX",
                 "name": "Sint Maarten (Dutch part)",
                 "imageSrc": "images/sx.svg"
             },
             {
+                "key": "SY",
                 "name": "Syrian Arab Republic",
                 "imageSrc": "images/sy.svg"
             },
             {
+                "key": "SZ",
                 "name": "Swaziland",
                 "imageSrc": "images/sz.svg"
             },
             {
+                "key": "TC",
                 "name": "Turks and Caicos Islands",
                 "imageSrc": "images/tc.svg"
             },
             {
+                "key": "TD",
                 "name": "Chad",
                 "imageSrc": "images/td.svg"
             },
             {
+                "key": "TF",
                 "name": "French Southern Territories",
                 "imageSrc": "images/tf.svg"
             },
             {
+                "key": "TG",
                 "name": "Togo",
                 "imageSrc": "images/tg.svg"
             },
             {
+                "key": "TH",
                 "name": "Thailand",
                 "imageSrc": "images/th.svg"
             },
             {
+                "key": "TJ",
                 "name": "Tajikistan",
                 "imageSrc": "images/tj.svg"
             },
             {
+                "key": "TK",
                 "name": "Tokelau",
                 "imageSrc": "images/tk.svg"
             },
             {
+                "key": "TL",
                 "name": "Timor-Leste",
                 "imageSrc": "images/tl.svg"
             },
             {
+                "key": "TM",
                 "name": "Turkmenistan",
                 "imageSrc": "images/tm.svg"
             },
             {
+                "key": "TN",
                 "name": "Tunisia",
                 "imageSrc": "images/tn.svg"
             },
             {
+                "key": "TO",
                 "name": "Tonga",
                 "imageSrc": "images/to.svg"
             },
             {
+                "key": "TR",
                 "name": "Turkey",
                 "imageSrc": "images/tr.svg"
             },
             {
+                "key": "TT",
                 "name": "Trinidad and Tobago",
                 "imageSrc": "images/tt.svg"
             },
             {
+                "key": "TV",
                 "name": "Tuvalu",
                 "imageSrc": "images/tv.svg"
             },
             {
+                "key": "TW",
                 "name": "Taiwan",
                 "imageSrc": "images/tw.svg"
             },
             {
+                "key": "TZ",
                 "name": "Tanzania, United Republic of",
                 "imageSrc": "images/tz.svg"
             },
             {
+                "key": "UA",
                 "name": "Ukraine",
                 "imageSrc": "images/ua.svg"
             },
             {
+                "key": "UG",
                 "name": "Uganda",
                 "imageSrc": "images/ug.svg"
             },
             {
+                "key": "UM",
                 "name": "US Minor Outlying Islands",
                 "imageSrc": "images/um.svg"
             },
             {
+                "key": "US",
                 "name": "United States",
                 "imageSrc": "images/us.svg"
             },
             {
+                "key": "UY",
                 "name": "Uruguay",
                 "imageSrc": "images/uy.svg"
             },
             {
+                "key": "UZ",
                 "name": "Uzbekistan",
                 "imageSrc": "images/uz.svg"
             },
             {
+                "key": "VA",
                 "name": "Holy See (Vatican City State)",
                 "imageSrc": "images/va.svg"
             },
             {
+                "key": "VC",
                 "name": "Saint Vincent and the Grenadines",
                 "imageSrc": "images/vc.svg"
             },
             {
+                "key": "VE",
                 "name": "Venezuela, Bolivarian Republic of",
                 "imageSrc": "images/ve.svg"
             },
             {
+                "key": "VG",
                 "name": "Virgin Islands, British",
                 "imageSrc": "images/vg.svg"
             },
             {
+                "key": "VI",
                 "name": "Virgin Islands, U.S.",
                 "imageSrc": "images/vi.svg"
             },
             {
+                "key": "VN",
                 "name": "Viet Nam",
                 "imageSrc": "images/vn.svg"
             },
             {
+                "key": "VU",
                 "name": "Vanuatu",
                 "imageSrc": "images/vu.svg"
             },
             {
+                "key": "WF",
                 "name": "Wallis and Futuna Islands",
                 "imageSrc": "images/wf.svg"
             },
             {
+                "key": "XK",
                 "name": "Kosovo",
                 "imageSrc": "images/xk.svg"
             },
             {
+                "key": "WS",
                 "name": "Samoa",
                 "imageSrc": "images/ws.svg"
             },
             {
+                "key": "YE",
                 "name": "Yemen",
                 "imageSrc": "images/ye.svg"
             },
             {
+                "key": "YT",
                 "name": "Mayotte",
                 "imageSrc": "images/yt.svg"
             },
             {
+                "key": "ZA",
                 "name": "South Africa",
                 "imageSrc": "images/za.svg"
             },
             {
+                "key": "ZM",
                 "name": "Zambia",
                 "imageSrc": "images/zm.svg"
             },
             {
+                "key": "ZW",
                 "name": "Zimbabwe",
                 "imageSrc": "images/zw.svg"
             }

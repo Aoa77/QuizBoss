@@ -1,11 +1,9 @@
 import { Context } from "./Context";
-import { extractQuizItems } from "./QuizModule";
 import { GameState } from "./GameState";
 import { GuessButtonCount, GuessButtonState } from "./GuessButton";
-import { hideElement, showElement, delay, randomInt } from "./Util";
+import { hideElement, showElement, delay, randomInt, booleanAll } from "./Util";
 
 var wrongGuesses: number[] = [];
-
 
 export async function onInit(context: Context) {
     context.setGameState(GameState.STARTUP);
@@ -13,9 +11,14 @@ export async function onInit(context: Context) {
 
 export async function onStartup(context: Context) {
     const { config, elements, setGameState } = context;
+    if (!config.spinnerPoll) {
+        throw new Error("spinnerPoll is required");
+    }
+    const spinnerPoll: number = config.spinnerPoll;
+
     hideElement(elements.image);
     showElement(elements.title);
-    await delay(config.spinnerPoll!);
+    await delay(spinnerPoll);
     setGameState(GameState.LOADING);
 }
 
@@ -28,9 +31,21 @@ export async function onLoading(context: Context) {
         setGameState,
     } = context;
 
-    const nextDelay: number = config.nextDelay!;
-    const spinnerPoll: number = config.spinnerPoll!;
-    const quizItems = extractQuizItems(quizModule);
+    if (quizModule === null) {
+        return;
+    }
+
+    if (!config.nextDelay) {
+        throw new Error("nextDelay is required");
+    }
+    const nextDelay: number = config.nextDelay;
+
+    if (!config.spinnerPoll) {
+        throw new Error("spinnerPoll is required");
+    }
+    const spinnerPoll: number = config.spinnerPoll;
+
+    const quizItems = quizModule.quizData.items;
     const currentItem = quizItems[currentItemIndex];
 
     hideElement(elements.image);
@@ -53,7 +68,11 @@ export function onNext(context: Context) {
         quizModule,
         setGameState,
     } = context;
-    const quizItems = extractQuizItems(quizModule);
+
+    if (quizModule === null) {
+        return;
+    }
+    const quizItems = quizModule.quizData.items;
 
     hideElement(elements.loading);
     showElement(elements.buttons);
@@ -70,11 +89,16 @@ export function onNext(context: Context) {
             while (true) {
                 choiceItemIndex = randomInt(0, quizItems.length);
                 if (
-                    choiceItemIndex !== currentItemIndex &&
-                    !currentQuestionItemIndexChoices.includes(
-                        choiceItemIndex,
-                    ) &&
-                    !quizItems[choiceItemIndex].answeredCorrectly
+                    booleanAll([
+                        choiceItemIndex !== currentItemIndex,
+                        !currentQuestionItemIndexChoices.includes(
+                            choiceItemIndex,
+                        ),
+                        !quizItems[choiceItemIndex].answeredCorrectly,
+                        !quizItems[choiceItemIndex].duplicateItemKeys.includes(
+                            quizItems[currentItemIndex].key,
+                        ),
+                    ])
                 ) {
                     break;
                 }
@@ -92,6 +116,7 @@ export function onNext(context: Context) {
 
 export async function onResult(context: Context) {
     const {
+        config,
         currentItemIndex,
         elements,
         guessButtons,
@@ -100,7 +125,16 @@ export async function onResult(context: Context) {
         setCurrentItemIndex,
         setGameState,
     } = context;
-    const quizItems = extractQuizItems(quizModule);
+
+    if (!config.nextDelay) {
+        throw new Error("nextDelay is required");
+    }
+    const nextDelay: number = config.nextDelay;
+
+    if (quizModule === null) {
+        return;
+    }
+    const quizItems = quizModule.quizData.items;
     const currentItem = quizItems[currentItemIndex];
     const correctAnswer = currentItem.name;
 
@@ -130,7 +164,7 @@ export async function onResult(context: Context) {
         return;
     }
 
-    await delay(1000);
+    await delay(nextDelay);
 
     for (let guess = 0; guess < GuessButtonCount; guess++) {
         const ref = guessButtons[guess].ref.current!;

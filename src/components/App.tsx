@@ -21,6 +21,7 @@ export default function App(props: Config) {
     const refImage = useRef<HTMLDivElement>(null);
     const refLoading = useRef<HTMLDivElement>(null);
     const refQuestion = useRef<HTMLHeadingElement>(null);
+    const refStats = useRef<HTMLHeadingElement>(null);
     const refTitle = useRef<HTMLHeadingElement>(null);
 
     const elements: Elements = {
@@ -28,6 +29,7 @@ export default function App(props: Config) {
         image: refImage.current!,
         loading: refLoading.current!,
         question: refQuestion.current!,
+        stats: refStats.current!,
         title: refTitle.current!,
     };
 
@@ -56,23 +58,27 @@ export default function App(props: Config) {
     };
 
     useQuizFlow(context);
+    const quizData = quizModule?.quizData;
 
     return (
         <main>
             <h1 ref={refTitle} className="hidden">
-                {quizModule?.quizdata.title}
+                {quizData?.title}
             </h1>
             <h2 ref={refQuestion} className="hidden">
-                {quizModule?.quizdata.question}
+                {quizData?.questionText}
             </h2>
             <section ref={refLoading} className="loading hidden">
                 <div className="spinner"></div>
             </section>
             <section ref={refImage} className="image hidden">
-                {quizModule?.quizdata.items[currentItemIndex].imageJsx}
+                {quizData?.items[currentItemIndex].imageJsx}
             </section>
             <section ref={refButtons} className="buttons hidden">
                 {guessButtons.map((b) => b.element)}
+            </section>
+            <section ref={refStats} className="stats hidden">
+                <h3>Items:</h3>
             </section>
         </main>
     );

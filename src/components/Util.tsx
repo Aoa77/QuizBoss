@@ -1,3 +1,7 @@
+export function booleanAll(values: boolean[]): boolean {
+    return values.every((value) => value);
+}
+
 export function delay(ms: number): Promise<void> {
     return new Promise((resolve) => setTimeout(resolve, ms));
 }
