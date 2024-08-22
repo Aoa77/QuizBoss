@@ -117,6 +117,7 @@ section.progress {
 .hidden {
     visibility: hidden;
 }
+button.hidden,
 section.image.hidden,
 section.loading.hidden {
     display: none;

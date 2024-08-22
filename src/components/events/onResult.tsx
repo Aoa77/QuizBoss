@@ -25,7 +25,7 @@ export async function onResult(context: Context) {
     }
     const quizItems = quizModule.quizData.items;
     const currentItem = quizItems[currentItemIndex];
-    const correctAnswer = currentItem.name;
+    const correctAnswer = currentItem.key;
 
     for (let guess = 0; guess < guessButtonCount; guess++) {
         const ref = guessButtons[guess].ref.current!;

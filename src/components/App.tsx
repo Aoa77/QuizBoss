@@ -3,8 +3,8 @@ import { Config } from "./Config";
 import { Context } from "./Context";
 import { Elements } from "./Elements";
 import { GameState } from "./GameState";
-import { GuessButtonState, useGuessButtons } from "./GuessButton";
 import { QuizModule } from "./QuizModule";
+import { useGuessButtons } from "./GuessButton";
 import { useQuizFlow } from "./QuizFlow";
 import { useRef, useState } from "react";
 
@@ -33,17 +33,12 @@ export default function App(config: Config) {
         title: refTitle.current,
     };
 
-    const guessButtons = useGuessButtons(config, (clickedButtonRef) => {
-        if (gameState !== GameState.INPUT) {
-            return;
-        }
-        const clickedButton = clickedButtonRef.current!;
-        if (clickedButton.className !== GuessButtonState.NORMAL) {
-            return;
-        }
-        setGuessValue(clickedButton.value);
-        setGameState(GameState.RESULT);
-    });
+    const guessButtons = useGuessButtons(
+        config,
+        gameState,
+        setGameState,
+        setGuessValue,
+    );
 
     const context: Context = {
         config,
