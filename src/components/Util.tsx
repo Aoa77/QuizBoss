@@ -1,28 +1,19 @@
-export function assertInteger(value: number | null | undefined): number {
-    if (value === null || value === undefined) {
-        throw new Error("Invalid integer parameter");
-    }
-    if (!Number.isInteger(value)) {
-        throw new Error("Invalid integer parameter");
-    }
-    return value;
+export function delay(ms: number): Promise<void> {
+    return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-export function booleanAll(values: boolean[]): boolean {
-    return values.every((value) => value);
+// The maximum is exclusive and the minimum is inclusive
+export function randomInt(min: number, max: number) {
+    const minCeiled = Math.ceil(min);
+    const maxFloored = Math.floor(max);
+    return Math.floor(Math.random() * (maxFloored - minCeiled) + minCeiled);
 }
 
-export function delay(ms: number | null | undefined): Promise<void> {
-    return new Promise((resolve) => setTimeout(resolve, assertInteger(ms)));
-}
-
-export function randomInteger(
-    min: number | null | undefined,
-    max: number | null | undefined,
-): number {
-    min = assertInteger(min);
-    max = assertInteger(max);
-    return Math.floor(Math.random() * (max - min)) + min;
+// The maximum is inclusive and the minimum is inclusive
+export function randomIntInclusive(min: number, max: number) {
+    const minCeiled = Math.ceil(min);
+    const maxFloored = Math.floor(max);
+    return Math.floor(Math.random() * (maxFloored - minCeiled + 1) + minCeiled);
 }
 
 export function shuffle<T>(array: T[]) {

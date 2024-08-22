@@ -1,5 +1,5 @@
 import "../styles";
-import { Config, ConfigDefaults } from "./Config";
+import { Config } from "./Config";
 import { Context } from "./Context";
 import { Elements } from "./Elements";
 import { GameState } from "./GameState";
@@ -8,9 +8,7 @@ import { QuizModule } from "./QuizModule";
 import { useQuizFlow } from "./QuizFlow";
 import { useRef, useState } from "react";
 
-export default function App(props: Config) {
-    //
-    const config = ConfigDefaults.setDefaults(props);
+export default function App(config: Config) {
     const [currentItemIndex, setCurrentItemIndex] = useState<number>(0);
     const [gameState, setGameState] = useState<GameState>(GameState.INIT);
     const [guessValue, setGuessValue] = useState<string>("");

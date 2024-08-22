@@ -29,7 +29,7 @@
         "build": "npm run clean && npm run update && react-scripts build",
         "clean": "node scripts/cleanQuizModules.js",
         "update": "node scripts/updateQuizModules.js",
-        "start": "react-scripts start"
+        "start": "npm run clean && npm run update && react-scripts start"
     },
     "eslintConfig": {
         "extends": [

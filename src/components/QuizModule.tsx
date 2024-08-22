@@ -27,31 +27,16 @@ export interface QuizItem {
     answeredCorrectly: boolean;
 }
 
-export function formatProgressText(
-    currentItemIndex: number,
-    module: QuizModule | null,
-): JSX.Element {
-    if (module === null) {
-        return <></>;
-    }
-
-
-
-
-    const { quizData } = module;
-    return (
-        <>
-            {quizData.progressText} {quizData.items.length}
-        </>
-    );
-}
-
 export async function initQuizModule(
     config: Config,
     setModule: (module: QuizModule) => void,
 ): Promise<void> {
+    //
     const { loadThrottle, quizModuleName } = config;
     const module = await fetchQuizModule(quizModuleName);
+    module.quizData.items = module.quizData.items.filter(
+        (item) => item.duplicateItemKeys && item.duplicateItemKeys.length > 0,
+    );
 
     console.info(`Quiz module loaded: ${module.name}`, module);
     module.quizData.items.forEach((item) => {
@@ -86,7 +71,7 @@ async function fetchQuizModule(moduleName: string): Promise<QuizModule> {
 }
 
 async function loadQuizImages(
-    loadThrottle: number | undefined,
+    loadThrottle: number,
     quizItems: QuizItem[],
 ): Promise<void> {
     for (const item of quizItems) {

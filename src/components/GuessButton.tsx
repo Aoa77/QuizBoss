@@ -17,8 +17,9 @@ export function useGuessButtons(
     config: Config,
     onPointerDown: (ref: React.RefObject<HTMLButtonElement>) => void,
 ): GuessButton[] {
+    const { guessButtonCount } = config;
     const buttons: GuessButton[] = [];
-    for (let i = 0; i < config.guessButtonCount!; i++) {
+    for (let i = 0; i < guessButtonCount; i++) {
         buttons.push(GuessButtonFactory(i, onPointerDown));
     }
     return buttons;

@@ -1,36 +1,37 @@
 import { Context } from "./Context";
 import { GameState } from "./GameState";
 import { useEffect } from "react";
-import * as Events from "./Events";
+import * as events from "./events";
 
 export function useQuizFlow(context: Context) {
-    
     useEffect(() => {
         const gameState = context.gameState;
         console.info("useQuizFlow", gameState);
 
         switch (gameState) {
-            case GameState.INPUT:
-                return;
-
+            //
             case GameState.INIT:
-                Events.onInit(context);
+                events.onInit(context);
                 return;
 
             case GameState.STARTUP:
-                Events.onStartup(context);
+                events.onStartup(context);
                 return;
 
             case GameState.LOADING:
-                Events.onLoading(context);
+                events.onLoading(context);
                 return;
 
             case GameState.NEXT:
-                Events.onNext(context);
+                events.onNext(context);
+                return;
+
+            case GameState.INPUT:
+                events.onInput();
                 return;
 
             case GameState.RESULT:
-                Events.onResult(context);
+                events.onResult(context);
                 return;
 
             default:
