@@ -32,10 +32,21 @@ export function onNext(context: Context) {
     const answerSpot = util.randomInt(0, guessButtonCount);
     console.info("answerSpot: ", answerSpot);
 
+    function assignQuestionToChoiceSpot(
+        choiceItemIndex: number,
+        choiceSpot: number,
+    ): number {
+        const spotButton = guessButtons[choiceSpot].ref.current!;
+        spotButton.innerHTML = quizItems[choiceItemIndex].name;
+        spotButton.value = quizItems[choiceItemIndex].name;
+        spotButton.className = GuessButtonState.NORMAL;
+        return choiceItemIndex;
+    }
+
     for (let choiceSpot = 0; choiceSpot < guessButtonCount; choiceSpot++) {
         //
         let choiceItemIndex = currentItemIndex;
-        
+
         if (choiceSpot !== answerSpot) {
             let isBadQuestionChoice = true;
             while (isBadQuestionChoice) {
@@ -50,27 +61,9 @@ export function onNext(context: Context) {
             }
         }
 
-        assignQuestionToChoiceSpot(
-            currentQuestionItemIndexChoices,
-            choiceItemIndex,
-            guessButtons,
-            choiceSpot,
-            quizItems,
+        currentQuestionItemIndexChoices.push(
+            assignQuestionToChoiceSpot(choiceItemIndex, choiceSpot),
         );
     }
     setGameState(GameState.INPUT);
-}
-
-function assignQuestionToChoiceSpot(
-    currentQuestionItemIndexChoices: number[],
-    choiceItemIndex: number,
-    guessButtons: import("/home/alalbers77/code/quizboss/src/components/GuessButton").GuessButton[],
-    choiceSpot: number,
-    quizItems: import("/home/alalbers77/code/quizboss/src/components/QuizModule").QuizItem[],
-) {
-    currentQuestionItemIndexChoices.push(choiceItemIndex);
-    const ref = guessButtons[choiceSpot].ref.current!;
-    ref.innerHTML = quizItems[choiceItemIndex].name;
-    ref.value = quizItems[choiceItemIndex].name;
-    ref.className = GuessButtonState.NORMAL;
 }

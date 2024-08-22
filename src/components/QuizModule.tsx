@@ -16,7 +16,7 @@ interface QuizData {
     items: QuizItem[];
 }
 
-export interface QuizItem {
+interface QuizItem {
     key: string;
     duplicateItemKeys: string[];
     name: string;
