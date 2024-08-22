@@ -14,6 +14,6 @@ export const ConfigDefaults = {
 };
 
 export const InternalConfig = {
-    onlyDuplicates: false,
+    onlyDuplicates: true,
     infiniteLoopFailSafeMultiplier: 5
 };
