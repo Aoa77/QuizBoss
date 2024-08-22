@@ -1,3 +1,4 @@
+import { InternalConfig } from "../Config";
 import { Context } from "../Context";
 import { GameState } from "../GameState";
 import { GuessButtonState } from "../GuessButton";
@@ -32,6 +33,21 @@ export function onNext(context: Context) {
     const answerSpot = util.randomInt(0, guessButtonCount);
     console.info("answerSpot: ", answerSpot);
 
+    for (let choiceSpot = 0; choiceSpot < guessButtonCount; choiceSpot++) {
+        //
+        let choiceItemIndex = currentItemIndex;
+
+        if (choiceSpot !== answerSpot) {
+            choiceItemIndex = selectRandomQuestionChoice(choiceItemIndex);
+        }
+
+        currentQuestionItemIndexChoices.push(
+            assignQuestionToChoiceSpot(choiceItemIndex, choiceSpot),
+        );
+    }
+    setGameState(GameState.INPUT);
+    return;
+
     function assignQuestionToChoiceSpot(
         choiceItemIndex: number,
         choiceSpot: number,
@@ -43,27 +59,25 @@ export function onNext(context: Context) {
         return choiceItemIndex;
     }
 
-    for (let choiceSpot = 0; choiceSpot < guessButtonCount; choiceSpot++) {
-        //
-        let choiceItemIndex = currentItemIndex;
-
-        if (choiceSpot !== answerSpot) {
-            let isBadQuestionChoice = true;
-            while (isBadQuestionChoice) {
-                choiceItemIndex = util.randomInt(0, quizItems.length);
-                const choiceItem = quizItems[choiceItemIndex];
-                isBadQuestionChoice = [
-                    choiceItemIndex === currentItemIndex,
-                    currentQuestionItemIndexChoices.includes(choiceItemIndex),
-                    choiceItem.answeredCorrectly,
-                    choiceItem.duplicateItemKeys.includes(choiceItem.key),
-                ].some((areBad) => areBad);
+    function selectRandomQuestionChoice(choiceItemIndex: number) {
+        let randomSelectLoopCount = 0;
+        let isBadQuestionChoice = true;
+        while (isBadQuestionChoice) {
+            choiceItemIndex = util.randomInt(0, quizItems.length);
+            const choiceItem = quizItems[choiceItemIndex];
+            isBadQuestionChoice = [
+                choiceItemIndex === currentItemIndex,
+                currentQuestionItemIndexChoices.includes(choiceItemIndex),
+                choiceItem.answeredCorrectly,
+                choiceItem.duplicateItemKeys.includes(choiceItem.key),
+            ].some((areBad) => areBad);
+            if (
+                ++randomSelectLoopCount >
+                quizItems.length * InternalConfig.infiniteLoopFailSafeMultiplier
+            ) {
+                break;
             }
         }
-
-        currentQuestionItemIndexChoices.push(
-            assignQuestionToChoiceSpot(choiceItemIndex, choiceSpot),
-        );
+        return choiceItemIndex;
     }
-    setGameState(GameState.INPUT);
 }

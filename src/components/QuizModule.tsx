@@ -1,5 +1,5 @@
 import { delay, shuffle } from "./Util";
-import { Config } from "./Config";
+import { Config, InternalConfig } from "./Config";
 
 export interface QuizModule {
     name: string;
@@ -34,7 +34,7 @@ export async function initQuizModule(
     //
     const { loadThrottle, quizModuleName } = config;
     const module = await fetchQuizModule(quizModuleName);
-    if (false) {
+    if (InternalConfig.onlyDuplicates) {
         module.quizData.items = module.quizData.items.filter(
             (item) =>
                 item.duplicateItemKeys && item.duplicateItemKeys.length > 0,

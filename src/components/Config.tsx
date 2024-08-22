@@ -12,3 +12,8 @@ export const ConfigDefaults = {
     nextDelay: 500,
     spinnerPoll: 100,
 };
+
+export const InternalConfig = {
+    onlyDuplicates: false,
+    infiniteLoopFailSafeMultiplier: 5
+};
