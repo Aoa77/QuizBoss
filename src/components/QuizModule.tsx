@@ -34,9 +34,12 @@ export async function initQuizModule(
     //
     const { loadThrottle, quizModuleName } = config;
     const module = await fetchQuizModule(quizModuleName);
-    module.quizData.items = module.quizData.items.filter(
-        (item) => item.duplicateItemKeys && item.duplicateItemKeys.length > 0,
-    );
+    if (false) {
+        module.quizData.items = module.quizData.items.filter(
+            (item) =>
+                item.duplicateItemKeys && item.duplicateItemKeys.length > 0,
+        );
+    }
 
     console.info(`Quiz module loaded: ${module.name}`, module);
     module.quizData.items.forEach((item) => {

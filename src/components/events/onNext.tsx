@@ -15,7 +15,7 @@ export function onNext(context: Context) {
     } = context;
 
     const { guessButtonCount } = config;
-    
+
     if (quizModule === null) {
         return;
     }
@@ -32,29 +32,45 @@ export function onNext(context: Context) {
     const answerSpot = util.randomInt(0, guessButtonCount);
     console.info("answerSpot: ", answerSpot);
 
-    for (let guess = 0; guess < guessButtonCount; guess++) {
+    for (let choiceSpot = 0; choiceSpot < guessButtonCount; choiceSpot++) {
+        //
         let choiceItemIndex = currentItemIndex;
-        if (guess === answerSpot) {
-            continue;
+        
+        if (choiceSpot !== answerSpot) {
+            let isBadQuestionChoice = true;
+            while (isBadQuestionChoice) {
+                choiceItemIndex = util.randomInt(0, quizItems.length);
+                const choiceItem = quizItems[choiceItemIndex];
+                isBadQuestionChoice = [
+                    choiceItemIndex === currentItemIndex,
+                    currentQuestionItemIndexChoices.includes(choiceItemIndex),
+                    choiceItem.answeredCorrectly,
+                    choiceItem.duplicateItemKeys.includes(choiceItem.key),
+                ].some((areBad) => areBad);
+            }
         }
 
-        let isBadQuestionChoice = true;
-        while (isBadQuestionChoice) {
-            choiceItemIndex = util.randomInt(0, quizItems.length);
-            const choiceItem = quizItems[choiceItemIndex];
-            isBadQuestionChoice = [
-                choiceItemIndex === currentItemIndex,
-                currentQuestionItemIndexChoices.includes(choiceItemIndex),
-                choiceItem.answeredCorrectly,
-                choiceItem.duplicateItemKeys.includes(choiceItem.key),
-            ].some((areBad) => areBad);
-        }
-
-        currentQuestionItemIndexChoices.push(choiceItemIndex);
-        const ref = guessButtons[guess].ref.current!;
-        ref.innerHTML = quizItems[choiceItemIndex].name;
-        ref.value = quizItems[choiceItemIndex].name;
-        ref.className = GuessButtonState.NORMAL;
+        assignQuestionToChoiceSpot(
+            currentQuestionItemIndexChoices,
+            choiceItemIndex,
+            guessButtons,
+            choiceSpot,
+            quizItems,
+        );
     }
     setGameState(GameState.INPUT);
+}
+
+function assignQuestionToChoiceSpot(
+    currentQuestionItemIndexChoices: number[],
+    choiceItemIndex: number,
+    guessButtons: import("/home/alalbers77/code/quizboss/src/components/GuessButton").GuessButton[],
+    choiceSpot: number,
+    quizItems: import("/home/alalbers77/code/quizboss/src/components/QuizModule").QuizItem[],
+) {
+    currentQuestionItemIndexChoices.push(choiceItemIndex);
+    const ref = guessButtons[choiceSpot].ref.current!;
+    ref.innerHTML = quizItems[choiceItemIndex].name;
+    ref.value = quizItems[choiceItemIndex].name;
+    ref.className = GuessButtonState.NORMAL;
 }
