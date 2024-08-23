@@ -76,7 +76,8 @@ button.correct {
     border-color: #009900;
     color: #00ff00;
 }
-button.dimmed {
+button.dimmed,
+button.disabled {
     background-color: #44447744;
     border-color: #44447722;
     color: #ffffff66;

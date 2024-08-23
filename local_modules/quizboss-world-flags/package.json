@@ -7,6 +7,18 @@
         "questionText": "Whose flag is this?",
         "progressText": "Flag",
         "scoreText": "Score:",
+        "dummies": [
+            "Arendelle",
+            "Atlantis",
+            "Genovia",
+            "Middle-earth",
+            "Mordor",
+            "Narnia",
+            "Neverland",
+            "Oz",
+            "Wakanda",
+            "Westeros"
+        ],
         "items": [
             {
                 "key": "AD",
@@ -75,7 +87,10 @@
             },
             {
                 "key": "AU",
-                "duplicateItemKeys": ["AU", "HM"],
+                "duplicateItemKeys": [
+                    "AU",
+                    "HM"
+                ],
                 "name": "Australia",
                 "imageSrc": "images/au.svg"
             },
@@ -161,7 +176,10 @@
             },
             {
                 "key": "BQ",
-                "duplicateItemKeys": ["BQ","NL"],
+                "duplicateItemKeys": [
+                    "BQ",
+                    "NL"
+                ],
                 "name": "Caribbean Netherlands",
                 "imageSrc": "images/bq.svg"
             },
@@ -182,7 +200,11 @@
             },
             {
                 "key": "BV",
-                "duplicateItemKeys": ["BV","NO","SJ"],
+                "duplicateItemKeys": [
+                    "BV",
+                    "NO",
+                    "SJ"
+                ],
                 "name": "Bouvet Island",
                 "imageSrc": "images/bv.svg"
             },
@@ -393,7 +415,10 @@
             },
             {
                 "key": "FR",
-                "duplicateItemKeys": ["FR","MQ"],
+                "duplicateItemKeys": [
+                    "FR",
+                    "MQ"
+                ],
                 "name": "France",
                 "imageSrc": "images/fr.svg"
             },
@@ -409,7 +434,11 @@
             },
             {
                 "key": "GB-NIR",
-                "duplicateItemKeys": ["GB","GB-NIR","SH"],
+                "duplicateItemKeys": [
+                    "GB",
+                    "GB-NIR",
+                    "SH"
+                ],
                 "name": "Northern Ireland",
                 "imageSrc": "images/gb-nir.svg"
             },
@@ -425,7 +454,11 @@
             },
             {
                 "key": "GB",
-                "duplicateItemKeys": ["GB","GB-NIR","SH"],
+                "duplicateItemKeys": [
+                    "GB",
+                    "GB-NIR",
+                    "SH"
+                ],
                 "name": "United Kingdom",
                 "imageSrc": "images/gb.svg"
             },
@@ -476,7 +509,13 @@
             },
             {
                 "key": "GP",
-                "duplicateItemKeys": ["GP","MF","PM","RE","YT"],
+                "duplicateItemKeys": [
+                    "GP",
+                    "MF",
+                    "PM",
+                    "RE",
+                    "YT"
+                ],
                 "name": "Guadeloupe",
                 "imageSrc": "images/gp.svg"
             },
@@ -522,7 +561,10 @@
             },
             {
                 "key": "HM",
-                "duplicateItemKeys": ["AU", "HM"],
+                "duplicateItemKeys": [
+                    "AU",
+                    "HM"
+                ],
                 "name": "Heard Island and McDonald Islands",
                 "imageSrc": "images/hm.svg"
             },
@@ -748,7 +790,13 @@
             },
             {
                 "key": "MF",
-                "duplicateItemKeys": ["GP","MF","PM","RE","YT"],
+                "duplicateItemKeys": [
+                    "GP",
+                    "MF",
+                    "PM",
+                    "RE",
+                    "YT"
+                ],
                 "name": "Saint Martin",
                 "imageSrc": "images/mf.svg"
             },
@@ -794,7 +842,10 @@
             },
             {
                 "key": "MQ",
-                "duplicateItemKeys": ["FR","MQ"],
+                "duplicateItemKeys": [
+                    "FR",
+                    "MQ"
+                ],
                 "name": "Martinique",
                 "imageSrc": "images/mq.svg"
             },
@@ -875,7 +926,10 @@
             },
             {
                 "key": "NL",
-                "duplicateItemKeys": ["BQ","NL"],
+                "duplicateItemKeys": [
+                    "BQ",
+                    "NL"
+                ],
                 "name": "Netherlands",
                 "imageSrc": "images/nl.svg"
             },
@@ -946,7 +1000,13 @@
             },
             {
                 "key": "PM",
-                "duplicateItemKeys": ["GP","MF","PM","RE","YT"],
+                "duplicateItemKeys": [
+                    "GP",
+                    "MF",
+                    "PM",
+                    "RE",
+                    "YT"
+                ],
                 "name": "Saint Pierre and Miquelon",
                 "imageSrc": "images/pm.svg"
             },
@@ -987,7 +1047,13 @@
             },
             {
                 "key": "RE",
-                "duplicateItemKeys": ["GP","MF","PM","RE","YT"],
+                "duplicateItemKeys": [
+                    "GP",
+                    "MF",
+                    "PM",
+                    "RE",
+                    "YT"
+                ],
                 "name": "Réunion",
                 "imageSrc": "images/re.svg"
             },
@@ -1043,7 +1109,11 @@
             },
             {
                 "key": "SH",
-                "duplicateItemKeys": ["GB","GB-NIR","SH"],
+                "duplicateItemKeys": [
+                    "GB",
+                    "GB-NIR",
+                    "SH"
+                ],
                 "name": "Saint Helena, Ascension and Tristan da Cunha",
                 "imageSrc": "images/sh.svg"
             },
@@ -1209,13 +1279,19 @@
             },
             {
                 "key": "UM",
-                "duplicateItemKeys": ["UM","US"],
+                "duplicateItemKeys": [
+                    "UM",
+                    "US"
+                ],
                 "name": "US Minor Outlying Islands",
                 "imageSrc": "images/um.svg"
             },
             {
                 "key": "US",
-                "duplicateItemKeys": ["UM","US"],
+                "duplicateItemKeys": [
+                    "UM",
+                    "US"
+                ],
                 "name": "United States",
                 "imageSrc": "images/us.svg"
             },
@@ -1286,7 +1362,13 @@
             },
             {
                 "key": "YT",
-                "duplicateItemKeys": ["GP","MF","PM","RE","YT"],
+                "duplicateItemKeys": [
+                    "GP",
+                    "MF",
+                    "PM",
+                    "RE",
+                    "YT"
+                ],
                 "name": "Mayotte",
                 "imageSrc": "images/yt.svg"
             },

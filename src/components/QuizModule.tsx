@@ -13,6 +13,7 @@ interface QuizData {
     questionText: string;
     progressText: string;
     scoreText: string;
+    dummies: string[];
     items: QuizItem[];
 }
 
@@ -55,6 +56,16 @@ export async function initQuizModule(
     });
 
     shuffle(module.quizData.items);
+    if (config.maxQuestions > 0) {
+        module.quizData.items = module.quizData.items.slice(
+            0,
+            config.maxQuestions,
+        );
+    }
+    if (config.enableDummies) {
+        shuffle(module.quizData.dummies);
+        console.info(module.quizData.dummies);
+    }
     setModule(module);
     loadQuizImages(loadThrottle, module.quizData.items);
 }

@@ -9,8 +9,10 @@ const root = ReactDOM.createRoot(
 root.render(
     <App
         quizModuleName="quizboss-world-flags"
+        enableDummies={ConfigDefaults.enableDummies}
         guessButtonCount={ConfigDefaults.guessButtonCount}
         loadThrottle={ConfigDefaults.loadThrottle}
+        maxQuestions={ConfigDefaults.maxQuestions}
         nextDelay={ConfigDefaults.nextDelay}
         spinnerPoll={ConfigDefaults.spinnerPoll}
     />,

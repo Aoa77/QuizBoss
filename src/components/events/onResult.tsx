@@ -26,30 +26,40 @@ export async function onResult(context: Context) {
     const quizItems = quizModule.quizData.items;
     const currentItem = quizItems[currentItemIndex];
     const correctAnswer = currentItem.key;
+    const isCorrectGuess = correctAnswer === guessValue;
 
     for (let guess = 0; guess < guessButtonCount; guess++) {
-        const ref = guessButtons[guess].ref.current!;
-        if (guessValue !== ref.value) {
-            ref.className = GuessButtonState.DIMMED;
+        //
+        const guessButton = guessButtons[guess].ref.current!;
+        //
+        if (guessButton.className === GuessButtonState.DISABLED) {
+            continue;
+        }
+        if (guessButton.className === GuessButtonState.HIDDEN) {
             continue;
         }
 
-        if (guessValue === correctAnswer) {
-            ref.className = GuessButtonState.CORRECT;
+        if (guessValue !== guessButton.value) {
+            guessButton.className = GuessButtonState.DIMMED;
+            continue;
+        }
+
+        if (isCorrectGuess) {
+            guessButton.className = GuessButtonState.CORRECT;
             currentItem.answeredCorrectly = true;
             continue;
         }
 
         wrongGuesses.push(guess);
-        ref.className = GuessButtonState.WRONG;
+        guessButton.className = GuessButtonState.WRONG;
     }
 
-    if (guessValue === correctAnswer) {
+    if (isCorrectGuess) {
         context.setScore(
             context.score + guessButtonCount - wrongGuesses.length - 1,
         );
         util.hideElement(elements.image);
-        setCurrentItemIndex(currentItemIndex + 1);  // TODO, GameOver condition...
+        setCurrentItemIndex(currentItemIndex + 1); // TODO, GameOver condition...
         wrongGuesses = [];
         setGameState(GameState.LOADING);
         return;

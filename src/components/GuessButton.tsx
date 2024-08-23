@@ -3,11 +3,12 @@ import { GameState } from "./GameState";
 import { useRef } from "react";
 
 export enum GuessButtonState {
-    NORMAL = "normal",
-    DIMMED = "dimmed",
     CORRECT = "correct",
-    WRONG = "wrong",
+    DIMMED = "dimmed",
+    DISABLED = "disabled",
     HIDDEN = "hidden",
+    NORMAL = "normal",
+    WRONG = "wrong",
 }
 
 export interface GuessButton {
