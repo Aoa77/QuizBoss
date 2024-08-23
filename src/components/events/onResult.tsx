@@ -59,7 +59,11 @@ export async function onResult(context: Context) {
             context.score + guessButtonCount - wrongGuesses.length - 1,
         );
         util.hideElement(elements.image);
-        setCurrentItemIndex(currentItemIndex + 1); // TODO, GameOver condition...
+        if ((1 + currentItemIndex) === quizItems.length) {
+            setGameState(GameState.GAMEOVER);
+            return;
+        }
+        setCurrentItemIndex(currentItemIndex + 1);
         wrongGuesses = [];
         setGameState(GameState.LOADING);
         return;

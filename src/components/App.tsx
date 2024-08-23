@@ -4,8 +4,8 @@ import { Context } from "./Context";
 import { Elements } from "./Elements";
 import { GameState } from "./GameState";
 import { QuizModule } from "./QuizModule";
+import { useGameFlow } from "./GameFlow";
 import { useGuessButtons } from "./GuessButton";
-import { useQuizFlow } from "./QuizFlow";
 import { useRef, useState } from "react";
 
 export default function App(config: Config) {
@@ -55,7 +55,7 @@ export default function App(config: Config) {
         setScore,
     };
 
-    useQuizFlow(context);
+    useGameFlow(context);
     const quizData = quizModule?.quizData;
 
     return (

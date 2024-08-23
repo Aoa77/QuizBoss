@@ -3,10 +3,10 @@ import { GameState } from "./GameState";
 import { useEffect } from "react";
 import * as events from "./events";
 
-export function useQuizFlow(context: Context) {
+export function useGameFlow(context: Context) {
     useEffect(() => {
         const gameState = context.gameState;
-        console.info("useQuizFlow", gameState);
+        console.info("useGameFlow", gameState);
 
         switch (gameState) {
             //
@@ -33,6 +33,10 @@ export function useQuizFlow(context: Context) {
             case GameState.RESULT:
                 events.onResult(context);
                 return;
+
+                case GameState.GAMEOVER:
+                    events.onGameOver();
+                    return;
 
             default:
                 throw new Error(`Invalid game state: ${gameState}`);
