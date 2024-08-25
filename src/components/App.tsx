@@ -1,16 +1,17 @@
 import "../styles";
-import { Config } from "./Config";
-import { Context } from "./Context";
-import { Elements } from "./Elements";
-import { GameState } from "./GameState";
-import { QuizModule } from "./QuizModule";
-import { useGameFlow } from "./GameFlow";
-import { GuessButtons, useGuessButtons } from "./GuessButtons";
+import { Config } from "../context/Config";
+import { Context } from "../context/Context";
+import { Elements } from "../context/Elements";
+import { GameState } from "../context/GameState";
+import { QuizModule } from "../context/QuizModule";
+import { useButtonBuilder } from "../hooks/useButtonBuilder";
+import { useEventRouter } from "../hooks/useEventRouter";
 import { useRef, useState } from "react";
-import ScoreDisplay from "./ScoreDisplay";
-import QuestionImage from "./QuestionImage";
-import LoadingSpinner from "./LoadingSpinner";
+import GuessButtons from "./GuessButtons";
 import HeadingText from "./HeadingText";
+import LoadingSpinner from "./LoadingSpinner";
+import QuestionImage from "./QuestionImage";
+import ScoreDisplay from "./ScoreDisplay";
 
 export default function App(config: Config) {
     const [currentItemIndex, setCurrentItemIndex] = useState<number>(0);
@@ -37,7 +38,7 @@ export default function App(config: Config) {
         title: refTitle,
     };
 
-    const guessButtons = useGuessButtons(
+    const guessButtons = useButtonBuilder(
         config,
         gameState,
         setGameState,
@@ -60,7 +61,7 @@ export default function App(config: Config) {
         setScore,
     };
 
-    useGameFlow(context);
+    useEventRouter(context);
     const quizData = quizModule?.quizData;
 
     return (

@@ -1,4 +1,4 @@
-import { Context } from "./Context";
+import { Context } from "../context/Context";
 
 export default function ScoreDisplay(context: Context) {
     const { elements, quizModule, score } = context;

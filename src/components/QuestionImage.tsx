@@ -1,4 +1,4 @@
-import { Context } from "./Context";
+import { Context } from "../context/Context";
 
 export default function QuestionImage(context: Context) {
     const { elements, currentItemIndex, quizModule } = context;

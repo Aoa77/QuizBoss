@@ -1,6 +1,6 @@
-import { Context } from "../components/Context";
-import { GameState } from "../components/GameState";
-import { showElementRef } from "../components/Elements";
+import { Context } from "../context/Context";
+import { GameState } from "../context/GameState";
+import { showElementRef } from "../utilities";
 
 ///
 export async function onStartup(context: Context) {

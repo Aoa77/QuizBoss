@@ -1,8 +1,7 @@
-import { Context } from "../components/Context";
-import { GameState } from "../components/GameState";
-import { GuessButtonState } from "../components/GuessButtons";
-import { hideElementRef } from "../components/Elements";
-import * as util from "../components/Util";
+import { Context } from "../context/Context";
+import { GameState } from "../context/GameState";
+import { GuessButtonState } from "../context/GuessButtonState";
+import { delay, hideElementRef } from "../utilities";
 
 ///
 var wrongGuesses: number[] = [];
@@ -35,7 +34,7 @@ export async function onResult(context: Context) {
         return;
     }
 
-    await util.delay(config.nextDelay);
+    await delay(config.nextDelay);
     unlockButtons();
     setGameState(GameState.INPUT);
     return;

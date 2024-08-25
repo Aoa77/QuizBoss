@@ -1,4 +1,4 @@
-import { Context } from "./Context";
+import { Context } from "../context/Context";
 
 export default function HeadingText(context: Context) {
     const { elements, quizModule } = context;

@@ -1,4 +1,4 @@
-import { Context } from "./Context";
+import { Context } from "../context/Context";
 
 export default function LoadingSpinner(context: Context) {
     const { elements } = context;

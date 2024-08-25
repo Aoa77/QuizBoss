@@ -1,7 +1,6 @@
-import { Context } from "../components/Context";
-import { GameState } from "../components/GameState";
-import { hideElementRef, showElementRef } from "../components/Elements";
-import * as util from "../components/Util";
+import { Context } from "../context/Context";
+import { GameState } from "../context/GameState";
+import { delay, hideElementRef, showElementRef } from "../utilities";
 
 ///
 export async function onLoading(context: Context) {
@@ -26,14 +25,14 @@ export async function onLoading(context: Context) {
         spinner.className = "";
     }
     showElementRef(elements.loading);
-    await util.delay(config.spinnerPoll);
+    await delay(config.spinnerPoll);
     spinner.className = "spinner";
 
-    await util.delay(config.nextDelay);
+    await delay(config.nextDelay);
     while (!currentItem || !currentItem.isLoaded) {
-        await util.delay(config.spinnerPoll);
+        await delay(config.spinnerPoll);
     }
 
-    await util.delay(config.nextDelay);
+    await delay(config.nextDelay);
     setGameState(GameState.NEXT);
 }

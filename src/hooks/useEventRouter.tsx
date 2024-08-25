@@ -1,12 +1,12 @@
-import { Context } from "./Context";
-import { GameState } from "./GameState";
+import { Context } from "../context/Context";
+import { GameState } from "../context/GameState";
 import { useEffect } from "react";
 import * as events from "../events";
 
-export function useGameFlow(context: Context) {
+export function useEventRouter(context: Context) {
     useEffect(() => {
         const gameState = context.gameState;
-        console.info("useGameFlow", gameState);
+        console.info("useEventRouter", gameState);
 
         switch (gameState) {
             //
@@ -43,3 +43,7 @@ export function useGameFlow(context: Context) {
         }
     }, [context]);
 }
+
+
+
+

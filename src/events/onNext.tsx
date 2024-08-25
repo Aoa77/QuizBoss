@@ -1,9 +1,8 @@
-import { Context } from "../components/Context";
-import { GameState } from "../components/GameState";
-import { GuessButtonState } from "../components/GuessButtons";
-import { hideElementRef, showElementRef } from "../components/Elements";
-import { QuizItem } from "../components/QuizModule";
-import * as util from "../components/Util";
+import { Context } from "../context/Context";
+import { GameState } from "../context/GameState";
+import { GuessButtonState } from "../context/GuessButtonState";
+import { QuizItem } from "../context/QuizModule";
+import { delay, hideElementRef, randomInt, showElementRef } from "../utilities";
 
 var randomizedGuessPoolIndex: number = -1;
 ///
@@ -35,7 +34,7 @@ export async function onNext(context: Context) {
     showElementRef(elements.score);
     showElementRef(elements.progress);
 
-    const answerSpot = util.randomInt(0, guessButtonCount);
+    const answerSpot = randomInt(0, guessButtonCount);
     console.info("answerSpot: ", answerSpot);
 
     for (let choiceSpot = 0; choiceSpot < guessButtonCount; choiceSpot++) {
@@ -51,7 +50,7 @@ export async function onNext(context: Context) {
 
     if (config.demoMode) {
         const spotButton = guessButtons[answerSpot].ref.current!;
-        await util.delay(config.nextDelay);
+        await delay(config.nextDelay);
         context.setGuessValue(spotButton.value);
         setGameState(GameState.RESULT);
         return;
