@@ -1,7 +1,3 @@
-export const InternalConfig = {
-    runTestAutomation: false,
-};
-
 export interface Config {
     quizModuleName: string;
     guessButtonCount: number;
@@ -9,6 +5,8 @@ export interface Config {
     maxQuestions: number;
     nextDelay: number;
     spinnerPoll: number;
+    spinnerReset: boolean;
+    demoMode: boolean;
 }
 
 export const ConfigDefaults = {
@@ -17,4 +15,6 @@ export const ConfigDefaults = {
     maxQuestions: 0, // 0 = all
     nextDelay: 500,
     spinnerPoll: 100,
+    spinnerReset: false,
+    demoMode: false,
 };

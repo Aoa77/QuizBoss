@@ -1,10 +1,10 @@
 import { Context } from "../Context";
 import { GameState } from "../GameState";
-import * as util from "../Util";
+import { showElementRef } from "../Elements";
 
 ///
 export async function onStartup(context: Context) {
     const { elements, setGameState } = context;
-    util.showElement(elements.title);
+    showElementRef(elements.title);
     setGameState(GameState.LOADING);
 }

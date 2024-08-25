@@ -7,6 +7,7 @@ import { QuizModule } from "./QuizModule";
 import { useGameFlow } from "./GameFlow";
 import { useGuessButtons } from "./GuessButton";
 import { useRef, useState } from "react";
+import ScoreDisplay from "./ScoreDisplay";
 
 export default function App(config: Config) {
     const [currentItemIndex, setCurrentItemIndex] = useState<number>(0);
@@ -24,13 +25,13 @@ export default function App(config: Config) {
     const refTitle = useRef<HTMLHeadingElement | null>(null);
 
     const elements: Elements = {
-        buttons: refButtons.current,
-        image: refImage.current,
-        loading: refLoading.current,
-        progress: refProgress.current,
-        question: refQuestion.current,
-        score: refScore.current,
-        title: refTitle.current,
+        buttons: refButtons,
+        image: refImage,
+        loading: refLoading,
+        progress: refProgress,
+        question: refQuestion,
+        score: refScore,
+        title: refTitle,
     };
 
     const guessButtons = useGuessButtons(
@@ -76,23 +77,13 @@ export default function App(config: Config) {
             <section ref={refButtons} className="buttons hidden">
                 {guessButtons.map((b) => b.element)}
             </section>
-            <section ref={refScore} className="score hidden">
-                <div>{quizData?.scoreText}</div>
-                <div>{quizData?.bestText}</div>
-                <div>{quizData?.leaderText}</div>
-
-                <div className="row">
-                    <div>{score}</div>
-                    <div>{score}</div>
-                    <div>{score}</div>
-                </div>
-            </section>
+                <ScoreDisplay {...context} />
             <section ref={refProgress} className="progress hidden">
-                <span>{quizData?.progressText} </span>
                 <span className="current">{currentItemIndex + 1}</span>
-                <span> of </span>
+                <span> / </span>
                 <span className="total">{quizData?.items.length}</span>
             </section>
         </main>
     );
 }
+

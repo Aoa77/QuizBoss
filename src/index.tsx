@@ -14,5 +14,7 @@ root.render(
         maxQuestions={ConfigDefaults.maxQuestions}
         nextDelay={ConfigDefaults.nextDelay}
         spinnerPoll={ConfigDefaults.spinnerPoll}
+        spinnerReset={ConfigDefaults.spinnerReset}
+        demoMode={ConfigDefaults.demoMode}
     />,
 );

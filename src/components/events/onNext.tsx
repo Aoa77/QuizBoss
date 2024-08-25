@@ -1,7 +1,7 @@
-import { InternalConfig } from "../Config";
 import { Context } from "../Context";
 import { GameState } from "../GameState";
 import { GuessButtonState } from "../GuessButton";
+import { hideElementRef, showElementRef } from "../Elements";
 import { QuizItem } from "../QuizModule";
 import * as util from "../Util";
 
@@ -28,12 +28,12 @@ export async function onNext(context: Context) {
     const randomizedGuessPool = quizData.randomizedGuessPool;
     let currentGuessPool: string[] = [];
 
-    util.hideElement(elements.loading);
-    util.showElement(elements.buttons);
-    util.showElement(elements.image);
-    util.showElement(elements.question);
-    util.showElement(elements.score);
-    util.showElement(elements.progress);
+    hideElementRef(elements.loading);
+    showElementRef(elements.buttons);
+    showElementRef(elements.image);
+    showElementRef(elements.question);
+    showElementRef(elements.score);
+    showElementRef(elements.progress);
 
     const answerSpot = util.randomInt(0, guessButtonCount);
     console.info("answerSpot: ", answerSpot);
@@ -49,7 +49,7 @@ export async function onNext(context: Context) {
         assignQuestionToChoiceSpot(choiceSpot, itemAtChoiceSpot);
     }
 
-    if (InternalConfig.runTestAutomation) {
+    if (config.demoMode) {
         const spotButton = guessButtons[answerSpot].ref.current!;
         await util.delay(config.nextDelay);
         context.setGuessValue(spotButton.value);

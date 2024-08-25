@@ -1,6 +1,7 @@
 import { Context } from "../Context";
 import { GameState } from "../GameState";
 import { GuessButtonState } from "../GuessButton";
+import { hideElementRef } from "../Elements";
 import * as util from "../Util";
 
 ///
@@ -57,7 +58,7 @@ export async function onResult(context: Context) {
         context.setScore(
             context.score + guessButtonCount - wrongGuesses.length - 1,
         );
-        util.hideElement(elements.image);
+        hideElementRef(elements.image);
         if ((1 + currentItemIndex) === quizItems.length) {
             setGameState(GameState.GAMEOVER);
             return;

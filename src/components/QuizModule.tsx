@@ -7,11 +7,10 @@ export interface QuizModule {
     quizData: QuizData;
 }
 
-interface QuizData {
+export interface QuizData {
     title: string;
     description: string;
     questionText: string;
-    progressText: string;
     scoreText: string;
     bestText: string;
     leaderText: string;

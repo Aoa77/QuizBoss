@@ -22,17 +22,3 @@ export function shuffle<T>(array: T[]) {
         [array[i], array[j]] = [array[j], array[i]];
     }
 }
-
-const HIDDEN = "hidden";
-export function hideElement(element: HTMLElement | null | undefined) {
-    if (!element) {
-        return;
-    }
-    element.classList.add(HIDDEN);
-}
-export function showElement(element: HTMLElement | null | undefined) {
-    if (!element) {
-        return;
-    }
-    element.classList.remove(HIDDEN);
-}
