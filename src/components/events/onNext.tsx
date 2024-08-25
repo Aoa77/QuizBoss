@@ -2,10 +2,12 @@ import { InternalConfig } from "../Config";
 import { Context } from "../Context";
 import { GameState } from "../GameState";
 import { GuessButtonState } from "../GuessButton";
+import { QuizItem } from "../QuizModule";
 import * as util from "../Util";
 
+var randomizedGuessPoolIndex: number = -1;
 ///
-export function onNext(context: Context) {
+export async function onNext(context: Context) {
     const {
         config,
         currentItemIndex,
@@ -15,14 +17,16 @@ export function onNext(context: Context) {
         setGameState,
     } = context;
 
-    const { guessButtonCount } = config;
-    let dummyIndex = 0;
-
     if (quizModule === null) {
         return;
     }
-    const quizItems = quizModule.quizData.items;
+
+    const { guessButtonCount } = config;
+    const quizData = quizModule.quizData;
+    const quizItems = quizData.items;
     const currentItem = quizItems[currentItemIndex];
+    const randomizedGuessPool = quizData.randomizedGuessPool;
+    let currentGuessPool: string[] = [];
 
     util.hideElement(elements.loading);
     util.showElement(elements.buttons);
@@ -31,79 +35,59 @@ export function onNext(context: Context) {
     util.showElement(elements.score);
     util.showElement(elements.progress);
 
-    const currentQuestionItemIndexChoices: number[] = [];
     const answerSpot = util.randomInt(0, guessButtonCount);
     console.info("answerSpot: ", answerSpot);
 
     for (let choiceSpot = 0; choiceSpot < guessButtonCount; choiceSpot++) {
-        //
-        let choiceItemIndex = currentItemIndex;
+        let itemAtChoiceSpot = currentItem;
 
         if (choiceSpot !== answerSpot) {
-            choiceItemIndex = selectRandomQuestionChoice();
+            itemAtChoiceSpot = selectRandomQuestionChoice();
         }
 
-        currentQuestionItemIndexChoices.push(
-            assignQuestionToChoiceSpot(choiceItemIndex, choiceSpot),
-        );
+        currentGuessPool.push(itemAtChoiceSpot.key);
+        assignQuestionToChoiceSpot(choiceSpot, itemAtChoiceSpot);
+    }
+
+    if (InternalConfig.runTestAutomation) {
+        const spotButton = guessButtons[answerSpot].ref.current!;
+        await util.delay(config.nextDelay);
+        context.setGuessValue(spotButton.value);
+        setGameState(GameState.RESULT);
+        return;
     }
 
     setGameState(GameState.INPUT);
     return;
 
     function assignQuestionToChoiceSpot(
-        choiceItemIndex: number,
         choiceSpot: number,
-    ): number {
-        if (quizModule === null) {
-            throw new Error("Quiz module is null");
-        }
+        itemAtChoiceSpot: QuizItem,
+    ) {
         const spotButton = guessButtons[choiceSpot].ref.current!;
-        if (choiceItemIndex < 0) {
-            spotButton.innerHTML = "";
-            spotButton.value = "";
-            spotButton.className = GuessButtonState.DISABLED;
-            if (config.enableDummies) {
-                if (dummyIndex === quizModule.quizData.dummies.length) {
-                    dummyIndex = 0;
-                }
-                spotButton.innerHTML = quizModule.quizData.dummies[dummyIndex];
-                spotButton.value = quizModule?.quizData.dummies[dummyIndex];
-                spotButton.className = GuessButtonState.NORMAL;
-                dummyIndex++;
-            }
-            return choiceItemIndex;
-        }
-        spotButton.innerHTML = quizItems[choiceItemIndex].name;
-        spotButton.value = quizItems[choiceItemIndex].key;
+        spotButton.innerHTML = itemAtChoiceSpot.name;
+        spotButton.value = itemAtChoiceSpot.key;
         spotButton.className = GuessButtonState.NORMAL;
-        return choiceItemIndex;
     }
 
-    function selectRandomQuestionChoice() {
-        //
-        const failSafe: number =
-            quizItems.length * InternalConfig.infiniteLoopFailSafeMultiplier;
-        let choiceItemIndex: number = -1;
-        let isBadQuestionChoice: boolean = true;
-        let randomSelectLoopCount: number = 0;
-
-        while (isBadQuestionChoice) {
-            choiceItemIndex = util.randomInt(0, quizItems.length);
-            const choiceItem = quizItems[choiceItemIndex];
-
-            isBadQuestionChoice = [
-                choiceItemIndex === currentItemIndex,
-                currentQuestionItemIndexChoices.includes(choiceItemIndex),
-                choiceItem.answeredCorrectly,
-                choiceItem.duplicateItemKeys.includes(currentItem.key),
-            ].some((isBad) => isBad);
-
-            if (++randomSelectLoopCount > failSafe) {
-                return -1;
+    function selectRandomQuestionChoice(): QuizItem {
+        let failSafeCounter = 0;
+        while (++failSafeCounter < randomizedGuessPool.length + 2) {
+            if (++randomizedGuessPoolIndex === randomizedGuessPool.length) {
+                randomizedGuessPoolIndex = 0;
             }
+            const choiceItem = randomizedGuessPool[randomizedGuessPoolIndex];
+            if (choiceItem.answeredCorrectly) {
+                continue;
+            }
+            if (choiceItem.duplicateItemKeys.includes(currentItem.key)) {
+                continue;
+            }
+            if (currentGuessPool.includes(choiceItem.key)) {
+                continue;
+            }
+            return choiceItem;
         }
-
-        return choiceItemIndex;
+        throw new Error("Failed to find a question choice.");
     }
 }

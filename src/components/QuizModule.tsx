@@ -1,5 +1,5 @@
 import { delay, shuffle } from "./Util";
-import { Config, InternalConfig } from "./Config";
+import { Config } from "./Config";
 
 export interface QuizModule {
     name: string;
@@ -13,11 +13,16 @@ interface QuizData {
     questionText: string;
     progressText: string;
     scoreText: string;
+    bestText: string;
+    leaderText: string;
     dummies: string[];
     items: QuizItem[];
+    randomizedGuessPool: QuizItem[];
 }
 
-interface QuizItem {
+export interface QuizItem {
+    index: number;
+    isDummy: boolean;
     key: string;
     duplicateItemKeys: string[];
     name: string;
@@ -35,14 +40,9 @@ export async function initQuizModule(
     //
     const { loadThrottle, quizModuleName } = config;
     const module = await fetchQuizModule(quizModuleName);
-    if (InternalConfig.onlyDuplicates) {
-        module.quizData.items = module.quizData.items.filter(
-            (item) =>
-                item.duplicateItemKeys && item.duplicateItemKeys.length > 0,
-        );
-    }
 
     console.info(`Quiz module loaded: ${module.name}`, module);
+    
     module.quizData.items.forEach((item) => {
         item.duplicateItemKeys ??= [];
         item.imageSrc = `quizzes/${module.name}/${item.imageSrc}`;
@@ -62,10 +62,31 @@ export async function initQuizModule(
             config.maxQuestions,
         );
     }
-    if (config.enableDummies) {
-        shuffle(module.quizData.dummies);
-        console.info(module.quizData.dummies);
+
+    for (let i = 0; i < module.quizData.items.length; i++) {
+        const item = module.quizData.items[i];
+        item.index = i;
+        item.isDummy = false;
     }
+
+    module.quizData.randomizedGuessPool = module.quizData.items.slice();
+    for (const dummy of module.quizData.dummies) {
+        const dummyItem: QuizItem = {
+            index: -1,
+            isDummy: true,
+            key: dummy,
+            duplicateItemKeys: [],
+            name: dummy,
+            image: new Image(),
+            imageJsx: <img src="" alt="" />,
+            imageSrc: "",
+            isLoaded: true,
+            answeredCorrectly: false,
+        };
+        module.quizData.randomizedGuessPool.push(dummyItem);
+    }
+
+    shuffle(module.quizData.randomizedGuessPool);
     setModule(module);
     loadQuizImages(loadThrottle, module.quizData.items);
 }

@@ -26,7 +26,7 @@ export async function onResult(context: Context) {
     const quizItems = quizModule.quizData.items;
     const currentItem = quizItems[currentItemIndex];
     const correctAnswer = currentItem.key;
-    const isCorrectGuess = correctAnswer === guessValue;
+    const isCorrectGuess = true;//correctAnswer === guessValue;
 
     for (let guess = 0; guess < guessButtonCount; guess++) {
         //
@@ -43,7 +43,6 @@ export async function onResult(context: Context) {
             guessButton.className = GuessButtonState.DIMMED;
             continue;
         }
-
         if (isCorrectGuess) {
             guessButton.className = GuessButtonState.CORRECT;
             currentItem.answeredCorrectly = true;

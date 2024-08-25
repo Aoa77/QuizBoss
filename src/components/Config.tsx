@@ -1,11 +1,9 @@
 export const InternalConfig = {
-    onlyDuplicates: true,
-    infiniteLoopFailSafeMultiplier: 3,
+    runTestAutomation: false,
 };
 
 export interface Config {
     quizModuleName: string;
-    enableDummies: boolean;
     guessButtonCount: number;
     loadThrottle: number;
     maxQuestions: number;
@@ -14,10 +12,9 @@ export interface Config {
 }
 
 export const ConfigDefaults = {
-    enableDummies: true,
     guessButtonCount: 4,
     loadThrottle: 50,
-    maxQuestions: 2, // 0 = all
+    maxQuestions: 0, // 0 = all
     nextDelay: 500,
     spinnerPoll: 100,
 };

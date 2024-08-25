@@ -6,7 +6,9 @@
         "description": "Test your knowledge of world flags with this quiz!",
         "questionText": "Whose flag is this?",
         "progressText": "Flag",
-        "scoreText": "Score:",
+        "scoreText": "Score",
+        "bestText": "Best",
+        "leaderText": "Leader",
         "dummies": [
             "Arendelle",
             "Atlantis",

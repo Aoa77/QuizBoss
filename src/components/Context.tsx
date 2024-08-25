@@ -15,6 +15,7 @@ export interface Context {
     score: number;
     setCurrentItemIndex: (value: number) => void;
     setGameState: (value: GameState) => void;
+    setGuessValue: (value: string) => void;
     setQuizModule: (value: QuizModule) => void;
     setScore: (value: number) => void;
 }

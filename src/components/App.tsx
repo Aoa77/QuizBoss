@@ -51,6 +51,7 @@ export default function App(config: Config) {
         score,
         setCurrentItemIndex,
         setGameState,
+        setGuessValue,
         setQuizModule,
         setScore,
     };
@@ -76,8 +77,15 @@ export default function App(config: Config) {
                 {guessButtons.map((b) => b.element)}
             </section>
             <section ref={refScore} className="score hidden">
-                <span>{quizData?.scoreText} </span>
-                <span className="value">{score}</span>
+                <div>{quizData?.scoreText}</div>
+                <div>{quizData?.bestText}</div>
+                <div>{quizData?.leaderText}</div>
+
+                <div className="row">
+                    <div>{score}</div>
+                    <div>{score}</div>
+                    <div>{score}</div>
+                </div>
             </section>
             <section ref={refProgress} className="progress hidden">
                 <span>{quizData?.progressText} </span>
