@@ -1,7 +1,7 @@
-import { Context } from "../Context";
-import { GameState } from "../GameState";
-import { hideElementRef, showElementRef } from "../Elements";
-import * as util from "../Util";
+import { Context } from "../components/Context";
+import { GameState } from "../components/GameState";
+import { hideElementRef, showElementRef } from "../components/Elements";
+import * as util from "../components/Util";
 
 ///
 export async function onLoading(context: Context) {

@@ -1,7 +1,7 @@
 import { Context } from "./Context";
 import { GameState } from "./GameState";
 import { useEffect } from "react";
-import * as events from "./events";
+import * as events from "../events";
 
 export function useGameFlow(context: Context) {
     useEffect(() => {

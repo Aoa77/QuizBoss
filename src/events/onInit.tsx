@@ -1,7 +1,7 @@
-import { Context } from "../Context";
-import { GameState } from "../GameState";
-import { initQuizModule } from "../QuizModule";
-import { showElementRef } from "../Elements";
+import { Context } from "../components/Context";
+import { GameState } from "../components/GameState";
+import { initQuizModule } from "../components/QuizModule";
+import { showElementRef } from "../components/Elements";
 
 ///
 var isInitializing: boolean = false;

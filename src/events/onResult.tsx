@@ -1,8 +1,8 @@
-import { Context } from "../Context";
-import { GameState } from "../GameState";
-import { GuessButtonState } from "../GuessButtons";
-import { hideElementRef } from "../Elements";
-import * as util from "../Util";
+import { Context } from "../components/Context";
+import { GameState } from "../components/GameState";
+import { GuessButtonState } from "../components/GuessButtons";
+import { hideElementRef } from "../components/Elements";
+import * as util from "../components/Util";
 
 ///
 var wrongGuesses: number[] = [];

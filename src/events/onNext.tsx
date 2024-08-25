@@ -1,9 +1,9 @@
-import { Context } from "../Context";
-import { GameState } from "../GameState";
-import { GuessButtonState } from "../GuessButtons";
-import { hideElementRef, showElementRef } from "../Elements";
-import { QuizItem } from "../QuizModule";
-import * as util from "../Util";
+import { Context } from "../components/Context";
+import { GameState } from "../components/GameState";
+import { GuessButtonState } from "../components/GuessButtons";
+import { hideElementRef, showElementRef } from "../components/Elements";
+import { QuizItem } from "../components/QuizModule";
+import * as util from "../components/Util";
 
 var randomizedGuessPoolIndex: number = -1;
 ///
