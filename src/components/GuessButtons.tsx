@@ -1,6 +1,16 @@
 import { Config } from "./Config";
+import { Context } from "./Context";
 import { GameState } from "./GameState";
 import { useRef } from "react";
+
+export function GuessButtons(context: Context) {
+    const { elements, guessButtons } = context;
+    return (
+        <section ref={elements.buttons} className="buttons hidden">
+            {guessButtons.map((b) => b.element)}
+        </section>
+    );
+}
 
 export enum GuessButtonState {
     CORRECT = "correct",
@@ -61,7 +71,9 @@ function GuessButtonFactory(
                 onPointerDown={() => onPointerDown(ref)}
                 ref={ref}
                 value={key}
-            >{key}</button>
+            >
+                {key}
+            </button>
         ),
         ref,
     };

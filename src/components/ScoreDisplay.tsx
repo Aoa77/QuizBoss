@@ -4,7 +4,6 @@ export default function ScoreDisplay(context: Context) {
     const { elements, quizModule, score } = context;
     const quizData = quizModule?.quizData;
     return (
-
         <section ref={elements.score} className="score hidden">
             <div>{quizData?.scoreText}</div>
             <div>{quizData?.bestText}</div>

@@ -5,9 +5,12 @@ import { Elements } from "./Elements";
 import { GameState } from "./GameState";
 import { QuizModule } from "./QuizModule";
 import { useGameFlow } from "./GameFlow";
-import { useGuessButtons } from "./GuessButton";
+import { GuessButtons, useGuessButtons } from "./GuessButtons";
 import { useRef, useState } from "react";
 import ScoreDisplay from "./ScoreDisplay";
+import QuestionImage from "./QuestionImage";
+import LoadingSpinner from "./LoadingSpinner";
+import HeadingText from "./HeadingText";
 
 export default function App(config: Config) {
     const [currentItemIndex, setCurrentItemIndex] = useState<number>(0);
@@ -62,22 +65,11 @@ export default function App(config: Config) {
 
     return (
         <main>
-            <h1 ref={refTitle} className="hidden">
-                {quizData?.title}
-            </h1>
-            <h2 ref={refQuestion} className="hidden">
-                {quizData?.questionText}
-            </h2>
-            <section ref={refLoading} className="loading hidden">
-                <div className="spinner"></div>
-            </section>
-            <section ref={refImage} className="image hidden">
-                {quizData?.items[currentItemIndex].imageJsx}
-            </section>
-            <section ref={refButtons} className="buttons hidden">
-                {guessButtons.map((b) => b.element)}
-            </section>
-                <ScoreDisplay {...context} />
+            <HeadingText {...context} />
+            <LoadingSpinner {...context} />
+            <QuestionImage {...context} />
+            <GuessButtons {...context} />
+            <ScoreDisplay {...context} />
             <section ref={refProgress} className="progress hidden">
                 <span className="current">{currentItemIndex + 1}</span>
                 <span> / </span>
@@ -86,4 +78,3 @@ export default function App(config: Config) {
         </main>
     );
 }
-

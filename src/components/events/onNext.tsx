@@ -1,6 +1,6 @@
 import { Context } from "../Context";
 import { GameState } from "../GameState";
-import { GuessButtonState } from "../GuessButton";
+import { GuessButtonState } from "../GuessButtons";
 import { hideElementRef, showElementRef } from "../Elements";
 import { QuizItem } from "../QuizModule";
 import * as util from "../Util";

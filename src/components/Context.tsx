@@ -1,7 +1,7 @@
 import { Config } from "./Config";
 import { Elements } from "./Elements";
 import { GameState } from "./GameState";
-import { GuessButton } from "./GuessButton";
+import { GuessButton } from "./GuessButtons";
 import { QuizModule } from "./QuizModule";
 
 export interface Context {
