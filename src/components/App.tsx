@@ -1,11 +1,10 @@
 import "../styles";
-import { Config } from "../context/Config";
-import { Context } from "../context/Context";
-import { Elements } from "../context/Elements";
-import { GameState } from "../context/GameState";
-import { QuizModule } from "../context/QuizModule";
-import { useButtonBuilder } from "../hooks/useButtonBuilder";
-import { useEventRouter } from "../hooks/useEventRouter";
+import AllProps from "../props/AllProps";
+import { Config } from "../props/Config";
+import { Elements } from "../props/Elements";
+import { GameState } from "../props/Enums";
+import { QuizModule } from "../props/QuizModule";
+import { useButtonBuilder, useEventRouter } from "../hooks";
 import { useRef, useState } from "react";
 import GuessButtons from "./GuessButtons";
 import HeadingText from "./HeadingText";
@@ -45,7 +44,7 @@ export default function App(config: Config) {
         setGuessValue,
     );
 
-    const context: Context = {
+    const context: AllProps = {
         config,
         currentItemIndex,
         elements,

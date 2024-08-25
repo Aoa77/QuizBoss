@@ -1,7 +1,7 @@
-import { Context } from "../context/Context";
+import AllProps from "../props/AllProps";
 
-export default function ScoreDisplay(context: Context) {
-    const { elements, quizModule, score } = context;
+export default function ScoreDisplay(props: AllProps) {
+    const { elements, quizModule, score } = props;
     const quizData = quizModule?.quizData;
     return (
         <section ref={elements.score} className="score hidden">

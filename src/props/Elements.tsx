@@ -8,5 +8,7 @@ export interface Elements {
     title: React.MutableRefObject<HTMLHeadingElement | null>;
 }
 
-
-
+export interface ButtonElement {
+    element: JSX.Element;
+    ref: React.RefObject<HTMLButtonElement>;
+}

@@ -1,15 +1,14 @@
+import { ButtonElement, Elements } from "./Elements";
 import { Config } from "./Config";
-import { Elements } from "./Elements";
-import { GameState } from "./GameState";
-import { GuessButton } from "./GuessButton";
+import { GameState } from "./Enums";
 import { QuizModule } from "./QuizModule";
 
-export interface Context {
+export default interface AllProps {
     config: Config;
     currentItemIndex: number;
     elements: Elements;
     gameState: GameState;
-    guessButtons: GuessButton[];
+    guessButtons: ButtonElement[];
     guessValue: string;
     quizModule: QuizModule | null;
     score: number;

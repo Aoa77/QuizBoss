@@ -1,29 +1,29 @@
-import { Context } from "../context/Context";
-import { GameState } from "../context/GameState";
+import AllProps from "../props/AllProps";
+import { GameState } from "../props/Enums";
 import { useEffect } from "react";
 import * as events from "../events";
 
-export function useEventRouter(context: Context) {
+export default function useEventRouter(props: AllProps) {
     useEffect(() => {
-        const gameState = context.gameState;
+        const gameState = props.gameState;
         console.info("useEventRouter", gameState);
 
         switch (gameState) {
             //
             case GameState.INIT:
-                events.onInit(context);
+                events.onInit(props);
                 return;
 
             case GameState.STARTUP:
-                events.onStartup(context);
+                events.onStartup(props);
                 return;
 
             case GameState.LOADING:
-                events.onLoading(context);
+                events.onLoading(props);
                 return;
 
             case GameState.NEXT:
-                events.onNext(context);
+                events.onNext(props);
                 return;
 
             case GameState.INPUT:
@@ -31,7 +31,7 @@ export function useEventRouter(context: Context) {
                 return;
 
             case GameState.RESULT:
-                events.onResult(context);
+                events.onResult(props);
                 return;
 
                 case GameState.GAMEOVER:
@@ -41,7 +41,7 @@ export function useEventRouter(context: Context) {
             default:
                 throw new Error(`Invalid game state: ${gameState}`);
         }
-    }, [context]);
+    }, [props]);
 }
 
 

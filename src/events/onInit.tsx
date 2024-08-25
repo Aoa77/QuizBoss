@@ -1,15 +1,15 @@
-import { Config } from "../context/Config";
-import { Context } from "../context/Context";
-import { GameState } from "../context/GameState";
-import { QuizItem, QuizModule } from "../context/QuizModule";
+import { Config } from "../props/Config";
+import AllProps from "../props/AllProps";
+import { GameState } from "../props/Enums";
+import { QuizItem, QuizModule } from "../props/QuizModule";
 import { delay, showElementRef, shuffle } from "../utilities";
 
 ///
 var isInitializing: boolean = false;
 
 ///
-export async function onInit(context: Context) {
-    const { config, elements, setQuizModule } = context;
+export async function onInit(props: AllProps) {
+    const { config, elements, setQuizModule } = props;
     showElementRef(elements.loading);
 
     console.info({ isInitializing });
@@ -19,7 +19,7 @@ export async function onInit(context: Context) {
     isInitializing = true;
 
     await initQuizModule(config, setQuizModule);
-    context.setGameState(GameState.STARTUP);
+    props.setGameState(GameState.STARTUP);
 }
 
 export async function initQuizModule(

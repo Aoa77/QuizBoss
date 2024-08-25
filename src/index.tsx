@@ -1,6 +1,6 @@
 import App from "./components/App";
 import ReactDOM from "react-dom/client";
-import { ConfigDefaults } from "./context/Config";
+import { ConfigDefaults } from "./props/Config";
 
 const root = ReactDOM.createRoot(
     document.getElementById("root") as HTMLElement,

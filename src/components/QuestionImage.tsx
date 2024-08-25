@@ -1,7 +1,7 @@
-import { Context } from "../context/Context";
+import AllProps from "../props/AllProps";
 
-export default function QuestionImage(context: Context) {
-    const { elements, currentItemIndex, quizModule } = context;
+export default function QuestionImage(props: AllProps) {
+    const { elements, currentItemIndex, quizModule } = props;
     const quizData = quizModule?.quizData;
     return (
         <section ref={elements.image} className="image hidden">

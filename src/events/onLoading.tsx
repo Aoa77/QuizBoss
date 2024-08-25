@@ -1,16 +1,16 @@
-import { Context } from "../context/Context";
-import { GameState } from "../context/GameState";
+import AllProps from "../props/AllProps";
+import { GameState } from "../props/Enums";
 import { delay, hideElementRef, showElementRef } from "../utilities";
 
 ///
-export async function onLoading(context: Context) {
+export async function onLoading(props: AllProps) {
     const {
         config,
         currentItemIndex, //
         elements,
         quizModule,
         setGameState,
-    } = context;
+    } = props;
 
     if (quizModule === null) {
         return;

@@ -1,12 +1,11 @@
-import { Context } from "../context/Context";
-import { GameState } from "../context/GameState";
-import { GuessButtonState } from "../context/GuessButtonState";
-import { QuizItem } from "../context/QuizModule";
+import AllProps from "../props/AllProps";
+import { ButtonState, GameState } from "../props/Enums";
+import { QuizItem } from "../props/QuizModule";
 import { delay, hideElementRef, randomInt, showElementRef } from "../utilities";
 
 var randomizedGuessPoolIndex: number = -1;
 ///
-export async function onNext(context: Context) {
+export async function onNext(props: AllProps) {
     const {
         config,
         currentItemIndex,
@@ -14,7 +13,7 @@ export async function onNext(context: Context) {
         guessButtons,
         quizModule,
         setGameState,
-    } = context;
+    } = props;
 
     if (quizModule === null) {
         return;
@@ -51,7 +50,7 @@ export async function onNext(context: Context) {
     if (config.demoMode) {
         const spotButton = guessButtons[answerSpot].ref.current!;
         await delay(config.nextDelay);
-        context.setGuessValue(spotButton.value);
+        props.setGuessValue(spotButton.value);
         setGameState(GameState.RESULT);
         return;
     }
@@ -66,7 +65,7 @@ export async function onNext(context: Context) {
         const spotButton = guessButtons[choiceSpot].ref.current!;
         spotButton.innerHTML = itemAtChoiceSpot.name;
         spotButton.value = itemAtChoiceSpot.key;
-        spotButton.className = GuessButtonState.NORMAL;
+        spotButton.className = ButtonState.NORMAL;
     }
 
     function selectRandomQuestionChoice(): QuizItem {

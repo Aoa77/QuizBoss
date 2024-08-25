@@ -1,13 +1,12 @@
-import { Context } from "../context/Context";
-import { GameState } from "../context/GameState";
-import { GuessButtonState } from "../context/GuessButtonState";
+import AllProps from "../props/AllProps";
+import { GameState, ButtonState } from "../props/Enums";
 import { delay, hideElementRef } from "../utilities";
 
 ///
 var wrongGuesses: number[] = [];
 
 ///
-export async function onResult(context: Context) {
+export async function onResult(props: AllProps) {
     const {
         config,
         currentItemIndex,
@@ -17,7 +16,7 @@ export async function onResult(context: Context) {
         quizModule,
         setCurrentItemIndex,
         setGameState,
-    } = context;
+    } = props;
 
     const { guessButtonCount } = config;
     if (quizModule === null) {
@@ -42,29 +41,29 @@ export async function onResult(context: Context) {
     function lockButtons() {
         for (let guess = 0; guess < guessButtonCount; guess++) {
             const guessButton = guessButtons[guess].ref.current!;
-            if (guessButton.className === GuessButtonState.DISABLED) {
+            if (guessButton.className === ButtonState.DISABLED) {
                 continue;
             }
-            if (guessButton.className === GuessButtonState.HIDDEN) {
+            if (guessButton.className === ButtonState.HIDDEN) {
                 continue;
             }
             if (guessValue !== guessButton.value) {
-                guessButton.className = GuessButtonState.DIMMED;
+                guessButton.className = ButtonState.DIMMED;
                 continue;
             }
             if (isCorrectGuess) {
-                guessButton.className = GuessButtonState.CORRECT;
+                guessButton.className = ButtonState.CORRECT;
                 currentItem.answeredCorrectly = true;
                 continue;
             }
             wrongGuesses.push(guess);
-            guessButton.className = GuessButtonState.WRONG;
+            guessButton.className = ButtonState.WRONG;
         }
     }
 
     function handleCorrectGuess() {
-        context.setScore(
-            context.score + guessButtonCount - wrongGuesses.length - 1,
+        props.setScore(
+            props.score + guessButtonCount - wrongGuesses.length - 1,
         );
         hideElementRef(elements.image);
         if (1 + currentItemIndex === quizItems.length) {
@@ -80,13 +79,13 @@ export async function onResult(context: Context) {
         for (let guess = 0; guess < guessButtonCount; guess++) {
             const ref = guessButtons[guess].ref.current!;
             switch (ref.className) {
-                case GuessButtonState.DIMMED:
+                case ButtonState.DIMMED:
                     if (!wrongGuesses.includes(guess)) {
-                        ref.className = GuessButtonState.NORMAL;
+                        ref.className = ButtonState.NORMAL;
                     }
                     break;
-                case GuessButtonState.WRONG:
-                    ref.className = GuessButtonState.DIMMED;
+                case ButtonState.WRONG:
+                    ref.className = ButtonState.DIMMED;
                     break;
                 default:
                     break;

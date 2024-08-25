@@ -1,7 +1,7 @@
-import { Context } from "../context/Context";
+import AllProps from "../props/AllProps";
 
-export default function HeadingText(context: Context) {
-    const { elements, quizModule } = context;
+export default function HeadingText(props: AllProps) {
+    const { elements, quizModule } = props;
     const quizData = quizModule?.quizData;
     return (
         <>
