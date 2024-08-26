@@ -64,9 +64,15 @@ export async function onResult(props: AppProps) {
 
     async function handleCorrectGuess() {
         await delay.briefPause();
-        props.setScore(
-            props.score + guessButtonCount - wrongGuesses.length - 1,
-        );
+        
+        const newScore =
+            props.score + guessButtonCount - wrongGuesses.length - 1;
+        props.setScore(newScore);
+        
+        if (newScore > props.best) {
+            props.setBest(newScore);
+            localStorage.setItem("bestScore", newScore.toString());
+        }
 
         await delay.briefPause();
         for (let guess = 0; guess < guessButtonCount; guess++) {
@@ -74,7 +80,7 @@ export async function onResult(props: AppProps) {
             guessButton.className = ButtonState.HIDDEN;
             await delay.button();
         }
-        
+
         await delay.button();
         hideElementRef(elements.questionHeading);
         hideElementRef(elements.imageSection);

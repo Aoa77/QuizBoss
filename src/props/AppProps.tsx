@@ -14,10 +14,12 @@ export default interface AppProps {
     guessValue: string;
     quizModule: QuizModule | null;
     score: number;
+    best: number;
     setCurrentItemIndex: (value: number) => void;
     setGameState: (value: GameState) => void;
     setGuessValue: (value: string) => void;
     setQuizModule: (value: QuizModule) => void;
     setScore: (value: number) => void;
+    setBest: (value: number) => void;
 }
 

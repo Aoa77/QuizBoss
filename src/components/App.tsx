@@ -1,7 +1,7 @@
 import "../styles";
 import { AppProps, Config, Elements, QuizModule } from "../props";
 import { GameState } from "../enums";
-import { useButtonBuilder, useEventRouter } from "../hooks";
+import { useButtonBuilder, useEventRouter, useLocalBestScore } from "../hooks";
 import { useRef, useState } from "react";
 import AtomicDelay from "../utilities/AtomicDelay";
 import GuessButtons from "./GuessButtons";
@@ -17,6 +17,7 @@ export default function App(config: Config) {
     const [guessValue, setGuessValue] = useState<string>("");
     const [quizModule, setQuizModule] = useState<QuizModule | null>(null);
     const [score, setScore] = useState<number>(0);
+    const [best, setBest] = useState<number>(0);
 
     const refButtons = useRef<HTMLDivElement | null>(null);
     const refImage = useRef<HTMLDivElement | null>(null);
@@ -43,6 +44,8 @@ export default function App(config: Config) {
         setGuessValue,
     );
 
+    useLocalBestScore(best, setBest);
+
     const appProps: AppProps = {
         config,
         currentItemIndex,
@@ -53,11 +56,13 @@ export default function App(config: Config) {
         guessValue,
         quizModule,
         score,
+        best,
         setCurrentItemIndex,
         setGameState,
         setGuessValue,
         setQuizModule,
         setScore,
+        setBest,
     };
 
     useEventRouter(appProps);
@@ -71,7 +76,7 @@ export default function App(config: Config) {
             <QuestionHeading {...appProps} />
             <GuessButtons {...appProps} />
             <ScoreDisplay {...appProps} />
-            
+
             <section ref={refProgress} className="progress hidden">
                 <span className="current">{currentItemIndex + 1}</span>
                 <span> / </span>
