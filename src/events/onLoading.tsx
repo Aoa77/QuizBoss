@@ -1,12 +1,13 @@
-import AllProps from "../props/AllProps";
-import { GameState } from "../props/Enums";
-import { delay, hideElementRef, showElementRef } from "../utilities";
+import { AppProps } from "../props";
+import { GameState } from "../enums";
+import { hideElementRef, showElementRef } from "../utilities/visibility";
 
 ///
-export async function onLoading(props: AllProps) {
+export async function onLoading(props: AppProps) {
     const {
         config,
         currentItemIndex, //
+        delay,
         elements,
         quizModule,
         setGameState,
@@ -18,21 +19,23 @@ export async function onLoading(props: AllProps) {
 
     const quizItems = quizModule.quizData.items;
     const currentItem = quizItems[currentItemIndex];
-    const spinner = elements.loading.current!.children[0];
+    const spinner = elements.loadingSection.current!.children[0];
 
-    hideElementRef(elements.image);
+    hideElementRef(elements.questionHeading);
+    await delay.questionHeading();
+    
+    hideElementRef(elements.imageSection);
     if (config.spinnerReset) {
         spinner.className = "";
     }
-    showElementRef(elements.loading);
-    await delay(config.spinnerPoll);
+    showElementRef(elements.loadingSection);
     spinner.className = "spinner";
-
-    await delay(config.nextDelay);
+    await delay.loadingSection();
+    
     while (!currentItem || !currentItem.isLoaded) {
-        await delay(config.spinnerPoll);
+        await delay.spinnerPoll();
     }
-
-    await delay(config.nextDelay);
+    
+    await delay.loadingSection();
     setGameState(GameState.NEXT);
 }

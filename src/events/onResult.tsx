@@ -1,15 +1,16 @@
-import AllProps from "../props/AllProps";
-import { GameState, ButtonState } from "../props/Enums";
-import { delay, hideElementRef } from "../utilities";
+import { AppProps } from "../props";
+import { GameState, ButtonState } from "../enums";
+import { hideElementRef } from "../utilities/visibility";
 
 ///
 var wrongGuesses: number[] = [];
 
 ///
-export async function onResult(props: AllProps) {
+export async function onResult(props: AppProps) {
     const {
         config,
         currentItemIndex,
+        delay,
         elements,
         guessButtons,
         guessValue,
@@ -29,11 +30,11 @@ export async function onResult(props: AllProps) {
 
     lockButtons();
     if (isCorrectGuess) {
-        handleCorrectGuess();
+        await handleCorrectGuess();
         return;
     }
 
-    await delay(config.nextDelay);
+    await delay.questionHeading();
     unlockButtons();
     setGameState(GameState.INPUT);
     return;
@@ -61,11 +62,24 @@ export async function onResult(props: AllProps) {
         }
     }
 
-    function handleCorrectGuess() {
+    async function handleCorrectGuess() {
         props.setScore(
             props.score + guessButtonCount - wrongGuesses.length - 1,
         );
-        hideElementRef(elements.image);
+        
+        hideElementRef(elements.questionHeading);
+        await delay.questionHeading();
+
+        hideElementRef(elements.imageSection);
+        await delay.questionHeading();
+        
+        for (let guess = 0; guess < guessButtonCount; guess++) {
+            const guessButton = guessButtons[guess].ref.current!;
+            guessButton.className = ButtonState.HIDDEN;
+            await delay.questionHeading();
+        }
+        
+        await delay.questionHeading();
         if (1 + currentItemIndex === quizItems.length) {
             setGameState(GameState.GAMEOVER);
             return;

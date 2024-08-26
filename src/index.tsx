@@ -1,6 +1,6 @@
 import App from "./components/App";
 import ReactDOM from "react-dom/client";
-import { ConfigDefaults } from "./props/Config";
+import { ConfigDefaults } from "./props";
 
 const root = ReactDOM.createRoot(
     document.getElementById("root") as HTMLElement,
@@ -8,13 +8,13 @@ const root = ReactDOM.createRoot(
 
 root.render(
     <App
+        /////////////////////////////////////////
         quizModuleName="quizboss-world-flags"
-        guessButtonCount={ConfigDefaults.guessButtonCount}
-        loadThrottle={ConfigDefaults.loadThrottle}
-        maxQuestions={ConfigDefaults.maxQuestions}
-        nextDelay={ConfigDefaults.nextDelay}
-        spinnerPoll={ConfigDefaults.spinnerPoll}
-        spinnerReset={ConfigDefaults.spinnerReset}
+        /////////////////////////////////////////
         demoMode={ConfigDefaults.demoMode}
+        guessButtonCount={ConfigDefaults.guessButtonCount}
+        maxQuestions={ConfigDefaults.maxQuestions}
+        spinnerReset={ConfigDefaults.spinnerReset}
+        atomicDelay={ConfigDefaults.atomicDelay}
     />,
 );

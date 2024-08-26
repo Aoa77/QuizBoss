@@ -1,49 +1,42 @@
-import AllProps from "../props/AllProps";
-import { GameState } from "../props/Enums";
+import { AppProps } from "../props";
+import { GameState } from "../enums";
 import { useEffect } from "react";
 import * as events from "../events";
 
-export default function useEventRouter(props: AllProps) {
+export default function useEventRouter(props: AppProps) {
     useEffect(() => {
-        const gameState = props.gameState;
-        console.info("useEventRouter", gameState);
+        console.info("useEventRouter", props.gameState);
 
-        switch (gameState) {
+        switch (props.gameState) {
             //
             case GameState.INIT:
                 events.onInit(props);
-                return;
-
-            case GameState.STARTUP:
-                events.onStartup(props);
-                return;
+                break;
 
             case GameState.LOADING:
                 events.onLoading(props);
-                return;
+                break;
 
             case GameState.NEXT:
                 events.onNext(props);
-                return;
+                break;
 
             case GameState.INPUT:
                 events.onInput();
-                return;
+                break;
 
             case GameState.RESULT:
                 events.onResult(props);
-                return;
+                break;
 
-                case GameState.GAMEOVER:
-                    events.onGameOver();
-                    return;
+            case GameState.GAMEOVER:
+                events.onGameOver();
+                break;
 
             default:
-                throw new Error(`Invalid game state: ${gameState}`);
+                throw new Error(`Invalid game state: ${props.gameState}`);
         }
-    }, [props]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [props.gameState]);
 }
-
-
-
 

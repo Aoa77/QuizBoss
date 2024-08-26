@@ -1,11 +1,9 @@
 import "../styles";
-import AllProps from "../props/AllProps";
-import { Config } from "../props/Config";
-import { Elements } from "../props/Elements";
-import { GameState } from "../props/Enums";
-import { QuizModule } from "../props/QuizModule";
+import { AppProps, Config, Elements, QuizModule } from "../props";
+import { GameState } from "../enums";
 import { useButtonBuilder, useEventRouter } from "../hooks";
 import { useRef, useState } from "react";
+import AtomicDelay from "../utilities/AtomicDelay";
 import GuessButtons from "./GuessButtons";
 import HeadingText from "./HeadingText";
 import LoadingSpinner from "./LoadingSpinner";
@@ -28,13 +26,13 @@ export default function App(config: Config) {
     const refTitle = useRef<HTMLHeadingElement | null>(null);
 
     const elements: Elements = {
-        buttons: refButtons,
-        image: refImage,
-        loading: refLoading,
-        progress: refProgress,
-        question: refQuestion,
-        score: refScore,
-        title: refTitle,
+        buttonsSection: refButtons,
+        imageSection: refImage,
+        loadingSection: refLoading,
+        progressSection: refProgress,
+        questionHeading: refQuestion,
+        scoreSection: refScore,
+        titleHeading: refTitle,
     };
 
     const guessButtons = useButtonBuilder(
@@ -44,9 +42,10 @@ export default function App(config: Config) {
         setGuessValue,
     );
 
-    const context: AllProps = {
+    const appProps: AppProps = {
         config,
         currentItemIndex,
+        delay: new AtomicDelay(config.atomicDelay),
         elements,
         gameState,
         guessButtons,
@@ -60,16 +59,16 @@ export default function App(config: Config) {
         setScore,
     };
 
-    useEventRouter(context);
+    useEventRouter(appProps);
     const quizData = quizModule?.quizData;
 
     return (
         <main>
-            <HeadingText {...context} />
-            <LoadingSpinner {...context} />
-            <QuestionImage {...context} />
-            <GuessButtons {...context} />
-            <ScoreDisplay {...context} />
+            <HeadingText {...appProps} />
+            <LoadingSpinner {...appProps} />
+            <QuestionImage {...appProps} />
+            <GuessButtons {...appProps} />
+            <ScoreDisplay {...appProps} />
             <section ref={refProgress} className="progress hidden">
                 <span className="current">{currentItemIndex + 1}</span>
                 <span> / </span>

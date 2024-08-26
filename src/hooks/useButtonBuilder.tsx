@@ -1,6 +1,5 @@
-import { Config } from "../props/Config";
-import { ButtonElement } from "../props/Elements";
-import { ButtonState, GameState } from "../props/Enums";
+import { Config, ButtonElement } from "../props";
+import { GameState, ButtonState } from "../enums";
 import { useRef } from "react";
 
 export default function useButtonBuilder(
@@ -42,7 +41,7 @@ function NewButtonElement(
     return {
         element: (
             <button
-                className={ButtonState.NORMAL}
+                className={ButtonState.HIDDEN}
                 id={key}
                 key={key}
                 onPointerDown={() => onPointerDown(ref)}

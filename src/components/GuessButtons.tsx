@@ -1,9 +1,9 @@
-import AllProps from "../props/AllProps";
+import AppProps from "../props/AppProps";
 
-export default function GuessButtons(props: AllProps) {
+export default function GuessButtons(props: AppProps) {
     const { elements, guessButtons } = props;
     return (
-        <section ref={elements.buttons} className="buttons hidden">
+        <section ref={elements.buttonsSection} className="buttons hidden">
             {guessButtons.map((b) => b.element)}
         </section>
     );

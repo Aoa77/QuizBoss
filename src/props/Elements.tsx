@@ -1,11 +1,11 @@
 export interface Elements {
-    buttons: React.MutableRefObject<HTMLDivElement | null>;
-    image: React.MutableRefObject<HTMLDivElement | null>;
-    loading: React.MutableRefObject<HTMLDivElement | null>;
-    progress: React.MutableRefObject<HTMLDivElement | null>;
-    question: React.MutableRefObject<HTMLHeadingElement | null>;
-    score: React.MutableRefObject<HTMLDivElement | null>;
-    title: React.MutableRefObject<HTMLHeadingElement | null>;
+    buttonsSection: React.MutableRefObject<HTMLDivElement | null>;
+    imageSection: React.MutableRefObject<HTMLDivElement | null>;
+    loadingSection: React.MutableRefObject<HTMLDivElement | null>;
+    progressSection: React.MutableRefObject<HTMLDivElement | null>;
+    questionHeading: React.MutableRefObject<HTMLHeadingElement | null>;
+    scoreSection: React.MutableRefObject<HTMLDivElement | null>;
+    titleHeading: React.MutableRefObject<HTMLHeadingElement | null>;
 }
 
 export interface ButtonElement {

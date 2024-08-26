@@ -1,9 +1,9 @@
-import AllProps from "../props/AllProps";
+import AppProps from "../props/AppProps";
 
-export default function LoadingSpinner(props: AllProps) {
+export default function LoadingSpinner(props: AppProps) {
     const { elements } = props;
     return (
-        <section ref={elements.loading} className="loading hidden">
+        <section ref={elements.loadingSection} className="loading hidden">
             <div className="spinner"></div>
         </section>
     );
