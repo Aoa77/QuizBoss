@@ -7,6 +7,26 @@ export default class AtomicDelay {
     private delay(x: number): Promise<void> {
         return new Promise((resolve) => setTimeout(resolve, this.atom * x));
     }
+
+    public image() {
+        return this.delay(38);
+    }
+
+    public heading() {
+        return this.delay(23);
+    }
+
+    public briefPause() {
+        return this.delay(33);
+    }
+
+    public button() {
+        return this.delay(7);
+    }
+    
+    public loadingExtended() {
+        return this.delay(42);
+    }
     
     public loadThrottle() {
         return this.delay(1);
@@ -14,13 +34,5 @@ export default class AtomicDelay {
     
     public spinnerPoll() {
         return this.delay(2);
-    }
-
-    public questionHeading() {
-        return this.delay(3);
-    }
-
-    public loadingSection() {
-        return this.delay(4);
     }
 }

@@ -7,11 +7,11 @@ export default function ScoreDisplay(props: AppProps) {
         <section ref={elements.scoreSection} className="score hidden">
             <div>{quizData?.scoreText}</div>
             <div>{quizData?.bestText}</div>
-            <div>{quizData?.leaderText}</div>
+            {/* <div>{quizData?.leaderText}</div> */}
             <div className="row">
                 <div>{score}</div>
                 <div>{score}</div>
-                <div>{score}</div>
+                {/* <div>{score}</div> */}
             </div>
         </section>
     );

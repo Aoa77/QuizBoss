@@ -30,13 +30,14 @@ export async function onNext(props: AppProps) {
     hideElementRef(elements.loadingSection);
     showElementRef(elements.imageSection);
 
-    await delay.questionHeading();
-    showElementRef(elements.questionHeading);
-    
     showElementRef(elements.buttonsSection);
     showElementRef(elements.scoreSection);
     showElementRef(elements.progressSection);
 
+    await delay.image();
+    showElementRef(elements.questionHeading);
+    await delay.heading();
+    
     const answerSpot = randomInt(0, guessButtonCount);
     console.info("answerSpot: ", answerSpot);
 
@@ -53,7 +54,7 @@ export async function onNext(props: AppProps) {
 
     if (config.demoMode) {
         const spotButton = guessButtons[answerSpot].ref.current!;
-        await delay.spinnerPoll();
+        await delay.briefPause();
         props.setGuessValue(spotButton.value);
         setGameState(GameState.RESULT);
         return;
@@ -69,7 +70,7 @@ export async function onNext(props: AppProps) {
         const spotButton = guessButtons[choiceSpot].ref.current!;
         spotButton.innerHTML = itemAtChoiceSpot.name;
         spotButton.value = itemAtChoiceSpot.key;
-        await delay.questionHeading();
+        await delay.button();
         spotButton.className = ButtonState.NORMAL;
     }
 

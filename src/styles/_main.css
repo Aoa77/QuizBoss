@@ -19,14 +19,14 @@ h1 {
     font-size: 18rem;
     font-weight: normal;
     margin-top: var(--hu_4);
+    margin-bottom: var(--hu_7);
 }
 h2 {
     color: #00ffff;
     font-family: "Tahoma", sans-serif;
     font-size: 9rem;
     font-weight: normal;
-    margin-top: var(--hu_7);
-    margin-bottom: var(--hu_5);
+    margin-top: var(--hu_10);
 }
 
 /********************************************************************/
@@ -52,7 +52,7 @@ section.image > img {
 /* "guess" button rules */
 /************************/
 section.buttons {
-    margin-top: var(--hu_10);
+    margin-top: var(--hu_5);
 }
 
 button {
@@ -99,12 +99,13 @@ section.score {
     display: grid;
     font-family: "Tahoma", sans-serif;
     grid-template-columns: repeat(3, auto);
+    grid-template-columns: repeat(2, auto);
     color: #00ffff;
     text-transform: uppercase;
     font-size: 7rem;
     width: 124rem;
     margin: auto;
-    margin-top: var(--hu_9);
+    margin-top: var(--hu_8);
     margin-bottom: var(--hu_5);
 }
 

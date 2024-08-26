@@ -34,7 +34,7 @@ export async function onResult(props: AppProps) {
         return;
     }
 
-    await delay.questionHeading();
+    await delay.briefPause();
     unlockButtons();
     setGameState(GameState.INPUT);
     return;
@@ -63,23 +63,22 @@ export async function onResult(props: AppProps) {
     }
 
     async function handleCorrectGuess() {
+        await delay.briefPause();
         props.setScore(
             props.score + guessButtonCount - wrongGuesses.length - 1,
         );
-        
-        hideElementRef(elements.questionHeading);
-        await delay.questionHeading();
 
-        hideElementRef(elements.imageSection);
-        await delay.questionHeading();
-        
+        await delay.briefPause();
         for (let guess = 0; guess < guessButtonCount; guess++) {
             const guessButton = guessButtons[guess].ref.current!;
             guessButton.className = ButtonState.HIDDEN;
-            await delay.questionHeading();
+            await delay.button();
         }
         
-        await delay.questionHeading();
+        await delay.button();
+        hideElementRef(elements.questionHeading);
+        hideElementRef(elements.imageSection);
+
         if (1 + currentItemIndex === quizItems.length) {
             setGameState(GameState.GAMEOVER);
             return;

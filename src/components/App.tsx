@@ -5,10 +5,11 @@ import { useButtonBuilder, useEventRouter } from "../hooks";
 import { useRef, useState } from "react";
 import AtomicDelay from "../utilities/AtomicDelay";
 import GuessButtons from "./GuessButtons";
-import HeadingText from "./HeadingText";
+import TitleHeading from "./TitleHeading";
 import LoadingSpinner from "./LoadingSpinner";
 import QuestionImage from "./QuestionImage";
 import ScoreDisplay from "./ScoreDisplay";
+import QuestionHeading from "./QuestionHeading";
 
 export default function App(config: Config) {
     const [currentItemIndex, setCurrentItemIndex] = useState<number>(0);
@@ -64,11 +65,13 @@ export default function App(config: Config) {
 
     return (
         <main>
-            <HeadingText {...appProps} />
+            <TitleHeading {...appProps} />
             <LoadingSpinner {...appProps} />
             <QuestionImage {...appProps} />
+            <QuestionHeading {...appProps} />
             <GuessButtons {...appProps} />
             <ScoreDisplay {...appProps} />
+            
             <section ref={refProgress} className="progress hidden">
                 <span className="current">{currentItemIndex + 1}</span>
                 <span> / </span>
