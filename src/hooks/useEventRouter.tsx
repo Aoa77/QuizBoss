@@ -22,7 +22,7 @@ export default function useEventRouter(props: AppProps) {
                 break;
 
             case GameState.INPUT:
-                events.onInput();
+                events.onInput(props);
                 break;
 
             case GameState.RESULT:

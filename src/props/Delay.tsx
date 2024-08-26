@@ -1,3 +1,4 @@
+import { randomInt } from "../utilities/random";
 import { Elements, hideElementRef, showElementRef } from "./Elements";
 
 export default class Delay {
@@ -11,7 +12,7 @@ export default class Delay {
     }
 
     public demoWait() {
-        return this.delay(250);
+        return this.delay(randomInt(300, 2700));
     }
 
     public loadThrottle() {
@@ -23,7 +24,7 @@ export default class Delay {
     }
 
     public resultPause() {
-        return this.delay(1800);
+        return this.delay(1100);
     }
     
     public async scoreUpdate(award: number, correctButton: HTMLButtonElement) {

@@ -30,10 +30,6 @@ export async function onInit(props: AppProps) {
         console.info(`Quiz module loaded: ${module.name}`, module);
 
         shuffle(module.quizData.items);
-        if (config.maxQuestions > 0) {
-            truncateItems(module);
-        }
-
         for (let i = 0; i < module.quizData.items.length; i++) {
             const item = module.quizData.items[i];
             initItem(item, i, module);
@@ -42,6 +38,10 @@ export async function onInit(props: AppProps) {
         randomizeGuessPool(module);
         shuffle(module.quizData.randomizedGuessPool);
 
+        if (config.maxQuestions > 0) {
+            truncateItems(module);
+        }
+        
         setQuizModule(module);
         loadQuizImages(module.quizData.items);
     }

@@ -48,14 +48,6 @@ export async function onNext(props: AppProps) {
         await assignQuestionToChoiceSpot(choiceSpot, itemAtChoiceSpot);
     }
 
-    if (config.demoMode) {
-        const spotButton = guessButtons[answerSpot].ref.current!;
-        await delay.demoWait();
-        props.setGuessValue(spotButton.value);
-        setGameState(GameState.RESULT);
-        return;
-    }
-
     setGameState(GameState.INPUT);
     return;
 
