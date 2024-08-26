@@ -12,6 +12,10 @@ QuizBoss is a single-page web application framework for crafting engaging multip
 
 * **Mobile-First Responsive Design:** The UI layout is designed to look great on mobile devices. It is built with pure vanilla CSS.
 
+## Demo Site
+
+QuizBoss has a live demo site running the "World Flags Quiz" at https://white-desert-06da4b010.5.azurestaticapps.net/
+
 ## Demo Video
 
 https://github.com/user-attachments/assets/492a687b-e88c-4942-8a30-d79d5619fbd6
