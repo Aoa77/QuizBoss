@@ -1,6 +1,5 @@
-import { AppProps } from "../props";
+import { AppProps, hideElementRef } from "../props";
 import { GameState, ButtonState } from "../enums";
-import { hideElementRef } from "../utilities/visibility";
 
 ///
 var wrongGuesses: number[] = [];
@@ -23,23 +22,25 @@ export async function onResult(props: AppProps) {
     if (quizModule === null) {
         return;
     }
+
     const quizItems = quizModule.quizData.items;
     const currentItem = quizItems[currentItemIndex];
     const correctAnswer = currentItem.key;
     const isCorrectGuess = correctAnswer === guessValue;
 
-    lockButtons();
+    const correctButton = lockButtons();
     if (isCorrectGuess) {
         await handleCorrectGuess();
         return;
     }
 
-    await delay.briefPause();
+    await delay.resultPause();
     unlockButtons();
     setGameState(GameState.INPUT);
     return;
 
-    function lockButtons() {
+    function lockButtons(): HTMLButtonElement | null {
+        let correctButton: HTMLButtonElement | null = null;
         for (let guess = 0; guess < guessButtonCount; guess++) {
             const guessButton = guessButtons[guess].ref.current!;
             if (guessButton.className === ButtonState.DISABLED) {
@@ -55,40 +56,50 @@ export async function onResult(props: AppProps) {
             if (isCorrectGuess) {
                 guessButton.className = ButtonState.CORRECT;
                 currentItem.answeredCorrectly = true;
+                correctButton = guessButton;
                 continue;
             }
             wrongGuesses.push(guess);
             guessButton.className = ButtonState.WRONG;
         }
+        return correctButton;
     }
 
     async function handleCorrectGuess() {
-        await delay.briefPause();
-        
-        const newScore =
-            props.score + guessButtonCount - wrongGuesses.length - 1;
+
+        const award = guessButtonCount - wrongGuesses.length - 1;
+
+        await delay.scoreUpdate(award, correctButton!);
+        const newScore = props.score + award;
         props.setScore(newScore);
-        
+
         if (newScore > props.best) {
             props.setBest(newScore);
             localStorage.setItem("bestScore", newScore.toString());
         }
 
-        await delay.briefPause();
+        await delay.resultPause();
         for (let guess = 0; guess < guessButtonCount; guess++) {
             const guessButton = guessButtons[guess].ref.current!;
             guessButton.className = ButtonState.HIDDEN;
-            await delay.button();
         }
 
-        await delay.button();
-        hideElementRef(elements.questionHeading);
         hideElementRef(elements.imageSection);
-
+        
         if (1 + currentItemIndex === quizItems.length) {
+            const prompt = elements.questionHeading.current!;
+            prompt.innerHTML = "[ play again ]";
+            prompt.style.cursor = "pointer";
+            prompt.onclick = () => {
+                hideElementRef(elements.questionHeading);
+                delay.showSpinner();
+                window.location.reload();
+            };
             setGameState(GameState.GAMEOVER);
             return;
         }
+
+        hideElementRef(elements.questionHeading);
         setCurrentItemIndex(currentItemIndex + 1);
         wrongGuesses = [];
         setGameState(GameState.LOADING);

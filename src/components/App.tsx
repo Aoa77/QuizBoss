@@ -3,7 +3,7 @@ import { AppProps, Config, Elements, QuizModule } from "../props";
 import { GameState } from "../enums";
 import { useButtonBuilder, useEventRouter, useLocalBestScore } from "../hooks";
 import { useRef, useState } from "react";
-import AtomicDelay from "../utilities/AtomicDelay";
+import Delay from "../props/Delay";
 import GuessButtons from "./GuessButtons";
 import TitleHeading from "./TitleHeading";
 import LoadingSpinner from "./LoadingSpinner";
@@ -25,6 +25,7 @@ export default function App(config: Config) {
     const refProgress = useRef<HTMLDivElement | null>(null);
     const refQuestion = useRef<HTMLHeadingElement | null>(null);
     const refScore = useRef<HTMLDivElement | null>(null);
+    const refScoreMark = useRef<HTMLSpanElement | null>(null);
     const refTitle = useRef<HTMLHeadingElement | null>(null);
 
     const elements: Elements = {
@@ -34,6 +35,7 @@ export default function App(config: Config) {
         progressSection: refProgress,
         questionHeading: refQuestion,
         scoreSection: refScore,
+        scoreMark: refScoreMark,
         titleHeading: refTitle,
     };
 
@@ -49,7 +51,7 @@ export default function App(config: Config) {
     const appProps: AppProps = {
         config,
         currentItemIndex,
-        delay: new AtomicDelay(config.atomicDelay),
+        delay: new Delay(elements),
         elements,
         gameState,
         guessButtons,

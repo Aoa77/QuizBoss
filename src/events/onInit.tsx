@@ -1,7 +1,7 @@
 import { AppProps, QuizItem, QuizModule } from "../props";
 import { GameState } from "../enums";
-import { showElementRef } from "../utilities/visibility";
 import { shuffle } from "../utilities/random";
+import { showElementRef } from "../props/Elements";
 
 ///
 var isInitializing: boolean = false;

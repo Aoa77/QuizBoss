@@ -1,11 +1,9 @@
-import { AppProps } from "../props";
+import { AppProps, hideElementRef } from "../props";
 import { GameState } from "../enums";
-import { hideElementRef, showElementRef } from "../utilities/visibility";
 
 ///
 export async function onLoading(props: AppProps) {
     const {
-        config,
         currentItemIndex, //
         delay,
         elements,
@@ -17,23 +15,21 @@ export async function onLoading(props: AppProps) {
         return;
     }
 
+    elements.scoreMark.current!.innerHTML = "";
+    elements.scoreMark.current!.className = "";
+
     const quizItems = quizModule.quizData.items;
     const currentItem = quizItems[currentItemIndex];
-    const spinner = elements.loadingSection.current!.children[0];
-
+    
     hideElementRef(elements.questionHeading);
-    await delay.loadingExtended();
-    
     hideElementRef(elements.imageSection);
-    if (config.spinnerReset) {
-        spinner.className = "";
-    }
-    showElementRef(elements.loadingSection);
-    spinner.className = "spinner";
-    
+
+    await delay.showSpinner();
     while (!currentItem || !currentItem.isLoaded) {
         await delay.spinnerPoll();
     }
     
     setGameState(GameState.NEXT);
 }
+
+

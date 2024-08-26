@@ -1,6 +1,5 @@
-import { AppProps, QuizItem } from "../props";
+import { AppProps, QuizItem, showElementRef } from "../props";
 import { GameState, ButtonState } from "../enums";
-import { hideElementRef, showElementRef } from "../utilities/visibility";
 import { randomInt } from "../utilities/random";
 
 var randomizedGuessPoolIndex: number = -1;
@@ -27,17 +26,14 @@ export async function onNext(props: AppProps) {
     const randomizedGuessPool = quizData.randomizedGuessPool;
     let currentGuessPool: string[] = [];
 
-    hideElementRef(elements.loadingSection);
+    delay.hideSpinner();
     showElementRef(elements.imageSection);
 
     showElementRef(elements.buttonsSection);
     showElementRef(elements.scoreSection);
     showElementRef(elements.progressSection);
 
-    await delay.image();
     showElementRef(elements.questionHeading);
-    await delay.heading();
-    
     const answerSpot = randomInt(0, guessButtonCount);
     console.info("answerSpot: ", answerSpot);
 
@@ -54,7 +50,7 @@ export async function onNext(props: AppProps) {
 
     if (config.demoMode) {
         const spotButton = guessButtons[answerSpot].ref.current!;
-        await delay.briefPause();
+        await delay.demoWait();
         props.setGuessValue(spotButton.value);
         setGameState(GameState.RESULT);
         return;
@@ -70,13 +66,16 @@ export async function onNext(props: AppProps) {
         const spotButton = guessButtons[choiceSpot].ref.current!;
         spotButton.innerHTML = itemAtChoiceSpot.name;
         spotButton.value = itemAtChoiceSpot.key;
-        await delay.button();
         spotButton.className = ButtonState.NORMAL;
     }
 
     function selectRandomQuestionChoice(): QuizItem {
+        const guessPoolLoops: number = 4;
         let failSafeCounter = 0;
-        while (++failSafeCounter < randomizedGuessPool.length + 2) {
+        while (
+            ++failSafeCounter <
+            randomizedGuessPool.length * guessPoolLoops
+        ) {
             if (++randomizedGuessPoolIndex === randomizedGuessPool.length) {
                 randomizedGuessPoolIndex = 0;
             }

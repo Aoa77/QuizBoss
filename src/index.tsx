@@ -14,7 +14,5 @@ root.render(
         demoMode={ConfigDefaults.demoMode}
         guessButtonCount={ConfigDefaults.guessButtonCount}
         maxQuestions={ConfigDefaults.maxQuestions}
-        spinnerReset={ConfigDefaults.spinnerReset}
-        atomicDelay={ConfigDefaults.atomicDelay}
     />,
 );

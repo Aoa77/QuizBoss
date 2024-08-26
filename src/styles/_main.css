@@ -112,11 +112,37 @@ section.score {
 section.score div.row {
     display: contents;
     color: #ffff00;
-    font-size: 8rem;
+    font-size: 10rem;
 }
 
 section.score div.row > div {
     padding-top: 2rem;
+}
+
+section.score span {
+    position: fixed;
+}
+section.score mark {
+    position: relative;
+    left: 3rem;
+    top: -1rem;
+    background-color: transparent;
+    color: #00FF00;
+    font-weight: bold;
+    font-size: 11rem;
+}
+
+section.score mark.fadeOut {
+    animation: fadeOut 2600ms;
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
 }
 
 /****************************/

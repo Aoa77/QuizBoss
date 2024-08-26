@@ -2,12 +2,12 @@ import { ButtonElement, Elements } from "./Elements";
 import { Config } from "./Config";
 import { GameState } from "../enums/GameState";
 import { QuizModule } from "./QuizModule";
-import AtomicDelay from "../utilities/AtomicDelay";
+import Delay from "./Delay";
 
 export default interface AppProps {
     config: Config;
     currentItemIndex: number;
-    delay: AtomicDelay;
+    delay: Delay;
     elements: Elements;
     gameState: GameState;
     guessButtons: ButtonElement[];
