@@ -1,4 +1,4 @@
-import { AppProps, hideElementRef } from "../props";
+import { AppProps, clearScoreMarks, hideElementRef } from "../props";
 import { GameState } from "../enums";
 
 ///
@@ -15,8 +15,7 @@ export async function onLoading(props: AppProps) {
         return;
     }
 
-    elements.scoreMark.current!.innerHTML = "";
-    elements.scoreMark.current!.className = "";
+    clearScoreMarks(elements);
 
     const quizItems = quizModule.quizData.items;
     const currentItem = quizItems[currentItemIndex];

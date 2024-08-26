@@ -1,6 +1,7 @@
 import {
     ButtonElement,
     Elements,
+    clearScoreMarks,
     hideElement,
     hideElementRef,
     showElement,
@@ -12,6 +13,7 @@ import AppProps from "./AppProps";
 
 export {
     ConfigDefaults,
+    clearScoreMarks,
     hideElement,
     hideElementRef,
     showElement,

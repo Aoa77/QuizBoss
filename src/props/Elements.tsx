@@ -14,6 +14,11 @@ export interface ButtonElement {
     ref: React.RefObject<HTMLButtonElement>;
 }
 
+export function clearScoreMarks(elements: Elements) {
+    elements.scoreMark.current!.innerHTML = "";
+    elements.scoreMark.current!.className = "";
+}
+
 export function hideElementRef(
     elementRef: React.MutableRefObject<HTMLDivElement | null>,
 ) {

@@ -30,7 +30,7 @@ export default function useEventRouter(props: AppProps) {
                 break;
 
             case GameState.GAMEOVER:
-                events.onGameOver();
+                events.onGameOver(props);
                 break;
 
             default:
