@@ -1,14 +1,11 @@
 # QuizBoss
 
 QuizBoss is a single-page web application framework for crafting engaging multiple-choice quiz and trivia games.
-
-Check out the [live demo site](https://white-desert-06da4b010.5.azurestaticapps.net/) that is running the "World Flags Quiz".
+> Check out the [live demo site](https://white-desert-06da4b010.5.azurestaticapps.net/) that is running the "World Flags Quiz".
 <details>
   <summary>Demo site video</summary>
-###### https://white-desert-06da4b010.5.azurestaticapps.net/
   
-https://github.com/user-attachments/assets/4e0bbb29-d85a-4026-ba6f-787f4f5d2197
-
+  https://github.com/user-attachments/assets/4e0bbb29-d85a-4026-ba6f-787f4f5d2197
 </details>
 
 
