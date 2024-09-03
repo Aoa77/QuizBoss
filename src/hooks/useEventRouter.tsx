@@ -1,42 +1,30 @@
 import { AppProps } from "../props";
 import { GameState } from "../enums";
 import { useEffect } from "react";
-import * as events from "../events";
+import { onInit, onLoading, onNext, onInput, onResult, onGameOver } from "../events";
+
+type EventHandlers = {
+    [key in GameState]: (props: AppProps) => void;
+};
+
+const eventHandlers: EventHandlers = {
+    [GameState.INIT]: onInit,
+    [GameState.LOADING]: onLoading,
+    [GameState.NEXT]: onNext,
+    [GameState.INPUT]: onInput,
+    [GameState.RESULT]: onResult,
+    [GameState.GAMEOVER]: onGameOver,
+};
 
 export default function useEventRouter(props: AppProps) {
     useEffect(() => {
-        console.info("useEventRouter", props.gameState);
+        console.info("useEventRouter", props.state.gameState, props);
 
-        switch (props.gameState) {
-            //
-            case GameState.INIT:
-                events.onInit(props);
-                break;
-
-            case GameState.LOADING:
-                events.onLoading(props);
-                break;
-
-            case GameState.NEXT:
-                events.onNext(props);
-                break;
-
-            case GameState.INPUT:
-                events.onInput(props);
-                break;
-
-            case GameState.RESULT:
-                events.onResult(props);
-                break;
-
-            case GameState.GAMEOVER:
-                events.onGameOver(props);
-                break;
-
-            default:
-                throw new Error(`Invalid game state: ${props.gameState}`);
+        const eventHandler = eventHandlers[props.state.gameState];
+        if (eventHandler) {
+            eventHandler(props);
+        } else {
+            throw new Error(`Invalid game state: ${props.state.gameState}`);
         }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [props.gameState]);
+    }, [props]);
 }
-

@@ -6,6 +6,7 @@
     ],
     "settings": {
         "prettier.tabWidth": 4,
-        "prettier.trailingComma": "all"
+        "prettier.trailingComma": "all",
+        "prettier.printWidth": 80
     }
 }

@@ -1,8 +1,8 @@
-import AppProps from "../props/AppProps";
+import { AppProps } from "../props";
 
 export default function QuestionHeading(props: AppProps) {
-    const { elements, quizModule } = props;
-    const quizData = quizModule?.quizData;
+    const { elements, state } = props;
+    const quizData = state.quizModule?.quizData;
     return (
         <h2 ref={elements.questionHeading} className="hidden">
             {quizData?.questionText ?? <>&nbsp;</>}

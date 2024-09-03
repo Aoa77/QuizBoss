@@ -1,4 +1,4 @@
-import AppProps from "../props/AppProps";
+import { AppProps } from "../props";
 
 export default function GuessButtons(props: AppProps) {
     const { elements, guessButtons } = props;

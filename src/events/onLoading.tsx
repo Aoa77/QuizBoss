@@ -3,23 +3,17 @@ import { GameState } from "../enums";
 
 ///
 export async function onLoading(props: AppProps) {
-    const {
-        currentItemIndex, //
-        delay,
-        elements,
-        quizModule,
-        setGameState,
-    } = props;
+    const { delay, elements, state, setState } = props;
 
-    if (quizModule === null) {
+    if (state.quizModule === null) {
         return;
     }
 
     clearScoreMarks(elements);
 
-    const quizItems = quizModule.quizData.items;
-    const currentItem = quizItems[currentItemIndex];
-    
+    const quizItems = state.quizModule.quizData.items;
+    const currentItem = quizItems[state.currentItemIndex];
+
     hideElementRef(elements.questionHeading);
     hideElementRef(elements.imageSection);
 
@@ -27,8 +21,6 @@ export async function onLoading(props: AppProps) {
     while (!currentItem || !currentItem.isLoaded) {
         await delay.spinnerPoll();
     }
-    
-    setGameState(GameState.NEXT);
+
+    setState({ ...state, gameState: GameState.NEXT });
 }
-
-

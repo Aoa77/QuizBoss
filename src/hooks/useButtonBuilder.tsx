@@ -1,15 +1,15 @@
-import { Config, ButtonElement } from "../props";
+import { AppState, Config, ButtonElement } from "../props";
 import { GameState, ButtonState } from "../enums";
 import { useRef } from "react";
 
 export default function useButtonBuilder(
     config: Config,
-    gameState: GameState,
-    setGameState: (gameState: GameState) => void,
-    setGuessValue: (guessValue: string) => void,
+    state: AppState,
+    setState: React.Dispatch<React.SetStateAction<AppState>>,
 ): ButtonElement[] {
     ///
     const { guessButtonCount } = config;
+    const { gameState } = state;
 
     const onPointerDown: (ref: React.RefObject<HTMLButtonElement>) => void = (
         clickedButtonRef,
@@ -21,8 +21,11 @@ export default function useButtonBuilder(
         if (clickedButton.className !== ButtonState.NORMAL) {
             return;
         }
-        setGuessValue(clickedButton.value);
-        setGameState(GameState.RESULT);
+        setState({
+            ...state,
+            guessValue: clickedButton.value,
+            gameState: GameState.RESULT,
+        });
     };
 
     const buttons: ButtonElement[] = [];

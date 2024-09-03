@@ -6,37 +6,28 @@ var wrongGuesses: number[] = [];
 
 ///
 export async function onResult(props: AppProps) {
-    const {
-        config,
-        currentItemIndex,
-        delay,
-        elements,
-        guessButtons,
-        guessValue,
-        quizModule,
-        setCurrentItemIndex,
-        setGameState,
-    } = props;
+    const { config, delay, elements, guessButtons, state, setState } = props;
 
     const { guessButtonCount } = config;
-    if (quizModule === null) {
+    if (state.quizModule === null) {
         return;
     }
 
-    const quizItems = quizModule.quizData.items;
-    const currentItem = quizItems[currentItemIndex];
+    const quizItems = state.quizModule.quizData.items;
+    const currentItem = quizItems[state.currentItemIndex];
     const correctAnswer = currentItem.key;
-    const isCorrectGuess = correctAnswer === guessValue;
+    const isCorrectGuess = correctAnswer === state.guessValue;
 
     const correctButton = lockButtons();
     if (isCorrectGuess) {
         await handleCorrectGuess();
+        setState({ ...state });
         return;
     }
 
     await delay.resultPause();
     unlockButtons();
-    setGameState(GameState.INPUT);
+    setState({ ...state, gameState: GameState.INPUT });
     return;
 
     function lockButtons(): HTMLButtonElement | null {
@@ -49,7 +40,7 @@ export async function onResult(props: AppProps) {
             if (guessButton.className === ButtonState.HIDDEN) {
                 continue;
             }
-            if (guessValue !== guessButton.value) {
+            if (state.guessValue !== guessButton.value) {
                 guessButton.className = ButtonState.DIMMED;
                 continue;
             }
@@ -66,16 +57,14 @@ export async function onResult(props: AppProps) {
     }
 
     async function handleCorrectGuess() {
-
         const award = guessButtonCount - wrongGuesses.length - 1;
 
         await delay.scoreUpdate(award, correctButton!);
-        const newScore = props.score + award;
-        props.setScore(newScore);
+        state.score += award;
 
-        if (newScore > props.best) {
-            props.setBest(newScore);
-            localStorage.setItem("bestScore", newScore.toString());
+        if (state.score > state.best) {
+            state.best = state.score;
+            localStorage.setItem("bestScore", state.best.toString());
         }
 
         await delay.resultPause();
@@ -85,8 +74,8 @@ export async function onResult(props: AppProps) {
         }
 
         hideElementRef(elements.imageSection);
-        
-        if (1 + currentItemIndex === quizItems.length) {
+
+        if (1 + state.currentItemIndex === quizItems.length) {
             const prompt = elements.questionHeading.current!;
             prompt.innerHTML = "[ play again ]";
             prompt.style.cursor = "pointer";
@@ -95,14 +84,14 @@ export async function onResult(props: AppProps) {
                 delay.showSpinner();
                 window.location.reload();
             };
-            setGameState(GameState.GAMEOVER);
+            state.gameState = GameState.GAMEOVER;
             return;
         }
 
         hideElementRef(elements.questionHeading);
-        setCurrentItemIndex(currentItemIndex + 1);
+        ++state.currentItemIndex;
         wrongGuesses = [];
-        setGameState(GameState.LOADING);
+        state.gameState = GameState.LOADING;
     }
 
     function unlockButtons() {

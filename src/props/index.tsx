@@ -9,7 +9,7 @@ import {
 } from "./Elements";
 import { Config, ConfigDefaults } from "./Config";
 import { QuizModule, QuizData, QuizItem } from "./QuizModule";
-import AppProps from "./AppProps";
+import { AppProps, AppState} from "./AppProps";
 
 export {
     ConfigDefaults,
@@ -22,6 +22,7 @@ export {
 
 export type {
     AppProps,
+    AppState,
     ButtonElement,
     Config,
     Elements,

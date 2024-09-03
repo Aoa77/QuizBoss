@@ -1,5 +1,5 @@
 import "../styles";
-import { AppProps, Config, Elements, QuizModule } from "../props";
+import { AppProps, Config, Elements } from "../props";
 import { GameState } from "../enums";
 import { useButtonBuilder, useEventRouter, useLocalBestScore } from "../hooks";
 import { useRef, useState } from "react";
@@ -10,14 +10,19 @@ import LoadingSpinner from "./LoadingSpinner";
 import QuestionImage from "./QuestionImage";
 import ScoreDisplay from "./ScoreDisplay";
 import QuestionHeading from "./QuestionHeading";
+import { AppState } from "../props/AppProps";
 
 export default function App(config: Config) {
-    const [currentItemIndex, setCurrentItemIndex] = useState<number>(0);
-    const [gameState, setGameState] = useState<GameState>(GameState.INIT);
-    const [guessValue, setGuessValue] = useState<string>("");
-    const [quizModule, setQuizModule] = useState<QuizModule | null>(null);
-    const [score, setScore] = useState<number>(0);
-    const [best, setBest] = useState<number>(0);
+    const [state, setState] = useState<AppState>({
+        currentItemIndex: 0,
+        gameState: GameState.INIT,
+        guessValue: "",
+        quizModule: null,
+        score: 0,
+        best: 0,
+    });
+    const guessButtons = useButtonBuilder(config, state, setState);
+    useLocalBestScore(state, setState);
 
     const refButtons = useRef<HTMLDivElement | null>(null);
     const refImage = useRef<HTMLDivElement | null>(null);
@@ -39,36 +44,17 @@ export default function App(config: Config) {
         titleHeading: refTitle,
     };
 
-    const guessButtons = useButtonBuilder(
-        config,
-        gameState,
-        setGameState,
-        setGuessValue,
-    );
-
-    useLocalBestScore(best, setBest);
-
     const appProps: AppProps = {
         config,
-        currentItemIndex,
         delay: new Delay(elements),
         elements,
-        gameState,
         guessButtons,
-        guessValue,
-        quizModule,
-        score,
-        best,
-        setCurrentItemIndex,
-        setGameState,
-        setGuessValue,
-        setQuizModule,
-        setScore,
-        setBest,
+        state,
+        setState,
     };
 
     useEventRouter(appProps);
-    const quizData = quizModule?.quizData;
+    const quizData = state.quizModule?.quizData;
 
     return (
         <main>
@@ -80,7 +66,7 @@ export default function App(config: Config) {
             <ScoreDisplay {...appProps} />
 
             <section ref={refProgress} className="progress hidden">
-                <span className="current">{currentItemIndex + 1}</span>
+                <span className="current">{state.currentItemIndex + 1}</span>
                 <span> / </span>
                 <span className="total">{quizData?.items.length}</span>
             </section>

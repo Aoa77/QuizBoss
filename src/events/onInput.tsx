@@ -4,7 +4,7 @@ import { randomInt } from "../utilities/random";
 
 ///
 export async function onInput(props: AppProps) {
-    const { config, delay, guessButtons, setGameState, setGuessValue } = props;
+    const { config, delay, guessButtons, state, setState } = props;
     if (!config.demoMode) {
         console.info("waiting for player input...");
         return;
@@ -20,6 +20,9 @@ export async function onInput(props: AppProps) {
     const spotButton =
         activeButtons[randomInt(0, activeButtons.length)].ref.current!;
 
-    setGuessValue(spotButton.value);
-    setGameState(GameState.RESULT);
+    setState({
+        ...state,
+        guessValue: spotButton.value,
+        gameState: GameState.RESULT,
+    });
 }

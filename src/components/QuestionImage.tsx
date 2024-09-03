@@ -1,7 +1,8 @@
-import AppProps from "../props/AppProps";
+import { AppProps } from "../props";
 
 export default function QuestionImage(props: AppProps) {
-    const { elements, currentItemIndex, quizModule } = props;
+    const { elements, state } = props;
+    const { currentItemIndex, quizModule } = state;
     const quizData = quizModule?.quizData;
     return (
         <section ref={elements.imageSection} className="image hidden">
@@ -9,5 +10,3 @@ export default function QuestionImage(props: AppProps) {
         </section>
     );
 }
-
-

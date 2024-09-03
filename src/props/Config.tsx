@@ -6,7 +6,7 @@ export interface Config {
 }
 
 export const ConfigDefaults = {
-    demoMode: false,
+    demoMode: true,
     guessButtonCount: 4,
-    maxQuestions: 0, // 0 = all
+    maxQuestions: 3, // 0 = all
 };

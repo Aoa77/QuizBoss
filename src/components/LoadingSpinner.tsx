@@ -1,4 +1,4 @@
-import AppProps from "../props/AppProps";
+import { AppProps } from "../props";
 
 export default function LoadingSpinner(props: AppProps) {
     const { elements } = props;

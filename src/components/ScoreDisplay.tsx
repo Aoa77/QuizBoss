@@ -1,7 +1,8 @@
-import AppProps from "../props/AppProps";
+import { AppProps } from "../props";
 
 export default function ScoreDisplay(props: AppProps) {
-    const { elements, quizModule, score, best } = props;
+    const { elements, state} = props;
+    const { score, best, quizModule } = state;
     const quizData = quizModule?.quizData;
     return (
         <section ref={elements.scoreSection} className="score hidden">
