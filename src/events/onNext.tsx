@@ -1,39 +1,34 @@
-import { AppProps, QuizItem, showElementRef } from "../props";
-import { GameState, ButtonState } from "../enums";
+import { AppContext } from "../hooks";
+import { ButtonState, GameState } from "../enums";
+import { QuizItem } from "../models";
 import { randomInt } from "../utilities/random";
 
 var randomizedGuessPoolIndex: number = -1;
 ///
-export async function onNext(props: AppProps) {
-    const {
-        config,
-        currentItemIndex,
-        delay,
-        elements,
-        guessButtons,
-        quizModule,
-        setGameState,
-    } = props;
+export async function onNext(context: AppContext) {
+    const { config, elementsHook, stateHook } = context;
+    const { state, setState } = stateHook;
+    const { guessButtons } = elementsHook;
 
-    if (quizModule === null) {
+    if (state.quizModule === null) {
         return;
     }
 
     const { guessButtonCount } = config;
-    const quizData = quizModule.quizData;
+    const quizData = state.quizModule.quizData;
     const quizItems = quizData.items;
-    const currentItem = quizItems[currentItemIndex];
+    const currentItem = quizItems[state.currentItemIndex];
     const randomizedGuessPool = quizData.randomizedGuessPool;
     let currentGuessPool: string[] = [];
 
-    delay.hideSpinner();
-    showElementRef(elements.imageSection);
+    elementsHook.hideSpinner();
+    elementsHook.showImageSection();
 
-    showElementRef(elements.buttonsSection);
-    showElementRef(elements.scoreSection);
-    showElementRef(elements.progressSection);
+    elementsHook.showButtonsSection();
+    elementsHook.showScoreSection();
+    elementsHook.showProgressSection();
+    elementsHook.showQuestionHeading();
 
-    showElementRef(elements.questionHeading);
     const answerSpot = randomInt(0, guessButtonCount);
     console.info("answerSpot: ", answerSpot);
 
@@ -48,7 +43,7 @@ export async function onNext(props: AppProps) {
         await assignQuestionToChoiceSpot(choiceSpot, itemAtChoiceSpot);
     }
 
-    setGameState(GameState.INPUT);
+    setState({ ...state, gameState: GameState.INPUT });
     return;
 
     async function assignQuestionToChoiceSpot(

@@ -1,42 +1,34 @@
-import { AppProps, hideElementRef } from "../props";
-import { GameState, ButtonState } from "../enums";
-
+import { AppContext } from "../hooks";
+import { ButtonState, GameState } from "../enums";
 ///
 var wrongGuesses: number[] = [];
 
 ///
-export async function onResult(props: AppProps) {
-    const {
-        config,
-        currentItemIndex,
-        delay,
-        elements,
-        guessButtons,
-        guessValue,
-        quizModule,
-        setCurrentItemIndex,
-        setGameState,
-    } = props;
+export async function onResult(context: AppContext) {
+    const { config, elementsHook, stateHook } = context;
+    const { state, setState } = stateHook;
 
     const { guessButtonCount } = config;
-    if (quizModule === null) {
+    if (state.quizModule === null) {
         return;
     }
 
-    const quizItems = quizModule.quizData.items;
-    const currentItem = quizItems[currentItemIndex];
+    const { guessButtons } = elementsHook;
+    const quizItems = state.quizModule.quizData.items;
+    const currentItem = quizItems[state.currentItemIndex];
     const correctAnswer = currentItem.key;
-    const isCorrectGuess = correctAnswer === guessValue;
+    const isCorrectGuess = correctAnswer === state.guessValue;
 
     const correctButton = lockButtons();
     if (isCorrectGuess) {
         await handleCorrectGuess();
+        setState({ ...state });
         return;
     }
 
-    await delay.resultPause();
+    await elementsHook.resultPause();
     unlockButtons();
-    setGameState(GameState.INPUT);
+    setState({ ...state, gameState: GameState.INPUT });
     return;
 
     function lockButtons(): HTMLButtonElement | null {
@@ -49,7 +41,7 @@ export async function onResult(props: AppProps) {
             if (guessButton.className === ButtonState.HIDDEN) {
                 continue;
             }
-            if (guessValue !== guessButton.value) {
+            if (state.guessValue !== guessButton.value) {
                 guessButton.className = ButtonState.DIMMED;
                 continue;
             }
@@ -66,43 +58,41 @@ export async function onResult(props: AppProps) {
     }
 
     async function handleCorrectGuess() {
-
         const award = guessButtonCount - wrongGuesses.length - 1;
 
-        await delay.scoreUpdate(award, correctButton!);
-        const newScore = props.score + award;
-        props.setScore(newScore);
+        await elementsHook.scoreUpdate(award, correctButton!);
+        state.score += award;
 
-        if (newScore > props.best) {
-            props.setBest(newScore);
-            localStorage.setItem("bestScore", newScore.toString());
+        if (state.score > state.best) {
+            state.best = state.score;
+            localStorage.setItem("bestScore", state.best.toString());
         }
 
-        await delay.resultPause();
+        await elementsHook.resultPause();
         for (let guess = 0; guess < guessButtonCount; guess++) {
             const guessButton = guessButtons[guess].ref.current!;
             guessButton.className = ButtonState.HIDDEN;
         }
 
-        hideElementRef(elements.imageSection);
-        
-        if (1 + currentItemIndex === quizItems.length) {
-            const prompt = elements.questionHeading.current!;
+        elementsHook.hideImageSection();
+
+        if (1 + state.currentItemIndex === quizItems.length) {
+            const prompt = elementsHook.refs.questionHeading.current!;
             prompt.innerHTML = "[ play again ]";
             prompt.style.cursor = "pointer";
             prompt.onclick = () => {
-                hideElementRef(elements.questionHeading);
-                delay.showSpinner();
+                elementsHook.hideQuestionHeading();
+                elementsHook.showSpinner();
                 window.location.reload();
             };
-            setGameState(GameState.GAMEOVER);
+            state.gameState = GameState.GAMEOVER;
             return;
         }
 
-        hideElementRef(elements.questionHeading);
-        setCurrentItemIndex(currentItemIndex + 1);
+        elementsHook.hideQuestionHeading();
+        ++state.currentItemIndex;
         wrongGuesses = [];
-        setGameState(GameState.LOADING);
+        state.gameState = GameState.LOADING;
     }
 
     function unlockButtons() {

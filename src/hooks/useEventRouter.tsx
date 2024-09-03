@@ -1,42 +1,30 @@
-import { AppProps } from "../props";
 import { GameState } from "../enums";
+import { onInit, onLoading, onNext, onInput, onResult, onGameOver } from "../events";
 import { useEffect } from "react";
-import * as events from "../events";
+import AppContext from "./AppContext";
 
-export default function useEventRouter(props: AppProps) {
+type EventHandlers = {
+    [key in GameState]: (context: AppContext) => void;
+};
+
+const eventHandlers: EventHandlers = {
+    [GameState.INIT]: onInit,
+    [GameState.LOADING]: onLoading,
+    [GameState.NEXT]: onNext,
+    [GameState.INPUT]: onInput,
+    [GameState.RESULT]: onResult,
+    [GameState.GAMEOVER]: onGameOver,
+};
+
+export default function useEventRouter(context: AppContext) {
     useEffect(() => {
-        console.info("useEventRouter", props.gameState);
+        console.info("useEventRouter", context.stateHook.state.gameState, context);
 
-        switch (props.gameState) {
-            //
-            case GameState.INIT:
-                events.onInit(props);
-                break;
-
-            case GameState.LOADING:
-                events.onLoading(props);
-                break;
-
-            case GameState.NEXT:
-                events.onNext(props);
-                break;
-
-            case GameState.INPUT:
-                events.onInput(props);
-                break;
-
-            case GameState.RESULT:
-                events.onResult(props);
-                break;
-
-            case GameState.GAMEOVER:
-                events.onGameOver(props);
-                break;
-
-            default:
-                throw new Error(`Invalid game state: ${props.gameState}`);
+        const eventHandler = eventHandlers[context.stateHook.state.gameState];
+        if (eventHandler) {
+            eventHandler(context);
+        } else {
+            throw new Error(`Invalid game state: ${context.stateHook.state.gameState}`);
         }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [props.gameState]);
+    }, [context]);
 }
-

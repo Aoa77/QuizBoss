@@ -1,18 +1,19 @@
-import { AppProps, QuizItem, QuizModule } from "../props";
+import { AppContext } from "../hooks";
 import { GameState } from "../enums";
-import { shuffle } from "../utilities/random";
-import { showElementRef } from "../props/Elements";
+import { QuizModule, QuizItem } from "../models";
+import { shuffle } from "../utilities";
 
 ///
 var isInitializing: boolean = false;
 
 ///
-export async function onInit(props: AppProps) {
-    const { config, delay, elements, setQuizModule } = props;
+export async function onInit(context: AppContext) {
+    const { config, elementsHook, stateHook } = context;
+    const { state, setState } = stateHook;
     const { quizModuleName } = config;
 
-    showElementRef(elements.titleHeading);
-    showElementRef(elements.loadingSection);
+    elementsHook.showTitleHeading();
+    elementsHook.showLoadingSection();
 
     console.info({ isInitializing });
     if (isInitializing) {
@@ -21,13 +22,13 @@ export async function onInit(props: AppProps) {
     isInitializing = true;
 
     await initQuizModule();
-    props.setGameState(GameState.LOADING);
+    setState({ ...state, gameState: GameState.LOADING });
     return;
 
     async function initQuizModule(): Promise<void> {
         //
         const module = await fetchQuizModule();
-        console.info(`Quiz module loaded: ${module.name}`, module);
+        console.info(`Quiz module loading: ${module.name}`, module);
 
         shuffle(module.quizData.items);
         for (let i = 0; i < module.quizData.items.length; i++) {
@@ -41,8 +42,8 @@ export async function onInit(props: AppProps) {
         if (config.maxQuestions > 0) {
             truncateItems(module);
         }
-        
-        setQuizModule(module);
+
+        state.quizModule = module;
         loadQuizImages(module.quizData.items);
     }
 
@@ -102,9 +103,10 @@ export async function onInit(props: AppProps) {
     }
 
     async function loadQuizImages(quizItems: QuizItem[]): Promise<void> {
+        console.info("Loading quiz images...");
         for (const item of quizItems) {
             item.image.src = item.imageSrc;
-            await delay.loadThrottle();
+            await elementsHook.loadThrottle();
         }
     }
 }
