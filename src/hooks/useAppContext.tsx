@@ -1,4 +1,5 @@
-import { AppContext, Config } from "../models";
+import { Config } from "../models";
+import AppContext from "./AppContext";
 import AppStateHook from "./AppStateHook";
 import ElementsHook from "./ElementsHook";
 

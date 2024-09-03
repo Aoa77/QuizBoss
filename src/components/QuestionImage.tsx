@@ -1,4 +1,4 @@
-import { AppContext } from "../models";
+import { AppContext } from "../hooks";
 
 export default function QuestionImage(context: AppContext) {
     const { elementsHook, stateHook } = context;

@@ -1,5 +1,5 @@
+import { AppContext } from "../hooks";
 import { GameState } from "../enums";
-import { AppContext } from "../models";
 
 ///
 export async function onLoading(context: AppContext) {

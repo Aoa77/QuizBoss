@@ -1,3 +1,4 @@
+import AppContext from "./AppContext";
 import AppStateHook from "./AppStateHook";
 import ElementsHook from "./ElementsHook";
 import useAppContext from "./useAppContext";
@@ -13,4 +14,4 @@ export {
     useEventRouter,
 };
 
-export type { AppStateHook };
+export type { AppContext, AppStateHook };

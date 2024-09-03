@@ -1,5 +1,6 @@
+import { AppContext } from "../hooks";
 import { GameState } from "../enums";
-import { AppContext, QuizModule, QuizItem } from "../models";
+import { QuizModule, QuizItem } from "../models";
 import { shuffle } from "../utilities";
 
 ///
@@ -28,7 +29,7 @@ export async function onInit(context: AppContext) {
         //
         const module = await fetchQuizModule();
         console.info(`Quiz module loading: ${module.name}`, module);
-        
+
         shuffle(module.quizData.items);
         for (let i = 0; i < module.quizData.items.length; i++) {
             const item = module.quizData.items[i];
@@ -37,11 +38,11 @@ export async function onInit(context: AppContext) {
 
         randomizeGuessPool(module);
         shuffle(module.quizData.randomizedGuessPool);
-        
+
         if (config.maxQuestions > 0) {
             truncateItems(module);
         }
-        
+
         state.quizModule = module;
         loadQuizImages(module.quizData.items);
     }

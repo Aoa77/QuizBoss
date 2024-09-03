@@ -1,5 +1,6 @@
-import { GameState, ButtonState } from "../enums";
-import { AppContext, QuizItem } from "../models";
+import { AppContext } from "../hooks";
+import { ButtonState, GameState } from "../enums";
+import { QuizItem } from "../models";
 import { randomInt } from "../utilities/random";
 
 var randomizedGuessPoolIndex: number = -1;
