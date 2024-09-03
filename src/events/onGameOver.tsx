@@ -1,8 +1,8 @@
-import { AppProps, clearScoreMarks } from "../props";
+import { AppContext } from "../models";
 
 ///
-export async function onGameOver(props: AppProps) {
+export async function onGameOver(context: AppContext) {
     console.info("game over");
-    const { elements } = props;
-    clearScoreMarks(elements);
+    const { elementsHook } = context;
+    elementsHook.clearScoreMarks();
 }

@@ -1,9 +1,12 @@
-import { AppProps } from "../props";
+import { AppContext } from "../models";
 
-export default function LoadingSpinner(props: AppProps) {
-    const { elements } = props;
+export default function LoadingSpinner(context: AppContext) {
+    const { elementsHook } = context;
     return (
-        <section ref={elements.loadingSection} className="loading hidden">
+        <section
+            ref={elementsHook.refs.loadingSection}
+            className="loading hidden"
+        >
             <div className="spinner"></div>
         </section>
     );

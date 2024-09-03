@@ -1,10 +1,10 @@
-import { AppProps } from "../props";
+import { AppContext } from "../models";
 
-export default function GuessButtons(props: AppProps) {
-    const { elements, guessButtons } = props;
+export default function GuessButtons(context: AppContext) {
+    const { elementsHook } = context;
     return (
-        <section ref={elements.buttonsSection} className="buttons hidden">
-            {guessButtons.map((b) => b.element)}
+        <section ref={elementsHook.refs.buttonsSection} className="buttons hidden">
+            {elementsHook.guessButtons.map((b) => b.element)}
         </section>
     );
 }

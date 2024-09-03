@@ -1,10 +1,11 @@
-import { AppProps } from "../props";
+import { AppContext } from "../models";
 
-export default function QuestionHeading(props: AppProps) {
-    const { elements, state } = props;
+export default function QuestionHeading(context: AppContext) {
+    const { elementsHook, stateHook } = context;
+    const { state } = stateHook;
     const quizData = state.quizModule?.quizData;
     return (
-        <h2 ref={elements.questionHeading} className="hidden">
+        <h2 ref={elementsHook.refs.questionHeading} className="hidden">
             {quizData?.questionText ?? <>&nbsp;</>}
         </h2>
     );

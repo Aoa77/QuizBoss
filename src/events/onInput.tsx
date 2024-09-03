@@ -1,19 +1,20 @@
-import { AppProps } from "../props";
 import { ButtonState, GameState } from "../enums";
-import { randomInt } from "../utilities/random";
+import { AppContext } from "../models";
+import { randomInt } from "../utilities";
 
 ///
-export async function onInput(props: AppProps) {
-    const { config, delay, guessButtons, state, setState } = props;
+export async function onInput(context: AppContext) {
+    const { config, elementsHook, stateHook } = context;
+    const { state, setState } = stateHook;
     if (!config.demoMode) {
         console.info("waiting for player input...");
         return;
     }
 
     console.info("waiting for DEMO input...");
-    await delay.demoWait();
+    await elementsHook.demoWait();
 
-    const activeButtons = guessButtons.filter(
+    const activeButtons = elementsHook.guessButtons.filter(
         (x) => x.ref.current!.className === ButtonState.NORMAL,
     );
     // const spotButton = guessButtons[answerSpot].ref.current!;

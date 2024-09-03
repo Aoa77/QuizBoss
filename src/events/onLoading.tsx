@@ -1,25 +1,26 @@
-import { AppProps, clearScoreMarks, hideElementRef } from "../props";
 import { GameState } from "../enums";
+import { AppContext } from "../models";
 
 ///
-export async function onLoading(props: AppProps) {
-    const { delay, elements, state, setState } = props;
+export async function onLoading(context: AppContext) {
+    const { elementsHook, stateHook } = context;
+    const { state, setState } = stateHook;
 
     if (state.quizModule === null) {
         return;
     }
 
-    clearScoreMarks(elements);
+    elementsHook.clearScoreMarks();
 
     const quizItems = state.quizModule.quizData.items;
     const currentItem = quizItems[state.currentItemIndex];
 
-    hideElementRef(elements.questionHeading);
-    hideElementRef(elements.imageSection);
+    elementsHook.hideQuestionHeading();
+    elementsHook.hideImageSection();
 
-    await delay.showSpinner();
+    await elementsHook.showSpinner();
     while (!currentItem || !currentItem.isLoaded) {
-        await delay.spinnerPoll();
+        await elementsHook.spinnerPoll();
     }
 
     setState({ ...state, gameState: GameState.NEXT });

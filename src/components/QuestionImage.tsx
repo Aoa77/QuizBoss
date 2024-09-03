@@ -1,11 +1,12 @@
-import { AppProps } from "../props";
+import { AppContext } from "../models";
 
-export default function QuestionImage(props: AppProps) {
-    const { elements, state } = props;
+export default function QuestionImage(context: AppContext) {
+    const { elementsHook, stateHook } = context;
+    const { state } = stateHook;
     const { currentItemIndex, quizModule } = state;
     const quizData = quizModule?.quizData;
     return (
-        <section ref={elements.imageSection} className="image hidden">
+        <section ref={elementsHook.refs.imageSection} className="image hidden">
             {quizData?.items[currentItemIndex].imageJsx}
         </section>
     );

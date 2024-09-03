@@ -1,11 +1,13 @@
-import { AppProps, QuizItem, showElementRef } from "../props";
 import { GameState, ButtonState } from "../enums";
+import { AppContext, QuizItem } from "../models";
 import { randomInt } from "../utilities/random";
 
 var randomizedGuessPoolIndex: number = -1;
 ///
-export async function onNext(props: AppProps) {
-    const { config, delay, elements, guessButtons, state, setState } = props;
+export async function onNext(context: AppContext) {
+    const { config, elementsHook, stateHook } = context;
+    const { state, setState } = stateHook;
+    const { guessButtons } = elementsHook;
 
     if (state.quizModule === null) {
         return;
@@ -18,14 +20,14 @@ export async function onNext(props: AppProps) {
     const randomizedGuessPool = quizData.randomizedGuessPool;
     let currentGuessPool: string[] = [];
 
-    delay.hideSpinner();
-    showElementRef(elements.imageSection);
+    elementsHook.hideSpinner();
+    elementsHook.showImageSection();
 
-    showElementRef(elements.buttonsSection);
-    showElementRef(elements.scoreSection);
-    showElementRef(elements.progressSection);
+    elementsHook.showButtonsSection();
+    elementsHook.showScoreSection();
+    elementsHook.showProgressSection();
+    elementsHook.showQuestionHeading();
 
-    showElementRef(elements.questionHeading);
     const answerSpot = randomInt(0, guessButtonCount);
     console.info("answerSpot: ", answerSpot);
 
@@ -40,7 +42,7 @@ export async function onNext(props: AppProps) {
         await assignQuestionToChoiceSpot(choiceSpot, itemAtChoiceSpot);
     }
 
-    setState({...state, gameState: GameState.INPUT});
+    setState({ ...state, gameState: GameState.INPUT });
     return;
 
     async function assignQuestionToChoiceSpot(

@@ -1,18 +1,18 @@
-import { AppProps, QuizItem, QuizModule } from "../props";
 import { GameState } from "../enums";
-import { shuffle } from "../utilities/random";
-import { showElementRef } from "../props/Elements";
+import { AppContext, QuizModule, QuizItem } from "../models";
+import { shuffle } from "../utilities";
 
 ///
 var isInitializing: boolean = false;
 
 ///
-export async function onInit(props: AppProps) {
-    const { config, delay, elements, state, setState } = props;
+export async function onInit(context: AppContext) {
+    const { config, elementsHook, stateHook } = context;
+    const { state, setState } = stateHook;
     const { quizModuleName } = config;
 
-    showElementRef(elements.titleHeading);
-    showElementRef(elements.loadingSection);
+    elementsHook.showTitleHeading();
+    elementsHook.showLoadingSection();
 
     console.info({ isInitializing });
     if (isInitializing) {
@@ -105,7 +105,7 @@ export async function onInit(props: AppProps) {
         console.info("Loading quiz images...");
         for (const item of quizItems) {
             item.image.src = item.imageSrc;
-            await delay.loadThrottle();
+            await elementsHook.loadThrottle();
         }
     }
 }
