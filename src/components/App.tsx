@@ -1,16 +1,14 @@
 import "../styles";
-import { AppProps, Config, Elements } from "../props";
+import { AppProps, AppState, Config, Delay, Elements } from "../props";
 import { GameState } from "../enums";
 import { useButtonBuilder, useEventRouter, useLocalBestScore } from "../hooks";
 import { useRef, useState } from "react";
-import Delay from "../props/Delay";
 import GuessButtons from "./GuessButtons";
-import TitleHeading from "./TitleHeading";
 import LoadingSpinner from "./LoadingSpinner";
+import QuestionHeading from "./QuestionHeading";
 import QuestionImage from "./QuestionImage";
 import ScoreDisplay from "./ScoreDisplay";
-import QuestionHeading from "./QuestionHeading";
-import { AppState } from "../props/AppProps";
+import TitleHeading from "./TitleHeading";
 
 export default function App(config: Config) {
     const [state, setState] = useState<AppState>({
@@ -24,24 +22,15 @@ export default function App(config: Config) {
     const guessButtons = useButtonBuilder(config, state, setState);
     useLocalBestScore(state, setState);
 
-    const refButtons = useRef<HTMLDivElement | null>(null);
-    const refImage = useRef<HTMLDivElement | null>(null);
-    const refLoading = useRef<HTMLDivElement | null>(null);
-    const refProgress = useRef<HTMLDivElement | null>(null);
-    const refQuestion = useRef<HTMLHeadingElement | null>(null);
-    const refScore = useRef<HTMLDivElement | null>(null);
-    const refScoreMark = useRef<HTMLSpanElement | null>(null);
-    const refTitle = useRef<HTMLHeadingElement | null>(null);
-
     const elements: Elements = {
-        buttonsSection: refButtons,
-        imageSection: refImage,
-        loadingSection: refLoading,
-        progressSection: refProgress,
-        questionHeading: refQuestion,
-        scoreSection: refScore,
-        scoreMark: refScoreMark,
-        titleHeading: refTitle,
+        buttonsSection: useRef<HTMLDivElement | null>(null),
+        imageSection: useRef<HTMLDivElement | null>(null),
+        loadingSection: useRef<HTMLDivElement | null>(null),
+        progressSection: useRef<HTMLDivElement | null>(null),
+        questionHeading: useRef<HTMLHeadingElement | null>(null),
+        scoreSection: useRef<HTMLDivElement | null>(null),
+        scoreMark: useRef<HTMLSpanElement | null>(null),
+        titleHeading: useRef<HTMLHeadingElement | null>(null),
     };
 
     const appProps: AppProps = {
@@ -65,7 +54,7 @@ export default function App(config: Config) {
             <GuessButtons {...appProps} />
             <ScoreDisplay {...appProps} />
 
-            <section ref={refProgress} className="progress hidden">
+            <section ref={elements.progressSection} className="progress hidden">
                 <span className="current">{state.currentItemIndex + 1}</span>
                 <span> / </span>
                 <span className="total">{quizData?.items.length}</span>

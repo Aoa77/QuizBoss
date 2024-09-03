@@ -31,14 +31,14 @@ export function showElementRef(
     showElement(elementRef.current);
 }
 
-export function hideElement(element: HTMLElement | null | undefined) {
+function hideElement(element: HTMLElement | null | undefined) {
     if (!element) {
         return;
     }
     element.classList.add("hidden");
 }
 
-export function showElement(element: HTMLElement | null | undefined) {
+function showElement(element: HTMLElement | null | undefined) {
     if (!element) {
         return;
     }

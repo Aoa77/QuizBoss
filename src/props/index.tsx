@@ -2,21 +2,20 @@ import {
     ButtonElement,
     Elements,
     clearScoreMarks,
-    hideElement,
     hideElementRef,
-    showElement,
     showElementRef,
 } from "./Elements";
+
+import { AppProps, AppState} from "./AppProps";
 import { Config, ConfigDefaults } from "./Config";
 import { QuizModule, QuizData, QuizItem } from "./QuizModule";
-import { AppProps, AppState} from "./AppProps";
+import Delay from "./Delay";
 
 export {
+    Delay,
     ConfigDefaults,
     clearScoreMarks,
-    hideElement,
     hideElementRef,
-    showElement,
     showElementRef,
 };
 
