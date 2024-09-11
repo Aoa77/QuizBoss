@@ -1,4 +1,4 @@
-import { StateContext } from "../hooks";
+import { StateContext } from "../context";
 import { ButtonState, GameState } from "../enums";
 import { Config } from "../models";
 import ButtonElement from "./ButtonElement";

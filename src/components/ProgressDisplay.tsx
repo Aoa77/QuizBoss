@@ -1,4 +1,4 @@
-import { AppContext } from "../hooks";
+import { AppContext } from "../context";
 
 export default function ProgressDisplay(context: AppContext) {
     const { elementContext, stateContext } = context;

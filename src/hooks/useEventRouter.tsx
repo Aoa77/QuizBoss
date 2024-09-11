@@ -1,7 +1,7 @@
+import { AppContext } from "../context";
 import { GameState } from "../enums";
 import { onInit, onLoading, onNext, onInput, onResult, onGameOver } from "../events";
 import { useEffect } from "react";
-import AppContext from "./AppContext";
 
 type EventHandlers = {
     [key in GameState]: (context: AppContext) => void;

@@ -1,4 +1,4 @@
-import { AppContext } from "../hooks";
+import { AppContext } from "../context";
 
 ///
 export async function onGameOver(context: AppContext) {

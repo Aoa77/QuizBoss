@@ -1,4 +1,4 @@
-import { AppContext } from "../hooks";
+import { AppContext } from "../context";
 import { GameState } from "../enums";
 
 ///

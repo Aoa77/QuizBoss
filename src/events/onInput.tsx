@@ -1,4 +1,4 @@
-import { AppContext } from "../hooks";
+import { AppContext } from "../context";
 import { ButtonState, GameState } from "../enums";
 import { randomInt } from "../utilities";
 

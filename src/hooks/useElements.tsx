@@ -1,7 +1,6 @@
+import { StateContext, ElementContext } from "../context";
 import { Config } from "../models";
 import { useRef } from "react";
-import StateContext  from "./StateContext";
-import ElementContext  from "./ElementContext";
 
 export  default function useElements(
     config: Config,

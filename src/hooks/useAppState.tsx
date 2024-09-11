@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { AppState } from "../models";
 import { GameState } from "../enums";
-import StateContext from "./StateContext";
+import { StateContext } from "../context";
 
 var isLocalStorageInitialized = false;
 export default function useAppState() : StateContext {

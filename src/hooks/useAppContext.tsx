@@ -1,7 +1,5 @@
+import { AppContext, ElementContext, StateContext } from "../context";
 import { Config } from "../models";
-import AppContext from "./AppContext";
-import StateContext from "./StateContext";
-import ElementContext from "./ElementContext";
 
 export default function useAppContext(
     config: Config,
