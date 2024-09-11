@@ -6,9 +6,9 @@ import { randomInt } from "../utilities/random";
 var randomizedGuessPoolIndex: number = -1;
 ///
 export async function onNext(context: AppContext) {
-    const { config, elementsHook, stateHook } = context;
-    const { state, setState } = stateHook;
-    const { guessButtons } = elementsHook;
+    const { config, elementContext, stateContext } = context;
+    const { state, setState } = stateContext;
+    const { guessButtons } = elementContext;
 
     if (state.quizModule === null) {
         return;
@@ -21,13 +21,13 @@ export async function onNext(context: AppContext) {
     const randomizedGuessPool = quizData.randomizedGuessPool;
     let currentGuessPool: string[] = [];
 
-    elementsHook.hideSpinner();
-    elementsHook.showImageSection();
+    elementContext.hideSpinner();
+    elementContext.showImageSection();
 
-    elementsHook.showButtonsSection();
-    elementsHook.showScoreSection();
-    elementsHook.showProgressSection();
-    elementsHook.showQuestionHeading();
+    elementContext.showButtonsSection();
+    elementContext.showScoreSection();
+    elementContext.showProgressSection();
+    elementContext.showQuestionHeading();
 
     const answerSpot = randomInt(0, guessButtonCount);
     console.info("answerSpot: ", answerSpot);

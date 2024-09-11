@@ -1,17 +1,17 @@
 import { Config } from "../models";
 import AppContext from "./AppContext";
-import AppStateHook from "./AppStateHook";
-import ElementsHook from "./ElementsHook";
+import StateContext from "./StateContext";
+import ElementContext from "./ElementContext";
 
 export default function useAppContext(
     config: Config,
-    elementsHook: ElementsHook,
-    stateHook: AppStateHook,
+    elementContext: ElementContext,
+    stateContext: StateContext,
 ): AppContext {
 
     return {
         config,
-        elementsHook,
-        stateHook
+        elementContext: elementContext,
+        stateContext
     };
 }

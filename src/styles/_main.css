@@ -32,7 +32,6 @@ h2 {
 /********************************************************************/
 /* The loading spinner and the question image occupy the same space */
 /********************************************************************/
-
 section.loading,
 section.image {
     background-color: #00990000;
@@ -54,7 +53,6 @@ section.image > img {
 section.buttons {
     margin-top: var(--hu_5);
 }
-
 button {
     all: unset;
     appearance: none;
@@ -70,11 +68,6 @@ button {
     margin-top: var(--hu_6);
     padding: 2rem;
 }
-button.normal {
-    background-color: #444477;
-    border-color: #444499;
-    color: #ffffff;
-}
 button.correct {
     background-color: #00ff0022;
     border-color: #009900;
@@ -85,6 +78,16 @@ button.disabled {
     background-color: #44447744;
     border-color: #44447722;
     color: #ffffff66;
+}
+button.normal {
+    background-color: #444477;
+    border-color: #444499;
+    color: #ffffff;
+}
+button.reveal {
+    background-color: #0000ff22;
+    border-color: #000099;
+    color: #0000ff;
 }
 button.wrong {
     background-color: #ff000044;
@@ -108,17 +111,14 @@ section.score {
     margin-top: var(--hu_8);
     margin-bottom: var(--hu_5);
 }
-
 section.score div.row {
     display: contents;
     color: #ffff00;
     font-size: 10rem;
 }
-
 section.score div.row > div {
     padding-top: 2rem;
 }
-
 section.score span {
     position: fixed;
 }
@@ -127,15 +127,13 @@ section.score mark {
     left: 3rem;
     top: -1rem;
     background-color: transparent;
-    color: #00FF00;
+    color: #00ff00;
     font-weight: bold;
     font-size: 11rem;
 }
-
 section.score mark.fadeOut {
     animation: fadeOut 2600ms;
 }
-
 @keyframes fadeOut {
     0% {
         opacity: 1;
@@ -160,8 +158,3 @@ section.progress {
 .hidden {
     visibility: hidden;
 }
-/* button.hidden,
-section.image.hidden,
-section.loading.hidden {
-    display: none;
-} */

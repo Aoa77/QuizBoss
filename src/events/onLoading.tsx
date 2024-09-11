@@ -3,24 +3,24 @@ import { GameState } from "../enums";
 
 ///
 export async function onLoading(context: AppContext) {
-    const { elementsHook, stateHook } = context;
-    const { state, setState } = stateHook;
+    const { elementContext, stateContext } = context;
+    const { state, setState } = stateContext;
 
     if (state.quizModule === null) {
         return;
     }
 
-    elementsHook.clearScoreMarks();
+    elementContext.clearScoreMarks();
 
     const quizItems = state.quizModule.quizData.items;
     const currentItem = quizItems[state.currentItemIndex];
 
-    elementsHook.hideQuestionHeading();
-    elementsHook.hideImageSection();
+    elementContext.hideQuestionHeading();
+    elementContext.hideImageSection();
 
-    await elementsHook.showSpinner();
+    await elementContext.showSpinner();
     while (!currentItem || !currentItem.isLoaded) {
-        await elementsHook.spinnerPoll();
+        await elementContext.spinnerPoll();
     }
 
     setState({ ...state, gameState: GameState.NEXT });

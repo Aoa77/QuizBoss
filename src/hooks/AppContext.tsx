@@ -1,9 +1,9 @@
 import { Config } from "../models";
-import AppStateHook from "./AppStateHook";
-import ElementsHook from "./ElementsHook";
+import StateContext from "./StateContext";
+import ElementContext from "./ElementContext";
 
 export default interface AppContext {
     config: Config;
-    elementsHook: ElementsHook;
-    stateHook: AppStateHook;
+    elementContext: ElementContext;
+    stateContext: StateContext;
 }

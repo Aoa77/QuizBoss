@@ -19,9 +19,9 @@ import {
 } from "../hooks";
 
 export default function App(config: Config) {
-    const stateHook = useAppState();
-    const elementsHook = useElements(config, stateHook);
-    const context = useAppContext(config, elementsHook, stateHook);
+    const stateContext = useAppState();
+    const elementContext = useElements(config, stateContext);
+    const context = useAppContext(config, elementContext, stateContext);
 
     useEventRouter(context);
 

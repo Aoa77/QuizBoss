@@ -4,5 +4,6 @@ export enum ButtonState {
     DISABLED = "disabled",
     HIDDEN = "hidden",
     NORMAL = "normal",
-    WRONG = "wrong"
+    REVEAL = "reveal",
+    WRONG = "wrong",
 }

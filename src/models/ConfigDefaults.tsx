@@ -1,6 +1,6 @@
 
 export const ConfigDefaults = {
-    demoMode: false,
+    demoMode: true,
     guessButtonCount: 4,
     maxQuestions: 0, // 0 = all
 };

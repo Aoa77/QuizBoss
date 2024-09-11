@@ -18,13 +18,13 @@ const eventHandlers: EventHandlers = {
 
 export default function useEventRouter(context: AppContext) {
     useEffect(() => {
-        console.info("useEventRouter", context.stateHook.state.gameState, context);
+        console.info("useEventRouter", context.stateContext.state.gameState, context);
 
-        const eventHandler = eventHandlers[context.stateHook.state.gameState];
+        const eventHandler = eventHandlers[context.stateContext.state.gameState];
         if (eventHandler) {
             eventHandler(context);
         } else {
-            throw new Error(`Invalid game state: ${context.stateHook.state.gameState}`);
+            throw new Error(`Invalid game state: ${context.stateContext.state.gameState}`);
         }
     }, [context]);
 }

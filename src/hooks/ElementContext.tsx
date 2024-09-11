@@ -1,19 +1,19 @@
 import { Config } from "../models";
 import { delay, randomInt } from "../utilities";
 import { ElementRefs, ButtonElement, ButtonBuilder } from "../elements";
-import AppStateHook from "./AppStateHook";
+import StateContext from "./StateContext";
 
-export default class ElementsHook {
+export default class ElementContext {
     public refs: ElementRefs;
     public guessButtons: ButtonElement[];
 
-    constructor(config: Config, stateHook: AppStateHook, refs: ElementRefs) {
+    constructor(config: Config, stateContext: StateContext, refs: ElementRefs) {
         this.refs = refs;
-        this.guessButtons = ButtonBuilder(config, stateHook);
+        this.guessButtons = ButtonBuilder(config, stateContext);
     }
 
     public demoWait() {
-        return delay(randomInt(300, 2700));
+        return delay(randomInt(300, 900));
     }
 
     public loadThrottle() {
@@ -25,7 +25,7 @@ export default class ElementsHook {
     }
 
     public resultPause() {
-        return delay(1100);
+        return delay(500);
     }
 
     public async scoreUpdate(award: number, correctButton: HTMLButtonElement) {

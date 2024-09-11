@@ -5,33 +5,40 @@ var wrongGuesses: number[] = [];
 
 ///
 export async function onResult(context: AppContext) {
-    const { config, elementsHook, stateHook } = context;
-    const { state, setState } = stateHook;
+    const { config, elementContext, stateContext } = context;
+    const { state, setState } = stateContext;
 
     const { guessButtonCount } = config;
     if (state.quizModule === null) {
         return;
     }
 
-    const { guessButtons } = elementsHook;
+    const { guessButtons } = elementContext;
     const quizItems = state.quizModule.quizData.items;
     const currentItem = quizItems[state.currentItemIndex];
     const correctAnswer = currentItem.key;
     const isCorrectGuess = correctAnswer === state.guessValue;
 
-    const correctButton = lockButtons();
-    if (isCorrectGuess) {
+    const correctButton = await lockButtons();
+    if (isCorrectGuess || wrongGuessesExauhsted()) {
         await handleCorrectGuess();
         setState({ ...state });
         return;
     }
 
-    await elementsHook.resultPause();
+    await elementContext.resultPause();
     unlockButtons();
     setState({ ...state, gameState: GameState.INPUT });
     return;
 
-    function lockButtons(): HTMLButtonElement | null {
+    function resetWrongGuesses(): void {
+        wrongGuesses = [];
+    }
+    function wrongGuessesExauhsted(): boolean {
+        return wrongGuesses.length === guessButtonCount - 1;
+    }
+
+    async function lockButtons(): Promise<HTMLButtonElement | null> {
         let correctButton: HTMLButtonElement | null = null;
         for (let guess = 0; guess < guessButtonCount; guess++) {
             const guessButton = guessButtons[guess].ref.current!;
@@ -46,21 +53,38 @@ export async function onResult(context: AppContext) {
                 continue;
             }
             if (isCorrectGuess) {
-                guessButton.className = ButtonState.CORRECT;
-                currentItem.answeredCorrectly = true;
                 correctButton = guessButton;
+                correctButton.className = ButtonState.CORRECT;
+                currentItem.answeredCorrectly = true;
                 continue;
             }
             wrongGuesses.push(guess);
             guessButton.className = ButtonState.WRONG;
+            if (wrongGuessesExauhsted()) {
+                await revealCorrectAnswer();
+                break;
+            }
         }
         return correctButton;
+
+        async function revealCorrectAnswer() {
+            for (let i = 0; i < guessButtonCount; i++) {
+                if (wrongGuesses.includes(i)) {
+                    continue;
+                }
+                correctButton = guessButtons[i].ref.current!;
+                await elementContext.resultPause();
+                correctButton.className = ButtonState.REVEAL;
+                currentItem.answeredCorrectly = true;
+                break;
+            }
+        }
     }
 
     async function handleCorrectGuess() {
         const award = guessButtonCount - wrongGuesses.length - 1;
 
-        await elementsHook.scoreUpdate(award, correctButton!);
+        await elementContext.scoreUpdate(award, correctButton!);
         state.score += award;
 
         if (state.score > state.best) {
@@ -68,30 +92,30 @@ export async function onResult(context: AppContext) {
             localStorage.setItem("bestScore", state.best.toString());
         }
 
-        await elementsHook.resultPause();
+        await elementContext.resultPause();
         for (let guess = 0; guess < guessButtonCount; guess++) {
             const guessButton = guessButtons[guess].ref.current!;
             guessButton.className = ButtonState.HIDDEN;
         }
 
-        elementsHook.hideImageSection();
+        elementContext.hideImageSection();
 
         if (1 + state.currentItemIndex === quizItems.length) {
-            const prompt = elementsHook.refs.questionHeading.current!;
+            const prompt = elementContext.refs.questionHeading.current!;
             prompt.innerHTML = "[ play again ]";
             prompt.style.cursor = "pointer";
             prompt.onclick = () => {
-                elementsHook.hideQuestionHeading();
-                elementsHook.showSpinner();
+                elementContext.hideQuestionHeading();
+                elementContext.showSpinner();
                 window.location.reload();
             };
             state.gameState = GameState.GAMEOVER;
             return;
         }
 
-        elementsHook.hideQuestionHeading();
+        elementContext.hideQuestionHeading();
         ++state.currentItemIndex;
-        wrongGuesses = [];
+        resetWrongGuesses();
         state.gameState = GameState.LOADING;
     }
 

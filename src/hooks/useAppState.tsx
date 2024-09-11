@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { AppState } from "../models";
 import { GameState } from "../enums";
-import AppStateHook from "./AppStateHook";
+import StateContext from "./StateContext";
 
 var isLocalStorageInitialized = false;
-export default function useAppState() : AppStateHook {
+export default function useAppState() : StateContext {
 
 
     const [state, setState] = useState<AppState>({
@@ -16,7 +16,7 @@ export default function useAppState() : AppStateHook {
         best: 0,
     });
 
-    const hook :AppStateHook= { state, setState };
+    const hook :StateContext= { state, setState };
     if (isLocalStorageInitialized) {
         return hook;
     }

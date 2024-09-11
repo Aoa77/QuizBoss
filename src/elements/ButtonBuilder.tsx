@@ -1,4 +1,4 @@
-import { AppStateHook } from "../hooks";
+import { StateContext } from "../hooks";
 import { ButtonState, GameState } from "../enums";
 import { Config } from "../models";
 import ButtonElement from "./ButtonElement";
@@ -6,11 +6,11 @@ import ButtonElementRef from "./ButtonElementRef";
 
 export default function ButtonBuilder(
     config: Config,
-    stateHook: AppStateHook,
+    stateContext: StateContext,
 ): ButtonElement[] {
     ///
     const { guessButtonCount } = config;
-    const { state, setState } = stateHook;
+    const { state, setState } = stateContext;
     const { gameState } = state;
 
     const onPointerDown: (ref: React.RefObject<HTMLButtonElement>) => void = (

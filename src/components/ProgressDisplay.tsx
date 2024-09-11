@@ -1,12 +1,12 @@
 import { AppContext } from "../hooks";
 
 export default function ProgressDisplay(context: AppContext) {
-    const { elementsHook, stateHook } = context;
-    const { currentItemIndex, quizModule } = stateHook.state;
+    const { elementContext, stateContext } = context;
+    const { currentItemIndex, quizModule } = stateContext.state;
     const quizData = quizModule?.quizData;
     return (
         <section
-            ref={elementsHook.refs.progressSection}
+            ref={elementContext.refs.progressSection}
             className="progress hidden"
         >
             <span className="current">{currentItemIndex + 1}</span>

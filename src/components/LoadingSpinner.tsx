@@ -1,10 +1,10 @@
 import { AppContext } from "../hooks";
 
 export default function LoadingSpinner(context: AppContext) {
-    const { elementsHook } = context;
+    const { elementContext } = context;
     return (
         <section
-            ref={elementsHook.refs.loadingSection}
+            ref={elementContext.refs.loadingSection}
             className="loading hidden"
         >
             <div className="spinner"></div>

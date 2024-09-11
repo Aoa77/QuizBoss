@@ -1,13 +1,13 @@
 import { Config } from "../models";
 import { useRef } from "react";
-import AppStateHook  from "./AppStateHook";
-import ElementsHook  from "./ElementsHook";
+import StateContext  from "./StateContext";
+import ElementContext  from "./ElementContext";
 
 export  default function useElements(
     config: Config,
-    stateHook: AppStateHook,
-): ElementsHook {
-    return new ElementsHook(config, stateHook, {
+    stateContext: StateContext,
+): ElementContext {
+    return new ElementContext(config, stateContext, {
         buttonsSection: useRef<HTMLDivElement | null>(null),
         imageSection: useRef<HTMLDivElement | null>(null),
         loadingSection: useRef<HTMLDivElement | null>(null),
