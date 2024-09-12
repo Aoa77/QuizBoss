@@ -1,10 +1,12 @@
-import minimalist from "minimist";
 import { readdirSync } from "fs";
+import minimalist from "minimist";
+
 const args = minimalist(process.argv.slice(2));
 const src = args["src"];
 if (src) {
     findQuizModules(src);
 }
+
 export default function findQuizModules(src) {
     console.info(`\nSearching for quiz modules in ${src}`);
     const mods = [];

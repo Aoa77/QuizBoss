@@ -1,6 +1,7 @@
-import findQuizModules from "./findQuizModules.js";
 import { mkdirSync, cpSync } from "fs";
-function updateQuizModules(src) {
+import findQuizModules from "./findQuizModules.js";
+
+export default function updateQuizModules(src) {
     const mods = findQuizModules(src);
     console.info(`\nUpdating quiz modules in ${src}`);
     while (mods.length > 0) {
@@ -12,5 +13,3 @@ function updateQuizModules(src) {
         cpSync(modsrc, target, { recursive: true });
     }
 }
-updateQuizModules("local_modules");
-updateQuizModules("node_modules");

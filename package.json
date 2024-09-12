@@ -18,18 +18,9 @@
         "web-vitals": "^2.1.4"
     },
     "scripts": {
-
-        "hello": "node scripts/_hello.js",
-        "hellotest": "npm run hello -- --name='TEST 123!'",
-        
-        "find": "node scripts/findQuizModules.js",
-        "findlocal": "npm run find -- --src=local_modules",
-        "findnode": "npm run find -- --src=node_modules",
-
-        "build": "npm run clean && npm run update && react-scripts build",
-        "clean": "node scripts/cleanQuizModules.js",
-        "update": "node scripts/updateQuizModules.js",
-        "start": "npm run clean && npm run update && react-scripts start"
+        "pre_build": "node scripts/_pre_build.js",
+        "build": "npm run pre_build && react-scripts build",
+        "start": "npm run pre_build && react-scripts start"
     },
     "eslintConfig": {
         "extends": [
