@@ -1,7 +1,7 @@
-import AppState from "./AppState";
 import Config from "./Config";
 import { ConfigDefaults } from "./ConfigDefaults";
 import { QuizModule, QuizData, QuizItem } from "./QuizModule";
+import State from "./State";
 
 export { ConfigDefaults };
-export type { AppState, Config, QuizModule, QuizData, QuizItem };
+export type { Config, QuizModule, QuizData, QuizItem, State };

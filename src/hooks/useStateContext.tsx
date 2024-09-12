@@ -1,13 +1,11 @@
-import { useState } from "react";
-import { AppState } from "../models";
 import { GameState } from "../enums";
+import { State } from "../models";
 import { StateContext } from "../context";
+import { useState } from "react";
 
 var isLocalStorageInitialized = false;
-export default function useAppState() : StateContext {
-
-
-    const [state, setState] = useState<AppState>({
+export default function useStateContext(): StateContext {
+    const [state, setState] = useState<State>({
         currentItemIndex: 0,
         gameState: GameState.INIT,
         guessValue: "",
@@ -16,16 +14,15 @@ export default function useAppState() : StateContext {
         best: 0,
     });
 
-    const hook :StateContext= { state, setState };
+    const context: StateContext = { state, setState };
     if (isLocalStorageInitialized) {
-        return hook;
+        return context;
     }
     isLocalStorageInitialized = true;
     let local: string = localStorage.getItem("bestScore") ?? "";
     local = local.trim();
     if (local.length > 0) {
-        hook.setState({ ...hook.state, best: parseInt(local) });
+        context.setState({ ...context.state, best: parseInt(local) });
     }
-    return hook;
+    return context;
 }
-

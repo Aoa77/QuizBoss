@@ -2,7 +2,7 @@ import { StateContext, ElementContext, TimeContext } from "../context";
 import { Config } from "../models";
 import { useRef } from "react";
 
-export default function useElements(
+export default function useElementContext(
     config: Config,
     stateContext: StateContext,
     timeContext: TimeContext,

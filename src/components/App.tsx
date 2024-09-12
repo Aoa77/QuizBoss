@@ -1,29 +1,34 @@
 import "../styles";
-import { TimeContext } from "../context";
 import { Config } from "../models";
 
 import {
     GuessButtons,
     LoadingSpinner,
+    ProgressDisplay,
     QuestionHeading,
     QuestionImage,
     ScoreDisplay,
     TitleHeading,
-    ProgressDisplay,
 } from "./AppChildren";
 
 import {
-    useAppState,
-    useElements,
     useAppContext,
+    useElementContext,
     useEventRouter,
+    useStateContext,
+    useTimeContext,
 } from "../hooks";
 
 export default function App(config: Config) {
-    const stateContext = useAppState();
-    const timeContext = new TimeContext();
-    const elementContext = useElements(config, stateContext, timeContext);
-    const context = useAppContext(config, elementContext, stateContext, timeContext);
+    const stateContext = useStateContext();
+    const timeContext = useTimeContext(config);
+    const elementContext = useElementContext(config, stateContext, timeContext);
+    const context = useAppContext(
+        config,
+        elementContext,
+        stateContext,
+        timeContext,
+    );
 
     useEventRouter(context);
 

@@ -1,8 +1,8 @@
-import { AppState } from "../models";
+import { State } from "../models";
 
 
 export default interface StateContext {
-    state: AppState;
-    setState: React.Dispatch<React.SetStateAction<AppState>>;
+    state: State;
+    setState: React.Dispatch<React.SetStateAction<State>>;
 }
 
