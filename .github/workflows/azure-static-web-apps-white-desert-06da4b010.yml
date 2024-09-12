@@ -32,6 +32,26 @@ jobs:
           api_location: "" # Api source code path - optional
           output_location: "build" # Built app content directory - optional
           ###### End of Repository/Build Configurations ######
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Get current version
+        id: get_version
+        run: echo "VERSION=$(cat version.txt)" >> $GITHUB_ENV
+
+      - name: Increment version
+        id: increment_version
+        run: |
+          NEW_VERSION=$(echo $VERSION | awk -F. '{$NF = $NF + 1;} 1' | sed 's/ /./g')
+          echo "NEW_VERSION=$NEW_VERSION" >> $GITHUB_ENV
+
+      - name: Create new tag
+        run: git tag -a "v${{ env.NEW_VERSION }}" -m "Version ${{ env.NEW_VERSION }}"
+
+      - name: Push new tag
+        run: git push origin "v${{ env.NEW_VERSION }}"
+
+      # Add your existing build and deploy steps here
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
