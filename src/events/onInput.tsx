@@ -4,7 +4,7 @@ import { randomInt } from "../utilities";
 
 ///
 export async function onInput(context: AppContext) {
-    const { config, elementContext, stateContext } = context;
+    const { config, elementContext, stateContext, timeContext } = context;
     const { state, setState } = stateContext;
     if (!config.demoMode) {
         console.info("waiting for player input...");
@@ -12,7 +12,7 @@ export async function onInput(context: AppContext) {
     }
 
     console.info("waiting for DEMO input...");
-    await elementContext.demoWait();
+    await timeContext.demoWait();
 
     const activeButtons = elementContext.guessButtons.filter(
         (x) => x.ref.current!.className === ButtonState.NORMAL,

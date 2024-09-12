@@ -5,7 +5,7 @@ var wrongGuesses: number[] = [];
 
 ///
 export async function onResult(context: AppContext) {
-    const { config, elementContext, stateContext } = context;
+    const { config, elementContext, stateContext, timeContext } = context;
     const { state, setState } = stateContext;
 
     const { guessButtonCount } = config;
@@ -26,7 +26,7 @@ export async function onResult(context: AppContext) {
         return;
     }
 
-    await elementContext.resultPause();
+    await timeContext.resultPause();
     unlockButtons();
     setState({ ...state, gameState: GameState.INPUT });
     return;
@@ -68,13 +68,15 @@ export async function onResult(context: AppContext) {
         return correctButton;
 
         async function revealCorrectAnswer() {
+            await timeContext.resultPause();
+            unlockButtons();
+            
             for (let i = 0; i < guessButtonCount; i++) {
                 if (wrongGuesses.includes(i)) {
                     continue;
                 }
                 correctButton = guessButtons[i].ref.current!;
-                await elementContext.resultPause();
-                correctButton.className = ButtonState.REVEAL;
+                await elementContext.blinkButton(correctButton);
                 currentItem.answeredCorrectly = true;
                 break;
             }
@@ -82,23 +84,21 @@ export async function onResult(context: AppContext) {
     }
 
     async function handleCorrectGuess() {
+        
+        // elementContext.refs.imageSection.current!.classList.add("fadeOut");
+        // elementContext.hideQuestionHeading();
+        // elementContext.showSpinner();
+
         const award = guessButtonCount - wrongGuesses.length - 1;
+        await applyScoreAward(award);
 
-        await elementContext.scoreUpdate(award, correctButton!);
-        state.score += award;
-
-        if (state.score > state.best) {
-            state.best = state.score;
-            localStorage.setItem("bestScore", state.best.toString());
-        }
-
-        await elementContext.resultPause();
         for (let guess = 0; guess < guessButtonCount; guess++) {
             const guessButton = guessButtons[guess].ref.current!;
             guessButton.className = ButtonState.HIDDEN;
         }
-
+        
         elementContext.hideImageSection();
+        elementContext.refs.imageSection.current!.classList.remove("fadeOut");
 
         if (1 + state.currentItemIndex === quizItems.length) {
             const prompt = elementContext.refs.questionHeading.current!;
@@ -117,6 +117,19 @@ export async function onResult(context: AppContext) {
         ++state.currentItemIndex;
         resetWrongGuesses();
         state.gameState = GameState.LOADING;
+    }
+
+    async function applyScoreAward(award: number) {
+        if (award === 0) {
+            return;
+        }
+        await elementContext.scoreUpdate(award, correctButton!);
+        state.score += award;
+        if (state.score > state.best) {
+            state.best = state.score;
+            localStorage.setItem("bestScore", state.best.toString());
+        }
+        await timeContext.resultPause();
     }
 
     function unlockButtons() {

@@ -1,51 +1,35 @@
+import { ButtonState } from "../enums";
 import { Config } from "../models";
-import { delay, randomInt } from "../utilities";
 import { ElementRefs, ButtonElement, ButtonBuilder } from "../elements";
 import StateContext from "./StateContext";
+import TimeContext from "./TimeContext";
 
 export default class ElementContext {
-    public refs: ElementRefs;
-    public guessButtons: ButtonElement[];
+    // public members
+    public readonly refs: ElementRefs;
+    public readonly guessButtons: ButtonElement[];
 
-    constructor(config: Config, stateContext: StateContext, refs: ElementRefs) {
+    // private members
+    private readonly timeContext: TimeContext;
+
+    constructor(
+        config: Config,
+        refs: ElementRefs,
+        stateContext: StateContext,
+        timeContext: TimeContext,
+    ) {
         this.refs = refs;
         this.guessButtons = ButtonBuilder(config, stateContext);
+        this.timeContext = timeContext;
     }
 
-    public demoWait() {
-        return delay(randomInt(300, 900));
-    }
-
-    public loadThrottle() {
-        return delay(25);
-    }
-
-    public spinnerPoll() {
-        return delay(50);
-    }
-
-    public resultPause() {
-        return delay(500);
-    }
-
-    public async scoreUpdate(award: number, correctButton: HTMLButtonElement) {
-        correctButton!.innerHTML += " +" + award.toString();
-        await delay(100);
-        this.refs.scoreMark.current!.innerHTML = "+" + award.toString();
-        this.refs.scoreMark.current!.className = "fadeOut";
-    }
-
-    public hideSpinner() {
-        this.hideLoadingSection();
-        const spinner = this.refs.loadingSection.current!.children[0];
-        spinner.className = "";
-    }
-
-    public async showSpinner() {
-        const spinner = this.refs.loadingSection.current!.children[0];
-        spinner.className = "spinner";
-        this.showLoadingSection();
-        return delay(800);
+    // public methods
+    public async blinkButton(button: HTMLButtonElement) {
+        for (let blink = 0; blink < this.timeContext.blinks(); blink++) {
+            button.className =
+                blink % 2 ? ButtonState.REVEAL : ButtonState.BLINK;
+            await this.timeContext.blink();
+        }
     }
 
     public clearScoreMarks() {
@@ -60,7 +44,7 @@ export default class ElementContext {
     public hideImageSection() {
         this.hideElement(this.refs.imageSection.current);
     }
-
+    
     public hideLoadingSection() {
         this.hideElement(this.refs.loadingSection.current);
     }
@@ -73,12 +57,25 @@ export default class ElementContext {
         this.hideElement(this.refs.scoreSection.current);
     }
 
+    public hideSpinner() {
+        this.hideLoadingSection();
+        const spinner = this.refs.loadingSection.current!.children[0];
+        spinner.className = "";
+    }
+
     public hideTitleHeading() {
         this.hideElement(this.refs.titleHeading.current);
     }
 
     public hideQuestionHeading() {
         this.hideElement(this.refs.questionHeading.current);
+    }
+
+    public async scoreUpdate(award: number, correctButton: HTMLButtonElement) {
+        correctButton!.innerHTML += " +" + award.toString();
+        this.refs.scoreMark.current!.innerHTML = "+" + award.toString();
+        this.refs.scoreMark.current!.className = "fadeOut";
+        await this.timeContext.scoreUpdate();
     }
 
     public showButtonsSection() {
@@ -101,6 +98,13 @@ export default class ElementContext {
         this.showElement(this.refs.scoreSection.current);
     }
 
+    public async showSpinner() {
+        const spinner = this.refs.loadingSection.current!.children[0];
+        spinner.className = "spinner";
+        this.showLoadingSection();
+        await this.timeContext.showSpinner();
+    }
+
     public showTitleHeading() {
         this.showElement(this.refs.titleHeading.current);
     }
@@ -109,6 +113,7 @@ export default class ElementContext {
         this.showElement(this.refs.questionHeading.current);
     }
 
+    // private methods
     private hideElement(element: HTMLElement | null | undefined) {
         if (!element) {
             return;

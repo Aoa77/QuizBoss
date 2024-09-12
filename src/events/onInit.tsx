@@ -8,7 +8,7 @@ var isInitializing: boolean = false;
 
 ///
 export async function onInit(context: AppContext) {
-    const { config, elementContext, stateContext } = context;
+    const { config, elementContext, stateContext, timeContext } = context;
     const { state, setState } = stateContext;
     const { quizModuleName } = config;
 
@@ -106,7 +106,7 @@ export async function onInit(context: AppContext) {
         console.info("Loading quiz images...");
         for (const item of quizItems) {
             item.image.src = item.imageSrc;
-            await elementContext.loadThrottle();
+            await timeContext.loadThrottle();
         }
     }
 }

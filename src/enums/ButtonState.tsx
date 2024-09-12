@@ -1,4 +1,5 @@
 export enum ButtonState {
+    BLINK = "blink",
     CORRECT = "correct",
     DIMMED = "dimmed",
     DISABLED = "disabled",

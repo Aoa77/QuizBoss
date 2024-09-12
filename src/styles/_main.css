@@ -68,6 +68,11 @@ button {
     margin-top: var(--hu_6);
     padding: 2rem;
 }
+button.blink {
+    background-color: #ffff0022;
+    border-color: #999900;
+    color: #ffff00;
+}
 button.correct {
     background-color: #00ff0022;
     border-color: #009900;
@@ -131,17 +136,6 @@ section.score mark {
     font-weight: bold;
     font-size: 11rem;
 }
-section.score mark.fadeOut {
-    animation: fadeOut 2600ms;
-}
-@keyframes fadeOut {
-    0% {
-        opacity: 1;
-    }
-    100% {
-        opacity: 0;
-    }
-}
 
 /****************************/
 /* progress                 */
@@ -153,8 +147,19 @@ section.progress {
 }
 
 /*****************************/
-/* rules for hiding elements */
+/* animation                 */
 /*****************************/
 .hidden {
     visibility: hidden;
+}
+.fadeOut {
+    animation: fadeOut 2600ms;
+}
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
 }

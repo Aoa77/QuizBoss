@@ -3,7 +3,7 @@ import { GameState } from "../enums";
 
 ///
 export async function onLoading(context: AppContext) {
-    const { elementContext, stateContext } = context;
+    const { elementContext, stateContext, timeContext } = context;
     const { state, setState } = stateContext;
 
     if (state.quizModule === null) {
@@ -20,7 +20,7 @@ export async function onLoading(context: AppContext) {
 
     await elementContext.showSpinner();
     while (!currentItem || !currentItem.isLoaded) {
-        await elementContext.spinnerPoll();
+        await timeContext.spinnerPoll();
     }
 
     setState({ ...state, gameState: GameState.NEXT });
