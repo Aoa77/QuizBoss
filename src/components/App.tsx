@@ -1,4 +1,5 @@
 import "../styles";
+import { TimeContext } from "../context";
 import { Config } from "../models";
 
 import {
@@ -19,9 +20,10 @@ import {
 } from "../hooks";
 
 export default function App(config: Config) {
-    const stateHook = useAppState();
-    const elementsHook = useElements(config, stateHook);
-    const context = useAppContext(config, elementsHook, stateHook);
+    const stateContext = useAppState();
+    const timeContext = new TimeContext();
+    const elementContext = useElements(config, stateContext, timeContext);
+    const context = useAppContext(config, elementContext, stateContext, timeContext);
 
     useEventRouter(context);
 

@@ -1,8 +1,8 @@
-import { AppContext } from "../hooks";
+import { AppContext } from "../context";
 
 ///
 export async function onGameOver(context: AppContext) {
     console.info("game over");
-    const { elementsHook } = context;
-    elementsHook.clearScoreMarks();
+    const { elementContext } = context;
+    elementContext.clearScoreMarks();
 }

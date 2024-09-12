@@ -1,20 +1,20 @@
-import { AppContext } from "../hooks";
+import { AppContext } from "../context";
 import { ButtonState, GameState } from "../enums";
 import { randomInt } from "../utilities";
 
 ///
 export async function onInput(context: AppContext) {
-    const { config, elementsHook, stateHook } = context;
-    const { state, setState } = stateHook;
+    const { config, elementContext, stateContext, timeContext } = context;
+    const { state, setState } = stateContext;
     if (!config.demoMode) {
         console.info("waiting for player input...");
         return;
     }
 
     console.info("waiting for DEMO input...");
-    await elementsHook.demoWait();
+    await timeContext.demoWait();
 
-    const activeButtons = elementsHook.guessButtons.filter(
+    const activeButtons = elementContext.guessButtons.filter(
         (x) => x.ref.current!.className === ButtonState.NORMAL,
     );
     // const spotButton = guessButtons[answerSpot].ref.current!;

@@ -1,4 +1,4 @@
-import { AppContext } from "../hooks";
+import { AppContext } from "../context";
 import { GameState } from "../enums";
 import { QuizModule, QuizItem } from "../models";
 import { shuffle } from "../utilities";
@@ -8,12 +8,12 @@ var isInitializing: boolean = false;
 
 ///
 export async function onInit(context: AppContext) {
-    const { config, elementsHook, stateHook } = context;
-    const { state, setState } = stateHook;
+    const { config, elementContext, stateContext, timeContext } = context;
+    const { state, setState } = stateContext;
     const { quizModuleName } = config;
 
-    elementsHook.showTitleHeading();
-    elementsHook.showLoadingSection();
+    elementContext.showTitleHeading();
+    elementContext.showLoadingSection();
 
     console.info({ isInitializing });
     if (isInitializing) {
@@ -106,7 +106,7 @@ export async function onInit(context: AppContext) {
         console.info("Loading quiz images...");
         for (const item of quizItems) {
             item.image.src = item.imageSrc;
-            await elementsHook.loadThrottle();
+            await timeContext.loadThrottle();
         }
     }
 }
