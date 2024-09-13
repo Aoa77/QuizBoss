@@ -13,3 +13,4 @@ export default function updateQuizModules(src) {
         cpSync(modsrc, target, { recursive: true });
     }
 }
+
