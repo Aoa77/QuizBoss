@@ -1,13 +1,21 @@
 import { cpSync, mkdirSync, rmSync } from "fs";
 import { readdirSync } from "fs";
+
+console.log("\n<update-quiz-modules>");
+updateQuizModules(true, "local_modules");
+updateQuizModules(false, "node_modules");
+console.log("\n</update-quiz-modules>");
+
 const PUBLIC = "public/quizzes";
 
-export default function updateQuizModules(src) {
-    console.info(`\nCleaning ${PUBLIC}..`);
-    try {
-        rmSync(PUBLIC, { recursive: true });
-    } catch (e) {
-        console.warn("\n*** WARNING ***\n", e);
+export default function updateQuizModules(clean, src) {
+    if (clean) {
+        console.info(`\nCleaning ${PUBLIC}..`);
+        try {
+            rmSync(PUBLIC, { recursive: true });
+        } catch (e) {
+            console.warn("\n*** WARNING ***\n", e);
+        }
     }
 
     const mods = findQuizModules(src);

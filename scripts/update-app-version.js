@@ -1,6 +1,10 @@
 import fs from "fs";
 import readline from "readline";
 
+console.log("\n<update-app-version>");
+updateAppVersion();
+console.log("\n</update-app-version>");
+
 const FILE_PATH = "src/components/AppVersion.tsx";
 
 ////

@@ -18,9 +18,10 @@
         "web-vitals": "^2.1.4"
     },
     "scripts": {
-        "pre_build": "node scripts/_pre_build.js",
-        "build": "npm run pre_build && react-scripts build",
-        "start": "npm run pre_build && react-scripts start"
+        "update-app-version": "node scripts/update-app-version.js",
+        "update-quiz-modules": "node scripts/update-quiz-modules.js",
+        "build": "npm run update-quiz-modules && react-scripts build",
+        "start": "npm run update-quiz-modules && react-scripts start"
     },
     "eslintConfig": {
         "extends": [
