@@ -1,7 +1,5 @@
 import { AppContext, DemoMode, GameState } from "../app";
-import { ButtonState } from "../elements";
 
-///
 export async function onInput(context: AppContext) {
     const { config, elements, states: stateController, time } = context;
     const { guessButtons } = elements;
@@ -15,9 +13,9 @@ export async function onInput(context: AppContext) {
     console.info("waiting for DEMO input...");
     await time.demoWait();
 
-    const activeButtons = guessButtons.filter(
-        (x) => x.ref.current!.className === ButtonState.NORMAL,
-    );
+    // const activeButtons = guessButtons.filter(
+    //     (x) => x.ref.current!.className === ButtonState.NORMAL,
+    // );
 
     let spotButton = guessButtons[state.answerSpot].ref.current!;
     // // const spotButton =

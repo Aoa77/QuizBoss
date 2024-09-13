@@ -1,20 +1,18 @@
-import { cpSync, mkdirSync, rmSync } from "fs";
-import { readdirSync } from "fs";
+import { cpSync, mkdirSync, readdirSync, rmSync } from "fs";
 
-console.log("\n<update-quiz-modules>");
+console.log("<update-quiz-modules>\n***");
 updateQuizModules(true, "local_modules");
 updateQuizModules(false, "node_modules");
-console.log("\n</update-quiz-modules>");
-
-const PUBLIC = "public/quizzes";
+console.log("***\n</update-quiz-modules>\n\n");
 
 export default function updateQuizModules(clean, src) {
+    const PUBLIC = "public/quizzes";
     if (clean) {
-        console.info(`\nCleaning ${PUBLIC}..`);
+        console.info(`Cleaning ${PUBLIC}..`);
         try {
             rmSync(PUBLIC, { recursive: true });
         } catch (e) {
-            console.warn("\n*** WARNING ***\n", e);
+            console.warn("*** WARNING ***", e);
         }
     }
 
@@ -30,7 +28,7 @@ export default function updateQuizModules(clean, src) {
 }
 
 function findQuizModules(src) {
-    console.info(`\nSearching for quiz modules in ${src}`);
+    console.info(`Searching for quiz modules in ${src}`);
     const mods = [];
     const dir = readdirSync(src).entries();
     while (true) {
@@ -42,9 +40,9 @@ function findQuizModules(src) {
         if (!value.startsWith("quizboss-")) {
             continue;
         }
-        console.info(`\nFound quiz module: ${value}`);
+        console.info(`Found quiz module: ${value}`);
         mods.push(value);
     }
-    console.info(`\nFound total quiz modules: ${mods.length}`);
+    console.info(`Found total quiz modules: ${mods.length}`);
     return mods;
 }
