@@ -21,14 +21,14 @@ import {
 } from "../hooks";
 
 export default function App(config: AppConfig) {
-    const stateController = useStateController();
-    const timeController = useTimeController(config);
-    const elementController = useElementController(config, stateController, timeController);
+    const states = useStateController();
+    const time = useTimeController(config);
+    const elements = useElementController(config, states, time);
     const context = useContextController(
         config,
-        elementController,
-        stateController,
-        timeController,
+        elements,
+        states,
+        time,
     );
 
     useEventRouter(context);

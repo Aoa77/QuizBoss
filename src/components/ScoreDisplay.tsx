@@ -1,8 +1,8 @@
 import { AppContext } from "../app";
 
 export default function ScoreDisplay(context: AppContext) {
-    const { elements, states: stateController } = context;
-    const { state } = stateController;
+    const { elements, states } = context;
+    const { state } = states;
     const { score, best, quizModule } = state;
     const quizData = quizModule?.quizData;
     return (

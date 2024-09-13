@@ -1,24 +1,24 @@
 import { AppContext, GameState } from "../app";
 
 export async function onLoading(context: AppContext) {
-    const { elements: elementController, states: stateController, time: timeController } = context;
-    const { state, setState } = stateController;
+    const { elements, states, time } = context;
+    const { state, setState } = states;
 
     if (state.quizModule === null) {
         return;
     }
 
-    elementController.clearScoreMarks();
+    elements.clearScoreMarks();
 
     const quizItems = state.quizModule.quizData.items;
     const currentItem = quizItems[state.currentItemIndex];
 
-    elementController.hideQuestionHeading();
-    elementController.hideImageSection();
+    elements.hideQuestionHeading();
+    elements.hideImageSection();
 
-    await elementController.showSpinner();
+    await elements.showSpinner();
     while (!currentItem || !currentItem.isLoaded) {
-        await timeController.spinnerPoll();
+        await time.spinnerPoll();
     }
 
     setState({ ...state, gameState: GameState.NEXT });

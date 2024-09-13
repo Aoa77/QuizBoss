@@ -1,12 +1,12 @@
 import { AppContext } from "../app";
 
 export default function ProgressDisplay(context: AppContext) {
-    const { elements: elementController, states: stateController } = context;
-    const { currentItemIndex, quizModule } = stateController.state;
+    const { elements, states } = context;
+    const { currentItemIndex, quizModule } = states.state;
     const quizData = quizModule?.quizData;
     return (
         <section
-            ref={elementController.refs.progressSection}
+            ref={elements.refs.progressSection}
             className="progress hidden"
         >
             <span className="current">{currentItemIndex + 1}</span>

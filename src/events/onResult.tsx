@@ -5,15 +5,15 @@ var wrongGuesses: number[] = [];
 
 ///
 export async function onResult(context: AppContext) {
-    const { config, elements: elementController, states: stateController, time: timeController } = context;
-    const { state, setState } = stateController;
+    const { config, elements, states, time } = context;
+    const { state, setState } = states;
 
     const { guessButtonCount } = config;
     if (state.quizModule === null) {
         return;
     }
 
-    const { guessButtons } = elementController;
+    const { guessButtons } = elements;
     const quizItems = state.quizModule.quizData.items;
     const currentItem = quizItems[state.currentItemIndex];
     const correctAnswer = currentItem.key;
@@ -26,7 +26,7 @@ export async function onResult(context: AppContext) {
         return;
     }
 
-    await timeController.resultPause();
+    await time.resultPause();
     unlockButtons();
     setState({ ...state, gameState: GameState.INPUT });
     return;
@@ -68,7 +68,7 @@ export async function onResult(context: AppContext) {
         return correctButton;
 
         async function revealCorrectAnswer() {
-            await timeController.resultPause();
+            await time.resultPause();
             unlockButtons();
 
             for (let i = 0; i < guessButtonCount; i++) {
@@ -76,7 +76,7 @@ export async function onResult(context: AppContext) {
                     continue;
                 }
                 correctButton = guessButtons[i].ref.current!;
-                await elementController.blinkButton(correctButton);
+                await elements.blinkButton(correctButton);
                 currentItem.answeredCorrectly = true;
                 break;
             }
@@ -84,9 +84,9 @@ export async function onResult(context: AppContext) {
     }
 
     async function handleCorrectGuess() {
-        // elementController.refs.imageSection.current!.classList.add("fadeOut");
-        // elementController.hideQuestionHeading();
-        // elementController.showSpinner();
+        // elements.refs.imageSection.current!.classList.add("fadeOut");
+        // elements.hideQuestionHeading();
+        // elements.showSpinner();
 
         const award = guessButtonCount - wrongGuesses.length - 1;
         await applyScoreAward(award);
@@ -96,23 +96,23 @@ export async function onResult(context: AppContext) {
             guessButton.className = ButtonState.HIDDEN;
         }
 
-        elementController.hideImageSection();
-        elementController.refs.imageSection.current!.classList.remove("fadeOut");
+        elements.hideImageSection();
+        elements.refs.imageSection.current!.classList.remove("fadeOut");
 
         if (1 + state.currentItemIndex === quizItems.length) {
-            const prompt = elementController.refs.questionHeading.current!;
+            const prompt = elements.refs.questionHeading.current!;
             prompt.innerHTML = "[ play again ]";
             prompt.style.cursor = "pointer";
             prompt.onclick = () => {
-                elementController.hideQuestionHeading();
-                elementController.showSpinner();
+                elements.hideQuestionHeading();
+                elements.showSpinner();
                 window.location.reload();
             };
             state.gameState = GameState.GAMEOVER;
             return;
         }
 
-        elementController.hideQuestionHeading();
+        elements.hideQuestionHeading();
         ++state.currentItemIndex;
         resetWrongGuesses();
         state.gameState = GameState.LOADING;
@@ -122,13 +122,13 @@ export async function onResult(context: AppContext) {
         if (award === 0) {
             return;
         }
-        await elementController.scoreUpdate(award, correctButton!);
+        await elements.scoreUpdate(award, correctButton!);
         state.score += award;
         if (state.score > state.best) {
             state.best = state.score;
             localStorage.setItem("bestScore", state.best.toString());
         }
-        await timeController.resultPause();
+        await time.resultPause();
     }
 
     function unlockButtons() {

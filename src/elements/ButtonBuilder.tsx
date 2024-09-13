@@ -6,11 +6,11 @@ import ButtonElementRef from "./ButtonElementRef";
 
 export default function ButtonBuilder(
     config: AppConfig,
-    stateController: StateController,
+    states: StateController,
 ): ButtonElement[] {
     ///
     const { guessButtonCount } = config;
-    const { state, setState } = stateController;
+    const { state, setState } = states;
     const { gameState } = state;
 
     const onPointerDown: (ref: React.RefObject<HTMLButtonElement>) => void = (

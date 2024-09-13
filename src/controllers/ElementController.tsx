@@ -14,12 +14,12 @@ export default class ElementController {
     constructor(
         config: AppConfig,
         refs: ElementRefs,
-        stateController: StateController,
-        timeController: TimeController,
+        states: StateController,
+        time: TimeController,
     ) {
         this.refs = refs;
-        this.guessButtons = ButtonBuilder(config, stateController);
-        this.time = timeController;
+        this.guessButtons = ButtonBuilder(config, states);
+        this.time = time;
     }
 
     // public methods

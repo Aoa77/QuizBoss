@@ -8,16 +8,16 @@ var isInitializing: boolean = false;
 export async function onInit(context: AppContext) {
     const {
         config,
-        elements: elementController,
-        states: stateController,
-        time: timeController,
+        elements,
+        states,
+        time,
     } = context;
-    const { state, setState } = stateController;
+    const { state, setState } = states;
     const { quizModuleName } = config;
 
-    elementController.showAppVersion();
-    elementController.showTitleHeading();
-    elementController.showLoadingSection();
+    elements.showAppVersion();
+    elements.showTitleHeading();
+    elements.showLoadingSection();
 
     console.info({ isInitializing });
     if (isInitializing) {
@@ -110,7 +110,7 @@ export async function onInit(context: AppContext) {
         console.info("Loading quiz images...");
         for (const item of quizItems) {
             item.image.src = item.imageSrc;
-            await timeController.loadThrottle();
+            await time.loadThrottle();
         }
     }
 }

@@ -1,10 +1,10 @@
 import { AppContext } from "../app";
 
 export default function LoadingSpinner(context: AppContext) {
-    const { elements: elementController } = context;
+    const { elements } = context;
     return (
         <section
-            ref={elementController.refs.loadingSection}
+            ref={elements.refs.loadingSection}
             className="loading hidden"
         >
             <div className="spinner"></div>

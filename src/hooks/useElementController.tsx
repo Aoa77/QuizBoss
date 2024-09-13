@@ -8,8 +8,8 @@ import {
 
 export default function useElementController(
     config: AppConfig,
-    stateController: StateController,
-    timeController: TimeController,
+    states: StateController,
+    time: TimeController,
 ): ElementController {
     return new ElementController(
         config,
@@ -24,7 +24,7 @@ export default function useElementController(
             scoreMark: useRef<HTMLSpanElement | null>(null),
             titleHeading: useRef<HTMLHeadingElement | null>(null),
         },
-        stateController,
-        timeController,
+        states,
+        time,
     );
 }

@@ -1,5 +1,5 @@
 import ConfigParams from "./ConfigParams";
-import { DemoMode } from "./DemoMode";
+import { DemoMode, demoModeFromString } from "./DemoMode";
 import { getUrlQueryParams } from "../utilities";
 
 export default class AppConfig {
@@ -23,11 +23,15 @@ export default class AppConfig {
         }
         this.quizModuleName = quizModuleName;
 
-        demoMode ??= qp.get("demoMode") as DemoMode;
-        this.demoMode = demoMode ?? DemoMode.OFF;
+        if (!demoMode) {
+            demoMode = demoModeFromString(qp.get("demoMode"));
+        }
+        this.demoMode = demoMode;
 
         this.guessButtonCount =
             guessButtonCount ?? +(qp.get("guessButtonCount") ?? "4");
         this.maxQuestions = maxQuestions ?? +(qp.get("maxQuestions") ?? "0");
+
+        console.info("AppConfig", this);
     }
 }

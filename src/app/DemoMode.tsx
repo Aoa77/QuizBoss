@@ -1,6 +1,22 @@
 export enum DemoMode {
     OFF = "OFF",
-    NORMAL = "NORMAL",
-    ALWAYS_RIGHT = "ALWAYS_RIGHT",
-    ALWAYS_WRONG = "ALWAYS_WRONG",
+    RANDOM = "RANDOM",
+    RIGHT = "RIGHT",
+    WRONG = "WRONG",
+}
+
+export function demoModeFromString(value: string | undefined | null): DemoMode {
+    if (!value) {
+        return DemoMode.OFF;
+    }
+    switch (value.toUpperCase()) {
+        case DemoMode.RANDOM:
+            return DemoMode.RANDOM;
+        case DemoMode.RIGHT:
+            return DemoMode.RIGHT;
+        case DemoMode.WRONG:
+            return DemoMode.WRONG;
+        default:
+            return DemoMode.OFF;
+    }
 }

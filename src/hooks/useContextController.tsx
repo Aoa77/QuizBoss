@@ -3,14 +3,14 @@ import { ElementController, StateController, TimeController } from "../controlle
 
 export default function useContextController(
     config: AppConfig,
-    elementController: ElementController,
-    stateController: StateController,
-    timeController: TimeController,
+    elements: ElementController,
+    states: StateController,
+    time: TimeController,
 ): AppContext {
     return {
         config,
-        elements: elementController,
-        states: stateController,
-        time: timeController,
+        elements,
+        states,
+        time,
     };
 }

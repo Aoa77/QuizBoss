@@ -1,5 +1,5 @@
 import AppConfig from "./AppConfig";
-import { DemoMode } from "./DemoMode";
+import { DemoMode, demoModeFromString } from "./DemoMode";
 import { GameState } from "./GameState";
 
 import AppContext from "./AppContext";
@@ -12,6 +12,7 @@ import State from "./State";
 export {
     AppConfig, /////////
     DemoMode,
+    demoModeFromString,
     GameState,
 };
 
