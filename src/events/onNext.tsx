@@ -1,14 +1,14 @@
-import { AppContext } from "../context";
+import { ContextController } from "../controllers";
 import { ButtonState, GameState } from "../enums";
-import { QuizItem } from "../models";
+import { QuizItem } from "../app";
 import { randomInt } from "../utilities/random";
 
 var randomizedGuessPoolIndex: number = -1;
 ///
-export async function onNext(context: AppContext) {
-    const { config, elementContext, stateContext } = context;
-    const { state, setState } = stateContext;
-    const { guessButtons } = elementContext;
+export async function onNext(context: ContextController) {
+    const { config, elements: elementController, stateController } = context;
+    const { state, setState } = stateController;
+    const { guessButtons } = elementController;
 
     if (state.quizModule === null) {
         return;
@@ -21,22 +21,22 @@ export async function onNext(context: AppContext) {
     const randomizedGuessPool = quizData.randomizedGuessPool;
     let currentGuessPool: string[] = [];
 
-    elementContext.hideSpinner();
-    elementContext.showImageSection();
+    elementController.hideSpinner();
+    elementController.showImageSection();
 
-    elementContext.showButtonsSection();
-    elementContext.showScoreSection();
-    elementContext.showProgressSection();
-    elementContext.showQuestionHeading();
+    elementController.showButtonsSection();
+    elementController.showScoreSection();
+    elementController.showProgressSection();
+    elementController.showQuestionHeading();
 
-    const answerSpot = randomInt(0, guessButtonCount);
-    console.info("answerSpot: ", answerSpot);
+    state.answerSpot = randomInt(0, guessButtonCount);
+    console.info("answerSpot: ", state.answerSpot);
 
     for (let choiceSpot = 0; choiceSpot < guessButtonCount; choiceSpot++) {
         let itemAtChoiceSpot = currentItem;
 
-        if (choiceSpot !== answerSpot) {
-            itemAtChoiceSpot = selectRandomQuestionChoice();
+        if (choiceSpot !== state.answerSpot) {
+        itemAtChoiceSpot = selectRandomQuestionChoice();
         }
 
         currentGuessPool.push(itemAtChoiceSpot.key);

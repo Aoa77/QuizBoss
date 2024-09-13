@@ -1,6 +1,6 @@
 import { delay, randomInt } from "../utilities";
 
-export default class TimeContext {
+export default class TimeController {
     public blink() {
         return delay(150);
     }

@@ -1,8 +1,9 @@
-import { GameState } from "../enums";
+import { GameState } from "../enums/GameState";
 import { QuizModule } from "./QuizModule";
 
 
 export default interface State {
+    answerSpot: number;
     currentItemIndex: number;
     gameState: GameState;
     guessValue: string;

@@ -1,40 +1,44 @@
 import { ButtonState } from "../enums";
-import { Config } from "../models";
+import { Config } from "../app";
 import { ElementRefs, ButtonElement, ButtonBuilder } from "../elements";
-import StateContext from "./StateContext";
-import TimeContext from "./TimeContext";
+import StateController from "./StateController";
+import TimeController from "./TimeController";
 
-export default class ElementContext {
+export default class ElementController {
     // public members
     public readonly refs: ElementRefs;
     public readonly guessButtons: ButtonElement[];
 
     // private members
-    private readonly timeContext: TimeContext;
+    private readonly timeController: TimeController;
 
     constructor(
         config: Config,
         refs: ElementRefs,
-        stateContext: StateContext,
-        timeContext: TimeContext,
+        stateController: StateController,
+        timeController: TimeController,
     ) {
         this.refs = refs;
-        this.guessButtons = ButtonBuilder(config, stateContext);
-        this.timeContext = timeContext;
+        this.guessButtons = ButtonBuilder(config, stateController);
+        this.timeController = timeController;
     }
 
     // public methods
     public async blinkButton(button: HTMLButtonElement) {
-        for (let blink = 0; blink < this.timeContext.blinks(); blink++) {
+        for (let blink = 0; blink < this.timeController.blinks(); blink++) {
             button.className =
                 blink % 2 ? ButtonState.REVEAL : ButtonState.BLINK;
-            await this.timeContext.blink();
+            await this.timeController.blink();
         }
     }
 
     public clearScoreMarks() {
         this.refs.scoreMark.current!.innerHTML = "";
         this.refs.scoreMark.current!.className = "";
+    }
+
+    public hideAppVersion() {
+        this.hideElement(this.refs.appVersion.current);
     }
 
     public hideButtonsSection() {
@@ -75,7 +79,11 @@ export default class ElementContext {
         correctButton!.innerHTML += " +" + award.toString();
         this.refs.scoreMark.current!.innerHTML = "+" + award.toString();
         this.refs.scoreMark.current!.className = "fadeOut";
-        await this.timeContext.scoreUpdate();
+        await this.timeController.scoreUpdate();
+    }
+
+    public showAppVersion() {
+        this.showElement(this.refs.appVersion.current);
     }
 
     public showButtonsSection() {
@@ -102,7 +110,7 @@ export default class ElementContext {
         const spinner = this.refs.loadingSection.current!.children[0];
         spinner.className = "spinner";
         this.showLoadingSection();
-        await this.timeContext.showSpinner();
+        await this.timeController.showSpinner();
     }
 
     public showTitleHeading() {

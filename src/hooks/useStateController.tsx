@@ -1,11 +1,12 @@
 import { GameState } from "../enums";
-import { State } from "../models";
-import { StateContext } from "../context";
+import { State } from "../app";
+import { StateController } from "../controllers";
 import { useState } from "react";
 
 var isLocalStorageInitialized = false;
-export default function useStateContext(): StateContext {
+export default function useStateController(): StateController {
     const [state, setState] = useState<State>({
+        answerSpot: 0,
         currentItemIndex: 0,
         gameState: GameState.INIT,
         guessValue: "",
@@ -14,7 +15,7 @@ export default function useStateContext(): StateContext {
         best: 0,
     });
 
-    const context: StateContext = { state, setState };
+    const context: StateController = { state, setState };
     if (isLocalStorageInitialized) {
         return context;
     }

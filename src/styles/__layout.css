@@ -26,7 +26,7 @@
     css property that needs to be scaled relative to the app container's width.
 */
 html {
-    font-size: calc(var(--width) / 200);
+    font-size: calc(var(--width) / 220);
 }
 body {
     background-color: #000000;

@@ -1,26 +1,26 @@
-import { AppContext } from "../context";
+import { ContextController } from "../controllers";
 import { GameState } from "../enums";
 
 ///
-export async function onLoading(context: AppContext) {
-    const { elementContext, stateContext, timeContext } = context;
-    const { state, setState } = stateContext;
+export async function onLoading(context: ContextController) {
+    const { elements: elementController, stateController, time: timeController } = context;
+    const { state, setState } = stateController;
 
     if (state.quizModule === null) {
         return;
     }
 
-    elementContext.clearScoreMarks();
+    elementController.clearScoreMarks();
 
     const quizItems = state.quizModule.quizData.items;
     const currentItem = quizItems[state.currentItemIndex];
 
-    elementContext.hideQuestionHeading();
-    elementContext.hideImageSection();
+    elementController.hideQuestionHeading();
+    elementController.hideImageSection();
 
-    await elementContext.showSpinner();
+    await elementController.showSpinner();
     while (!currentItem || !currentItem.isLoaded) {
-        await timeContext.spinnerPoll();
+        await timeController.spinnerPoll();
     }
 
     setState({ ...state, gameState: GameState.NEXT });

@@ -1,10 +1,10 @@
-import { AppContext } from "../context";
+import { ContextController } from "../controllers";
 import { GameState } from "../enums";
 import { onInit, onLoading, onNext, onInput, onResult, onGameOver } from "../events";
 import { useEffect } from "react";
 
 type EventHandlers = {
-    [key in GameState]: (context: AppContext) => void;
+    [key in GameState]: (context: ContextController) => void;
 };
 
 const eventHandlers: EventHandlers = {
@@ -16,15 +16,15 @@ const eventHandlers: EventHandlers = {
     [GameState.GAMEOVER]: onGameOver,
 };
 
-export default function useEventRouter(context: AppContext) {
+export default function useEventRouter(context: ContextController) {
     useEffect(() => {
-        console.info("useEventRouter", context.stateContext.state.gameState, context);
+        console.info("useEventRouter", context.stateController.state.gameState, context);
 
-        const eventHandler = eventHandlers[context.stateContext.state.gameState];
+        const eventHandler = eventHandlers[context.stateController.state.gameState];
         if (eventHandler) {
             eventHandler(context);
         } else {
-            throw new Error(`Invalid game state: ${context.stateContext.state.gameState}`);
+            throw new Error(`Invalid game state: ${context.stateController.state.gameState}`);
         }
     }, [context]);
 }

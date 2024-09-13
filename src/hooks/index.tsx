@@ -1,13 +1,13 @@
-import useAppContext from "./useAppContext";
-import useElementContext from "./useElementContext";
+import useContextController from "./useContextController";
+import useElementController from "./useElementController";
 import useEventRouter from "./useEventRouter";
-import useStateContext from "./useStateContext";
-import useTimeContext from "./useTimeContext";
+import useStateController from "./useStateController";
+import useTimeController from "./useTimeController";
 
 export {
-    useAppContext,
-    useElementContext,
+    useContextController,
+    useElementController,
     useEventRouter,
-    useStateContext,
-    useTimeContext,
+    useStateController,
+    useTimeController,
 };

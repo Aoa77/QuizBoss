@@ -1,10 +1,10 @@
-import { AppContext } from "../context";
+import { ContextController } from "../controllers";
 
-export default function LoadingSpinner(context: AppContext) {
-    const { elementContext } = context;
+export default function LoadingSpinner(context: ContextController) {
+    const { elements: elementController } = context;
     return (
         <section
-            ref={elementContext.refs.loadingSection}
+            ref={elementController.refs.loadingSection}
             className="loading hidden"
         >
             <div className="spinner"></div>

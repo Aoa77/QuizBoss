@@ -29,6 +29,16 @@ h2 {
     margin-top: var(--hu_10);
 }
 
+/************************/
+/* app version display  */
+/************************/
+h6 {
+    color: #00ffff;
+    font-family: "Tahoma", sans-serif;
+    font-size: 6rem;
+    font-weight: normal;
+}
+
 /********************************************************************/
 /* The loading spinner and the question image occupy the same space */
 /********************************************************************/
@@ -110,16 +120,16 @@ section.score {
     grid-template-columns: repeat(2, auto);
     color: #00ffff;
     text-transform: uppercase;
-    font-size: 7rem;
+    font-size: 6rem;
     width: 124rem;
     margin: auto;
     margin-top: var(--hu_8);
-    margin-bottom: var(--hu_5);
+    margin-bottom: var(--hu_2);
 }
 section.score div.row {
     display: contents;
     color: #ffff00;
-    font-size: 10rem;
+    font-size: 9rem;
 }
 section.score div.row > div {
     padding-top: 2rem;
@@ -129,21 +139,26 @@ section.score span {
 }
 section.score mark {
     position: relative;
-    left: 3rem;
+    left: 5rem;
     top: -1rem;
     background-color: transparent;
     color: #00ff00;
     font-weight: bold;
-    font-size: 11rem;
+    font-size: 7rem;
 }
 
 /****************************/
 /* progress                 */
 /****************************/
 section.progress {
-    color: #ffffff;
-    font-family: "Tomaha", sans-serif;
-    font-size: 7rem;
+    color: #00ffff;
+    font-family: "Courier New", monospace;
+    font-size: 5rem;
+    position: relative;
+    top: -12rem;
+}
+section.progress span {
+    margin: 0 0.5rem;
 }
 
 /*****************************/

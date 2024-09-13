@@ -1,5 +1,6 @@
 
 export default interface ElementRefs {
+    appVersion: React.MutableRefObject<HTMLHeadingElement | null>;
     buttonsSection: React.MutableRefObject<HTMLDivElement | null>;
     imageSection: React.MutableRefObject<HTMLDivElement | null>;
     loadingSection: React.MutableRefObject<HTMLDivElement | null>;

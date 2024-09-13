@@ -1,19 +1,19 @@
-import { AppContext } from "../context";
+import { ContextController } from "../controllers";
 
-export default function ScoreDisplay(context: AppContext) {
-    const { elementContext, stateContext } = context;
-    const { state } = stateContext;
+export default function ScoreDisplay(context: ContextController) {
+    const { elements, stateController } = context;
+    const { state } = stateController;
     const { score, best, quizModule } = state;
     const quizData = quizModule?.quizData;
     return (
-        <section ref={elementContext.refs.scoreSection} className="score hidden">
+        <section ref={elements.refs.scoreSection} className="score hidden">
             <div>{quizData?.scoreText}</div>
             <div>{quizData?.bestText}</div>
             <div className="row">
                 <div>
                     {score}
                     <span>
-                        <mark ref={elementContext.refs.scoreMark}></mark>
+                        <mark ref={elements.refs.scoreMark}></mark>
                     </span>
                 </div>
                 <div>{best}</div>

@@ -1,19 +1,20 @@
-import { AppContext } from "../context";
+import { ContextController } from "../controllers";
 import { GameState } from "../enums";
-import { QuizModule, QuizItem } from "../models";
+import { QuizModule, QuizItem } from "../app";
 import { shuffle } from "../utilities";
 
 ///
 var isInitializing: boolean = false;
 
 ///
-export async function onInit(context: AppContext) {
-    const { config, elementContext, stateContext, timeContext } = context;
-    const { state, setState } = stateContext;
+export async function onInit(context: ContextController) {
+    const { config, elements: elementController, stateController, time: timeController } = context;
+    const { state, setState } = stateController;
     const { quizModuleName } = config;
 
-    elementContext.showTitleHeading();
-    elementContext.showLoadingSection();
+    elementController.showAppVersion();
+    elementController.showTitleHeading();
+    elementController.showLoadingSection();
 
     console.info({ isInitializing });
     if (isInitializing) {
@@ -106,7 +107,7 @@ export async function onInit(context: AppContext) {
         console.info("Loading quiz images...");
         for (const item of quizItems) {
             item.image.src = item.imageSrc;
-            await timeContext.loadThrottle();
+            await timeController.loadThrottle();
         }
     }
 }

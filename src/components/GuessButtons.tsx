@@ -1,10 +1,10 @@
-import { AppContext } from "../context";
+import { ContextController } from "../controllers";
 
-export default function GuessButtons(context: AppContext) {
-    const { elementContext } = context;
+export default function GuessButtons(context: ContextController) {
+    const { elements: elementController } = context;
     return (
-        <section ref={elementContext.refs.buttonsSection} className="buttons hidden">
-            {elementContext.guessButtons.map((b) => b.element)}
+        <section ref={elementController.refs.buttonsSection} className="buttons hidden">
+            {elementController.guessButtons.map((b) => b.element)}
         </section>
     );
 }

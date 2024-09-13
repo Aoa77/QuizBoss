@@ -1,8 +1,8 @@
-import { AppContext } from "../context";
+import { ContextController } from "../controllers";
 
 ///
-export async function onGameOver(context: AppContext) {
+export async function onGameOver(context: ContextController) {
     console.info("game over");
-    const { elementContext } = context;
-    elementContext.clearScoreMarks();
+    const { elements: elementController } = context;
+    elementController.clearScoreMarks();
 }

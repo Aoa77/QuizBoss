@@ -1,4 +1,5 @@
 import delay from "./delay";
+import getUrlQueryParams from "./getUrlQueryParams";
 import { randomInt, randomIntInclusive, shuffle } from "./random";
 
-export { delay, randomInt, randomIntInclusive, shuffle };
+export { delay, getUrlQueryParams, randomInt, randomIntInclusive, shuffle };

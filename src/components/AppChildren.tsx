@@ -1,3 +1,4 @@
+import AppVersion from "./AppVersion";
 import GuessButtons from "./GuessButtons";
 import LoadingSpinner from "./LoadingSpinner";
 import ProgressDisplay from "./ProgressDisplay";
@@ -7,6 +8,7 @@ import ScoreDisplay from "./ScoreDisplay";
 import TitleHeading from "./TitleHeading";
 
 export {
+    AppVersion,
     GuessButtons,
     LoadingSpinner,
     ProgressDisplay,

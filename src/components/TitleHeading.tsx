@@ -1,11 +1,11 @@
-import { AppContext } from "../context";
+import { ContextController } from "../controllers";
 
-export default function TitleHeading(context: AppContext) {
-    const { elementContext, stateContext } = context;
-    const { state } = stateContext;
+export default function TitleHeading(context: ContextController) {
+    const { elements, stateController } = context;
+    const { state } = stateController;
     const quizData = state.quizModule?.quizData;
     return (
-        <h1 ref={elementContext.refs.titleHeading} className="hidden">
+        <h1 ref={elements.refs.titleHeading} className="hidden">
             {quizData?.title ?? <>&nbsp;</>}
         </h1>
     );

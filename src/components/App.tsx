@@ -1,7 +1,8 @@
 import "../styles";
-import { Config } from "../models";
+import { Config } from "../app";
 
 import {
+    AppVersion,
     GuessButtons,
     LoadingSpinner,
     ProgressDisplay,
@@ -12,22 +13,22 @@ import {
 } from "./AppChildren";
 
 import {
-    useAppContext,
-    useElementContext,
+    useContextController,
+    useElementController,
     useEventRouter,
-    useStateContext,
-    useTimeContext,
+    useStateController,
+    useTimeController,
 } from "../hooks";
 
 export default function App(config: Config) {
-    const stateContext = useStateContext();
-    const timeContext = useTimeContext(config);
-    const elementContext = useElementContext(config, stateContext, timeContext);
-    const context = useAppContext(
+    const stateController = useStateController();
+    const timeController = useTimeController(config);
+    const elementController = useElementController(config, stateController, timeController);
+    const context = useContextController(
         config,
-        elementContext,
-        stateContext,
-        timeContext,
+        elementController,
+        stateController,
+        timeController,
     );
 
     useEventRouter(context);
@@ -41,6 +42,7 @@ export default function App(config: Config) {
             <GuessButtons {...context} />
             <ScoreDisplay {...context} />
             <ProgressDisplay {...context} />
+            <AppVersion {...context} />
         </main>
     );
 }

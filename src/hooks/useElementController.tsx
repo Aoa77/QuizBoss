@@ -1,15 +1,20 @@
-import { StateContext, ElementContext, TimeContext } from "../context";
-import { Config } from "../models";
+import { Config } from "../app";
+import {
+    ElementController,
+    StateController,
+    TimeController,
+} from "../controllers";
 import { useRef } from "react";
 
-export default function useElementContext(
+export default function useElementController(
     config: Config,
-    stateContext: StateContext,
-    timeContext: TimeContext,
-): ElementContext {
-    return new ElementContext(
+    stateController: StateController,
+    timeController: TimeController,
+): ElementController {
+    return new ElementController(
         config,
         {
+            appVersion: useRef<HTMLHeadingElement | null>(null),
             buttonsSection: useRef<HTMLDivElement | null>(null),
             imageSection: useRef<HTMLDivElement | null>(null),
             loadingSection: useRef<HTMLDivElement | null>(null),
@@ -19,7 +24,7 @@ export default function useElementContext(
             scoreMark: useRef<HTMLSpanElement | null>(null),
             titleHeading: useRef<HTMLHeadingElement | null>(null),
         },
-        stateContext,
-        timeContext,
+        stateController,
+        timeController,
     );
 }

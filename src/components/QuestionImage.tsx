@@ -1,12 +1,12 @@
-import { AppContext } from "../context";
+import { ContextController } from "../controllers";
 
-export default function QuestionImage(context: AppContext) {
-    const { elementContext, stateContext } = context;
-    const { state } = stateContext;
+export default function QuestionImage(context: ContextController) {
+    const { elements: elementController, stateController } = context;
+    const { state } = stateController;
     const { currentItemIndex, quizModule } = state;
     const quizData = quizModule?.quizData;
     return (
-        <section ref={elementContext.refs.imageSection} className="image hidden">
+        <section ref={elementController.refs.imageSection} className="image hidden">
             {quizData?.items[currentItemIndex].imageJsx}
         </section>
     );
