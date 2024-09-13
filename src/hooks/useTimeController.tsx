@@ -1,6 +1,6 @@
+import { AppConfig } from "../app";
 import { TimeController } from "../controllers";
-import { Config } from "../app";
 
-export default function useTimeController(config: Config): TimeController {
+export default function useTimeController(config: AppConfig): TimeController {
     return new TimeController();
 }

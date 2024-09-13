@@ -1,8 +1,8 @@
 import ConfigParams from "./ConfigParams";
-import { DemoMode } from "../enums";
+import { DemoMode } from "./DemoMode";
 import { getUrlQueryParams } from "../utilities";
 
-export default class Config {
+export default class AppConfig {
     public readonly quizModuleName: string;
     public readonly demoMode: DemoMode;
     public readonly guessButtonCount: number;

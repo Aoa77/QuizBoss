@@ -1,7 +1,6 @@
-import { GameState } from "../enums";
-import { State } from "../app";
-import { StateController } from "../controllers";
 import { useState } from "react";
+import { GameState, State } from "../app";
+import { StateController } from "../controllers";
 
 var isLocalStorageInitialized = false;
 export default function useStateController(): StateController {

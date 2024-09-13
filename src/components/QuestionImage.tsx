@@ -1,7 +1,7 @@
-import { ContextController } from "../controllers";
+import { AppContext } from "../app";
 
-export default function QuestionImage(context: ContextController) {
-    const { elements: elementController, stateController } = context;
+export default function QuestionImage(context: AppContext) {
+    const { elements: elementController, states: stateController } = context;
     const { state } = stateController;
     const { currentItemIndex, quizModule } = state;
     const quizData = quizModule?.quizData;

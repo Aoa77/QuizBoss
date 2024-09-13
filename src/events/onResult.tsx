@@ -1,11 +1,11 @@
-import { ContextController } from "../controllers";
-import { ButtonState, GameState } from "../enums";
-///
+import { AppContext, GameState } from "../app";
+import { ButtonState } from "../elements";
+
 var wrongGuesses: number[] = [];
 
 ///
-export async function onResult(context: ContextController) {
-    const { config, elements: elementController, stateController, time: timeController } = context;
+export async function onResult(context: AppContext) {
+    const { config, elements: elementController, states: stateController, time: timeController } = context;
     const { state, setState } = stateController;
 
     const { guessButtonCount } = config;

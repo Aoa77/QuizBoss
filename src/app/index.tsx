@@ -1,7 +1,25 @@
-import State from "./State";
-import Config from "./Config";
-import ConfigParams from "./ConfigParams";
-import { QuizModule, QuizData, QuizItem } from "./QuizModule";
+import AppConfig from "./AppConfig";
+import { DemoMode } from "./DemoMode";
+import { GameState } from "./GameState";
 
-export { Config };
-export type { ConfigParams, State, QuizModule, QuizData, QuizItem };
+import AppContext from "./AppContext";
+import ConfigParams from "./ConfigParams";
+import QuizData from "./QuizData";
+import QuizItem from "./QuizItem";
+import QuizModule from "./QuizModule";
+import State from "./State";
+
+export {
+    AppConfig, /////////
+    DemoMode,
+    GameState,
+};
+
+export type {
+    AppContext, /////////
+    ConfigParams,
+    QuizData,
+    QuizItem,
+    QuizModule,
+    State,
+};

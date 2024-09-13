@@ -1,6 +1,6 @@
-import { ContextController } from "../controllers";
+import { AppContext } from "../app";
 
-export default function LoadingSpinner(context: ContextController) {
+export default function LoadingSpinner(context: AppContext) {
     const { elements: elementController } = context;
     return (
         <section

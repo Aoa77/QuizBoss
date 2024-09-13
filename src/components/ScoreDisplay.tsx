@@ -1,7 +1,7 @@
-import { ContextController } from "../controllers";
+import { AppContext } from "../app";
 
-export default function ScoreDisplay(context: ContextController) {
-    const { elements, stateController } = context;
+export default function ScoreDisplay(context: AppContext) {
+    const { elements, states: stateController } = context;
     const { state } = stateController;
     const { score, best, quizModule } = state;
     const quizData = quizModule?.quizData;

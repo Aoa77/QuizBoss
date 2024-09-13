@@ -1,6 +1,5 @@
-import { ButtonState } from "../enums";
-import { Config } from "../app";
-import { ElementRefs, ButtonElement, ButtonBuilder } from "../elements";
+import { AppConfig } from "../app";
+import { ButtonBuilder, ButtonElement, ButtonState, ElementRefs } from "../elements";
 import StateController from "./StateController";
 import TimeController from "./TimeController";
 
@@ -10,25 +9,25 @@ export default class ElementController {
     public readonly guessButtons: ButtonElement[];
 
     // private members
-    private readonly timeController: TimeController;
+    private readonly time: TimeController;
 
     constructor(
-        config: Config,
+        config: AppConfig,
         refs: ElementRefs,
         stateController: StateController,
         timeController: TimeController,
     ) {
         this.refs = refs;
         this.guessButtons = ButtonBuilder(config, stateController);
-        this.timeController = timeController;
+        this.time = timeController;
     }
 
     // public methods
     public async blinkButton(button: HTMLButtonElement) {
-        for (let blink = 0; blink < this.timeController.blinks(); blink++) {
+        for (let blink = 0; blink < this.time.blinks(); blink++) {
             button.className =
                 blink % 2 ? ButtonState.REVEAL : ButtonState.BLINK;
-            await this.timeController.blink();
+            await this.time.blink();
         }
     }
 
@@ -79,7 +78,7 @@ export default class ElementController {
         correctButton!.innerHTML += " +" + award.toString();
         this.refs.scoreMark.current!.innerHTML = "+" + award.toString();
         this.refs.scoreMark.current!.className = "fadeOut";
-        await this.timeController.scoreUpdate();
+        await this.time.scoreUpdate();
     }
 
     public showAppVersion() {
@@ -110,7 +109,7 @@ export default class ElementController {
         const spinner = this.refs.loadingSection.current!.children[0];
         spinner.className = "spinner";
         this.showLoadingSection();
-        await this.timeController.showSpinner();
+        await this.time.showSpinner();
     }
 
     public showTitleHeading() {

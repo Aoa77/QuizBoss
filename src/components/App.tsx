@@ -1,5 +1,5 @@
 import "../styles";
-import { Config } from "../app";
+import { AppConfig } from "../app";
 
 import {
     AppVersion,
@@ -20,7 +20,7 @@ import {
     useTimeController,
 } from "../hooks";
 
-export default function App(config: Config) {
+export default function App(config: AppConfig) {
     const stateController = useStateController();
     const timeController = useTimeController(config);
     const elementController = useElementController(config, stateController, timeController);

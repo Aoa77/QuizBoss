@@ -1,10 +1,9 @@
-import { ContextController } from "../controllers";
-import { ButtonState, DemoMode, GameState } from "../enums";
-import { randomInt } from "../utilities";
+import { AppContext, DemoMode, GameState } from "../app";
+import { ButtonState } from "../elements";
 
 ///
-export async function onInput(context: ContextController) {
-    const { config, elements, stateController, time } = context;
+export async function onInput(context: AppContext) {
+    const { config, elements, states: stateController, time } = context;
     const { guessButtons } = elements;
     const { state, setState } = stateController;
 

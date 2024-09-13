@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { ButtonState } from "../enums";
+import { ButtonState } from "./ButtonState";
 import ButtonElement from "./ButtonElement";
 
 export default function ButtonElementRef(

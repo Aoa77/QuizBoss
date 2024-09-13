@@ -1,9 +1,7 @@
-import { ContextController } from "../controllers";
-import { GameState } from "../enums";
+import { AppContext, GameState } from "../app";
 
-///
-export async function onLoading(context: ContextController) {
-    const { elements: elementController, stateController, time: timeController } = context;
+export async function onLoading(context: AppContext) {
+    const { elements: elementController, states: stateController, time: timeController } = context;
     const { state, setState } = stateController;
 
     if (state.quizModule === null) {

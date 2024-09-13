@@ -1,12 +1,15 @@
-import { ContextController } from "../controllers";
-import { ButtonState, GameState } from "../enums";
-import { QuizItem } from "../app";
-import { randomInt } from "../utilities/random";
+import { randomInt } from "../utilities";
+import { AppContext, GameState, QuizItem } from "../app";
+import { ButtonState } from "../elements";
 
 var randomizedGuessPoolIndex: number = -1;
 ///
-export async function onNext(context: ContextController) {
-    const { config, elements: elementController, stateController } = context;
+export async function onNext(context: AppContext) {
+    const {
+        config,
+        elements: elementController,
+        states: stateController,
+    } = context;
     const { state, setState } = stateController;
     const { guessButtons } = elementController;
 
@@ -36,7 +39,7 @@ export async function onNext(context: ContextController) {
         let itemAtChoiceSpot = currentItem;
 
         if (choiceSpot !== state.answerSpot) {
-        itemAtChoiceSpot = selectRandomQuestionChoice();
+            itemAtChoiceSpot = selectRandomQuestionChoice();
         }
 
         currentGuessPool.push(itemAtChoiceSpot.key);

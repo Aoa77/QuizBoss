@@ -1,11 +1,11 @@
+import { AppConfig, GameState } from "../app";
+import { ButtonState } from "./ButtonState";
 import { StateController } from "../controllers";
-import { ButtonState, GameState } from "../enums";
-import { Config } from "../app";
 import ButtonElement from "./ButtonElement";
 import ButtonElementRef from "./ButtonElementRef";
 
 export default function ButtonBuilder(
-    config: Config,
+    config: AppConfig,
     stateController: StateController,
 ): ButtonElement[] {
     ///

@@ -1,4 +1,4 @@
-import { DemoMode } from "../enums";
+import { DemoMode } from "./DemoMode";
 
 export default interface ConfigParams {
     quizModuleName?: string;

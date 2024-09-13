@@ -1,7 +1,7 @@
-import { ContextController } from "../controllers";
+import { AppContext } from "../app";
 
-export default function ProgressDisplay(context: ContextController) {
-    const { elements: elementController, stateController } = context;
+export default function ProgressDisplay(context: AppContext) {
+    const { elements: elementController, states: stateController } = context;
     const { currentItemIndex, quizModule } = stateController.state;
     const quizData = quizModule?.quizData;
     return (

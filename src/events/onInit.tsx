@@ -1,14 +1,17 @@
-import { ContextController } from "../controllers";
-import { GameState } from "../enums";
-import { QuizModule, QuizItem } from "../app";
+import { AppContext, GameState, QuizItem, QuizModule } from "../app";
 import { shuffle } from "../utilities";
 
 ///
 var isInitializing: boolean = false;
 
 ///
-export async function onInit(context: ContextController) {
-    const { config, elements: elementController, stateController, time: timeController } = context;
+export async function onInit(context: AppContext) {
+    const {
+        config,
+        elements: elementController,
+        states: stateController,
+        time: timeController,
+    } = context;
     const { state, setState } = stateController;
     const { quizModuleName } = config;
 
