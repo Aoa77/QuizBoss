@@ -1,16 +1,10 @@
 import updateAppVersion from "./updateAppVersion.js";
 import updateQuizModules from "./updateQuizModules.js";
 
-console.info("");
-console.info("Running pre-build scripts...");
-console.info("");
+console.log("\n<pre-build-scripts>");
 
 updateQuizModules("local_modules");
 updateQuizModules("node_modules");
+await updateAppVersion();
 
-console.info("");
-console.info("bumping app version...");
-updateAppVersion();
-
-console.info("");
-console.info("");
+console.log("\n</pre-build-scripts>\n");
