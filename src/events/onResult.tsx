@@ -96,7 +96,7 @@ export async function onResult(context: AppContext) {
             guessButton.className = ButtonState.HIDDEN;
         }
 
-        elements.hideImage();
+    //    elements.hideImage();
         // elements.refs.imageSection.current!.classList.remove("fadeOut");
 
         if (1 + state.currentItemIndex === quizItems.length) {
@@ -104,7 +104,7 @@ export async function onResult(context: AppContext) {
             return;
         }
 
-        elements.hideQuestion();
+  //      elements.hideQuestion();
         ++state.currentItemIndex;
         resetWrongGuesses();
         state.gameState = GameState.LOADING;
@@ -116,12 +116,12 @@ export async function onResult(context: AppContext) {
         prompt.classList.add("prompt");
         prompt.onclick = async () => {
             //
-            elements.hideTitle();
-            elements.hideButtonsSection();
-            elements.hideScoreArea();
-            elements.hideProgressSection();
-            elements.hideQuestion();
-            elements.hideAppVersion();
+            // elements.hideTitle();
+            // elements.hideButtonsSection();
+            // elements.hideScoreArea();
+            // elements.hideProgressSection();
+            // elements.hideQuestion();
+            // elements.hideAppVersion();
             //
             elements.animate.loading.fadeIn();
             window.location.reload();

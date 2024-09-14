@@ -5,13 +5,19 @@ import { ButtonState } from "../buttons";
 var randomizedGuessPoolIndex: number = -1;
 ///
 export async function onNext(context: AppContext) {
-    const {
-        config,
-        elements,
-        states,
-    } = context;
+    const { config, elements, states } = context;
     const { state, setState } = states;
-    const { guessButtons } = elements;
+    const { animate, guessButtons } = elements;
+    const {
+        appVersion,
+        buttons,
+        image,
+        loading,
+        progress,
+        question,
+        scoreArea,
+        title,
+    } = animate;
 
     if (state.quizModule === null) {
         return;
@@ -24,17 +30,21 @@ export async function onNext(context: AppContext) {
     const randomizedGuessPool = quizData.randomizedGuessPool;
     let currentGuessPool: string[] = [];
 
-    elements.animate.loading.fadeOut();
-    await elements.animate.title.fadeIn();
-    
-    elements.showImage();
+    await Promise.all([
+        title.fadeIn(),
+        loading.sustain(),
+    ]);
 
-    elements.showButtons();
-    elements.showScoreArea();
-    elements.showProgress();
-    elements.showQuestion();
-    elements.showAppVersion();
-    
+    await Promise.all([
+        loading.fadeOut(),
+        appVersion.fadeIn(),
+        buttons.fadeIn(),
+        image.fadeIn(),
+        progress.fadeIn(),
+        question.fadeIn(),
+        scoreArea.fadeIn(),
+    ]);
+
     elements.clearScoreBonusStyle();
 
     state.answerSpot = randomInt(0, guessButtonCount);

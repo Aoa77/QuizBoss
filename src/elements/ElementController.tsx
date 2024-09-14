@@ -77,34 +77,6 @@ export default class ElementController {
         this.refs.scoreArea.current!.className = "";
     }
 
-    public hideAppVersion() {
-        this.hideElement(this.refs.appVersion.current);
-    }
-
-    public hideButtonsSection() {
-        this.hideElement(this.refs.buttons.current);
-    }
-
-    public hideImage() {
-        this.hideElement(this.refs.image.current);
-    }
-
-    public hideProgressSection() {
-        this.hideElement(this.refs.progress.current);
-    }
-
-    public hideScoreArea() {
-        this.hideElement(this.refs.scoreArea.current);
-    }
-
-    public hideTitle() {
-        this.hideElement(this.refs.title.current);
-    }
-
-    public hideQuestion() {
-        this.hideElement(this.refs.question.current);
-    }
-
     public async scoreUpdate(
         score: number,
         award: number,
@@ -124,54 +96,5 @@ export default class ElementController {
             await this.time.scoreUpdate();
         }
         return target;
-    }
-
-    public showAppVersion() {
-        this.showElement(this.refs.appVersion.current);
-    }
-
-    public showButtons() {
-        this.showElement(this.refs.buttons.current);
-    }
-
-    public showImage() {
-        this.showElement(this.refs.image.current);
-    }
-
-    public showProgress() {
-        this.showElement(this.refs.progress.current);
-    }
-
-    public showScoreArea() {
-        this.showElement(this.refs.scoreArea.current);
-    }
-
-    public showQuestion() {
-        this.showElement(this.refs.question.current);
-    }
-
-    // private methods
-    private hideElement(element: HTMLElement | null | undefined) {
-        if (!element) {
-            return;
-        }
-        element.classList.add("hidden");
-    }
-
-    private setOpacity(
-        element: HTMLElement | null | undefined,
-        opacity: number,
-    ) {
-        if (!element) {
-            return;
-        }
-        element.style.opacity = opacity.toString();
-    }
-
-    private showElement(element: HTMLElement | null | undefined) {
-        if (!element) {
-            return;
-        }
-        element.classList.remove("hidden");
     }
 }

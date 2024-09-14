@@ -12,7 +12,7 @@ export default function useElementController(
         config,
         {
             appVersion: {
-                target: ".appVersion",
+                target: "h6",
                 fadeIn: 250,
                 fadeOut: 250,
                 sustain: 1000,
@@ -43,7 +43,7 @@ export default function useElementController(
                 sustain: 1000,
             },
             question: {
-                target: ".questionHeading",
+                target: "h2",
                 fadeIn: 250,
                 fadeOut: 250,
                 sustain: 1000,
