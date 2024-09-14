@@ -24,13 +24,18 @@ export async function onNext(context: AppContext) {
     const randomizedGuessPool = quizData.randomizedGuessPool;
     let currentGuessPool: string[] = [];
 
-    elements.hideSpinner();
-    elements.showImageSection();
+    elements.animate.loading.fadeOut();
+    await elements.animate.title.fadeIn();
+    
+    elements.showImage();
 
-    elements.showButtonsSection();
-    elements.showScoreSection();
-    elements.showProgressSection();
-    elements.showQuestionHeading();
+    elements.showButtons();
+    elements.showScoreArea();
+    elements.showProgress();
+    elements.showQuestion();
+    elements.showAppVersion();
+    
+    elements.clearScoreBonusStyle();
 
     state.answerSpot = randomInt(0, guessButtonCount);
     console.info("answerSpot: ", state.answerSpot);

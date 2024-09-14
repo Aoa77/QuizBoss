@@ -1,6 +1,7 @@
 import { AppContext, GameState } from "../app";
 
 export async function onLoading(context: AppContext) {
+    ///
     const { elements, states, time } = context;
     const { state, setState } = states;
 
@@ -8,17 +9,16 @@ export async function onLoading(context: AppContext) {
         return;
     }
 
-    elements.clearScoreMarks();
-
     const quizItems = state.quizModule.quizData.items;
     const currentItem = quizItems[state.currentItemIndex];
 
-    elements.hideQuestionHeading();
-    elements.hideImageSection();
+    elements.hideImage();
+    elements.hideQuestion();
 
-    await elements.showSpinner();
+    await elements.animate.loading.fadeIn();
+    await elements.animate.loading.sustain();
     while (!currentItem || !currentItem.isLoaded) {
-        await time.spinnerPoll();
+        await time.poll();
     }
 
     setState({ ...state, gameState: GameState.NEXT });

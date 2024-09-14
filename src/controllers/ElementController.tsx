@@ -1,25 +1,73 @@
 import { AppConfig } from "../app";
-import { ButtonBuilder, ButtonElement, ButtonState, ElementRefs } from "../elements";
+import {
+    ButtonBuilder,
+    ButtonElement,
+    ButtonState,
+    ElementRefs,
+    ElementEnvelopes,
+} from "../elements";
+
+import ElementAnimation from "./ElementAnimation";
+import ElementAnimations from "./ElementAnimations";
 import StateController from "./StateController";
 import TimeController from "./TimeController";
 
 export default class ElementController {
     // public members
-    public readonly refs: ElementRefs;
+    public readonly animate: ElementAnimations;
     public readonly guessButtons: ButtonElement[];
+    public readonly refs: ElementRefs;
 
     // private members
     private readonly time: TimeController;
 
     constructor(
         config: AppConfig,
+        envs: ElementEnvelopes,
         refs: ElementRefs,
         states: StateController,
         time: TimeController,
     ) {
-        this.refs = refs;
         this.guessButtons = ButtonBuilder(config, states);
+        this.refs = refs;
         this.time = time;
+
+        this.animate = {
+            appVersion: new ElementAnimation(
+                envs.appVersion,
+                refs.appVersion.current,
+                time,
+            ),
+            best: new ElementAnimation(envs.best, refs.best.current, time),
+            buttons: new ElementAnimation(
+                envs.buttons,
+                refs.buttons.current,
+                time,
+            ),
+            image: new ElementAnimation(envs.image, refs.image.current, time),
+            loading: new ElementAnimation(
+                envs.loading,
+                refs.loading.current,
+                time,
+            ),
+            progress: new ElementAnimation(
+                envs.progress,
+                refs.progress.current,
+                time,
+            ),
+            question: new ElementAnimation(
+                envs.question,
+                refs.question.current,
+                time,
+            ),
+            score: new ElementAnimation(envs.score, refs.score.current, time),
+            scoreArea: new ElementAnimation(
+                envs.scoreArea,
+                refs.scoreArea.current,
+                time,
+            ),
+            title: new ElementAnimation(envs.title, refs.title.current, time),
+        };
     }
 
     // public methods
@@ -31,9 +79,9 @@ export default class ElementController {
         }
     }
 
-    public clearScoreMarks() {
-        this.refs.scoreMark.current!.innerHTML = "";
-        this.refs.scoreMark.current!.className = "";
+    public clearScoreBonusStyle() {
+        // this.refs.score.current!.innerHTML = "";
+        this.refs.scoreArea.current!.className = "";
     }
 
     public hideAppVersion() {
@@ -41,83 +89,73 @@ export default class ElementController {
     }
 
     public hideButtonsSection() {
-        this.hideElement(this.refs.buttonsSection.current);
+        this.hideElement(this.refs.buttons.current);
     }
 
-    public hideImageSection() {
-        this.hideElement(this.refs.imageSection.current);
-    }
-    
-    public hideLoadingSection() {
-        this.hideElement(this.refs.loadingSection.current);
+    public hideImage() {
+        this.hideElement(this.refs.image.current);
     }
 
     public hideProgressSection() {
-        this.hideElement(this.refs.progressSection.current);
+        this.hideElement(this.refs.progress.current);
     }
 
-    public hideScoreSection() {
-        this.hideElement(this.refs.scoreSection.current);
+    public hideScoreArea() {
+        this.hideElement(this.refs.scoreArea.current);
     }
 
-    public hideSpinner() {
-        this.hideLoadingSection();
-        const spinner = this.refs.loadingSection.current!.children[0];
-        spinner.className = "";
+    public hideTitle() {
+        this.hideElement(this.refs.title.current);
     }
 
-    public hideTitleHeading() {
-        this.hideElement(this.refs.titleHeading.current);
+    public hideQuestion() {
+        this.hideElement(this.refs.question.current);
     }
 
-    public hideQuestionHeading() {
-        this.hideElement(this.refs.questionHeading.current);
-    }
-
-    public async scoreUpdate(award: number, correctButton: HTMLButtonElement) {
-        correctButton!.innerHTML += " +" + award.toString();
-        this.refs.scoreMark.current!.innerHTML = "+" + award.toString();
-        this.refs.scoreMark.current!.className = "fadeOut";
+    public async scoreUpdate(
+        score: number,
+        award: number,
+        correctButton: HTMLButtonElement,
+    ): Promise<number> {
+        //
         await this.time.scoreUpdate();
+        correctButton!.innerHTML += " +" + award.toString();
+        await this.time.scoreUpdate();
+
+        //
+        this.refs.scoreArea.current!.className = "bonus";
+
+        const target = score + award;
+        for (let bonus = score + 1; bonus <= target; bonus++) {
+            this.refs.scoreArea.current!.innerHTML = bonus.toString();
+            await this.time.scoreUpdate();
+        }
+        return target;
     }
 
     public showAppVersion() {
         this.showElement(this.refs.appVersion.current);
     }
 
-    public showButtonsSection() {
-        this.showElement(this.refs.buttonsSection.current);
+    public showButtons() {
+        this.showElement(this.refs.buttons.current);
     }
 
-    public showImageSection() {
-        this.showElement(this.refs.imageSection.current);
+    public showImage() {
+        this.showElement(this.refs.image.current);
     }
 
-    public showLoadingSection() {
-        this.showElement(this.refs.loadingSection.current);
+    public showProgress() {
+        this.showElement(this.refs.progress.current);
     }
 
-    public showProgressSection() {
-        this.showElement(this.refs.progressSection.current);
+    public showScoreArea() {
+        this.showElement(this.refs.scoreArea.current);
     }
 
-    public showScoreSection() {
-        this.showElement(this.refs.scoreSection.current);
-    }
 
-    public async showSpinner() {
-        const spinner = this.refs.loadingSection.current!.children[0];
-        spinner.className = "spinner";
-        this.showLoadingSection();
-        await this.time.showSpinner();
-    }
-
-    public showTitleHeading() {
-        this.showElement(this.refs.titleHeading.current);
-    }
-
-    public showQuestionHeading() {
-        this.showElement(this.refs.questionHeading.current);
+    public showQuestion() {
+        this.showElement(this.refs.question.current);
     }
 
     // private methods
@@ -126,6 +164,16 @@ export default class ElementController {
             return;
         }
         element.classList.add("hidden");
+    }
+
+    private setOpacity(
+        element: HTMLElement | null | undefined,
+        opacity: number,
+    ) {
+        if (!element) {
+            return;
+        }
+        element.style.opacity = opacity.toString();
     }
 
     private showElement(element: HTMLElement | null | undefined) {

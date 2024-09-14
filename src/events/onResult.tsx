@@ -26,7 +26,7 @@ export async function onResult(context: AppContext) {
         return;
     }
 
-    await time.resultPause();
+    await time.pause();
     unlockButtons();
     setState({ ...state, gameState: GameState.INPUT });
     return;
@@ -68,7 +68,7 @@ export async function onResult(context: AppContext) {
         return correctButton;
 
         async function revealCorrectAnswer() {
-            await time.resultPause();
+            await time.pause();
             unlockButtons();
 
             for (let i = 0; i < guessButtonCount; i++) {
@@ -96,39 +96,54 @@ export async function onResult(context: AppContext) {
             guessButton.className = ButtonState.HIDDEN;
         }
 
-        elements.hideImageSection();
-        elements.refs.imageSection.current!.classList.remove("fadeOut");
+        elements.hideImage();
+        // elements.refs.imageSection.current!.classList.remove("fadeOut");
 
         if (1 + state.currentItemIndex === quizItems.length) {
-            const prompt = elements.refs.questionHeading.current!;
-            prompt.innerHTML = "[ play again ]";
-            prompt.style.cursor = "pointer";
-            prompt.onclick = () => {
-                elements.hideQuestionHeading();
-                elements.showSpinner();
-                window.location.reload();
-            };
-            state.gameState = GameState.GAMEOVER;
+            onGameOver();
             return;
         }
 
-        elements.hideQuestionHeading();
+        elements.hideQuestion();
         ++state.currentItemIndex;
         resetWrongGuesses();
         state.gameState = GameState.LOADING;
+    }
+
+    function onGameOver() {
+        const prompt = elements.refs.question.current!;
+        prompt.innerHTML = "[ play again ]";
+        prompt.classList.add("prompt");
+        prompt.onclick = async () => {
+            //
+            elements.hideTitle();
+            elements.hideButtonsSection();
+            elements.hideScoreArea();
+            elements.hideProgressSection();
+            elements.hideQuestion();
+            elements.hideAppVersion();
+            //
+            elements.animate.loading.fadeIn();
+            window.location.reload();
+        };
+        state.gameState = GameState.GAMEOVER;
     }
 
     async function applyScoreAward(award: number) {
         if (award === 0) {
             return;
         }
-        await elements.scoreUpdate(award, correctButton!);
-        state.score += award;
+
+        state.score = await elements.scoreUpdate(
+            state.score,
+            award,
+            correctButton!,
+        );
         if (state.score > state.best) {
             state.best = state.score;
             localStorage.setItem("bestScore", state.best.toString());
         }
-        await time.resultPause();
+        await time.pause();
     }
 
     function unlockButtons() {

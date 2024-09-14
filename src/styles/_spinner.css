@@ -1,47 +1,63 @@
-.spinner,
-.spinner:after {
-    box-sizing: border-box;
-    color: #a5a5c8cc;
+.lds-ellipsis {
+    /* change color here */
+    color: #1c4c5b;
 }
-.spinner {
+.lds-ellipsis,
+.lds-ellipsis div {
+    box-sizing: border-box;
+}
+.lds-ellipsis {
     display: inline-block;
-    width: 48rem;
-    height: 48rem;
+    position: relative;
+    width: 80px;
+    height: 80px;
 }
-.spinner:after {
-    content: " ";
-    display: block;
+.lds-ellipsis div {
+    position: absolute;
+    top: 33.33333px;
+    width: 13.33333px;
+    height: 13.33333px;
     border-radius: 50%;
-    width: 0;
-    height: 0;
-    border-width: 20rem;
-    margin: 4rem;
-    margin-top: 16rem;
-    box-sizing: border-box;
-    border-style: solid;
-    border-color: currentColor transparent currentColor transparent;
-
-    animation-name: startSpin, continueSpin;
-    animation-duration: 2000ms, 10000ms;
-    animation-delay: 0ms, 2000ms; /* add this */
-    animation-timing-function: ease-in, linear;
-    animation-iteration-count: 1, infinite;
+    background: currentColor;
+    animation-timing-function: cubic-bezier(0, 1, 1, 0);
 }
-
-@keyframes startSpin {
+.lds-ellipsis div:nth-child(1) {
+    left: 8px;
+    animation: lds-ellipsis1 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(2) {
+    left: 8px;
+    animation: lds-ellipsis2 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(3) {
+    left: 32px;
+    animation: lds-ellipsis2 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(4) {
+    left: 56px;
+    animation: lds-ellipsis3 0.6s infinite;
+}
+@keyframes lds-ellipsis1 {
     0% {
-        transform: rotate(0deg);
+        transform: scale(0);
     }
     100% {
-        transform: rotate(3600deg);
+        transform: scale(1);
     }
 }
-
-@keyframes continueSpin {
+@keyframes lds-ellipsis3 {
     0% {
-        transform: rotate(0deg);
+        transform: scale(1);
     }
     100% {
-        transform: rotate(3600deg);
+        transform: scale(0);
+    }
+}
+@keyframes lds-ellipsis2 {
+    0% {
+        transform: translate(0, 0);
+    }
+    100% {
+        transform: translate(24px, 0);
     }
 }

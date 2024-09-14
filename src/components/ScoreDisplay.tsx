@@ -6,17 +6,12 @@ export default function ScoreDisplay(context: AppContext) {
     const { score, best, quizModule } = state;
     const quizData = quizModule?.quizData;
     return (
-        <section ref={elements.refs.scoreSection} className="score hidden">
+        <section ref={elements.refs.scoreArea} className="score hidden">
             <div>{quizData?.scoreText}</div>
             <div>{quizData?.bestText}</div>
             <div className="row">
-                <div>
-                    {score}
-                    <span>
-                        <mark ref={elements.refs.scoreMark}></mark>
-                    </span>
-                </div>
-                <div>{best}</div>
+                <div ref={elements.refs.score}>{score}</div>
+                <div ref={elements.refs.best}>{best}</div>
             </div>
         </section>
     );

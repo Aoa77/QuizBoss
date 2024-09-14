@@ -6,7 +6,7 @@ export default function ProgressDisplay(context: AppContext) {
     const quizData = quizModule?.quizData;
     return (
         <section
-            ref={elements.refs.progressSection}
+            ref={elements.refs.progress}
             className="progress hidden"
         >
             <span className="current">{currentItemIndex + 1}</span>

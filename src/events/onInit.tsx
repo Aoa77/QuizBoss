@@ -8,23 +8,18 @@ var isInitializing: boolean = false;
 export async function onInit(context: AppContext) {
     const {
         config,
-        elements,
         states,
         time,
     } = context;
     const { state, setState } = states;
     const { quizModuleName } = config;
-
-    elements.showAppVersion();
-    elements.showTitleHeading();
-    elements.showLoadingSection();
-
+    
     console.info({ isInitializing });
     if (isInitializing) {
         return;
     }
-    isInitializing = true;
 
+    isInitializing = true;
     await initQuizModule();
     setState({ ...state, gameState: GameState.LOADING });
     return;
@@ -110,7 +105,7 @@ export async function onInit(context: AppContext) {
         console.info("Loading quiz images...");
         for (const item of quizItems) {
             item.image.src = item.imageSrc;
-            await time.loadThrottle();
+            await time.throttle();
         }
     }
 }

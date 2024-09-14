@@ -33,10 +33,19 @@ h2 {
 /* app version display  */
 /************************/
 h6 {
-    color: #00ffff;
-    font-family: "Tahoma", sans-serif;
-    font-size: 6rem;
+    color: #ffffff33;
+    font-family: "Courier New", monospace;
+    font-size: 5rem;
     font-weight: normal;
+    margin-top: var(--hu_4);
+}
+
+/************************/
+/* "play again" prompt  */
+/************************/
+.prompt {
+    color: #ffff00;
+    cursor: pointer;
 }
 
 /********************************************************************/
@@ -120,7 +129,7 @@ section.score {
     grid-template-columns: repeat(2, auto);
     color: #00ffff;
     text-transform: uppercase;
-    font-size: 6rem;
+    font-size: 8rem;
     width: 124rem;
     margin: auto;
     margin-top: var(--hu_8);
@@ -129,31 +138,23 @@ section.score {
 section.score div.row {
     display: contents;
     color: #ffff00;
-    font-size: 9rem;
+    font-size: 11rem;
 }
 section.score div.row > div {
     padding-top: 2rem;
 }
-section.score span {
-    position: fixed;
-}
-section.score mark {
-    position: relative;
-    left: 5rem;
-    top: -1rem;
-    background-color: transparent;
+.bonus {
     color: #00ff00;
     font-weight: bold;
-    font-size: 7rem;
 }
 
 /****************************/
 /* progress                 */
 /****************************/
 section.progress {
-    color: #00ffff;
+    color: #ffffffbb;
     font-family: "Courier New", monospace;
-    font-size: 5rem;
+    font-size: 5.25rem;
     position: relative;
     top: -12rem;
 }
@@ -165,16 +166,5 @@ section.progress span {
 /* animation                 */
 /*****************************/
 .hidden {
-    visibility: hidden;
-}
-.fadeOut {
-    animation: fadeOut 2600ms;
-}
-@keyframes fadeOut {
-    0% {
-        opacity: 1;
-    }
-    100% {
-        opacity: 0;
-    }
+    opacity: 0;
 }
