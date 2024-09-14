@@ -1,5 +1,5 @@
 import { AppContext, GameState } from "../app";
-import { ButtonState } from "../elements";
+import { ButtonState } from "../buttons";
 
 var wrongGuesses: number[] = [];
 
@@ -54,7 +54,7 @@ export async function onResult(context: AppContext) {
             }
             if (isCorrectGuess) {
                 correctButton = guessButton;
-                correctButton.className = ButtonState.CORRECT;
+                correctButton!.className = ButtonState.CORRECT;
                 currentItem.answeredCorrectly = true;
                 continue;
             }

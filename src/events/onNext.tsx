@@ -1,6 +1,6 @@
 import { randomInt } from "../utilities";
 import { AppContext, GameState, QuizItem } from "../app";
-import { ButtonState } from "../elements";
+import { ButtonState } from "../buttons";
 
 var randomizedGuessPoolIndex: number = -1;
 ///

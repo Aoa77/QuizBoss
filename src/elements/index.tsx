@@ -1,9 +1,8 @@
-import ButtonBuilder from "./ButtonBuilder";
-import ButtonElement from "./ButtonElement";
-import ButtonElementRef from "./ButtonElementRef";
-import { ButtonState } from "./ButtonState";
+import ElementAnimation from "./ElementAnimation";
+import ElementAnimations from "./ElementAnimations";
+import ElementController from "./ElementController";
 import ElementEnvelopes from "./ElementEnvelopes";
 import ElementRefs from "./ElementRefs";
 
-export { ButtonBuilder, ButtonElementRef, ButtonState };
-export type { ButtonElement, ElementEnvelopes, ElementRefs };
+export { ElementAnimation, ElementController };
+export type { ElementAnimations, ElementEnvelopes, ElementRefs };

@@ -1,5 +1,5 @@
 import { AppContext, DemoMode, GameState } from "../app";
-import { ButtonState } from "../elements";
+import { ButtonState } from "../buttons";
 import { randomInt } from "../utilities";
 
 export async function onInput(context: AppContext) {

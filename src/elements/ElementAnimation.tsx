@@ -1,5 +1,5 @@
 import { Envelope } from "../utilities";
-import TimeController from "./TimeController";
+import TimeController from "../controllers/TimeController";
 
 export default class ElementAnimation {
     private readonly envelope: Envelope;

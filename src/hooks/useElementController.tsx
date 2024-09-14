@@ -1,10 +1,7 @@
 import { useRef } from "react";
 import { AppConfig } from "../app";
-import {
-    ElementController,
-    StateController,
-    TimeController,
-} from "../controllers";
+import { StateController, TimeController } from "../controllers";
+import { ElementController } from "../elements";
 
 export default function useElementController(
     config: AppConfig,

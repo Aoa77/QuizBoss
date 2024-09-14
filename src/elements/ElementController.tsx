@@ -1,16 +1,9 @@
 import { AppConfig } from "../app";
-import {
-    ButtonBuilder,
-    ButtonElement,
-    ButtonState,
-    ElementRefs,
-    ElementEnvelopes,
-} from "../elements";
-
+import { ButtonBuilder, ButtonElement, ButtonState } from "../buttons";
+import { StateController, TimeController } from "../controllers";
+import { ElementEnvelopes, ElementRefs } from "../elements";
 import ElementAnimation from "./ElementAnimation";
 import ElementAnimations from "./ElementAnimations";
-import StateController from "./StateController";
-import TimeController from "./TimeController";
 
 export default class ElementController {
     // public members
@@ -152,7 +145,6 @@ export default class ElementController {
     public showScoreArea() {
         this.showElement(this.refs.scoreArea.current);
     }
-
 
     public showQuestion() {
         this.showElement(this.refs.question.current);
