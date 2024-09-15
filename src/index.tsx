@@ -1,16 +1,17 @@
 import ReactDOM from "react-dom/client";
-import { App, AppConfig, useQueryParams } from "./app";
+import { App, AppConfig, AppSettings } from "./app";
 
-function SETUP() {
-    const quizModuleName = "quizboss-world-flags";
-    const queryParams = useQueryParams(window.location.search);
-    return new AppConfig({ quizModuleName }, queryParams);
-}
+const {
+    quizModuleName, ////////
+    demoMode,
+    guessButtonCount,
+    maxQuestions,
+}: AppSettings = AppConfig("quizboss-world-flags");
 
-const { quizModuleName, demoMode, guessButtonCount, maxQuestions } = SETUP();
 const root = ReactDOM.createRoot(
     document.getElementById("root") as HTMLElement,
 );
+
 root.render(
     <App
         quizModuleName={quizModuleName}

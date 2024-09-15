@@ -1,4 +1,4 @@
-import { AppConfig } from "../app";
+import { AppSettings } from "../app";
 import { ButtonBuilder, ButtonElement, ButtonState } from "../buttons";
 import { StateController } from "../state";
 import { ElementRef, ElementRefs } from ".";
@@ -9,9 +9,13 @@ export default class ElementController {
     public readonly guessButtons: ButtonElement[];
     public readonly refs: ElementRefs;
 
-    constructor(config: AppConfig, states: StateController, refs: ElementRefs) {
+    constructor(
+        settings: AppSettings,
+        states: StateController,
+        refs: ElementRefs,
+    ) {
         this.refs = refs;
-        this.guessButtons = ButtonBuilder(config, states);
+        this.guessButtons = ButtonBuilder(settings, states);
     }
 
     // public methods
@@ -69,8 +73,12 @@ export default class ElementController {
     }
 
     public async fade(target: string, opacity: number, multiplier: number = 1) {
+        const easing = "linear";
         const targets = this.toTargetSelector(target);
-        await animate({ targets, opacity }, { value: $D.FADE, multiplier });
+        await animate(
+            { targets, opacity, easing },
+            { value: $D.FADE, multiplier },
+        );
     }
 
     public async scaleIn(

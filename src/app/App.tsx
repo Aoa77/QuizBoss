@@ -1,5 +1,5 @@
 import "./styles";
-import { AppConfig } from ".";
+import { AppSettings } from ".";
 
 ///
 import {
@@ -22,7 +22,7 @@ import {
 } from "../components";
 
 ///
-export default function App(config: AppConfig) {
+export default function App(config: AppSettings) {
     const states = useStateController();
     const elements = useElementController(config, states);
     const context = useAppContext(config, elements, states);

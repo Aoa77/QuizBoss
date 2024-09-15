@@ -1,9 +1,9 @@
 import App from "./App";
 import AppConfig from "./AppConfig";
 import AppContext from "./AppContext";
+import AppSettings from "./AppSettings";
 import ConfigParams from "./ConfigParams";
 import { DemoMode, parseDemoMode } from "./DemoMode";
-import { useQueryParams } from "../hooks";
 
-export { App, AppConfig, DemoMode, parseDemoMode, useQueryParams };
+export { App, AppConfig, AppSettings, DemoMode, parseDemoMode };
 export type { AppContext, ConfigParams };

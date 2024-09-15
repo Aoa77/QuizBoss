@@ -1,13 +1,13 @@
-import { AppConfig } from "../app";
+import { AppSettings } from "../app";
 import { StateController, GameState } from "../state";
 import { ButtonElement, ButtonElementRef, ButtonState } from ".";
 
 export default function ButtonBuilder(
-    config: AppConfig,
+    settings: AppSettings,
     states: StateController,
 ): ButtonElement[] {
     ///
-    const { guessButtonCount } = config;
+    const { guessButtonCount } = settings;
     const { state, setState } = states;
     const { gameState } = state;
 

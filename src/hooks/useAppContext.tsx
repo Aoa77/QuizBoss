@@ -1,9 +1,9 @@
-import { AppConfig, AppContext } from "../app";
+import { AppSettings, AppContext } from "../app";
 import { ElementController } from "../elements";
 import { StateController } from "../state";
 
 export default function useAppContext(
-    config: AppConfig,
+    config: AppSettings,
     elements: ElementController,
     states: StateController,
 ): AppContext {
