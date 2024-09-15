@@ -1,6 +1,4 @@
-import ConfigParams from "./ConfigParams";
-import { DemoMode, demoModeFromString } from "./DemoMode";
-import { getUrlQueryParams } from "../util";
+import { ConfigParams, DemoMode, parseDemoMode } from ".";
 
 export default class AppConfig {
     public readonly quizModuleName: string;
@@ -8,8 +6,7 @@ export default class AppConfig {
     public readonly guessButtonCount: number;
     public readonly maxQuestions: number;
 
-    constructor(params: ConfigParams) {
-        const qp = getUrlQueryParams(window.location.search);
+    constructor(params: ConfigParams, queryParams: Map<string, string>) {
         let {
             quizModuleName, /////////
             demoMode,
@@ -17,20 +14,20 @@ export default class AppConfig {
             maxQuestions,
         } = params;
 
-        quizModuleName ??= qp.get("quizModuleName");
+        quizModuleName ??= queryParams.get("quizModuleName");
         if (!quizModuleName) {
             throw new Error("quizModuleName is required.");
         }
         this.quizModuleName = quizModuleName;
 
         if (!demoMode) {
-            demoMode = demoModeFromString(qp.get("demoMode"));
+            demoMode = parseDemoMode(queryParams.get("demoMode"));
         }
         this.demoMode = demoMode;
 
         this.guessButtonCount =
-            guessButtonCount ?? +(qp.get("guessButtonCount") ?? "4");
-        this.maxQuestions = maxQuestions ?? +(qp.get("maxQuestions") ?? "0");
+            guessButtonCount ?? +(queryParams.get("guessButtonCount") ?? "4");
+        this.maxQuestions = maxQuestions ?? +(queryParams.get("maxQuestions") ?? "0");
 
     }
 }

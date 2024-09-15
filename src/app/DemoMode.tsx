@@ -5,7 +5,7 @@ export enum DemoMode {
     WRONG = "WRONG",
 }
 
-export function demoModeFromString(value: string | undefined | null): DemoMode {
+export function parseDemoMode(value: string | undefined | null): DemoMode {
     if (!value) {
         return DemoMode.OFF;
     }

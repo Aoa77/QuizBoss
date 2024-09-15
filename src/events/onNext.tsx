@@ -1,4 +1,4 @@
-import { randomInt } from "../util";
+import { randomInt } from "../random";
 import { ButtonState } from "../buttons";
 import { AppContext } from "../app";
 import { GameState, QuizItem } from "../state";

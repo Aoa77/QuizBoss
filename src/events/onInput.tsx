@@ -2,7 +2,7 @@ import { AppContext, DemoMode } from "../app";
 import { ButtonState } from "../buttons";
 import { GameState } from "../state";
 import { $D, delay } from "../time";
-import { randomInt } from "../util";
+import { randomInt } from "../random";
 
 export async function onInput(context: AppContext) {
     const { config, elements, states } = context;

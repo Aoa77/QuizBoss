@@ -1,4 +1,4 @@
-export default function getUrlQueryParams(query: string): Map<string, string> {
+export default function useQueryParams(query: string): Map<string, string> {
     const map = new Map<string, string>();
     query = query.trim();
     if (query.length === 0) {

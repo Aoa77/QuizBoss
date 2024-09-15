@@ -1,7 +1,7 @@
 import { AppContext } from "../app";
 import { GameState, QuizModule, QuizItem } from "../state";
 import { $D, delay } from "../time";
-import { shuffle } from "../util";
+import { shuffle } from "../random";
 
 ///
 export async function onInit(context: AppContext) {

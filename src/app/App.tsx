@@ -1,6 +1,15 @@
-import "../styles";
-import { AppConfig } from "../app";
+import "./styles";
+import { AppConfig } from ".";
 
+///
+import {
+    useAppContext,
+    useElementController,
+    useEventRouter,
+    useStateController,
+} from "../hooks";
+
+///
 import {
     AppVersion,
     GuessButtons,
@@ -10,26 +19,15 @@ import {
     QuestionImage,
     ScoreDisplay,
     TitleHeading,
-} from "./AppChildren";
+} from "../components";
 
-import {
-    useAppContext,
-    useElementController,
-    useEventRouter,
-    useStateController,
-} from "../hooks";
-
+///
 export default function App(config: AppConfig) {
     const states = useStateController();
     const elements = useElementController(config, states);
-    const context = useAppContext(
-        config,
-        elements,
-        states,
-    );
+    const context = useAppContext(config, elements, states);
 
     useEventRouter(context);
-
     return (
         <main>
             <TitleHeading {...context} />
