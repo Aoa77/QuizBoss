@@ -1,8 +1,6 @@
-import { AppConfig, GameState } from "../app";
-import { ButtonState } from "./ButtonState";
-import { StateController } from "../controllers";
-import ButtonElement from "./ButtonElement";
-import ButtonElementRef from "./ButtonElementRef";
+import { AppConfig } from "../app";
+import { StateController, GameState } from "../state";
+import { ButtonElement, ButtonElementRef, ButtonState } from ".";
 
 export default function ButtonBuilder(
     config: AppConfig,

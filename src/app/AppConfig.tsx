@@ -1,6 +1,6 @@
 import ConfigParams from "./ConfigParams";
 import { DemoMode, demoModeFromString } from "./DemoMode";
-import { getUrlQueryParams } from "../utilities";
+import { getUrlQueryParams } from "../util";
 
 export default class AppConfig {
     public readonly quizModuleName: string;

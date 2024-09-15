@@ -1,5 +1,4 @@
-import { State } from "../app";
-
+import State from "./State";
 
 export default interface StateController {
     state: State;

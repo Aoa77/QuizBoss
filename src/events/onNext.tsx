@@ -1,11 +1,13 @@
-import { randomInt } from "../utilities";
-import { AppContext, GameState, QuizItem } from "../app";
+import { randomInt } from "../util";
 import { ButtonState } from "../buttons";
+import { AppContext } from "../app";
+import { GameState, QuizItem } from "../state";
+import { delay, $D } from "../time";
 
 var randomizedGuessPoolIndex: number = -1;
 ///
 export async function onNext(context: AppContext) {
-    const { config, elements, states, time } = context;
+    const { config, elements, states } = context;
     const { state, setState } = states;
     const { refs, guessButtons } = elements;
     const {
@@ -35,27 +37,23 @@ export async function onNext(context: AppContext) {
     console.info("answerSpot: ", state.answerSpot);
     await assignAnswersToButtons();
 
-    let multiplier: number = 1;
     await Promise.all([
-        elements.fadeOut(loading.target, { multiplier }),
-        elements.fadeIn(image.target, { multiplier }),
+        await elements.fadeOut(loading.target),
+        await elements.fadeIn(image.target),
     ]);
-    await elements.fadeIn(appVersion.target, { multiplier });
+    await elements.fadeIn(appVersion.target);
 
     await Promise.all([
-        elements.fadeIn(question.target, { multiplier }),
-        elements.fadeIn(buttonArea.target, { multiplier }),
-        elements.fadeIn(scoreArea.target, { multiplier }),
-        elements.fadeIn(progress.target, { multiplier }),
-        elements.fadeIn(appVersion.target, { multiplier }),
+        await elements.fadeIn(question.target),
+        await elements.fadeIn(buttonArea.target),
+        await elements.fadeIn(scoreArea.target),
+        await elements.fadeIn(progress.target),
+        await elements.fadeIn(appVersion.target),
     ]);
 
-    multiplier = 2;
-    await time.delay({ multiplier });
-    
-    multiplier = 1;
+    await delay({ value: $D.WAIT, multiplier: 2 });
     for (let button of guessButtons) {
-        await elements.fadeIn(button.target, { multiplier });
+        await elements.fadeIn(button.target);
     }
 
     setState({ ...state, gameState: GameState.INPUT });

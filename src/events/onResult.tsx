@@ -1,11 +1,13 @@
-import { AppContext, GameState } from "../app";
+import { AppContext } from "../app";
 import { ButtonElement, ButtonState } from "../buttons";
+import { GameState } from "../state";
+import { delay } from "../time";
 
 var wrongGuesses: number[] = [];
 
 ///
 export async function onResult(context: AppContext) {
-    const { config, elements, states, time } = context;
+    const { config, elements, states } = context;
     const { state, setState } = states;
     if (state.quizModule === null) {
         return;
@@ -80,7 +82,7 @@ export async function onResult(context: AppContext) {
         return correctButton;
 
         async function revealCorrectAnswer() {
-            await time.delay();
+            // await delay({ });
             unlockButtons();
 
             for (let i = 0; i < guessButtonCount; i++) {
@@ -107,11 +109,11 @@ export async function onResult(context: AppContext) {
             (b) => b.target !== correctButton.target,
         );
 
-        await elements.scaleIn(correctButton.target, {});
-        await Promise.all(
-            wrongButtons.map((b) => elements.fadeOut(b.target, {})),
-        );
-        await time.delay();
+        // await elements.scaleIn(correctButton.target, {});
+        // await Promise.all(
+        //     wrongButtons.map((b) => elements.fadeOut(b.target, {})),
+        // );
+        // await delay();
 
         // await Promise.all([
         //     elements.fadeOut(question.target),
@@ -184,7 +186,7 @@ export async function onResult(context: AppContext) {
             state.best = state.score;
             localStorage.setItem("bestScore", state.best.toString());
         }
-        await time.delay();
+        // await delay();
     }
 
     async function unlockButtons() {
@@ -192,9 +194,9 @@ export async function onResult(context: AppContext) {
             (b) => b.ref.current!.className === ButtonState.WRONG,
         )!;
 
-        await elements.scaleIn(wrongButton.target, {});
-        await time.delay({ multiplier: 4 });
-        elements.scaleOut(wrongButton.target, {});
+        // await elements.scaleIn(wrongButton.target, {});
+        // await delay({ multiplier: 4 });
+        // elements.scaleOut(wrongButton.target, {});
 
         for (let guess = 0; guess < guessButtonCount; guess++) {
             const ref = guessButtons[guess].ref.current!;

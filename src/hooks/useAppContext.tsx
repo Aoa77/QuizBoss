@@ -1,16 +1,15 @@
 import { AppConfig, AppContext } from "../app";
-import { ElementController, StateController, TimeController } from "../controllers";
+import { ElementController } from "../elements";
+import { StateController } from "../state";
 
-export default function useContextController(
+export default function useAppContext(
     config: AppConfig,
     elements: ElementController,
     states: StateController,
-    time: TimeController,
 ): AppContext {
     return {
         config,
         elements,
         states,
-        time,
     };
 }

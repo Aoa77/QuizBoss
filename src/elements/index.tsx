@@ -1,5 +1,6 @@
+import ElementController from "./ElementController";
 import ElementRef from "./ElementRef";
 import ElementRefs from "./ElementRefs";
 
-export { ElementRef };
+export { ElementController, ElementRef };
 export type { ElementRefs };

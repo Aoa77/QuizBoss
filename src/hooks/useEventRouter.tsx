@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { AppContext, GameState } from "../app";
+import { AppContext } from "../app";
 import {
     onGameOver,
     onInit,
@@ -9,6 +9,7 @@ import {
     onReady,
     onResult,
 } from "../events";
+import { GameState } from "../state";
 
 type EventHandlers = {
     [key in GameState]: (context: AppContext) => void;
@@ -25,9 +26,11 @@ const eventHandlers: EventHandlers = {
 };
 
 export default function useEventRouter(context: AppContext) {
+    
+    console.info({eventHandlers});
     useEffect(() => {
         console.info(context.states.state.gameState);
-
+        // debugger;
         const eventHandler = eventHandlers[context.states.state.gameState];
         if (eventHandler) {
             eventHandler(context);

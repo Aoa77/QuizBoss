@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { GameState, State } from "../app";
-import { StateController } from "../controllers";
+import { StateController, State, GameState } from "../state";
 
 var isLocalStorageInitialized = false;
 export default function useStateController(): StateController {

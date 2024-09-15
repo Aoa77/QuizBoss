@@ -1,9 +1,11 @@
-import { AppContext, DemoMode, GameState } from "../app";
+import { AppContext, DemoMode } from "../app";
 import { ButtonState } from "../buttons";
-import { randomInt } from "../utilities";
+import { GameState } from "../state";
+import { $D, delay } from "../time";
+import { randomInt } from "../util";
 
 export async function onInput(context: AppContext) {
-    const { config, elements, states, time } = context;
+    const { config, elements, states } = context;
     const { guessButtons } = elements;
     const { state, setState } = states;
 
@@ -13,7 +15,7 @@ export async function onInput(context: AppContext) {
     }
 
     console.info("waiting for DEMO input...");
-    await time.demoWait();
+    await delay({ value: $D.DEMO });
 
     let spotButton = doDemoInput();
 
@@ -28,7 +30,7 @@ export async function onInput(context: AppContext) {
         let spotButton = guessButtons[state.answerSpot].ref.current!;
         if (config.demoMode === DemoMode.RANDOM) {
             const activeButtons = guessButtons.filter(
-                (x) => x.ref.current!.className === ButtonState.NORMAL
+                (x) => x.ref.current!.className === ButtonState.NORMAL,
             );
             spotButton =
                 activeButtons[randomInt(0, activeButtons.length)].ref.current!;
