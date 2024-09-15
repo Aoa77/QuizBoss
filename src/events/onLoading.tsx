@@ -1,6 +1,6 @@
 import { AppContext } from "../app";
 import { GameState } from "../state";
-import { delay, $D } from "../time";
+import { delay, Duration } from "../time";
 
 export async function onLoading(context: AppContext) {
     ///
@@ -20,7 +20,7 @@ export async function onLoading(context: AppContext) {
     await elements.fadeIn(image.target);
 
     while (!currentItem || !currentItem.isLoaded) {
-        await delay({ value: $D.POLL });
+        await delay(Duration.POLL);
     }
 
     setState({ ...state, gameState: GameState.NEXT });

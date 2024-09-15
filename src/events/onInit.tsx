@@ -1,6 +1,6 @@
 import { AppContext } from "../app";
 import { GameState, QuizModule, QuizItem } from "../state";
-import { $D, delay } from "../time";
+import { Duration, delay } from "../time";
 import { shuffle } from "../random";
 
 ///
@@ -13,7 +13,7 @@ export async function onInit(context: AppContext) {
 
     await elements.fadeIn(loading.target);
     await initQuizModule();
-    await delay({ value: $D.WAIT, multiplier: 3 });
+    await delay(Duration.WAIT, 3);
 
     setState({ ...state, gameState: GameState.READY });
     return;
@@ -99,7 +99,7 @@ export async function onInit(context: AppContext) {
         console.info("Loading quiz images...");
         for (const item of quizItems) {
             item.image.src = item.imageSrc;
-            await delay({ value: $D.THROTTLE });
+            await delay(Duration.THROTTLE);
         }
     }
 }

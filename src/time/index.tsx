@@ -1,7 +1,4 @@
 import animate from "./animate";
-import delay from "./delay";
-import { $D, Duration } from "./Duration";
-import durationCalc from "./durationCalc";
+import {delay, delayCalc, Duration } from "./delay";
 
-export { $D, animate, delay, durationCalc };
-export type { Duration };
+export { animate, delay, delayCalc, Duration };

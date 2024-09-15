@@ -1,8 +1,8 @@
 import { AppSettings } from "../app";
 import { ButtonBuilder, ButtonElement, ButtonState } from "../buttons";
-import { StateController } from "../state";
 import { ElementRef, ElementRefs } from ".";
-import { delay, Duration, $D, animate } from "../time";
+import { StateController } from "../state";
+import { Duration, delay, animate } from "../time";
 
 export default class ElementController {
     // public members
@@ -20,10 +20,10 @@ export default class ElementController {
 
     // public methods
     public async blinkButton(button: HTMLButtonElement) {
-        for (let blink = 0; blink < $D.BLINKS; blink++) {
+        for (let blink = 0; blink < Duration.BLINKS; blink++) {
             button.className =
                 blink % 2 ? ButtonState.REVEAL : ButtonState.BLINK;
-            await delay({ value: $D.BLINK });
+            await delay(Duration.BLINK);
         }
     }
 
@@ -37,7 +37,7 @@ export default class ElementController {
         correctButton: HTMLButtonElement,
     ): Promise<number> {
         //
-        await delay({ value: $D.WAIT });
+        await delay(Duration.WAIT);
         // correctButton!.innerHTML += " +" + award.toString();
         // await this.time.transition();
 
@@ -75,10 +75,7 @@ export default class ElementController {
     public async fade(target: string, opacity: number, multiplier: number = 1) {
         const easing = "linear";
         const targets = this.toTargetSelector(target);
-        await animate(
-            { targets, opacity, easing },
-            { value: $D.FADE, multiplier },
-        );
+        await animate({ targets, opacity, easing }, Duration.FADE, multiplier);
     }
 
     public async scaleIn(
@@ -99,6 +96,6 @@ export default class ElementController {
 
     public async scale(target: string, scale: number, multiplier: number = 1) {
         const targets = this.toTargetSelector(target);
-        await animate({ targets, scale }, { value: $D.SCALE, multiplier });
+        await animate({ targets, scale }, Duration.SCALE, multiplier);
     }
 }

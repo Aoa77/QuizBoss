@@ -2,7 +2,7 @@ import { randomInt } from "../random";
 import { ButtonState } from "../buttons";
 import { AppContext } from "../app";
 import { GameState, QuizItem } from "../state";
-import { delay, $D } from "../time";
+import { delay, Duration } from "../time";
 
 var randomizedGuessPoolIndex: number = -1;
 ///
@@ -51,7 +51,7 @@ export async function onNext(context: AppContext) {
         await elements.fadeIn(appVersion.target),
     ]);
 
-    await delay({ value: $D.WAIT, multiplier: 2 });
+    await delay(Duration.WAIT, 2);
     for (let button of guessButtons) {
         await elements.fadeIn(button.target);
     }

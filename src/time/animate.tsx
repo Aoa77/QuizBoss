@@ -1,13 +1,12 @@
 import anime from "animejs";
-import { Duration } from "./Duration";
-import durationCalc from "./durationCalc";
-
+import { delayCalc } from ".";
 
 export default function animate(
     params: anime.AnimeParams,
-    duration: Duration,
+    duration: number,
+    multiplier: number = 1,
 ): Promise<void> {
-    params.duration = durationCalc(duration);
+    params.duration = delayCalc(duration, multiplier);
     anime(params);
     return new Promise((resolve) => setTimeout(resolve, +params.duration!));
 }
