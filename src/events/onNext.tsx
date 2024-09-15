@@ -50,11 +50,14 @@ export async function onNext(context: AppContext) {
         elements.fadeIn(appVersion.target, { multiplier }),
     ]);
 
+    multiplier = 2;
+    await time.delay({ multiplier });
+    
     multiplier = 1;
     for (let button of guessButtons) {
         await elements.fadeIn(button.target, { multiplier });
     }
-    return;
+
     setState({ ...state, gameState: GameState.INPUT });
     return;
 

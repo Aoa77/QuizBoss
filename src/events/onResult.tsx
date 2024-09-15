@@ -1,5 +1,5 @@
 import { AppContext, GameState } from "../app";
-import { ButtonState } from "../buttons";
+import { ButtonElement, ButtonState } from "../buttons";
 
 var wrongGuesses: number[] = [];
 
@@ -20,15 +20,17 @@ export async function onResult(context: AppContext) {
     const correctAnswer = currentItem.key;
     const isCorrectGuess = correctAnswer === state.guessValue;
 
-    const correctButton = await lockButtons();
+    const correctButton: ButtonElement | null = await lockButtons();
+    const correctButtonRef: HTMLButtonElement | null | undefined =
+        correctButton?.ref.current;
+
     if (isCorrectGuess || wrongGuessesExauhsted()) {
         await handleCorrectGuess();
         setState({ ...state });
         return;
     }
 
-    await time.delay();
-    unlockButtons();
+    await unlockButtons();
     setState({ ...state, gameState: GameState.INPUT });
     return;
 
@@ -39,28 +41,37 @@ export async function onResult(context: AppContext) {
         return wrongGuesses.length === guessButtonCount - 1;
     }
 
-    async function lockButtons(): Promise<HTMLButtonElement | null> {
-        let correctButton: HTMLButtonElement | null = null;
+    async function lockButtons(): Promise<ButtonElement | null> {
+        let correctButton: ButtonElement | null = null;
+        let correctButtonRef: HTMLButtonElement | null = null;
+
         for (let guess = 0; guess < guessButtonCount; guess++) {
-            const guessButton = guessButtons[guess].ref.current!;
-            if (guessButton.className === ButtonState.DISABLED) {
+            //
+            const guessButton = guessButtons[guess];
+            const guessButtonRef = guessButton.ref.current!;
+
+            if (guessButtonRef.className === ButtonState.DISABLED) {
                 continue;
             }
-            if (guessButton.className === ButtonState.HIDDEN) {
+            if (guessButtonRef.className === ButtonState.HIDDEN) {
                 continue;
             }
-            if (state.guessValue !== guessButton.value) {
-                guessButton.className = ButtonState.DIMMED;
+            if (state.guessValue !== guessButtonRef.value) {
+                guessButtonRef.className = ButtonState.DIMMED;
                 continue;
             }
+
             if (isCorrectGuess) {
                 correctButton = guessButton;
-                correctButton!.className = ButtonState.CORRECT;
+                correctButtonRef = correctButton.ref.current!;
+                correctButtonRef.className = ButtonState.CORRECT;
                 currentItem.answeredCorrectly = true;
                 continue;
             }
+
             wrongGuesses.push(guess);
-            guessButton.className = ButtonState.WRONG;
+            guessButtonRef.className = ButtonState.WRONG;
+
             if (wrongGuessesExauhsted()) {
                 await revealCorrectAnswer();
                 break;
@@ -76,8 +87,10 @@ export async function onResult(context: AppContext) {
                 if (wrongGuesses.includes(i)) {
                     continue;
                 }
-                correctButton = guessButtons[i].ref.current!;
-                await elements.blinkButton(correctButton);
+                const guessButton = guessButtons[i];
+                correctButton = guessButton;
+                correctButtonRef = correctButton.ref.current!;
+                await elements.blinkButton(correctButtonRef);
                 currentItem.answeredCorrectly = true;
                 break;
             }
@@ -86,15 +99,18 @@ export async function onResult(context: AppContext) {
 
     async function handleCorrectGuess() {
         //
-        const rightButton = guessButtons.find(
-            (b) => b.target === correctButton!.id,
-        )!;
+        if (!correctButton) {
+            throw new Error("correctButton is null.");
+        }
+
         const wrongButtons = guessButtons.filter(
-            (b) => b.target !== correctButton!.id,
+            (b) => b.target !== correctButton.target,
         );
 
-        await elements.scaleIn(rightButton.target,{});
-        await Promise.all(wrongButtons.map((b) => elements.fadeOut(b.target,{})));
+        await elements.scaleIn(correctButton.target, {});
+        await Promise.all(
+            wrongButtons.map((b) => elements.fadeOut(b.target, {})),
+        );
         await time.delay();
 
         // await Promise.all([
@@ -150,6 +166,10 @@ export async function onResult(context: AppContext) {
     }
 
     async function applyScoreAward(award: number) {
+        if (!correctButtonRef) {
+            throw new Error("correctButtonRef is null.");
+        }
+
         if (award === 0) {
             return;
         }
@@ -157,8 +177,9 @@ export async function onResult(context: AppContext) {
         state.score = await elements.scoreUpdate(
             state.score,
             award,
-            correctButton!,
+            correctButtonRef,
         );
+
         if (state.score > state.best) {
             state.best = state.score;
             localStorage.setItem("bestScore", state.best.toString());
@@ -166,7 +187,15 @@ export async function onResult(context: AppContext) {
         await time.delay();
     }
 
-    function unlockButtons() {
+    async function unlockButtons() {
+        const wrongButton: ButtonElement = guessButtons.find(
+            (b) => b.ref.current!.className === ButtonState.WRONG,
+        )!;
+
+        await elements.scaleIn(wrongButton.target, {});
+        await time.delay({ multiplier: 4 });
+        elements.scaleOut(wrongButton.target, {});
+
         for (let guess = 0; guess < guessButtonCount; guess++) {
             const ref = guessButtons[guess].ref.current!;
             switch (ref.className) {

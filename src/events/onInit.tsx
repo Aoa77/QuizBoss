@@ -2,9 +2,6 @@ import { AppContext, GameState, QuizItem, QuizModule } from "../app";
 import { shuffle } from "../utilities";
 
 ///
-let isInitializing: boolean = false;
-
-///
 export async function onInit(context: AppContext) {
     const { config, elements, states, time } = context;
     const { refs } = elements;
@@ -12,12 +9,6 @@ export async function onInit(context: AppContext) {
     const { state, setState } = states;
     const { quizModuleName } = config;
 
-    console.info({ isInitializing });
-    if (isInitializing) {
-        return;
-    }
-
-    console.info({ isInitializing });
     await elements.fadeIn(loading.target, {});
     await initQuizModule();
     await time.delay({ multiplier: 3 });
