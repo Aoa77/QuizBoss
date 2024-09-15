@@ -1,5 +1,6 @@
 export enum GameState {
     INIT = "INIT",
+    READY = "READY",
     LOADING = "LOADING",
     NEXT = "NEXT",
     INPUT = "INPUT",

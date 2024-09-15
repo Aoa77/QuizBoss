@@ -2,8 +2,14 @@ import { AppContext } from "../app";
 
 export default function LoadingSpinner(context: AppContext) {
     const { elements } = context;
+    const { refs } = elements;
+    const { loading } = refs;
     return (
-        <section ref={elements.refs.loading} className="loading hidden">
+        <section
+            id={loading.target}
+            ref={loading.object}
+            className="loading hidden"
+        >
             <div className="lds-ellipsis">
                 <div></div>
                 <div></div>

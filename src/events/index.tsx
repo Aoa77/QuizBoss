@@ -1,15 +1,17 @@
+import { onGameOver } from "./onGameOver";
 import { onInit } from "./onInit";
+import { onInput } from "./onInput";
 import { onLoading } from "./onLoading";
 import { onNext } from "./onNext";
-import { onInput } from "./onInput";
+import { onReady } from "./onReady";
 import { onResult } from "./onResult";
-import { onGameOver } from "./onGameOver";
 
 export {
+    onGameOver, 
     onInit,
+    onInput,
     onLoading,
     onNext,
-    onInput,
+    onReady,
     onResult,
-    onGameOver, /////////////
 };

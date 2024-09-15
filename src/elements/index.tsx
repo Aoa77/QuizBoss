@@ -1,8 +1,5 @@
-import ElementAnimation from "./ElementAnimation";
-import ElementAnimations from "./ElementAnimations";
-import ElementController from "./ElementController";
-import ElementEnvelopes from "./ElementEnvelopes";
+import ElementRef from "./ElementRef";
 import ElementRefs from "./ElementRefs";
 
-export { ElementAnimation, ElementController };
-export type { ElementAnimations, ElementEnvelopes, ElementRefs };
+export { ElementRef };
+export type { ElementRefs };

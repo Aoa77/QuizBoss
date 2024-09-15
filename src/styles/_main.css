@@ -86,6 +86,7 @@ button {
     margin: 0 auto;
     margin-top: var(--hu_6);
     padding: 2rem;
+    opacity: 0;
 }
 button.blink {
     background-color: #ffff0022;

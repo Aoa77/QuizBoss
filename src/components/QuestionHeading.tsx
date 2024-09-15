@@ -2,10 +2,12 @@ import { AppContext } from "../app";
 
 export default function QuestionHeading(context: AppContext) {
     const { elements, states } = context;
+    const { refs } = elements;
+    const { question } = refs;
     const { state } = states;
     const quizData = state.quizModule?.quizData;
     return (
-        <h2 ref={elements.refs.question} className="hidden">
+        <h2 id={question.target} ref={question.object} className="hidden">
             {quizData?.questionText ?? <>&nbsp;</>}
         </h2>
     );

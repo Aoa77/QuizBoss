@@ -2,10 +2,12 @@ import { AppContext } from "../app";
 
 export default function TitleHeading(context: AppContext) {
     const { elements, states } = context;
+    const { refs } = elements;
+    const { title } = refs;
     const { state } = states;
     const quizData = state.quizModule?.quizData;
     return (
-        <h1 ref={elements.refs.title} className="hidden">
+        <h1 id={title.target} ref={title.object} className="hidden">
             {quizData?.title ?? <>&nbsp;</>}
         </h1>
     );

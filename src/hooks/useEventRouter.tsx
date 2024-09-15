@@ -6,6 +6,7 @@ import {
     onInput,
     onLoading,
     onNext,
+    onReady,
     onResult,
 } from "../events";
 
@@ -15,6 +16,7 @@ type EventHandlers = {
 
 const eventHandlers: EventHandlers = {
     [GameState.INIT]: onInit,
+    [GameState.READY]: onReady,
     [GameState.LOADING]: onLoading,
     [GameState.NEXT]: onNext,
     [GameState.INPUT]: onInput,
@@ -24,7 +26,7 @@ const eventHandlers: EventHandlers = {
 
 export default function useEventRouter(context: AppContext) {
     useEffect(() => {
-        console.info("useEventRouter", context.states.state.gameState, context);
+        console.info(context.states.state.gameState);
 
         const eventHandler = eventHandlers[context.states.state.gameState];
         if (eventHandler) {

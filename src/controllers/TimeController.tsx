@@ -1,51 +1,42 @@
 import anime from "animejs";
 import { delay, randomInt } from "../utilities";
-import Envelope from "../utilities/Envelope";
+import Duration from "./Duration";
 
+const DEFAULT_DURATION = 250;
 export default class TimeController {
     ///
-    public async anime(params: anime.AnimeParams) {
+    public async animate(params: anime.AnimeParams, duration: Duration) {
+        duration.value ??= DEFAULT_DURATION;
+        duration.multiplier ??= 1;
+        params.duration = duration.value * duration.multiplier;
         anime(params);
-        const { duration } = params;
-        if (typeof duration !== "number") {
-            throw new Error("Invalid duration");
-        }
-        await delay(duration);
-    }
-
-    public sustain(envelope: Envelope) {
-        return delay(envelope.sustain);
+        await this.delay({ value: params.duration });
     }
 
     public blink() {
-        return delay(150);
+        return this.delay({ value: 150 });
     }
 
     public blinks(): number {
         return 16;
     }
 
-    public demoWait() {
-        return delay(randomInt(150, 450));
+    public delay(params?: Duration) {
+        params ??= {};
+        params.value ??= DEFAULT_DURATION;
+        params.multiplier ??= 1;
+        return delay(params.value * params.multiplier);
     }
 
-    public fadeDuration() {
-        return 250;
+    public demoWait() {
+        return this.delay({ value: randomInt(150, 450) });
     }
 
     public throttle() {
-        return delay(25);
-    }
-
-    public pause() {
-        return delay(1200);
-    }
-
-    public scoreUpdate() {
-        return delay(250);
+        return this.delay({ value: 25 });
     }
 
     public poll() {
-        return delay(50);
+        return this.delay({ value: 50 });
     }
 }

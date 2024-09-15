@@ -32,6 +32,5 @@ export default class AppConfig {
             guessButtonCount ?? +(qp.get("guessButtonCount") ?? "4");
         this.maxQuestions = maxQuestions ?? +(qp.get("maxQuestions") ?? "0");
 
-        console.info("AppConfig", this);
     }
 }

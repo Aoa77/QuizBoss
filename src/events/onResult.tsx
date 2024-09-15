@@ -7,13 +7,14 @@ var wrongGuesses: number[] = [];
 export async function onResult(context: AppContext) {
     const { config, elements, states, time } = context;
     const { state, setState } = states;
-
-    const { guessButtonCount } = config;
     if (state.quizModule === null) {
         return;
     }
 
-    const { guessButtons } = elements;
+    const { guessButtonCount } = config;
+    const { refs, guessButtons } = elements;
+    const { buttonArea, image, loading, question } = refs;
+
     const quizItems = state.quizModule.quizData.items;
     const currentItem = quizItems[state.currentItemIndex];
     const correctAnswer = currentItem.key;
@@ -26,7 +27,7 @@ export async function onResult(context: AppContext) {
         return;
     }
 
-    await time.pause();
+    await time.delay();
     unlockButtons();
     setState({ ...state, gameState: GameState.INPUT });
     return;
@@ -68,7 +69,7 @@ export async function onResult(context: AppContext) {
         return correctButton;
 
         async function revealCorrectAnswer() {
-            await time.pause();
+            await time.delay();
             unlockButtons();
 
             for (let i = 0; i < guessButtonCount; i++) {
@@ -84,34 +85,53 @@ export async function onResult(context: AppContext) {
     }
 
     async function handleCorrectGuess() {
-        // elements.refs.imageSection.current!.classList.add("fadeOut");
-        // elements.hideQuestionHeading();
-        // elements.showSpinner();
+        //
+        const rightButton = guessButtons.find(
+            (b) => b.target === correctButton!.id,
+        )!;
+        const wrongButtons = guessButtons.filter(
+            (b) => b.target !== correctButton!.id,
+        );
 
-        const award = guessButtonCount - wrongGuesses.length - 1;
-        await applyScoreAward(award);
+        await elements.scaleIn(rightButton.target,{});
+        await Promise.all(wrongButtons.map((b) => elements.fadeOut(b.target,{})));
+        await time.delay();
 
-        for (let guess = 0; guess < guessButtonCount; guess++) {
-            const guessButton = guessButtons[guess].ref.current!;
-            guessButton.className = ButtonState.HIDDEN;
-        }
+        // await Promise.all([
+        //     elements.fadeOut(question.target),
+        //     elements.fadeOut(image.target),
+        // ]);
 
-    //    elements.hideImage();
-        // elements.refs.imageSection.current!.classList.remove("fadeOut");
+        // await Promise.all([
+        //     button.scaleIn().then(() => button.hold()),
+        //     question.hold().then(() => question.fadeOut()),
+        // ]);
+
+        // const award = guessButtonCount - wrongGuesses.length - 1;
+        // await Promise.all([
+        //     ...others.map((b) => b.fadeOut()),
+        //     applyScoreAward(award),
+        // ]);
+
+        // await Promise.all([
+        //     button.scaleOut().then(() => button.fadeOut()),
+        //     image.fadeOut(),
+        //     loading.fadeIn().then(() => loading.hold()),
+        // ]);
 
         if (1 + state.currentItemIndex === quizItems.length) {
             onGameOver();
             return;
         }
 
-  //      elements.hideQuestion();
+        //      elements.hideQuestion();
         ++state.currentItemIndex;
         resetWrongGuesses();
         state.gameState = GameState.LOADING;
     }
 
     function onGameOver() {
-        const prompt = elements.refs.question.current!;
+        const prompt = question.object.current!;
         prompt.innerHTML = "[ play again ]";
         prompt.classList.add("prompt");
         prompt.onclick = async () => {
@@ -123,7 +143,7 @@ export async function onResult(context: AppContext) {
             // elements.hideQuestion();
             // elements.hideAppVersion();
             //
-            elements.animate.loading.fadeIn();
+            // elements.animate.loading.fadeIn();
             window.location.reload();
         };
         state.gameState = GameState.GAMEOVER;
@@ -143,7 +163,7 @@ export async function onResult(context: AppContext) {
             state.best = state.score;
             localStorage.setItem("bestScore", state.best.toString());
         }
-        await time.pause();
+        await time.delay();
     }
 
     function unlockButtons() {

@@ -1,7 +1,11 @@
 import { useRef } from "react";
 import { AppConfig } from "../app";
-import { StateController, TimeController } from "../controllers";
-import { ElementController } from "../elements";
+import {
+    ElementController,
+    StateController,
+    TimeController,
+} from "../controllers";
+import { ElementRef } from "../elements";
 
 export default function useElementController(
     config: AppConfig,
@@ -11,73 +15,46 @@ export default function useElementController(
     return new ElementController(
         config,
         {
-            appVersion: {
-                target: "h6",
-                fadeIn: 250,
-                fadeOut: 250,
-                sustain: 1000,
-            },
-            best: { target: ".best", fadeIn: 250, fadeOut: 250, sustain: 1000 },
-            buttons: {
-                target: ".buttons",
-                fadeIn: 250,
-                fadeOut: 250,
-                sustain: 1000,
-            },
-            image: {
-                target: ".image",
-                fadeIn: 250,
-                fadeOut: 250,
-                sustain: 1000,
-            },
-            loading: {
-                target: ".loading",
-                fadeIn: 250,
-                fadeOut: 250,
-                sustain: 1000,
-            },
-            progress: {
-                target: ".progress",
-                fadeIn: 250,
-                fadeOut: 250,
-                sustain: 1000,
-            },
-            question: {
-                target: "h2",
-                fadeIn: 250,
-                fadeOut: 250,
-                sustain: 1000,
-            },
-            score: {
-                target: ".score",
-                fadeIn: 250,
-                fadeOut: 250,
-                sustain: 1000,
-            },
-            scoreArea: {
-                target: ".scoreArea",
-                fadeIn: 250,
-                fadeOut: 250,
-                sustain: 1000,
-            },
-            title: {
-                target: "h1",
-                fadeIn: 250,
-                fadeOut: 250,
-                sustain: 1000,
-            },
-        },
-        {
-            appVersion: useRef<HTMLHeadingElement | null>(null),
-            best: useRef<HTMLDivElement | null>(null),
-            buttons: useRef<HTMLDivElement | null>(null),
-            image: useRef<HTMLDivElement | null>(null),
-            loading: useRef<HTMLDivElement | null>(null),
-            progress: useRef<HTMLDivElement | null>(null),
-            question: useRef<HTMLHeadingElement | null>(null),
-            score: useRef<HTMLDivElement | null>(null),
-            scoreArea: useRef<HTMLDivElement | null>(null),
-            title: useRef<HTMLHeadingElement | null>(null),
+            appVersion: new ElementRef<HTMLHeadingElement>(
+                "appVersion",
+                useRef<HTMLHeadingElement | null>(null),
+            ),
+            bestValue: new ElementRef<HTMLDivElement>(
+                "bestValue",
+                useRef<HTMLDivElement | null>(null),
+            ),
+            buttonArea: new ElementRef<HTMLDivElement>(
+                "buttonArea",
+                useRef<HTMLDivElement | null>(null),
+            ),
+            image: new ElementRef<HTMLDivElement>(
+                "image",
+                useRef<HTMLDivElement | null>(null),
+            ),
+            loading: new ElementRef<HTMLDivElement>(
+                "loading",
+                useRef<HTMLDivElement | null>(null),
+            ),
+            progress: new ElementRef<HTMLDivElement>(
+                "progress",
+                useRef<HTMLDivElement | null>(null),
+            ),
+            question: new ElementRef<HTMLHeadingElement>(
+                "question",
+                useRef<HTMLHeadingElement | null>(null),
+            ),
+            scoreValue: new ElementRef<HTMLDivElement>(
+                "scoreValue",
+                useRef<HTMLDivElement | null>(null),
+            ),
+            scoreArea: new ElementRef<HTMLDivElement>(
+                "scoreArea",
+                useRef<HTMLDivElement | null>(null),
+            ),
+            title: new ElementRef<HTMLHeadingElement>(
+                "title",
+                useRef<HTMLHeadingElement | null>(null),
+            ),
         },
         states,
         time,

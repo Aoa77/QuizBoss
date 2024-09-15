@@ -2,26 +2,27 @@ import { AppContext, GameState, QuizItem, QuizModule } from "../app";
 import { shuffle } from "../utilities";
 
 ///
-var isInitializing: boolean = false;
+let isInitializing: boolean = false;
 
 ///
 export async function onInit(context: AppContext) {
-    const {
-        config,
-        states,
-        time,
-    } = context;
+    const { config, elements, states, time } = context;
+    const { refs } = elements;
+    const { appVersion, loading } = refs;
     const { state, setState } = states;
     const { quizModuleName } = config;
-    
+
     console.info({ isInitializing });
     if (isInitializing) {
         return;
     }
 
-    isInitializing = true;
+    console.info({ isInitializing });
+    await elements.fadeIn(loading.target, {});
     await initQuizModule();
-    setState({ ...state, gameState: GameState.LOADING });
+    await time.delay({ multiplier: 3 });
+
+    setState({ ...state, gameState: GameState.READY });
     return;
 
     async function initQuizModule(): Promise<void> {
