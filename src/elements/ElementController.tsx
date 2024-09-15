@@ -2,7 +2,7 @@ import { AppSettings } from "../app";
 import { ButtonBuilder, ButtonElement, ButtonState } from "../buttons";
 import { ElementRef, ElementRefs } from ".";
 import { StateController } from "../state";
-import { Duration, delay, animate } from "../time";
+import { Duration, delay, animate, Multiplier } from "../time";
 
 export default class ElementController {
     // public members
@@ -59,7 +59,7 @@ export default class ElementController {
     public async fadeIn(
         target: string,
         opacity: number = 1,
-        multiplier: number = 1,
+        multiplier: Multiplier = Multiplier.x1,
     ) {
         await this.fade(target, opacity, multiplier);
     }
@@ -67,12 +67,16 @@ export default class ElementController {
     public async fadeOut(
         target: string,
         opacity: number = 0,
-        multiplier: number = 1,
+        multiplier: Multiplier = Multiplier.x1,
     ) {
         await this.fade(target, opacity, multiplier);
     }
 
-    public async fade(target: string, opacity: number, multiplier: number = 1) {
+    public async fade(
+        target: string,
+        opacity: number,
+        multiplier: Multiplier = Multiplier.x1,
+    ) {
         const easing = "linear";
         const targets = this.toTargetSelector(target);
         await animate({ targets, opacity, easing }, Duration.FADE, multiplier);
@@ -81,7 +85,7 @@ export default class ElementController {
     public async scaleIn(
         target: string,
         scale: number = 1.2,
-        multiplier: number = 1,
+        multiplier: Multiplier = Multiplier.x1,
     ) {
         await this.scale(target, scale, multiplier);
     }
@@ -89,12 +93,16 @@ export default class ElementController {
     public async scaleOut(
         target: string,
         scale: number = 1.0,
-        multiplier: number = 1,
+        multiplier: Multiplier = Multiplier.x1,
     ) {
         await this.scale(target, scale, multiplier);
     }
 
-    public async scale(target: string, scale: number, multiplier: number = 1) {
+    public async scale(
+        target: string,
+        scale: number,
+        multiplier: Multiplier = Multiplier.x1,
+    ) {
         const targets = this.toTargetSelector(target);
         await animate({ targets, scale }, Duration.SCALE, multiplier);
     }

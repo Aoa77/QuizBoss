@@ -1,7 +1,7 @@
 import { AppContext } from "../app";
 import { ButtonElement, ButtonState } from "../buttons";
 import { GameState } from "../state";
-import { delay } from "../time";
+import { delay, Duration, Multiplier } from "../time";
 
 var wrongGuesses: number[] = [];
 
@@ -27,11 +27,22 @@ export async function onResult(context: AppContext) {
         correctButton?.ref.current;
 
     if (isCorrectGuess || wrongGuessesExauhsted()) {
+        ///
         await handleCorrectGuess();
-        setState({ ...state });
+        if (1 + state.currentItemIndex === quizItems.length) {
+            setState({ ...state, gameState: GameState.GAMEOVER });
+            return;
+        }
+
+        ///
+        ++state.currentItemIndex;
+        resetWrongGuesses();
+        setState({ ...state, gameState: GameState.LOADING });
         return;
     }
 
+    ///
+    await handleWrongGuess();
     await unlockButtons();
     setState({ ...state, gameState: GameState.INPUT });
     return;
@@ -109,62 +120,23 @@ export async function onResult(context: AppContext) {
             (b) => b.target !== correctButton.target,
         );
 
-        // await elements.scaleIn(correctButton.target, {});
-        // await Promise.all(
-        //     wrongButtons.map((b) => elements.fadeOut(b.target, {})),
-        // );
-        // await delay();
+        await elements.scaleIn(correctButton.target);
+        await delay(Duration.WAIT);
 
-        // await Promise.all([
-        //     elements.fadeOut(question.target),
-        //     elements.fadeOut(image.target),
-        // ]);
-
-        // await Promise.all([
-        //     button.scaleIn().then(() => button.hold()),
-        //     question.hold().then(() => question.fadeOut()),
-        // ]);
-
-        // const award = guessButtonCount - wrongGuesses.length - 1;
-        // await Promise.all([
-        //     ...others.map((b) => b.fadeOut()),
-        //     applyScoreAward(award),
-        // ]);
-
-        // await Promise.all([
-        //     button.scaleOut().then(() => button.fadeOut()),
-        //     image.fadeOut(),
-        //     loading.fadeIn().then(() => loading.hold()),
-        // ]);
-
-        if (1 + state.currentItemIndex === quizItems.length) {
-            onGameOver();
-            return;
+        elements.fadeOut(question.target);
+        for (let button of wrongButtons) {
+            await elements.fadeOut(button.target);
         }
 
-        //      elements.hideQuestion();
-        ++state.currentItemIndex;
-        resetWrongGuesses();
-        state.gameState = GameState.LOADING;
-    }
+        await delay(Duration.WAIT, Multiplier.x3);
+        elements.scaleOut(correctButton.target);
+        await delay(Duration.WAIT);
+        
+        elements.fadeOut(image.target);
+        await elements.fadeIn(loading.target);
 
-    function onGameOver() {
-        const prompt = question.object.current!;
-        prompt.innerHTML = "[ play again ]";
-        prompt.classList.add("prompt");
-        prompt.onclick = async () => {
-            //
-            // elements.hideTitle();
-            // elements.hideButtonsSection();
-            // elements.hideScoreArea();
-            // elements.hideProgressSection();
-            // elements.hideQuestion();
-            // elements.hideAppVersion();
-            //
-            // elements.animate.loading.fadeIn();
-            window.location.reload();
-        };
-        state.gameState = GameState.GAMEOVER;
+        await elements.fadeOut(correctButton.target);
+        await delay(Duration.WAIT);
     }
 
     async function applyScoreAward(award: number) {
@@ -189,15 +161,18 @@ export async function onResult(context: AppContext) {
         // await delay();
     }
 
-    async function unlockButtons() {
+    async function handleWrongGuess() {
         const wrongButton: ButtonElement = guessButtons.find(
             (b) => b.ref.current!.className === ButtonState.WRONG,
         )!;
 
-        // await elements.scaleIn(wrongButton.target, {});
-        // await delay({ multiplier: 4 });
-        // elements.scaleOut(wrongButton.target, {});
+        await elements.scaleIn(wrongButton.target);
+        await delay(Duration.WAIT);
+        elements.scaleOut(wrongButton.target);
+    }
 
+    async function unlockButtons() {
+        await delay(Duration.TICK);
         for (let guess = 0; guess < guessButtonCount; guess++) {
             const ref = guessButtons[guess].ref.current!;
             switch (ref.className) {

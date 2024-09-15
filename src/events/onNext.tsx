@@ -4,9 +4,9 @@ import { AppContext } from "../app";
 import { GameState, QuizItem } from "../state";
 import { delay, Duration } from "../time";
 
-var randomizedGuessPoolIndex: number = -1;
 ///
 export async function onNext(context: AppContext) {
+    let randomizedGuessPoolIndex: number = -1;
     const { config, elements, states } = context;
     const { state, setState } = states;
     const { refs, guessButtons } = elements;
@@ -18,7 +18,6 @@ export async function onNext(context: AppContext) {
         progress,
         question,
         scoreArea,
-        title,
     } = refs;
 
     if (state.quizModule === null) {
@@ -51,7 +50,7 @@ export async function onNext(context: AppContext) {
         await elements.fadeIn(appVersion.target),
     ]);
 
-    await delay(Duration.WAIT, 2);
+    await delay(Duration.WAIT, 1);
     for (let button of guessButtons) {
         await elements.fadeIn(button.target);
     }

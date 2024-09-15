@@ -7,7 +7,7 @@ import { shuffle } from "../random";
 export async function onInit(context: AppContext) {
     const { config, elements, states } = context;
     const { refs } = elements;
-    const { appVersion, loading } = refs;
+    const { loading } = refs;
     const { state, setState } = states;
     const { quizModuleName } = config;
 
