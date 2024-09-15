@@ -3,10 +3,9 @@ import { ButtonElement, ButtonState } from "../buttons";
 import { GameState } from "../state";
 import { delay, Duration, Multiplier } from "../time";
 
-var wrongGuesses: number[] = [];
-
 ///
 export async function onResult(context: AppContext) {
+    let wrongGuesses: number[] = [];
     const { config, elements, states } = context;
     const { state, setState } = states;
     if (state.quizModule === null) {
@@ -119,44 +118,47 @@ export async function onResult(context: AppContext) {
             (b) => b.target !== correctButton.target,
         );
 
+        const award: number = calcAward();
         await elements.scaleIn(correctButton.target);
         await delay(Duration.WAIT);
-
+        
         elements.fadeOut(question.target);
         for (let button of wrongButtons) {
             await elements.fadeOut(button.target);
         }
-
-        await delay(Duration.WAIT, Multiplier.x3);
+        
+        revealButtonScore(award);
+        await delay(Duration.WAIT, Multiplier.x2);
         elements.scaleOut(correctButton.target);
-        await delay(Duration.WAIT);
-
+        
         elements.fadeOut(image.target);
         await elements.fadeIn(loading.target);
         await elements.fadeOut(correctButton.target);
-        await delay(Duration.WAIT, Multiplier.x5);
+        await applyScoreAward(award);
+        // await delay(Duration.WAIT, Multiplier.x5);
+    }
+
+    function calcAward(): number {
+        return guessButtonCount - wrongGuesses.length - 1;
+    }
+
+    function revealButtonScore(award: number) {
+        if (award === 0) {
+            return;
+        }
+        correctButtonRef!.innerHTML += " +" + award.toString();
     }
 
     async function applyScoreAward(award: number) {
-        if (!correctButtonRef) {
-            throw new Error("correctButtonRef is null.");
-        }
-
         if (award === 0) {
             return;
         }
 
-        state.score = await elements.scoreUpdate(
-            state.score,
-            award,
-            correctButtonRef,
-        );
-
+        state.score = await elements.applyScoreAward(state.score, award);
         if (state.score > state.best) {
             state.best = state.score;
             localStorage.setItem("bestScore", state.best.toString());
         }
-        // await delay();
     }
 
     async function handleWrongGuess() {

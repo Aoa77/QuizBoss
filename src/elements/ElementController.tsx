@@ -31,24 +31,19 @@ export default class ElementController {
         this.refs.scoreValue.object.current!.className = "";
     }
 
-    public async scoreUpdate(
+    public async applyScoreAward(
         score: number,
         award: number,
-        correctButton: HTMLButtonElement,
     ): Promise<number> {
         //
-        await delay(Duration.WAIT);
-        // correctButton!.innerHTML += " +" + award.toString();
-        // await this.time.transition();
-
-        // //
-        // this.refs.scoreValue.object.current!.className = "bonus";
-
+        this.refs.scoreValue.object.current!.className = "bonus";
         const target = score + award;
-        // for (let bonus = score + 1; bonus <= target; bonus++) {
-        //     this.refs.scoreValue.object.current!.innerHTML = bonus.toString();
-        //     await this.time.transition();
-        // }
+
+        for (let bonus = score + 1; bonus <= target; bonus++) {
+            this.refs.scoreValue.object.current!.innerHTML = bonus.toString();
+            await delay(Duration.WAIT);
+        }
+
         return target;
     }
 
