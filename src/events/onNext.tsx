@@ -50,7 +50,7 @@ export async function onNext(context: AppContext) {
         await elements.fadeIn(appVersion.target),
     ]);
 
-    await delay(Duration.WAIT, 1);
+    // await delay(Duration.WAIT, 1);
     for (let button of guessButtons) {
         await elements.fadeIn(button.target);
     }

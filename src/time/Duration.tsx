@@ -2,7 +2,7 @@
 export enum Duration {
     BLINK = 150,
     BLINKS = 16,
-    DEMO = 200,
+    DEMO = 900,
     FADE = 250,
     POLL = 50,
     SCALE = 1000,

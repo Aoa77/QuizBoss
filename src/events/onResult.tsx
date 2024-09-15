@@ -15,7 +15,7 @@ export async function onResult(context: AppContext) {
 
     const { guessButtonCount } = config;
     const { refs, guessButtons } = elements;
-    const { buttonArea, image, loading, question } = refs;
+    const { image, loading, question } = refs;
 
     const quizItems = state.quizModule.quizData.items;
     const currentItem = quizItems[state.currentItemIndex];
@@ -86,16 +86,15 @@ export async function onResult(context: AppContext) {
             guessButtonRef.className = ButtonState.WRONG;
 
             if (wrongGuessesExauhsted()) {
-                await revealCorrectAnswer();
+                await handleWrongGuess();
+                await unlockButtons();
+                revealCorrectAnswer();
                 break;
             }
         }
         return correctButton;
 
-        async function revealCorrectAnswer() {
-            // await delay({ });
-            unlockButtons();
-
+        function revealCorrectAnswer() {
             for (let i = 0; i < guessButtonCount; i++) {
                 if (wrongGuesses.includes(i)) {
                     continue;
@@ -103,10 +102,10 @@ export async function onResult(context: AppContext) {
                 const guessButton = guessButtons[i];
                 correctButton = guessButton;
                 correctButtonRef = correctButton.ref.current!;
-                await elements.blinkButton(correctButtonRef);
                 currentItem.answeredCorrectly = true;
                 break;
             }
+            elements.blinkButton(correctButtonRef!);
         }
     }
 
@@ -131,12 +130,11 @@ export async function onResult(context: AppContext) {
         await delay(Duration.WAIT, Multiplier.x3);
         elements.scaleOut(correctButton.target);
         await delay(Duration.WAIT);
-        
+
         elements.fadeOut(image.target);
         await elements.fadeIn(loading.target);
-
         await elements.fadeOut(correctButton.target);
-        await delay(Duration.WAIT);
+        await delay(Duration.WAIT, Multiplier.x5);
     }
 
     async function applyScoreAward(award: number) {

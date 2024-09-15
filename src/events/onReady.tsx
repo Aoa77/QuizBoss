@@ -1,6 +1,6 @@
 import { AppContext } from "../app";
 import { GameState } from "../state";
-import { delay, Duration } from "../time";
+import { delay, Duration, Multiplier } from "../time";
 
 ///
 export async function onReady(context: AppContext) {
@@ -10,7 +10,7 @@ export async function onReady(context: AppContext) {
     const { state, setState } = states;
 
     await elements.fadeIn(title.target);
-    await delay(Duration.WAIT, 3);
+    await delay(Duration.WAIT, Multiplier.x3);
 
     setState({ ...state, gameState: GameState.LOADING });
     return;

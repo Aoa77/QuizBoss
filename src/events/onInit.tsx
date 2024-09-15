@@ -1,6 +1,6 @@
 import { AppContext } from "../app";
 import { GameState, QuizModule, QuizItem } from "../state";
-import { Duration, delay } from "../time";
+import { Duration, Multiplier, delay } from "../time";
 import { shuffle } from "../random";
 
 ///
@@ -13,7 +13,7 @@ export async function onInit(context: AppContext) {
 
     await elements.fadeIn(loading.target);
     await initQuizModule();
-    await delay(Duration.WAIT, 3);
+    await delay(Duration.WAIT, Multiplier.x3);
 
     setState({ ...state, gameState: GameState.READY });
     return;
