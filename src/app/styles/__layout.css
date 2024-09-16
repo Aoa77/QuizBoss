@@ -1,0 +1,243 @@
+/* 
+    Defines the app container's width and height.
+    Width/Height aspect ratio of 9:16 (0.5625) and 16:9 (1.77777777).
+    The min() function is used to force the 9:16 portrait orientation.
+*/
+:root {
+    --width: min(100vw, calc(0.5625 * 100vh));
+    --height: min(100vh, calc(1.77777777 * 100vw));
+}
+
+/* 
+    The app container is centered horizontally on the device screen.
+    The main container is centered horizontally within the app container.
+*/
+:root {
+    --device_center: calc(100vw / 2);
+    --app_center: calc(var(--width) / 2);
+    --main_center: calc(var(--device_center) - var(--app_center));
+}
+
+/* 
+    The html font-size is used in conjunction with rem units to scale 
+    elements relative to the app container's width.
+
+    The "rem" units are used for font sizing, but they also may be used for any
+    css property that needs to be scaled relative to the app container's width.
+*/
+html {
+    font-size: calc(var(--width) / 220);
+}
+body {
+    background-color: #000000;
+    overflow: hidden;
+    text-align: center;
+}
+
+/* 
+    The "hu_#" (height unit) css variable is used to scale elements relative 
+    to the app container's height.
+*/
+:root {
+    --hu: calc(var(--height) / 200);
+    --hu_1: calc(var(--hu) * 1);
+    --hu_2: calc(var(--hu) * 2);
+    --hu_3: calc(var(--hu) * 3);
+    --hu_4: calc(var(--hu) * 4);
+    --hu_5: calc(var(--hu) * 5);
+    --hu_6: calc(var(--hu) * 6);
+    --hu_7: calc(var(--hu) * 7);
+    --hu_8: calc(var(--hu) * 8);
+    --hu_9: calc(var(--hu) * 9);
+    --hu_10: calc(var(--hu) * 10);
+    --hu_11: calc(var(--hu) * 11);
+    --hu_12: calc(var(--hu) * 12);
+    --hu_13: calc(var(--hu) * 13);
+    --hu_14: calc(var(--hu) * 14);
+    --hu_15: calc(var(--hu) * 15);
+    --hu_16: calc(var(--hu) * 16);
+    --hu_17: calc(var(--hu) * 17);
+    --hu_18: calc(var(--hu) * 18);
+    --hu_19: calc(var(--hu) * 19);
+    --hu_20: calc(var(--hu) * 20);
+    --hu_21: calc(var(--hu) * 21);
+    --hu_22: calc(var(--hu) * 22);
+    --hu_23: calc(var(--hu) * 23);
+    --hu_24: calc(var(--hu) * 24);
+    --hu_25: calc(var(--hu) * 25);
+    --hu_26: calc(var(--hu) * 26);
+    --hu_27: calc(var(--hu) * 27);
+    --hu_28: calc(var(--hu) * 28);
+    --hu_29: calc(var(--hu) * 29);
+    --hu_30: calc(var(--hu) * 30);
+    --hu_31: calc(var(--hu) * 31);
+    --hu_32: calc(var(--hu) * 32);
+    --hu_33: calc(var(--hu) * 33);
+    --hu_34: calc(var(--hu) * 34);
+    --hu_35: calc(var(--hu) * 35);
+    --hu_36: calc(var(--hu) * 36);
+    --hu_37: calc(var(--hu) * 37);
+    --hu_38: calc(var(--hu) * 38);
+    --hu_39: calc(var(--hu) * 39);
+    --hu_40: calc(var(--hu) * 40);
+    --hu_41: calc(var(--hu) * 41);
+    --hu_42: calc(var(--hu) * 42);
+    --hu_43: calc(var(--hu) * 43);
+    --hu_44: calc(var(--hu) * 44);
+    --hu_45: calc(var(--hu) * 45);
+    --hu_46: calc(var(--hu) * 46);
+    --hu_47: calc(var(--hu) * 47);
+    --hu_48: calc(var(--hu) * 48);
+    --hu_49: calc(var(--hu) * 49);
+    --hu_50: calc(var(--hu) * 50);
+    --hu_51: calc(var(--hu) * 51);
+    --hu_52: calc(var(--hu) * 52);
+    --hu_53: calc(var(--hu) * 53);
+    --hu_54: calc(var(--hu) * 54);
+    --hu_55: calc(var(--hu) * 55);
+    --hu_56: calc(var(--hu) * 56);
+    --hu_57: calc(var(--hu) * 57);
+    --hu_58: calc(var(--hu) * 58);
+    --hu_59: calc(var(--hu) * 59);
+    --hu_60: calc(var(--hu) * 60);
+    --hu_61: calc(var(--hu) * 61);
+    --hu_62: calc(var(--hu) * 62);
+    --hu_63: calc(var(--hu) * 63);
+    --hu_64: calc(var(--hu) * 64);
+    --hu_65: calc(var(--hu) * 65);
+    --hu_66: calc(var(--hu) * 66);
+    --hu_67: calc(var(--hu) * 67);
+    --hu_68: calc(var(--hu) * 68);
+    --hu_69: calc(var(--hu) * 69);
+    --hu_70: calc(var(--hu) * 70);
+    --hu_71: calc(var(--hu) * 71);
+    --hu_72: calc(var(--hu) * 72);
+    --hu_73: calc(var(--hu) * 73);
+    --hu_74: calc(var(--hu) * 74);
+    --hu_75: calc(var(--hu) * 75);
+    --hu_76: calc(var(--hu) * 76);
+    --hu_77: calc(var(--hu) * 77);
+    --hu_78: calc(var(--hu) * 78);
+    --hu_79: calc(var(--hu) * 79);
+    --hu_80: calc(var(--hu) * 80);
+    --hu_81: calc(var(--hu) * 81);
+    --hu_82: calc(var(--hu) * 82);
+    --hu_83: calc(var(--hu) * 83);
+    --hu_84: calc(var(--hu) * 84);
+    --hu_85: calc(var(--hu) * 85);
+    --hu_86: calc(var(--hu) * 86);
+    --hu_87: calc(var(--hu) * 87);
+    --hu_88: calc(var(--hu) * 88);
+    --hu_89: calc(var(--hu) * 89);
+    --hu_90: calc(var(--hu) * 90);
+    --hu_91: calc(var(--hu) * 91);
+    --hu_92: calc(var(--hu) * 92);
+    --hu_93: calc(var(--hu) * 93);
+    --hu_94: calc(var(--hu) * 94);
+    --hu_95: calc(var(--hu) * 95);
+    --hu_96: calc(var(--hu) * 96);
+    --hu_97: calc(var(--hu) * 97);
+    --hu_98: calc(var(--hu) * 98);
+    --hu_99: calc(var(--hu) * 99);
+    --hu_100: calc(var(--hu) * 100);
+    --hu_101: calc(var(--hu) * 101);
+    --hu_102: calc(var(--hu) * 102);
+    --hu_103: calc(var(--hu) * 103);
+    --hu_104: calc(var(--hu) * 104);
+    --hu_105: calc(var(--hu) * 105);
+    --hu_106: calc(var(--hu) * 106);
+    --hu_107: calc(var(--hu) * 107);
+    --hu_108: calc(var(--hu) * 108);
+    --hu_109: calc(var(--hu) * 109);
+    --hu_110: calc(var(--hu) * 110);
+    --hu_111: calc(var(--hu) * 111);
+    --hu_112: calc(var(--hu) * 112);
+    --hu_113: calc(var(--hu) * 113);
+    --hu_114: calc(var(--hu) * 114);
+    --hu_115: calc(var(--hu) * 115);
+    --hu_116: calc(var(--hu) * 116);
+    --hu_117: calc(var(--hu) * 117);
+    --hu_118: calc(var(--hu) * 118);
+    --hu_119: calc(var(--hu) * 119);
+    --hu_120: calc(var(--hu) * 120);
+    --hu_121: calc(var(--hu) * 121);
+    --hu_122: calc(var(--hu) * 122);
+    --hu_123: calc(var(--hu) * 123);
+    --hu_124: calc(var(--hu) * 124);
+    --hu_125: calc(var(--hu) * 125);
+    --hu_126: calc(var(--hu) * 126);
+    --hu_127: calc(var(--hu) * 127);
+    --hu_128: calc(var(--hu) * 128);
+    --hu_129: calc(var(--hu) * 129);
+    --hu_130: calc(var(--hu) * 130);
+    --hu_131: calc(var(--hu) * 131);
+    --hu_132: calc(var(--hu) * 132);
+    --hu_133: calc(var(--hu) * 133);
+    --hu_134: calc(var(--hu) * 134);
+    --hu_135: calc(var(--hu) * 135);
+    --hu_136: calc(var(--hu) * 136);
+    --hu_137: calc(var(--hu) * 137);
+    --hu_138: calc(var(--hu) * 138);
+    --hu_139: calc(var(--hu) * 139);
+    --hu_140: calc(var(--hu) * 140);
+    --hu_141: calc(var(--hu) * 141);
+    --hu_142: calc(var(--hu) * 142);
+    --hu_143: calc(var(--hu) * 143);
+    --hu_144: calc(var(--hu) * 144);
+    --hu_145: calc(var(--hu) * 145);
+    --hu_146: calc(var(--hu) * 146);
+    --hu_147: calc(var(--hu) * 147);
+    --hu_148: calc(var(--hu) * 148);
+    --hu_149: calc(var(--hu) * 149);
+    --hu_150: calc(var(--hu) * 150);
+    --hu_151: calc(var(--hu) * 151);
+    --hu_152: calc(var(--hu) * 152);
+    --hu_153: calc(var(--hu) * 153);
+    --hu_154: calc(var(--hu) * 154);
+    --hu_155: calc(var(--hu) * 155);
+    --hu_156: calc(var(--hu) * 156);
+    --hu_157: calc(var(--hu) * 157);
+    --hu_158: calc(var(--hu) * 158);
+    --hu_159: calc(var(--hu) * 159);
+    --hu_160: calc(var(--hu) * 160);
+    --hu_161: calc(var(--hu) * 161);
+    --hu_162: calc(var(--hu) * 162);
+    --hu_163: calc(var(--hu) * 163);
+    --hu_164: calc(var(--hu) * 164);
+    --hu_165: calc(var(--hu) * 165);
+    --hu_166: calc(var(--hu) * 166);
+    --hu_167: calc(var(--hu) * 167);
+    --hu_168: calc(var(--hu) * 168);
+    --hu_169: calc(var(--hu) * 169);
+    --hu_170: calc(var(--hu) * 170);
+    --hu_171: calc(var(--hu) * 171);
+    --hu_172: calc(var(--hu) * 172);
+    --hu_173: calc(var(--hu) * 173);
+    --hu_174: calc(var(--hu) * 174);
+    --hu_175: calc(var(--hu) * 175);
+    --hu_176: calc(var(--hu) * 176);
+    --hu_177: calc(var(--hu) * 177);
+    --hu_178: calc(var(--hu) * 178);
+    --hu_179: calc(var(--hu) * 179);
+    --hu_180: calc(var(--hu) * 180);
+    --hu_181: calc(var(--hu) * 181);
+    --hu_182: calc(var(--hu) * 182);
+    --hu_183: calc(var(--hu) * 183);
+    --hu_184: calc(var(--hu) * 184);
+    --hu_185: calc(var(--hu) * 185);
+    --hu_186: calc(var(--hu) * 186);
+    --hu_187: calc(var(--hu) * 187);
+    --hu_188: calc(var(--hu) * 188);
+    --hu_189: calc(var(--hu) * 189);
+    --hu_190: calc(var(--hu) * 190);
+    --hu_191: calc(var(--hu) * 191);
+    --hu_192: calc(var(--hu) * 192);
+    --hu_193: calc(var(--hu) * 193);
+    --hu_194: calc(var(--hu) * 194);
+    --hu_195: calc(var(--hu) * 195);
+    --hu_196: calc(var(--hu) * 196);
+    --hu_197: calc(var(--hu) * 197);
+    --hu_198: calc(var(--hu) * 198);
+    --hu_199: calc(var(--hu) * 199);
+    --hu_200: calc(var(--hu) * 200);
+}

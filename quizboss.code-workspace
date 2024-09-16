@@ -1,0 +1,16 @@
+{
+    "folders": [
+        {
+            "path": "."
+        }
+    ],
+    "settings": {
+        "files.exclude": {
+            "**/dist": true,
+            "**/node_modules": true
+        },
+        "prettier.printWidth": 80,
+        "prettier.tabWidth": 4,
+        "prettier.trailingComma": "all"
+    }
+}

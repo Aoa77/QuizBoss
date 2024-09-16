@@ -1,0 +1,32 @@
+{
+    "name": "quizboss",
+    "private": true,
+    "version": "0.0.0",
+    "type": "module",
+    "scripts": {
+        "build": "bash scripts/build.sh",
+        "dev": "bash scripts/dev.sh",
+        "lint": "bash scripts/lint.sh",
+        "preview": "bash scripts/preview.sh",
+        "version": "bash scripts/version.sh"
+    },
+    "dependencies": {
+        "animejs": "^3.2.2",
+        "react": "^18.3.1",
+        "react-dom": "^18.3.1"
+    },
+    "devDependencies": {
+        "@eslint/js": "^9.9.0",
+        "@types/animejs": "^3.1.12",
+        "@types/react": "^18.3.3",
+        "@types/react-dom": "^18.3.0",
+        "@vitejs/plugin-react": "^4.3.1",
+        "eslint": "^9.9.0",
+        "eslint-plugin-react-hooks": "^5.1.0-rc.0",
+        "eslint-plugin-react-refresh": "^0.4.9",
+        "globals": "^15.9.0",
+        "typescript": "^5.5.3",
+        "typescript-eslint": "^8.0.1",
+        "vite": "^5.4.1"
+    }
+}

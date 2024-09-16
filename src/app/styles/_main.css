@@ -1,0 +1,171 @@
+/*********************************************/
+/* main element is used as the app container */
+/*********************************************/
+main {
+    background-color: #000000;
+    border-color: #000000;
+    border-style: solid;
+    width: var(--width);
+    height: var(--height);
+    margin-left: var(--main_center);
+}
+
+/**********************/
+/* heading text rules */
+/**********************/
+h1 {
+    color: white;
+    font-family: "Garamond", serif;
+    font-size: 18rem;
+    font-weight: normal;
+    margin-top: var(--hu_4);
+    margin-bottom: var(--hu_7);
+}
+h2 {
+    color: #00ffff;
+    font-family: "Tahoma", sans-serif;
+    font-size: 9rem;
+    font-weight: normal;
+    margin-top: var(--hu_10);
+}
+
+/************************/
+/* app version display  */
+/************************/
+h6 {
+    color: #ffffff33;
+    font-family: "Courier New", monospace;
+    font-size: 5rem;
+    font-weight: normal;
+    margin-top: var(--hu_4);
+}
+
+/************************/
+/* "play again" prompt  */
+/************************/
+.prompt {
+    color: #ffff00;
+    cursor: pointer;
+}
+
+/********************************************************************/
+/* The loading spinner and the question image occupy the same space */
+/********************************************************************/
+section.loading,
+section.image {
+    background-color: #00990000;
+    height: var(--hu_42);
+    margin: auto;
+}
+section.image {
+    margin-top: calc(-1 * var(--hu_42));
+}
+section.image > img {
+    box-shadow: 0 0 16rem 3rem #a5a5c8cc;
+    margin: auto;
+    height: 100%;
+}
+
+/************************/
+/* "guess" button rules */
+/************************/
+section.buttons {
+    margin-top: var(--hu_5);
+}
+button {
+    all: unset;
+    appearance: none;
+    border-style: solid;
+    display: block;
+    font-family: "Tahoma", sans-serif;
+    font-family: "Garamond", serif;
+    font-size: 9rem;
+    font-weight: bold;
+    width: 124rem;
+    height: var(--hu_12);
+    margin: 0 auto;
+    margin-top: var(--hu_6);
+    padding: 2rem;
+    opacity: 0;
+}
+button.blink {
+    background-color: #ffff0022;
+    border-color: #999900;
+    color: #ffff00;
+}
+button.correct {
+    background-color: #00ff0022;
+    border-color: #009900;
+    color: #00ff00;
+}
+button.dimmed,
+button.disabled {
+    background-color: #44447744;
+    border-color: #44447722;
+    color: #ffffff66;
+}
+button.normal {
+    background-color: #444477;
+    border-color: #444499;
+    color: #ffffff;
+}
+button.reveal {
+    background-color: #0000ff22;
+    border-color: #000099;
+    color: #0000ff;
+}
+button.wrong {
+    background-color: #ff000044;
+    border-color: #990000;
+    color: #ff0000;
+}
+
+/***************************/
+/* score                   */
+/***************************/
+section.score {
+    display: grid;
+    font-family: "Tahoma", sans-serif;
+    grid-template-columns: repeat(3, auto);
+    grid-template-columns: repeat(2, auto);
+    color: #00ffff;
+    text-transform: uppercase;
+    font-size: 8rem;
+    width: 124rem;
+    margin: auto;
+    margin-top: var(--hu_8);
+    margin-bottom: var(--hu_2);
+}
+section.score div.row {
+    display: contents;
+    color: #ffff00;
+    font-size: 11rem;
+}
+section.score div.row > div {
+    padding-top: 2rem;
+}
+.bonus {
+    color: #00ff00;
+    font-weight: bold;
+}
+
+/****************************/
+/* progress                 */
+/****************************/
+section.progress {
+    color: #ffffffbb;
+    font-family: "Courier New", monospace;
+    font-size: 5.25rem;
+    position: relative;
+    top: -12rem;
+}
+section.progress span {
+    margin: 0 0.5rem;
+}
+
+/*****************************/
+/* animation                 */
+/*****************************/
+.hidden {
+    opacity: 0;
+}
