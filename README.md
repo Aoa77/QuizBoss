@@ -11,8 +11,8 @@ QuizBoss is a single-page web application framework for crafting engaging multip
 
 ## Features
 
-### React & TypeScript:
-> This project was bootstrapped with the TypeScript template of [Create React App](https://github.com/facebook/create-react-app).
+### Vite, React & TypeScript:
+> This project was bootstrapped with [Vite](https://vitejs.dev/) using the React+Typescript template.
 
 ### JSON Data:
 > Quiz data is defined in a simple key/value pair JSON format.
@@ -23,8 +23,8 @@ QuizBoss is a single-page web application framework for crafting engaging multip
 ### Mobile-First Responsive Design:
 > The UI layout is designed to look great on mobile devices. It is built with pure vanilla CSS.
 
-### Basic CI/CD pipeline:
-> A GitHub actions workflow is configured to automatically build and deploy the code to an [Azure static web app](https://azure.microsoft.com/en-us/products/app-service/static).
+### Basic CI/CD pipeline with Azure:
+> The demo site is hosted on an [Azure static web app](https://azure.microsoft.com/en-us/products/app-service/static). A GitHub actions workflow is configured to automatically build and deploy application when changes are pushed to the `main` branch.
 
 
 
