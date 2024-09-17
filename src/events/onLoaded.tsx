@@ -3,7 +3,7 @@ import { GameState } from "../state/GameState";
 import delay from "../time/delay";
 import { Duration } from "../time/Duration";
 
-export async function onLoading(context: AppContext) {
+export async function onLoaded(context: AppContext) {
     ///
     const { elements, states } = context;
     const { refs } = elements;

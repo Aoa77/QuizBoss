@@ -22,8 +22,7 @@ export default async function initQuizModule(
         initQuizItem(item, index, module);
     }
 
-    randomizeGuessPool(module);
-    shuffle(module.quizData.randomizedGuessPool);
+    randomizeGuessPool(module, settings);
 
     if (settings.maxQuestions > 0) {
         truncateQuizItems(settings, module);

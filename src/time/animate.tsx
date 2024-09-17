@@ -12,3 +12,4 @@ export default function animate(
     anime(params);
     return new Promise((resolve) => setTimeout(resolve, +params.duration!));
 }
+
