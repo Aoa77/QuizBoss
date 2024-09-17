@@ -5,4 +5,5 @@ export default interface ConfigParams {
     demoMode?: DemoMode;
     guessButtonCount?: number;
     maxQuestions?: number;
+    speed?: number;
 }

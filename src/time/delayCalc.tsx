@@ -1,5 +1,5 @@
+import AppSettings from "../app/AppSettings";
 import { Duration } from "./Duration";
-import GLOBAL from "./GLOBAL";
 import { Multiplier } from "./Multiplier";
 
 export default function delayCalc(
@@ -12,5 +12,5 @@ export default function delayCalc(
     if (multiplier <= 0) {
         throw new Error("Delay multiplier must be greater than 0.");
     }
-    return (duration * multiplier) * GLOBAL.DurationMultiplier;
+    return (duration * multiplier) * AppSettings.getInstance().speed;
 }

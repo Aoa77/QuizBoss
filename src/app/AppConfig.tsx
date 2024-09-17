@@ -3,5 +3,7 @@ import AppSettings from "./AppSettings";
 
 export default function AppConfig(quizModuleName: string) {
     const queryParams = useQueryParams(window.location.search);
-    return new AppSettings({ quizModuleName }, queryParams);
+    const settings = new AppSettings({ quizModuleName }, queryParams);
+    AppSettings.setInstance(settings);
+    return settings;
 }
