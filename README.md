@@ -24,7 +24,8 @@ QuizBoss is a single-page web application framework for crafting engaging multip
 > The UI layout is designed to look great on mobile devices. It is built with pure vanilla CSS.
 
 ### Basic CI/CD pipeline with Azure:
-> The demo site is hosted on an [Azure static web app](https://azure.microsoft.com/en-us/products/app-service/static). A GitHub actions workflow is configured to automatically build and deploy application when changes are pushed to the `main` branch.
+> The demo site is hosted on an [Azure static web app]([https://azure.microsoft.com/en-us/products/app-service/static](https://white-desert-06da4b010.5.azurestaticapps.net/). A GitHub actions workflow is configured to automatically build and deploy application when changes are pushed to the `main` branch.
+
 
 
 
