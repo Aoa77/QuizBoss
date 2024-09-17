@@ -24,10 +24,8 @@ const eventHandlers: EventHandlers = {
 };
 
 export default function useEventRouter(context: AppContext) {
-    console.info({ eventHandlers });
     useEffect(() => {
         console.info(context.states.state.gameState);
-        // debugger;
         const eventHandler = eventHandlers[context.states.state.gameState];
         if (eventHandler) {
             eventHandler(context);

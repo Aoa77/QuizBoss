@@ -31,7 +31,6 @@ export default function randomizeGuessPool(
         }
     }
 
-    console.info({ dummies: module.quizData.dummies });
     for (const dummy of module.quizData.dummies) {
         const dummyItem: QuizItem = {
             index: -1,
