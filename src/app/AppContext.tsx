@@ -3,7 +3,7 @@ import StateController from "../state/StateController";
 import AppSettings from "./AppSettings";
 
 export default interface AppContext {
-    config: AppSettings;
     elements: ElementController;
+    settings: AppSettings;
     states: StateController;
 }

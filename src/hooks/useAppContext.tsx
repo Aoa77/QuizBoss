@@ -9,7 +9,7 @@ export default function useAppContext(
     states: StateController,
 ): AppContext {
     return {
-        config,
+        settings: config,
         elements,
         states,
     };

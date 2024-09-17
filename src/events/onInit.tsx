@@ -7,7 +7,7 @@ import { Multiplier } from "../time/Multiplier";
 
 ///
 export async function onInit(context: AppContext) {
-    const { config, elements, states } = context;
+    const { settings: config, elements, states } = context;
     const { refs } = elements;
     const { loading } = refs;
     const { state, setState } = states;

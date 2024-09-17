@@ -7,7 +7,7 @@ import QuizItem from "../state/QuizItem";
 let randomizedGuessPoolIndex: number = -1;
 ///
 export async function onNext(context: AppContext) {
-    const { config, elements, states } = context;
+    const { settings: config, elements, states } = context;
     const { state, setState } = states;
     const { refs, guessButtons } = elements;
     const {

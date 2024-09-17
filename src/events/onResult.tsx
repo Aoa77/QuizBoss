@@ -11,7 +11,7 @@ let tasks: Promise<void>[] = [];
 let wrongGuesses: number[] = [];
 
 export async function onResult(context: AppContext) {
-    const { config, elements, states } = context;
+    const { settings: config, elements, states } = context;
     const { state, setState } = states;
     if (state.quizModule === null) {
         return;
