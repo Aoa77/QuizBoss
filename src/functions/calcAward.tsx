@@ -7,3 +7,6 @@ export default function calcAward(
 ): number {
     return guessButtons.length - wrongGuesses.length - 1;
 }
+
+
+

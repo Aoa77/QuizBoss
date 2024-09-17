@@ -1,3 +1,4 @@
+import AppSettings from "./AppSettings";
 import AppVersion from "../components/AppVersion";
 import GuessButtons from "../components/GuessButtons";
 import LoadingSpinner from "../components/LoadingSpinner";
@@ -10,13 +11,13 @@ import useAppContext from "../hooks/useAppContext";
 import useElementController from "../hooks/useElementController";
 import useEventRouter from "../hooks/useEventRouter";
 import useStateController from "../hooks/useStateController";
-import AppSettings from "./AppSettings";
 import "./styles";
 
-export default function App(config: AppSettings) {
+export default function App(settings: AppSettings) {
+    AppSettings.initOnce(settings);
     const states = useStateController();
-    const elements = useElementController(config, states);
-    const context = useAppContext(config, elements, states);
+    const elements = useElementController(states);
+    const context = useAppContext(elements, states);
 
     useEventRouter(context);
     return (

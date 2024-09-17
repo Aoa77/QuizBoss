@@ -1,10 +1,12 @@
 import AppContext from "../app/AppContext";
+import AppSettings from "../app/AppSettings";
 import { DemoMode } from "../app/DemoMode";
 import { ButtonState } from "../elements/buttons/ButtonState";
 import randomInt from "../random/randomInt";
 
 export default function doDemoInput(context: AppContext) {
-    const { settings, elements, states } = context;
+    const settings = AppSettings.get();
+    const { elements, states } = context;
     const { guessButtons } = elements;
     const { state } = states;
     let spotButton = guessButtons[state.answerSpot].ref.current!;

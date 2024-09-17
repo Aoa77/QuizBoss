@@ -12,5 +12,5 @@ export default function delayCalc(
     if (multiplier <= 0) {
         throw new Error("Delay multiplier must be greater than 0.");
     }
-    return (duration * multiplier) * AppSettings.getInstance().speed;
+    return (duration * multiplier) * AppSettings.get().speed;
 }

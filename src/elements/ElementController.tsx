@@ -1,4 +1,3 @@
-import AppSettings from "../app/AppSettings";
 import StateController from "../state/StateController";
 import animate from "../time/animate";
 import delay from "../time/delay";
@@ -15,12 +14,11 @@ export default class ElementController {
     public readonly refs: ElementRefs;
 
     constructor(
-        settings: AppSettings,
         states: StateController,
         refs: ElementRefs,
     ) {
         this.refs = refs;
-        this.guessButtons = ButtonBuilder(settings, states);
+        this.guessButtons = ButtonBuilder(states);
     }
 
     // public methods

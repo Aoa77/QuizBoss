@@ -1,4 +1,5 @@
 import AppContext from "../app/AppContext";
+import AppSettings from "../app/AppSettings";
 import { DemoMode } from "../app/DemoMode";
 import doDemoInput from "../functions/doDemoInput";
 import { GameState } from "../state/GameState";
@@ -6,7 +7,7 @@ import delay from "../time/delay";
 import { Duration } from "../time/Duration";
 
 export async function onInput(context: AppContext) {
-    const { settings } = context;
+    const settings = AppSettings.get();
     const { state, setState } = context.states;
 
     if (settings.demoMode === DemoMode.OFF) {
@@ -23,5 +24,4 @@ export async function onInput(context: AppContext) {
         guessValue: spotButton.value,
         gameState: GameState.RESULT,
     });
-
 }

@@ -6,10 +6,10 @@ import ButtonElementRef from "./ButtonElementRef";
 import { ButtonState } from "./ButtonState";
 
 export default function ButtonBuilder(
-    settings: AppSettings,
     states: StateController,
 ): ButtonElement[] {
     ///
+    const settings = AppSettings.get();
     const { guessButtonCount } = settings;
     const { state, setState } = states;
     const { gameState } = state;

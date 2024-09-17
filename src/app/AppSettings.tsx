@@ -1,5 +1,6 @@
 import ConfigParams from "./ConfigParams";
 import { DemoMode } from "./DemoMode";
+import getQueryParams from "../functions/getQueryParams";
 import parseDemoMode from "./parseDemoMode";
 
 export default class AppSettings {
@@ -9,9 +10,10 @@ export default class AppSettings {
     public readonly maxQuestions: number;
     public readonly speed: number;
 
-    constructor(params: ConfigParams, queryParams: Map<string, string>) {
+    constructor(params: ConfigParams) {
         let { quizModuleName, demoMode } = params;
         const { guessButtonCount, maxQuestions, speed } = params;
+        const queryParams = getQueryParams(window.location.search);
 
         quizModuleName ??= queryParams.get("quizModuleName");
         if (!quizModuleName) {
@@ -35,16 +37,23 @@ export default class AppSettings {
 
     private static instance?: AppSettings;
 
-    public static getInstance(): AppSettings {
+    public static get(): AppSettings {
         if (!this.instance) {
-            throw new Error("AppSettings instance not set.");
+            throw new Error("AppSettings instance not initialized.");
         }
         return this.instance;
     }
 
-    public static setInstance(settings: AppSettings): void {
+    public static init(settings: AppSettings): void {
         if (this.instance) {
-            throw new Error("AppSettings instance already set.");
+            throw new Error("AppSettings instance already initialized.");
+        }
+        this.instance = settings;
+    }
+
+    public static initOnce(settings: AppSettings): void {
+        if (this.instance) {
+            return;
         }
         this.instance = settings;
     }

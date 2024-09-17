@@ -9,10 +9,10 @@ import truncateQuizItems from "./truncateQuizItems";
 
 export default async function initQuizModule(
     quizModuleName: string,
-    settings: AppSettings,
     state: State,
 ): Promise<void> {
     //
+    const settings = AppSettings.get();
     const module = await fetchQuizModule(quizModuleName);
     console.info(`Quiz module loading: ${module.name}`, module);
 

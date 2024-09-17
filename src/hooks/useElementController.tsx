@@ -1,14 +1,12 @@
 import { useRef } from "react";
-import AppSettings from "../app/AppSettings";
 import ElementController from "../elements/ElementController";
 import ElementRef from "../elements/ElementRef";
 import StateController from "../state/StateController";
 
 export default function useElementController(
-    settings: AppSettings,
     states: StateController,
 ): ElementController {
-    return new ElementController(settings, states, {
+    return new ElementController(states, {
         appVersion: new ElementRef<HTMLHeadingElement>(
             "appVersion",
             useRef<HTMLHeadingElement | null>(null),
