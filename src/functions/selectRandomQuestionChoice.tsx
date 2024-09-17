@@ -1,7 +1,5 @@
 import QuizData from "../state/QuizData";
 import QuizItem from "../state/QuizItem";
-import delay from "../time/delay";
-import { Duration } from "../time/Duration";
 
 class RANDOMIZER {
     public static COUNT: number = 0;
@@ -21,13 +19,6 @@ export default async function selectRandomQuestionChoice(
     RANDOMIZER.FAILSAFE = randomizedGuessPool.length * RANDOMIZER.EFFORT;
 
     while (++RANDOMIZER.COUNT < RANDOMIZER.FAILSAFE) {
-        
-        console.info("COUNT", RANDOMIZER.COUNT);
-        console.info("FAILSAFE", RANDOMIZER.FAILSAFE);
-        console.info("INDEX", RANDOMIZER.INDEX);
-        console.info("randomizedGuessPool", randomizedGuessPool);
-        await delay(Duration.ONE_SECOND);
-
         //
         if (++RANDOMIZER.INDEX === randomizedGuessPool.length) {
             RANDOMIZER.INDEX = 0;

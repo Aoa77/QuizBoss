@@ -9,7 +9,16 @@
         "bestText": "Best",
         "leaderText": "Leader",
         "dummies": [
-
+            "Arendelle",
+            "Atlantis",
+            "Genovia",
+            "Middle-earth",
+            "Mordor",
+            "Narnia",
+            "Neverland",
+            "Oz",
+            "Wakanda",
+            "Westeros"
         ],
         "items": [
             {

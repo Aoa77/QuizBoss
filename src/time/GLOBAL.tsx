@@ -1,3 +1,3 @@
 export default class GLOBAL {
-    public static readonly DurationMultiplier: number = 0.01;
+    public static readonly DurationMultiplier: number = 1;//0.01;
 }
