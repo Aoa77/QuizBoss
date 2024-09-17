@@ -1,7 +1,7 @@
 import AppContext from "../app/AppContext";
 
-export default function LoadingSpinner(context: AppContext) {
-    const { elements } = context;
+export default function LoadingSpinner() {
+    const elements = AppContext.elements();
     const { refs } = elements;
     const { loading } = refs;
     return (

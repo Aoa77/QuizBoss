@@ -15,15 +15,15 @@ export default function useStateController(): StateController {
         best: 0,
     });
 
-    const context: StateController = { state, setState };
+    const appState: StateController = { state, setState };
     if (isLocalStorageInitialized) {
-        return context;
+        return appState;
     }
     isLocalStorageInitialized = true;
     let local: string = localStorage.getItem("bestScore") ?? "";
     local = local.trim();
     if (local.length > 0) {
-        context.setState({ ...context.state, best: parseInt(local) });
+        appState.setState({ ...appState.state, best: parseInt(local) });
     }
-    return context;
+    return appState;
 }

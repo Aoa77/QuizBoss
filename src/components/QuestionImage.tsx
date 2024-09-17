@@ -1,12 +1,15 @@
 import AppContext from "../app/AppContext";
 
-export default function QuestionImage(context: AppContext) {
-    const { elements, states } = context;
+export default function QuestionImage() {
+    const elements = AppContext.elements();
     const { refs } = elements;
     const { image } = refs;
-    const { state } = states;
+    
+    const appState = AppContext.appState();
+    const { state } = appState;
     const { currentItemIndex, quizModule } = state;
     const quizData = quizModule?.quizData;
+    
     return (
         <section id={image.target} ref={image.object} className="image hidden">
             {quizData?.items[currentItemIndex].imageJsx}

@@ -35,26 +35,4 @@ export default class AppSettings {
         this.speed = speed ?? +(queryParams.get("speed") ?? "1"); ////
     }
 
-    private static instance?: AppSettings;
-
-    public static get(): AppSettings {
-        if (!this.instance) {
-            throw new Error("AppSettings instance not initialized.");
-        }
-        return this.instance;
-    }
-
-    public static init(settings: AppSettings): void {
-        if (this.instance) {
-            throw new Error("AppSettings instance already initialized.");
-        }
-        this.instance = settings;
-    }
-
-    public static initOnce(settings: AppSettings): void {
-        if (this.instance) {
-            return;
-        }
-        this.instance = settings;
-    }
 }

@@ -1,5 +1,4 @@
 import AppContext from "../app/AppContext";
-import AppSettings from "../app/AppSettings";
 import initQuizModule from "../functions/initQuizModule";
 import { GameState } from "../state/GameState";
 import delay from "../time/delay";
@@ -7,12 +6,16 @@ import { Duration } from "../time/Duration";
 import { Multiplier } from "../time/Multiplier";
 
 ///
-export async function onInit(context: AppContext) {
-    const { elements, states } = context;
+export default async function onInit() {
+    const appState = AppContext.appState();
+    const { state, setState } = appState;
+
+    const elements = AppContext.elements();
     const { refs } = elements;
     const { loading } = refs;
-    const { state, setState } = states;
-    const { quizModuleName } = AppSettings.get();
+    
+    const settings = AppContext.settings();
+    const { quizModuleName } = settings;
 
     await elements.fadeIn(loading.target);
     await initQuizModule(quizModuleName, state);

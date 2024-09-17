@@ -12,12 +12,14 @@ import { GameState } from "../state/GameState";
 const tasks: Promise<void>[] = [];
 const wrongGuesses: number[] = [];
 
-export async function onResult(context: AppContext) {
-    const { elements, states } = context;
-    const { state, setState } = states;
+export default async function onResult() {
+    const appState = AppContext.appState();
+    const { state, setState } = appState;
     if (state.quizModule === null) {
         return;
     }
+
+    const elements = AppContext.elements();
     const { guessButtons } = elements;
 
     const quizItems = state.quizModule.quizData.items;

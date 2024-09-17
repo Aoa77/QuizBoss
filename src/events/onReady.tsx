@@ -5,12 +5,14 @@ import { Duration } from "../time/Duration";
 import { Multiplier } from "../time/Multiplier";
 
 ///
-export async function onReady(context: AppContext) {
-    const { elements, states } = context;
+export default async function onReady() {
+    const appState = AppContext.appState();
+    const { state, setState } = appState;
+
+    const elements = AppContext.elements();
     const { refs } = elements;
     const { title } = refs;
-    const { state, setState } = states;
-
+    
     await elements.fadeIn(title.target);
     await delay(Duration.WAIT, Multiplier.x3);
 

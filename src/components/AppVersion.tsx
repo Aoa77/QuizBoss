@@ -3,8 +3,8 @@ import AppContext from "../app/AppContext";
 ///////////////////////////////////////////
 const VERSION = "20240916.181453.076";
 ///////////////////////////////////////////
-export default function AppVersion(context: AppContext) {
-    const { elements } = context;
+export default function AppVersion() {
+    const elements = AppContext.elements();
     const { refs } = elements;
     const { appVersion } = refs;
     return (

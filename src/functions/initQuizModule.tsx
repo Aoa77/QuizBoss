@@ -1,4 +1,4 @@
-import AppSettings from "../app/AppSettings";
+import AppContext from "../app/AppContext";
 import shuffle from "../random/shuffle";
 import State from "../state/State";
 import fetchQuizModule from "./fetchQuizModule";
@@ -12,7 +12,7 @@ export default async function initQuizModule(
     state: State,
 ): Promise<void> {
     //
-    const settings = AppSettings.get();
+    const settings = AppContext.settings();
     const module = await fetchQuizModule(quizModuleName);
     console.info(`Quiz module loading: ${module.name}`, module);
 

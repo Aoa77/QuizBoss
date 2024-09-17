@@ -1,22 +1,27 @@
 import AppContext from "../app/AppContext";
-import AppSettings from "../app/AppSettings";
 import { DemoMode } from "../app/DemoMode";
 import { ButtonState } from "../elements/buttons/ButtonState";
 import randomInt from "../random/randomInt";
 
-export default function doDemoInput(context: AppContext) {
-    const settings = AppSettings.get();
-    const { elements, states } = context;
+export default function doDemoInput() {
+    const appState = AppContext.appState();
+    const { state } = appState;
+
+    const elements = AppContext.elements();
     const { guessButtons } = elements;
-    const { state } = states;
+    
+    const settings = AppContext.settings();
+    const { demoMode } = settings;
+
+
     let spotButton = guessButtons[state.answerSpot].ref.current!;
-    if (settings.demoMode === DemoMode.RANDOM) {
+    if (demoMode === DemoMode.RANDOM) {
         const activeButtons = guessButtons.filter(
             (x) => x.ref.current!.className === ButtonState.NORMAL,
         );
         spotButton =
             activeButtons[randomInt(0, activeButtons.length)].ref.current!;
-    } else if (settings.demoMode === DemoMode.WRONG) {
+    } else if (demoMode === DemoMode.WRONG) {
         for (let i = 0; i < guessButtons.length; i++) {
             if (i === state.answerSpot) {
                 continue;

@@ -1,16 +1,18 @@
 import AppContext from "../app/AppContext";
-import AppSettings from "../app/AppSettings";
 import { DemoMode } from "../app/DemoMode";
 import doDemoInput from "../functions/doDemoInput";
 import { GameState } from "../state/GameState";
 import delay from "../time/delay";
 import { Duration } from "../time/Duration";
 
-export async function onInput(context: AppContext) {
-    const settings = AppSettings.get();
-    const { state, setState } = context.states;
+export default async function onInput() {
+    const appState = AppContext.appState();
+    const { state, setState } = appState;
+    
+    const settings = AppContext.settings();
+    const { demoMode } = settings;
 
-    if (settings.demoMode === DemoMode.OFF) {
+    if (demoMode === DemoMode.OFF) {
         console.info("waiting for player input...");
         return;
     }
@@ -18,7 +20,7 @@ export async function onInput(context: AppContext) {
     console.info("waiting for DEMO input...");
     await delay(Duration.DEMO);
 
-    const spotButton = doDemoInput(context);
+    const spotButton = doDemoInput();
     setState({
         ...state,
         guessValue: spotButton.value,

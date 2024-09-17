@@ -1,17 +1,16 @@
-import AppSettings from "../../app/AppSettings";
+import AppContext from "../../app/AppContext";
 import { GameState } from "../../state/GameState";
-import StateController from "../../state/StateController";
 import ButtonElement from "./ButtonElement";
 import ButtonElementRef from "./ButtonElementRef";
 import { ButtonState } from "./ButtonState";
 
-export default function ButtonBuilder(
-    states: StateController,
-): ButtonElement[] {
+export default function ButtonBuilder(): ButtonElement[] {
     ///
-    const settings = AppSettings.get();
+    const settings = AppContext.settings();
     const { guessButtonCount } = settings;
-    const { state, setState } = states;
+
+    const appState = AppContext.appState();
+    const { state, setState } = appState;
     const { gameState } = state;
 
     const onPointerDown: (ref: React.RefObject<HTMLButtonElement>) => void = (

@@ -1,7 +1,7 @@
 import AppContext from "../app/AppContext";
 
-export default function GuessButtons(context: AppContext) {
-    const { elements } = context;
+export default function GuessButtons() {
+    const elements = AppContext.elements();
     const { refs } = elements;
     const { buttonArea } = refs;
     return (

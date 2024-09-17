@@ -1,10 +1,12 @@
 import AppContext from "../app/AppContext";
 
-export default function ScoreDisplay(context: AppContext) {
-    const { elements, states } = context;
+export default function ScoreDisplay() {
+    const elements = AppContext.elements();
     const { refs } = elements;
     const { scoreArea, scoreValue, bestValue } = refs;
-    const { state } = states;
+    
+    const appState = AppContext.appState();
+    const { state } = appState;
     const { score, best, quizModule } = state;
     const quizData = quizModule?.quizData;
 

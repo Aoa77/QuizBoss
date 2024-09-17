@@ -4,9 +4,14 @@ import randomInt from "../random/randomInt";
 import { GameState } from "../state/GameState";
 
 ///
-export async function onNext(context: AppContext) {
-    const { elements, states } = context;
-    const { state, setState } = states;
+export default async function onNext() {
+    const appState = AppContext.appState();
+    const { state, setState } = appState;
+    if (state.quizModule === null) {
+        return;
+    }
+
+    const elements = AppContext.elements();
     const { refs, guessButtons } = elements;
     const {
         appVersion,
@@ -17,10 +22,6 @@ export async function onNext(context: AppContext) {
         question,
         scoreArea,
     } = refs;
-
-    if (state.quizModule === null) {
-        return;
-    }
 
     const currentGuessPool: string[] = [];
     const quizData = state.quizModule.quizData;

@@ -1,9 +1,9 @@
-import AppContext from "../app/AppContext";
+// import AppContext from "../app/AppContext";
 
 ///
-export async function onGameOver(context: AppContext) {
-    const { elements } = context;
-    elements.clearScoreBonusStyle();
+export default async function onGameOver() {
+    // const { elements } = context;
+    // elements.clearScoreBonusStyle();
 }
 
 // function onGameOver() {

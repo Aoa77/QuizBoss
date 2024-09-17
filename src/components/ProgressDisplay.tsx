@@ -1,11 +1,15 @@
 import AppContext from "../app/AppContext";
 
-export default function ProgressDisplay(context: AppContext) {
-    const { elements, states } = context;
+export default function ProgressDisplay() {
+    const elements = AppContext.elements();
     const { refs } = elements;
     const { progress } = refs;
-    const { currentItemIndex, quizModule } = states.state;
+
+    const appState = AppContext.appState();
+    const { state } = appState;
+    const { currentItemIndex, quizModule } = state;
     const quizData = quizModule?.quizData;
+    
     return (
         <section
             id={progress.target}

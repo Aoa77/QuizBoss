@@ -3,13 +3,14 @@ import { GameState } from "../state/GameState";
 import delay from "../time/delay";
 import { Duration } from "../time/Duration";
 
-export async function onLoaded(context: AppContext) {
-    ///
-    const { elements, states } = context;
+export default async function onLoaded() {
+    const appState = AppContext.appState();
+    const { state, setState } = appState;
+
+    const elements = AppContext.elements();
     const { refs } = elements;
     const { image, loading } = refs;
-    const { state, setState } = states;
-
+    
     if (state.quizModule === null) {
         return;
     }
