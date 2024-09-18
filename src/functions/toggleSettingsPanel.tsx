@@ -16,7 +16,7 @@ export default function toggleSettingsPanel() {
     const notch = sliderNotch.object.current!;
     const isActive = notch.classList.contains(active);
     sliderGrip.object.current!.style.backgroundColor = isActive
-        ? "#000088"
+        ? "#000000"
         : "#000033";
 
     anime({

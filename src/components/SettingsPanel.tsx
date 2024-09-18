@@ -9,19 +9,16 @@ export default function SettingsPanel() {
         <section
             id={settingsPanel.target}
             ref={settingsPanel.object}
-            className="settings-panel"
-        >
+            className="settings-panel">
             <div
                 id={sliderGrip.target}
                 ref={sliderGrip.object}
                 className="slider-grip"
-                onPointerDown={() => toggleSettingsPanel()}
-            >
+                onPointerDown={() => toggleSettingsPanel()}>
                 <div
                     id={sliderNotch.target}
                     ref={sliderNotch.object}
-                    className="slider-notch"
-                ></div>
+                    className="slider-notch"></div>
             </div>
         </section>
     );

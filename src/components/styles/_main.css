@@ -174,28 +174,28 @@ section.progress span {
 /* settings slide-up         */
 /*****************************/
 section.settings-panel {
-    background-color: #000033;
+    background-color: #000011;
     position: fixed;
     width: var(--width);
     height: calc(2 * var(--height));
-    top: var(--hu_194);
+    top: var(--hu_190);
 }
 section.settings-panel > div.slider-grip {
     background-color: #000000;
     width: var(--width);
-    height: var(--hu_8);
+    height: var(--hu_12);
     overflow: hidden;
     cursor: pointer;
 }
 section.settings-panel > div.slider-grip > div.slider-notch {
     width: var(--hu_8);
     height: var(--hu_8);
-    background-color: #ffffff55;
+    background-color: #ffffff33;
     transform: rotate(45deg);
     margin: 0 auto;
-    margin-top: var(--hu_4);
+    margin-top: var(--hu_8);
     position: relative;
 }
 section.settings-panel > div.slider-grip > div.slider-notch.active {
-    top: calc(-1 * var(--hu_10));
+    top: calc(-1 * var(--hu_14));
 }

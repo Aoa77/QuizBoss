@@ -8,8 +8,7 @@ export default function LoadingSpinner() {
         <section
             id={loading.target}
             ref={loading.object}
-            className="loading hidden"
-        >
+            className="loading hidden">
             <div className="lds-ellipsis">
                 <div></div>
                 <div></div>

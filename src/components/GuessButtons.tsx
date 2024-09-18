@@ -8,8 +8,7 @@ export default function GuessButtons() {
         <section
             id={buttonArea.target}
             ref={buttonArea.object}
-            className="buttons hidden"
-        >
+            className="buttons hidden">
             {elements.guessButtons.map((b) => b.element)}
         </section>
     );

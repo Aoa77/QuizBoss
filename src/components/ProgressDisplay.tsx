@@ -9,13 +9,12 @@ export default function ProgressDisplay() {
     const { state } = appState;
     const { currentItemIndex, quizModule } = state;
     const quizData = quizModule?.quizData;
-    
+
     return (
         <section
             id={progress.target}
             ref={progress.object}
-            className="progress hidden"
-        >
+            className="progress hidden">
             <span className="current">{currentItemIndex + 1}</span>
             <span>/</span>
             <span className="total">{quizData?.items.length}</span>

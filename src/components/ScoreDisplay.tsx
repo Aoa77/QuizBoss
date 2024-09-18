@@ -4,7 +4,7 @@ export default function ScoreDisplay() {
     const elements = AppContext.elements();
     const { refs } = elements;
     const { scoreArea, scoreValue, bestValue } = refs;
-    
+
     const appState = AppContext.appState();
     const { state } = appState;
     const { score, best, quizModule } = state;
@@ -14,8 +14,7 @@ export default function ScoreDisplay() {
         <section
             id={scoreArea.target}
             ref={scoreArea.object}
-            className="score hidden"
-        >
+            className="score hidden">
             <div>{quizData?.scoreText}</div>
             <div>{quizData?.bestText}</div>
             <div className="row">
