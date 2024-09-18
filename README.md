@@ -14,7 +14,7 @@ QuizBoss is a web platform for crafting and sharing quizzes and trivia games. Th
 
 -   ### CI/CD pipeline with Azure
 
-    The website is hosted on Azure and uses [GitHub Actions](azure-static-web-apps-zealous-smoke-0c5417f10.yml) to build and deploy the application when changes are merged into the `main` branch.
+    The website is hosted on Azure and uses [GitHub Actions](.github/workflows/azure-static-web-apps-zealous-smoke-0c5417f10.yml) to build and deploy the application when changes are merged into the `main` branch.
 
 -   ### UX/UI design and animation
 
