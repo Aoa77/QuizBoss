@@ -12,7 +12,7 @@ QuizBoss is a single-page web application framework for crafting engaging multip
 ## Features
 
 ### Vite, React & TypeScript:
-> This project was bootstrapped with [Vite](https://vitejs.dev/) using the React+Typescript template.
+> This project was bootstrapped with [Vite](README.VITE.md) using the [React+Typescript template](README.VITE.md).
 
 ### JSON Data:
 > Quiz data is defined in a simple key/value pair JSON format.
