@@ -15,7 +15,7 @@ export default async function handleCorrectGuess(
     guessButtons: ButtonElement[],
     wrongGuesses: number[],
     state: State,
-    tasks: Promise<void>[]
+    // tasks: Promise<void>[]
 ): Promise<void> {
     //
     const { image, loading, question } = elements.refs;
@@ -28,23 +28,20 @@ export default async function handleCorrectGuess(
     );
 
     const award: number = calcAward(guessButtons, wrongGuesses);
-    tasks.push(elements.scaleIn(correctButton.target));
+    await elements.scaleIn(correctButton.target);
     await delay(Duration.WAIT, Multiplier.x3);
     revealButtonScore(award, correctButton.ref.current!);
 
-    await tasks.pop();
     await elements.fadeOut(question.target);
-    tasks.push(applyScoreAward(award, state, elements));
+    await applyScoreAward(award, state, elements);
     for (const button of wrongButtons) {
         await elements.fadeOut(button.target);
     }
 
     await delay(Duration.WAIT, Multiplier.x2);
-    tasks.push(elements.scaleOut(correctButton.target));
-    tasks.push(elements.fadeOut(image.target));
+    await elements.scaleOut(correctButton.target);
+    await elements.fadeOut(image.target);
 
     await elements.fadeIn(loading.target);
     await elements.fadeOut(correctButton.target);
-    await Promise.all(tasks);
-    tasks = [];
 }

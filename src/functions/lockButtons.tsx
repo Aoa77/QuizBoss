@@ -16,7 +16,7 @@ export default async function lockButtons(
     isCorrectGuess: boolean,
     state: State,
     wrongGuesses: number[],
-    tasks: Promise<void>[],
+    // tasks: Promise<void>[],
 ): Promise<ButtonElement> {
     //
     let correctButton: ButtonElement | null = null;
@@ -50,7 +50,7 @@ export default async function lockButtons(
         guessButtonRef.className = ButtonState.WRONG;
 
         if (wrongGuessesExauhsted(guessButtons, wrongGuesses)) {
-            await handleWrongGuess(guessButtons, elements, tasks);
+            await handleWrongGuess(guessButtons, elements);
             await unlockButtons(guessButtons, wrongGuesses);
             revealCorrectAnswer(
                 correctButton!,

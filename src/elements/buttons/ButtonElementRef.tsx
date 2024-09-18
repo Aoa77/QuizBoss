@@ -1,10 +1,10 @@
-import { useRef } from "react";
+import { RefObject, useRef } from "react";
 import ButtonElement from "./ButtonElement";
 import { ButtonState } from "./ButtonState";
 
 export default function ButtonElementRef(
     index: number,
-    onPointerDown: (ref: React.RefObject<HTMLButtonElement>) => void,
+    onPointerDown: (ref: RefObject<HTMLButtonElement>) => void,
 ): ButtonElement {
     const ref = useRef(null);
     const key = "button" + index;

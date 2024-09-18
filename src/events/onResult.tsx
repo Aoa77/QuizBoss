@@ -9,7 +9,7 @@ import { wrongGuessesExauhsted } from "../functions/wrongGuessesExauhsted";
 import { GameState } from "../state/GameState";
 
 ///
-const tasks: Promise<void>[] = [];
+// const tasks: Promise<void>[] = [];
 const wrongGuesses: number[] = [];
 
 export default async function onResult() {
@@ -34,7 +34,6 @@ export default async function onResult() {
         isCorrectGuess,
         state,
         wrongGuesses,
-        tasks,
     );
 
     if (isCorrectGuess || wrongGuessesExauhsted(guessButtons, wrongGuesses)) {
@@ -45,7 +44,6 @@ export default async function onResult() {
             guessButtons,
             wrongGuesses,
             state,
-            tasks,
         );
 
         if (1 + state.currentItemIndex === quizItems.length) {
@@ -61,7 +59,7 @@ export default async function onResult() {
     }
 
     ///
-    await handleWrongGuess(guessButtons, elements, tasks);
+    await handleWrongGuess(guessButtons, elements);
     await unlockButtons(guessButtons, wrongGuesses);
     setState({ ...state, gameState: GameState.INPUT });
 }

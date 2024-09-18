@@ -8,7 +8,7 @@ import { Duration } from "../time/Duration";
 export default async function handleWrongGuess(
     guessButtons: ButtonElement[],
     elements: ElementController,
-    tasks: Promise<void>[]
+    // tasks: Promise<void>[]
 ): Promise<void> {
     const wrongButton: ButtonElement = guessButtons.find(
         (b) => b.ref.current!.className === ButtonState.WRONG
@@ -16,5 +16,5 @@ export default async function handleWrongGuess(
 
     await elements.scaleIn(wrongButton.target);
     await delay(Duration.WAIT);
-    tasks.push(elements.scaleOut(wrongButton.target));
+    await elements.scaleOut(wrongButton.target);
 }
