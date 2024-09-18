@@ -9,13 +9,13 @@ export default function ButtonBuilder(): ButtonElement[] {
     const settings = AppContext.settings();
     const { guessButtonCount } = settings;
 
-    const appState = AppContext.appState();
-    const { state, setState } = appState;
-    const { gameState } = state;
-
-    const onPointerDown: (ref: React.RefObject<HTMLButtonElement>) => void = (
-        clickedButtonRef,
-    ) => {
+    const onPointerDown: (
+        ref: React.RefObject<HTMLButtonElement>, ////
+    ) => void = (clickedButtonRef) => {
+        const appState = AppContext.appState();
+        const { state, setState } = appState;
+        const { gameState } = state;
+        console.info({ gameState });
         if (gameState !== GameState.INPUT) {
             return;
         }

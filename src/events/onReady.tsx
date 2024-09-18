@@ -1,4 +1,5 @@
 import AppContext from "../app/AppContext";
+import toggleSettingsPanel from "../functions/toggleSettingsPanel";
 import { GameState } from "../state/GameState";
 import delay from "../time/delay";
 import { Duration } from "../time/Duration";
@@ -12,10 +13,14 @@ export default async function onReady() {
     const elements = AppContext.elements();
     const { refs } = elements;
     const { title } = refs;
-    
+
     await elements.fadeIn(title.target);
     await delay(Duration.WAIT, Multiplier.x3);
 
+    // while (true) {
+    //     toggleSettingsPanel();
+    //     await delay(Duration.ONE_SECOND, Multiplier.x3);
+    // }
+
     setState({ ...state, gameState: GameState.LOADING });
-    return;
 }

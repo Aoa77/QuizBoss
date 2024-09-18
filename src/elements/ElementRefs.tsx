@@ -10,5 +10,8 @@ export default interface ElementRefs {
     question: ElementRef<HTMLHeadingElement | null>;
     scoreValue: ElementRef<HTMLDivElement | null>;
     scoreArea: ElementRef<HTMLDivElement | null>;
+    settingsPanel: ElementRef<HTMLDivElement | null>;
+    sliderGrip: ElementRef<HTMLDivElement | null>;
+    sliderNotch: ElementRef<HTMLDivElement | null>;
     title: ElementRef<HTMLHeadingElement | null>;
 }

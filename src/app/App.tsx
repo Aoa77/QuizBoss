@@ -10,8 +10,9 @@ import TitleHeading from "../components/TitleHeading";
 import useElementController from "../hooks/useElementController";
 import useEventRouter from "../hooks/useEventRouter";
 import useStateController from "../hooks/useStateController";
-import "./styles";
+import "../components/styles";
 import AppContext from "./AppContext";
+import SettingsPanel from "../components/SettingsPanel";
 
 export default function App(settings: AppSettings) {
     AppContext.initSettings(settings);
@@ -29,6 +30,7 @@ export default function App(settings: AppSettings) {
             <ScoreDisplay />
             <ProgressDisplay />
             <AppVersion />
+            <SettingsPanel />
         </main>
     );
 }

@@ -8,6 +8,7 @@ import onNext from "../events/onNext";
 import onReady from "../events/onReady";
 import onResult from "../events/onResult";
 import { GameState } from "../state/GameState";
+import toggleSettingsPanel from "../functions/toggleSettingsPanel";
 
 type EventHandlers = {
     [key in GameState]: () => void;
@@ -31,8 +32,8 @@ export default function useEventRouter() {
     ///
     useEffect(() => {
         const { gameState } = state;
-
         console.info(state.gameState);
+
         const eventHandler = eventHandlers[gameState];
         if (eventHandler) {
             eventHandler();

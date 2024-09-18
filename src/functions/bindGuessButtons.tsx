@@ -11,7 +11,11 @@ export default async function bindGuessButtons(
     guessButtons: ButtonElement[],
     quizData: QuizData,
 ) {
-    for (let buttonIndex = 0; buttonIndex < guessButtons.length; buttonIndex++) {
+    for (
+        let buttonIndex = 0;
+        buttonIndex < guessButtons.length;
+        buttonIndex++
+    ) {
         let item = currentItem;
         if (buttonIndex !== answerSpot) {
             item = await selectRandomQuestionChoice(

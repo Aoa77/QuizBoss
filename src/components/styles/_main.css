@@ -130,7 +130,7 @@ section.score {
     grid-template-columns: repeat(2, auto);
     color: #00ffff;
     text-transform: uppercase;
-    font-size: 8rem;
+    font-size: 9rem;
     width: 124rem;
     margin: auto;
     margin-top: var(--hu_8);
@@ -155,7 +155,7 @@ section.score div.row > div {
 section.progress {
     color: #ffffffbb;
     font-family: "Courier New", monospace;
-    font-size: 5.25rem;
+    font-size: 5.5rem;
     position: relative;
     top: -12rem;
 }
@@ -168,4 +168,34 @@ section.progress span {
 /*****************************/
 .hidden {
     opacity: 0;
+}
+
+/*****************************/
+/* settings slide-up         */
+/*****************************/
+section.settings-panel {
+    background-color: #000033;
+    position: fixed;
+    width: var(--width);
+    height: calc(2 * var(--height));
+    top: var(--hu_194);
+}
+section.settings-panel > div.slider-grip {
+    background-color: #000000;
+    width: var(--width);
+    height: var(--hu_8);
+    overflow: hidden;
+    cursor: pointer;
+}
+section.settings-panel > div.slider-grip > div.slider-notch {
+    width: var(--hu_8);
+    height: var(--hu_8);
+    background-color: #ffffff55;
+    transform: rotate(45deg);
+    margin: 0 auto;
+    margin-top: var(--hu_4);
+    position: relative;
+}
+section.settings-panel > div.slider-grip > div.slider-notch.active {
+    top: calc(-1 * var(--hu_10));
 }

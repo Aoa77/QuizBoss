@@ -46,7 +46,7 @@ export default class ElementController {
         return target;
     }
 
-    private toTargetSelector(target: string): string {
+    public toTargetSelector(target: string): string {
         return `#${target}`;
     }
 

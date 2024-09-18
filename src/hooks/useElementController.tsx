@@ -40,6 +40,18 @@ export default function useElementController(): ElementController {
             "scoreArea",
             useRef<HTMLDivElement | null>(null),
         ),
+        settingsPanel: new ElementRef<HTMLDivElement>(
+            "settingsPanel",
+            useRef<HTMLDivElement | null>(null),
+        ),
+        sliderGrip: new ElementRef<HTMLDivElement>(
+            "sliderGrip",
+            useRef<HTMLDivElement | null>(null),
+        ),
+        sliderNotch: new ElementRef<HTMLDivElement>(
+            "sliderNotch",
+            useRef<HTMLDivElement | null>(null),
+        ),
         title: new ElementRef<HTMLHeadingElement>(
             "title",
             useRef<HTMLHeadingElement | null>(null),

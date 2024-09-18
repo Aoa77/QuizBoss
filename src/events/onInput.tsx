@@ -8,7 +8,7 @@ import { Duration } from "../time/Duration";
 export default async function onInput() {
     const appState = AppContext.appState();
     const { state, setState } = appState;
-    
+
     const settings = AppContext.settings();
     const { demoMode } = settings;
 
