@@ -1,34 +1,39 @@
 import anime from "animejs";
 import AppContext from "../app/AppContext";
 
-const active: string = "active";
+const activeClass: string = "active";
+let canClick: boolean = true;
+let isActive: boolean = false;
 let sliderTop: number | null = null;
 
-export default function toggleSettingsPanel() {
+export default async function toggleSettingsPanel() {
+    if (!canClick) {
+        return;
+    }
+    canClick = false;
+
     const elements = AppContext.elements();
     const { refs } = elements;
     const { settingsPanel, sliderGrip, sliderNotch } = refs;
 
     const targets = elements.toTargetSelector(settingsPanel.target);
     sliderTop ??= sliderGrip.object.current!.getBoundingClientRect().top;
-    console.info("sliderTop", sliderTop);
+    console.debug("sliderTop", sliderTop);
 
+    const grip = sliderGrip.object.current!;
     const notch = sliderNotch.object.current!;
-    const isActive = notch.classList.contains(active);
-    sliderGrip.object.current!.style.backgroundColor = isActive
-        ? "#000000"
-        : "#000033";
 
+    await elements.fadeOut(sliderNotch.target);
+    grip.classList.toggle(activeClass);
     anime({
         targets,
         top: isActive ? sliderTop : 0,
         easing: "spring(1, 80, 20, 0)",
-        begin: () => {
-            elements.fadeOut(sliderNotch.target);
-        },
-        complete: () => {
-            notch.classList.toggle(active);
-            elements.fadeIn(sliderNotch.target);
+        complete: async () => {
+            isActive = !isActive;
+            notch.classList.toggle(activeClass);
+            await elements.fadeIn(sliderNotch.target);
+            canClick = true;
         },
     });
 }

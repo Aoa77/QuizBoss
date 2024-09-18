@@ -5,7 +5,6 @@ import StateController from "../state/StateController";
 
 let isLocalStorageInitialized = false;
 export default function useStateController(): StateController {
-    console.info("useStateController");
     const [state, setState] = useState<State>({
         answerSpot: 0,
         currentItemIndex: 0,
@@ -16,7 +15,6 @@ export default function useStateController(): StateController {
         best: 0,
     });
     
-    console.info(".." + state.gameState);
     const appState: StateController = { state, setState };
     if (isLocalStorageInitialized) {
         return appState;

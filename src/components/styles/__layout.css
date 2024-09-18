@@ -29,7 +29,7 @@ html {
     font-size: calc(var(--width) / 220);
 }
 body {
-    background-color: #000000;
+    background-color: var(--background-color);
     overflow: hidden;
     text-align: center;
 }

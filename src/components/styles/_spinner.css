@@ -1,6 +1,5 @@
 .lds-ellipsis {
-    /* change color here */
-    color: #1c4c5b;
+    color: var(--lds-ellipsis-color);
 }
 .lds-ellipsis,
 .lds-ellipsis div {

@@ -2,9 +2,7 @@
 /* main element is used as the app container */
 /*********************************************/
 main {
-    background-color: #000000;
-    border-color: #000000;
-    border-style: solid;
+    background-color: var(--background-color);
     width: var(--width);
     height: var(--height);
     margin-left: var(--main_center);
@@ -14,7 +12,7 @@ main {
 /* heading text rules */
 /**********************/
 h1 {
-    color: white;
+    color: var(--h1-color);
     font-family: "Garamond", serif;
     font-size: 18rem;
     font-weight: normal;
@@ -22,7 +20,7 @@ h1 {
     margin-bottom: var(--hu_7);
 }
 h2 {
-    color: #00ffff;
+    color: var(--h2-color);
     font-family: "Tahoma", sans-serif;
     font-size: 9rem;
     font-weight: normal;
@@ -33,7 +31,7 @@ h2 {
 /* app version display  */
 /************************/
 h6 {
-    color: #ffffff33;
+    color: var(--h6-color);
     font-family: "Courier New", monospace;
     font-size: 5rem;
     font-weight: normal;
@@ -44,7 +42,7 @@ h6 {
 /* "play again" prompt  */
 /************************/
 .prompt {
-    color: #ffff00;
+    color: var(--prompt-color);
     cursor: pointer;
 }
 
@@ -61,7 +59,7 @@ section.image {
     margin-top: calc(-1 * var(--hu_42));
 }
 section.image > img {
-    box-shadow: 0 0 16rem 3rem #a5a5c8cc;
+    box-shadow: 0 0 16rem 3rem var(--image-shadow);
     margin: auto;
     height: 100%;
 }
@@ -89,35 +87,39 @@ button {
     opacity: 0;
 }
 button.blink {
-    background-color: #ffff0022;
-    border-color: #999900;
-    color: #ffff00;
+    background-color: var(--button-blink-background);
+    border-color: var(--button-blink-border);
+    color: var(--button-blink-text);
 }
 button.correct {
-    background-color: #00ff0022;
-    border-color: #009900;
-    color: #00ff00;
+    background-color: var(--button-correct-background);
+    border-color: var(--button-correct-border);
+    color: var(--button-correct-text);
 }
-button.dimmed,
+button.dimmed {
+    background-color: var(--button-dimmed-background);
+    border-color: var(--button-dimmed-border);
+    color: var(--button-dimmed-text);
+}
 button.disabled {
-    background-color: #44447744;
-    border-color: #44447722;
-    color: #ffffff66;
+    background-color: var(--button-disabled-background);
+    border-color: var(--button-disabled-border);
+    color: var(--button-disabled-text);
 }
 button.normal {
-    background-color: #444477;
-    border-color: #444499;
-    color: #ffffff;
+    background-color: var(--button-normal-background);
+    border-color: var(--button-normal-border);
+    color: var(--button-normal-text);
 }
 button.reveal {
-    background-color: #0000ff22;
-    border-color: #000099;
-    color: #0000ff;
+    background-color: var(--button-reveal-background);
+    border-color: var(--button-reveal-border);
+    color: var(--button-reveal-text);
 }
 button.wrong {
-    background-color: #ff000044;
-    border-color: #990000;
-    color: #ff0000;
+    background-color: var(--button-wrong-background);
+    border-color: var(--button-wrong-border);
+    color: var(--button-wrong-text);
 }
 
 /***************************/
@@ -128,7 +130,7 @@ section.score {
     font-family: "Tahoma", sans-serif;
     grid-template-columns: repeat(3, auto);
     grid-template-columns: repeat(2, auto);
-    color: #00ffff;
+    color: var(--score-color);
     text-transform: uppercase;
     font-size: 9rem;
     width: 124rem;
@@ -138,14 +140,14 @@ section.score {
 }
 section.score div.row {
     display: contents;
-    color: #ffff00;
+    color: var(--score-row-color);
     font-size: 11rem;
 }
 section.score div.row > div {
     padding-top: 2rem;
 }
 .bonus {
-    color: #00ff00;
+    color: var(--bonus-color);
     font-weight: bold;
 }
 
@@ -153,7 +155,7 @@ section.score div.row > div {
 /* progress                 */
 /****************************/
 section.progress {
-    color: #ffffffbb;
+    color: var(--progress-color);
     font-family: "Courier New", monospace;
     font-size: 5.5rem;
     position: relative;
@@ -174,28 +176,35 @@ section.progress span {
 /* settings slide-up         */
 /*****************************/
 section.settings-panel {
-    background-color: #000011;
+    background-color: var(--settings-panel-background);
     position: fixed;
     width: var(--width);
     height: calc(2 * var(--height));
-    top: var(--hu_190);
+    top: var(--hu_194);
 }
+
 section.settings-panel > div.slider-grip {
-    background-color: #000000;
+    background-color: var(--slider-grip-background);
     width: var(--width);
-    height: var(--hu_12);
+    height: var(--hu_8);
     overflow: hidden;
     cursor: pointer;
 }
+
+section.settings-panel > div.slider-grip.active {
+    background-color: var(--slider-grip-background-active);
+}
+
 section.settings-panel > div.slider-grip > div.slider-notch {
     width: var(--hu_8);
     height: var(--hu_8);
-    background-color: #ffffff33;
+    background-color: var(--slider-notch-background);
     transform: rotate(45deg);
     margin: 0 auto;
-    margin-top: var(--hu_8);
+    margin-top: var(--hu_4);
     position: relative;
 }
+
 section.settings-panel > div.slider-grip > div.slider-notch.active {
-    top: calc(-1 * var(--hu_14));
+    top: calc(-1 * var(--hu_10));
 }

@@ -52,18 +52,16 @@ export default class ElementController {
 
     public async fadeIn(
         target: string,
-        opacity: number = 1,
         multiplier: Multiplier = Multiplier.x1,
     ) {
-        await this.fade(target, opacity, multiplier);
+        await this.fade(target, 1, multiplier);
     }
 
     public async fadeOut(
         target: string,
-        opacity: number = 0,
         multiplier: Multiplier = Multiplier.x1,
     ) {
-        await this.fade(target, opacity, multiplier);
+        await this.fade(target, 0, multiplier);
     }
 
     public async fade(
@@ -78,18 +76,16 @@ export default class ElementController {
 
     public async scaleIn(
         target: string,
-        scale: number = 1.2,
         multiplier: Multiplier = Multiplier.x1,
     ) {
-        await this.scale(target, scale, multiplier);
+        await this.scale(target, 1.2, multiplier);
     }
 
     public async scaleOut(
         target: string,
-        scale: number = 1.0,
         multiplier: Multiplier = Multiplier.x1,
     ) {
-        await this.scale(target, scale, multiplier);
+        await this.scale(target, 1.0, multiplier);
     }
 
     public async scale(
