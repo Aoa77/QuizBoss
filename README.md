@@ -1,33 +1,26 @@
-# QuizBoss
+# :scroll: QuizBoss
 
-QuizBoss is a single-page web application framework for crafting engaging multiple-choice quiz and trivia games.
-> Check out the [live demo site](https://white-desert-06da4b010.5.azurestaticapps.net/) that is running the "World Flags Quiz".
-<details>
-  <summary>Demo site video</summary>
-  
-  https://github.com/user-attachments/assets/4e0bbb29-d85a-4026-ba6f-787f4f5d2197
-</details>
+QuizBoss is a web platform for crafting and sharing quizzes and trivia games. This repository contains the source code and configuration used to build and deploy the application.
 
+### :link: [quizboss.a77.space](https://quizboss.a77.space)
 
-## Features
+`*********************************`
 
-### Vite, React & TypeScript:
-> This project was bootstrapped with [Vite](README.VITE.md) using the [React+Typescript template](README.VITE.md).
+## Developer notes
 
-### JSON Data:
-> Quiz data is defined in a simple key/value pair JSON format.
+-   ### Vite, React & TypeScript
 
-### Async SVG Loading:
-> SVG image data is loaded asynchronuosly to minimize startup wait times.
+    This project was bootstrapped with [Vite](README.VITE.md) using the [React+Typescript template](README.VITE.md).
 
-### Mobile-First Responsive Design:
-> The UI layout is designed to look great on mobile devices. It is built with pure vanilla CSS.
+-   ### CI/CD pipeline with Azure
 
-### Basic CI/CD pipeline with Azure:
-> The demo site is hosted on an [Azure static web app]([https://azure.microsoft.com/en-us/products/app-service/static](https://white-desert-06da4b010.5.azurestaticapps.net/). A GitHub actions workflow is configured to automatically build and deploy application when changes are pushed to the `main` branch.
+    The website is hosted on Azure and uses [GitHub Actions](azure-static-web-apps-zealous-smoke-0c5417f10.yml) to build and deploy the application when changes are merged into the `main` branch.
 
+-   ### UX/UI design and animation
 
+    -   UI design follows a mobile-first approach using [pure vanilla CSS](src/components/styles).
 
+    - User interaction is enhanced by the [Anime.js](https://github.com/juliangarnier/anime) animation engine. 
 
 
 
