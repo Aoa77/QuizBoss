@@ -5,11 +5,11 @@ import { Multiplier } from "./Multiplier";
 
 export default function animate(
     params: AnimeParams,
-    duration: Duration,
-    multiplier: Multiplier = Multiplier.x1,
+    duration: Duration | number,
+    multiplier: Multiplier | number = Multiplier.x1,
 ): Promise<void> {
+    params.duration = delayCalc(duration, multiplier);
     return new Promise((resolve) => {
-        params.duration = delayCalc(duration, multiplier);
         params.complete = () => {
             resolve();
         };

@@ -4,8 +4,8 @@ import { Multiplier } from "./Multiplier";
 
 ///
 export default function delay(
-    duration: Duration,
-    multiplier: Multiplier = 1,
+    duration: Duration | number,
+    multiplier: Multiplier | number = Multiplier.x1,
 ): Promise<void> {
     const calc = delayCalc(duration, multiplier);
     return new Promise((resolve) => setTimeout(resolve, calc));

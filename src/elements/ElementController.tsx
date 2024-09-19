@@ -1,6 +1,5 @@
 import delay from "../time/delay";
 import { Duration } from "../time/Duration";
-import { EaseDirection } from "../time/EaseDirection";
 import fade from "../time/fade";
 import { Multiplier } from "../time/Multiplier";
 import { scale } from "../time/scale";
@@ -48,9 +47,6 @@ export default class ElementController {
         return target;
     }
 
-    private toTargetSelector(target: string): string {
-        return `#${target}`;
-    }
 
     public async fadeIn(
         target: string,
@@ -70,14 +66,14 @@ export default class ElementController {
         target: string,
         multiplier: Multiplier = Multiplier.x1,
     ) {
-        await scale(this.toTargetSelector(target), 1.19, EaseDirection.In, null, multiplier);
+        await scale(this.toTargetSelector(target), 1.3, multiplier);
     }
 
     public async scaleOut(
         target: string,
         multiplier: Multiplier = Multiplier.x1,
     ) {
-        await scale(this.toTargetSelector(target), 1.0, EaseDirection.Out, null, multiplier);
+        await scale(this.toTargetSelector(target), 1.0, multiplier);
     }
 
 }

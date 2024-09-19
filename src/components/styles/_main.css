@@ -69,11 +69,13 @@ section.image > img {
 /************************/
 section.buttons {
     margin-top: var(--hu_5);
+    background-color: #000000;
 }
 button {
     all: unset;
     appearance: none;
-    border-style: none;
+    border-style:solid;
+    border-width: 1rem;
     display: block;
     font-family: "Tahoma", sans-serif;
     font-family: "Garamond", serif;

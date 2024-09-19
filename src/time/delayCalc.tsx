@@ -3,8 +3,8 @@ import { Duration } from "./Duration";
 import { Multiplier } from "./Multiplier";
 
 export default function delayCalc(
-    duration: Duration,
-    multiplier: Multiplier,
+    duration: Duration  | number,
+    multiplier: Multiplier  | number,
 ): number {
     if (duration <= 0) {
         throw new Error("Delay duration must be greater than 0.");
