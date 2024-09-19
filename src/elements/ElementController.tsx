@@ -1,7 +1,9 @@
-import animate from "../time/animate";
 import delay from "../time/delay";
 import { Duration } from "../time/Duration";
+import { EaseDirection } from "../time/EaseDirection";
+import fade from "../time/fade";
 import { Multiplier } from "../time/Multiplier";
+import { scale } from "../time/scale";
 import ButtonBuilder from "./buttons/ButtonBuilder";
 import ButtonElement from "./buttons/ButtonElement";
 import { ButtonState } from "./buttons/ButtonState";
@@ -46,7 +48,7 @@ export default class ElementController {
         return target;
     }
 
-    public toTargetSelector(target: string): string {
+    private toTargetSelector(target: string): string {
         return `#${target}`;
     }
 
@@ -54,59 +56,28 @@ export default class ElementController {
         target: string,
         multiplier: Multiplier = Multiplier.x1,
     ) {
-        await this.fade(target, 1, multiplier);
+        await fade(this.toTargetSelector(target), 1, multiplier);
     }
 
     public async fadeOut(
         target: string,
         multiplier: Multiplier = Multiplier.x1,
     ) {
-        await this.fade(target, 0, multiplier);
-    }
-
-    public async fade(
-        target: string,
-        opacity: number,
-        multiplier: Multiplier = Multiplier.x1,
-    ) {
-        const easing = "linear";
-        const targets = this.toTargetSelector(target);
-        await animate({ targets, opacity, easing }, Duration.FADE, multiplier);
+        await fade(this.toTargetSelector(target), 0, multiplier);
     }
     
     public async scaleIn(
         target: string,
         multiplier: Multiplier = Multiplier.x1,
     ) {
-        await this.scale(target, 1.19, multiplier);
+        await scale(this.toTargetSelector(target), 1.19, EaseDirection.In, null, multiplier);
     }
 
     public async scaleOut(
         target: string,
         multiplier: Multiplier = Multiplier.x1,
     ) {
-        await this.scale(target, 1.00, multiplier);
-    }
-    
-    public async scale(
-        target: string,
-        scale: number,
-        multiplier: Multiplier = Multiplier.x1,
-    ) {
-        const easing = "linear";
-        const targets = this.toTargetSelector(target);
-        await animate({ targets, easing, scale }, Duration.SCALE, multiplier);
+        await scale(this.toTargetSelector(target), 1.0, EaseDirection.Out, null, multiplier);
     }
 
-
-    // export class EasingFunctions {
-    //     public static easeOutElastic(params: EaseOutElasticParams): string {
-    //         return `easeOutElastic(${params.amplitude}, ${params.period})`;
-    //     }
-    //     public static easeInElastic(params: EaseOutElasticParams): string {
-    //         return `easeInElastic(${params.amplitude}, ${params.period})`;
-    //     }
-    // }
 }
-    
-
