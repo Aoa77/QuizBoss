@@ -107,9 +107,6 @@ export default class ElementController {
     //         return `easeInElastic(${params.amplitude}, ${params.period})`;
     //     }
     // }
-    
-    // export interface EaseOutElasticParams {
-    //     amplitude: number;
-    //     period: number;
-    // }
 }
+    
+
