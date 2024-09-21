@@ -12,6 +12,6 @@
         "prettier.printWidth": 80,
         "prettier.tabWidth": 4,
         "prettier.trailingComma": "all",
-        "prettier.bracketSameLine": true
+        "prettier.bracketSameLine": true,
     }
 }
