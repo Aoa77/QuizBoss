@@ -1,9 +1,9 @@
 import ButtonElement from "../elements/buttons/ButtonElement";
 import ElementController from "../elements/__ElementController";
 import State from "../AppState";
-import wait from "../../core/timing/wait";
+import wait from "../../core/animation/wait";
 import { Duration } from "../elements/fade";
-import { Multiplier } from "../../core/timing/Multiplier";
+import { Multiplier } from "../../core/animation/Multiplier";
 import applyScoreAward from "./applyScoreAward";
 import calcAward from "./calcAward";
 import revealButtonScore from "./revealButtonScore";

@@ -1,7 +1,7 @@
 import ButtonElement from "../elements/buttons/ButtonElement";
 import { ButtonState } from "../models/ButtonState";
 import ElementController from "../elements/__ElementController";
-import wait from "../../core/timing/wait";
+import wait from "../../core/animation/wait";
 import { Duration } from "../elements/fade";
 
 

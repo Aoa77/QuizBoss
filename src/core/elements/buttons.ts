@@ -1,4 +1,4 @@
-import { Xref } from "./classes";
+import { Xref } from "./xref";
 import { collections } from "./collections";
 
 export function useXrefButtons(...keys: string[]): Xref<HTMLButtonElement>[] {
@@ -14,12 +14,17 @@ export function useXrefButtons(...keys: string[]): Xref<HTMLButtonElement>[] {
 }
 
 export function getXrefButtons(...keys: string[]): Xref<HTMLButtonElement>[] {
-    if (keys.length === 0) {
-        throw new Error("No keys provided");
-    }
     const collection = collections.buttons;
-    if (collection.size === 0) {
-        throw new Error("No buttons in collection");
+    if (keys.length === 0) {
+        return Array.from(collection.values());
     }
-    return keys.map((key) => collection.get(key)!);
+    const array: Xref<HTMLButtonElement>[] = [];
+    keys.forEach((key) => {
+        const xref = collection.get(key);
+        if (!xref) {
+            throw new Error(`Xref key not found: ${key}`);
+        }
+        array.push(xref);
+    });
+    return array;
 }

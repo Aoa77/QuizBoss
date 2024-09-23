@@ -1,11 +1,11 @@
-import { getAppStateFlow } from "../appFlow/useAppStateFlow";
+import { getAppStateFlow } from "../appFlow/useFlow";
 import { TIME } from "../elements/constants";
 import { ButtonState } from "../models/ButtonState";
 import { DemoMode } from "../models/DemoMode";
 import { GameState } from "../models/GameState";
-import wait from "../../core/timing/wait";
+import wait from "../../core/animation/wait";
 import randomInt from "../../core/random/randomInt";
-import { getXrefButtons } from "../../core/xrefs/buttons";
+import { getXrefButtons } from "../../core/elements/buttons";
 
 export default async function onInput() {
     const [state, setState] = getAppStateFlow();
@@ -18,7 +18,7 @@ export default async function onInput() {
     }
 
     console.info("waiting for DEMO input...");
-    await wait({ duration: TIME.DEMO });
+    await wait(TIME.DEMO);
 
     const spotButton = doDemoInput(state.answerSpot, demoMode);
     setState({
@@ -28,26 +28,26 @@ export default async function onInput() {
     });
 }
 
-function doDemoInput(answerSpot: number, demoMode: DemoMode) {
+function doDemoInput(answerSpot: number, demoMode: DemoMode) : HTMLButtonElement {
     const buttons = getXrefButtons();
 
-    let spotButton = buttons[answerSpot]!.element!;
+    let spotButton = buttons[answerSpot];
     if (demoMode === DemoMode.RANDOM) {
         const activeButtons = buttons.filter(
-            (button) => button!.element!.className === ButtonState.NORMAL,
+            (button) => button.className === ButtonState.NORMAL,
         );
-        spotButton =
-            activeButtons[randomInt(0, activeButtons.length)]!.element!;
+        spotButton = 
+            activeButtons[randomInt(0, activeButtons.length)];
     } else if (demoMode === DemoMode.WRONG) {
         for (let i = 0; i < buttons.length; i++) {
             if (i === answerSpot) {
                 continue;
             }
-            spotButton = buttons[i]!.element!;
+            spotButton = buttons[i];
             if (spotButton.className === ButtonState.NORMAL) {
                 break;
             }
         }
     }
-    return spotButton;
+    return spotButton.ref.current!;
 }

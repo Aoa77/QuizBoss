@@ -1,8 +1,8 @@
-import { useXrefDivs } from "../../core/xrefs/divs";
-import { ElementNames } from "../elements/constants";
+import { useXrefDivs } from "../../core/elements/divs";
+import { ELEMENT } from "../elements/constants";
 
 export default function LoadingSpinner() {
-    const [loading] = useXrefDivs(ElementNames.loading);
+    const [loading] = useXrefDivs(ELEMENT.loading);
     return (
         <section id={loading!.id} ref={loading!.ref} className="loading hidden">
             <div className="lds-ellipsis">

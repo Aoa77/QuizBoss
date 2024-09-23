@@ -1,4 +1,4 @@
-import { XrefCollection } from "./classes";
+import { XrefCollection } from "./xref";
 
 export const collections = {
     buttons: new XrefCollection<HTMLButtonElement>(),

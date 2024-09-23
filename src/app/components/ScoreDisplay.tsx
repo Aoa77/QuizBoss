@@ -1,12 +1,12 @@
-import { useXrefDivs } from "../../core/xrefs/divs";
+import { useXrefDivs } from "../../core/elements/divs";
 import { AppState } from "../appFlow/AppState";
-import { ElementNames } from "../elements/constants";
+import { ELEMENT } from "../elements/constants";
 
 export default function ScoreDisplay(state: AppState) {
     const [scoreArea, scoreValue, bestValue] = useXrefDivs(
-        ElementNames.scoreArea,
-        ElementNames.scoreValue,
-        ElementNames.bestValue,
+        ELEMENT.scoreArea,
+        ELEMENT.scoreValue,
+        ELEMENT.bestValue,
     );
 
     const { score, best, quizModule } = state;

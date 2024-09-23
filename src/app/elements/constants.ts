@@ -1,4 +1,4 @@
-export enum ElementNames {
+export enum ELEMENT {
     appVersion = "appVersion",
     bestValue = "bestValue",
     buttonArea = "buttonArea",
@@ -32,4 +32,11 @@ export const TIME = {
     DEMO: 200,
     POLL: 50,
     WAIT: 500,
+};
+
+export const ANIM = {
+    FADE_IN: "fadeIn",
+    FADE_OUT: "fadeOut",
+    SCALE_UP: "scaleUp",
+    SCALE_DOWN: "scaleDown",
 };

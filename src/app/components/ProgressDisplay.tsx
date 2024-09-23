@@ -1,9 +1,9 @@
-import { useXrefDivs } from "../../core/xrefs/divs";
+import { useXrefDivs } from "../../core/elements/divs";
 import { AppState } from "../appFlow/AppState";
-import { ElementNames } from "../elements/constants";
+import { ELEMENT } from "../elements/constants";
 
 export default function ProgressDisplay(state: AppState) {
-    const [progress] = useXrefDivs(ElementNames.progress);
+    const [progress] = useXrefDivs(ELEMENT.progress);
 
     const { currentItemIndex, totalItems } = state;
 

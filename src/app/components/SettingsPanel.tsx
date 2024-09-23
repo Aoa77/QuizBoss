@@ -1,12 +1,12 @@
 import toggleSettingsPanel from "../functions/toggleSettingsPanel";
-import { ElementNames } from "../elements/constants";
-import { useXrefDivs } from "../../core/xrefs/divs";
+import { ELEMENT } from "../elements/constants";
+import { useXrefDivs } from "../../core/elements/divs";
 
 export default function SettingsPanel() {
     const [settingsPanel, sliderGrip, sliderNotch] = useXrefDivs(
-        ElementNames.settingsPanel,
-        ElementNames.sliderGrip,
-        ElementNames.sliderNotch,
+        ELEMENT.settingsPanel,
+        ELEMENT.sliderGrip,
+        ELEMENT.sliderNotch,
     );
 
     return (

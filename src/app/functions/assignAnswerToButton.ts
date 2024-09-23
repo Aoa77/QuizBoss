@@ -1,4 +1,4 @@
-import { getXrefButtonElements } from "../../core/xrefs/buttons";
+import { getXrefButtonElements } from "../../core/elements/buttons";
 import { ButtonState } from "../models/ButtonState";
 import QuizItem from "../models/QuizItem";
 

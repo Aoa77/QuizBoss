@@ -6,7 +6,7 @@ import revealCorrectAnswer from "./revealCorrectAnswer";
 import unlockButtons from "./unlockButtons";
 import { wrongGuessesExauhsted } from "./wrongGuessesExauhsted";
 import AppContext from "../AppContext";
-import Xref from "../../core/xrefs/Xref";
+import Xref from "../../core/elements/Xref";
 
 export default async function lockButtons(
     currentItem: QuizItem,
@@ -21,7 +21,7 @@ export default async function lockButtons(
     const { refs } = elements;
     const { buttons } = refs;
 
-    const correct:Xref<HTMLButtonElement> = getCorrectAnswerButton(elemen
+    const correct:Xref<HTMLButtonElement> = getCorrectAnswerButton(
     for (let guess = 0; guess < buttons.length; guess++) {
         //
         const button:  Xref<HTMLButtonElement>

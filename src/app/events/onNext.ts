@@ -1,11 +1,11 @@
 import bindGuessButtons from "../functions/bindGuessButtons";
 import randomInt from "../../core/random/randomInt";
 import { GameState } from "../models/GameState";
-import { getAppStateFlow } from "../appFlow/useAppStateFlow";
-import { getXrefHeadings } from "../../core/xrefs/headings";
-import { ElementNames } from "../elements/constants";
-import { getXrefDivs } from "../../core/xrefs/divs";
-import { getXrefButtons } from "../../core/xrefs/buttons";
+import { getAppStateFlow } from "../appFlow/useFlow";
+import { getXrefHeadings } from "../../core/elements/headings";
+import { ELEMENT } from "../elements/constants";
+import { getXrefDivs } from "../../core/elements/divs";
+import { getXrefButtons } from "../../core/elements/buttons";
 import { fadeIn, fadeOut } from "../elements/fade";
 
 ///
@@ -16,15 +16,15 @@ export default async function onNext() {
     }
 
     const [appVersion, question] = getXrefHeadings(
-        ElementNames.appVersion,
-        ElementNames.question,
+        ELEMENT.appVersion,
+        ELEMENT.question,
     );
     const [buttonArea, image, loading, progress, scoreArea] = getXrefDivs(
-        ElementNames.buttonArea,
-        ElementNames.image,
-        ElementNames.loading,
-        ElementNames.progress,
-        ElementNames.scoreArea,
+        ELEMENT.buttonArea,
+        ELEMENT.image,
+        ELEMENT.loading,
+        ELEMENT.progress,
+        ELEMENT.scoreArea,
     );
 
     const currentGuessPool: string[] = [];

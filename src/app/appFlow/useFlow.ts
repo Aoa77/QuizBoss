@@ -1,6 +1,5 @@
 import { Dispatch, SetStateAction } from "react";
 import { getStateFlow, useStateFlow } from "../../core/state/useStateFlow";
-import { useSpeed } from "../../core/timing/useSpeed";
 import { AppState, createInitialState } from "./AppState";
 import AppSettings from "./AppSettings";
 import { GameState } from "../models/GameState";
@@ -16,11 +15,9 @@ import onResult from "../events/onResult";
 let isLocalStorageInitialized = false;
 
 ///
-export function useAppStateFlow(
+export function useFlow(
     settings: AppSettings,
 ): [AppState, Dispatch<SetStateAction<AppState>>] {
-    ////////
-    useSpeed(settings.speed);
 
     const flow = useStateFlow<AppState, GameState>({
         initialState: createInitialState(settings),

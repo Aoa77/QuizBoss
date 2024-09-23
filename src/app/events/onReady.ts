@@ -1,13 +1,13 @@
-import wait from "../../core/timing/wait";
-import { getXrefHeadings } from "../../core/xrefs/headings";
-import { getAppStateFlow } from "../appFlow/useAppStateFlow";
-import { ElementNames, TIME } from "../elements/constants";
+import wait from "../../core/animation/wait";
+import { getXrefHeadings } from "../../core/elements/headings";
+import { getAppStateFlow } from "../appFlow/useFlow";
+import { ELEMENT, TIME } from "../elements/constants";
 import { fadeIn } from "../elements/fade";
 import { GameState } from "../models/GameState";
 
 ///
 export default async function onReady() {
-    const [title] = getXrefHeadings(ElementNames.title);
+    const [title] = getXrefHeadings(ELEMENT.title);
     await fadeIn({ xref: title! });
     await wait({ duration: TIME.WAIT, multiplier: 3 });
 

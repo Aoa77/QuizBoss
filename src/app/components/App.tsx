@@ -9,10 +9,17 @@ import QuestionImage from "./QuestionImage";
 import ScoreDisplay from "./ScoreDisplay";
 import SettingsPanel from "./SettingsPanel";
 import TitleHeading from "./TitleHeading";
-import { useAppStateFlow } from "../appFlow/useAppStateFlow";
+import { useFlow } from "../appFlow/useFlow";
+import useAnimation from "../elements/useAnimation";
 
 export default function App(settings: AppSettings) {
-    const [state] = useAppStateFlow(settings);
+    ///
+    const [state] = useFlow(settings);
+    
+    ///
+    useAnimation(settings.speed);
+    
+    ///
     return (
         <main>
             <TitleHeading {...state} />

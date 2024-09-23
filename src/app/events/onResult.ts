@@ -1,4 +1,5 @@
-import AppContext from "../AppContext";
+import { getXrefButtons } from "../../core/elements/buttons";
+import { getAppStateFlow } from "../appFlow/useFlow";
 import handleCorrectGuess from "../functions/handleCorrectGuess";
 import handleWrongGuess from "../functions/handleWrongGuess";
 import lockButtons from "../functions/lockButtons";
@@ -12,21 +13,17 @@ import { GameState } from "../models/GameState";
 const wrongGuesses: number[] = [];
 
 export default async function onResult() {
-    const appState = AppContext.appState();
-    const [state, setState] = appState;
+    const [state, setState] = getAppStateFlow();
     if (state.quizModule === null) {
         return;
     }
-
-    const elements = AppContext.elements();
-    const { refs } = elements;
-    const { buttons } = refs;
 
     const quizItems = state.quizModule.quizData.items;
     const currentItem = quizItems[state.currentItemIndex];
     const correctAnswer = currentItem.key;
     const isCorrectGuess = correctAnswer === state.guessValue;
 
+    const [buttons] = getXrefButtons();
     const correctButton: ButtonElement = await lockButtons(
         currentItem,
         elements,

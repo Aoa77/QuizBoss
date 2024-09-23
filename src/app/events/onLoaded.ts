@@ -1,15 +1,14 @@
-import wait from "../../core/timing/wait";
-import { getXrefDivs } from "../../core/xrefs/divs";
-import { getAppStateFlow } from "../appFlow/useAppStateFlow";
-import { ElementNames, TIME } from "../elements/constants";
-import { fadeIn, fadeOut } from "../elements/fade";
+import wait from "../../core/animation/wait";
+import { getXrefDivs } from "../../core/elements/divs";
+import { getAppStateFlow } from "../appFlow/useFlow";
+import { ANIM, ELEMENT, TIME } from "../elements/constants";
 import { GameState } from "../models/GameState";
 
 export default async function onLoaded() {
     const [state, setState] = getAppStateFlow();
     const [loading, image] = getXrefDivs(
-        ElementNames.loading,
-        ElementNames.image,
+        ELEMENT.loading,
+        ELEMENT.image,
     );
 
     if (state.quizModule === null) {
@@ -19,11 +18,11 @@ export default async function onLoaded() {
     const quizItems = state.quizModule.quizData.items;
     const currentItem = quizItems[state.currentItemIndex];
 
-    await fadeOut({ xref: loading! });
-    await fadeIn({ xref: image! });
-
+    await loading.animate(ANIM.FADE_OUT);
+    await image.animate(ANIM.FADE_IN);
+    
     while (!currentItem || !currentItem.isLoaded) {
-        await wait({ duration: TIME.POLL });
+        await wait(TIME.POLL);
     }
 
     setState({ ...state, gameState: GameState.NEXT });

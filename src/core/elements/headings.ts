@@ -1,4 +1,4 @@
-import { Xref } from "./classes";
+import { Xref } from "./xref";
 import { collections } from "./collections";
 
 export function useXrefHeadings(...keys: string[]): Xref<HTMLHeadingElement>[] {
@@ -14,12 +14,17 @@ export function useXrefHeadings(...keys: string[]): Xref<HTMLHeadingElement>[] {
 }
 
 export function getXrefHeadings(...keys: string[]): Xref<HTMLHeadingElement>[] {
-    if (keys.length === 0) {
-        throw new Error("No keys provided");
-    }
     const collection = collections.headings;
-    if (collection.size === 0) {
-        throw new Error("No headings in collection");
+    if (keys.length === 0) {
+        return Array.from(collection.values());
     }
-    return keys.map((key) => collection.get(key)!);
+    const array: Xref<HTMLHeadingElement>[] = [];
+    keys.forEach((key) => {
+        const xref = collection.get(key);
+        if (!xref) {
+            throw new Error(`Xref key not found: ${key}`);
+        }
+        array.push(xref);
+    });
+    return array;
 }

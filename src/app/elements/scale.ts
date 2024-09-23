@@ -1,31 +1,19 @@
-import { XrefBase } from "../../core/xrefs/classes";
-import { animeX, createAnimeParams } from "./animeX";
+import { XrefBase } from "../../core/elements/xref";
 import { SCALE } from "./constants";
+import { AnimeParams } from "animejs";
 
-export async function scaleUp(params: {
-    xref: XrefBase;
-    multiplier?: number;
-}): Promise<void> {
-    const { xref, multiplier } = params;
-    const [scale] = [SCALE.UP];
-    const animeParams = createAnimeParams(
-        xref,
-        { scale },
-        { duration: SCALE.DURATION, multiplier },
-    );
-    await animeX(animeParams);
+export function scaleUp(xref: XrefBase): AnimeParams {
+    return {
+        targets: xref.idSelector,
+        duration: SCALE.DURATION,
+        scale: SCALE.UP,
+    };
 }
 
-export async function scaleDown(params: {
-    xref: XrefBase;
-    multiplier?: number;
-}): Promise<void> {
-    const { xref, multiplier } = params;
-    const [scale] = [SCALE.DOWN];
-    const animeParams = createAnimeParams(
-        xref,
-        { scale },
-        { duration: SCALE.DURATION, multiplier },
-    );
-    await animeX(animeParams);
+export function scaleDown(xref: XrefBase): AnimeParams {
+    return {
+        targets: xref.idSelector,
+        duration: SCALE.DURATION,
+        scale: SCALE.DOWN,
+    };
 }

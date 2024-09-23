@@ -1,4 +1,4 @@
-import { getAppStateFlow } from "../appFlow/useAppStateFlow";
+import { getAppStateFlow } from "../appFlow/useFlow";
 
 export default async function applyScoreAward(award: number): Promise<void> {
     //
