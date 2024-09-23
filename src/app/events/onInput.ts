@@ -1,9 +1,11 @@
+import { getAppStateFlow } from "../appFlow/useAppStateFlow";
+import { TIME } from "../elements/constants";
+import { ButtonState } from "../models/ButtonState";
 import { DemoMode } from "../models/DemoMode";
-import doDemoInput from "../functions/doDemoInput";
 import { GameState } from "../models/GameState";
 import wait from "../../core/timing/wait";
-import { Duration } from "../elements/fade";
-import { getAppStateFlow } from "../appFlow/useAppStateFlow";
+import randomInt from "../../core/random/randomInt";
+import { getXrefButtons } from "../../core/xrefs/buttons";
 
 export default async function onInput() {
     const [state, setState] = getAppStateFlow();
@@ -16,12 +18,36 @@ export default async function onInput() {
     }
 
     console.info("waiting for DEMO input...");
-    await wait({ duration: Duration.DEMO });
+    await wait({ duration: TIME.DEMO });
 
-    const spotButton = doDemoInput();
+    const spotButton = doDemoInput(state.answerSpot, demoMode);
     setState({
         ...state,
         guessValue: spotButton.value,
         gameState: GameState.RESULT,
     });
+}
+
+function doDemoInput(answerSpot: number, demoMode: DemoMode) {
+    const buttons = getXrefButtons();
+
+    let spotButton = buttons[answerSpot]!.element!;
+    if (demoMode === DemoMode.RANDOM) {
+        const activeButtons = buttons.filter(
+            (button) => button!.element!.className === ButtonState.NORMAL,
+        );
+        spotButton =
+            activeButtons[randomInt(0, activeButtons.length)]!.element!;
+    } else if (demoMode === DemoMode.WRONG) {
+        for (let i = 0; i < buttons.length; i++) {
+            if (i === answerSpot) {
+                continue;
+            }
+            spotButton = buttons[i]!.element!;
+            if (spotButton.className === ButtonState.NORMAL) {
+                break;
+            }
+        }
+    }
+    return spotButton;
 }

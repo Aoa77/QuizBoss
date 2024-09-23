@@ -1,31 +1,31 @@
 import { XrefBase } from "../../core/xrefs/classes";
 import { animeX, createAnimeParams } from "./animeX";
-import { FADE } from "./constants";
+import { SCALE } from "./constants";
 
-export async function fadeIn(params: {
+export async function scaleUp(params: {
     xref: XrefBase;
     multiplier?: number;
 }): Promise<void> {
     const { xref, multiplier } = params;
-    const [easing, opacity] = [FADE.EASING, FADE.IN];
+    const [scale] = [SCALE.UP];
     const animeParams = createAnimeParams(
         xref,
-        { easing, opacity },
-        { duration: FADE.DURATION, multiplier },
+        { scale },
+        { duration: SCALE.DURATION, multiplier },
     );
     await animeX(animeParams);
 }
 
-export async function fadeOut(params: {
+export async function scaleDown(params: {
     xref: XrefBase;
     multiplier?: number;
 }): Promise<void> {
     const { xref, multiplier } = params;
-    const [easing, opacity] = [FADE.EASING, FADE.OUT];
+    const [scale] = [SCALE.DOWN];
     const animeParams = createAnimeParams(
         xref,
-        { easing, opacity },
-        { duration: FADE.DURATION, multiplier },
+        { scale },
+        { duration: SCALE.DURATION, multiplier },
     );
     await animeX(animeParams);
 }

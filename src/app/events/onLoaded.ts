@@ -1,15 +1,15 @@
-import { GameState } from "../models/GameState";
 import wait from "../../core/timing/wait";
-import { Duration } from "../elements/fade";
+import { getXrefDivs } from "../../core/xrefs/divs";
 import { getAppStateFlow } from "../appFlow/useAppStateFlow";
-import { getXref } from "../../core/hooks/useXref";
-import { ElementNames } from "../elements/ElementNames";
+import { ElementNames, TIME } from "../elements/constants";
+import { fadeIn, fadeOut } from "../elements/fade";
+import { GameState } from "../models/GameState";
 
 export default async function onLoaded() {
     const [state, setState] = getAppStateFlow();
-    const [loading, image] = getXref<HTMLDivElement>(
-        { id: ElementNames.loading },
-        { id: ElementNames.image },
+    const [loading, image] = getXrefDivs(
+        ElementNames.loading,
+        ElementNames.image,
     );
 
     if (state.quizModule === null) {
@@ -19,11 +19,11 @@ export default async function onLoaded() {
     const quizItems = state.quizModule.quizData.items;
     const currentItem = quizItems[state.currentItemIndex];
 
-    await elements.fadeOut(loading);
-    await elements.fadeIn(image);
+    await fadeOut({ xref: loading! });
+    await fadeIn({ xref: image! });
 
     while (!currentItem || !currentItem.isLoaded) {
-        await wait(Duration.POLL);
+        await wait({ duration: TIME.POLL });
     }
 
     setState({ ...state, gameState: GameState.NEXT });

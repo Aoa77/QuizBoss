@@ -6,7 +6,7 @@ import revealCorrectAnswer from "./revealCorrectAnswer";
 import unlockButtons from "./unlockButtons";
 import { wrongGuessesExauhsted } from "./wrongGuessesExauhsted";
 import AppContext from "../AppContext";
-import Xref from "../../core/hooks/Xref";
+import Xref from "../../core/xrefs/Xref";
 
 export default async function lockButtons(
     currentItem: QuizItem,

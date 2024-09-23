@@ -1,17 +1,12 @@
-import ElementController from "../elements/__ElementController";
-import State from "../AppState";
+import { getAppStateFlow } from "../appFlow/useAppStateFlow";
 
-
-export default async function applyScoreAward(
-    award: number,
-    state: State,
-    elements: ElementController
-): Promise<void> {
+export default async function applyScoreAward(award: number): Promise<void> {
     //
+    const [state] = getAppStateFlow();
     if (award === 0) {
         return;
     }
-    state.score = await elements.applyScoreAward(state.score, award);
+    // state.score = await elements.applyScoreAward(state.score, award);
     if (state.score > state.best) {
         state.best = state.score;
         localStorage.setItem("bestScore", state.best.toString());

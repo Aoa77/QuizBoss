@@ -12,5 +12,24 @@ export enum ElementNames {
     settingsPanel = "settingsPanel",
     sliderGrip = "sliderGrip",
     sliderNotch = "sliderNotch",
-    title = "title"
+    title = "title",
 }
+
+export const FADE = {
+    EASING: "linear",
+    DURATION: 500,
+    IN: 1,
+    OUT: 0,
+};
+
+export const SCALE = {
+    DURATION: 500,
+    UP: 1.2,
+    DOWN: 1.0,
+};
+
+export const TIME = {
+    DEMO: 200,
+    POLL: 50,
+    WAIT: 500,
+};

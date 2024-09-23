@@ -1,38 +1,42 @@
-import AppContext from "../AppContext";
 import bindGuessButtons from "../functions/bindGuessButtons";
 import randomInt from "../../core/random/randomInt";
 import { GameState } from "../models/GameState";
+import { getAppStateFlow } from "../appFlow/useAppStateFlow";
+import { getXrefHeadings } from "../../core/xrefs/headings";
+import { ElementNames } from "../elements/constants";
+import { getXrefDivs } from "../../core/xrefs/divs";
+import { getXrefButtons } from "../../core/xrefs/buttons";
+import { fadeIn, fadeOut } from "../elements/fade";
 
 ///
 export default async function onNext() {
-    const appState = AppContext.appState();
-    const [state, setState] = appState;
-    if (state.quizModule === null) {
+    const [state, setState] = getAppStateFlow();
+    if (!state.quizModule) {
         return;
     }
 
-    const elements = AppContext.elements();
-    const { refs } = elements;
-    const {
-        appVersion,
-        buttonArea,
-        buttons,
-        image,
-        loading,
-        progress,
-        question,
-        scoreArea,
-    } = refs;
+    const [appVersion, question] = getXrefHeadings(
+        ElementNames.appVersion,
+        ElementNames.question,
+    );
+    const [buttonArea, image, loading, progress, scoreArea] = getXrefDivs(
+        ElementNames.buttonArea,
+        ElementNames.image,
+        ElementNames.loading,
+        ElementNames.progress,
+        ElementNames.scoreArea,
+    );
 
     const currentGuessPool: string[] = [];
     const quizData = state.quizModule.quizData;
     const quizItems = quizData.items;
     const currentItem = quizItems[state.currentItemIndex];
 
-    elements.clearScoreBonusStyle();
-    state.answerSpot = randomInt(0, buttons.length);
+    //elements.clearScoreBonusStyle();
+    state.answerSpot = randomInt(0, state.settings.guessButtonCount);
     console.info("answerSpot: ", state.answerSpot);
 
+    const buttons = getXrefButtons();
     await bindGuessButtons(
         state.answerSpot,
         currentGuessPool,
@@ -41,17 +45,17 @@ export default async function onNext() {
         quizData,
     );
 
-    await elements.fadeOut(loading);
-    await elements.fadeIn(image);
-    await elements.fadeIn(appVersion);
-    await elements.fadeIn(question);
-    await elements.fadeIn(buttonArea);
-    await elements.fadeIn(scoreArea);
-    await elements.fadeIn(progress);
-    await elements.fadeIn(appVersion);
+    await fadeOut({ xref: loading! });
+    await fadeIn({ xref: image! });
+    await fadeIn({ xref: appVersion! });
+    await fadeIn({ xref: question! });
+    await fadeIn({ xref: buttonArea! });
+    await fadeIn({ xref: scoreArea! });
+    await fadeIn({ xref: progress! });
+    await fadeIn({ xref: appVersion! });
 
     for (const button of buttons) {
-        await elements.fadeIn(button);
+        await fadeIn({ xref: button! });
     }
 
     setState({ ...state, gameState: GameState.INPUT });

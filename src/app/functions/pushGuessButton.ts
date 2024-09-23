@@ -1,5 +1,5 @@
 import AppContext from "../AppContext";
-import Xref from "../../core/hooks/Xref";
+import Xref from "../../core/xrefs/Xref";
 import { ButtonState } from "../models/ButtonState";
 import { GameState } from "../models/GameState";
 

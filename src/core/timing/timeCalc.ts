@@ -1,4 +1,4 @@
-import { getSpeed } from "../hooks/useSpeed";
+import { getSpeed } from "./useSpeed";
 import Duration from "./Duration";
 
 export default function timeCalc(time: Duration): number {

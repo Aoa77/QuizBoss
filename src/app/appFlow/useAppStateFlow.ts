@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from "react";
-import { getStateFlow, useStateFlow } from "../../core/hooks/useStateFlow";
-import { useSpeed } from "../../core/hooks/useSpeed";
+import { getStateFlow, useStateFlow } from "../../core/state/useStateFlow";
+import { useSpeed } from "../../core/timing/useSpeed";
 import { AppState, createInitialState } from "./AppState";
 import AppSettings from "./AppSettings";
 import { GameState } from "../models/GameState";

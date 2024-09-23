@@ -1,18 +1,18 @@
 import initQuizModule from "../functions/initQuizModule";
 import { GameState } from "../models/GameState";
 import wait from "../../core/timing/wait";
-import { Duration } from "../elements/fade";
 import { getAppStateFlow } from "../appFlow/useAppStateFlow";
-import { getXref } from "../../core/hooks/useXref";
-import { ElementNames } from "../elements/ElementNames";
-import { Fade } from "../../core/animation/fade";
+import { ElementNames, TIME } from "../elements/constants";
+import { fadeIn } from "../elements/fade";
+import { getXrefDivs } from "../../core/xrefs/divs";
 
 ///
 export default async function onInit() {
     const [state, setState] = getAppStateFlow();
-    const [loading] = getXref<HTMLDivElement>({ id: ElementNames.loading });
-    await loading.fade({ opacity: Fade.IN });
+    const [loading] = getXrefDivs(ElementNames.loading);
+
+    await fadeIn({ xref: loading! });
     await initQuizModule(state);
-    await wait({ duration: Duration.WAIT });
+    await wait({ duration: TIME.WAIT });
     setState({ ...state, gameState: GameState.READY });
 }
