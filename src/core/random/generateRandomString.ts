@@ -1,6 +1,6 @@
 const DEFAULT_LENGTH = 8;
 
-export default function generateRandomString(
+export function generateRandomString(
     length: number = DEFAULT_LENGTH,
 ): string {
     const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";

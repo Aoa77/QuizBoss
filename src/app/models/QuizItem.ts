@@ -1,4 +1,4 @@
-export default interface QuizItem {
+export interface QuizItem {
     index: number;
     isDummy: boolean;
     key: string;

@@ -1,15 +1,15 @@
 import { Dispatch, SetStateAction } from "react";
 import { getStateFlow, useStateFlow } from "../../core/state/useStateFlow";
 import { AppState, createInitialState } from "./AppState";
-import AppSettings from "./AppSettings";
+import { AppSettings } from "./AppSettings";
 import { GameState } from "../models/GameState";
-import onGameOver from "../events/onGameOver";
-import onInit from "../events/onInit";
-import onInput from "../events/onInput";
-import onLoaded from "../events/onLoaded";
-import onNext from "../events/onNext";
-import onReady from "../events/onReady";
-import onResult from "../events/onResult";
+import { onGameOver } from "../events/onGameOver";
+import { onInit } from "../events/onInit";
+import { onInput } from "../events/onInput";
+import { onLoaded } from "../events/onLoaded";
+import { onNext } from "../events/onNext";
+import { onReady } from "../events/onReady";
+import { onResult } from "../events/onResult";
 
 ///
 let isLocalStorageInitialized = false;

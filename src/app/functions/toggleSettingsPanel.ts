@@ -1,12 +1,12 @@
 import anime from "animejs";
-import AppContext from "../AppContext";
+import { AppContext } from "../AppContext";
 
 const activeClass: string = "active";
 let canClick: boolean = true;
 let isActive: boolean = false;
 let sliderTop: number = -1;
 
-export default async function toggleSettingsPanel() {
+export async function toggleSettingsPanel() {
     if (!canClick) {
         return;
     }

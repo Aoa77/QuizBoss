@@ -2,7 +2,7 @@ import { useXrefHeadings } from "../../core/elements/headings";
 import { AppState } from "../appFlow/AppState";
 import { ELEMENT } from "../elements/constants";
 
-export default function TitleHeading(state: AppState) {
+export function TitleHeading(state: AppState) {
     ///
     const [title] = useXrefHeadings(ELEMENT.title);
     

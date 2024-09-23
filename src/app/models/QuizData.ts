@@ -1,6 +1,6 @@
-import QuizItem from "./QuizItem";
+import { QuizItem } from "./QuizItem";
 
-export default interface QuizData {
+export interface QuizData {
     title: string;
     description: string;
     questionText: string;

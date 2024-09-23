@@ -1,10 +1,10 @@
-import AppContext from "../AppContext";
-import Xref from "../../core/elements/Xref";
+import { AppContext } from "../AppContext";
+import { Xref } from "../../core/elements/Xref";
 import { ButtonState } from "../models/ButtonState";
 import { GameState } from "../models/GameState";
 
 
-export default async function pushGuessButton(
+export async function pushGuessButton(
     xref: Xref<HTMLButtonElement | null>,
 ) {
     const el = xref.el();

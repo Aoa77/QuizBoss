@@ -1,10 +1,10 @@
 import { getXrefButtons } from "../../core/elements/buttons";
 import { getAppStateFlow } from "../appFlow/useFlow";
-import handleCorrectGuess from "../functions/handleCorrectGuess";
-import handleWrongGuess from "../functions/handleWrongGuess";
-import lockButtons from "../functions/lockButtons";
+import { handleCorrectGuess } from "../functions/handleCorrectGuess";
+import { handleWrongGuess } from "../functions/handleWrongGuess";
+import { lockButtons } from "../functions/lockButtons";
 import { resetWrongGuesses } from "../functions/resetWrongGuesses";
-import unlockButtons from "../functions/unlockButtons";
+import { unlockButtons } from "../functions/unlockButtons";
 import { wrongGuessesExauhsted } from "../functions/wrongGuessesExauhsted";
 import { GameState } from "../models/GameState";
 
@@ -12,7 +12,7 @@ import { GameState } from "../models/GameState";
 // const tasks: Promise<void>[] = [];
 const wrongGuesses: number[] = [];
 
-export default async function onResult() {
+export async function onResult() {
     const [state, setState] = getAppStateFlow();
     if (state.quizModule === null) {
         return;

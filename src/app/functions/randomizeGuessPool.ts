@@ -1,10 +1,10 @@
-import AppSettings from "../AppSettings";
-import generateRandomString from "../../core/random/generateRandomString";
-import shuffle from "../../core/random/shuffle";
-import QuizItem from "../models/QuizItem";
-import QuizModule from "../models/QuizModule";
+import { AppSettings } from "../AppSettings";
+import { generateRandomString } from "../../core/random/generateRandomString";
+import { shuffle } from "../../core/random/shuffle";
+import { QuizItem } from "../models/QuizItem";
+import { QuizModule } from "../models/QuizModule";
 
-export default function randomizeGuessPool(
+export function randomizeGuessPool(
     module: QuizModule,
     settings: AppSettings,
 ): void {

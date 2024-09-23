@@ -1,14 +1,14 @@
 import { ButtonState } from "../models/ButtonState";
-import QuizItem from "../models/QuizItem";
-import getCorrectAnswerButton from "./getCorrectAnswerButton";
-import handleWrongGuess from "./handleWrongGuess";
-import revealCorrectAnswer from "./revealCorrectAnswer";
-import unlockButtons from "./unlockButtons";
+import { QuizItem } from "../models/QuizItem";
+import { getCorrectAnswerButton } from "./getCorrectAnswerButton";
+import { handleWrongGuess } from "./handleWrongGuess";
+import { revealCorrectAnswer } from "./revealCorrectAnswer";
+import { unlockButtons } from "./unlockButtons";
 import { wrongGuessesExauhsted } from "./wrongGuessesExauhsted";
-import AppContext from "../AppContext";
-import Xref from "../../core/elements/Xref";
+import { AppContext } from "../AppContext";
+import { Xref } from "../../core/elements/Xref";
 
-export default async function lockButtons(
+export async function lockButtons(
     currentItem: QuizItem,
     
     isCorrectGuess: boolean,

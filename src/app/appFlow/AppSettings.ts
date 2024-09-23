@@ -1,7 +1,7 @@
+import { getQueryParams } from "../functions/getQueryParams";
 import { DemoMode } from "../models/DemoMode";
-import getQueryParams from "../functions/getQueryParams";
 
-export default class AppSettings {
+export class AppSettings {
     public readonly quizModuleName: string;
     public readonly demoMode: DemoMode;
     public readonly guessButtonCount: number;

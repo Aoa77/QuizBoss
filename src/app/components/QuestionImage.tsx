@@ -2,7 +2,7 @@ import { useXrefDivs } from "../../core/elements/divs";
 import { AppState, getCurrentItem } from "../appFlow/AppState";
 import { ELEMENT } from "../elements/constants";
 
-export default function QuestionImage(state: AppState) {
+export function QuestionImage(state: AppState) {
     const [image] = useXrefDivs(ELEMENT.image);
 
     return (

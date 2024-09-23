@@ -2,7 +2,7 @@ import { useXrefDivs } from "../../core/elements/divs";
 import { AppState } from "../appFlow/AppState";
 import { ELEMENT } from "../elements/constants";
 
-export default function ScoreDisplay(state: AppState) {
+export function ScoreDisplay(state: AppState) {
     const [scoreArea, scoreValue, bestValue] = useXrefDivs(
         ELEMENT.scoreArea,
         ELEMENT.scoreValue,

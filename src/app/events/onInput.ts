@@ -3,11 +3,11 @@ import { TIME } from "../elements/constants";
 import { ButtonState } from "../models/ButtonState";
 import { DemoMode } from "../models/DemoMode";
 import { GameState } from "../models/GameState";
-import wait from "../../core/animation/wait";
-import randomInt from "../../core/random/randomInt";
+import { wait } from "../../core/animation/wait";
+import { randomInt } from "../../core/random/randomInt";
 import { getXrefButtons } from "../../core/elements/buttons";
 
-export default async function onInput() {
+export async function onInput() {
     const [state, setState] = getAppStateFlow();
     const { settings } = state;
     const { demoMode } = settings;

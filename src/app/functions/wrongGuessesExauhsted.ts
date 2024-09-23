@@ -1,4 +1,4 @@
-import ButtonElement from "../elements/buttons/ButtonElement";
+import { ButtonElement } from "../elements/buttons/ButtonElement";
 
 
 export function wrongGuessesExauhsted(

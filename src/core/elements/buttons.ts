@@ -1,6 +1,8 @@
 import { Xref } from "./xref";
 import { collections } from "./collections";
 
+let buttonArray:Xref<HTMLButtonElement>[] = [];
+
 export function useXrefButtons(...keys: string[]): Xref<HTMLButtonElement>[] {
     const collection = collections.buttons;
     const type: string = HTMLButtonElement.name;
@@ -16,7 +18,10 @@ export function useXrefButtons(...keys: string[]): Xref<HTMLButtonElement>[] {
 export function getXrefButtons(...keys: string[]): Xref<HTMLButtonElement>[] {
     const collection = collections.buttons;
     if (keys.length === 0) {
-        return Array.from(collection.values());
+        if (buttonArray.length === 0) {
+            buttonArray = Array.from(collection.values());
+        }
+        return buttonArray;
     }
     const array: Xref<HTMLButtonElement>[] = [];
     keys.forEach((key) => {

@@ -1,5 +1,5 @@
-import QuizData from "../models/QuizData";
-import QuizItem from "../models/QuizItem";
+import { QuizData } from "../models/QuizData";
+import { QuizItem } from "../models/QuizItem";
 
 class RANDOMIZER {
     public static COUNT: number = 0;
@@ -8,7 +8,7 @@ class RANDOMIZER {
     public static INDEX: number = -1;
 }
 
-export default async function selectRandomQuestionChoice(
+export async function selectRandomQuestionChoice(
     currentGuessPool: string[],
     currentItem: QuizItem,
     quizData: QuizData,

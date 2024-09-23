@@ -1,6 +1,6 @@
 import { getAppStateFlow } from "../appFlow/useFlow";
 
-export default async function applyScoreAward(award: number): Promise<void> {
+export async function applyScoreAward(award: number): Promise<void> {
     //
     const [state] = getAppStateFlow();
     if (award === 0) {

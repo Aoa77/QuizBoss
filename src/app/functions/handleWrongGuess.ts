@@ -1,20 +1,13 @@
-import ButtonElement from "../elements/buttons/ButtonElement";
 import { ButtonState } from "../models/ButtonState";
-import ElementController from "../elements/__ElementController";
-import wait from "../../core/animation/wait";
-import { Duration } from "../elements/fade";
+import { wait } from "../../core/animation/wait";
+import { getXrefButtons } from "../../core/elements/buttons";
+import { TIME } from "../elements/constants";
 
-
-export default async function handleWrongGuess(
-    guessButtons: ButtonElement[],
-    elements: ElementController,
-    // tasks: Promise<void>[]
-): Promise<void> {
-    const wrongButton: ButtonElement = guessButtons.find(
-        (b) => b.ref.current!.className === ButtonState.WRONG
+export async function handleWrongGuess(): Promise<void> {
+    const wrongButton = getXrefButtons().find(
+        (x) => x.className === ButtonState.WRONG,
     )!;
-
-    await elements.scaleIn(wrongButton.target);
-    await wait(Duration.WAIT);
-    await elements.scaleOut(wrongButton.target);
+    await wrongButton.scaleUp();
+    await wait(TIME.WAIT);
+    await wrongButton.scaleDown();
 }

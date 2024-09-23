@@ -1,9 +1,11 @@
-export default function revealButtonScore(
+import { Xref } from "../../core/elements/xref";
+
+export function revealButtonScore(
     award: number,
-    correctButtonRef: HTMLButtonElement
+    correctButton: Xref<HTMLButtonElement>
 ) {
     if (award === 0) {
         return;
     }
-    correctButtonRef!.innerHTML += " +" + award.toString();
+    correctButton.innerHTML += " +" + award.toString();
 }

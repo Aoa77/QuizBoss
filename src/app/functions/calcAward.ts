@@ -1,12 +1,6 @@
-import ButtonElement from "../elements/buttons/ButtonElement";
+import { getXrefButtons } from "../../core/elements/buttons";
 
-
-export default function calcAward(
-    guessButtons: ButtonElement[],
-    wrongGuesses: number[]
-): number {
-    return guessButtons.length - wrongGuesses.length - 1;
+export function calcAward(wrongGuesses: number[]): number {
+    const buttons = getXrefButtons();
+    return buttons.length - wrongGuesses.length - 1;
 }
-
-
-

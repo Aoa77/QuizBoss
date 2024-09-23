@@ -1,9 +1,9 @@
-import ButtonElement from "../elements/buttons/ButtonElement";
-import ElementController from "../elements/__ElementController";
-import QuizItem from "../models/QuizItem";
+import { ButtonElement } from "../elements/buttons/ButtonElement";
+import { ElementController } from "../elements/__ElementController";
+import { QuizItem } from "../models/QuizItem";
 
 
-export default function revealCorrectAnswer(
+export function revealCorrectAnswer(
     correctButton: ButtonElement,
     correctButtonRef: HTMLButtonElement,
     currentItem: QuizItem,

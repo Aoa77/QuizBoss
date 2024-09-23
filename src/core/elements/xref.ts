@@ -19,6 +19,18 @@ export abstract class XrefBase {
         const params = builder.build(this);
         await runAnimation(params);
     }
+    public async fadeOut(): Promise<void> {
+        await this.animate("fadeOut");
+    }
+    public async fadeIn(): Promise<void> {
+        await this.animate("fadeIn");
+    }
+    public async scaleUp(): Promise<void> {
+        await this.animate("scaleUp");
+    }
+    public async scaleDown(): Promise<void> {
+        await this.animate("scaleDown");
+    }
 }
 
 export class Xref<T extends HTMLElement> extends XrefBase {
@@ -26,6 +38,12 @@ export class Xref<T extends HTMLElement> extends XrefBase {
     constructor(type: string, id: string) {
         super(type, id);
         this.ref = createRef<T>();
+    }
+    public get element(): T {
+        if (!this.ref.current) {
+            return {} as T;
+        }
+        return this.ref.current;
     }
     public get className(): string {
         if (!this.ref.current) {
@@ -38,6 +56,18 @@ export class Xref<T extends HTMLElement> extends XrefBase {
             return;
         }
         this.ref.current.className = value;
+    }
+    public get innerHTML(): string {
+        if (!this.ref.current) {
+            return "";
+        }
+        return this.ref.current.innerHTML;
+    }
+    public set innerHTML(value: string) {
+        if (!this.ref.current) {
+            return;
+        }
+        this.ref.current.innerHTML = value;
     }
 }
 

@@ -1,7 +1,7 @@
-import QuizItem from "../models/QuizItem";
-import QuizModule from "../models/QuizModule";
+import { QuizItem } from "../models/QuizItem";
+import { QuizModule } from "../models/QuizModule";
 
-export default function initQuizItem(
+export function initQuizItem(
     item: QuizItem,
     indez: number,
     module: QuizModule,

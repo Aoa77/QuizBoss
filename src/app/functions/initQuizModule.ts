@@ -1,13 +1,13 @@
-import AppContext from "../AppContext";
-import shuffle from "../../core/random/shuffle";
-import fetchQuizModule from "./fetchQuizModule";
-import initQuizItem from "./initQuizItem";
-import loadQuizImages from "./loadQuizImages";
-import randomizeGuessPool from "./randomizeGuessPool";
-import truncateQuizItems from "./truncateQuizItems";
+import { AppContext } from "../AppContext";
+import { shuffle } from "../../core/random/shuffle";
+import { fetchQuizModule } from "./fetchQuizModule";
+import { initQuizItem } from "./initQuizItem";
+import { loadQuizImages } from "./loadQuizImages";
+import { randomizeGuessPool } from "./randomizeGuessPool";
+import { truncateQuizItems } from "./truncateQuizItems";
 import { AppState } from "../appFlow/AppState";
 
-export default async function initQuizModule(
+export async function initQuizModule(
     state: AppState,
 ): Promise<void> {
     //

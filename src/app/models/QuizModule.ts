@@ -1,6 +1,6 @@
-import QuizData from "./QuizData";
+import { QuizData } from "./QuizData";
 
-export default interface QuizModule {
+export interface QuizModule {
     name: string;
     version: string;
     quizData: QuizData;

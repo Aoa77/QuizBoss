@@ -1,6 +1,6 @@
-import QuizModule from "../models/QuizModule";
+import { QuizModule } from "../models/QuizModule";
 
-export default async function fetchQuizModule(
+export async function fetchQuizModule(
     quizModuleName: string,
 ): Promise<QuizModule> {
     const response = await fetch(`${quizModuleName}/package.json`, {

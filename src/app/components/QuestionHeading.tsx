@@ -2,7 +2,7 @@ import { useXrefHeadings } from "../../core/elements/headings";
 import { AppState } from "../appFlow/AppState";
 import { ELEMENT } from "../elements/constants";
 
-export default function QuestionHeading(state: AppState) {
+export function QuestionHeading(state: AppState) {
     const [question] = useXrefHeadings(ELEMENT.question);
 
     return (

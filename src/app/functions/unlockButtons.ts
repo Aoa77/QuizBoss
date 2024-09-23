@@ -1,9 +1,9 @@
-import ButtonElement from "../elements/buttons/ButtonElement";
+import { ButtonElement } from "../elements/buttons/ButtonElement";
 import { ButtonState } from "../models/ButtonState";
-import wait from "../../core/animation/wait";
+import { wait } from "../../core/animation/wait";
 import { Duration } from "../elements/fade";
 
-export default async function unlockButtons(
+export async function unlockButtons(
     guessButtons: ButtonElement[],
     wrongGuesses: number[],
 ): Promise<void> {

@@ -1,15 +1,14 @@
-import bindGuessButtons from "../functions/bindGuessButtons";
-import randomInt from "../../core/random/randomInt";
+import { ELEMENT } from "../elements/constants";
 import { GameState } from "../models/GameState";
 import { getAppStateFlow } from "../appFlow/useFlow";
-import { getXrefHeadings } from "../../core/elements/headings";
-import { ELEMENT } from "../elements/constants";
-import { getXrefDivs } from "../../core/elements/divs";
+import { bindGuessButtons } from "../functions/bindGuessButtons";
 import { getXrefButtons } from "../../core/elements/buttons";
-import { fadeIn, fadeOut } from "../elements/fade";
+import { getXrefDivs } from "../../core/elements/divs";
+import { getXrefHeadings } from "../../core/elements/headings";
+import { randomInt } from "../../core/random/randomInt";
 
 ///
-export default async function onNext() {
+export async function onNext() {
     const [state, setState] = getAppStateFlow();
     if (!state.quizModule) {
         return;
@@ -45,17 +44,16 @@ export default async function onNext() {
         quizData,
     );
 
-    await fadeOut({ xref: loading! });
-    await fadeIn({ xref: image! });
-    await fadeIn({ xref: appVersion! });
-    await fadeIn({ xref: question! });
-    await fadeIn({ xref: buttonArea! });
-    await fadeIn({ xref: scoreArea! });
-    await fadeIn({ xref: progress! });
-    await fadeIn({ xref: appVersion! });
+    await loading.fadeOut();
+    await appVersion.fadeIn();
+    await image.fadeIn();
+    await question.fadeIn();
+    await buttonArea.fadeIn();
+    await scoreArea.fadeIn();
+    await progress.fadeIn();
 
     for (const button of buttons) {
-        await fadeIn({ xref: button! });
+        await button.fadeIn();
     }
 
     setState({ ...state, gameState: GameState.INPUT });

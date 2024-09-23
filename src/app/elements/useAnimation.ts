@@ -3,7 +3,7 @@ import { ANIM } from "./constants";
 import { fadeIn, fadeOut } from "./fade";
 import { scaleDown, scaleUp } from "./scale";
 
-export default function useAnimation(speedMultiplier: number) {
+export function useAnimation(speedMultiplier: number) {
     useAnimationFactory(
         speedMultiplier,
         {

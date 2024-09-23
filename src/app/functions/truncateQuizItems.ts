@@ -1,7 +1,7 @@
-import AppSettings from "../AppSettings";
-import QuizModule from "../models/QuizModule";
+import { AppSettings } from "../AppSettings";
+import { QuizModule } from "../models/QuizModule";
 
-export default function truncateQuizItems(
+export function truncateQuizItems(
     settings: AppSettings,
     module: QuizModule,
 ): void {

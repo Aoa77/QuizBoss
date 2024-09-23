@@ -1,7 +1,7 @@
 import { useXrefDivs } from "../../core/elements/divs";
 import { ELEMENT } from "../elements/constants";
 
-export default function LoadingSpinner() {
+export function LoadingSpinner() {
     const [loading] = useXrefDivs(ELEMENT.loading);
     return (
         <section id={loading!.id} ref={loading!.ref} className="loading hidden">
