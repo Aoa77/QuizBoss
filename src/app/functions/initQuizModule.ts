@@ -4,7 +4,7 @@ import { initQuizItem } from "./initQuizItem";
 import { loadQuizImages } from "./loadQuizImages";
 import { randomizeGuessPool } from "./randomizeGuessPool";
 import { truncateQuizItems } from "./truncateQuizItems";
-import { AppState } from "../appFlow/AppState";
+import { AppState } from "../models/AppState";
 
 export async function initQuizModule(state: AppState): Promise<void> {
     const { settings } = state;

@@ -1,5 +1,5 @@
-import { getAppStateFlow }   from "../appFlow/useFlow";
-import { ELEMENT }           from "../elements/constants";
+import { getAppState }   from "../hooks/useAppState";
+import { ELEMENT } from "../elements/ELEMENT";
 import { bindGuessButtons }  from "../functions/bindGuessButtons";
 import { GameState }         from "../models/GameState";
 import { getXrefButtons }    from "../../core/elements/buttons";
@@ -9,7 +9,7 @@ import { randomInt }         from "../../core/random/randomInt";
 
 ///
 export async function onNext() {
-    const [state, setState] = getAppStateFlow();
+    const [state, setState] = getAppState();
     if (!state.quizModule) {
         return;
     }

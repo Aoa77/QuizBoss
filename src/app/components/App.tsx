@@ -1,6 +1,5 @@
 import "../styles";
-import { AppSettings } from "../appFlow/AppSettings";
-import { useFlow } from "../appFlow/useFlow";
+import { useAppState } from "../hooks/useAppState";
 import { useAnimation } from "../elements/useAnimation";
 import { AppVersion } from "./AppVersion";
 import { GuessButtonArea } from "./GuessButtonArea";
@@ -11,10 +10,11 @@ import { QuestionImage } from "./QuestionImage";
 import { ScoreDisplay } from "./ScoreDisplay";
 import { SettingsPanel } from "./SettingsPanel";
 import { TitleHeading } from "./TitleHeading";
+import { AppSettings } from "../models/AppSettings";
 
 export function App(settings: AppSettings) {
     ///
-    const [state] = useFlow(settings);
+    const [state] = useAppState(settings);
     
     ///
     useAnimation(settings.speed);

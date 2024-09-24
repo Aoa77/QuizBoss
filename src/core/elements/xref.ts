@@ -1,6 +1,8 @@
 import { createRef, RefObject } from "react";
 import { getAnimationBuilder } from "../animation/getAnimationBuilder";
-import { runAnimation } from "../animation/runAnimation";
+import { getSpeedMultiplier } from "../animation/getSpeedMultiplier";
+import { AnimeParams } from "animejs";
+import anime from "animejs";
 
 export abstract class XrefBase {
     public readonly type: string;
@@ -17,6 +19,7 @@ export abstract class XrefBase {
             throw new Error(`Animation builder not found: ${name}`);
         }
         const params = builder.build(this);
+        console.info(`Running animation: ${name} with duration: ${params.duration}`);
         await runAnimation(params);
     }
     public async fadeOut(): Promise<void> {
@@ -78,4 +81,15 @@ export class XrefCollection<T extends HTMLElement> extends Map<
     constructor() {
         super();
     }
+}
+
+
+function runAnimation(params: AnimeParams): Promise<void> {
+    if (typeof params.duration === "number") {
+        params.duration *= getSpeedMultiplier();
+    }
+    return new Promise((resolve) => {
+        const complete = () => resolve();
+        anime({ ...params, complete });
+    });
 }

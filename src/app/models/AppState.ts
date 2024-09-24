@@ -1,7 +1,7 @@
 import { AppSettings } from "./AppSettings";
-import { GameState } from "../models/GameState";
-import { QuizItem } from "../models/QuizItem";
-import { QuizModule } from "../models/QuizModule";
+import { GameState } from "./GameState";
+import { QuizItem } from "./QuizItem";
+import { QuizModule } from "./QuizModule";
 
 export interface AppState {
     answerSpot: number;

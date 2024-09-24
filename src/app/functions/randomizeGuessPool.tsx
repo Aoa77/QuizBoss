@@ -1,6 +1,6 @@
 import { generateRandomString } from "../../core/random/generateRandomString";
 import { shuffle } from "../../core/random/shuffle";
-import { AppSettings } from "../appFlow/AppSettings";
+import { AppSettings } from "../models/AppSettings";
 import { QuizItem } from "../models/QuizItem";
 import { QuizModule } from "../models/QuizModule";
 

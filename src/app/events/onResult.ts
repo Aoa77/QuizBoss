@@ -1,4 +1,4 @@
-import { getAppStateFlow }       from "../appFlow/useFlow";
+import { getAppState }       from "../hooks/useAppState";
 import { handleCorrectGuess }    from "../functions/handleCorrectGuess";
 import { handleWrongGuess }      from "../functions/handleWrongGuess";
 import { lockButtons }           from "../functions/lockButtons";
@@ -10,7 +10,7 @@ import { GameState }             from "../models/GameState";
 const wrongGuesses: number[] = [];
 
 export async function onResult() {
-    const [state, setState] = getAppStateFlow();
+    const [state, setState] = getAppState();
     if (state.quizModule === null) {
         return;
     }

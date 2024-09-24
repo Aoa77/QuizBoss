@@ -1,5 +1,5 @@
 import { useXrefHeadings } from "../../core/elements/headings";
-import { ELEMENT } from "../elements/constants";
+import { ELEMENT } from "../elements/ELEMENT";
 
 ///////////////////////////////////////////
 const VERSION = "20240918.151216.384";

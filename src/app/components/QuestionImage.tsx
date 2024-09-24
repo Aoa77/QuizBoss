@@ -1,6 +1,6 @@
 import { useXrefDivs } from "../../core/elements/divs";
-import { AppState, getCurrentItem } from "../appFlow/AppState";
-import { ELEMENT } from "../elements/constants";
+import { AppState, getCurrentItem } from "../models/AppState";
+import { ELEMENT } from "../elements/ELEMENT";
 
 export function QuestionImage(state: AppState) {
     const [image] = useXrefDivs(ELEMENT.image);

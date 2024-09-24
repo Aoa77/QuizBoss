@@ -1,8 +1,8 @@
 import { ButtonState } from "../models/ButtonState";
-import { ELEMENT } from "../elements/constants";
+import { ELEMENT } from "../elements/ELEMENT";
 import { useXrefButtons } from "../../core/elements/buttons";
 import { Xref } from "../../core/elements/xref";
-import { getAppStateFlow } from "../appFlow/useFlow";
+import { getAppState } from "../hooks/useAppState";
 import { GameState } from "../models/GameState";
 
 export function GuessButton(params: { index: number }) {
@@ -21,7 +21,7 @@ export function GuessButton(params: { index: number }) {
 }
 
 async function handleButtonPointerDown(xref: Xref<HTMLButtonElement>) {
-    const [state, setState] = getAppStateFlow();
+    const [state, setState] = getAppState();
     const { gameState } = state;
     if (gameState !== GameState.INPUT) {
         return;

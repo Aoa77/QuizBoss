@@ -1,5 +1,5 @@
 import { useXrefDivs } from "../../core/elements/divs";
-import { ELEMENT } from "../elements/constants";
+import { ELEMENT } from "../elements/ELEMENT";
 
 export function LoadingSpinner() {
     const [loading] = useXrefDivs(ELEMENT.loading);

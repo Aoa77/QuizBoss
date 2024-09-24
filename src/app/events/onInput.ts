@@ -1,14 +1,14 @@
-import { getAppStateFlow }   from "../appFlow/useFlow";
+import { getAppState }   from "../hooks/useAppState";
 import { getXrefButtons }    from "../../core/elements/buttons";
 import { wait }              from "../../core/animation/wait";
 import { randomInt }         from "../../core/random/randomInt";
-import { TIME }              from "../elements/constants";
 import { ButtonState }       from "../models/ButtonState";
 import { DemoMode }          from "../models/DemoMode";
 import { GameState }         from "../models/GameState";
+import { TIME } from "../elements/waitTimes";
 
 export async function onInput() {
-    const [state, setState] = getAppStateFlow();
+    const [state, setState] = getAppState();
     const { settings } = state;
     const { demoMode } = settings;
 
@@ -18,7 +18,7 @@ export async function onInput() {
     }
 
     console.info("waiting for DEMO input...");
-    await wait(TIME.DEMO);
+    await wait(TIME.DEMO_INPUT_DELAY);
 
     const spotButton = doDemoInput(state.answerSpot, demoMode);
     setState({

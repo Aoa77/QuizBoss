@@ -1,12 +1,13 @@
-import { getAppStateFlow } from "../appFlow/useFlow";
+import { getAppState } from "../hooks/useAppState";
 
 export async function applyScoreAward(award: number): Promise<void> {
     //
-    const [state] = getAppStateFlow();
+    const [state] = getAppState();
     if (award === 0) {
         return;
     }
     // state.score = await elements.applyScoreAward(state.score, award);
+    state.score += award;
     if (state.score > state.best) {
         state.best = state.score;
         localStorage.setItem("bestScore", state.best.toString());

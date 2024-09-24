@@ -1,6 +1,6 @@
 import { useXrefHeadings } from "../../core/elements/headings";
-import { AppState } from "../appFlow/AppState";
-import { ELEMENT } from "../elements/constants";
+import { AppState } from "../models/AppState";
+import { ELEMENT } from "../elements/ELEMENT";
 
 export function TitleHeading(state: AppState) {
     ///

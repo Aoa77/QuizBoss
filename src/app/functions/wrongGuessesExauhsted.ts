@@ -1,6 +1,6 @@
-import { getAppStateFlow } from "../appFlow/useFlow";
+import { getAppState } from "../hooks/useAppState";
 
 export function wrongGuessesExauhsted(wrongGuesses: number[]): boolean {
-    const [state] = getAppStateFlow();
+    const [state] = getAppState();
     return wrongGuesses.length === state.settings.guessButtonCount - 1;
 }

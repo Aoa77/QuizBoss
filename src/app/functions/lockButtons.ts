@@ -1,6 +1,6 @@
 import { getXrefButtons } from "../../core/elements/buttons";
 import { Xref } from "../../core/elements/xref";
-import { getAppStateFlow } from "../appFlow/useFlow";
+import { getAppState } from "../hooks/useAppState";
 import { ButtonState } from "../models/ButtonState";
 import { QuizItem } from "../models/QuizItem";
 import { handleWrongGuess } from "./handleWrongGuess";
@@ -13,7 +13,7 @@ export async function lockButtons(
     isCorrectGuess: boolean,
     wrongGuesses: number[],
 ) {
-    const [state] = getAppStateFlow();
+    const [state] = getAppState();
     const buttons = getXrefButtons();
     for (let guess = 0; guess < buttons.length; guess++) {
         //

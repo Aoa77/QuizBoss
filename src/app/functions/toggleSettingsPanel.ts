@@ -1,5 +1,5 @@
 import anime from "animejs";
-import { ELEMENT } from "../elements/constants";
+import { ELEMENT } from "../elements/ELEMENT";
 import { getXrefDivs } from "../../core/elements/divs";
 
 const activeClass: string = "active";
