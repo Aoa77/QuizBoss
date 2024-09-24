@@ -3,21 +3,29 @@ import { AnimationBuilder } from "./AnimeBuilder";
 
 //////////
 ///
-let _speedMultiplier: number = 1;
-
+let _speedMultiplier: number = 0;
+let _initialized = false;
 
 ///
 export function getSpeedMultiplier(): number {
+    console.debug(`Speed multiplier: ${_speedMultiplier}`);
+    if (_speedMultiplier <= 0) {
+        throw new Error("Speed multiplier not set");
+    }
     return _speedMultiplier;
 }
 
-
 export function useAnimationFactory(
-    speedMultiplier: number = 1,
+    speedMultiplier: number,
     ...builders: AnimationBuilder[]
 ): void {
-    _speedMultiplier = speedMultiplier
+    if (_initialized) {
+        return;
+    }
+    _initialized = true;
+    _speedMultiplier = speedMultiplier;
     builders.forEach((builder) => {
+        console.debug(`Registering animation builder: ${builder.name}`);
         if (AnimationFactory.instance.has(builder.name)) {
             throw new Error(
                 `Animation factory builder already exists: ${builder.name}`,
@@ -26,5 +34,3 @@ export function useAnimationFactory(
         AnimationFactory.instance.set(builder.name, builder);
     });
 }
-
-

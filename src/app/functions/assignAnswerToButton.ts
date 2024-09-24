@@ -7,7 +7,7 @@ export async function assignAnswerToButton(
     item: QuizItem,
 ) {
     const buttons = getXrefButtons();
-    const spotButton = buttons[buttonIndex]!;
+    const spotButton = buttons[buttonIndex];
     spotButton.innerHTML = item.name;
     spotButton.element.value = item.key;
     spotButton.className = ButtonState.NORMAL;

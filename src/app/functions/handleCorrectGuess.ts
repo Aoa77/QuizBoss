@@ -1,6 +1,7 @@
 import { wait } from "../../core/animation/wait";
 import { getXrefButtons } from "../../core/elements/buttons";
 import { getXrefDivs } from "../../core/elements/divs";
+import { getXrefHeadings } from "../../core/elements/headings";
 import { ELEMENT, TIME } from "../elements/constants";
 import { applyScoreAward } from "./applyScoreAward";
 import { calcAward } from "./calcAward";
@@ -11,11 +12,8 @@ export async function handleCorrectGuess(
     wrongGuesses: number[],
 ): Promise<void> {
     //
-    const [image, loading, question] = getXrefDivs(
-        ELEMENT.image,
-        ELEMENT.loading,
-        ELEMENT.question,
-    );
+    const [question] = getXrefHeadings(ELEMENT.question);
+    const [image, loading] = getXrefDivs(ELEMENT.image, ELEMENT.loading);
 
     const correctButton = getCorrectAnswerButton();
     const wrongButtons = getXrefButtons().filter(
