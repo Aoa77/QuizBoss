@@ -1,10 +1,10 @@
 import { AnimationBuilder } from "./AnimeBuilder";
-import { factory } from "./factory";
+import { AnimationFactory } from "./AnimationFactory";
 
 /////
 
 export function getAnimationBuilder(name: string): AnimationBuilder {
-    const builder = factory.get(name);
+    const builder = AnimationFactory.instance.get(name);
     if (!builder) {
         throw new Error(`Animation builder not found: ${name}`);
     }

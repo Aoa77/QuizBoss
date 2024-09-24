@@ -1,5 +1,5 @@
+import { AnimationFactory } from "./AnimationFactory";
 import { AnimationBuilder } from "./AnimeBuilder";
-import { factory } from "./factory";
 
 //////////
 ///
@@ -18,12 +18,12 @@ export function useAnimationFactory(
 ): void {
     _speedMultiplier = speedMultiplier
     builders.forEach((builder) => {
-        if (factory.has(builder.name)) {
+        if (AnimationFactory.instance.has(builder.name)) {
             throw new Error(
                 `Animation factory builder already exists: ${builder.name}`,
             );
         }
-        factory.set(builder.name, builder);
+        AnimationFactory.instance.set(builder.name, builder);
     });
 }
 
