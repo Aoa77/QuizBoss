@@ -6,7 +6,7 @@ export function QuestionImage(state: AppState) {
     const [image] = useXrefDivs(ELEMENT.image);
 
     return (
-        <section id={image!.id} ref={image!.ref} className="image hidden">
+        <section id={image.id} ref={image.ref} className="image hidden">
             {getCurrentItem(state)?.imageJsx ?? <>&nbsp;</>}
         </section>
     );

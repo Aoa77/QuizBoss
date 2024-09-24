@@ -1,4 +1,3 @@
-import { AppContext } from "../AppContext";
 import { shuffle } from "../../core/random/shuffle";
 import { fetchQuizModule } from "./fetchQuizModule";
 import { initQuizItem } from "./initQuizItem";
@@ -7,11 +6,9 @@ import { randomizeGuessPool } from "./randomizeGuessPool";
 import { truncateQuizItems } from "./truncateQuizItems";
 import { AppState } from "../appFlow/AppState";
 
-export async function initQuizModule(
-    state: AppState,
-): Promise<void> {
-    //
-    const module = await fetchQuizModule(state.settings.quizModuleName);
+export async function initQuizModule(state: AppState): Promise<void> {
+    const { settings } = state;
+    const module = await fetchQuizModule(settings.quizModuleName);
     console.info(`Quiz module loading: ${module.name}`, module);
 
     shuffle(module.quizData.items);
@@ -21,7 +18,6 @@ export async function initQuizModule(
     }
 
     randomizeGuessPool(module, settings);
-
     if (settings.maxQuestions > 0) {
         truncateQuizItems(settings, module);
     }

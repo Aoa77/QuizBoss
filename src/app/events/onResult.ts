@@ -1,15 +1,12 @@
-import { getXrefButtons } from "../../core/elements/buttons";
-import { getAppStateFlow } from "../appFlow/useFlow";
-import { handleCorrectGuess } from "../functions/handleCorrectGuess";
-import { handleWrongGuess } from "../functions/handleWrongGuess";
-import { lockButtons } from "../functions/lockButtons";
-import { resetWrongGuesses } from "../functions/resetWrongGuesses";
-import { unlockButtons } from "../functions/unlockButtons";
+import { getAppStateFlow }       from "../appFlow/useFlow";
+import { handleCorrectGuess }    from "../functions/handleCorrectGuess";
+import { handleWrongGuess }      from "../functions/handleWrongGuess";
+import { lockButtons }           from "../functions/lockButtons";
+import { resetWrongGuesses }     from "../functions/resetWrongGuesses";
+import { unlockButtons }         from "../functions/unlockButtons";
 import { wrongGuessesExauhsted } from "../functions/wrongGuessesExauhsted";
-import { GameState } from "../models/GameState";
+import { GameState }             from "../models/GameState";
 
-///
-// const tasks: Promise<void>[] = [];
 const wrongGuesses: number[] = [];
 
 export async function onResult() {
@@ -23,25 +20,10 @@ export async function onResult() {
     const correctAnswer = currentItem.key;
     const isCorrectGuess = correctAnswer === state.guessValue;
 
-    const [buttons] = getXrefButtons();
-    const correctButton: ButtonElement = await lockButtons(
-        currentItem,
-        elements,
-        guessButtons,
-        isCorrectGuess,
-        state,
-        wrongGuesses,
-    );
-
-    if (isCorrectGuess || wrongGuessesExauhsted(guessButtons, wrongGuesses)) {
+    await lockButtons(currentItem, isCorrectGuess, wrongGuesses);
+    if (isCorrectGuess || wrongGuessesExauhsted(wrongGuesses)) {
         ///
-        await handleCorrectGuess(
-            correctButton,
-            elements,
-            guessButtons,
-            wrongGuesses,
-            state,
-        );
+        await handleCorrectGuess(wrongGuesses);
 
         if (1 + state.currentItemIndex === quizItems.length) {
             setState({ ...state, gameState: GameState.GAMEOVER });
@@ -56,7 +38,7 @@ export async function onResult() {
     }
 
     ///
-    await handleWrongGuess(guessButtons, elements);
-    await unlockButtons(guessButtons, wrongGuesses);
+    await handleWrongGuess();
+    await unlockButtons(wrongGuesses);
     setState({ ...state, gameState: GameState.INPUT });
 }

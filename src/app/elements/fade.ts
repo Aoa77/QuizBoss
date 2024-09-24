@@ -1,6 +1,6 @@
-import { AnimeParams } from "animejs";
-import { XrefBase } from "../../core/elements/xref";
-import { FADE } from "./constants";
+import { AnimeParams }  from "animejs";
+import { FADE }         from "./constants";
+import { XrefBase }     from "../../core/elements/xref";
 
 export function fadeIn(xref: XrefBase): AnimeParams {
     return {

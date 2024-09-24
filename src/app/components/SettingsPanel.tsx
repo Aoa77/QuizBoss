@@ -11,17 +11,17 @@ export function SettingsPanel() {
 
     return (
         <section
-            id={settingsPanel!.id}
-            ref={settingsPanel!.ref}
+            id={settingsPanel.id}
+            ref={settingsPanel.ref}
             className="settings-panel">
             <div
-                id={sliderGrip!.id}
-                ref={sliderGrip!.ref}
+                id={sliderGrip.id}
+                ref={sliderGrip.ref}
                 className="slider-grip"
                 onPointerDown={() => toggleSettingsPanel()}>
                 <div
-                    id={sliderNotch!.id}
-                    ref={sliderNotch!.ref}
+                    id={sliderNotch.id}
+                    ref={sliderNotch.ref}
                     className="slider-notch"></div>
             </div>
         </section>

@@ -1,9 +1,6 @@
-import { ButtonElement } from "../elements/buttons/ButtonElement";
+import { getAppStateFlow } from "../appFlow/useFlow";
 
-
-export function wrongGuessesExauhsted(
-    guessButtons: ButtonElement[],
-    wrongGuesses: number[]
-): boolean {
-    return wrongGuesses.length === guessButtons.length - 1;
+export function wrongGuessesExauhsted(wrongGuesses: number[]): boolean {
+    const [state] = getAppStateFlow();
+    return wrongGuesses.length === state.settings.guessButtonCount - 1;
 }

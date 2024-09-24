@@ -1,9 +1,9 @@
-import { initQuizModule } from "../functions/initQuizModule";
-import { GameState } from "../models/GameState";
-import { wait } from "../../core/animation/wait";
-import { getAppStateFlow } from "../appFlow/useFlow";
-import { ELEMENT, TIME } from "../elements/constants";
-import { getXrefDivs } from "../../core/elements/divs";
+import { getXrefDivs }       from "../../core/elements/divs";
+import { wait }              from "../../core/animation/wait";
+import { ELEMENT, TIME }     from "../elements/constants";
+import { getAppStateFlow }   from "../appFlow/useFlow";
+import { initQuizModule }    from "../functions/initQuizModule";
+import { GameState }         from "../models/GameState";
 
 ///
 export async function onInit() {

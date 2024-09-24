@@ -9,8 +9,8 @@ export function ProgressDisplay(state: AppState) {
 
     return (
         <section
-            id={progress!.id}
-            ref={progress!.ref}
+            id={progress.id}
+            ref={progress.ref}
             className="progress hidden">
             <span className="current">{currentItemIndex + 1}</span>
             <span>/</span>

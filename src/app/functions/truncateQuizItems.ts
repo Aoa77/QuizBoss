@@ -1,4 +1,4 @@
-import { AppSettings } from "../AppSettings";
+import { AppSettings } from "../appFlow/AppSettings";
 import { QuizModule } from "../models/QuizModule";
 
 export function truncateQuizItems(

@@ -1,8 +1,8 @@
-import { wait } from "../../core/animation/wait";
 import { getXrefHeadings } from "../../core/elements/headings";
+import { wait }            from "../../core/animation/wait";
 import { getAppStateFlow } from "../appFlow/useFlow";
-import { ELEMENT, TIME } from "../elements/constants";
-import { GameState } from "../models/GameState";
+import { ELEMENT, TIME }   from "../elements/constants";
+import { GameState }       from "../models/GameState";
 
 ///
 export async function onReady() {

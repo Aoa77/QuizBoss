@@ -1,4 +1,3 @@
-import { getXrefButtons } from "../../core/elements/buttons";
 import { QuizData } from "../models/QuizData";
 import { QuizItem } from "../models/QuizItem";
 import { assignAnswerToButton } from "./assignAnswerToButton";
@@ -6,14 +5,14 @@ import { selectRandomQuestionChoice } from "./selectRandomQuestionChoice";
 
 export async function bindGuessButtons(
     answerSpot: number,
+    guessButtonCount: number,
     currentGuessPool: string[],
     currentItem: QuizItem,
     quizData: QuizData,
 ) {
-    const buttons = getXrefButtons();
     for (
         let buttonIndex = 0;
-        buttonIndex < buttons.length;
+        buttonIndex < guessButtonCount;
         buttonIndex++
     ) {
         let item = currentItem;

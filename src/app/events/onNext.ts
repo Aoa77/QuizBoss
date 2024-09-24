@@ -1,11 +1,11 @@
-import { ELEMENT } from "../elements/constants";
-import { GameState } from "../models/GameState";
-import { getAppStateFlow } from "../appFlow/useFlow";
-import { bindGuessButtons } from "../functions/bindGuessButtons";
-import { getXrefButtons } from "../../core/elements/buttons";
-import { getXrefDivs } from "../../core/elements/divs";
-import { getXrefHeadings } from "../../core/elements/headings";
-import { randomInt } from "../../core/random/randomInt";
+import { getAppStateFlow }   from "../appFlow/useFlow";
+import { ELEMENT }           from "../elements/constants";
+import { bindGuessButtons }  from "../functions/bindGuessButtons";
+import { GameState }         from "../models/GameState";
+import { getXrefButtons }    from "../../core/elements/buttons";
+import { getXrefDivs }       from "../../core/elements/divs";
+import { getXrefHeadings }   from "../../core/elements/headings";
+import { randomInt }         from "../../core/random/randomInt";
 
 ///
 export async function onNext() {
@@ -38,9 +38,9 @@ export async function onNext() {
     const buttons = getXrefButtons();
     await bindGuessButtons(
         state.answerSpot,
+        state.settings.guessButtonCount,
         currentGuessPool,
         currentItem,
-        buttons,
         quizData,
     );
 

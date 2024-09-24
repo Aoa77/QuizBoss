@@ -13,14 +13,14 @@ export function ScoreDisplay(state: AppState) {
     const { scoreText, bestText } = quizModule?.quizData ?? {};
 
     return (
-        <section id={scoreArea!.id} ref={scoreArea!.ref} className="score hidden">
+        <section id={scoreArea.id} ref={scoreArea.ref} className="score hidden">
             <div>{scoreText}</div>
             <div>{bestText}</div>
             <div className="row">
-                <div id={scoreValue!.id} ref={scoreValue!.ref}>
+                <div id={scoreValue.id} ref={scoreValue.ref}>
                     {score}
                 </div>
-                <div id={bestValue!.id} ref={bestValue!.ref}>
+                <div id={bestValue.id} ref={bestValue.ref}>
                     {best}
                 </div>
             </div>

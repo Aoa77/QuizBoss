@@ -1,5 +1,6 @@
 import anime from "animejs";
-import { AppContext } from "../AppContext";
+import { ELEMENT } from "../elements/constants";
+import { getXrefDivs } from "../../core/elements/divs";
 
 const activeClass: string = "active";
 let canClick: boolean = true;
@@ -11,10 +12,12 @@ export async function toggleSettingsPanel() {
         return;
     }
     canClick = false;
-
-    const elements = AppContext.elements();
-    const { refs } = elements;
-    const { settingsPanel, sliderGrip, sliderNotch } = refs;
+    
+    const [settingsPanel, sliderGrip, sliderNotch] = getXrefDivs(
+        ELEMENT.settingsPanel,
+        ELEMENT.sliderGrip,
+        ELEMENT.sliderNotch,
+    );
 
     if (sliderTop === -1) {
         const slider = sliderGrip.element!;
@@ -22,10 +25,10 @@ export async function toggleSettingsPanel() {
         console.debug("sliderTop", sliderTop);
     }
 
-    const grip = sliderGrip.element!;
-    const notch = sliderNotch.element!;
+    const grip = sliderGrip.element;
+    const notch = sliderNotch.element;
 
-    await elements.fadeOut(sliderNotch);
+    sliderNotch.fadeOut();
     grip.classList.toggle(activeClass);
     anime({
         targets: settingsPanel.idSelector,
@@ -34,7 +37,7 @@ export async function toggleSettingsPanel() {
         complete: async () => {
             isActive = !isActive;
             notch.classList.toggle(activeClass);
-            await elements.fadeIn(sliderNotch);
+            sliderNotch.fadeIn();
             canClick = true;
         },
     });

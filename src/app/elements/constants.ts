@@ -1,3 +1,10 @@
+export const ANIMATION = {
+    FADE_IN: "fadeIn",
+    FADE_OUT: "fadeOut",
+    SCALE_UP: "scaleUp",
+    SCALE_DOWN: "scaleDown",
+};
+
 export enum ELEMENT {
     appVersion = "appVersion",
     bestValue = "bestValue",
@@ -31,12 +38,6 @@ export const SCALE = {
 export const TIME = {
     DEMO: 200,
     POLL: 50,
+    THROTTLE: 25,
     WAIT: 500,
-};
-
-export const ANIM = {
-    FADE_IN: "fadeIn",
-    FADE_OUT: "fadeOut",
-    SCALE_UP: "scaleUp",
-    SCALE_DOWN: "scaleDown",
 };

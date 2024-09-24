@@ -1,25 +1,20 @@
-import { ButtonElement } from "../elements/buttons/ButtonElement";
+import { getXrefButtons } from "../../core/elements/buttons";
 import { ButtonState } from "../models/ButtonState";
-import { wait } from "../../core/animation/wait";
-import { Duration } from "../elements/fade";
 
 export async function unlockButtons(
-    guessButtons: ButtonElement[],
     wrongGuesses: number[],
 ): Promise<void> {
-    //
-    await wait(Duration.TICK);
-
-    for (let guess = 0; guess < guessButtons.length; guess++) {
-        const ref = guessButtons[guess].ref.current!;
-        switch (ref.className) {
+    const buttons = getXrefButtons();
+    for (let guess = 0; guess < buttons.length; guess++) {
+        const button = buttons[guess];
+        switch (button.className) {
             case ButtonState.DIMMED:
                 if (!wrongGuesses.includes(guess)) {
-                    ref.className = ButtonState.NORMAL;
+                    button.className = ButtonState.NORMAL;
                 }
                 break;
             case ButtonState.WRONG:
-                ref.className = ButtonState.DIMMED;
+                button.className = ButtonState.DIMMED;
                 break;
             default:
                 break;

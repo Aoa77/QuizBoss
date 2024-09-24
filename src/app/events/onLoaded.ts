@@ -1,8 +1,8 @@
-import { wait } from "../../core/animation/wait";
-import { getXrefDivs } from "../../core/elements/divs";
+import { wait }            from "../../core/animation/wait";
+import { getXrefDivs }     from "../../core/elements/divs";
 import { getAppStateFlow } from "../appFlow/useFlow";
-import { ELEMENT, TIME } from "../elements/constants";
-import { GameState } from "../models/GameState";
+import { ELEMENT, TIME }   from "../elements/constants";
+import { GameState }       from "../models/GameState";
 
 export async function onLoaded() {
     const [state, setState] = getAppStateFlow();

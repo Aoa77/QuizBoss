@@ -10,8 +10,8 @@ export function GuessButtonArea(state: AppState) {
 
     return (
         <section
-            id={buttonArea!.id}
-            ref={buttonArea!.ref}
+            id={buttonArea.id}
+            ref={buttonArea.ref}
             className="buttons hidden">
             {buttons.map((_button, index) => (
                 <GuessButton index={index} />

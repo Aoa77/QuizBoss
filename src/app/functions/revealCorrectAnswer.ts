@@ -1,25 +1,24 @@
-import { ButtonElement } from "../elements/buttons/ButtonElement";
-import { ElementController } from "../elements/__ElementController";
+import { getXrefButtons } from "../../core/elements/buttons";
+import { Xref } from "../../core/elements/xref";
 import { QuizItem } from "../models/QuizItem";
 
-
 export function revealCorrectAnswer(
-    correctButton: ButtonElement,
-    correctButtonRef: HTMLButtonElement,
     currentItem: QuizItem,
-    elements: ElementController,
-    guessButtons: ButtonElement[],
-    wrongGuesses: number[]
+    wrongGuesses: number[],
 ): void {
-    for (let i = 0; i < guessButtons.length; i++) {
+    let correctButton: Xref<HTMLButtonElement> | null = null;
+    const buttons = getXrefButtons();
+    for (let i = 0; i < buttons.length; i++) {
         if (wrongGuesses.includes(i)) {
             continue;
         }
-        const guessButton = guessButtons[i];
-        correctButton = guessButton;
-        correctButtonRef = correctButton.ref.current!;
+        correctButton = buttons[i];
         currentItem.answeredCorrectly = true;
         break;
     }
-    elements.blinkButton(correctButtonRef!);
+    if (!correctButton) {
+        throw new Error("No correct button found.");
+    }
+    console.info("Revealing correct answer...", correctButton);
+    // elements.blinkButton(correctButtonRef!);
 }

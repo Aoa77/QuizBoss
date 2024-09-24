@@ -1,11 +1,11 @@
-import { getAppStateFlow } from "../appFlow/useFlow";
-import { TIME } from "../elements/constants";
-import { ButtonState } from "../models/ButtonState";
-import { DemoMode } from "../models/DemoMode";
-import { GameState } from "../models/GameState";
-import { wait } from "../../core/animation/wait";
-import { randomInt } from "../../core/random/randomInt";
-import { getXrefButtons } from "../../core/elements/buttons";
+import { getAppStateFlow }   from "../appFlow/useFlow";
+import { getXrefButtons }    from "../../core/elements/buttons";
+import { wait }              from "../../core/animation/wait";
+import { randomInt }         from "../../core/random/randomInt";
+import { TIME }              from "../elements/constants";
+import { ButtonState }       from "../models/ButtonState";
+import { DemoMode }          from "../models/DemoMode";
+import { GameState }         from "../models/GameState";
 
 export async function onInput() {
     const [state, setState] = getAppStateFlow();

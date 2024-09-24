@@ -1,6 +1,6 @@
 import { QuizItem } from "../models/QuizItem";
 import { wait } from "../../core/animation/wait";
-import { Duration } from "../elements/fade";
+import { TIME } from "../elements/constants";
 
 export async function loadQuizImages(
     quizItems: QuizItem[],
@@ -8,6 +8,6 @@ export async function loadQuizImages(
     console.info("Loading quiz images...");
     for (const item of quizItems) {
         item.image.src = item.imageSrc;
-        await wait(Duration.THROTTLE);
+        await wait(TIME.THROTTLE);
     }
 }

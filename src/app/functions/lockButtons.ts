@@ -1,70 +1,49 @@
+import { getXrefButtons } from "../../core/elements/buttons";
+import { Xref } from "../../core/elements/xref";
+import { getAppStateFlow } from "../appFlow/useFlow";
 import { ButtonState } from "../models/ButtonState";
 import { QuizItem } from "../models/QuizItem";
-import { getCorrectAnswerButton } from "./getCorrectAnswerButton";
 import { handleWrongGuess } from "./handleWrongGuess";
 import { revealCorrectAnswer } from "./revealCorrectAnswer";
 import { unlockButtons } from "./unlockButtons";
 import { wrongGuessesExauhsted } from "./wrongGuessesExauhsted";
-import { AppContext } from "../AppContext";
-import { Xref } from "../../core/elements/Xref";
 
 export async function lockButtons(
     currentItem: QuizItem,
-    
     isCorrectGuess: boolean,
     wrongGuesses: number[],
-
 ) {
-    const appState = AppContext.appState();
-    const { state } = appState;
-    const elements = AppContext.elements();
-    const { refs } = elements;
-    const { buttons } = refs;
-
-    const correct:Xref<HTMLButtonElement> = getCorrectAnswerButton(
+    const [state] = getAppStateFlow();
+    const buttons = getXrefButtons();
     for (let guess = 0; guess < buttons.length; guess++) {
         //
-        const button:  Xref<HTMLButtonElement>
-         = buttons[guess];
-          const el = button.element!;
+        const button: Xref<HTMLButtonElement> = buttons[guess];
 
-        if (el.className === ButtonState.DISABLED) {
+        if (button.className === ButtonState.DISABLED) {
             continue;
         }
-        if (el.className === ButtonState.HIDDEN) {
+        if (button.className === ButtonState.HIDDEN) {
             continue;
         }
-        if (state.guessValue !== el.value) {
-            el.className = ButtonState.DIMMED;
+        if (state.guessValue !== button.element.value) {
+            button.className = ButtonState.DIMMED;
             continue;
         }
 
         if (isCorrectGuess) {
-            correctButton = button;
-            correctButtonRef = correctButton.ref.current!;
-            correctButtonRef.className = ButtonState.CORRECT;
+            button.className = ButtonState.CORRECT;
             currentItem.answeredCorrectly = true;
             continue;
         }
 
         wrongGuesses.push(guess);
-        guessButtonRef.className = ButtonState.WRONG;
+        button.className = ButtonState.WRONG;
 
-        if (wrongGuessesExauhsted(guessButtons, wrongGuesses)) {
-            await handleWrongGuess(guessButtons, elements);
-            await unlockButtons(guessButtons, wrongGuesses);
-            revealCorrectAnswer(
-                correctButton!,
-                correctButtonRef!,
-                currentItem,
-                elements,
-                guessButtons,
-                wrongGuesses,
-            );
+        if (wrongGuessesExauhsted(wrongGuesses)) {
+            await handleWrongGuess();
+            await unlockButtons(wrongGuesses);
+            revealCorrectAnswer(currentItem, wrongGuesses);
             break;
         }
     }
-
-    correctButton ??= getCorrectAnswerButton(elements, state);
-    return correctButton;
 }

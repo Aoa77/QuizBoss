@@ -1,6 +1,6 @@
-import { XrefBase } from "../../core/elements/xref";
-import { SCALE } from "./constants";
 import { AnimeParams } from "animejs";
+import { SCALE }      from "./constants";
+import { XrefBase }   from "../../core/elements/xref";
 
 export function scaleUp(xref: XrefBase): AnimeParams {
     return {
