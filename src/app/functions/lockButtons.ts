@@ -1,6 +1,6 @@
-import { getXrefButtons } from "../../core/elements/buttons";
-import { Xref } from "../../core/elements/xref";
-import { getAppState } from "../hooks/useAppState";
+import { getElementButtons } from "../../core/functions/getElementButtons";
+import { Xelement } from "../../core/xobjs/Xelement";
+import { getAppState } from "./getAppState";
 import { ButtonState } from "../models/ButtonState";
 import { QuizItem } from "../models/QuizItem";
 import { handleWrongGuess } from "./handleWrongGuess";
@@ -14,10 +14,10 @@ export async function lockButtons(
     wrongGuesses: number[],
 ) {
     const [state] = getAppState();
-    const buttons = getXrefButtons();
+    const buttons = getElementButtons();
     for (let guess = 0; guess < buttons.length; guess++) {
         //
-        const button: Xref<HTMLButtonElement> = buttons[guess];
+        const button: Xelement<HTMLButtonElement> = buttons[guess];
 
         if (button.className === ButtonState.DISABLED) {
             continue;

@@ -1,4 +1,4 @@
-import { getAppState }       from "../hooks/useAppState";
+import { getAppState } from "../functions/getAppState";
 import { handleCorrectGuess }    from "../functions/handleCorrectGuess";
 import { handleWrongGuess }      from "../functions/handleWrongGuess";
 import { lockButtons }           from "../functions/lockButtons";

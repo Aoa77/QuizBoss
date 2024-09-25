@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction, useState, useEffect } from "react";
+import { getStateFlow } from "../functions/getStateFlow";
+import { StateFlow } from "../xobjs/StateFlow";
 
-///
-let _flow: object;
 
 export function useStateFlow<Tstate, Tflow>(params: {
     initialState: Tstate;
@@ -27,13 +27,8 @@ export function useStateFlow<Tstate, Tflow>(params: {
         ///
     }, [eventHandlers, state, getFlowEvent]);
 
-    _flow = [state, setState];
+    StateFlow.initHook([state, setState]);
     return getStateFlow();
 }
 
-export function getStateFlow<Tstate>(): [
-    Tstate,
-    Dispatch<SetStateAction<Tstate>>,
-] {
-    return _flow as [Tstate, Dispatch<SetStateAction<Tstate>>];
-}
+

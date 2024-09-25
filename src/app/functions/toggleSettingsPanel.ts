@@ -1,6 +1,6 @@
 import anime from "animejs";
 import { ELEMENT } from "../elements/ELEMENT";
-import { getXrefDivs } from "../../core/elements/divs";
+import { getElementDivs } from "../../core/functions/getElementDivs";
 
 const activeClass: string = "active";
 let canClick: boolean = true;
@@ -13,7 +13,7 @@ export async function toggleSettingsPanel() {
     }
     canClick = false;
     
-    const [settingsPanel, sliderGrip, sliderNotch] = getXrefDivs(
+    const [settingsPanel, sliderGrip, sliderNotch] = getElementDivs(
         ELEMENT.settingsPanel,
         ELEMENT.sliderGrip,
         ELEMENT.sliderNotch,

@@ -1,13 +1,14 @@
 import { AnimeParams } from "animejs";
-import { XrefBase }   from "../../core/elements/xref";
+import { DURATION } from "./waitTimes";
+import { Xref } from "../../core/xobjs/Xref";
 
 const SCALE = {
-    DURATION: 500,
+    DURATION: DURATION.SCALE,
     UP: 1.2,
     DOWN: 1.0,
 };
 
-export function scaleUp(xref: XrefBase): AnimeParams {
+export function scaleUp(xref: Xref): AnimeParams {
     return {
         targets: xref.idSelector,
         duration: SCALE.DURATION,
@@ -15,7 +16,7 @@ export function scaleUp(xref: XrefBase): AnimeParams {
     };
 }
 
-export function scaleDown(xref: XrefBase): AnimeParams {
+export function scaleDown(xref: Xref): AnimeParams {
     return {
         targets: xref.idSelector,
         duration: SCALE.DURATION,

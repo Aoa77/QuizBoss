@@ -1,9 +1,9 @@
-import { useXrefDivs } from "../../core/elements/divs";
 import { AppState } from "../models/AppState";
 import { ELEMENT } from "../elements/ELEMENT";
+import { useElementDivs } from "../../core/hooks/useElementDivs";
 
 export function ProgressDisplay(state: AppState) {
-    const [progress] = useXrefDivs(ELEMENT.progress);
+    const [progress] = useElementDivs(ELEMENT.progress);
 
     const { currentItemIndex, totalItems } = state;
 

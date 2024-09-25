@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from "react";
-import { getStateFlow, useStateFlow } from "../../core/state/useStateFlow";
+import { useStateFlow } from "../../core/hooks/useStateFlow";
 import { AppState, createInitialState } from "../models/AppState";
 import { GameState } from "../models/GameState";
 import { onGameOver } from "../events/onGameOver";
@@ -53,9 +53,4 @@ export function useAppState(
     return flow;
 }
 
-export function getAppState(): [
-    AppState,
-    Dispatch<SetStateAction<AppState>>,
-] {
-    return getStateFlow<AppState>();
-}
+

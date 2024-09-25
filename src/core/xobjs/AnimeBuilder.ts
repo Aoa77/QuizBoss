@@ -1,9 +1,9 @@
 import { AnimeParams } from "animejs";
-import { XrefBase } from "../elements/xref";
+import { Xref } from "./Xref";
 
 /////////
 
 export interface AnimationBuilder {
     name: string;
-    build: (xref: XrefBase) => AnimeParams;
+    build: (xref: Xref) => AnimeParams;
 }

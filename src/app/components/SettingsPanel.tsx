@@ -1,9 +1,9 @@
 import { toggleSettingsPanel } from "../functions/toggleSettingsPanel";
 import { ELEMENT } from "../elements/ELEMENT";
-import { useXrefDivs } from "../../core/elements/divs";
+import { useElementDivs } from "../../core/hooks/useElementDivs";
 
 export function SettingsPanel() {
-    const [settingsPanel, sliderGrip, sliderNotch] = useXrefDivs(
+    const [settingsPanel, sliderGrip, sliderNotch] = useElementDivs(
         ELEMENT.settingsPanel,
         ELEMENT.sliderGrip,
         ELEMENT.sliderNotch,

@@ -1,11 +1,11 @@
-import { getAppState }   from "../hooks/useAppState";
+import { getAppState } from "../functions/getAppState";
 import { ELEMENT } from "../elements/ELEMENT";
-import { bindGuessButtons }  from "../functions/bindGuessButtons";
-import { GameState }         from "../models/GameState";
-import { getXrefButtons }    from "../../core/elements/buttons";
-import { getXrefDivs }       from "../../core/elements/divs";
-import { getXrefHeadings }   from "../../core/elements/headings";
-import { randomInt }         from "../../core/random/randomInt";
+import { bindGuessButtons } from "../functions/bindGuessButtons";
+import { GameState } from "../models/GameState";
+import { getElementButtons } from "../../core/functions/getElementButtons";
+import { randomInt } from "../../core/functions/randomInt";
+import { getElementDivs } from "../../core/functions/getElementDivs";
+import { getElementHeadings } from "../../core/functions/getElementHeadings";
 
 ///
 export async function onNext() {
@@ -14,11 +14,11 @@ export async function onNext() {
         return;
     }
 
-    const [appVersion, question] = getXrefHeadings(
+    const [appVersion, question] = getElementHeadings(
         ELEMENT.appVersion,
         ELEMENT.question,
     );
-    const [buttonArea, image, loading, progress, scoreArea] = getXrefDivs(
+    const [buttonArea, image, loading, progress, scoreArea] = getElementDivs(
         ELEMENT.buttonArea,
         ELEMENT.image,
         ELEMENT.loading,
@@ -35,7 +35,7 @@ export async function onNext() {
     state.answerSpot = randomInt(0, state.settings.guessButtonCount);
     console.info("answerSpot: ", state.answerSpot);
 
-    const buttons = getXrefButtons();
+    const buttons = getElementButtons();
     await bindGuessButtons(
         state.answerSpot,
         state.settings.guessButtonCount,

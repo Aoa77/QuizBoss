@@ -1,5 +1,5 @@
-import { AnimationFactory } from "./AnimationFactory";
-import { AnimationBuilder } from "./AnimeBuilder";
+import { AnimationFactory } from "../xobjs/AnimationFactory";
+import { AnimationBuilder } from "../xobjs/AnimeBuilder";
 
 export function getAnimationBuilder(name: string): AnimationBuilder {
     const builder = AnimationFactory.instance.builders.get(name);

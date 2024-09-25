@@ -1,6 +1,6 @@
 import "../styles";
 import { useAppState } from "../hooks/useAppState";
-import { useAnimation } from "../elements/useAnimation";
+import { useAnimation } from "../hooks/useAnimation";
 import { AppVersion } from "./AppVersion";
 import { GuessButtonArea } from "./GuessButtonArea";
 import { LoadingSpinner } from "./LoadingSpinner";

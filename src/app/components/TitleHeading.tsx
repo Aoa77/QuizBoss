@@ -1,11 +1,11 @@
-import { useXrefHeadings } from "../../core/elements/headings";
 import { AppState } from "../models/AppState";
 import { ELEMENT } from "../elements/ELEMENT";
+import { useElementHeadings } from "../../core/hooks/useElementHeadings";
 
 export function TitleHeading(state: AppState) {
     ///
-    const [title] = useXrefHeadings(ELEMENT.title);
-    
+    const [title] = useElementHeadings(ELEMENT.title);
+
     return (
         <h1 id={title.id} ref={title.ref} className="hidden">
             {state.quizModule?.quizData?.title ?? <>&nbsp;</>}

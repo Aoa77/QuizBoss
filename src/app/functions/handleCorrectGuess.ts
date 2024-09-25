@@ -1,7 +1,7 @@
-import { wait } from "../../core/animation/wait";
-import { getXrefButtons } from "../../core/elements/buttons";
-import { getXrefDivs } from "../../core/elements/divs";
-import { getXrefHeadings } from "../../core/elements/headings";
+import { wait } from "../../core/functions/wait";
+import { getElementButtons } from "../../core/functions/getElementButtons";
+import { getElementDivs } from "../../core/functions/getElementDivs";
+import { getElementHeadings } from "../../core/functions/getElementHeadings";
 import { TIME } from "../elements/waitTimes";
 import { ELEMENT } from "../elements/ELEMENT";
 import { applyScoreAward } from "./applyScoreAward";
@@ -13,11 +13,11 @@ export async function handleCorrectGuess(
     wrongGuesses: number[],
 ): Promise<void> {
     //
-    const [question] = getXrefHeadings(ELEMENT.question);
-    const [image, loading] = getXrefDivs(ELEMENT.image, ELEMENT.loading);
+    const [question] = getElementHeadings(ELEMENT.question);
+    const [image, loading] = getElementDivs(ELEMENT.image, ELEMENT.loading);
 
     const correctButton = getCorrectAnswerButton();
-    const wrongButtons = getXrefButtons().filter(
+    const wrongButtons = getElementButtons().filter(
         (x) => x.id !== correctButton.id,
     );
     const award: number = calcAward(wrongGuesses);

@@ -1,11 +1,11 @@
-import { useXrefHeadings } from "../../core/elements/headings";
+import { useElementHeadings } from "../../core/hooks/useElementHeadings";
 import { ELEMENT } from "../elements/ELEMENT";
 
 ///////////////////////////////////////////
 const VERSION = "20240918.151216.384";
 ///////////////////////////////////////////
 export function AppVersion() {
-    const [appVersion] = useXrefHeadings(ELEMENT.appVersion);
+    const [appVersion] = useElementHeadings(ELEMENT.appVersion);
     return (
         <h6 id={appVersion.id} ref={appVersion.ref} className="hidden">
             {VERSION}

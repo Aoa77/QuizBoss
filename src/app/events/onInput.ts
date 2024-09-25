@@ -1,7 +1,7 @@
-import { getAppState }   from "../hooks/useAppState";
-import { getXrefButtons }    from "../../core/elements/buttons";
-import { wait }              from "../../core/animation/wait";
-import { randomInt }         from "../../core/random/randomInt";
+import { getAppState } from "../functions/getAppState";
+import { getElementButtons } from "../../core/functions/getElementButtons";
+import { wait }              from "../../core/functions/wait";
+import { randomInt }         from "../../core/functions/randomInt";
 import { ButtonState }       from "../models/ButtonState";
 import { DemoMode }          from "../models/DemoMode";
 import { GameState }         from "../models/GameState";
@@ -29,7 +29,7 @@ export async function onInput() {
 }
 
 function doDemoInput(answerSpot: number, demoMode: DemoMode) : HTMLButtonElement {
-    const buttons = getXrefButtons();
+    const buttons = getElementButtons();
 
     let spotButton = buttons[answerSpot];
     if (demoMode === DemoMode.RANDOM) {

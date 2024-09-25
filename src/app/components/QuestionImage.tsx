@@ -1,9 +1,9 @@
-import { useXrefDivs } from "../../core/elements/divs";
 import { AppState, getCurrentItem } from "../models/AppState";
 import { ELEMENT } from "../elements/ELEMENT";
+import { useElementDivs } from "../../core/hooks/useElementDivs";
 
 export function QuestionImage(state: AppState) {
-    const [image] = useXrefDivs(ELEMENT.image);
+    const [image] = useElementDivs(ELEMENT.image);
 
     return (
         <section id={image.id} ref={image.ref} className="image hidden">

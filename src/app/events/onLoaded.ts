@@ -1,16 +1,13 @@
-import { wait }            from "../../core/animation/wait";
-import { getXrefDivs }     from "../../core/elements/divs";
-import { getAppState } from "../hooks/useAppState";
-import { TIME }   from "../elements/waitTimes";
+import { wait } from "../../core/functions/wait";
+import { getAppState } from "../functions/getAppState";
+import { TIME } from "../elements/waitTimes";
 import { ELEMENT } from "../elements/ELEMENT";
-import { GameState }       from "../models/GameState";
+import { GameState } from "../models/GameState";
+import { getElementDivs } from "../../core/functions/getElementDivs";
 
 export async function onLoaded() {
     const [state, setState] = getAppState();
-    const [loading, image] = getXrefDivs(
-        ELEMENT.loading,
-        ELEMENT.image,
-    );
+    const [loading, image] = getElementDivs(ELEMENT.loading, ELEMENT.image);
 
     if (state.quizModule === null) {
         return;
@@ -21,7 +18,7 @@ export async function onLoaded() {
 
     await loading.fadeOut();
     await image.fadeIn();
-    
+
     while (!currentItem || !currentItem.isLoaded) {
         await wait(TIME.LOADING_POLL);
     }

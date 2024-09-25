@@ -1,14 +1,15 @@
 import { AnimeParams } from "animejs";
-import { XrefBase } from "../../core/elements/xref";
+import { DURATION } from "./waitTimes";
+import { Xref } from "../../core/xobjs/Xref";
 
 const FADE = {
     EASING: "linear",
-    DURATION: 500,
+    DURATION: DURATION.FADE,
     IN: 1,
     OUT: 0,
 };
 
-export function fadeIn(xref: XrefBase): AnimeParams {
+export function fadeIn(xref: Xref): AnimeParams {
     return {
         targets: xref.idSelector,
         duration: FADE.DURATION,
@@ -17,7 +18,7 @@ export function fadeIn(xref: XrefBase): AnimeParams {
     };
 }
 
-export function fadeOut(xref: XrefBase): AnimeParams {
+export function fadeOut(xref: Xref): AnimeParams {
     return {
         targets: xref.idSelector,
         duration: FADE.DURATION,

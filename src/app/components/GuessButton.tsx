@@ -1,12 +1,12 @@
 import { ButtonState } from "../models/ButtonState";
 import { ELEMENT } from "../elements/ELEMENT";
-import { useXrefButtons } from "../../core/elements/buttons";
-import { Xref } from "../../core/elements/xref";
-import { getAppState } from "../hooks/useAppState";
+import { useElementsButtons } from "../../core/hooks/useElementButtons";
+import { Xelement } from "../../core/xobjs/Xelement";
+import { getAppState } from "../functions/getAppState";
 import { GameState } from "../models/GameState";
 
 export function GuessButton(params: { index: number }) {
-    const [button] = useXrefButtons(`${ELEMENT.button}_${params.index}`);
+    const [button] = useElementsButtons(`${ELEMENT.button}_${params.index}`);
     return (
         <button
             className={ButtonState.HIDDEN}
@@ -20,7 +20,7 @@ export function GuessButton(params: { index: number }) {
     );
 }
 
-async function handleButtonPointerDown(xref: Xref<HTMLButtonElement>) {
+async function handleButtonPointerDown(xref: Xelement<HTMLButtonElement>) {
     const [state, setState] = getAppState();
     const { gameState } = state;
     if (gameState !== GameState.INPUT) {

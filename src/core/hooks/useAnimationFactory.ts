@@ -1,9 +1,5 @@
-
-//////////
-
-import { AnimationFactory } from "./AnimationFactory";
-import { AnimationFactoryParams } from "./AnimationFactoryParams";
-import { setSpeedMultiplier } from "./getSpeedMultiplier";
+import { AnimationFactory } from "../xobjs/AnimationFactory";
+import { AnimationFactoryParams } from "../xobjs/AnimationFactoryParams";
 
 //
 export let _initialized: boolean = false;
@@ -13,8 +9,8 @@ export function useAnimationFactory(params: AnimationFactoryParams): void {
         return;
     }
     _initialized = true;
-    setSpeedMultiplier(params.speedMultiplier);
-    
+    AnimationFactory.init(params.speedMultiplier);
+
     params.animationBuilders.forEach((builder) => {
         console.debug(`Registering animation builder: ${builder.name}`);
         if (AnimationFactory.instance.builders.has(builder.name)) {
@@ -33,4 +29,3 @@ export function useAnimationFactory(params: AnimationFactoryParams): void {
         AnimationFactory.instance.waitTimes.set(wait.name, wait);
     });
 }
-

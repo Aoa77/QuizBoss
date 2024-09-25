@@ -7,29 +7,35 @@ export const TIME = {
     REVEAL_BUTTON_STATUS: "REVEAL_BUTTON_STATUS",
 };
 
+export const DURATION = {
+    FADE: 370,
+    SCALE: 670,
+};
+
 export const waitTimes = [
     {
         name: TIME.DEMO_INPUT_DELAY,
-        duration: 500,
+        duration: 680,
     },
     {
         name: TIME.LOADING_POLL,
-        duration: 1000,
+        duration: 50,
     },
     {
         name: TIME.LOADING_THROTTLE,
-        duration: 1000,
+        duration: 25,
     },
     {
         name: TIME.POST_TITLE_DELAY,
-        duration: 2000,
+        duration: 500,
     },
     {
         name: TIME.PRE_TITLE_DELAY,
-        duration: 2000,
+        duration: 500,
     },
     {
         name: TIME.REVEAL_BUTTON_STATUS,
-        duration: 1000,
+        duration: 420,
     },
 ];
+

@@ -1,10 +1,10 @@
-import { getAppState } from "../hooks/useAppState";
-import { getXrefButtons } from "../../core/elements/buttons";
-import { Xref } from "../../core/elements/xref";
+import { getAppState } from "./getAppState";
+import { getElementButtons } from "../../core/functions/getElementButtons";
+import { Xelement } from "../../core/xobjs/Xelement";
 
-export function getCorrectAnswerButton(): Xref<HTMLButtonElement> {
+export function getCorrectAnswerButton(): Xelement<HTMLButtonElement> {
     const [state] = getAppState();
     const { answerSpot } = state;
-    const buttons = getXrefButtons();
+    const buttons = getElementButtons();
     return buttons[answerSpot];
 }

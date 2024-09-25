@@ -1,6 +1,6 @@
-import { getXrefButtons } from "../../core/elements/buttons";
+import { getElementButtons } from "../../core/functions/getElementButtons";
 
 export function calcAward(wrongGuesses: number[]): number {
-    const buttons = getXrefButtons();
+    const buttons = getElementButtons();
     return buttons.length - wrongGuesses.length - 1;
 }

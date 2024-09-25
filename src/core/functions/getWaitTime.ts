@@ -1,5 +1,5 @@
-import { AnimationFactory } from "./AnimationFactory";
-import { WaitTime } from "./WaitTime";
+import { AnimationFactory } from "../xobjs/AnimationFactory";
+import { WaitTime } from "../xobjs/WaitTime";
 
 export function getWaitTime(name: string): WaitTime {
     const waitTime = AnimationFactory.instance.waitTimes.get(name);

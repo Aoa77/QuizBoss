@@ -1,4 +1,4 @@
-import { getAppState } from "../hooks/useAppState";
+import { getAppState } from "./getAppState";
 
 export async function applyScoreAward(award: number): Promise<void> {
     //

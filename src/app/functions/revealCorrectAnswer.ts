@@ -1,13 +1,13 @@
-import { getXrefButtons } from "../../core/elements/buttons";
-import { Xref } from "../../core/elements/xref";
+import { getElementButtons } from "../../core/functions/getElementButtons";
+import { Xelement } from "../../core/xobjs/Xelement";
 import { QuizItem } from "../models/QuizItem";
 
 export function revealCorrectAnswer(
     currentItem: QuizItem,
     wrongGuesses: number[],
 ): void {
-    let correctButton: Xref<HTMLButtonElement> | null = null;
-    const buttons = getXrefButtons();
+    let correctButton: Xelement<HTMLButtonElement> | null = null;
+    const buttons = getElementButtons();
     for (let i = 0; i < buttons.length; i++) {
         if (wrongGuesses.includes(i)) {
             continue;

@@ -1,9 +1,9 @@
-import { useXrefDivs } from "../../core/elements/divs";
 import { AppState } from "../models/AppState";
 import { ELEMENT } from "../elements/ELEMENT";
+import { useElementDivs } from "../../core/hooks/useElementDivs";
 
 export function ScoreDisplay(state: AppState) {
-    const [scoreArea, scoreValue, bestValue] = useXrefDivs(
+    const [scoreArea, scoreValue, bestValue] = useElementDivs(
         ELEMENT.scoreArea,
         ELEMENT.scoreValue,
         ELEMENT.bestValue,

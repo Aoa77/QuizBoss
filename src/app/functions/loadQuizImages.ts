@@ -1,5 +1,5 @@
 import { QuizItem } from "../models/QuizItem";
-import { wait } from "../../core/animation/wait";
+import { wait } from "../../core/functions/wait";
 import { TIME } from "../elements/waitTimes";
 
 export async function loadQuizImages(
