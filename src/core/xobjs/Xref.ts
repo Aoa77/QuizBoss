@@ -18,7 +18,6 @@ export abstract class Xref {
             throw new Error(`Animation builder not found: ${name}`);
         }
         const params = builder.build(this);
-        console.info(`Running animation: ${name} with duration: ${params.duration}`);
         await runAnimation(params);
     }
     

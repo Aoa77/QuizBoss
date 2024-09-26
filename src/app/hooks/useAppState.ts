@@ -24,7 +24,7 @@ export function useAppState(
         getFlowEvent: (state) => {
             return state.gameState;
         },
-        eventHandlers: new Map<GameState, (state: AppState) => void>([
+        eventHandlers: new Map<GameState, (state: AppState) => Promise<void>>([
             [GameState.INIT, onInit],
             [GameState.READY, onReady],
             [GameState.LOADING, onLoaded],
