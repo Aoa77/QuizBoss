@@ -69,23 +69,21 @@ section.image > img {
 /************************/
 section.buttons {
     margin-top: var(--hu_5);
-    background-color: #000000;
+    background-color: var(--background-color);
 }
 button {
     all: unset;
     appearance: none;
     border-style:solid;
-    border-width: 1rem;
+    border-width: 2.13rem;
     display: block;
-    font-family: "Tahoma", sans-serif;
     font-family: "Garamond", serif;
-    font-size: 9rem;
-    font-weight: bold;
+    font-size: 8rem;
+    font-weight: normal;
     width: 123rem;
-    height: var(--hu_12);
+    height: var(--hu_14);
     margin: 0 auto;
     margin-top: var(--hu_6);
-    padding: 2rem;
     opacity: 0;
 }
 button.blink {

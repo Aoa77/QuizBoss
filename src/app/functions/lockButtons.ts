@@ -15,6 +15,7 @@ export async function lockButtons(
 ) {
     const [state] = getAppState();
     const buttons = getElementButtons();
+    
     for (let guess = 0; guess < buttons.length; guess++) {
         //
         const button: Xelement<HTMLButtonElement> = buttons[guess];
@@ -25,7 +26,7 @@ export async function lockButtons(
         if (button.className === ButtonState.HIDDEN) {
             continue;
         }
-        if (state.guessValue !== button.element.value) {
+        if (state.guessValue !== button.dataValue) {
             button.className = ButtonState.DIMMED;
             continue;
         }

@@ -13,8 +13,8 @@ export function GuessButton(params: { index: number }) {
             id={button.id}
             key={button.id}
             onPointerDown={() => handleButtonPointerDown(button)}
-            ref={button.ref}
-            value={button.id}>
+            data-value={button.id}
+            ref={button.ref}>
             {button.id}
         </button>
     );
@@ -31,7 +31,7 @@ async function handleButtonPointerDown(xref: Xelement<HTMLButtonElement>) {
     }
     setState({
         ...state,
-        guessValue: xref.element.value,
+        guessValue: xref.dataValue,
         gameState: GameState.RESULT,
     });
 }

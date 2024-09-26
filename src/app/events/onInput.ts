@@ -6,6 +6,7 @@ import { ButtonState }       from "../models/ButtonState";
 import { DemoMode }          from "../models/DemoMode";
 import { GameState }         from "../models/GameState";
 import { TIME } from "../elements/waitTimes";
+import { Xelement } from "../../core/xobjs/Xelement";
 
 export async function onInput() {
     const [state, setState] = getAppState();
@@ -23,12 +24,12 @@ export async function onInput() {
     const spotButton = doDemoInput(state.answerSpot, demoMode);
     setState({
         ...state,
-        guessValue: spotButton.value,
+        guessValue: spotButton.dataValue,
         gameState: GameState.RESULT,
     });
 }
 
-function doDemoInput(answerSpot: number, demoMode: DemoMode) : HTMLButtonElement {
+function doDemoInput(answerSpot: number, demoMode: DemoMode) : Xelement<HTMLButtonElement> {
     const buttons = getElementButtons();
 
     let spotButton = buttons[answerSpot];
@@ -49,5 +50,5 @@ function doDemoInput(answerSpot: number, demoMode: DemoMode) : HTMLButtonElement
             }
         }
     }
-    return spotButton.ref.current!;
+    return spotButton;
 }

@@ -39,7 +39,7 @@
     --button-disabled-text: #ffffff66;
 
     --button-normal-background: #444477;
-    --button-normal-border: #444499;
+    --button-normal-border: #666688;
     --button-normal-text: #ffffff;
 
     --button-reveal-background: #0000ff22;
@@ -47,6 +47,6 @@
     --button-reveal-text: #0000ff;
 
     --button-wrong-background: #ff000044;
-    --button-wrong-border: #990000;
+    --button-wrong-border: #ff0000;
     --button-wrong-text: #ff0000;
 }

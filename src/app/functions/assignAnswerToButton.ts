@@ -9,6 +9,6 @@ export async function assignAnswerToButton(
     const buttons = getElementButtons();
     const spotButton = buttons[buttonIndex];
     spotButton.innerHTML = item.name;
-    spotButton.element.value = item.key;
+    spotButton.dataValue = item.key;
     spotButton.className = ButtonState.NORMAL;
 }
