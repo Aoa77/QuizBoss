@@ -1,5 +1,5 @@
 import { getAppState } from "../functions/getAppState";
-import { ELEMENT } from "../elements/ELEMENT";
+import { ELEMENT } from "../components/_ELEMENTS";
 import { bindGuessButtons } from "../functions/bindGuessButtons";
 import { GameState } from "../models/GameState";
 import { getElementButtons } from "../../core/functions/getElementButtons";
@@ -44,13 +44,14 @@ export async function onNext() {
         quizData,
     );
 
-    await loading.fadeOut();
-    await appVersion.fadeIn();
-    await image.fadeIn();
-    await question.fadeIn();
-    await buttonArea.fadeIn();
-    await scoreArea.fadeIn();
-    await progress.fadeIn();
+    await Promise.all([
+        loading.fadeOut(),
+        image.fadeIn(),
+        question.fadeIn(),
+        buttonArea.fadeIn(),
+        scoreArea.fadeIn(),
+        progress.fadeIn(),
+    ]);
 
     for (const button of buttons) {
         await button.fadeIn();

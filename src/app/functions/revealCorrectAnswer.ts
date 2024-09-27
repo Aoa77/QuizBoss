@@ -2,10 +2,10 @@ import { getElementButtons } from "../../core/functions/getElementButtons";
 import { Xelement } from "../../core/xobjs/Xelement";
 import { QuizItem } from "../models/QuizItem";
 
-export function revealCorrectAnswer(
+export  function revealCorrectAnswer(
     currentItem: QuizItem,
     wrongGuesses: number[],
-): void {
+) {
     let correctButton: Xelement<HTMLButtonElement> | null = null;
     const buttons = getElementButtons();
     for (let i = 0; i < buttons.length; i++) {
@@ -19,6 +19,4 @@ export function revealCorrectAnswer(
     if (!correctButton) {
         throw new Error("No correct button found.");
     }
-    console.info("Revealing correct answer...", correctButton);
-    // elements.blinkButton(correctButtonRef!);
 }

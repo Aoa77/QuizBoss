@@ -1,41 +1,71 @@
 export const TIME = {
-    PRE_TITLE_DELAY: "PRE_TITLE_DELAY",
-    POST_TITLE_DELAY: "POST_TITLE_DELAY",
+    BLINK_RATE: "BLINK_RATE",
+    BRIEF_PAUSE: "BRIEF_PAUSE",
     DEMO_INPUT_DELAY: "DEMO_INPUT_DELAY",
     LOADING_POLL: "LOADING_POLL",
     LOADING_THROTTLE: "LOADING_THROTTLE",
-    REVEAL_BUTTON_STATUS: "REVEAL_BUTTON_STATUS",
+    LONG_PAUSE: "LONG_PAUSE",
+    PAUSE: "PAUSE",
+    POST_TITLE_DELAY: "POST_TITLE_DELAY",
+    PRE_TITLE_DELAY: "PRE_TITLE_DELAY",
+    VERY_LONG_PAUSE: "VERY_LONG_PAUSE",
 };
 
 export const DURATION = {
-    FADE: 370,
-    SCALE: 670,
+    BLINK_RATE: 70,
+    BRIEF_PAUSE: 222,
+    DEMO_INPUT_DELAY: 680,
+    FADE: 270,
+    LOADING_POLL: 50,
+    LOADING_THROTTLE: 25,
+    LONG_PAUSE: 4200,
+    PAUSE: 1600,
+    POST_TITLE_DELAY: 500,
+    PRE_TITLE_DELAY: 500,
+    SCALE: 370,
+    VERY_LONG_PAUSE: 4200000,
 };
 
 export const waitTimes = [
     {
+        name: TIME.BLINK_RATE,
+        duration: DURATION.BRIEF_PAUSE / DURATION.BLINK_RATE,
+    },
+    {
+        name: TIME.BRIEF_PAUSE,
+        duration: DURATION.BRIEF_PAUSE,
+    },
+    {
         name: TIME.DEMO_INPUT_DELAY,
-        duration: 680,
+        duration: DURATION.DEMO_INPUT_DELAY,
     },
     {
         name: TIME.LOADING_POLL,
-        duration: 50,
+        duration: DURATION.LOADING_POLL,
     },
     {
         name: TIME.LOADING_THROTTLE,
-        duration: 25,
+        duration: DURATION.LOADING_THROTTLE,
+    },
+    {
+        name: TIME.LONG_PAUSE,
+        duration: DURATION.LONG_PAUSE,
+    },
+    {
+        name: TIME.PAUSE,
+        duration: DURATION.PAUSE,
     },
     {
         name: TIME.POST_TITLE_DELAY,
-        duration: 500,
+        duration: DURATION.POST_TITLE_DELAY,
     },
     {
         name: TIME.PRE_TITLE_DELAY,
-        duration: 500,
+        duration: DURATION.PRE_TITLE_DELAY,
     },
     {
-        name: TIME.REVEAL_BUTTON_STATUS,
-        duration: 420,
+        name: TIME.VERY_LONG_PAUSE,
+        duration: DURATION.VERY_LONG_PAUSE,
     },
 ];
 

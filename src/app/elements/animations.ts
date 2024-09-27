@@ -1,3 +1,4 @@
+import { driftUp } from "./driftUp";
 import { fadeIn, fadeOut } from "./fade";
 import { scaleUp, scaleDown } from "./scale";
 
@@ -6,10 +7,11 @@ export const ANIMATION = {
     FADE_OUT: "fadeOut",
     SCALE_UP: "scaleUp",
     SCALE_DOWN: "scaleDown",
+    DRIFT_UP: "driftUp",
 };
 
 
-export const animationBuilders = [
+export const animations = [
     {
         name: ANIMATION.FADE_IN,
         build: fadeIn,
@@ -26,4 +28,11 @@ export const animationBuilders = [
         name: ANIMATION.SCALE_DOWN,
         build: scaleDown,
     },
+    {
+        name: ANIMATION.DRIFT_UP,
+        build: driftUp,
+    }
 ];
+
+
+

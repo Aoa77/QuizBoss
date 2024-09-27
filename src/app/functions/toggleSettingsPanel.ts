@@ -1,5 +1,5 @@
 import anime from "animejs";
-import { ELEMENT } from "../elements/ELEMENT";
+import { ELEMENT } from "../components/_ELEMENTS";
 import { getElementDivs } from "../../core/functions/getElementDivs";
 
 const activeClass: string = "active";

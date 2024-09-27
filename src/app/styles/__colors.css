@@ -2,51 +2,51 @@
     colors
 */
 :root {
-    --background-color: #000000;
-    --lds-ellipsis-color: #1c4c5b;
+    --background-color:               #000000;
+    --lds-ellipsis-color:             #1c4c5b;
 
-    --h1-color: #ffffff;
-    --h2-color: #00ffff;
-    --h6-color: #ffffff33;
+    --h1-color:                       #ffffff;
+    --h2-color:                       #00ffff;
+    --h6-color:                       #ffffff33;
     
-    --prompt-color: #ffff00;
-    --image-shadow: #a5a5c8cc;
+    --prompt-color:                   #ffff00;
+    --image-shadow:                   #a5a5c8cc;
     
-    --score-color: #00ffff;
-    --score-row-color: #ffff00;
-    --bonus-color: #00ff00;
-    --progress-color: #ffffffbb;
+    --score-color:                    #00ffff;
+    --score-row-color:                #ffff00;
+    --bonus-color:                    #00ff00;
+    --progress-color:                 #ffffffbb;
 
-    --settings-panel-background: #000033;
-    --slider-grip-background: #000000;
-    --slider-grip-background-active: #000033;
-    --slider-notch-background: #ffffff33;
+    --settings-panel-background:      #000033;
+    --slider-grip-background:         #000000;
+    --slider-grip-background-active:  #000033;
+    --slider-notch-background:        #ffffff33;
 
-    --button-blink-background: #ffff0022;
-    --button-blink-border: #999900;
-    --button-blink-text: #ffff00;
+    --button-blink-background:        #ffff0022;
+    --button-blink-border:            #999900;
+    --button-blink-text:              #ffff00;
 
-    --button-correct-background: #00ff0022;
-    --button-correct-border: #009900;
-    --button-correct-text: #00ff00;
+    --button-correct-background:      #00ff0022;
+    --button-correct-border:          #009900;
+    --button-correct-text:            #00ff00;
 
-    --button-dimmed-background: #44447744;
-    --button-dimmed-border: #44447722;
-    --button-dimmed-text: #ffffff66;
+    --button-dimmed-background:       #44447744;
+    --button-dimmed-border:           #44447722;
+    --button-dimmed-text:             #ffffff66;
 
-    --button-disabled-background: #44447744;
-    --button-disabled-border: #44447722;
-    --button-disabled-text: #ffffff66;
+    --button-disabled-background:     #44447744;
+    --button-disabled-border:         #44447722;
+    --button-disabled-text:           #ffffff66;
 
-    --button-normal-background: #444477;
-    --button-normal-border: #666688;
-    --button-normal-text: #ffffff;
+    --button-normal-background:       #444477;
+    --button-normal-border:           #666688;
+    --button-normal-text:             #ffffff;
 
-    --button-reveal-background: #0000ff22;
-    --button-reveal-border: #000099;
-    --button-reveal-text: #0000ff;
+    --button-reveal-background:       #0000ff22;
+    --button-reveal-border:           #000099;
+    --button-reveal-text:             #0000ff;
 
-    --button-wrong-background: #ff000044;
-    --button-wrong-border: #ff0000;
-    --button-wrong-text: #ff0000;
+    --button-wrong-background:        #ff000022;
+    --button-wrong-border:            #ff0000;
+    --button-wrong-text:              #ff0000;
 }

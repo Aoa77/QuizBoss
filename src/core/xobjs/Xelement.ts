@@ -42,7 +42,6 @@ export class Xelement<T extends HTMLElement> extends Xref {
             return "";
         }
         const value = this.ref.current.getAttribute("data-value");
-        console.info(`dataValue: ${value}`);
         return value ?? "";
     }
     public set dataValue(value: string) {
@@ -50,5 +49,11 @@ export class Xelement<T extends HTMLElement> extends Xref {
             return;
         }
         this.ref.current.setAttribute("data-value", value);
+    }
+    public toggleClass(className: string): void {
+        if (!this.ref.current) {
+            return;
+        }
+        this.ref.current.classList.toggle(className);
     }
 }

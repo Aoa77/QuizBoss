@@ -1,5 +1,5 @@
 import { getElementDivs } from "../../core/functions/getElementDivs";
-import { ELEMENT } from "../elements/ELEMENT";
+import { ELEMENT } from "../components/_ELEMENTS";
 import { getAppState } from "../functions/getAppState";
 import { initQuizModule }    from "../functions/initQuizModule";
 import { GameState }         from "../models/GameState";

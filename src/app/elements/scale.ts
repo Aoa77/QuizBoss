@@ -13,6 +13,7 @@ export function scaleUp(xref: Xref): AnimeParams {
         targets: xref.idSelector,
         duration: SCALE.DURATION,
         scale: SCALE.UP,
+        endDelay: 100
     };
 }
 
@@ -21,5 +22,6 @@ export function scaleDown(xref: Xref): AnimeParams {
         targets: xref.idSelector,
         duration: SCALE.DURATION,
         scale: SCALE.DOWN,
+        endDelay: 100
     };
 }

@@ -8,6 +8,6 @@ export async function handleWrongGuess(): Promise<void> {
         (x) => x.className === ButtonState.WRONG,
     )!;
     await wrongButton.scaleUp();
-    await wait(TIME.REVEAL_BUTTON_STATUS);
+    await wait(TIME.BRIEF_PAUSE);
     await wrongButton.scaleDown();
 }

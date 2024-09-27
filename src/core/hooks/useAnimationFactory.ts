@@ -1,3 +1,4 @@
+import anime from "animejs";
 import { AnimationFactory } from "../xobjs/AnimationFactory";
 import { AnimationFactoryParams } from "../xobjs/AnimationFactoryParams";
 

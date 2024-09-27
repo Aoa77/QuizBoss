@@ -7,5 +7,5 @@ export function revealButtonScore(
     if (award === 0) {
         return;
     }
-    correctButton.innerHTML += " +" + award.toString();
+    correctButton.innerHTML += award;
 }

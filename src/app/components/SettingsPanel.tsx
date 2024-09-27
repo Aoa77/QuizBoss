@@ -1,5 +1,5 @@
 import { toggleSettingsPanel } from "../functions/toggleSettingsPanel";
-import { ELEMENT } from "../elements/ELEMENT";
+import { ELEMENT } from "./_ELEMENTS";
 import { useElementDivs } from "../../core/hooks/useElementDivs";
 
 export function SettingsPanel() {

@@ -1,7 +1,6 @@
 import { getAnimationBuilder } from "../functions/getAnimationBuilder";
 import { runAnimation } from "../functions/runAnimation";
 
-
 export abstract class Xref {
     public readonly type: string;
     public readonly id: string;
@@ -12,31 +11,28 @@ export abstract class Xref {
         this.idSelector = `#${id}`;
     }
 
-    public async animate(name: string): Promise<void> {
+    public async animate(name: string, localSpeed: number = 1): Promise<void> {
         const builder = getAnimationBuilder(name);
         if (!name) {
             throw new Error(`Animation builder not found: ${name}`);
         }
         const params = builder.build(this);
-        await runAnimation(params);
-    }
-    
-    public async fadeOut(): Promise<void> {
-        await this.animate("fadeOut");
+        await runAnimation(params, localSpeed);
     }
 
-    public async fadeIn(): Promise<void> {
-        await this.animate("fadeIn");
+    public async fadeOut(localSpeed: number = 1): Promise<void> {
+        await this.animate("fadeOut", localSpeed);
     }
-    
-    public async scaleUp(): Promise<void> {
-        await this.animate("scaleUp");
+
+    public async fadeIn(localSpeed: number = 1): Promise<void> {
+        await this.animate("fadeIn", localSpeed);
     }
-    
-    public async scaleDown(): Promise<void> {
-        await this.animate("scaleDown");
+
+    public async scaleUp(localSpeed: number = 1): Promise<void> {
+        await this.animate("scaleUp", localSpeed);
+    }
+
+    public async scaleDown(localSpeed: number = 1): Promise<void> {
+        await this.animate("scaleDown", localSpeed);
     }
 }
-
-
-

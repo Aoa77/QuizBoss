@@ -1,7 +1,7 @@
 import { wait } from "../../core/functions/wait";
 import { getAppState } from "../functions/getAppState";
 import { TIME } from "../elements/waitTimes";
-import { ELEMENT } from "../elements/ELEMENT";
+import { ELEMENT } from "../components/_ELEMENTS";
 import { GameState } from "../models/GameState";
 import { getElementDivs } from "../../core/functions/getElementDivs";
 

@@ -1,5 +1,5 @@
 import { AppState } from "../models/AppState";
-import { ELEMENT } from "../elements/ELEMENT";
+import { ELEMENT } from "./_ELEMENTS";
 import { useElementHeadings } from "../../core/hooks/useElementHeadings";
 
 export function QuestionHeading(state: AppState) {
