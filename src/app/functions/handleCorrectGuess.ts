@@ -71,9 +71,9 @@ async function animateTransition(
     wrong: Xelement<HTMLButtonElement>[],
     question: Xelement<HTMLHeadingElement>,
 ): Promise<void> {
-    const localSpeed = 1.5;
+    const localSpeed = 1;
     await question.runAnimation(fadeOut, localSpeed);
     for (const button of wrong) {
-        await button.runAnimation(fadeOut, localSpeed);
+        await button.runAnimation(fadeOut, localSpeed, console.info);
     }
 }

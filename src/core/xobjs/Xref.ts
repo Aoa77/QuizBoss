@@ -11,8 +11,12 @@ export abstract class Xref {
         this.idSelector = `#${id}`;
     }
 
-    public async runAnimation(params: AnimeParams, localSpeed: number = 1): Promise<void> {
+    public async runAnimation(
+        params: AnimeParams,
+        localSpeed: number = 1,
+        logger: ((x: unknown) => void) | null = null,
+    ): Promise<void> {
         params.targets = this.idSelector;
-        await runAnimation(params, localSpeed);
+        await runAnimation(params, localSpeed, logger);
     }
 }
