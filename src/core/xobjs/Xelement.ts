@@ -50,6 +50,18 @@ export class Xelement<T extends HTMLElement> extends Xref {
         }
         this.ref.current.setAttribute("data-value", value);
     }
+    public addClass(className: string): void {
+        if (!this.ref.current) {
+            return;
+        }
+        this.ref.current.classList.add(className);
+    }
+    public removeClass(className: string): void {
+        if (!this.ref.current) {
+            return;
+        }
+        this.ref.current.classList.remove(className);
+    }
     public toggleClass(className: string): void {
         if (!this.ref.current) {
             return;

@@ -12,7 +12,7 @@ export const TIME = {
 };
 
 export const DURATION = {
-    BLINK_RATE: 70,
+    BLINK_RATE: 420,
     BRIEF_PAUSE: 222,
     DEMO_INPUT_DELAY: 680,
     FADE: 270,
@@ -29,7 +29,7 @@ export const DURATION = {
 export const waitTimes = [
     {
         name: TIME.BLINK_RATE,
-        duration: DURATION.BRIEF_PAUSE / DURATION.BLINK_RATE,
+        duration: DURATION.BLINK_RATE,
     },
     {
         name: TIME.BRIEF_PAUSE,

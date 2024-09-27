@@ -22,31 +22,24 @@
     --slider-grip-background-active:  #000033;
     --slider-notch-background:        #ffffff33;
 
-    --button-blink-background:        #ffff0022;
-    --button-blink-border:            #999900;
-    --button-blink-text:              #ffff00;
+    --button-blink-background:        #0000ff11;
+    --button-blink-text:              #ff00ff;
 
     --button-correct-background:      #00ff0022;
-    --button-correct-border:          #009900;
     --button-correct-text:            #00ff00;
 
     --button-dimmed-background:       #44447744;
-    --button-dimmed-border:           #44447722;
     --button-dimmed-text:             #ffffff66;
 
     --button-disabled-background:     #44447744;
-    --button-disabled-border:         #44447722;
     --button-disabled-text:           #ffffff66;
 
     --button-normal-background:       #444477;
-    --button-normal-border:           #666688;
     --button-normal-text:             #ffffff;
 
     --button-reveal-background:       #0000ff22;
-    --button-reveal-border:           #000099;
-    --button-reveal-text:             #0000ff;
+    --button-reveal-text:             #ffff00;
 
     --button-wrong-background:        #ff000022;
-    --button-wrong-border:            #ff0000;
     --button-wrong-text:              #ff0000;
 }

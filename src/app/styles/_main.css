@@ -85,38 +85,31 @@ button {
 }
 button.correct {
     background-color: var(--button-correct-background);
-    border-color: var(--button-correct-border);
     color: var(--button-correct-text);
 }
 button.dimmed {
     background-color: var(--button-dimmed-background);
-    border-color: var(--button-dimmed-border);
     color: var(--button-dimmed-text);
 }
 button.disabled {
     background-color: var(--button-disabled-background);
-    border-color: var(--button-disabled-border);
     color: var(--button-disabled-text);
 }
 button.normal {
     background-color: var(--button-normal-background);
-    border-color: var(--button-normal-border);
     color: var(--button-normal-text);
-}
-button.reveal {
-    background-color: var(--button-reveal-background);
-    border-color: var(--button-reveal-border);
-    color: var(--button-reveal-text);
 }
 button.wrong {
     background-color: var(--button-wrong-background);
-    border-color: var(--button-wrong-border);
     color: var(--button-wrong-text);
 }
 button.blink {
     background-color: var(--button-blink-background);
-    border-color: var(--button-blink-border);
     color: var(--button-blink-text);
+}
+button.reveal {
+    background-color: var(--button-reveal-background);
+    color: var(--button-reveal-text);
 }
 
 /***************************/
