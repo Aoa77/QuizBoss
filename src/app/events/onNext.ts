@@ -45,16 +45,16 @@ export async function onNext() {
     );
 
     await Promise.all([
-        loading.runAnimation(fadeOut),
-        image.runAnimation(fadeIn),
-        question.runAnimation(fadeIn),
-        buttonArea.runAnimation(fadeIn),
-        scoreArea.runAnimation(fadeIn),
-        progress.runAnimation(fadeIn),
+        loading.runAnimation(fadeOut()),
+        image.runAnimation(fadeIn()),
+        question.runAnimation(fadeIn()),
+        buttonArea.runAnimation(fadeIn()),
+        scoreArea.runAnimation(fadeIn()),
+        progress.runAnimation(fadeIn()),
     ]);
 
     for (const button of buttons) {
-        await button.runAnimation(fadeIn);
+        await button.runAnimation(fadeIn());
     }
 
     setState({ ...state, gameState: GameState.INPUT });

@@ -19,7 +19,7 @@ export async function onGameOver() {
 //         // elements.hideQuestion();
 //         // elements.hideAppVersion();
 //         //
-//         // elements.animate.loading.runAnimation(fadeIn);
+//         // elements.animate.loading.runAnimation(fadeIn());
 //         window.location.reload();
 //     };
 //     state.gameState = GameState.GAMEOVER;

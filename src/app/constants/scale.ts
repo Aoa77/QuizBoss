@@ -7,14 +7,16 @@ const SCALE = {
     DOWN: 1.0,
 };
 
-export const scaleUp: AnimeParams = {
-    duration: SCALE.DURATION,
-    scale: SCALE.UP,
-    // endDelay: 100
-};
+export function scaleUp(scale: number = SCALE.UP): AnimeParams {
+    return {
+        duration: SCALE.DURATION,
+        scale,
+    };
+}
 
-export const scaleDown: AnimeParams = {
-    duration: SCALE.DURATION,
-    scale: SCALE.DOWN,
-    // endDelay: 100
-};
+export function scaleDown(scale: number = SCALE.DOWN): AnimeParams {
+    return {
+        duration: SCALE.DURATION,
+        scale,
+    };
+}

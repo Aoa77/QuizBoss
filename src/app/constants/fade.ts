@@ -8,14 +8,18 @@ const FADE = {
     OUT: 0,
 };
 
-export const fadeIn: AnimeParams = {
-    duration: FADE.DURATION,
-    easing: FADE.EASING,
-    opacity: FADE.IN,
-};
+export function fadeIn(): AnimeParams {
+    return {
+        duration: FADE.DURATION,
+        easing: FADE.EASING,
+        opacity: FADE.IN,
+    };
+}
 
-export const fadeOut: AnimeParams = {
-    duration: FADE.DURATION,
-    easing: FADE.EASING,
-    opacity: FADE.OUT,
-};
+export function fadeOut(): AnimeParams {
+    return {
+        duration: FADE.DURATION,
+        easing: FADE.EASING,
+        opacity: FADE.OUT,
+    };
+}

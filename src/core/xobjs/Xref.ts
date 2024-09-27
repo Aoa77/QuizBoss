@@ -1,5 +1,6 @@
 import { AnimeParams } from "animejs";
 import { runAnimation } from "../functions/runAnimation";
+import { AnimeAdjustments } from "./AnimeAdjustments";
 
 export abstract class Xref {
     public readonly type: string;
@@ -13,10 +14,9 @@ export abstract class Xref {
 
     public async runAnimation(
         params: AnimeParams,
-        localSpeed: number = 1,
-        logger: ((x: unknown) => void) | null = null,
+        adjustments: AnimeAdjustments | null = null,
     ): Promise<void> {
         params.targets = this.idSelector;
-        await runAnimation(params, localSpeed, logger);
+        await runAnimation(params, adjustments);
     }
 }

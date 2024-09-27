@@ -22,3 +22,9 @@ export class AnimationFactory {
         this._instance = new AnimationFactory(speedMultiplier);
     }
 }
+
+
+
+
+
+

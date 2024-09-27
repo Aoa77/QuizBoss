@@ -29,7 +29,7 @@ export async function toggleSettingsPanel() {
     const grip = sliderGrip.element;
     const notch = sliderNotch.element;
 
-    sliderNotch.runAnimation(fadeOut);
+    sliderNotch.runAnimation(fadeOut());
     grip.classList.toggle(activeClass);
     anime({
         targets: settingsPanel.idSelector,
@@ -38,7 +38,7 @@ export async function toggleSettingsPanel() {
         complete: async () => {
             isActive = !isActive;
             notch.classList.toggle(activeClass);
-            sliderNotch.runAnimation(fadeIn);
+            sliderNotch.runAnimation(fadeIn());
             canClick = true;
         },
     });

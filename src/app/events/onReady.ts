@@ -10,7 +10,7 @@ import { DELAY } from "../constants/times";
 export async function onReady() {
     const [title] = getElementHeadings(ELEMENT.title);
     await wait(DELAY.PRE_TITLE);
-    await title.runAnimation(fadeIn);
+    await title.runAnimation(fadeIn());
     await wait(DELAY.POST_TITLE);
 
     // use this to automate testing the settings panel toggle

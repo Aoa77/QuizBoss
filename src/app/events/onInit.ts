@@ -10,7 +10,7 @@ export async function onInit() {
     const [state, setState] = getAppState();
     const [loading] = getElementDivs(ELEMENT.loading);
 
-    await loading.runAnimation(fadeIn);
+    await loading.runAnimation(fadeIn());
     await initQuizModule(state);
     setState({ ...state, gameState: GameState.READY });
 }

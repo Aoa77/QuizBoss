@@ -9,7 +9,7 @@ export async function handleWrongGuess(): Promise<void> {
     const wrongButton = getElementButtons().find(
         (x) => x.className === ButtonState.WRONG,
     )!;
-    await wrongButton.runAnimation(scaleUp);
+    await wrongButton.runAnimation(scaleUp());
     await wait(PAUSE.BRIEF);
-    await wrongButton.runAnimation(scaleDown);
+    await wrongButton.runAnimation(scaleDown());
 }

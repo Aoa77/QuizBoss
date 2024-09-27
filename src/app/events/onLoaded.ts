@@ -18,8 +18,8 @@ export async function onLoaded() {
     const currentItem = quizItems[state.currentItemIndex];
 
 
-    await loading.runAnimation(fadeOut);
-    await image.runAnimation(fadeIn);
+    await loading.runAnimation(fadeOut());
+    await image.runAnimation(fadeIn());
 
     while (!currentItem || !currentItem.isLoaded) {
         await wait(DURATION.LOADING_POLL);
