@@ -16,7 +16,7 @@ h1 {
     font-family: "Garamond", serif;
     font-size: 18rem;
     font-weight: normal;
-    margin-top: var(--hu_4);
+    margin-top: var(--hu_9);
     margin-bottom: var(--hu_7);
 }
 h2 {
@@ -74,9 +74,9 @@ section.buttons {
 button {
     all: unset;
     appearance: none;
-    font-family: "Garamond", serif;
-    font-size: 8.62rem;
-    font-weight: bold;
+    font-family: "Tahoma", sans-serif;
+    font-size: 8.23rem;
+    font-weight: normal;
     width: 133rem;
     height: var(--hu_14);
     margin: 0 auto;
@@ -99,17 +99,13 @@ button.normal {
     background-color: var(--button-normal-background);
     color: var(--button-normal-text);
 }
-button.wrong {
-    background-color: var(--button-wrong-background);
-    color: var(--button-wrong-text);
-}
-button.blink {
-    background-color: var(--button-blink-background);
-    color: var(--button-blink-text);
-}
 button.reveal {
     background-color: var(--button-reveal-background);
     color: var(--button-reveal-text);
+}
+button.wrong {
+    background-color: var(--button-wrong-background);
+    color: var(--button-wrong-text);
 }
 
 /***************************/

@@ -1,6 +1,7 @@
 import anime from "animejs";
-import { ELEMENT } from "../components/_ELEMENTS";
+import { ELEMENT } from "../constants/elements";
 import { getElementDivs } from "../../core/functions/getElementDivs";
+import { fadeOut, fadeIn } from "../constants/fade";
 
 const activeClass: string = "active";
 let canClick: boolean = true;
@@ -28,7 +29,7 @@ export async function toggleSettingsPanel() {
     const grip = sliderGrip.element;
     const notch = sliderNotch.element;
 
-    sliderNotch.fadeOut();
+    sliderNotch.runAnimation(fadeOut);
     grip.classList.toggle(activeClass);
     anime({
         targets: settingsPanel.idSelector,
@@ -37,7 +38,7 @@ export async function toggleSettingsPanel() {
         complete: async () => {
             isActive = !isActive;
             notch.classList.toggle(activeClass);
-            sliderNotch.fadeIn();
+            sliderNotch.runAnimation(fadeIn);
             canClick = true;
         },
     });

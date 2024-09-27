@@ -4,7 +4,7 @@ import { handleWrongGuess }      from "../functions/handleWrongGuess";
 import { lockButtons }           from "../functions/lockButtons";
 import { resetWrongGuesses }     from "../functions/resetWrongGuesses";
 import { unlockButtons }         from "../functions/unlockButtons";
-import { wrongGuessesExauhsted } from "../functions/wrongGuessesExauhsted";
+import { wrongGuessesExhausted } from "../functions/wrongGuessesExhausted";
 import { GameState }             from "../models/GameState";
 
 const wrongGuesses: number[] = [];
@@ -21,7 +21,7 @@ export async function onResult() {
     const isCorrectGuess = correctAnswer === state.guessValue;
 
     await lockButtons(currentItem, isCorrectGuess, wrongGuesses);
-    if (isCorrectGuess || wrongGuessesExauhsted(wrongGuesses)) {
+    if (isCorrectGuess || wrongGuessesExhausted(wrongGuesses)) {
         ///
         await handleCorrectGuess(wrongGuesses);
 

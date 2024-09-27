@@ -6,7 +6,9 @@ import { QuizItem } from "../models/QuizItem";
 import { handleWrongGuess } from "./handleWrongGuess";
 import { revealCorrectAnswer } from "./revealCorrectAnswer";
 import { unlockButtons } from "./unlockButtons";
-import { wrongGuessesExauhsted } from "./wrongGuessesExauhsted";
+import { wrongGuessesExhausted } from "./wrongGuessesExhausted";
+import { wait } from "../../core/functions/wait";
+import { DELAY } from "../constants/times";
 
 export async function lockButtons(
     currentItem: QuizItem,
@@ -40,9 +42,10 @@ export async function lockButtons(
         wrongGuesses.push(guess);
         button.className = ButtonState.WRONG;
 
-        if (wrongGuessesExauhsted(wrongGuesses)) {
+        if (wrongGuessesExhausted(wrongGuesses)) {
             await handleWrongGuess();
             await unlockButtons(wrongGuesses);
+            await wait(DELAY.PRE_REVEAL);
             revealCorrectAnswer(currentItem, wrongGuesses);
             break;
         }

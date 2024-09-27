@@ -1,5 +1,5 @@
 import { AppState } from "../models/AppState";
-import { ELEMENT } from "./_ELEMENTS";
+import { ELEMENT } from "../constants/elements";
 import { useElementHeadings } from "../../core/hooks/useElementHeadings";
 import { DemoMode } from "../models/DemoMode";
 

@@ -1,4 +1,4 @@
-import { getAnimationBuilder } from "../functions/getAnimationBuilder";
+import { AnimeParams } from "animejs";
 import { runAnimation } from "../functions/runAnimation";
 
 export abstract class Xref {
@@ -11,28 +11,8 @@ export abstract class Xref {
         this.idSelector = `#${id}`;
     }
 
-    public async animate(name: string, localSpeed: number = 1): Promise<void> {
-        const builder = getAnimationBuilder(name);
-        if (!name) {
-            throw new Error(`Animation builder not found: ${name}`);
-        }
-        const params = builder.build(this);
+    public async runAnimation(params: AnimeParams, localSpeed: number = 1): Promise<void> {
+        params.targets = this.idSelector;
         await runAnimation(params, localSpeed);
-    }
-
-    public async fadeOut(localSpeed: number = 1): Promise<void> {
-        await this.animate("fadeOut", localSpeed);
-    }
-
-    public async fadeIn(localSpeed: number = 1): Promise<void> {
-        await this.animate("fadeIn", localSpeed);
-    }
-
-    public async scaleUp(localSpeed: number = 1): Promise<void> {
-        await this.animate("scaleUp", localSpeed);
-    }
-
-    public async scaleDown(localSpeed: number = 1): Promise<void> {
-        await this.animate("scaleDown", localSpeed);
     }
 }

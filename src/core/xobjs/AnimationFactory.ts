@@ -1,28 +1,9 @@
-import { AnimationBuilder } from "./AnimeBuilder";
-import { WaitTime } from "./WaitTime";
-
-class AnimationBuilders extends Map<string, AnimationBuilder> {
-    constructor() {
-        super();
-    }
-}
-
-class WaitTimes extends Map<string, WaitTime> {
-    constructor() {
-        super();
-    }
-}
-
 export class AnimationFactory {
     
-    public readonly speedMultiplier: number = 0
-    public readonly builders: AnimationBuilders;
-    public readonly waitTimes: WaitTimes;
+    public readonly speedMultiplier: number = 0;
 
     constructor(speedMultiplier: number) {
         this.speedMultiplier = speedMultiplier;
-        this.builders = new AnimationBuilders();
-        this.waitTimes = new WaitTimes();
     }
 
     private static _instance: AnimationFactory | null = null;

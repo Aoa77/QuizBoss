@@ -1,5 +1,5 @@
 import { AppState } from "../models/AppState";
-import { ELEMENT } from "./_ELEMENTS";
+import { ELEMENT } from "../constants/elements";
 import { GuessButton } from "./GuessButton";
 import { useElementDivs } from "../../core/hooks/useElementDivs";
 

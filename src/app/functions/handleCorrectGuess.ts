@@ -1,13 +1,14 @@
 import { wait } from "../../core/functions/wait";
 import { getElementDivs } from "../../core/functions/getElementDivs";
 import { getElementHeadings } from "../../core/functions/getElementHeadings";
-import { DURATION, TIME } from "../elements/waitTimes";
-import { ELEMENT } from "../components/_ELEMENTS";
+import { ELEMENT } from "../constants/elements";
 import { calcAward } from "./calcAward";
 import { identifyButtons } from "./identifyButtons";
 import { Xelement } from "../../core/xobjs/Xelement";
 import { runAnimation } from "../../core/functions/runAnimation";
-import { ButtonState } from "../models/ButtonState";
+import { PAUSE } from "../constants/times";
+import { fadeOut, fadeIn } from "../constants/fade";
+import { scaleUp, scaleDown } from "../constants/scale";
 
 export async function handleCorrectGuess(
     wrongGuesses: number[],
@@ -24,7 +25,7 @@ export async function handleCorrectGuess(
         animateTransition(wrong, question),
     ]);
 
-    await wait(TIME.PAUSE);
+    await wait(PAUSE.NORMAL);
 }
 
 // // revealButtonScore(award, correctButton);
@@ -37,43 +38,33 @@ async function animateCorrect(
     image: Xelement<HTMLDivElement>,
     loading: Xelement<HTMLDivElement>,
 ): Promise<void> {
-    let blinker: number | null = null;
+
+    console.debug({ award });
     const yTop = top.element.getBoundingClientRect().top;
     const yDistance = -1 * (correct.element.getBoundingClientRect().top - yTop);
 
-
-    if (award === 0) {
-        correct.addClass(ButtonState.BLINK);
-    }
-
-    await correct.scaleUp();
-    if (award === 0) {
-        blinker = setInterval(() => {
-            correct.toggleClass(ButtonState.REVEAL);
-        }, DURATION.BLINK_RATE);
-    }
-    await wait(TIME.PAUSE, 5);
-    await correct.scaleDown();
+    await correct.runAnimation(scaleUp);
+    await wait(PAUSE.NORMAL, 5);
+    await correct.runAnimation(scaleDown);
 
     await runAnimation({
         targets: correct.idSelector,
         translateY: yDistance,
     });
 
-    await Promise.all([correct.fadeOut(), image.fadeOut(), loading.fadeIn()]);
+    await Promise.all([
+        correct.runAnimation(fadeOut),
+        image.runAnimation(fadeOut),
+        loading.runAnimation(fadeIn),
+    ]);
 
-    if (blinker) {
-        clearInterval(blinker);
-        correct.removeClass(ButtonState.BLINK);
-        correct.removeClass(ButtonState.REVEAL);
-    }
     await runAnimation({
         targets: correct.idSelector,
         duration: 1,
         easing: "linear",
         translateY: "0",
     });
-    await correct.scaleDown();
+    await correct.runAnimation(scaleDown);
 }
 
 async function animateTransition(
@@ -81,8 +72,8 @@ async function animateTransition(
     question: Xelement<HTMLHeadingElement>,
 ): Promise<void> {
     const localSpeed = 1.5;
-    await question.fadeOut(localSpeed);
+    await question.runAnimation(fadeOut, localSpeed);
     for (const button of wrong) {
-        await button.fadeOut(localSpeed);
+        await button.runAnimation(fadeOut, localSpeed);
     }
 }

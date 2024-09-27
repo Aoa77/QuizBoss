@@ -1,12 +1,12 @@
 import { getAppState } from "../functions/getAppState";
 import { getElementButtons } from "../../core/functions/getElementButtons";
-import { wait }              from "../../core/functions/wait";
-import { randomInt }         from "../../core/functions/randomInt";
-import { ButtonState }       from "../models/ButtonState";
-import { DemoMode }          from "../models/DemoMode";
-import { GameState }         from "../models/GameState";
-import { TIME } from "../elements/waitTimes";
+import { wait } from "../../core/functions/wait";
+import { randomInt } from "../../core/functions/randomInt";
+import { ButtonState } from "../models/ButtonState";
+import { DemoMode } from "../models/DemoMode";
+import { GameState } from "../models/GameState";
 import { Xelement } from "../../core/xobjs/Xelement";
+import { DELAY } from "../constants/times";
 
 export async function onInput() {
     const [state, setState] = getAppState();
@@ -19,7 +19,7 @@ export async function onInput() {
     }
 
     console.info("waiting for DEMO input...");
-    await wait(TIME.DEMO_INPUT_DELAY);
+    await wait(DELAY.DEMO_INPUT);
 
     const spotButton = doDemoInput(state.answerSpot, demoMode);
     setState({
@@ -29,7 +29,10 @@ export async function onInput() {
     });
 }
 
-function doDemoInput(answerSpot: number, demoMode: DemoMode) : Xelement<HTMLButtonElement> {
+function doDemoInput(
+    answerSpot: number,
+    demoMode: DemoMode,
+): Xelement<HTMLButtonElement> {
     const buttons = getElementButtons();
 
     let spotButton = buttons[answerSpot];
@@ -37,8 +40,7 @@ function doDemoInput(answerSpot: number, demoMode: DemoMode) : Xelement<HTMLButt
         const activeButtons = buttons.filter(
             (button) => button.className === ButtonState.NORMAL,
         );
-        spotButton = 
-            activeButtons[randomInt(0, activeButtons.length)];
+        spotButton = activeButtons[randomInt(0, activeButtons.length)];
     } else if (demoMode === DemoMode.WRONG) {
         for (let i = 0; i < buttons.length; i++) {
             if (i === answerSpot) {

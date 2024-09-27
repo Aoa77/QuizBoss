@@ -1,5 +1,5 @@
 import { AppState } from "../models/AppState";
-import { ELEMENT } from "./_ELEMENTS";
+import { ELEMENT } from "../constants/elements";
 import { useElementDivs } from "../../core/hooks/useElementDivs";
 
 export function ProgressDisplay(state: AppState) {

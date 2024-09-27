@@ -1,5 +1,6 @@
 import { getElementButtons } from "../../core/functions/getElementButtons";
 import { Xelement } from "../../core/xobjs/Xelement";
+import { ButtonState } from "../models/ButtonState";
 import { QuizItem } from "../models/QuizItem";
 
 export  function revealCorrectAnswer(
@@ -13,6 +14,7 @@ export  function revealCorrectAnswer(
             continue;
         }
         correctButton = buttons[i];
+        correctButton.className = ButtonState.REVEAL;
         currentItem.answeredCorrectly = true;
         break;
     }

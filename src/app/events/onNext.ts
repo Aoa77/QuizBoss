@@ -1,11 +1,12 @@
 import { getAppState } from "../functions/getAppState";
-import { ELEMENT } from "../components/_ELEMENTS";
+import { ELEMENT } from "../constants/elements";
 import { bindGuessButtons } from "../functions/bindGuessButtons";
 import { GameState } from "../models/GameState";
 import { getElementButtons } from "../../core/functions/getElementButtons";
 import { randomInt } from "../../core/functions/randomInt";
 import { getElementDivs } from "../../core/functions/getElementDivs";
 import { getElementHeadings } from "../../core/functions/getElementHeadings";
+import { fadeOut, fadeIn } from "../constants/fade";
 
 ///
 export async function onNext() {
@@ -14,8 +15,7 @@ export async function onNext() {
         return;
     }
 
-    const [appVersion, question] = getElementHeadings(
-        ELEMENT.appVersion,
+    const [question] = getElementHeadings(
         ELEMENT.question,
     );
     const [buttonArea, image, loading, progress, scoreArea] = getElementDivs(
@@ -45,16 +45,16 @@ export async function onNext() {
     );
 
     await Promise.all([
-        loading.fadeOut(),
-        image.fadeIn(),
-        question.fadeIn(),
-        buttonArea.fadeIn(),
-        scoreArea.fadeIn(),
-        progress.fadeIn(),
+        loading.runAnimation(fadeOut),
+        image.runAnimation(fadeIn),
+        question.runAnimation(fadeIn),
+        buttonArea.runAnimation(fadeIn),
+        scoreArea.runAnimation(fadeIn),
+        progress.runAnimation(fadeIn),
     ]);
 
     for (const button of buttons) {
-        await button.fadeIn();
+        await button.runAnimation(fadeIn);
     }
 
     setState({ ...state, gameState: GameState.INPUT });

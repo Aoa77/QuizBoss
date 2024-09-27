@@ -1,18 +1,17 @@
-import { wait }            from "../../core/functions/wait";
+import { wait } from "../../core/functions/wait";
 import { getAppState } from "../functions/getAppState";
-import { TIME }   from "../elements/waitTimes";
-import { ELEMENT } from "../components/_ELEMENTS";
-import { GameState }       from "../models/GameState";
+import { ELEMENT } from "../constants/elements";
+import { GameState } from "../models/GameState";
 import { getElementHeadings } from "../../core/functions/getElementHeadings";
+import { fadeIn } from "../constants/fade";
+import { DELAY } from "../constants/times";
 
 ///
 export async function onReady() {
     const [title] = getElementHeadings(ELEMENT.title);
-    await wait(TIME.PRE_TITLE_DELAY);
-    await title.fadeIn();
-    await wait(TIME.POST_TITLE_DELAY);
-
-
+    await wait(DELAY.PRE_TITLE);
+    await title.runAnimation(fadeIn);
+    await wait(DELAY.POST_TITLE);
 
     // use this to automate testing the settings panel toggle
     // while (true) {

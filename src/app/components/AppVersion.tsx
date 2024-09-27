@@ -1,5 +1,5 @@
 import { useElementHeadings } from "../../core/hooks/useElementHeadings";
-import { ELEMENT } from "./_ELEMENTS";
+import { ELEMENT } from "../constants/elements";
 
 ///////////////////////////////////////////
 const VERSION = "20240918.151216.384";
