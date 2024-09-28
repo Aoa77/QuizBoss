@@ -3,19 +3,17 @@ export const DELAY = {
     PRE_REVEAL: 800,
     PRE_TITLE: 500,
     POST_TITLE: 500,
-}
-
-export const DURATION = {
-    FADE: 300,
-    LOADING_POLL: 50,
-    LOADING_THROTTLE: 25,
-    SCALE: 400,
+    SCORE_INCREMENT: 200,
 };
 
+export const LOADING = {
+    POLL: 50,
+    THROTTLE: 25,
+};
 
 export const PAUSE = {
     BRIEF: 200,
     NORMAL: 1600,
     LONG: 4200,
-    VERY_LONG: 4200000,   
-}
+    VERY_LONG: 4200000,
+};

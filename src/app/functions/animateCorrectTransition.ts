@@ -5,12 +5,8 @@ export async function animateCorrectTransition(
     wrong: Xelement<HTMLButtonElement>[],
     question: Xelement<HTMLHeadingElement>,
 ): Promise<void> {
-    const localSpeed = 1;
-    await question.runAnimation(fadeOut(), { localSpeed });
+    await question.runAnimation(fadeOut());
     for (const button of wrong) {
-        await button.runAnimation(fadeOut(), {
-            localSpeed,
-            logger: console.info,
-        });
+        await button.runAnimation(fadeOut());
     }
 }

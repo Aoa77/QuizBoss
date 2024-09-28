@@ -1,9 +1,9 @@
-import { runAnimation } from "../../core/functions/runAnimation";
-import { wait } from "../../core/functions/wait";
+import { wait } from "../../core/xobjs/Xanimation";
 import { Xelement } from "../../core/xobjs/Xelement";
 import { fadeOut, fadeIn } from "../constants/fade";
-import { scaleUp, scaleDown } from "../constants/scale";
+import { scaleBase, scaleButton } from "../constants/scale";
 import { PAUSE } from "../constants/times";
+import { translateReset } from "../constants/translateReset";
 
 // // revealButtonScore(award, correctButton);
 // await applyScoreAward(award);
@@ -11,19 +11,16 @@ export async function animateCorrect(
     correct: Xelement<HTMLButtonElement>,
     top: Xelement<HTMLButtonElement>,
     image: Xelement<HTMLDivElement>,
-    loading: Xelement<HTMLDivElement>): Promise<void> {
-
+    loading: Xelement<HTMLDivElement>,
+): Promise<void> {
     const yTop = top.element.getBoundingClientRect().top;
-    const yDistance = -1 * (correct.element.getBoundingClientRect().top - yTop);
+    const translateY =
+        -1 * (correct.element.getBoundingClientRect().top - yTop);
 
-    await correct.runAnimation(scaleUp());
-    await wait(PAUSE.NORMAL, 5);
-    await correct.runAnimation(scaleDown());
-
-    await runAnimation({
-        targets: correct.idSelector,
-        translateY: yDistance,
-    });
+    await correct.runAnimation(scaleButton());
+    await wait(PAUSE.NORMAL, 500);
+    await correct.runAnimation(scaleBase());
+    await correct.runAnimation({ translateY });
 
     await Promise.all([
         correct.runAnimation(fadeOut()),
@@ -31,11 +28,5 @@ export async function animateCorrect(
         loading.runAnimation(fadeIn()),
     ]);
 
-    await runAnimation({
-        targets: correct.idSelector,
-        duration: 1,
-        easing: "linear",
-        translateY: "0",
-    });
-    await correct.runAnimation(scaleDown());
+    await correct.runAnimation(translateReset());
 }

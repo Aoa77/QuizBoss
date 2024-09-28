@@ -1,24 +1,25 @@
 import { AnimeParams } from "animejs";
-import { DURATION } from "./times";
+import { applySpeed } from "../../core/xobjs/Xanimation";
 
 const FADE = {
     EASING: "linear",
-    DURATION: DURATION.FADE,
+    DURATION: 300,
     IN: 1,
     OUT: 0,
+    SPEED: 100,
 };
 
-export function fadeIn(): AnimeParams {
+export function fadeIn(speed: number = FADE.SPEED): AnimeParams {
     return {
-        duration: FADE.DURATION,
+        duration: applySpeed(FADE.DURATION, speed),
         easing: FADE.EASING,
         opacity: FADE.IN,
     };
 }
 
-export function fadeOut(): AnimeParams {
+export function fadeOut(speed: number = FADE.SPEED): AnimeParams {
     return {
-        duration: FADE.DURATION,
+        duration: applySpeed(FADE.DURATION, speed),
         easing: FADE.EASING,
         opacity: FADE.OUT,
     };

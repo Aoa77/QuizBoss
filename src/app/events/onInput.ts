@@ -1,12 +1,12 @@
 import { getAppState } from "../functions/getAppState";
 import { getElementButtons } from "../../core/functions/getElementButtons";
-import { wait } from "../../core/functions/wait";
 import { randomInt } from "../../core/functions/randomInt";
 import { ButtonState } from "../models/ButtonState";
 import { DemoMode } from "../models/DemoMode";
 import { GameState } from "../models/GameState";
 import { Xelement } from "../../core/xobjs/Xelement";
 import { DELAY } from "../constants/times";
+import { wait } from "../../core/xobjs/Xanimation";
 
 export async function onInput() {
     const [state, setState] = getAppState();

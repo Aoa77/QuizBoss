@@ -6,6 +6,7 @@ class ElementNameMap<T extends HTMLElement> extends Map<string, Xelement<T>> {
     }
 }
 
+
 export class ElementFactory {
     public readonly buttonMap: ElementNameMap<HTMLButtonElement>;
     public readonly divMap: ElementNameMap<HTMLDivElement>;

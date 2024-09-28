@@ -1,10 +1,10 @@
-import { wait } from "../../core/functions/wait";
 import { getAppState } from "../functions/getAppState";
 import { ELEMENT } from "../constants/elements";
 import { GameState } from "../models/GameState";
 import { getElementDivs } from "../../core/functions/getElementDivs";
 import { fadeIn, fadeOut } from "../constants/fade";
-import { DURATION } from "../constants/times";
+import { wait } from "../../core/xobjs/Xanimation";
+import { LOADING } from "../constants/times";
 
 export async function onLoaded() {
     const [state, setState] = getAppState();
@@ -22,7 +22,7 @@ export async function onLoaded() {
     await image.runAnimation(fadeIn());
 
     while (!currentItem || !currentItem.isLoaded) {
-        await wait(DURATION.LOADING_POLL);
+        await wait(LOADING.POLL);
     }
     setState({ ...state, gameState: GameState.NEXT });
 }

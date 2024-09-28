@@ -1,9 +1,9 @@
 import { getElementDivs } from "../../core/functions/getElementDivs";
-import { wait } from "../../core/functions/wait";
+import { wait } from "../../core/xobjs/Xanimation";
 import { Xelement } from "../../core/xobjs/Xelement";
 import { ELEMENT } from "../constants/elements";
-import { scaleDown, scaleUp } from "../constants/scale";
-import { DELAY, DURATION } from "../constants/times";
+import { scaleBase, scaleScore } from "../constants/scale";
+import { DELAY } from "../constants/times";
 import { AppState } from "../models/AppState";
 import { getAppState } from "./getAppState";
 
@@ -15,10 +15,10 @@ export async function applyScoreAward(award: number): Promise<void> {
     const [state] = getAppState();
     const score = getElementDivs(ELEMENT.scoreValue)[0];
 
-    await wait(DELAY.PRE_REVEAL, 0.45);
-    await score.runAnimation(scaleUp(1.75), { localSpeed: 1.25 });
+    await wait(DELAY.PRE_REVEAL, 45);
+    await score.runAnimation(scaleScore());
     await incrementScore(award, state, score);
-    await score.runAnimation(scaleDown());
+    await score.runAnimation(scaleBase());
 
     if (state.score > state.best) {
         state.best = state.score;
@@ -33,6 +33,6 @@ async function incrementScore(
     for (let i = 0; i < award; i++) {
         ++state.score;
         score.innerHTML = state.score.toString();
-        await wait(DURATION.FADE, 1.5);
+        await wait(DELAY.SCORE_INCREMENT);
     }
 }

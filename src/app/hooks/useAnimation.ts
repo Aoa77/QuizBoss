@@ -1,7 +1,5 @@
-import { useAnimationFactory } from "../../core/hooks/useAnimationFactory";
+import { useAnimationSpeed } from "../../core/hooks/useAnimationSpeed";
 
-export function useAnimation(speedMultiplier: number) {
-    useAnimationFactory({
-        speedMultiplier,
-    });
+export function useAnimation(speed: number) {
+    useAnimationSpeed(speed);
 }

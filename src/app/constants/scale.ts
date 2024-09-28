@@ -1,22 +1,33 @@
 import { AnimeParams } from "animejs";
-import { DURATION } from "./times";
+import { applySpeed } from "../../core/xobjs/Xanimation";
 
 const SCALE = {
-    DURATION: DURATION.SCALE,
-    UP: 1.2,
-    DOWN: 1.0,
+    BASE: 1.0,
+    BUTTON: 1.2,
+    DURATION: 400,
+    SCORE: 1.75,
+    SPEED: 100,
 };
 
-export function scaleUp(scale: number = SCALE.UP): AnimeParams {
+export function scaleBase(speed: number = SCALE.SPEED): AnimeParams {
     return {
-        duration: SCALE.DURATION,
-        scale,
+        duration: applySpeed(SCALE.DURATION, speed),
+        scale: SCALE.BASE,
     };
 }
 
-export function scaleDown(scale: number = SCALE.DOWN): AnimeParams {
+export function scaleButton(speed: number = SCALE.SPEED): AnimeParams {
     return {
-        duration: SCALE.DURATION,
-        scale,
+        duration: applySpeed(SCALE.DURATION, speed),
+        scale: SCALE.BUTTON,
     };
 }
+
+export function scaleScore(speed: number = SCALE.SPEED): AnimeParams {
+    return {
+        duration: applySpeed(SCALE.DURATION, speed),
+        scale: SCALE.SCORE,
+    };
+}
+
+

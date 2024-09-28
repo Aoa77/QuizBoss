@@ -1,4 +1,3 @@
-import { wait } from "../../core/functions/wait";
 import { getElementDivs } from "../../core/functions/getElementDivs";
 import { getElementHeadings } from "../../core/functions/getElementHeadings";
 import { ELEMENT } from "../constants/elements";
@@ -8,6 +7,7 @@ import { PAUSE } from "../constants/times";
 import { animateCorrect } from "./animateCorrect";
 import { animateCorrectTransition } from "./animateCorrectTransition";
 import { applyScoreAward } from "./applyScoreAward";
+import { wait } from "../../core/xobjs/Xanimation";
 
 export async function handleCorrectGuess(
     wrongGuesses: number[],
