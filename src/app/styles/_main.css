@@ -85,16 +85,12 @@ section.buttons {
 button {
     all: unset;
     appearance: none;
-    border-style: none;
-    border-width: 1rem;
-    border-color: var(--background-color);
     font-family: "Tahoma", sans-serif;
     font-size: 7.89rem;
     font-weight: normal;
     width: 127rem;
     height: var(--hu_14);
-    margin: 0 auto;
-    margin-top: var(--hu_6);
+    margin: var(--hu_3) auto;
     opacity: 0;
     position: relative;
     z-index: 666;
