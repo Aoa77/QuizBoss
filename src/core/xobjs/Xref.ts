@@ -13,6 +13,8 @@ export abstract class Xref {
     }
 
     public async runAnimation(xp: AnimeParams): Promise<void> {
+        document.getElementById("buttonArea")!.style.backgroundColor = "#000001";
+        document.getElementById("buttonArea")!.style.backgroundColor = "#000000";
         await this._awaiter;
         xp.targets = this.idSelector;
         await runAnimation(xp);
