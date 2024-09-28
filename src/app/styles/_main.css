@@ -26,6 +26,14 @@ h2 {
     font-weight: normal;
     margin-top: var(--hu_10);
 }
+h2#bonusValue {
+    color: var(--bonus-color);
+    font-weight: bold;
+    margin-top: calc(-1 * var(--hu_10));
+    font-size: 18rem;
+    position: relative;
+    top: var(--hu_2);
+}
 
 /************************/
 /* app version display  */
@@ -132,10 +140,6 @@ section.score div.row {
 section.score div.row > div {
     padding-top: 2rem;
 }
-.bonus {
-    color: var(--bonus-color);
-    font-weight: bold;
-}
 
 /****************************/
 /* progress                 */
@@ -194,3 +198,4 @@ section.settings-panel > div.slider-grip > div.slider-notch {
 section.settings-panel > div.slider-grip > div.slider-notch.active {
     top: calc(-1 * var(--hu_10));
 }
+

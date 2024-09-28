@@ -2,6 +2,7 @@
 export enum ELEMENT {
     appVersion = "appVersion",
     bestValue = "bestValue",
+    bonusValue = "bonusValue",
     buttonArea = "buttonArea",
     button = "buttons",
     image = "image",

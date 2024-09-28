@@ -9,24 +9,48 @@ const SCALE = {
     SPEED: 100,
 };
 
+export function scaleZero(
+    speed: number = SCALE.SPEED,
+    easing: string | null = null,
+): AnimeParams {
+    const xp: AnimeParams = {
+        duration: applyTimePercentage(SCALE.DURATION, speed),
+        scale: 0,
+    };
+    if (easing) {
+        xp.easing = easing;
+    }
+    return xp;
+}
+
 export function scaleBase(
     speed: number = SCALE.SPEED,
     scale: number = 100,
+    easing: string | null = null,
 ): AnimeParams {
-    return {
+    const xp: AnimeParams = {
         duration: applyTimePercentage(SCALE.DURATION, speed),
-        scale: applyTimePercentage(SCALE.BASE, scale),
+        scale: applyPercentage(SCALE.BASE, scale),
     };
+    if (easing) {
+        xp.easing = easing;
+    }
+    return xp;
 }
 
 export function scaleButton(
     speed: number = SCALE.SPEED,
     scale: number = 100,
+    easing: string | null = null,
 ): AnimeParams {
-    return {
+    const xp: AnimeParams = {
         duration: applyTimePercentage(SCALE.DURATION, speed),
-        scale: applyTimePercentage(SCALE.BUTTON, scale),
+        scale: applyPercentage(SCALE.BUTTON, scale),
     };
+    if (easing) {
+        xp.easing = easing;
+    }
+    return xp;
 }
 
 export function scaleScore(

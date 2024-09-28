@@ -29,5 +29,6 @@ export async function animateCorrect(
         loading.runAnimation(fadeIn()),
     ]);
 
+    
     await correct.runAnimation(translateReset());
 }

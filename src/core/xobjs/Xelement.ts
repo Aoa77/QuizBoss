@@ -68,4 +68,16 @@ export class Xelement<T extends HTMLElement> extends Xref {
         }
         this.ref.current.classList.toggle(className);
     }
+    public get opacity(): number {
+        if (!this.ref.current) {
+            return 0;
+        }
+        return parseFloat(this.ref.current.style.opacity);
+    }
+    public set opacity(value: number) {
+        if (!this.ref.current) {
+            return;
+        }
+        this.ref.current.style.opacity = value.toString();
+    }
 }

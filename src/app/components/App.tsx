@@ -11,6 +11,7 @@ import { ScoreDisplay } from "./ScoreDisplay";
 import { SettingsPanel } from "./SettingsPanel";
 import { TitleHeading } from "./TitleHeading";
 import { AppSettings } from "../models/AppSettings";
+import { BonusNotification } from "./BonusNotification";
 
 export function App(settings: AppSettings) {
     ///
@@ -26,6 +27,7 @@ export function App(settings: AppSettings) {
             <LoadingSpinner />
             <QuestionImage {...state} />
             <QuestionHeading {...state} />
+            <BonusNotification {...state} />
             <GuessButtonArea {...state} />
             <ScoreDisplay {...state} />
             <ProgressDisplay {...state} />
