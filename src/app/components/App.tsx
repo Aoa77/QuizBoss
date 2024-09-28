@@ -12,10 +12,12 @@ import { SettingsPanel } from "./SettingsPanel";
 import { TitleHeading } from "./TitleHeading";
 import { AppSettings } from "../models/AppSettings";
 import { BonusNotification } from "./BonusNotification";
+import { useMemo } from "react";
 
 export function App(settings: AppSettings) {
     ///
     const [state] = useAppState(settings);
+    const guessButtonArea = useMemo(() => <GuessButtonArea />, []);
     
     ///
     useAnimation(settings.speed);
@@ -28,7 +30,7 @@ export function App(settings: AppSettings) {
             <QuestionImage {...state} />
             <QuestionHeading {...state} />
             <BonusNotification {...state} />
-            <GuessButtonArea {...state} />
+            {guessButtonArea}
             <ScoreDisplay {...state} />
             <ProgressDisplay {...state} />
             <AppVersion />
