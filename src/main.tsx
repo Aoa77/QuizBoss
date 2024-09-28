@@ -1,11 +1,9 @@
 import { createRoot } from "react-dom/client";
-import App from "./app/App";
-import AppSettings from "./app/AppSettings";
-import ConfigParams from "./app/ConfigParams";
+import { App } from "./app/components/App";
+import { AppSettings } from "./app/models/AppSettings";
 
 const quizModuleName = "quizboss-world-flags";
-const config: ConfigParams = { quizModuleName };
-const settings = new AppSettings(config);
+const settings = new AppSettings({ quizModuleName });
 
 const {
     demoMode, ///////////
@@ -13,6 +11,7 @@ const {
     maxQuestions,
     speed,
 } = settings;
+
 
 createRoot(document.getElementById("root")!).render(
     <App

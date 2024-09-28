@@ -1,0 +1,207 @@
+/*********************************************/
+/* main element is used as the app container */
+/*********************************************/
+main {
+    background-color: var(--background-color);
+    width: var(--width);
+    height: var(--height);
+    margin-left: var(--main_center);
+}
+
+/**********************/
+/* heading text rules */
+/**********************/
+h1 {
+    color: var(--h1-color);
+    font-family: "Garamond", serif;
+    font-size: 18rem;
+    font-weight: normal;
+    margin-top: var(--hu_9);
+    margin-bottom: var(--hu_7);
+}
+h2 {
+    color: var(--h2-color);
+    font-family: "Tahoma", sans-serif;
+    font-size: 9rem;
+    font-weight: normal;
+    margin-top: var(--hu_10);
+}
+h2#bonusValue {
+    color: var(--bonus-color);
+    font-weight: bold;
+    margin-top: calc(-1 * var(--hu_10));
+    font-size: 12rem;
+    position: relative;
+    top: var(--hu_2);
+}
+h2#bonusValue.noBonus {
+    color: var(--no-bonus-color);
+}
+
+/************************/
+/* app version display  */
+/************************/
+h6 {
+    color: var(--h6-color);
+    font-family: "Courier New", monospace;
+    font-size: 5rem;
+    font-weight: normal;
+    margin-top: var(--hu_4);
+}
+
+/************************/
+/* "play again" prompt  */
+/************************/
+.prompt {
+    color: var(--prompt-color);
+    cursor: pointer;
+}
+
+/********************************************************************/
+/* The loading spinner and the question image occupy the same space */
+/********************************************************************/
+section.loading,
+section.image {
+    background-color: #00990000;
+    height: var(--hu_42);
+    margin: auto;
+}
+section.image {
+    margin-top: calc(-1 * var(--hu_42));
+}
+section.image > img {
+    box-shadow: 0 0 16rem 3rem var(--image-shadow);
+    margin: auto;
+    height: 100%;
+}
+
+/************************/
+/* "guess" button rules */
+/************************/
+section.buttons {
+    margin-top: var(--hu_5);
+    background-color: var(--background-color);
+}
+button {
+    all: unset;
+    appearance: none;
+    font-family: "Tahoma", sans-serif;
+    font-size: 7.89rem;
+    font-weight: normal;
+    width: 123rem;
+    height: var(--hu_14);
+    margin: 0 auto;
+    margin-top: var(--hu_6);
+    opacity: 0;
+}
+button.correct {
+    background-color: var(--button-correct-background);
+    color: var(--button-correct-text);
+}
+button.dimmed {
+    background-color: var(--button-dimmed-background);
+    color: var(--button-dimmed-text);
+}
+button.disabled {
+    background-color: var(--button-disabled-background);
+    color: var(--button-disabled-text);
+}
+button.normal {
+    background-color: var(--button-normal-background);
+    color: var(--button-normal-text);
+}
+button.reveal {
+    background-color: var(--button-reveal-background);
+    color: var(--button-reveal-text);
+}
+button.wrong {
+    background-color: var(--button-wrong-background);
+    color: var(--button-wrong-text);
+}
+
+/***************************/
+/* score                   */
+/***************************/
+section.score {
+    display: grid;
+    font-family: "Tahoma", sans-serif;
+    grid-template-columns: repeat(3, auto);
+    grid-template-columns: repeat(2, auto);
+    color: var(--score-color);
+    text-transform: uppercase;
+    font-size: 9rem;
+    width: 124rem;
+    margin: auto;
+    margin-top: var(--hu_8);
+    margin-bottom: var(--hu_2);
+}
+section.score div.row {
+    display: contents;
+    color: var(--score-row-color);
+    font-size: 11rem;
+}
+#scoreValue.bonus {
+    color: var(--bonus-color);
+}
+section.score div.row > div {
+    padding-top: 2rem;
+}
+
+/****************************/
+/* progress                 */
+/****************************/
+section.progress {
+    color: var(--progress-color);
+    font-family: "Courier New", monospace;
+    font-size: 5.5rem;
+    position: relative;
+    top: -12rem;
+}
+section.progress span {
+    margin: 0 0.5rem;
+}
+
+/*****************************/
+/* animation                 */
+/*****************************/
+.hidden {
+    opacity: 0;
+}
+
+/*****************************/
+/* settings slide-up         */
+/*****************************/
+section.settings-panel {
+    background-color: var(--settings-panel-background);
+    position: fixed;
+    width: var(--width);
+    height: calc(2 * var(--height));
+    top: var(--hu_194);
+}
+
+section.settings-panel > div.slider-grip {
+    background-color: var(--slider-grip-background);
+    width: var(--width);
+    height: var(--hu_8);
+    overflow: hidden;
+    cursor: pointer;
+}
+
+section.settings-panel > div.slider-grip.active {
+    background-color: var(--slider-grip-background-active);
+}
+
+section.settings-panel > div.slider-grip > div.slider-notch {
+    width: var(--hu_8);
+    height: var(--hu_8);
+    background-color: var(--slider-notch-background);
+    transform: rotate(45deg);
+    margin: 0 auto;
+    margin-top: var(--hu_4);
+    position: relative;
+}
+
+section.settings-panel > div.slider-grip > div.slider-notch.active {
+    top: calc(-1 * var(--hu_10));
+}
+

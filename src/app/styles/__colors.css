@@ -1,0 +1,45 @@
+/* 
+    colors
+*/
+:root {
+    --background-color:               #000000;
+    --lds-ellipsis-color:             #1c4c5b;
+
+    --h1-color:                       #ffffff;
+    --h2-color:                       #00ffff;
+    --h6-color:                       #ffffff33;
+    
+    --prompt-color:                   #ffff00;
+    --image-shadow:                   #a5a5c8cc;
+    
+    --score-color:                    #00ffff;
+    --score-row-color:                #ffff00;
+    --bonus-color:                    #00ff00;
+    --no-bonus-color:                 #FFA500CC;
+    --progress-color:                 #ffffffbb;
+
+    --settings-panel-background:      #000033;
+    --slider-grip-background:         #000000;
+    --slider-grip-background-active:  #000033;
+    --slider-notch-background:        #ffffff33;
+
+
+    --button-correct-background:      #007700;
+    --button-correct-text:            #ffffff;
+
+    --button-dimmed-background:       #44447755;
+    --button-dimmed-text:             #ffffff55;
+
+    --button-disabled-background:     #44447755;
+    --button-disabled-text:           #ffffff55;
+
+    --button-normal-background:       #444477;
+    --button-normal-text:             #ffffff;
+
+    --button-wrong-background:        #ff0000;
+    --button-wrong-text:              #ffffff;
+
+    --button-reveal-background:       #550055;
+    --button-reveal-text:             #ffff00;
+
+}
