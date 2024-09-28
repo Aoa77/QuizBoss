@@ -2,7 +2,7 @@ import { getElementDivs } from "../../core/functions/getElementDivs";
 import { wait } from "../../core/xobjs/Xanimation";
 import { Xelement } from "../../core/xobjs/Xelement";
 import { ELEMENT } from "../constants/elements";
-import { scaleBase, scaleScore } from "../constants/scale";
+import { scaleScore } from "../constants/scale";
 import { DELAY } from "../constants/times";
 import { AppState } from "../models/AppState";
 import { getAppState } from "./getAppState";
@@ -15,10 +15,7 @@ export async function applyScoreAward(award: number): Promise<void> {
     const [state] = getAppState();
     const score = getElementDivs(ELEMENT.scoreValue)[0];
 
-    await wait(DELAY.PRE_REVEAL, 45);
-    await score.runAnimation(scaleScore());
     await incrementScore(award, state, score);
-    await score.runAnimation(scaleBase());
 
     if (state.score > state.best) {
         state.best = state.score;
@@ -30,9 +27,12 @@ async function incrementScore(
     state: AppState,
     score: Xelement<HTMLDivElement>,
 ) {
+    let speed = 60; //i % 2 === 0 ? 50 : 100;
+    score.startAnimation(scaleScore());
     for (let i = 0; i < award; i++) {
+        await wait(DELAY.SCORE_INCREMENT, speed);
+        speed += 15;
         ++state.score;
         score.innerHTML = state.score.toString();
-        await wait(DELAY.SCORE_INCREMENT);
     }
 }

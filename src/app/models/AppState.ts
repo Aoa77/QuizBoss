@@ -5,6 +5,7 @@ import { QuizModule } from "./QuizModule";
 
 export interface AppState {
     answerSpot: number;
+    award: number;
     best: number;
     currentItemIndex: number;
     gameState: GameState;
@@ -25,6 +26,7 @@ export function getCurrentItem(state: AppState): QuizItem | null {
 export function createInitialState(settings: AppSettings): AppState {
     return {
         answerSpot: 0,
+        award: 0,
         best: 0,
         currentItemIndex: 0,
         gameState: GameState.INIT,

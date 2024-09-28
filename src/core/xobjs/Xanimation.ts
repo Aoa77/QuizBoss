@@ -1,5 +1,6 @@
 import anime from "animejs";
 import { AnimeParams } from "animejs";
+import { applyTimePercentage } from "../functions/applyPercentage";
 
 let _globalSpeedSet: boolean = false;
 let _globalSpeed: number = 100;
@@ -12,20 +13,16 @@ export function setGlobalSpeed(speed: number): void {
     _globalSpeedSet = true;
 }
 
-export function applySpeed(value: number, speed: number): number {
-    return value / (speed / 100);
-}
-
 export function wait(duration: number, speed: number = 100): Promise<void> {
-    duration = applySpeed(duration, speed);
-    duration = applySpeed(duration, _globalSpeed);
+    duration = applyTimePercentage(duration, speed);
+    duration = applyTimePercentage(duration, _globalSpeed);
     return new Promise((resolve) => setTimeout(resolve, duration));
 }
 
 export function runAnimation(xp: AnimeParams): Promise<void> {
     ////
     if (typeof xp.duration === "number") {
-        xp.duration = applySpeed(xp.duration, _globalSpeed);
+        xp.duration = applyTimePercentage(xp.duration, _globalSpeed);
     }
     ////
     return new Promise((resolve) => {

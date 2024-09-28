@@ -4,10 +4,10 @@ import { fadeOut, fadeIn } from "../constants/fade";
 import { scaleBase, scaleButton } from "../constants/scale";
 import { PAUSE } from "../constants/times";
 import { translateReset } from "../constants/translateReset";
+import { applyScoreAward } from "./applyScoreAward";
 
-// // revealButtonScore(award, correctButton);
-// await applyScoreAward(award);
 export async function animateCorrect(
+    award: number,
     correct: Xelement<HTMLButtonElement>,
     top: Xelement<HTMLButtonElement>,
     image: Xelement<HTMLDivElement>,
@@ -20,7 +20,8 @@ export async function animateCorrect(
     await correct.runAnimation(scaleButton());
     await wait(PAUSE.NORMAL, 500);
     await correct.runAnimation(scaleBase());
-    await correct.runAnimation({ translateY });
+    correct.startAnimation({ translateY });
+    await applyScoreAward(award);
 
     await Promise.all([
         correct.runAnimation(fadeOut()),

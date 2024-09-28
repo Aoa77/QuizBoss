@@ -1,5 +1,5 @@
 import { AnimeParams } from "animejs";
-import { applySpeed } from "../../core/xobjs/Xanimation";
+import { applyTimePercentage } from "../../core/functions/applyPercentage";
 
 const FADE = {
     EASING: "linear",
@@ -11,7 +11,7 @@ const FADE = {
 
 export function fadeIn(speed: number = FADE.SPEED): AnimeParams {
     return {
-        duration: applySpeed(FADE.DURATION, speed),
+        duration: applyTimePercentage(FADE.DURATION, speed),
         easing: FADE.EASING,
         opacity: FADE.IN,
     };
@@ -19,7 +19,7 @@ export function fadeIn(speed: number = FADE.SPEED): AnimeParams {
 
 export function fadeOut(speed: number = FADE.SPEED): AnimeParams {
     return {
-        duration: applySpeed(FADE.DURATION, speed),
+        duration: applyTimePercentage(FADE.DURATION, speed),
         easing: FADE.EASING,
         opacity: FADE.OUT,
     };

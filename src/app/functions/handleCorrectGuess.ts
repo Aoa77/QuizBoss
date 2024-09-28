@@ -3,27 +3,23 @@ import { getElementHeadings } from "../../core/functions/getElementHeadings";
 import { ELEMENT } from "../constants/elements";
 import { calcAward } from "./calcAward";
 import { identifyButtons } from "./identifyButtons";
-import { PAUSE } from "../constants/times";
 import { animateCorrect } from "./animateCorrect";
 import { animateCorrectTransition } from "./animateCorrectTransition";
-import { applyScoreAward } from "./applyScoreAward";
-import { wait } from "../../core/xobjs/Xanimation";
+import { getAppState } from "./getAppState";
 
 export async function handleCorrectGuess(
     wrongGuesses: number[],
 ): Promise<void> {
     //
+    const [state] = getAppState();
     const [question] = getElementHeadings(ELEMENT.question);
     const [image, loading] = getElementDivs(ELEMENT.image, ELEMENT.loading);
 
     const { correct, top, wrong } = identifyButtons();
 
-    const award: number = calcAward(wrongGuesses);
+    state.award = calcAward(wrongGuesses);
     await Promise.all([
-        animateCorrect(correct, top, image, loading),
+        animateCorrect(state.award, correct, top, image, loading),
         animateCorrectTransition(wrong, question),
-        applyScoreAward(award)
     ]);
-    
-    await wait(PAUSE.NORMAL);
 }
