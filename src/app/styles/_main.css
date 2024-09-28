@@ -85,6 +85,9 @@ section.buttons {
 button {
     all: unset;
     appearance: none;
+    border-style: solid;
+    border-width: 1rem;
+    border-color: var(--background-color);
     font-family: "Tahoma", sans-serif;
     font-size: 7.89rem;
     font-weight: normal;
