@@ -1,7 +1,7 @@
 import { wait } from "../../core/xobjs/xanimation/wait";
 import { Xelement } from "../../core/xobjs/Xelement";
 import { fadeOut, fadeIn } from "../constants/fade";
-import { scaleBase, scaleButton } from "../constants/scale";
+import { scaleButtonBegin, scaleButtonEnd } from "../constants/scale";
 import { PAUSE } from "../constants/times";
 import { translateReset } from "../constants/translateReset";
 import { applyScoreAward } from "./applyScoreAward";
@@ -17,9 +17,9 @@ export async function animateCorrect(
     const translateY =
         -1 * (correct.element.getBoundingClientRect().top - yTop);
 
-    await correct.runAnimation(scaleButton());
+    await correct.runAnimation(scaleButtonBegin());
     await wait(PAUSE.NORMAL, 500);
-    await correct.runAnimation(scaleBase());
+    await correct.runAnimation(scaleButtonEnd());
     correct.startAnimation({ translateY });
     await applyScoreAward(award);
 

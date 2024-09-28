@@ -1,7 +1,7 @@
 import { getElementDivs } from "../../core/functions/getElementDivs";
 import { getElementHeadings } from "../../core/functions/getElementHeadings";
 import { ELEMENT } from "../constants/elements";
-import { scaleBase, scaleImmediatelyTo } from "../constants/scale";
+import { scaleBonusBegin, scaleImmediately } from "../constants/scale";
 import { getAppState } from "./getAppState";
 import { incrementScore } from "./incrementScore";
 
@@ -10,7 +10,7 @@ export async function applyScoreAward(award: number): Promise<void> {
     const scoreValue = getElementDivs(ELEMENT.scoreValue)[0];
 
     const bonusValue = getElementHeadings(ELEMENT.bonusValue)[0];
-    await bonusValue.runAnimation(scaleImmediatelyTo(0));
+    await bonusValue.runAnimation(scaleImmediately(0));
     bonusValue.opacity = 1;
     if (award > 0) {
         bonusValue.removeClass("noBonus");
@@ -19,7 +19,7 @@ export async function applyScoreAward(award: number): Promise<void> {
         bonusValue.addClass("noBonus");
         bonusValue.innerHTML = "no points";
     }
-    bonusValue.startAnimation(scaleBase(200));
+    bonusValue.startAnimation(scaleBonusBegin());
 
     if (award > 0) {
         await incrementScore(award, state, scoreValue);

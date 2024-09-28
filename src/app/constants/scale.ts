@@ -1,17 +1,5 @@
 import { AnimeParams } from "animejs";
-import {
-    applyPercentage,
-    applyTimePercentage,
-} from "../../core/functions/applyPercentage";
 import { EASING } from "../../core/xobjs/xanimation/EASING";
-
-const SCALE = {
-    BASE: 1.0,
-    BUTTON: 1.3,
-    DURATION: 800,
-    SCORE: 1.8,
-    SPEED: 100,
-};
 
 export function scaleTo(
     scale: number,
@@ -28,7 +16,7 @@ export function scaleTo(
     return xp;
 }
 
-export function scaleImmediatelyTo(scale: number): AnimeParams {
+export function scaleImmediately(scale: number): AnimeParams {
     const xp: AnimeParams = {
         duration: 1,
         easing: EASING.LINEAR,
@@ -37,60 +25,22 @@ export function scaleImmediatelyTo(scale: number): AnimeParams {
     return xp;
 }
 
-export function scaleZero(
-    speed: number = SCALE.SPEED,
-    easing: string | null = null,
-): AnimeParams {
-    const xp: AnimeParams = {
-        duration: applyTimePercentage(SCALE.DURATION, speed),
-        scale: 0,
-    };
-    if (easing) {
-        xp.easing = easing;
-    }
-    return xp;
+export function scaleButtonBegin(): AnimeParams {
+    return scaleTo(1.3, 800);
 }
 
-export function scaleBase(
-    speed: number = SCALE.SPEED,
-    easing: string | null = null,
-): AnimeParams {
-    const xp: AnimeParams = {
-        duration: applyTimePercentage(SCALE.DURATION, speed),
-        scale: applyPercentage(SCALE.BASE, 100),
-    };
-    if (easing) {
-        xp.easing = easing;
-    }
-    return xp;
+export function scaleButtonEnd(): AnimeParams {
+    return scaleTo(1.0, 600);
 }
 
-export function scaleButton(
-    speed: number = SCALE.SPEED,
-    scale: number = 100,
-    easing: string | null = null,
-): AnimeParams {
-    const xp: AnimeParams = {
-        duration: applyTimePercentage(SCALE.DURATION, speed),
-        scale: applyPercentage(SCALE.BUTTON, scale),
-    };
-    if (easing) {
-        xp.easing = easing;
-    }
-    return xp;
+export function scaleBonusBegin(): AnimeParams {
+    return scaleTo(1.0, 600);
 }
 
-export function scaleScore(
-    speed: number = SCALE.SPEED,
-    scale: number = 100,
-    easing: string | null = null,
-): AnimeParams {
-    const xp: AnimeParams = {
-        duration: applyTimePercentage(SCALE.DURATION, speed),
-        scale: applyPercentage(SCALE.SCORE, scale),
-    };
-    if (easing) {
-        xp.easing = easing;
-    }
-    return xp;
+export function scaleBonusGlitch(): AnimeParams {
+    return scaleTo(2.25, 240, EASING.LINEAR);
+}
+
+export function scaleBonusEnd(): AnimeParams {
+    return scaleTo(1.0, 42);
 }
