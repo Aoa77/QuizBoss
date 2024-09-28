@@ -1,4 +1,4 @@
-import { wait } from "../../core/xobjs/Xanimation";
+import { wait } from "../../core/xobjs/xanimation/wait";
 import { Xelement } from "../../core/xobjs/Xelement";
 import { fadeOut, fadeIn } from "../constants/fade";
 import { scaleBase, scaleButton } from "../constants/scale";
@@ -29,6 +29,6 @@ export async function animateCorrect(
         loading.runAnimation(fadeIn()),
     ]);
 
-    
+
     await correct.runAnimation(translateReset());
 }

@@ -8,7 +8,7 @@ import { revealCorrectAnswer } from "./revealCorrectAnswer";
 import { unlockButtons } from "./unlockButtons";
 import { wrongGuessesExhausted } from "./wrongGuessesExhausted";
 import { DELAY } from "../constants/times";
-import { wait } from "../../core/xobjs/Xanimation";
+import { wait } from "../../core/xobjs/xanimation/wait";
 
 export async function lockButtons(
     currentItem: QuizItem,

@@ -6,7 +6,6 @@ import { identifyButtons } from "./identifyButtons";
 import { animateCorrect } from "./animateCorrect";
 import { animateCorrectTransition } from "./animateCorrectTransition";
 import { getAppState } from "./getAppState";
-import { scaleZero } from "../constants/scale";
 import { fadeOut } from "../constants/fade";
 
 export async function handleCorrectGuess(

@@ -1,7 +1,7 @@
 import { ButtonState } from "../models/ButtonState";
 import { getElementButtons } from "../../core/functions/getElementButtons";
 import { PAUSE } from "../constants/times";
-import { wait } from "../../core/xobjs/Xanimation";
+import { wait } from "../../core/xobjs/xanimation/wait";
 import { scaleBase, scaleButton } from "../constants/scale";
 
 export async function handleWrongGuess(): Promise<void> {

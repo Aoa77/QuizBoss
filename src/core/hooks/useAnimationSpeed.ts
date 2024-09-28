@@ -1,4 +1,4 @@
-import { setGlobalSpeed } from "../xobjs/Xanimation";
+import { setGlobalSpeed } from "../xobjs/xanimation/globalSpeed";
 
 //
 let _initialized: boolean = false;

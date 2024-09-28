@@ -30,9 +30,12 @@ h2#bonusValue {
     color: var(--bonus-color);
     font-weight: bold;
     margin-top: calc(-1 * var(--hu_10));
-    font-size: 18rem;
+    font-size: 12rem;
     position: relative;
     top: var(--hu_2);
+}
+h2#bonusValue.noBonus {
+    color: var(--no-bonus-color);
 }
 
 /************************/
@@ -83,9 +86,9 @@ button {
     all: unset;
     appearance: none;
     font-family: "Tahoma", sans-serif;
-    font-size: 8.23rem;
+    font-size: 7.89rem;
     font-weight: normal;
-    width: 133rem;
+    width: 123rem;
     height: var(--hu_14);
     margin: 0 auto;
     margin-top: var(--hu_6);
@@ -136,6 +139,9 @@ section.score div.row {
     display: contents;
     color: var(--score-row-color);
     font-size: 11rem;
+}
+#scoreValue.bonus {
+    color: var(--bonus-color);
 }
 section.score div.row > div {
     padding-top: 2rem;

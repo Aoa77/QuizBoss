@@ -6,7 +6,7 @@ import { DemoMode } from "../models/DemoMode";
 import { GameState } from "../models/GameState";
 import { Xelement } from "../../core/xobjs/Xelement";
 import { DELAY } from "../constants/times";
-import { wait } from "../../core/xobjs/Xanimation";
+import { wait } from "../../core/xobjs/xanimation/wait";
 
 export async function onInput() {
     const [state, setState] = getAppState();

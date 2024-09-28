@@ -6,8 +6,12 @@ export function BonusNotification(state: AppState) {
     const [bonusValue] = useElementHeadings(ELEMENT.bonusValue);
 
     return (
-        <h2 id={bonusValue.id} ref={bonusValue.ref} className="hidden">
-            {state.award}
+        <h2
+            id={bonusValue.id}
+            ref={bonusValue.ref}
+            className="hidden"
+            data-value={state.award}>
+            &nbsp;
         </h2>
     );
 }

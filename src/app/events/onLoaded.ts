@@ -3,9 +3,10 @@ import { ELEMENT } from "../constants/elements";
 import { GameState } from "../models/GameState";
 import { getElementDivs } from "../../core/functions/getElementDivs";
 import { fadeIn, fadeOut } from "../constants/fade";
-import { wait } from "../../core/xobjs/Xanimation";
+import { wait } from "../../core/xobjs/xanimation/wait";
 import { LOADING, PAUSE } from "../constants/times";
 import { scaleBase, scaleScore } from "../constants/scale";
+import { EASING } from "../../core/xobjs/xanimation/EASING";
 
 export async function onLoaded() {
     const [state, setState] = getAppState();
@@ -21,7 +22,8 @@ export async function onLoaded() {
     await wait(PAUSE.NORMAL);
 
     if (state.award > 0) {
-        await score.runAnimation(scaleScore(240, 125, "linear"));
+        await score.runAnimation(scaleScore(240, 125, EASING.LINEAR));
+        score.removeClass("bonus");
         score.startAnimation(scaleBase(42));
     }
 

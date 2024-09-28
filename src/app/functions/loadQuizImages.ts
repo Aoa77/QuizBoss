@@ -1,4 +1,4 @@
-import { wait } from "../../core/xobjs/Xanimation";
+import { wait } from "../../core/xobjs/xanimation/wait";
 import { LOADING } from "../constants/times";
 import { QuizItem } from "../models/QuizItem";
 
