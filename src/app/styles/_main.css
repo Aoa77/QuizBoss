@@ -82,6 +82,9 @@ section.buttons {
     margin-top: var(--hu_5);
     background-color: var(--background-color);
 }
+section.buttons > div {
+    padding: 0 1rem;
+}
 button {
     all: unset;
     appearance: none;
