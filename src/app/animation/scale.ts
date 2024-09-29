@@ -1,5 +1,5 @@
 import { AnimeParams } from "animejs";
-import { EASING, EASING_ARRAY } from "../../core/xobjs/xanimation/EASING";
+import { EASING } from "../../core/xobjs/xanimation/EASING";
 import { Xref } from "../../core/xobjs/Xref";
 import { PAUSE } from "./times";
 import { wait } from "../../core/xobjs/xanimation/wait";
