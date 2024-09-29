@@ -1,7 +1,7 @@
 import { getElementDivs } from "../../core/functions/getElementDivs";
 import { ELEMENT } from "../animation/elements";
 import { fadeIn } from "../animation/fade";
-import { getAppState } from "../functions/getAppState";
+import { getAppState } from "../hooks/useAppState";
 import { initQuizModule } from "../functions/initQuizModule";
 import { GameState } from "../models/GameState";
 

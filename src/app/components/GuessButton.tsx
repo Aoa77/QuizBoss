@@ -2,8 +2,8 @@ import { ButtonState } from "../models/ButtonState";
 import { ELEMENT } from "../animation/elements";
 import { useElementsButtons } from "../../core/hooks/useElementButtons";
 import { Xelement } from "../../core/xobjs/Xelement";
-import { getAppState } from "../functions/getAppState";
 import { GameState } from "../models/GameState";
+import { getAppState } from "../hooks/useAppState";
 
 export function GuessButton(params: { index: number }) {
     const [button] = useElementsButtons(`${ELEMENT.button}_${params.index}`);

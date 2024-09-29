@@ -1,6 +1,6 @@
 import { getElementButtons } from "../../core/functions/getElementButtons";
 import { Xelement } from "../../core/xobjs/Xelement";
-import { getAppState } from "./getAppState";
+import { getAppState } from "../hooks/useAppState";
 import { ButtonState } from "../models/ButtonState";
 import { QuizItem } from "../models/QuizItem";
 import { handleWrongGuess } from "./handleWrongGuess";

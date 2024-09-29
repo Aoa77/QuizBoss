@@ -4,11 +4,11 @@
     "version": "0.0.0",
     "type": "module",
     "scripts": {
-        "build": "bash scripts/build.sh",
-        "dev": "bash scripts/dev.sh",
-        "lint": "bash scripts/lint.sh",
-        "preview": "bash scripts/preview.sh",
-        "version": "bash scripts/version.sh"
+        "build": "sh scripts/build.sh",
+        "dev": "sh scripts/dev.sh",
+        "lint": "sh scripts/lint.sh",
+        "preview": "sh scripts/preview.sh",
+        "version": "sh scripts/version.sh"
     },
     "dependencies": {
         "animejs": "^3.2.2",

@@ -1,4 +1,4 @@
-import { getAppState } from "./getAppState";
+import { getAppState } from "../hooks/useAppState";
 
 export function wrongGuessesExhausted(wrongGuesses: number[]): boolean {
     const [state] = getAppState();

@@ -1,6 +1,7 @@
 import { Dispatch, SetStateAction } from "react";
-import { useStateFlow } from "../../core/hooks/useStateFlow";
+import { getStateFlow, useStateFlow } from "../../core/state-flow";
 import { AppState, createInitialState } from "../models/AppState";
+import { AppSettings } from "../models/AppSettings"; 
 import { GameState } from "../models/GameState";
 import { onGameOver } from "../events/onGameOver";
 import { onInit } from "../events/onInit";
@@ -9,7 +10,6 @@ import { onLoaded } from "../events/onLoaded";
 import { onNext } from "../events/onNext";
 import { onReady } from "../events/onReady";
 import { onResult } from "../events/onResult";
-import { AppSettings } from "../models/AppSettings";
 
 ///
 let isLocalStorageInitialized = false;
@@ -53,4 +53,7 @@ export function useAppState(
     return flow;
 }
 
+export function getAppState(): [AppState, Dispatch<SetStateAction<AppState>>] {
+    return getStateFlow<AppState>();
+}
 

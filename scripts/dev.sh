@@ -1,10 +1,10 @@
-!#/bin/bash
+#!/bin/sh
 clear
-script="== bash $0 =="
-CHAR=#
-LEN=${#script}
-line=$(eval printf '$CHAR%.0s' {1..$LEN})
-echo && echo $line && echo $script && echo $line && echo
+script="== sh $0 =="
+CHAR="#"
+LEN=$(printf "%s" "$script" | wc -c)
+line=$(printf "%${LEN}s" | tr " " "$CHAR")
+printf "\n%s\n%s\n%s\n\n" "$line" "$script" "$line"
 set -x
 ########################################
 vite

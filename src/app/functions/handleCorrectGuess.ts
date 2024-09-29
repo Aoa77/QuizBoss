@@ -5,7 +5,7 @@ import { calcAward } from "./calcAward";
 import { identifyButtons } from "./identifyButtons";
 import { animateCorrect } from "./animateCorrect";
 import { animateCorrectTransition } from "./animateCorrectTransition";
-import { getAppState } from "./getAppState";
+import { getAppState } from "../hooks/useAppState";
 import { fadeOut } from "../animation/fade";
 
 export async function handleCorrectGuess(

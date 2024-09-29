@@ -1,4 +1,4 @@
-import { getAppState } from "../functions/getAppState";
+import { getAppState } from "../hooks/useAppState";
 import { ELEMENT } from "../animation/elements";
 import { GameState } from "../models/GameState";
 import { getElementHeadings } from "../../core/functions/getElementHeadings";

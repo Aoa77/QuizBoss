@@ -1,7 +1,7 @@
 import { ELEMENT } from "../animation/elements";
 import { GuessButton } from "./GuessButton";
 import { useElementDivs } from "../../core/hooks/useElementDivs";
-import { getAppState } from "../functions/getAppState";
+import { getAppState } from "../hooks/useAppState";
 
 export function GuessButtonArea() {
     ///
