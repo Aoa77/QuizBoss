@@ -1,11 +1,11 @@
 import { getAppState } from "../functions/getAppState";
-import { ELEMENT } from "../constants/elements";
+import { ELEMENT } from "../animation/elements";
 import { GameState } from "../models/GameState";
 import { getElementDivs } from "../../core/functions/getElementDivs";
-import { fadeIn, fadeOut } from "../constants/fade";
+import { fadeIn, fadeOut } from "../animation/fade";
 import { wait } from "../../core/xobjs/xanimation/wait";
-import { LOADING, PAUSE } from "../constants/times";
-import { scaleBonusEnd, scaleBonusGlitch } from "../constants/scale";
+import { LOADING, PAUSE } from "../animation/times";
+import { scaleBonusEnd, scaleBonusGlitch } from "../animation/scale";
 
 export async function onLoaded() {
     const [state, setState] = getAppState();

@@ -5,7 +5,7 @@ import { ButtonState } from "../models/ButtonState";
 import { DemoMode } from "../models/DemoMode";
 import { GameState } from "../models/GameState";
 import { Xelement } from "../../core/xobjs/Xelement";
-import { DELAY } from "../constants/times";
+import { DELAY } from "../animation/times";
 import { wait } from "../../core/xobjs/xanimation/wait";
 
 export async function onInput() {

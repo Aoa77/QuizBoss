@@ -1,6 +1,6 @@
 import { EASING } from "../../core/xobjs/xanimation/EASING";
 import { Xelement } from "../../core/xobjs/Xelement";
-import { scaleTo } from "../constants/scale";
+import { scaleTo } from "../animation/scale";
 import { AppState } from "../models/AppState";
 
 export async function incrementScore(

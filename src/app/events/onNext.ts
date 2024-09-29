@@ -1,12 +1,12 @@
 import { getAppState } from "../functions/getAppState";
-import { ELEMENT } from "../constants/elements";
+import { ELEMENT } from "../animation/elements";
 import { bindGuessButtons } from "../functions/bindGuessButtons";
 import { GameState } from "../models/GameState";
 import { getElementButtons } from "../../core/functions/getElementButtons";
 import { randomInt } from "../../core/functions/randomInt";
 import { getElementDivs } from "../../core/functions/getElementDivs";
 import { getElementHeadings } from "../../core/functions/getElementHeadings";
-import { fadeOut, fadeIn } from "../constants/fade";
+import { fadeOut, fadeIn } from "../animation/fade";
 
 ///
 export async function onNext() {

@@ -1,4 +1,4 @@
-import { ELEMENT } from "../constants/elements";
+import { ELEMENT } from "../animation/elements";
 import { GuessButton } from "./GuessButton";
 import { useElementDivs } from "../../core/hooks/useElementDivs";
 import { getAppState } from "../functions/getAppState";

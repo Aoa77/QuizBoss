@@ -1,9 +1,9 @@
 import { wait } from "../../core/xobjs/xanimation/wait";
 import { Xelement } from "../../core/xobjs/Xelement";
-import { fadeOut, fadeIn } from "../constants/fade";
-import { scaleButtonBegin, scaleButtonEnd } from "../constants/scale";
-import { PAUSE } from "../constants/times";
-import { translateReset } from "../constants/translateReset";
+import { fadeOut, fadeIn } from "../animation/fade";
+import { scaleButtonBegin, scaleButtonEnd } from "../animation/scale";
+import { PAUSE } from "../animation/times";
+import { translateReset } from "../animation/translateReset";
 import { applyScoreAward } from "./applyScoreAward";
 
 export async function animateCorrect(

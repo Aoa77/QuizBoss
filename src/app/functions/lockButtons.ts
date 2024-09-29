@@ -7,7 +7,7 @@ import { handleWrongGuess } from "./handleWrongGuess";
 import { revealCorrectAnswer } from "./revealCorrectAnswer";
 import { unlockButtons } from "./unlockButtons";
 import { wrongGuessesExhausted } from "./wrongGuessesExhausted";
-import { DELAY } from "../constants/times";
+import { DELAY } from "../animation/times";
 import { wait } from "../../core/xobjs/xanimation/wait";
 
 export async function lockButtons(

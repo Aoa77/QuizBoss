@@ -1,7 +1,7 @@
 import { getElementDivs } from "../../core/functions/getElementDivs";
 import { getElementHeadings } from "../../core/functions/getElementHeadings";
-import { ELEMENT } from "../constants/elements";
-import { scaleBonusBegin, scaleImmediately } from "../constants/scale";
+import { ELEMENT } from "../animation/elements";
+import { scaleBonusBegin, scaleImmediately } from "../animation/scale";
 import { getAppState } from "./getAppState";
 import { incrementScore } from "./incrementScore";
 
