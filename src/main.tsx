@@ -12,7 +12,6 @@ const {
     speed,
 } = settings;
 
-
 createRoot(document.getElementById("root")!).render(
     <App
         quizModuleName={quizModuleName}

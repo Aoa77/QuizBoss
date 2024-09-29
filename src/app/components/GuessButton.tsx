@@ -8,17 +8,15 @@ import { GameState } from "../models/GameState";
 export function GuessButton(params: { index: number }) {
     const [button] = useElementsButtons(`${ELEMENT.button}_${params.index}`);
     return (
-        <div>
-            <button
-                className={ButtonState.HIDDEN}
-                id={button.id}
-                key={button.id}
-                onPointerDown={() => handleButtonPointerDown(button)}
-                data-value={button.id}
-                ref={button.ref}>
-                {button.id}
-            </button>
-        </div>
+        <button
+            className={ButtonState.HIDDEN}
+            id={button.id}
+            key={button.id}
+            onPointerDown={() => handleButtonPointerDown(button)}
+            data-value={button.id}
+            ref={button.ref}>
+            {button.id}
+        </button>
     );
 }
 

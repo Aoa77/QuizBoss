@@ -82,21 +82,16 @@ section.buttons {
     margin-top: var(--hu_5);
     background-color: var(--background-color);
 }
-section.buttons > div {
-    padding: 0 1rem;
-}
 button {
     all: unset;
     appearance: none;
     font-family: "Tahoma", sans-serif;
-    font-size: 7.89rem;
+    font-size: 7.84rem;
     font-weight: normal;
-    width: 127rem;
+    width: 130rem;
     height: var(--hu_14);
-    margin: var(--hu_3) auto;
+    margin: var(--hu_6) auto 0 auto;
     opacity: 0;
-    position: relative;
-    z-index: 666;
 }
 button.correct {
     background-color: var(--button-correct-background);

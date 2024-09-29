@@ -36,7 +36,7 @@ export class AppSettings {
         this.maxQuestions =
             maxQuestions ?? +(queryParams.get("maxQuestions") ?? "0");
 
-        this.speed = speed ?? +(queryParams.get("speed") ?? "100"); ////
+        this.speed = speed ?? +(queryParams.get("speed") ?? "142"); ////
     }
 }
 

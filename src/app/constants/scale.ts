@@ -8,7 +8,8 @@ export function scaleTo(
 ): AnimeParams {
     const xp: AnimeParams = {
         duration,
-        scale,
+        scaleX: scale,
+        scaleY: scale,
     };
     if (easing) {
         xp.easing = easing;
@@ -20,7 +21,8 @@ export function scaleImmediately(scale: number): AnimeParams {
     const xp: AnimeParams = {
         duration: 1,
         easing: EASING.LINEAR,
-        scale,
+        scaleX: scale,
+        scaleY: scale,
     };
     return xp;
 }
