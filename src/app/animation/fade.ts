@@ -12,7 +12,7 @@ const FADE = {
 export function fadeIn(speed: number = FADE.SPEED): AnimeParams {
     return {
         duration: applyTimePercentage(FADE.DURATION, speed),
-        easing: EASING.LINEAR,
+        easing: EASING.linear,
         opacity: FADE.IN,
     };
 }
@@ -20,7 +20,7 @@ export function fadeIn(speed: number = FADE.SPEED): AnimeParams {
 export function fadeOut(speed: number = FADE.SPEED): AnimeParams {
     return {
         duration: applyTimePercentage(FADE.DURATION, speed),
-        easing: EASING.LINEAR,
+        easing: EASING.linear,
         opacity: FADE.OUT,
     };
 }

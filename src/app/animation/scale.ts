@@ -1,26 +1,32 @@
 import { AnimeParams } from "animejs";
-import { EASING } from "../../core/xobjs/xanimation/EASING";
+import { EASING, EASING_ARRAY } from "../../core/xobjs/xanimation/EASING";
 
+let _easing = 0;
 export function scaleTo(
     scale: number,
     duration: number,
-    easing: string | null = null,
+    easing: string = EASING.easeOutBack,
 ): AnimeParams {
+    // if (_easing === EASING_ARRAY.length) {
+    //     _easing = 0;
+    // }
+    // easing = EASING_ARRAY[_easing];
+    // console.info(easing);
+    // _easing++;
+
     const xp: AnimeParams = {
         duration,
+        easing,
         scaleX: scale,
         scaleY: scale,
     };
-    if (easing) {
-        xp.easing = easing;
-    }
     return xp;
 }
 
 export function scaleImmediately(scale: number): AnimeParams {
     const xp: AnimeParams = {
         duration: 1,
-        easing: EASING.LINEAR,
+        easing: EASING.linear,
         scaleX: scale,
         scaleY: scale,
     };
@@ -40,7 +46,7 @@ export function scaleBonusBegin(): AnimeParams {
 }
 
 export function scaleBonusGlitch(): AnimeParams {
-    return scaleTo(2.25, 240, EASING.LINEAR);
+    return scaleTo(2.25, 240, EASING.linear);
 }
 
 export function scaleBonusEnd(): AnimeParams {

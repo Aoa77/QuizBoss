@@ -8,12 +8,9 @@ export function runAnimation(xp: AnimeParams): Promise<void> {
         xp.duration = applyTimePercentage(xp.duration, getGlobalSpeed());
     }
     ////
-    return new Promise((resolve) => {
-        xp.complete = () => {
-            resolve();
-        };
-        anime(xp);
-    });
+    const fin = anime(xp).finished;
+    console.log({fin});
+    return fin;
 }
 
 export function runAnimationSync(xp: AnimeParams): void {
