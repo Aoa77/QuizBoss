@@ -4,7 +4,7 @@ QuizBoss is a web platform for crafting and sharing quizzes and trivia games. Th
 
 ### :link: [quizboss.a77.space](https://quizboss.a77.space)
 
-`*********************************`
+`**********************************`
 
 ## Developer notes
 
