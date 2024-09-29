@@ -1,5 +1,5 @@
 import { useElementHeadings } from "../../core/hooks/useElementHeadings";
-import { ELEMENT } from "../constants/elements";
+import { ELEMENT } from "../animation/elements";
 
 export function BonusNotification() {
     const [bonusValue] = useElementHeadings(ELEMENT.bonusValue);

@@ -1,9 +1,9 @@
 import { getAppState } from "../functions/getAppState";
-import { ELEMENT } from "../constants/elements";
+import { ELEMENT } from "../animation/elements";
 import { GameState } from "../models/GameState";
 import { getElementHeadings } from "../../core/functions/getElementHeadings";
-import { fadeIn } from "../constants/fade";
-import { DELAY } from "../constants/times";
+import { fadeIn } from "../animation/fade";
+import { DELAY } from "../animation/times";
 import { wait } from "../../core/xobjs/xanimation/wait";
 
 ///

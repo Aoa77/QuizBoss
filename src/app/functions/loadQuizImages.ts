@@ -1,5 +1,5 @@
 import { wait } from "../../core/xobjs/xanimation/wait";
-import { LOADING } from "../constants/times";
+import { LOADING } from "../animation/times";
 import { QuizItem } from "../models/QuizItem";
 
 export async function loadQuizImages(quizItems: QuizItem[]): Promise<void> {

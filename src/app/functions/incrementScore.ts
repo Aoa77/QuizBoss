@@ -1,6 +1,6 @@
 import { EASING } from "../../core/xobjs/xanimation/EASING";
 import { Xelement } from "../../core/xobjs/Xelement";
-import { scaleTo } from "../constants/scale";
+import { scaleTo } from "../animation/scale";
 import { AppState } from "../models/AppState";
 
 export async function incrementScore(
@@ -10,7 +10,7 @@ export async function incrementScore(
 ) {
     let scale = 0.5;
     let duration = 300;
-    await score.runAnimation(scaleTo(scale, duration, EASING.LINEAR));
+    await score.runAnimation(scaleTo(scale, duration, EASING.linear));
     score.addClass("bonus");
 
     duration = 500;

@@ -1,12 +1,9 @@
 import { getAppState } from "../functions/getAppState";
-import { getElementButtons } from "../../core/functions/getElementButtons";
-import { randomInt } from "../../core/functions/randomInt";
-import { ButtonState } from "../models/ButtonState";
 import { DemoMode } from "../models/DemoMode";
 import { GameState } from "../models/GameState";
-import { Xelement } from "../../core/xobjs/Xelement";
-import { DELAY } from "../constants/times";
+import { DELAY } from "../animation/times";
 import { wait } from "../../core/xobjs/xanimation/wait";
+import { doDemoInput } from "../functions/doDemoInput";
 
 export async function onInput() {
     const [state, setState] = getAppState();
@@ -27,30 +24,4 @@ export async function onInput() {
         guessValue: spotButton.dataValue,
         gameState: GameState.RESULT,
     });
-}
-
-function doDemoInput(
-    answerSpot: number,
-    demoMode: DemoMode,
-): Xelement<HTMLButtonElement> {
-    const buttons = getElementButtons();
-
-    let spotButton = buttons[answerSpot];
-    if (demoMode === DemoMode.RANDOM) {
-        const activeButtons = buttons.filter(
-            (button) => button.className === ButtonState.NORMAL,
-        );
-        spotButton = activeButtons[randomInt(0, activeButtons.length)];
-    } else if (demoMode === DemoMode.WRONG) {
-        for (let i = 0; i < buttons.length; i++) {
-            if (i === answerSpot) {
-                continue;
-            }
-            spotButton = buttons[i];
-            if (spotButton.className === ButtonState.NORMAL) {
-                break;
-            }
-        }
-    }
-    return spotButton;
 }

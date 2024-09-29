@@ -1,12 +1,12 @@
 import { getElementDivs } from "../../core/functions/getElementDivs";
 import { getElementHeadings } from "../../core/functions/getElementHeadings";
-import { ELEMENT } from "../constants/elements";
+import { ELEMENT } from "../animation/elements";
 import { calcAward } from "./calcAward";
 import { identifyButtons } from "./identifyButtons";
 import { animateCorrect } from "./animateCorrect";
 import { animateCorrectTransition } from "./animateCorrectTransition";
 import { getAppState } from "./getAppState";
-import { fadeOut } from "../constants/fade";
+import { fadeOut } from "../animation/fade";
 
 export async function handleCorrectGuess(
     wrongGuesses: number[],

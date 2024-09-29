@@ -16,6 +16,7 @@ export abstract class Xref {
         await this._awaiter;
         xp.targets = this.idSelector;
         await runAnimation(xp);
+        this._awaiter = Promise.resolve();
     }
     public startAnimation(xp: AnimeParams): void {
         this._awaiter = this.runAnimation(xp);

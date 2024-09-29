@@ -1,7 +1,7 @@
 import anime from "animejs";
-import { ELEMENT } from "../constants/elements";
+import { ELEMENT } from "../animation/elements";
 import { getElementDivs } from "../../core/functions/getElementDivs";
-import { fadeOut, fadeIn } from "../constants/fade";
+import { fadeOut, fadeIn } from "../animation/fade";
 
 const activeClass: string = "active";
 let canClick: boolean = true;

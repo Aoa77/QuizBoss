@@ -91,7 +91,7 @@ button {
     width: 130rem;
     height: var(--hu_14);
     margin: var(--hu_6) auto 0 auto;
-    opacity: 0;
+    opacity: 0;;
 }
 button.correct {
     background-color: var(--button-correct-background);

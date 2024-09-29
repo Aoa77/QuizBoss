@@ -1,5 +1,5 @@
 import { useElementDivs } from "../../core/hooks/useElementDivs";
-import { ELEMENT } from "../constants/elements";
+import { ELEMENT } from "../animation/elements";
 
 export function LoadingSpinner() {
     const [loading] = useElementDivs(ELEMENT.loading);

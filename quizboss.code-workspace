@@ -14,5 +14,12 @@
         "prettier.tabWidth": 4,
         "prettier.trailingComma": "all",
         "prettier.bracketSameLine": true,
+    },
+    "extensions": {
+        "recommendations": [
+            "esbenp.prettier-vscode",
+            "github.copilot-chat",
+            "mhutchie.git-graph"
+        ]
     }
 }
