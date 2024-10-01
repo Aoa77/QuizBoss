@@ -1,4 +1,4 @@
-import { useElementHeadings } from "../../core/hooks/useElementHeadings";
+import { useElementHeadings } from "../../core/xelemental/useElementHeadings";
 import { ELEMENT } from "../animation/elements";
 
 ///////////////////////////////////////////

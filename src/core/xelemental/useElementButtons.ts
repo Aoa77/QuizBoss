@@ -1,6 +1,6 @@
-import { getElementButtons } from "../functions/getElementButtons";
-import { ElementFactory } from "../xobjs/ElementFactory";
-import { Xelement } from "../xobjs/Xelement";
+import { getElementButtons } from "./getElementButtons";
+import { ElementFactory } from "./ElementFactory";
+import { Xelement } from "./Xelement";
 
 export function useElementsButtons(...keys: string[]): Xelement<HTMLButtonElement>[] {
     const map = ElementFactory.instance.buttonMap;

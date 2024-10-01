@@ -1,6 +1,6 @@
 import { getAppState } from "../hooks/useAppState";
-import { getElementButtons } from "../../core/functions/getElementButtons";
-import { Xelement } from "../../core/xobjs/Xelement";
+import { getElementButtons } from "../../core/xelemental/getElementButtons";
+import { Xelement } from "../../core/xelemental/Xelement";
 
 
 export function identifyButtons(): IdentifyButtonsResult {

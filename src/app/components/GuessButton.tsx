@@ -1,7 +1,7 @@
 import { ButtonState } from "../models/ButtonState";
 import { ELEMENT } from "../animation/elements";
-import { useElementsButtons } from "../../core/hooks/useElementButtons";
-import { Xelement } from "../../core/xobjs/Xelement";
+import { useElementsButtons } from "../../core/xelemental/useElementButtons";
+import { Xelement } from "../../core/xelemental/Xelement";
 import { GameState } from "../models/GameState";
 import { getAppState } from "../hooks/useAppState";
 

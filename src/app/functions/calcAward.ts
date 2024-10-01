@@ -1,4 +1,4 @@
-import { getElementButtons } from "../../core/functions/getElementButtons";
+import { getElementButtons } from "../../core/xelemental/getElementButtons";
 
 export function calcAward(wrongGuesses: number[]): number {
     const buttons = getElementButtons();

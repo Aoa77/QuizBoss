@@ -1,7 +1,9 @@
-import { ElementFactory } from "../xobjs/ElementFactory";
-import { Xelement } from "../xobjs/Xelement";
+import { ElementFactory } from "./ElementFactory";
+import { Xelement } from "./Xelement";
 
-export function getElementButtons(...keys: string[]): Xelement<HTMLButtonElement>[] {
+export function getElementButtons(
+    ...keys: string[]
+): Xelement<HTMLButtonElement>[] {
     if (keys.length === 0) {
         return ElementFactory.instance.buttonArray;
     }

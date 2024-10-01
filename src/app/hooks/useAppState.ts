@@ -1,5 +1,6 @@
 import { Dispatch, SetStateAction } from "react";
-import { getStateFlow, useStateFlow } from "../../core/state-flow";
+import { getStateFlow } from "../../core/state-flow/getStateFlow";
+import { useStateFlow } from "../../core/state-flow/useStateFlow";
 import { AppState, createInitialState } from "../models/AppState";
 import { AppSettings } from "../models/AppSettings"; 
 import { GameState } from "../models/GameState";

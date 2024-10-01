@@ -1,5 +1,5 @@
-import { Xelement } from "../../core/xobjs/Xelement";
-import { fadeOut } from "../animation/fade";
+import { fadeOut } from "../../core/animation/fade";
+import { Xelement } from "../../core/xelemental/Xelement";
 
 export async function animateCorrectTransition(
     wrong: Xelement<HTMLButtonElement>[],

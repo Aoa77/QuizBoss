@@ -1,5 +1,5 @@
-import { getElementButtons } from "../../core/functions/getElementButtons";
-import { Xelement } from "../../core/xobjs/Xelement";
+import { getElementButtons } from "../../core/xelemental/getElementButtons";
+import { Xelement } from "../../core/xelemental/Xelement";
 import { ButtonState } from "../models/ButtonState";
 import { QuizItem } from "../models/QuizItem";
 

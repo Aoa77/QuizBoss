@@ -1,6 +1,6 @@
 import { ELEMENT } from "../animation/elements";
 import { GuessButton } from "./GuessButton";
-import { useElementDivs } from "../../core/hooks/useElementDivs";
+import { useElementDivs } from "../../core/xelemental/useElementDivs";
 import { getAppState } from "../hooks/useAppState";
 
 export function GuessButtonArea() {

@@ -1,6 +1,6 @@
 import anime, { AnimeParams } from "animejs";
-import { applyTimePercentage } from "../../functions/applyPercentage";
-import { getGlobalSpeed } from "./globalSpeed";
+import { getGlobalSpeed } from "./hooks";
+import { applyTimePercentage } from "./percentages";
 
 export function runAnimation(xp: AnimeParams): Promise<void> {
     ////

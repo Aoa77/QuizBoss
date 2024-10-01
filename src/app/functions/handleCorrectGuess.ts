@@ -1,12 +1,12 @@
-import { getElementDivs } from "../../core/functions/getElementDivs";
-import { getElementHeadings } from "../../core/functions/getElementHeadings";
+import { getElementDivs } from "../../core/xelemental/getElementDivs";
+import { getElementHeadings } from "../../core/xelemental/getElementHeadings";
 import { ELEMENT } from "../animation/elements";
 import { calcAward } from "./calcAward";
 import { identifyButtons } from "./identifyButtons";
 import { animateCorrect } from "./animateCorrect";
 import { animateCorrectTransition } from "./animateCorrectTransition";
 import { getAppState } from "../hooks/useAppState";
-import { fadeOut } from "../animation/fade";
+import { fadeOut } from "../../core/animation/fade";
 
 export async function handleCorrectGuess(
     wrongGuesses: number[],

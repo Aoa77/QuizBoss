@@ -1,5 +1,5 @@
-import { useAnimationSpeed } from "../../core/hooks/useAnimationSpeed";
+import { useGlobalAnimation } from "../../core/animation/hooks";
 
 export function useAnimation(speed: number) {
-    useAnimationSpeed(speed);
+    useGlobalAnimation(speed);
 }

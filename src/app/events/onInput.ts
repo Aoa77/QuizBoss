@@ -2,7 +2,7 @@ import { getAppState } from "../hooks/useAppState";
 import { DemoMode } from "../models/DemoMode";
 import { GameState } from "../models/GameState";
 import { DELAY } from "../animation/times";
-import { wait } from "../../core/xobjs/xanimation/wait";
+import { wait } from "../../core/animation/wait";
 import { doDemoInput } from "../functions/doDemoInput";
 
 export async function onInput() {

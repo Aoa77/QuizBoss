@@ -1,6 +1,6 @@
 import { AppState } from "../models/AppState";
 import { ELEMENT } from "../animation/elements";
-import { useElementHeadings } from "../../core/hooks/useElementHeadings";
+import { useElementHeadings } from "../../core/xelemental/useElementHeadings";
 import { DemoMode } from "../models/DemoMode";
 
 export function TitleHeading(state: AppState) {

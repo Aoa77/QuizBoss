@@ -1,4 +1,4 @@
-import { shuffle } from "../../core/functions/shuffle";
+import { shuffle } from "../../core/random-fx/shuffle";
 import { fetchQuizModule } from "./fetchQuizModule";
 import { initQuizItem } from "./initQuizItem";
 import { loadQuizImages } from "./loadQuizImages";

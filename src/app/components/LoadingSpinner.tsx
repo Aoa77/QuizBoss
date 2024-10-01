@@ -1,4 +1,4 @@
-import { useElementDivs } from "../../core/hooks/useElementDivs";
+import { useElementDivs } from "../../core/xelemental/useElementDivs";
 import { ELEMENT } from "../animation/elements";
 
 export function LoadingSpinner() {

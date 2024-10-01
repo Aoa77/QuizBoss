@@ -1,6 +1,6 @@
 import { AnimeParams } from "animejs";
-import { applyTimePercentage } from "../../core/functions/applyPercentage";
-import { EASING } from "../../core/xobjs/xanimation/EASING";
+import { EASING } from "./easings";
+import { applyTimePercentage } from "./percentages";
 
 const FADE = {
     DURATION: 300,

@@ -1,6 +1,6 @@
-import { getElementDivs } from "../functions/getElementDivs";
-import { ElementFactory } from "../xobjs/ElementFactory";
-import { Xelement } from "../xobjs/Xelement";
+import { ElementFactory } from "./ElementFactory";
+import { getElementDivs } from "./getElementDivs";
+import { Xelement } from "./Xelement";
 
 export function useElementDivs(...keys: string[]): Xelement<HTMLDivElement>[] {
     const map = ElementFactory.instance.divMap;

@@ -1,6 +1,6 @@
-import { getElementButtons } from "../../core/functions/getElementButtons";
-import { randomInt } from "../../core/functions/randomInt";
-import { Xelement } from "../../core/xobjs/Xelement";
+import { getElementButtons } from "../../core/xelemental/getElementButtons";
+import { randomInt } from "../../core/random-fx/randomInt";
+import { Xelement } from "../../core/xelemental/Xelement";
 import { ButtonState } from "../models/ButtonState";
 import { DemoMode } from "../models/DemoMode";
 

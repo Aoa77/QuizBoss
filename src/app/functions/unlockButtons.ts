@@ -1,4 +1,4 @@
-import { getElementButtons } from "../../core/functions/getElementButtons";
+import { getElementButtons } from "../../core/xelemental/getElementButtons";
 import { ButtonState } from "../models/ButtonState";
 
 export async function unlockButtons(

@@ -1,5 +1,5 @@
-import { ElementFactory } from "../xobjs/ElementFactory";
-import { Xelement } from "../xobjs/Xelement";
+import { ElementFactory } from "../xelemental/ElementFactory";
+import { Xelement } from "./Xelement";
 
 export function getElementHeadings(...keys: string[]): Xelement<HTMLHeadingElement>[] {
     if (keys.length === 0) {

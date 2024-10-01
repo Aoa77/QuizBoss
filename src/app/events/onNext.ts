@@ -2,11 +2,11 @@ import { getAppState } from "../hooks/useAppState";
 import { ELEMENT } from "../animation/elements";
 import { bindGuessButtons } from "../functions/bindGuessButtons";
 import { GameState } from "../models/GameState";
-import { getElementButtons } from "../../core/functions/getElementButtons";
-import { randomInt } from "../../core/functions/randomInt";
-import { getElementDivs } from "../../core/functions/getElementDivs";
-import { getElementHeadings } from "../../core/functions/getElementHeadings";
-import { fadeOut, fadeIn } from "../animation/fade";
+import { getElementButtons } from "../../core/xelemental/getElementButtons";
+import { randomInt } from "../../core/random-fx/randomInt";
+import { getElementDivs } from "../../core/xelemental/getElementDivs";
+import { getElementHeadings } from "../../core/xelemental/getElementHeadings";
+import { fadeOut, fadeIn } from "../../core/animation/fade";
 
 ///
 export async function onNext() {

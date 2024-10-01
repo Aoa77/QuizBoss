@@ -1,7 +1,8 @@
-import { getElementDivs } from "../../core/functions/getElementDivs";
-import { getElementHeadings } from "../../core/functions/getElementHeadings";
+import { scaleImmediately } from "../../core/animation/scale";
+import { getElementDivs } from "../../core/xelemental/getElementDivs";
+import { getElementHeadings } from "../../core/xelemental/getElementHeadings";
 import { ELEMENT } from "../animation/elements";
-import { scaleBonusBegin, scaleImmediately } from "../animation/scale";
+import { scaleBonusBegin } from "../animation/scaleBonus";
 import { getAppState } from "../hooks/useAppState";
 import { incrementScore } from "./incrementScore";
 

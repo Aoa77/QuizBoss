@@ -1,4 +1,4 @@
-import { Xelement } from "../../core/xobjs/Xelement";
+import { Xelement } from "../../core/xelemental/Xelement";
 
 export function revealButtonScore(
     award: number,

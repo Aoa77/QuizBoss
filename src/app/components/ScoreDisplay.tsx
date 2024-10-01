@@ -1,6 +1,6 @@
 import { AppState } from "../models/AppState";
 import { ELEMENT } from "../animation/elements";
-import { useElementDivs } from "../../core/hooks/useElementDivs";
+import { useElementDivs } from "../../core/xelemental/useElementDivs";
 
 export function ScoreDisplay(state: AppState) {
     const [scoreArea, scoreValue, bestValue] = useElementDivs(

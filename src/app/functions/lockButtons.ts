@@ -1,5 +1,5 @@
-import { getElementButtons } from "../../core/functions/getElementButtons";
-import { Xelement } from "../../core/xobjs/Xelement";
+import { getElementButtons } from "../../core/xelemental/getElementButtons";
+import { Xelement } from "../../core/xelemental/Xelement";
 import { getAppState } from "../hooks/useAppState";
 import { ButtonState } from "../models/ButtonState";
 import { QuizItem } from "../models/QuizItem";
@@ -8,7 +8,7 @@ import { revealCorrectAnswer } from "./revealCorrectAnswer";
 import { unlockButtons } from "./unlockButtons";
 import { wrongGuessesExhausted } from "./wrongGuessesExhausted";
 import { DELAY } from "../animation/times";
-import { wait } from "../../core/xobjs/xanimation/wait";
+import { wait } from "../../core/animation/wait";
 
 export async function lockButtons(
     currentItem: QuizItem,

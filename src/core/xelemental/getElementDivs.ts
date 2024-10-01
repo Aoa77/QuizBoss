@@ -1,5 +1,5 @@
-import { ElementFactory } from "../xobjs/ElementFactory";
-import { Xelement } from "../xobjs/Xelement";
+import { ElementFactory } from "../xelemental/ElementFactory";
+import { Xelement } from "./Xelement";
 
 export function getElementDivs(...keys: string[]): Xelement<HTMLDivElement>[] {
     if (keys.length === 0) {

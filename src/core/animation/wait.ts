@@ -1,5 +1,5 @@
-import { applyTimePercentage } from "../../functions/applyPercentage";
-import { getGlobalSpeed } from "./globalSpeed";
+import { getGlobalSpeed } from "./hooks";
+import { applyTimePercentage } from "./percentages";
 
 export function wait(duration: number, speed: number = 100): Promise<void> {
     duration = applyTimePercentage(duration, speed);

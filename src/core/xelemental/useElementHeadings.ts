@@ -1,6 +1,6 @@
-import { getElementHeadings } from "../functions/getElementHeadings";
-import { ElementFactory } from "../xobjs/ElementFactory";
-import { Xelement } from "../xobjs/Xelement";
+import { ElementFactory } from "./ElementFactory";
+import { getElementHeadings } from "./getElementHeadings";
+import { Xelement } from "./Xelement";
 
 export function useElementHeadings(...keys: string[]): Xelement<HTMLHeadingElement>[] {
     const map = ElementFactory.instance.headingMap;

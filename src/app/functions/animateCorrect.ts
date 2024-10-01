@@ -1,6 +1,6 @@
-import { Xelement } from "../../core/xobjs/Xelement";
-import { fadeOut, fadeIn } from "../animation/fade";
-import { scaleButton } from "../animation/scale";
+import { fadeOut, fadeIn } from "../../core/animation/fade";
+import { Xelement } from "../../core/xelemental/Xelement";
+import { scaleButton } from "../animation/scaleButton";
 import { translateReset } from "../animation/translateReset";
 import { applyScoreAward } from "./applyScoreAward";
 

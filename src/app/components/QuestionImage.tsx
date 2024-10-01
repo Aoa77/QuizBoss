@@ -1,6 +1,6 @@
 import { AppState, getCurrentItem } from "../models/AppState";
 import { ELEMENT } from "../animation/elements";
-import { useElementDivs } from "../../core/hooks/useElementDivs";
+import { useElementDivs } from "../../core/xelemental/useElementDivs";
 
 export function QuestionImage(state: AppState) {
     const [image] = useElementDivs(ELEMENT.image);
