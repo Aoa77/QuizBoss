@@ -3,8 +3,8 @@ import { ELEMENT } from "../animation/elements";
 import { GameState } from "../models/GameState";
 import { getElementHeadings } from "../../core/xelemental/getElementHeadings";
 import { DELAY } from "../animation/times";
-import { wait } from "../../core/animation/wait";
-import { fadeIn } from "../../core/animation/fade";
+import { wait } from "../../core/anime-x/wait";
+import { fadeIn } from "../../core/anime-x/fade";
 
 ///
 export async function onReady() {

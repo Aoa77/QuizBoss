@@ -1,5 +1,5 @@
-import { EASING } from "../../core/animation/easings";
-import { scaleTo } from "../../core/animation/scale";
+import { EASING } from "../../core/anime-x/easings";
+import { scaleTo } from "../../core/anime-x/scale";
 import { Xelement } from "../../core/xelemental/Xelement";
 import { AppState } from "../models/AppState";
 

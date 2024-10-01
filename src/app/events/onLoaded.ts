@@ -1,9 +1,9 @@
 import { ELEMENT } from "../animation/elements";
 import { GameState } from "../models/GameState";
-import { wait } from "../../core/animation/wait";
+import { wait } from "../../core/anime-x/wait";
 import { LOADING, PAUSE } from "../animation/times";
 import { getAppState } from "../hooks/useAppState";
-import { fadeOut, fadeIn } from "../../core/animation/fade";
+import { fadeOut, fadeIn } from "../../core/anime-x/fade";
 import { getElementDivs } from "../../core/xelemental/getElementDivs";
 import { scaleBonusGlitch, scaleBonusEnd } from "../animation/scaleBonus";
 

@@ -8,7 +8,7 @@ import { revealCorrectAnswer } from "./revealCorrectAnswer";
 import { unlockButtons } from "./unlockButtons";
 import { wrongGuessesExhausted } from "./wrongGuessesExhausted";
 import { DELAY } from "../animation/times";
-import { wait } from "../../core/animation/wait";
+import { wait } from "../../core/anime-x/wait";
 
 export async function lockButtons(
     currentItem: QuizItem,

@@ -1,4 +1,4 @@
-import { scaleImmediately } from "../../core/animation/scale";
+import { scaleImmediately } from "../../core/anime-x/scale";
 import { getElementDivs } from "../../core/xelemental/getElementDivs";
 import { getElementHeadings } from "../../core/xelemental/getElementHeadings";
 import { ELEMENT } from "../animation/elements";

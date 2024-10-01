@@ -1,4 +1,4 @@
-import { fadeOut } from "../../core/animation/fade";
+import { fadeOut } from "../../core/anime-x/fade";
 import { Xelement } from "../../core/xelemental/Xelement";
 
 export async function animateCorrectTransition(

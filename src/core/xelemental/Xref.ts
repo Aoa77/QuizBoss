@@ -1,5 +1,5 @@
 import { AnimeParams } from "animejs";
-import { runAnimation } from "../animation/runners";
+import { runAnimation } from "../anime-x/runners";
 
 export abstract class Xref {
     public readonly type: string;

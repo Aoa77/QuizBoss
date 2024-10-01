@@ -1,8 +1,8 @@
 import { AnimeParams } from "animejs";
-import { wait } from "../../core/animation/wait";
+import { wait } from "../../core/anime-x/wait";
 import { PAUSE } from "./times";
 import { Xref } from "../../core/xelemental/Xref";
-import { scaleTo, scaleImmediately } from "../../core/animation/scale";
+import { scaleTo, scaleImmediately } from "../../core/anime-x/scale";
 
 ////
 export async function scaleButton(xref: Xref): Promise<void> {

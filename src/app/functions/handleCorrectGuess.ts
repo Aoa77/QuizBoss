@@ -6,7 +6,7 @@ import { identifyButtons } from "./identifyButtons";
 import { animateCorrect } from "./animateCorrect";
 import { animateCorrectTransition } from "./animateCorrectTransition";
 import { getAppState } from "../hooks/useAppState";
-import { fadeOut } from "../../core/animation/fade";
+import { fadeOut } from "../../core/anime-x/fade";
 
 export async function handleCorrectGuess(
     wrongGuesses: number[],

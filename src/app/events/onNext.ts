@@ -6,7 +6,7 @@ import { getElementButtons } from "../../core/xelemental/getElementButtons";
 import { randomInt } from "../../core/random-fx/randomInt";
 import { getElementDivs } from "../../core/xelemental/getElementDivs";
 import { getElementHeadings } from "../../core/xelemental/getElementHeadings";
-import { fadeOut, fadeIn } from "../../core/animation/fade";
+import { fadeOut, fadeIn } from "../../core/anime-x/fade";
 
 ///
 export async function onNext() {

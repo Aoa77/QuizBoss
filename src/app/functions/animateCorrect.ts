@@ -1,4 +1,4 @@
-import { fadeOut, fadeIn } from "../../core/animation/fade";
+import { fadeOut, fadeIn } from "../../core/anime-x/fade";
 import { Xelement } from "../../core/xelemental/Xelement";
 import { scaleButton } from "../animation/scaleButton";
 import { translateReset } from "../animation/translateReset";

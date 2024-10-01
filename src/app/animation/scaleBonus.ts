@@ -1,6 +1,6 @@
 import { AnimeParams } from "animejs";
-import { EASING } from "../../core/animation/easings";
-import { scaleTo } from "../../core/animation/scale";
+import { EASING } from "../../core/anime-x/easings";
+import { scaleTo } from "../../core/anime-x/scale";
 
 ///
 export function scaleBonusBegin(): AnimeParams {

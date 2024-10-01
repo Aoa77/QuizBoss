@@ -1,4 +1,4 @@
-import { wait } from "../../core/animation/wait";
+import { wait } from "../../core/anime-x/wait";
 import { LOADING } from "../animation/times";
 import { QuizItem } from "../models/QuizItem";
 
