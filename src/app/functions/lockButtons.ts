@@ -1,6 +1,6 @@
 import { getElementButtons } from "../../core/xelemental/getElementButtons";
 import { Xelement } from "../../core/xelemental/Xelement";
-import { getAppState } from "../hooks/useAppState";
+import { getAppState } from "../hooks/state-hooks";
 import { ButtonState } from "../models/ButtonState";
 import { QuizItem } from "../models/QuizItem";
 import { handleWrongGuess } from "./handleWrongGuess";
@@ -45,7 +45,7 @@ export async function lockButtons(
         if (wrongGuessesExhausted(wrongGuesses)) {
             await handleWrongGuess();
             await unlockButtons(wrongGuesses);
-            await wait(DELAY.PRE_REVEAL);
+            await wait(DELAY.REVEAL);
             revealCorrectAnswer(currentItem, wrongGuesses);
             break;
         }

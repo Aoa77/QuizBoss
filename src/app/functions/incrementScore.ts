@@ -8,16 +8,29 @@ export async function incrementScore(
     state: AppState,
     score: Xelement<HTMLDivElement>,
 ) {
-    let scale = 0.5;
-    let duration = 300;
-    await score.runAnimation(scaleTo(scale, duration, EASING.linear));
+    if (award === 0) {
+        return;
+    }
+
     score.addClass("bonus");
 
-    duration = 500;
+    const startScale = 1;
+    const endScale = 3;
+    const scaleStep = (endScale - startScale) / award;
+
+    let scale = startScale;
+
+
     for (let i = 0; i < award; i++) {
+        scale += scaleStep;
         state.score += 1;
-        scale += 0.55;
         score.innerHTML = state.score.toString();
-        await score.runAnimation(scaleTo(scale, duration));
+        await score.runAnimation(scaleTo(scale, 444, EASING.easeOutQuad));
     }
+
+
+    await score.runAnimation(scaleTo(1, 1500, EASING.easeInQuint));
+
+
+    // create an algorithm for this..
 }

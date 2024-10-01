@@ -1,4 +1,4 @@
-import { getAppState } from "../hooks/useAppState";
+import { getAppState } from "../hooks/state-hooks";
 import { DemoMode } from "../models/DemoMode";
 import { GameState } from "../models/GameState";
 import { DELAY } from "../animation/times";

@@ -3,7 +3,7 @@ import { getElementDivs } from "../../core/xelemental/getElementDivs";
 import { getElementHeadings } from "../../core/xelemental/getElementHeadings";
 import { ELEMENT } from "../animation/elements";
 import { scaleBonusBegin } from "../animation/scaleBonus";
-import { getAppState } from "../hooks/useAppState";
+import { getAppState } from "../hooks/state-hooks";
 import { incrementScore } from "./incrementScore";
 
 export async function applyScoreAward(award: number): Promise<void> {

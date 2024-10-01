@@ -28,11 +28,11 @@ h2 {
 }
 h2#bonusValue {
     color: var(--bonus-color);
-    font-weight: bold;
+    font-weight: normal;
     margin-top: calc(-1 * var(--hu_10));
-    font-size: 12rem;
+    font-size: 11rem;
     position: relative;
-    top: var(--hu_2);
+    top: var(--hu_5);
 }
 h2#bonusValue.noBonus {
     color: var(--no-bonus-color);

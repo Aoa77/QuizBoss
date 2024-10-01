@@ -1,6 +1,6 @@
 import "../styles";
-import { useAppState } from "../hooks/useAppState";
-import { useAnimation } from "../hooks/useAnimation";
+import { useAppState } from "../hooks/state-hooks";
+import { useAnimationConfig } from "../hooks/animation-hooks";
 import { GuessButtonArea } from "./GuessButtonArea";
 import { LoadingSpinner } from "./LoadingSpinner";
 import { ProgressDisplay } from "./ProgressDisplay";
@@ -19,7 +19,7 @@ export function App(settings: AppSettings) {
     const guessButtonArea = useMemo(() => <GuessButtonArea />, []);
     
     ///
-    useAnimation(settings.speed);
+    useAnimationConfig(settings.speed);
     const [state] = useAppState(settings);
 
     ///

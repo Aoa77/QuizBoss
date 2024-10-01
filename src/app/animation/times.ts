@@ -1,8 +1,8 @@
 export const DELAY = {
     DEMO_INPUT: 700,
-    PRE_REVEAL: 800,
     PRE_TITLE: 500,
     POST_TITLE: 500,
+    REVEAL: 800,
     SCORE_INCREMENT: 200,
 };
 

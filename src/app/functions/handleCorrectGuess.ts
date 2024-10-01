@@ -5,7 +5,7 @@ import { calcAward } from "./calcAward";
 import { identifyButtons } from "./identifyButtons";
 import { animateCorrect } from "./animateCorrect";
 import { animateCorrectTransition } from "./animateCorrectTransition";
-import { getAppState } from "../hooks/useAppState";
+import { getAppState } from "../hooks/state-hooks";
 import { fadeOut } from "../../core/anime-x/fade";
 
 export async function handleCorrectGuess(
@@ -17,8 +17,8 @@ export async function handleCorrectGuess(
         ELEMENT.question,
         ELEMENT.bonusValue,
     );
+    
     const [image, loading] = getElementDivs(ELEMENT.image, ELEMENT.loading);
-
     const { correct, top, wrong } = identifyButtons();
 
     state.award = calcAward(wrongGuesses);

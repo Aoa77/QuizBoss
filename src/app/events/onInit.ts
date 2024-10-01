@@ -1,4 +1,4 @@
-import { getAppState } from "../hooks/useAppState";
+import { getAppState } from "../hooks/state-hooks";
 import { initQuizModule } from "../functions/initQuizModule";
 import { GameState } from "../models/GameState";
 import { fadeIn } from "../../core/anime-x/fade";
