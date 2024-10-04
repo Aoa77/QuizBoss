@@ -9,7 +9,6 @@ const {
     demoMode, ///////////
     guessButtonCount,
     maxQuestions,
-    speed,
 } = settings;
 
 createRoot(document.getElementById("root")!).render(
@@ -18,6 +17,5 @@ createRoot(document.getElementById("root")!).render(
         demoMode={demoMode}
         guessButtonCount={guessButtonCount}
         maxQuestions={maxQuestions}
-        speed={speed}
     />,
 );

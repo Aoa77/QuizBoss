@@ -1,28 +1,24 @@
 import { AnimeParams } from "animejs";
 import { EASING } from "./easings";
-import { getGlobalAnimationConfig } from "./config";
+import { AnimationDefaultSettings } from "./config";
 
-export function scaleTo(
-    scale: number,
-    duration?: number,
-    easing?: string,
-): AnimeParams {
-    //
-    const config = getGlobalAnimationConfig();
-    duration = duration ?? config.scaleDuration;
-    easing = easing ?? config.scaleEasing;
-
-    const xp: AnimeParams = {
-        duration,
-        scaleX: scale,
-        scaleY: scale,
+export function scaleTo(p: ScaleToParams): AnimeParams {
+    const params: AnimeParams = {
+        duration: p.duration ?? AnimationDefaultSettings.config.scaleDuration,
+        scale: p.scale,
     };
-    if (easing) {
-        xp.easing = easing;
+    if (p.easing) {
+        params.easing = p.easing;
     }
-    return xp;
+    return params;
 }
 
 export function scaleImmediately(scale: number): AnimeParams {
-    return scaleTo(scale, 1, EASING.linear);
+    return scaleTo({ duration: 0, easing: EASING.linear, scale });
+}
+
+export interface ScaleToParams {
+    duration?: number;
+    easing?: string;
+    scale: number;
 }

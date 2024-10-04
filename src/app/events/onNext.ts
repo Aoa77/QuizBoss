@@ -1,4 +1,5 @@
-import { getAppState } from "../hooks/state-hooks";
+import { getStateFlow } from "../../core/state-flow/getStateFlow";
+import { AppState } from "../models/AppState";
 import { ELEMENT } from "../animation/elements";
 import { bindGuessButtons } from "../functions/bindGuessButtons";
 import { GameState } from "../models/GameState";
@@ -10,14 +11,12 @@ import { fadeOut, fadeIn } from "../../core/anime-x/fade";
 
 ///
 export async function onNext() {
-    const [state, setState] = getAppState();
+    const [state, setState] = getStateFlow<AppState>();
     if (!state.quizModule) {
         return;
     }
 
-    const [question] = getElementHeadings(
-        ELEMENT.question,
-    );
+    const [question] = getElementHeadings(ELEMENT.question);
     const [buttonArea, image, loading, progress, scoreArea] = getElementDivs(
         ELEMENT.buttonArea,
         ELEMENT.image,
@@ -45,8 +44,9 @@ export async function onNext() {
     );
 
     await Promise.all([
-        loading.runAnimation(fadeOut()),
-        image.runAnimation(fadeIn()),
+        loading
+            .runAnimation(fadeOut())
+            .then(() => image.runAnimation(fadeIn())),
         question.runAnimation(fadeIn()),
         buttonArea.runAnimation(fadeIn()),
         scoreArea.runAnimation(fadeIn()),

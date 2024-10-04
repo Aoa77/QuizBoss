@@ -1,9 +1,9 @@
-import { getGlobalAnimationConfig } from "./config";
+import { AnimationDefaultSettings } from "./config";
 import { applyTimePercentage } from "./percentages";
 
-export function wait(duration: number, speed: number = 100): Promise<void> {
-    const config = getGlobalAnimationConfig();
-    duration = applyTimePercentage(duration, speed);
-    duration = applyTimePercentage(duration, config.speed);
+export function wait(
+    duration: number = AnimationDefaultSettings.config.waitDuration,
+): Promise<void> {
+    duration = applyTimePercentage(duration);
     return new Promise((resolve) => setTimeout(resolve, duration));
 }

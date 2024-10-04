@@ -1,9 +1,5 @@
 import { Dispatch, SetStateAction } from "react";
-import { getStateFlow } from "../../core/state-flow/getStateFlow";
 import { useStateFlow } from "../../core/state-flow/useStateFlow";
-import { AppState, createInitialState } from "../models/AppState";
-import { AppSettings } from "../models/AppSettings"; 
-import { GameState } from "../models/GameState";
 import { onGameOver } from "../events/onGameOver";
 import { onInit } from "../events/onInit";
 import { onInput } from "../events/onInput";
@@ -11,16 +7,18 @@ import { onLoaded } from "../events/onLoaded";
 import { onNext } from "../events/onNext";
 import { onReady } from "../events/onReady";
 import { onResult } from "../events/onResult";
+import { AppSettings } from "../models/AppSettings";
+import { AppState, createInitialState } from "../models/AppState";
+import { GameState } from "../models/GameState";
 
 ///
 let isLocalStorageInitialized = false;
 
-///
 export function useAppState(
-    settings: AppSettings,
+    settings: AppSettings
 ): [AppState, Dispatch<SetStateAction<AppState>>] {
 
-    const flow = useStateFlow<AppState, GameState>({
+    const stateFlow = useStateFlow<AppState, GameState>({
         initialState: createInitialState(settings),
         getFlowEvent: (state) => {
             return state.gameState;
@@ -38,7 +36,7 @@ export function useAppState(
 
     //////////////////
     if (isLocalStorageInitialized) {
-        return flow;
+        return stateFlow;
     }
     isLocalStorageInitialized = true;
 
@@ -46,15 +44,10 @@ export function useAppState(
     let local: string = localStorage.getItem("bestScore") ?? "";
     local = local.trim();
     if (local.length > 0) {
-        const [state, setState] = flow;
+        const [state, setState] = stateFlow;
         setState({ ...state, best: parseInt(local) });
     }
 
     //////////////////
-    return flow;
+    return stateFlow;
 }
-
-export function getAppState(): [AppState, Dispatch<SetStateAction<AppState>>] {
-    return getStateFlow<AppState>();
-}
-

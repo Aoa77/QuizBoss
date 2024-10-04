@@ -1,34 +1,42 @@
 import { EASING } from "./easings";
 
-let _config: GlobalAnimationConfig | null = null;
+export const PERCENT_100 = 100;
 
-export function useGlobalAnimationConfig(config: GlobalAnimationConfig): void {
-    if (_config) {
-        return;
+export class AnimationDefaultSettings {
+    public fadeDuration: number;
+    public fadeEasing: string;
+    public scaleDuration: number;
+    public scaleEasing?: string;
+    public waitDuration: number;
+
+    constructor() {
+        this.fadeDuration = 280;
+        this.fadeEasing = EASING.linear;
+        this.scaleDuration = 900;
+        this.waitDuration = 2000;
     }
-    config.speed ??= 142;
-    config.fadeDuration ??= 300;
-    config.fadeEasing ??= EASING.linear;
-    config.maxOpacity ??= 1;
-    config.minOpacity ??= 0;
-    config.scaleDuration ??= 900;
-    config.scaleEasing ??= EASING.linear;
-    _config = config;
+
+    private static readonly _config: AnimationDefaultSettings =
+        new AnimationDefaultSettings();
+    public static get config(): AnimationDefaultSettings {
+        return AnimationDefaultSettings._config;
+    }
 }
 
-export interface GlobalAnimationConfig {
-    speed?: number;
-    fadeDuration?: number;
-    fadeEasing?: string;
-    maxOpacity?: number;
-    minOpacity?: number;
-    scaleDuration?: number;
-    scaleEasing?: string;
-}
+export class AnimationGlobalSettings {
+    public maxOpacity: number;
+    public minOpacity: number;
+    public speed: number;
 
-export function getGlobalAnimationConfig(): GlobalAnimationConfig {
-    if (!_config) {
-        throw new Error("Global animation config not set");
+    constructor() {
+        this.maxOpacity = 1;
+        this.minOpacity = 0;
+        this.speed = PERCENT_100;
     }
-    return _config;
+
+    private static readonly _config: AnimationGlobalSettings =
+        new AnimationGlobalSettings();
+    public static get config(): AnimationGlobalSettings {
+        return AnimationGlobalSettings._config;
+    }
 }

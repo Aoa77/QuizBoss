@@ -2,12 +2,13 @@ import { ELEMENT } from "../animation/elements";
 import { GameState } from "../models/GameState";
 import { wait } from "../../core/anime-x/wait";
 import { LOADING, PAUSE } from "../animation/times";
-import { getAppState } from "../hooks/state-hooks";
+import { getStateFlow } from "../../core/state-flow/getStateFlow";
+import { AppState } from "../models/AppState";
 import { fadeOut, fadeIn } from "../../core/anime-x/fade";
 import { getElementDivs } from "../../core/xelemental/getElementDivs";
 
 export async function onLoaded() {
-    const [state, setState] = getAppState();
+    const [state, setState] = getStateFlow<AppState>();
     const [loading, image] = getElementDivs(
         ELEMENT.loading,
         ELEMENT.image,
@@ -25,10 +26,8 @@ export async function onLoaded() {
         await wait(LOADING.POLL);
     }
 
-    await Promise.all([
-        loading.runAnimation(fadeOut()),
-        image.runAnimation(fadeIn()),
-    ]);
+    loading.runAnimation(fadeOut());
+    image.runAnimation(fadeIn());
 
     setState({ ...state, gameState: GameState.NEXT });
 }

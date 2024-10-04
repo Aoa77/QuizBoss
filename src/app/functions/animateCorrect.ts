@@ -19,18 +19,20 @@ export async function animateCorrect(
         -1 * (correct.element.getBoundingClientRect().top - yTop);
 
     await scaleButton(correct);
-    correct.startAnimation({
+    correct.runAnimation({
+        duration: 500,
         easing: EASING.easeOutQuint, ///////////
         translateY,
     });
 
     await applyScoreAward(award);
     await wait(DELAY.REVEAL);
-    
+
     await Promise.all([
         correct.runAnimation(fadeOut()),
-        image.runAnimation(fadeOut()),
-        loading.runAnimation(fadeIn()),
+        image
+            .runAnimation(fadeOut())
+            .then(() => loading.runAnimation(fadeIn())),
     ]);
 
     await correct.runAnimation(translateReset());

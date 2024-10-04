@@ -1,36 +1,30 @@
 import { AnimeParams } from "animejs";
-import { EASING } from "./easings";
-import { applyTimePercentage } from "./percentages";
+import { AnimationDefaultSettings, AnimationGlobalSettings } from "./config";
 
-const FADE = {
-    DURATION: 300,
-    IN: 1,
-    OUT: 0,
-    SPEED: 100,
-};
-
-export function fadeIn(
-    easing: string = EASING.linear,
-    speed: number = FADE.SPEED,
-): AnimeParams {
-    return fadeTo(easing, speed, FADE.IN);
+export function fadeIn(p?: FadeParams): AnimeParams {
+    p ??= {};
+    return fadeTo({ ...p, opacity: AnimationGlobalSettings.config.maxOpacity });
 }
 
-export function fadeOut(
-    easing: string = EASING.linear,
-    speed: number = FADE.SPEED,
-): AnimeParams {
-    return fadeTo(easing, speed, FADE.OUT);
+export function fadeOut(p?: FadeParams): AnimeParams {
+    p ??= {};
+    return fadeTo({ ...p, opacity: AnimationGlobalSettings.config.minOpacity });
 }
 
-export function fadeTo(
-    easing: string = EASING.linear,
-    speed: number = FADE.SPEED,
-    opacity: number,
-): AnimeParams {
-    return {
-        duration: applyTimePercentage(FADE.DURATION, speed),
-        easing,
-        opacity
+export function fadeTo(p: FadeToParams): AnimeParams {
+    const params: AnimeParams = {
+        duration: p.duration ?? AnimationDefaultSettings.config.fadeDuration,
+        easing: p.easing ?? AnimationDefaultSettings.config.fadeEasing,
+        opacity: p.opacity,
     };
+    return params;
+}
+
+export interface FadeParams {
+    duration?: number;
+    easing?: string;
+}
+
+export interface FadeToParams extends FadeParams {
+    opacity: number;
 }

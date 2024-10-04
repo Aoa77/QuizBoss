@@ -1,3 +1,4 @@
+import { AnimationDefaultConfig } from "../../core/anime-x/config";
 import { getQueryParams } from "../functions/getQueryParams";
 import { DemoMode } from "../models/DemoMode";
 
@@ -6,17 +7,16 @@ export class AppSettings {
     public readonly demoMode: DemoMode;
     public readonly guessButtonCount: number;
     public readonly maxQuestions: number;
-    public readonly speed: number;
 
     constructor(params: {
         quizModuleName?: string;
         demoMode?: DemoMode;
         guessButtonCount?: number;
         maxQuestions?: number;
-        speed?: number;
+        animation?: AnimationDefaultConfig;
     }) {
         let { quizModuleName, demoMode } = params;
-        const { guessButtonCount, maxQuestions, speed } = params;
+        const { guessButtonCount, maxQuestions } = params;
         const queryParams = getQueryParams(window.location.search);
 
         quizModuleName ??= queryParams.get("quizModuleName");
@@ -35,8 +35,6 @@ export class AppSettings {
 
         this.maxQuestions =
             maxQuestions ?? +(queryParams.get("maxQuestions") ?? "0");
-
-        this.speed = speed ?? +(queryParams.get("speed") ?? "142"); ////
     }
 }
 

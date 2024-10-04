@@ -37,7 +37,7 @@ export function doDemoInput(
 
 
 // export async function onInput() {
-//     const [state, setState] = getAppState();
+//     const [state, setState] = getStateFlow<AppState>();
 //     const { settings } = state;
 //     const { demoMode } = settings;
 //     if (demoMode === DemoMode.OFF) {

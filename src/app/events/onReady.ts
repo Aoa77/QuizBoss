@@ -1,4 +1,5 @@
-import { getAppState } from "../hooks/state-hooks";
+import { getStateFlow } from "../../core/state-flow/getStateFlow";
+import { AppState } from "../models/AppState";
 import { ELEMENT } from "../animation/elements";
 import { GameState } from "../models/GameState";
 import { getElementHeadings } from "../../core/xelemental/getElementHeadings";
@@ -19,6 +20,6 @@ export async function onReady() {
     //     await delay(Duration.ONE_SECOND, Multiplier.x3);
     // }
 
-    const [state, setState] = getAppState();
+    const [state, setState] = getStateFlow<AppState>();
     setState({ ...state, gameState: GameState.LOADING });
 }

@@ -1,4 +1,5 @@
-import { getAppState } from "../hooks/state-hooks";
+import { getStateFlow } from "../../core/state-flow/getStateFlow";
+import { AppState } from "../models/AppState";
 import { initQuizModule } from "../functions/initQuizModule";
 import { GameState } from "../models/GameState";
 import { fadeIn } from "../../core/anime-x/fade";
@@ -7,7 +8,7 @@ import { ELEMENT } from "../animation/elements";
 
 ///
 export async function onInit() {
-    const [state, setState] = getAppState();
+    const [state, setState] = getStateFlow<AppState>();
     const [loading] = getElementDivs(ELEMENT.loading);
 
     await loading.runAnimation(fadeIn());

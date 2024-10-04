@@ -139,8 +139,16 @@ section.score div.row {
     color: var(--score-row-color);
     font-size: 11rem;
 }
-#scoreValue.bonus {
-    color: var(--bonus-color);
+div[id^=scoreValue_] {
+    /* color: var(--bonus-color); */
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke: 1px;
+    opacity: 0.0;
+    position: absolute;
+    z-index: 7777;
+    color: var(--score-row-color);
+    font-size: 11rem;
+    padding-top: 2rem;
 }
 section.score div.row > div {
     padding-top: 2rem;

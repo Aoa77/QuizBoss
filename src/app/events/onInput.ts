@@ -1,4 +1,5 @@
-import { getAppState } from "../hooks/state-hooks";
+import { getStateFlow } from "../../core/state-flow/getStateFlow";
+import { AppState } from "../models/AppState";
 import { DemoMode } from "../models/DemoMode";
 import { GameState } from "../models/GameState";
 import { DELAY } from "../animation/times";
@@ -6,7 +7,7 @@ import { wait } from "../../core/anime-x/wait";
 import { doDemoInput } from "../functions/doDemoInput";
 
 export async function onInput() {
-    const [state, setState] = getAppState();
+    const [state, setState] = getStateFlow<AppState>();
     const { settings } = state;
     const { demoMode } = settings;
 

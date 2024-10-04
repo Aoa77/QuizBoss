@@ -1,6 +1,4 @@
 import "../styles";
-import { useAppState } from "../hooks/state-hooks";
-import { useAnimationConfig } from "../hooks/animation-hooks";
 import { GuessButtonArea } from "./GuessButtonArea";
 import { LoadingSpinner } from "./LoadingSpinner";
 import { ProgressDisplay } from "./ProgressDisplay";
@@ -11,7 +9,9 @@ import { TitleHeading } from "./TitleHeading";
 import { AppSettings } from "../models/AppSettings";
 import { BonusNotification } from "./BonusNotification";
 import { useMemo } from "react";
+import { useAppState } from "./useAppState";
 
+///
 export function App(settings: AppSettings) {
     ///
     const loadingSpinner = useMemo(() => <LoadingSpinner />, []);
@@ -19,7 +19,7 @@ export function App(settings: AppSettings) {
     const guessButtonArea = useMemo(() => <GuessButtonArea />, []);
     
     ///
-    useAnimationConfig(settings.speed);
+    
     const [state] = useAppState(settings);
 
     ///
@@ -36,3 +36,7 @@ export function App(settings: AppSettings) {
         </main>
     );
 }
+
+
+
+

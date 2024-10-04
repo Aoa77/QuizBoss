@@ -1,27 +1,18 @@
 import anime, { AnimeParams } from "animejs";
 import { applyTimePercentage } from "./percentages";
-import { getGlobalAnimationConfig } from "./config";
 
 export function runAnimation(xp: AnimeParams): Promise<void> {
     ////
     if (typeof xp.duration === "number") {
-        xp.duration = applyTimePercentage(
-            xp.duration,
-            getGlobalAnimationConfig().speed,
-        );
+        xp.duration = applyTimePercentage(xp.duration);
     }
     ////
-    const fin = anime(xp).finished;
-    console.log({ fin });
-    return fin;
+    return anime(xp).finished;
 }
 
 export function runAnimationSync(xp: AnimeParams): void {
     if (typeof xp.duration === "number") {
-        xp.duration = applyTimePercentage(
-            xp.duration,
-            getGlobalAnimationConfig().speed,
-        );
+        xp.duration = applyTimePercentage(xp.duration);
     }
     anime(xp);
 }

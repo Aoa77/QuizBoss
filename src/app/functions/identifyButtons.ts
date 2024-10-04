@@ -1,10 +1,11 @@
-import { getAppState } from "../hooks/state-hooks";
+import { getStateFlow } from "../../core/state-flow/getStateFlow";
+import { AppState } from "../models/AppState";
 import { getElementButtons } from "../../core/xelemental/getElementButtons";
 import { Xelement } from "../../core/xelemental/Xelement";
 
 
 export function identifyButtons(): IdentifyButtonsResult {
-    const [state] = getAppState();
+    const [state] = getStateFlow<AppState>();
     const { answerSpot } = state;
     const all = getElementButtons();
     const correct = all[answerSpot];

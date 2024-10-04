@@ -1,6 +1,5 @@
 import { getElementButtons } from "../../core/xelemental/getElementButtons";
 import { Xelement } from "../../core/xelemental/Xelement";
-import { getAppState } from "../hooks/state-hooks";
 import { ButtonState } from "../models/ButtonState";
 import { QuizItem } from "../models/QuizItem";
 import { handleWrongGuess } from "./handleWrongGuess";
@@ -9,13 +8,15 @@ import { unlockButtons } from "./unlockButtons";
 import { wrongGuessesExhausted } from "./wrongGuessesExhausted";
 import { DELAY } from "../animation/times";
 import { wait } from "../../core/anime-x/wait";
+import { getStateFlow } from "../../core/state-flow/getStateFlow";
+import { AppState } from "../models/AppState";
 
 export async function lockButtons(
     currentItem: QuizItem,
     isCorrectGuess: boolean,
     wrongGuesses: number[],
 ) {
-    const [state] = getAppState();
+    const [state] = getStateFlow<AppState>();
     const buttons = getElementButtons();
     
     for (let guess = 0; guess < buttons.length; guess++) {

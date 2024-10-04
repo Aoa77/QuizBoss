@@ -5,15 +5,15 @@ import { calcAward } from "./calcAward";
 import { identifyButtons } from "./identifyButtons";
 import { animateCorrect } from "./animateCorrect";
 import { animateCorrectTransition } from "./animateCorrectTransition";
-import { getAppState } from "../hooks/state-hooks";
-import { fadeOut } from "../../core/anime-x/fade";
+import { getStateFlow } from "../../core/state-flow/getStateFlow";
+import { AppState } from "../models/AppState";
 
 export async function handleCorrectGuess(
     wrongGuesses: number[],
 ): Promise<void> {
     //
-    const [state] = getAppState();
-    const [question, bonusValue] = getElementHeadings(
+    const [state] = getStateFlow<AppState>();
+    const [question] = getElementHeadings(
         ELEMENT.question,
         ELEMENT.bonusValue,
     );
@@ -26,5 +26,4 @@ export async function handleCorrectGuess(
         animateCorrect(state.award, correct, top, image, loading),
         animateCorrectTransition(wrong, question),
     ]);
-    bonusValue.startAnimation(fadeOut());
 }

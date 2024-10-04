@@ -13,13 +13,7 @@ export abstract class Xref {
     }
 
     public async runAnimation(xp: AnimeParams): Promise<void> {
-        await this._awaiter;
         xp.targets = this.idSelector;
         await runAnimation(xp);
-        this._awaiter = Promise.resolve();
     }
-    public startAnimation(xp: AnimeParams): void {
-        this._awaiter = this.runAnimation(xp);
-    }
-    private _awaiter: Promise<void> = Promise.resolve();
 }

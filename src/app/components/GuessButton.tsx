@@ -3,7 +3,8 @@ import { ELEMENT } from "../animation/elements";
 import { useElementsButtons } from "../../core/xelemental/useElementButtons";
 import { Xelement } from "../../core/xelemental/Xelement";
 import { GameState } from "../models/GameState";
-import { getAppState } from "../hooks/state-hooks";
+import { getStateFlow } from "../../core/state-flow/getStateFlow";
+import { AppState } from "../models/AppState";
 
 export function GuessButton(params: { index: number }) {
     const [button] = useElementsButtons(`${ELEMENT.button}_${params.index}`);
@@ -21,7 +22,7 @@ export function GuessButton(params: { index: number }) {
 }
 
 async function handleButtonPointerDown(xref: Xelement<HTMLButtonElement>) {
-    const [state, setState] = getAppState();
+    const [state, setState] = getStateFlow<AppState>();
     const { gameState } = state;
     if (gameState !== GameState.INPUT) {
         return;

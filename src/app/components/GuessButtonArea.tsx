@@ -1,11 +1,12 @@
 import { ELEMENT } from "../animation/elements";
 import { GuessButton } from "./GuessButton";
 import { useElementDivs } from "../../core/xelemental/useElementDivs";
-import { getAppState } from "../hooks/state-hooks";
+import { getStateFlow } from "../../core/state-flow/getStateFlow";
+import { AppState } from "../models/AppState";
 
 export function GuessButtonArea() {
     ///
-    const [state] = getAppState();
+    const [state] = getStateFlow<AppState>();
     const [buttonArea] = useElementDivs(ELEMENT.buttonArea);
     const buttons: JSX.Element[] = [];
     for (let i = 0; i < state.settings.guessButtonCount; i++) {
