@@ -1,6 +1,6 @@
 import { getStateFlow } from "../../core/state-flow/getStateFlow";
 import { AppState } from "../models/AppState";
-import { handleCorrectGuess }    from "../functions/handleCorrectGuess";
+import { handleCorrectGuess }    from "../animation/handleCorrectGuess";
 import { handleWrongGuess }      from "../functions/handleWrongGuess";
 import { lockButtons }           from "../functions/lockButtons";
 import { resetWrongGuesses }     from "../functions/resetWrongGuesses";

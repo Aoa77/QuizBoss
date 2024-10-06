@@ -2,9 +2,13 @@ import { EASING } from "../../core/anime-x/easings";
 import { fadeOut, fadeIn } from "../../core/anime-x/fade";
 import { wait } from "../../core/anime-x/wait";
 import { Xelement } from "../../core/xelemental/Xelement";
-import { scaleButton } from "../animation/scaleButton";
-import { DELAY } from "../animation/times";
-import { translateReset } from "../animation/translateReset";
+import {
+    scaleButton,
+    scaleButtonBegin,
+    scaleButtonEnd,
+    scaleButtonGlitch,
+} from "./scaleButton";
+import { translateReset } from "./translateReset";
 import { applyScoreAward } from "./applyScoreAward";
 
 export async function animateCorrect(
@@ -25,9 +29,7 @@ export async function animateCorrect(
         translateY,
     });
 
-    await applyScoreAward(award);
-    await wait(DELAY.REVEAL);
-
+    await wait(800);
     await Promise.all([
         correct.runAnimation(fadeOut()),
         image
@@ -35,5 +37,6 @@ export async function animateCorrect(
             .then(() => loading.runAnimation(fadeIn())),
     ]);
 
+    applyScoreAward(award);
     await correct.runAnimation(translateReset());
 }

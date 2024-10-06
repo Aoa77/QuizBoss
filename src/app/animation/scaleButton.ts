@@ -11,12 +11,12 @@ export async function scaleButton(xref: Xref): Promise<void> {
     await xref.runAnimation(scaleButtonGlitch());
     await xref.runAnimation(scaleButtonEnd());
 }
-function scaleButtonBegin(): AnimeParams {
+export function scaleButtonBegin(xref: Xref): AnimeParams {
     return scaleTo({ scale: 1.3, duration: 666 });
 }
-function scaleButtonGlitch(): AnimeParams {
+export function scaleButtonGlitch(): AnimeParams {
     return scaleImmediately(1.33);
 }
-function scaleButtonEnd(): AnimeParams {
+export function scaleButtonEnd(): AnimeParams {
     return scaleTo({ scale: 1.0, duration: 420 });
 }

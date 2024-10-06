@@ -46,7 +46,7 @@ export async function lockButtons(
         if (wrongGuessesExhausted(wrongGuesses)) {
             await handleWrongGuess();
             await unlockButtons(wrongGuesses);
-            await wait(DELAY.REVEAL);
+            await wait(800);
             revealCorrectAnswer(currentItem, wrongGuesses);
             break;
         }

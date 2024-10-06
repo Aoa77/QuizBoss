@@ -1,8 +1,8 @@
 import { getElementDivs } from "../../core/xelemental/getElementDivs";
 import { getElementHeadings } from "../../core/xelemental/getElementHeadings";
-import { ELEMENT } from "../animation/elements";
-import { calcAward } from "./calcAward";
-import { identifyButtons } from "./identifyButtons";
+import { ELEMENT } from "./elements";
+import { calcAward } from "../functions/calcAward";
+import { identifyButtons } from "../functions/identifyButtons";
 import { animateCorrect } from "./animateCorrect";
 import { animateCorrectTransition } from "./animateCorrectTransition";
 import { getStateFlow } from "../../core/state-flow/getStateFlow";

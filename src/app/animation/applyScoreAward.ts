@@ -1,9 +1,9 @@
 import { scaleImmediately, scaleTo } from "../../core/anime-x/scale";
 import { getElementHeadings } from "../../core/xelemental/getElementHeadings";
-import { ELEMENT } from "../animation/elements";
+import { ELEMENT } from "./elements";
 import { getStateFlow } from "../../core/state-flow/getStateFlow";
 import { AppState } from "../models/AppState";
-import { incrementScore } from "../animation/incrementScore";
+import { incrementScore } from "./incrementScore";
 import { fadeOut } from "../../core/anime-x/fade";
 import { wait } from "../../core/anime-x/wait";
 import { Xelement } from "../../core/xelemental/Xelement";

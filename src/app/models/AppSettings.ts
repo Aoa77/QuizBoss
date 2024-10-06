@@ -1,4 +1,3 @@
-import { AnimationDefaultConfig } from "../../core/anime-x/config";
 import { getQueryParams } from "../functions/getQueryParams";
 import { DemoMode } from "../models/DemoMode";
 
@@ -13,7 +12,6 @@ export class AppSettings {
         demoMode?: DemoMode;
         guessButtonCount?: number;
         maxQuestions?: number;
-        animation?: AnimationDefaultConfig;
     }) {
         let { quizModuleName, demoMode } = params;
         const { guessButtonCount, maxQuestions } = params;

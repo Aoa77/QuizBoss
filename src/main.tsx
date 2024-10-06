@@ -4,12 +4,7 @@ import { AppSettings } from "./app/models/AppSettings";
 
 const quizModuleName = "quizboss-world-flags";
 const settings = new AppSettings({ quizModuleName });
-
-const {
-    demoMode, ///////////
-    guessButtonCount,
-    maxQuestions,
-} = settings;
+const { demoMode, guessButtonCount, maxQuestions } = settings;
 
 createRoot(document.getElementById("root")!).render(
     <App

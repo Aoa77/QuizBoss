@@ -1,9 +1,5 @@
-import { AnimeParams } from "animejs";
 import { scaleImmediately, scaleTo } from "../../core/anime-x/scale";
-import { wait } from "../../core/anime-x/wait";
-import { Xref } from "../../core/xelemental/Xref";
 import { AppState } from "../models/AppState";
-import { PAUSE } from "./times";
 import { ELEMENT } from "./elements";
 import { getElementDivs } from "../../core/xelemental/getElementDivs";
 import { Xelement } from "../../core/xelemental/Xelement";
@@ -68,8 +64,8 @@ async function scaleScore(
     scorePlus.opacity = 1.0;
     scoreValue.opacity = 0.0;
     scorePlus.runAnimation(
-        scaleTo({ scale: 27, duration: 1111, easing: EASING.linear }),
+        scaleTo({ scale: 14, duration: 999, easing: EASING.linear }),
     );
-    await scorePlus.runAnimation(fadeOut({ duration: 422 }));
+    await scorePlus.runAnimation(fadeOut({ duration: 178 }));
     scoreValue.opacity = 1.0;
 }
