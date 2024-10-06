@@ -1,8 +1,8 @@
-import { useElementHeadings } from "../../core/xelemental/useElementHeadings";
+import { createElementHeadings } from "../../core/xelemental/createElementHeadings";
 import { ELEMENT } from "../animation/elements";
 
 export function BonusNotification() {
-    const [bonusValue] = useElementHeadings(ELEMENT.bonusValue);
+    const [bonusValue] = createElementHeadings(ELEMENT.bonusValue);
 
     return (
         <h2

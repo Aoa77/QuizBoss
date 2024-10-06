@@ -1,11 +1,11 @@
 import { AppState } from "../models/AppState";
 import { ELEMENT } from "../animation/elements";
-import { useElementHeadings } from "../../core/xelemental/useElementHeadings";
+import { createElementHeadings } from "../../core/xelemental/createElementHeadings";
 import { DemoMode } from "../models/DemoMode";
 
 export function TitleHeading(state: AppState) {
     ///
-    const [title] = useElementHeadings(ELEMENT.title);
+    const [title] = createElementHeadings(ELEMENT.title);
 
     function onPointerDown() {
         if (state.settings.demoMode === DemoMode.OFF) {

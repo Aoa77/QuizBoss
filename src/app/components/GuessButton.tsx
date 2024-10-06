@@ -1,13 +1,13 @@
 import { ButtonState } from "../models/ButtonState";
 import { ELEMENT } from "../animation/elements";
-import { useElementsButtons } from "../../core/xelemental/useElementButtons";
+import { createElementsButtons } from "../../core/xelemental/createElementButtons";
 import { Xelement } from "../../core/xelemental/Xelement";
 import { GameState } from "../models/GameState";
 import { getStateFlow } from "../../core/state-flow/getStateFlow";
 import { AppState } from "../models/AppState";
 
 export function GuessButton(params: { index: number }) {
-    const [button] = useElementsButtons(`${ELEMENT.button}_${params.index}`);
+    const [button] = createElementsButtons(`${ELEMENT.button}_${params.index}`);
     return (
         <button
             className={ButtonState.HIDDEN}

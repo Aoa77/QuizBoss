@@ -1,6 +1,6 @@
 import { AppState } from "../models/AppState";
 import { ELEMENT } from "../animation/elements";
-import { useElementDivs } from "../../core/xelemental/useElementDivs";
+import { createElementDivs } from "../../core/xelemental/createElementDivs";
 
 export function ScoreDisplay(state: AppState) {
     const [
@@ -11,7 +11,7 @@ export function ScoreDisplay(state: AppState) {
         scoreValue_plus2,
         scoreValue_plus3,
         ///
-    ] = useElementDivs(
+    ] = createElementDivs(
         ELEMENT.bestValue,
         ELEMENT.scoreArea,
         ELEMENT.scoreValue,

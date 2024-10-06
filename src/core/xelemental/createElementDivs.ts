@@ -2,7 +2,7 @@ import { ElementFactory } from "./ElementFactory";
 import { getElementDivs } from "./getElementDivs";
 import { Xelement } from "./Xelement";
 
-export function useElementDivs(...keys: string[]): Xelement<HTMLDivElement>[] {
+export function createElementDivs(...keys: string[]): Xelement<HTMLDivElement>[] {
     const map = ElementFactory.instance.divMap;
     const type: string = HTMLDivElement.name;
     keys.forEach((key) => {

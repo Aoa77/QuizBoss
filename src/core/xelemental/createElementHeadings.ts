@@ -2,7 +2,7 @@ import { ElementFactory } from "./ElementFactory";
 import { getElementHeadings } from "./getElementHeadings";
 import { Xelement } from "./Xelement";
 
-export function useElementHeadings(...keys: string[]): Xelement<HTMLHeadingElement>[] {
+export function createElementHeadings(...keys: string[]): Xelement<HTMLHeadingElement>[] {
     const map = ElementFactory.instance.headingMap;
     const type: string = HTMLHeadingElement.name;
     keys.forEach((key) => {

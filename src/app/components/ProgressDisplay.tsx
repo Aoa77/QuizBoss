@@ -1,9 +1,9 @@
 import { AppState } from "../models/AppState";
 import { ELEMENT } from "../animation/elements";
-import { useElementDivs } from "../../core/xelemental/useElementDivs";
+import { createElementDivs } from "../../core/xelemental/createElementDivs";
 
 export function ProgressDisplay(state: AppState) {
-    const [progress] = useElementDivs(ELEMENT.progress);
+    const [progress] = createElementDivs(ELEMENT.progress);
 
     const { currentItemIndex, totalItems } = state;
 
