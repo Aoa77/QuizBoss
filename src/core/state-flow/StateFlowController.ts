@@ -1,6 +1,9 @@
 import { Dispatch, SetStateAction } from "react";
 
-export class StateFlow<Tstate> {
+/**
+ * Internal controller, do not use externally.
+ */
+export class StateFlowController<Tstate> {
     public readonly context: [Tstate, Dispatch<SetStateAction<Tstate>>];
 
     constructor(context: [Tstate, Dispatch<SetStateAction<Tstate>>]) {
@@ -16,12 +19,12 @@ export class StateFlow<Tstate> {
         if (!this._instance) {
             throw new Error("StateFlow not initialized.");
         }
-        return (this._instance as StateFlow<Tstate>).context;
+        return (this._instance as StateFlowController<Tstate>).context;
     }
 
     public static initHook<Tstate>(
         context: [Tstate, Dispatch<SetStateAction<Tstate>>],
     ): void {
-        this._instance = new StateFlow(context);
+        this._instance = new StateFlowController(context);
     }
 }

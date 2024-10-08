@@ -1,10 +1,10 @@
 import { Dispatch, SetStateAction } from "react";
-import { StateFlow } from "./StateFlow";
+import { StateFlowController } from "./StateFlowController";
 
 
 export function getStateFlow<Tstate>(): [
     Tstate,
     Dispatch<SetStateAction<Tstate>>
 ] {
-    return StateFlow.getHooked<Tstate>();
+    return StateFlowController.getHooked<Tstate>();
 }

@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from "react";
-import { useStateFlow } from "../../core/state-flow/useStateFlow";
+import { createStateFlow } from "../../core/state-flow/createStateFlow";
 import { onGameOver } from "../events/onGameOver";
 import { onInit } from "../events/onInit";
 import { onInput } from "../events/onInput";
@@ -18,7 +18,7 @@ export function useAppState(
     settings: AppSettings
 ): [AppState, Dispatch<SetStateAction<AppState>>] {
 
-    const stateFlow = useStateFlow<AppState, GameState>({
+    const stateFlow = createStateFlow<AppState, GameState>({
         initialState: createInitialState(settings),
         getFlowEvent: (state) => {
             return state.gameState;
