@@ -1,9 +1,9 @@
-import { AppState } from "../models/AppState";
+import { QuizState } from "../models/QuizState";
 import { ELEMENT } from "../animation/elements";
-import { createElementHeadings } from "../../core/xelemental/createElementHeadings";
+import { createXref } from "../../core/animation/dom/createXref";
 
-export function QuestionHeading(state: AppState) {
-    const [question] = createElementHeadings(ELEMENT.question);
+export function QuestionHeading(state: QuizState) {
+    const [question] = createXref.headings(ELEMENT.question);
 
     return (
         <h2 id={question.id} ref={question.ref} className="hidden">

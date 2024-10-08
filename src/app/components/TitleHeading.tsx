@@ -1,11 +1,11 @@
-import { AppState } from "../models/AppState";
+import { QuizState } from "../models/QuizState";
 import { ELEMENT } from "../animation/elements";
-import { createElementHeadings } from "../../core/xelemental/createElementHeadings";
+import { createXref } from "../../core/animation/dom/createXref";
 import { DemoMode } from "../models/DemoMode";
 
-export function TitleHeading(state: AppState) {
+export function TitleHeading(state: QuizState) {
     ///
-    const [title] = createElementHeadings(ELEMENT.title);
+    const [title] = createXref.headings(ELEMENT.title);
 
     function onPointerDown() {
         if (state.settings.demoMode === DemoMode.OFF) {

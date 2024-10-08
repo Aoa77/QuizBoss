@@ -1,9 +1,9 @@
-import { AppState } from "../models/AppState";
+import { QuizState } from "../models/QuizState";
 import { ELEMENT } from "../animation/elements";
-import { createElementDivs } from "../../core/xelemental/createElementDivs";
+import { createXref } from "../../core/animation/dom/createXref";
 
-export function ProgressDisplay(state: AppState) {
-    const [progress] = createElementDivs(ELEMENT.progress);
+export function ProgressDisplay(state: QuizState) {
+    const [progress] = createXref.divs(ELEMENT.progress);
 
     const { currentItemIndex, totalItems } = state;
 

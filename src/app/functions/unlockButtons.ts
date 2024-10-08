@@ -1,10 +1,10 @@
-import { getElementButtons } from "../../core/xelemental/getElementButtons";
+import { xref } from "../../core/animation/dom/xref";
 import { ButtonState } from "../models/ButtonState";
 
 export async function unlockButtons(
     wrongGuesses: number[],
 ): Promise<void> {
-    const buttons = getElementButtons();
+    const buttons = xref.buttons();
     for (let guess = 0; guess < buttons.length; guess++) {
         const button = buttons[guess];
         switch (button.className) {

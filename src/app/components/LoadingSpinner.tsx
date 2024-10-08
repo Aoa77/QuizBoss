@@ -1,8 +1,8 @@
-import { createElementDivs } from "../../core/xelemental/createElementDivs";
+import { createXref } from "../../core/animation/dom/createXref";
 import { ELEMENT } from "../animation/elements";
 
 export function LoadingSpinner() {
-    const [loading] = createElementDivs(ELEMENT.loading);
+    const [loading] = createXref.divs(ELEMENT.loading);
     return (
         <section id={loading.id} ref={loading.ref} className="loading hidden">
             <div className="lds-ellipsis">

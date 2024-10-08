@@ -1,13 +1,13 @@
 import { ELEMENT } from "../animation/elements";
 import { GuessButton } from "./GuessButton";
-import { createElementDivs } from "../../core/xelemental/createElementDivs";
-import { getStateFlow } from "../../core/state-flow/getStateFlow";
-import { AppState } from "../models/AppState";
+import { createXref } from "../../core/animation/dom/createXref";
+import { flow } from "../../core/context/flow";
+import { QuizState } from "../models/QuizState";
 
 export function GuessButtonArea() {
     ///
-    const [state] = getStateFlow<AppState>();
-    const [buttonArea] = createElementDivs(ELEMENT.buttonArea);
+    const [state] = flow<QuizState>();
+    const [buttonArea] = createXref.divs(ELEMENT.buttonArea);
     const buttons: JSX.Element[] = [];
     for (let i = 0; i < state.settings.guessButtonCount; i++) {
         buttons.push(<GuessButton index={i} key={i} />);

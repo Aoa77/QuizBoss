@@ -1,16 +1,16 @@
-import { scaleImmediately, scaleTo } from "../../core/anime-x/scale";
-import { getElementHeadings } from "../../core/xelemental/getElementHeadings";
+import { scaleImmediately, scaleTo } from "../../core/animation/scale";
 import { ELEMENT } from "./elements";
-import { getStateFlow } from "../../core/state-flow/getStateFlow";
-import { AppState } from "../models/AppState";
-import { incrementScore } from "./incrementScore";
-import { fadeOut } from "../../core/anime-x/fade";
-import { wait } from "../../core/anime-x/wait";
-import { Xelement } from "../../core/xelemental/Xelement";
+import { flow } from "../../core/context/flow";
+import { QuizState } from "../models/QuizState";
+// import { incrementScore } from "./incrementScore";
+import { fadeOut } from "../../core/animation/fade";
+import { wait } from "../../core/animation/wait";
+import { Xelement } from "../../core/animation/dom/Xelement";
+import { xref } from "../../core/animation/dom/xref";
 
 export async function applyScoreAward(award: number): Promise<void> {
-    const [state] = getStateFlow<AppState>();
-    const bonusValue = getElementHeadings(ELEMENT.bonusValue)[0];
+    const [state] = flow<QuizState>();
+    const bonusValue = xref.headings(ELEMENT.bonusValue)[0];
     await bonusValue.runAnimation(scaleImmediately(0));
     bonusValue.opacity = 1;
 
@@ -34,11 +34,11 @@ async function bonusAnimation(bonusValue: Xelement<HTMLHeadingElement>) {
     await bonusValue.runAnimation(fadeOut());
 }
 
-async function scoreAnimation(award: number, state: AppState) {
+async function scoreAnimation(award: number, state: QuizState) {
     if (award <= 0) {
         return;
     }
-    await incrementScore(award, state);
+   // await incrementScore(award, state);
     if (state.score > state.best) {
         state.best = state.score;
         localStorage.setItem("bestScore", state.best.toString());

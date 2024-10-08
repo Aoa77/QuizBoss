@@ -1,17 +1,17 @@
-import { getStateFlow } from "../../core/state-flow/getStateFlow";
-import { AppState } from "../models/AppState";
+import { flow } from "../../core/context/flow";
+import { QuizState } from "../models/QuizState";
 import { handleCorrectGuess }    from "../animation/handleCorrectGuess";
 import { handleWrongGuess }      from "../functions/handleWrongGuess";
 import { lockButtons }           from "../functions/lockButtons";
 import { resetWrongGuesses }     from "../functions/resetWrongGuesses";
 import { unlockButtons }         from "../functions/unlockButtons";
 import { wrongGuessesExhausted } from "../functions/wrongGuessesExhausted";
-import { GameState }             from "../models/GameState";
+import { EventState }             from "../models/EventState";
 
 const wrongGuesses: number[] = [];
 
 export async function onResult() {
-    const [state, setState] = getStateFlow<AppState>();
+    const [state, setState] = flow<QuizState>();
     if (state.quizModule === null) {
         return;
     }
@@ -27,19 +27,19 @@ export async function onResult() {
         await handleCorrectGuess(wrongGuesses);
 
         if (1 + state.currentItemIndex === quizItems.length) {
-            setState({ ...state, gameState: GameState.GAMEOVER });
+           // setState({ ...state, event: EventState.GAMEOVER });
             return;
         }
 
         ///
         ++state.currentItemIndex;
         resetWrongGuesses(wrongGuesses);
-        setState({ ...state, gameState: GameState.LOADING });
+        setState({ ...state, event: EventState.NextQuestion });
         return;
     }
 
     ///
     await handleWrongGuess();
     await unlockButtons(wrongGuesses);
-    setState({ ...state, gameState: GameState.INPUT });
+    setState({ ...state, event: EventState.Input });
 }

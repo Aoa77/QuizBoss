@@ -1,24 +1,23 @@
-import { getElementDivs } from "../../core/xelemental/getElementDivs";
-import { getElementHeadings } from "../../core/xelemental/getElementHeadings";
 import { ELEMENT } from "./elements";
 import { calcAward } from "../functions/calcAward";
 import { identifyButtons } from "../functions/identifyButtons";
 import { animateCorrect } from "./animateCorrect";
 import { animateCorrectTransition } from "./animateCorrectTransition";
-import { getStateFlow } from "../../core/state-flow/getStateFlow";
-import { AppState } from "../models/AppState";
+import { flow } from "../../core/context/flow";
+import { QuizState } from "../models/QuizState";
+import { xref } from "../../core/animation/dom/xref";
 
 export async function handleCorrectGuess(
     wrongGuesses: number[],
 ): Promise<void> {
     //
-    const [state] = getStateFlow<AppState>();
-    const [question] = getElementHeadings(
+    const [state] = flow<QuizState>();
+    const [question] = xref.headings(
         ELEMENT.question,
         ELEMENT.bonusValue,
     );
     
-    const [image, loading] = getElementDivs(ELEMENT.image, ELEMENT.loading);
+    const [image, loading] = xref.divs(ELEMENT.image, ELEMENT.loading);
     const { correct, top, wrong } = identifyButtons();
 
     state.award = calcAward(wrongGuesses);

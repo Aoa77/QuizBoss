@@ -1,5 +1,5 @@
 import { AnimeParams } from "animejs";
-import { EASING } from "../../core/anime-x/easings";
+import { EASING } from "../../core/animation/easings";
 
 
 export function translateReset(): AnimeParams {

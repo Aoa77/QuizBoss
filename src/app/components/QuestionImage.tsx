@@ -1,9 +1,9 @@
-import { AppState, getCurrentItem } from "../models/AppState";
+import { QuizState, getCurrentItem } from "../models/QuizState";
 import { ELEMENT } from "../animation/elements";
-import { createElementDivs } from "../../core/xelemental/createElementDivs";
+import { createXref } from "../../core/animation/dom/createXref";
 
-export function QuestionImage(state: AppState) {
-    const [image] = createElementDivs(ELEMENT.image);
+export function QuestionImage(state: QuizState) {
+    const [image] = createXref.divs(ELEMENT.image);
 
     return (
         <section id={image.id} ref={image.ref} className="image hidden">

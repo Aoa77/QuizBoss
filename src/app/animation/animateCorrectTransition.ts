@@ -1,5 +1,5 @@
-import { fadeOut } from "../../core/anime-x/fade";
-import { Xelement } from "../../core/xelemental/Xelement";
+import { fadeOut } from "../../core/animation/fade";
+import { Xelement } from "../../core/animation/dom/Xelement";
 
 export async function animateCorrectTransition(
     wrong: Xelement<HTMLButtonElement>[],

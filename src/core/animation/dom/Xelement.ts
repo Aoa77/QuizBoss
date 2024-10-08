@@ -1,5 +1,5 @@
 import { createRef, RefObject } from "react";
-import { Xref } from "./Xref";
+import { Xref } from "./xref";
 
 export class Xelement<T extends HTMLElement> extends Xref {
     public readonly ref: RefObject<T>;

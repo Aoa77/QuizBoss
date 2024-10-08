@@ -1,23 +1,23 @@
 import { Xelement } from "./Xelement";
 
-class ElementNameMap<T extends HTMLElement> extends Map<string, Xelement<T>> {
+class NameMap<T extends HTMLElement> extends Map<string, Xelement<T>> {
     constructor() {
         super();
     }
 }
 
-export class ElementFactory {
-    public readonly buttonMap: ElementNameMap<HTMLButtonElement>;
-    public readonly divMap: ElementNameMap<HTMLDivElement>;
-    public readonly headingMap: ElementNameMap<HTMLHeadingElement>;
+export class Factory {
+    public readonly buttonMap: NameMap<HTMLButtonElement>;
+    public readonly divMap: NameMap<HTMLDivElement>;
+    public readonly headingMap: NameMap<HTMLHeadingElement>;
 
     constructor() {
-        this.buttonMap = new ElementNameMap<HTMLButtonElement>();
-        this.divMap = new ElementNameMap<HTMLDivElement>();
-        this.headingMap = new ElementNameMap<HTMLHeadingElement>();
+        this.buttonMap = new NameMap<HTMLButtonElement>();
+        this.divMap = new NameMap<HTMLDivElement>();
+        this.headingMap = new NameMap<HTMLHeadingElement>();
     }
 
-    public static readonly instance: ElementFactory = new ElementFactory();
+    public static readonly instance: Factory = new Factory();
 
     private _buttonArray: Xelement<HTMLButtonElement>[] | null = null;
     private _divArray: Xelement<HTMLDivElement>[] | null = null;

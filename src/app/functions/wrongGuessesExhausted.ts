@@ -1,7 +1,7 @@
-import { getStateFlow } from "../../core/state-flow/getStateFlow";
-import { AppState } from "../models/AppState";
+import { flow } from "../../core/context/flow";
+import { QuizState } from "../models/QuizState";
 
 export function wrongGuessesExhausted(wrongGuesses: number[]): boolean {
-    const [state] = getStateFlow<AppState>();
+    const [state] = flow<QuizState>();
     return wrongGuesses.length === state.settings.guessButtonCount - 1;
 }

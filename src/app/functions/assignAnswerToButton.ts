@@ -1,4 +1,4 @@
-import { getElementButtons } from "../../core/xelemental/getElementButtons";
+import { xref } from "../../core/animation/dom/xref";
 import { ButtonState } from "../models/ButtonState";
 import { QuizItem } from "../models/QuizItem";
 
@@ -6,7 +6,7 @@ export async function assignAnswerToButton(
     buttonIndex: number,
     item: QuizItem,
 ) {
-    const buttons = getElementButtons();
+    const buttons = xref.buttons();
     const spotButton = buttons[buttonIndex];
     spotButton.innerHTML = item.name;
     spotButton.dataValue = item.key;

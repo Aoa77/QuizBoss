@@ -1,12 +1,13 @@
-import { shuffle } from "../../core/random-fx/shuffle";
-import { fetchQuizModule } from "./fetchQuizModule";
-import { initQuizItem } from "./initQuizItem";
-import { loadQuizImages } from "./loadQuizImages";
+import { shuffle } from "../../../core/util/shuffle";
+import { QuizState } from "../../models/QuizState";
 import { randomizeGuessPool } from "./randomizeGuessPool";
 import { truncateQuizItems } from "./truncateQuizItems";
-import { AppState } from "../models/AppState";
+import { initQuizItem } from "./initQuizItem";
+import { fetchQuizModule } from "./fetchQuizModule";
+import { wait } from "../../../core/animation/wait";
+import { LOADING } from "../../constants/TIME";
 
-export async function initQuizModule(state: AppState): Promise<void> {
+export async function initQuizModule(state: QuizState): Promise<void> {
     const { settings } = state;
     const module = await fetchQuizModule(settings.quizModuleName);
     console.info(`Quiz module loading: ${module.name}`, module);
@@ -24,5 +25,13 @@ export async function initQuizModule(state: AppState): Promise<void> {
 
     state.quizModule = module;
     state.totalItems = module.quizData.items.length;
-    loadQuizImages(module.quizData.items);
+
+    console.info("Loading quiz images...");
+    for (const item of module.quizData.items) {
+        item.image.src = item.imageSrc;
+        await wait(LOADING.THROTTLE);
+    }
 }
+
+
+

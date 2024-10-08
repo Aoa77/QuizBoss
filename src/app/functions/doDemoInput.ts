@@ -1,15 +1,15 @@
-import { getElementButtons } from "../../core/xelemental/getElementButtons";
-import { randomInt } from "../../core/random-fx/randomInt";
-import { Xelement } from "../../core/xelemental/Xelement";
+import { randomInt } from "../../core/util/randomInt";
+import { Xelement } from "../../core/animation/dom/Xelement";
 import { ButtonState } from "../models/ButtonState";
 import { DemoMode } from "../models/DemoMode";
+import { xref } from "../../core/animation/dom/xref";
 
 
 export function doDemoInput(
     answerSpot: number,
     demoMode: DemoMode
 ): Xelement<HTMLButtonElement> {
-    const buttons = getElementButtons();
+    const buttons = xref.buttons();
 
     let spotButton = buttons[answerSpot];
     if (demoMode === DemoMode.RANDOM) {
@@ -45,7 +45,7 @@ export function doDemoInput(
 //         //return;
 //     }
 //     console.info("waiting for DEMO input...");
-//     const buttons = getElementButtons();
+//     const buttons = xref.buttons();
 //     let index = 0;
 //     while (true) {
 //         if (index === buttons.length) {

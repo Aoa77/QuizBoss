@@ -1,13 +1,11 @@
-import { generateRandomString } from "../../core/random-fx/generateRandomString";
-import { shuffle } from "../../core/random-fx/shuffle";
-import { AppSettings } from "../models/AppSettings";
-import { QuizItem } from "../models/QuizItem";
-import { QuizModule } from "../models/QuizModule";
+import { generateRandomString } from "../../../core/util/generateRandomString";
+import { shuffle } from "../../../core/util/shuffle";
+import { AppSettings } from "../../models/AppSettings";
+import { QuizItem } from "../../models/QuizItem";
+import { QuizModule } from "../../models/QuizModule";
 
-export function randomizeGuessPool(
-    module: QuizModule,
-    settings: AppSettings,
-): void {
+
+export function randomizeGuessPool(module: QuizModule, settings: AppSettings): void {
     const { guessButtonCount } = settings;
     module.quizData.randomizedGuessPool = module.quizData.items.slice();
 

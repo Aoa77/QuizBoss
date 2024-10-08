@@ -1,5 +1,5 @@
-import { getElementButtons } from "../../core/xelemental/getElementButtons";
-import { Xelement } from "../../core/xelemental/Xelement";
+import { Xelement } from "../../core/animation/dom/Xelement";
+import { xref } from "../../core/animation/dom/xref";
 import { ButtonState } from "../models/ButtonState";
 import { QuizItem } from "../models/QuizItem";
 
@@ -8,7 +8,7 @@ export  function revealCorrectAnswer(
     wrongGuesses: number[],
 ) {
     let correctButton: Xelement<HTMLButtonElement> | null = null;
-    const buttons = getElementButtons();
+    const buttons = xref.buttons();
     for (let i = 0; i < buttons.length; i++) {
         if (wrongGuesses.includes(i)) {
             continue;

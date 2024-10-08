@@ -9,7 +9,10 @@ import { TitleHeading } from "./TitleHeading";
 import { AppSettings } from "../models/AppSettings";
 import { BonusNotification } from "./BonusNotification";
 import { useMemo } from "react";
-import { useAppState } from "./useAppState";
+import { useFlow } from "../../core/context/useFlow";
+import { QuizState, createInitialState } from "../models/QuizState";
+import { onQuizStart } from "../events/onQuizStart/_onQuizStart";
+import { EventState } from "../models/EventState";
 
 ///
 export function App(settings: AppSettings) {
@@ -17,10 +20,17 @@ export function App(settings: AppSettings) {
     const loadingSpinner = useMemo(() => <LoadingSpinner />, []);
     const bonusNotification = useMemo(() => <BonusNotification />, []);
     const guessButtonArea = useMemo(() => <GuessButtonArea />, []);
-    
+
     ///
-    
-    const [state] = useAppState(settings);
+    const [state] = useFlow<QuizState, EventState>({
+        initialState: createInitialState(settings),
+        flowProperty: (state) => {
+            return state.event;
+        },
+        flowEvents: new Map<EventState, (state: QuizState) => Promise<void>>([
+            [EventState.QuizStart, onQuizStart],
+        ]),
+    });
 
     ///
     return (
@@ -36,7 +46,3 @@ export function App(settings: AppSettings) {
         </main>
     );
 }
-
-
-
-

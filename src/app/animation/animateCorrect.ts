@@ -1,13 +1,7 @@
-import { EASING } from "../../core/anime-x/easings";
-import { fadeOut, fadeIn } from "../../core/anime-x/fade";
-import { wait } from "../../core/anime-x/wait";
-import { Xelement } from "../../core/xelemental/Xelement";
-import {
-    scaleButton,
-    scaleButtonBegin,
-    scaleButtonEnd,
-    scaleButtonGlitch,
-} from "./scaleButton";
+import { EASING } from "../../core/animation/easings";
+import { fadeOut, fadeIn } from "../../core/animation/fade";
+import { wait } from "../../core/animation/wait";
+import { Xelement } from "../../core/animation/dom/Xelement";
 import { translateReset } from "./translateReset";
 import { applyScoreAward } from "./applyScoreAward";
 
@@ -22,7 +16,7 @@ export async function animateCorrect(
     const translateY =
         -1 * (correct.element.getBoundingClientRect().top - yTop);
 
-    await scaleButton(correct);
+    // await scaleButton(correct);
     correct.runAnimation({
         duration: 500,
         easing: EASING.easeOutQuint, ///////////

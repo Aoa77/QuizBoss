@@ -1,13 +1,13 @@
-import { getStateFlow } from "../../core/state-flow/getStateFlow";
-import { AppState } from "../models/AppState";
+import { flow } from "../../core/context/flow";
+import { QuizState } from "../models/QuizState";
 import { DemoMode } from "../models/DemoMode";
-import { GameState } from "../models/GameState";
-import { DELAY } from "../animation/times";
-import { wait } from "../../core/anime-x/wait";
+import { EventState } from "../models/EventState";
+import { wait } from "../../core/animation/wait";
 import { doDemoInput } from "../functions/doDemoInput";
+import { INPUT } from "../constants/TIME";
 
 export async function onInput() {
-    const [state, setState] = getStateFlow<AppState>();
+    const [state, setState] = flow<QuizState>();
     const { settings } = state;
     const { demoMode } = settings;
 
@@ -17,12 +17,12 @@ export async function onInput() {
     }
 
     console.info("waiting for DEMO input...");
-    await wait(DELAY.DEMO_INPUT);
+    await wait(INPUT.DEMO_DELAY);
 
     const spotButton = doDemoInput(state.answerSpot, demoMode);
     setState({
         ...state,
         guessValue: spotButton.dataValue,
-        gameState: GameState.RESULT,
+        event: EventState.ShowResult,
     });
 }

@@ -1,4 +1,4 @@
-import { QuizModule } from "../models/QuizModule";
+import { QuizModule } from "../../models/QuizModule";
 
 export async function fetchQuizModule(
     quizModuleName: string,

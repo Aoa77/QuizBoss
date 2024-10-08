@@ -1,23 +1,21 @@
-import { getStateFlow } from "../../core/state-flow/getStateFlow";
-import { AppState } from "../models/AppState";
+import { flow } from "../../core/context/flow";
+import { QuizState } from "../models/QuizState";
 import { ELEMENT } from "../animation/elements";
 import { bindGuessButtons } from "../functions/bindGuessButtons";
-import { GameState } from "../models/GameState";
-import { getElementButtons } from "../../core/xelemental/getElementButtons";
-import { randomInt } from "../../core/random-fx/randomInt";
-import { getElementDivs } from "../../core/xelemental/getElementDivs";
-import { getElementHeadings } from "../../core/xelemental/getElementHeadings";
-import { fadeOut, fadeIn } from "../../core/anime-x/fade";
+import { EventState } from "../models/EventState";
+import { randomInt } from "../../core/util/randomInt";
+import { fadeOut, fadeIn } from "../../core/animation/fade";
+import { xref } from "../../core/animation/dom/xref";
 
 ///
 export async function onNext() {
-    const [state, setState] = getStateFlow<AppState>();
+    const [state, setState] = flow<QuizState>();
     if (!state.quizModule) {
         return;
     }
 
-    const [question] = getElementHeadings(ELEMENT.question);
-    const [buttonArea, image, loading, progress, scoreArea] = getElementDivs(
+    const [question] = xref.headings(ELEMENT.question);
+    const [buttonArea, image, loading, progress, scoreArea] = xref.divs(
         ELEMENT.buttonArea,
         ELEMENT.image,
         ELEMENT.loading,
@@ -34,7 +32,7 @@ export async function onNext() {
     state.answerSpot = randomInt(0, state.settings.guessButtonCount);
     console.info("answerSpot: ", state.answerSpot);
 
-    const buttons = getElementButtons();
+    const buttons = xref.buttons();
     await bindGuessButtons(
         state.answerSpot,
         state.settings.guessButtonCount,
@@ -57,5 +55,5 @@ export async function onNext() {
         await button.runAnimation(fadeIn());
     }
 
-    setState({ ...state, gameState: GameState.INPUT });
+    setState({ ...state, event: EventState.Input });
 }

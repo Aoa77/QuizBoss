@@ -1,9 +1,8 @@
-import { createElementHeadings } from "../../core/xelemental/createElementHeadings";
+import { createXref } from "../../core/animation/dom/createXref";
 import { ELEMENT } from "../animation/elements";
 
 export function BonusNotification() {
-    const [bonusValue] = createElementHeadings(ELEMENT.bonusValue);
-
+    const [bonusValue] = createXref.headings(ELEMENT.bonusValue);
     return (
         <h2
             id={bonusValue.id}

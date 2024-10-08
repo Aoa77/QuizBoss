@@ -1,13 +1,13 @@
-import { getStateFlow } from "../../core/state-flow/getStateFlow";
-import { AppState } from "../models/AppState";
-import { getElementButtons } from "../../core/xelemental/getElementButtons";
-import { Xelement } from "../../core/xelemental/Xelement";
+import { flow } from "../../core/context/flow";
+import { QuizState } from "../models/QuizState";
+import { Xelement } from "../../core/animation/dom/Xelement";
+import { xref } from "../../core/animation/dom/xref";
 
 
 export function identifyButtons(): IdentifyButtonsResult {
-    const [state] = getStateFlow<AppState>();
+    const [state] = flow<QuizState>();
     const { answerSpot } = state;
-    const all = getElementButtons();
+    const all = xref.buttons();
     const correct = all[answerSpot];
     const top = all[0];
     const wrong = all.filter((x) => x.id !== correct.id);
