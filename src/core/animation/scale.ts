@@ -11,6 +11,12 @@ export function scaleTo(p: ScaleParams): AnimeParams {
     if (p.easing) {
         params.easing = p.easing;
     }
+    if (p.delay) {
+        params.delay = p.delay;
+    }
+    if (p.endDelay) {
+        params.endDelay = p.endDelay;
+    }
     return params;
 }
 

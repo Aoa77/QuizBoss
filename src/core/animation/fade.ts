@@ -14,12 +14,16 @@ export function fadeOut(p?: BaseParams): AnimeParams {
 
 export function fadeTo(p: FadeParams): AnimeParams {
     const params: AnimeParams = {
-        delay: p.delay,
         duration: p.duration ?? AnimationDefaultSettings.config.fadeDuration,
-        endDelay: p.endDelay,
         easing: p.easing ?? AnimationDefaultSettings.config.fadeEasing,
         opacity: p.opacity,
     };
+    if (p.delay) {
+        params.delay = p.delay;
+    }
+    if (p.endDelay) {
+        params.endDelay = p.endDelay;
+    }
     return params;
 }
 

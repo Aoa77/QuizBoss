@@ -1,16 +1,16 @@
-import { flow } from "../../core/context/flow";
-import { QuizState } from "../models/QuizState";
-import { handleCorrectGuess }    from "../animation/handleCorrectGuess";
-import { handleWrongGuess }      from "../functions/handleWrongGuess";
-import { lockButtons }           from "../functions/lockButtons";
-import { resetWrongGuesses }     from "../functions/resetWrongGuesses";
-import { unlockButtons }         from "../functions/unlockButtons";
-import { wrongGuessesExhausted } from "../functions/wrongGuessesExhausted";
-import { EventState }             from "../models/EventState";
+import { flow } from "../../../core/context/flow";
+import { QuizState } from "../../models/QuizState";
+import { handleCorrectGuess }    from "./handleCorrectGuess";
+import { handleWrongGuess }      from "./handleWrongGuess";
+import { lockButtons }           from "./lockButtons";
+import { resetWrongGuesses }     from "./resetWrongGuesses";
+import { unlockButtons }         from "./unlockButtons";
+import { wrongGuessesExhausted } from "./wrongGuessesExhausted";
+import { EventState }             from "../../constants/EventState";
 
 const wrongGuesses: number[] = [];
 
-export async function onResult() {
+export async function onShowResult() {
     const [state, setState] = flow<QuizState>();
     if (state.quizModule === null) {
         return;
@@ -41,5 +41,5 @@ export async function onResult() {
     ///
     await handleWrongGuess();
     await unlockButtons(wrongGuesses);
-    setState({ ...state, event: EventState.Input });
+    setState({ ...state, event: EventState.AwaitInput });
 }

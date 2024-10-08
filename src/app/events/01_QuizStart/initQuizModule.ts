@@ -5,7 +5,8 @@ import { truncateQuizItems } from "./truncateQuizItems";
 import { initQuizItem } from "./initQuizItem";
 import { fetchQuizModule } from "./fetchQuizModule";
 import { wait } from "../../../core/animation/wait";
-import { LOADING } from "../../constants/TIME";
+import { LOADING } from "../../constants/LOADING";
+import { QuizModule } from "../../models/QuizModule";
 
 export async function initQuizModule(state: QuizState): Promise<void> {
     const { settings } = state;
@@ -25,13 +26,16 @@ export async function initQuizModule(state: QuizState): Promise<void> {
 
     state.quizModule = module;
     state.totalItems = module.quizData.items.length;
+    loadImages(module);
+}
 
+
+
+
+async function loadImages(module: QuizModule) {
     console.info("Loading quiz images...");
     for (const item of module.quizData.items) {
         item.image.src = item.imageSrc;
         await wait(LOADING.THROTTLE);
     }
 }
-
-
-

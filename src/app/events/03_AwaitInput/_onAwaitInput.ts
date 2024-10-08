@@ -1,12 +1,12 @@
-import { flow } from "../../core/context/flow";
-import { QuizState } from "../models/QuizState";
-import { DemoMode } from "../models/DemoMode";
-import { EventState } from "../models/EventState";
-import { wait } from "../../core/animation/wait";
-import { doDemoInput } from "../functions/doDemoInput";
-import { INPUT } from "../constants/TIME";
+import { flow } from "../../../core/context/flow";
+import { QuizState } from "../../models/QuizState";
+import { EventState } from "../../constants/EventState";
+import { wait } from "../../../core/animation/wait";
+import { doDemoInput } from "./doDemoInput";
+import { INPUT } from "../../constants/INPUT";
+import { DemoMode } from "../../constants/DemoMode";
 
-export async function onInput() {
+export async function onAwaitInput() {
     const [state, setState] = flow<QuizState>();
     const { settings } = state;
     const { demoMode } = settings;

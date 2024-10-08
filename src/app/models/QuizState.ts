@@ -1,5 +1,5 @@
 import { AppSettings } from "./AppSettings";
-import { EventState } from "./EventState";
+import { EventState } from "../constants/EventState";
 import { QuizItem } from "./QuizItem";
 import { QuizModule } from "./QuizModule";
 
@@ -9,6 +9,7 @@ export interface QuizState {
     best: number;
     currentItemIndex: number;
     event: EventState;
+    eventWait: number,
     guessValue: string;
     quizModule: QuizModule | null;
     settings: AppSettings;
@@ -30,6 +31,7 @@ export function createInitialState(settings: AppSettings): QuizState {
         best: 0,
         currentItemIndex: 0,
         event: EventState.QuizStart,
+        eventWait: 0,
         guessValue: "",
         quizModule: null,
         settings,

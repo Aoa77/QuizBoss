@@ -1,12 +1,12 @@
-import { scaleImmediately, scaleTo } from "../../core/animation/scale";
-import { ELEMENT } from "./elements";
-import { flow } from "../../core/context/flow";
-import { QuizState } from "../models/QuizState";
+import { scaleImmediately, scaleTo } from "../../../core/animation/scale";
+import { ELEMENT } from "../../constants/ELEMENT";
+import { flow } from "../../../core/context/flow";
+import { QuizState } from "../../models/QuizState";
 // import { incrementScore } from "./incrementScore";
-import { fadeOut } from "../../core/animation/fade";
-import { wait } from "../../core/animation/wait";
-import { Xelement } from "../../core/animation/dom/Xelement";
-import { xref } from "../../core/animation/dom/xref";
+import { fadeOut } from "../../../core/animation/fade";
+import { wait } from "../../../core/animation/wait";
+import { Xelement } from "../../../core/animation/dom/Xelement";
+import { xref } from "../../../core/animation/dom/xref";
 
 export async function applyScoreAward(award: number): Promise<void> {
     const [state] = flow<QuizState>();

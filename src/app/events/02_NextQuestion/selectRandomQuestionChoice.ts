@@ -1,5 +1,5 @@
-import { QuizData } from "../models/QuizData";
-import { QuizItem } from "../models/QuizItem";
+import { QuizData } from "../../models/QuizData";
+import { QuizItem } from "../../models/QuizItem";
 
 class RANDOMIZER {
     public static COUNT: number = 0;

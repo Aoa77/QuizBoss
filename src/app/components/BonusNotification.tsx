@@ -1,5 +1,5 @@
 import { createXref } from "../../core/animation/dom/createXref";
-import { ELEMENT } from "../animation/elements";
+import { ELEMENT } from "../constants/ELEMENT";
 
 export function BonusNotification() {
     const [bonusValue] = createXref.headings(ELEMENT.bonusValue);

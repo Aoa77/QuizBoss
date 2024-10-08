@@ -1,7 +1,7 @@
 export enum EventState {
     QuizStart = "QuizStart",
     NextQuestion = "NextQuestion",
-    Input = "Input",
+    AwaitInput = "Input",
     ShowResult = "ShowResult",
     QuizComplete = "QuizComplete",
 }

@@ -1,5 +1,5 @@
-import { getQueryParams } from "../functions/getQueryParams";
-import { DemoMode } from "../models/DemoMode";
+import { getQueryParams } from "../../core/util/getQueryParams";
+import { DemoMode } from "../constants/DemoMode";
 
 export class AppSettings {
     public readonly quizModuleName: string;

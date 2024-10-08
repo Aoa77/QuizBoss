@@ -1,17 +1,19 @@
-import { flow } from "../../core/context/flow";
-import { QuizState } from "../models/QuizState";
-import { ELEMENT } from "../animation/elements";
-import { bindGuessButtons } from "../functions/bindGuessButtons";
-import { EventState } from "../models/EventState";
-import { randomInt } from "../../core/util/randomInt";
-import { fadeOut, fadeIn } from "../../core/animation/fade";
-import { xref } from "../../core/animation/dom/xref";
+import { flow } from "../../../core/context/flow";
+import { QuizState } from "../../models/QuizState";
+import { ELEMENT } from "../../constants/ELEMENT";
+import { bindGuessButtons } from "./bindGuessButtons";
+import { EventState } from "../../constants/EventState";
+import { randomInt } from "../../../core/util/randomInt";
+import { fadeOut, fadeIn } from "../../../core/animation/fade";
+import { xref } from "../../../core/animation/dom/xref";
+import { wait } from "../../../core/animation/wait";
+import { LOADING } from "../../constants/LOADING";
 
 ///
-export async function onNext() {
+export async function onNextQuestion() {
     const [state, setState] = flow<QuizState>();
-    if (!state.quizModule) {
-        return;
+    if (state.quizModule === null) {
+        throw new Error("QuizModule is null");
     }
 
     const [question] = xref.headings(ELEMENT.question);
@@ -27,6 +29,16 @@ export async function onNext() {
     const quizData = state.quizModule.quizData;
     const quizItems = quizData.items;
     const currentItem = quizItems[state.currentItemIndex];
+
+    if (
+        !currentItem ||
+        !currentItem.isLoaded ||
+        image.element.children.length === 0
+    ) {
+        await wait(LOADING.POLL);
+        setState({ ...state, eventWait: ++state.eventWait });
+        return;
+    }
 
     //elements.clearScoreBonusStyle();
     state.answerSpot = randomInt(0, state.settings.guessButtonCount);
@@ -55,5 +67,5 @@ export async function onNext() {
         await button.runAnimation(fadeIn());
     }
 
-    setState({ ...state, event: EventState.Input });
+    setState({ ...state, event: EventState.AwaitInput });
 }

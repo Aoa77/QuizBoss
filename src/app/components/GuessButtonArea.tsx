@@ -1,4 +1,4 @@
-import { ELEMENT } from "../animation/elements";
+import { ELEMENT } from "../constants/ELEMENT";
 import { GuessButton } from "./GuessButton";
 import { createXref } from "../../core/animation/dom/createXref";
 import { flow } from "../../core/context/flow";

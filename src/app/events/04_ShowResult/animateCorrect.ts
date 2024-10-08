@@ -1,7 +1,7 @@
-import { EASING } from "../../core/animation/easings";
-import { fadeOut, fadeIn } from "../../core/animation/fade";
-import { wait } from "../../core/animation/wait";
-import { Xelement } from "../../core/animation/dom/Xelement";
+import { EASING } from "../../../core/animation/easings";
+import { fadeOut, fadeIn } from "../../../core/animation/fade";
+import { wait } from "../../../core/animation/wait";
+import { Xelement } from "../../../core/animation/dom/Xelement";
 import { translateReset } from "./translateReset";
 import { applyScoreAward } from "./applyScoreAward";
 

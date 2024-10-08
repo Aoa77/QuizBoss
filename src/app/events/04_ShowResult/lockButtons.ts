@@ -1,14 +1,14 @@
-import { Xelement } from "../../core/animation/dom/Xelement";
-import { ButtonState } from "../models/ButtonState";
-import { QuizItem } from "../models/QuizItem";
+import { Xelement } from "../../../core/animation/dom/Xelement";
+import { QuizItem } from "../../models/QuizItem";
 import { handleWrongGuess } from "./handleWrongGuess";
 import { revealCorrectAnswer } from "./revealCorrectAnswer";
 import { unlockButtons } from "./unlockButtons";
 import { wrongGuessesExhausted } from "./wrongGuessesExhausted";
-import { wait } from "../../core/animation/wait";
-import { flow } from "../../core/context/flow";
-import { QuizState } from "../models/QuizState";
-import { xref } from "../../core/animation/dom/xref";
+import { wait } from "../../../core/animation/wait";
+import { flow } from "../../../core/context/flow";
+import { QuizState } from "../../models/QuizState";
+import { xref } from "../../../core/animation/dom/xref";
+import { ButtonState } from "../../constants/ButtonState";
 
 export async function lockButtons(
     currentItem: QuizItem,

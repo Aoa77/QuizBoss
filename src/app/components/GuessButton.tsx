@@ -1,10 +1,10 @@
-import { ButtonState } from "../models/ButtonState";
-import { ELEMENT } from "../animation/elements";
+import { ELEMENT } from "../constants/ELEMENT";
 import { createXref } from "../../core/animation/dom/createXref";
 import { Xelement } from "../../core/animation/dom/Xelement";
-import { EventState } from "../models/EventState";
+import { EventState } from "../constants/EventState";
 import { flow } from "../../core/context/flow";
 import { QuizState } from "../models/QuizState";
+import { ButtonState } from "../constants/ButtonState";
 
 export function GuessButton(params: { index: number }) {
     const [button] = createXref.buttons(`${ELEMENT.button}_${params.index}`);
@@ -24,7 +24,7 @@ export function GuessButton(params: { index: number }) {
 async function handleButtonPointerDown(xref: Xelement<HTMLButtonElement>) {
     const [state, setState] = flow<QuizState>();
     const { event: gameState } = state;
-    if (gameState !== EventState.Input) {
+    if (gameState !== EventState.AwaitInput) {
         return;
     }
     if (xref.className !== ButtonState.NORMAL) {

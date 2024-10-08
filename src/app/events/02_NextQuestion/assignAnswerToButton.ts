@@ -1,6 +1,6 @@
-import { xref } from "../../core/animation/dom/xref";
-import { ButtonState } from "../models/ButtonState";
-import { QuizItem } from "../models/QuizItem";
+import { xref } from "../../../core/animation/dom/xref";
+import { ButtonState } from "../../constants/ButtonState";
+import { QuizItem } from "../../models/QuizItem";
 
 export async function assignAnswerToButton(
     buttonIndex: number,

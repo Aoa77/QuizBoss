@@ -1,11 +1,11 @@
-import { ELEMENT } from "./elements";
-import { calcAward } from "../functions/calcAward";
-import { identifyButtons } from "../functions/identifyButtons";
+import { ELEMENT } from "../../constants/ELEMENT";
+import { calcAward } from "./calcAward";
+import { identifyButtons } from "./identifyButtons";
 import { animateCorrect } from "./animateCorrect";
 import { animateCorrectTransition } from "./animateCorrectTransition";
-import { flow } from "../../core/context/flow";
-import { QuizState } from "../models/QuizState";
-import { xref } from "../../core/animation/dom/xref";
+import { flow } from "../../../core/context/flow";
+import { QuizState } from "../../models/QuizState";
+import { xref } from "../../../core/animation/dom/xref";
 
 export async function handleCorrectGuess(
     wrongGuesses: number[],

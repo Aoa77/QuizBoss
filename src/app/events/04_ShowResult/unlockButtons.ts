@@ -1,5 +1,5 @@
-import { xref } from "../../core/animation/dom/xref";
-import { ButtonState } from "../models/ButtonState";
+import { xref } from "../../../core/animation/dom/xref";
+import { ButtonState } from "../../constants/ButtonState";
 
 export async function unlockButtons(
     wrongGuesses: number[],

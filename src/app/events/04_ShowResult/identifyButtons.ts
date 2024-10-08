@@ -1,7 +1,7 @@
-import { flow } from "../../core/context/flow";
-import { QuizState } from "../models/QuizState";
-import { Xelement } from "../../core/animation/dom/Xelement";
-import { xref } from "../../core/animation/dom/xref";
+import { flow } from "../../../core/context/flow";
+import { QuizState } from "../../models/QuizState";
+import { Xelement } from "../../../core/animation/dom/Xelement";
+import { xref } from "../../../core/animation/dom/xref";
 
 
 export function identifyButtons(): IdentifyButtonsResult {
