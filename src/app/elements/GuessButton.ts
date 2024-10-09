@@ -6,7 +6,6 @@ import { GuessButtonGroup } from "./GuessButtonGroup";
 import { QuestionHeading } from "./QuestionHeading";
 
 export class GuessButton {
-
     public static async correctGuessSequence(
         award: number,
         correct: Xelement<HTMLButtonElement>,
@@ -27,7 +26,12 @@ export class GuessButton {
         await BonusValue.displaySequence(award);
         await GuessButton.slideReset(correct);
     }
-    
+
+    public static async wrongGuessSequence(wrong: Xelement<HTMLButtonElement>) {
+        await GuessButton.scaleUp(wrong);
+        await GuessButton.scaleDown(wrong);
+    }
+
     private static async fadeOut(button: Xelement<HTMLButtonElement>) {
         await button.fadeOut({ duration: TIME.BUTTON_FADE });
     }

@@ -13,7 +13,7 @@ export class BonusValue {
 
         if (award > 0) {
             ref.removeClass("noBonus");
-            ref.innerHTML = `+${award} points`;
+            ref.innerHTML = `+${award} point${award > 1 ? "s" : ""}`;
         } else {
             ref.addClass("noBonus");
             ref.innerHTML = "no points";
@@ -31,7 +31,7 @@ export class BonusValue {
             duration: TIME.BONUS_SCALE,
             scale: 0.0,
         });
-        
+
         await Promise.all([p1, p2]);
     }
 }
