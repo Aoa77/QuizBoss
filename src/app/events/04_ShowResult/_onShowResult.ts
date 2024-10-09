@@ -24,7 +24,7 @@ export async function onShowResult() {
     await lockButtons(currentItem, isCorrectGuess, wrongGuesses);
     if (isCorrectGuess || wrongGuessesExhausted(wrongGuesses)) {
         ///
-        await handleCorrectGuess(wrongGuesses);
+        await handleCorrectGuess(state, wrongGuesses);
 
         if (1 + state.currentItemIndex === quizItems.length) {
            // setState({ ...state, event: EventState.GAMEOVER });

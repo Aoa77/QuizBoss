@@ -128,7 +128,7 @@ section.score {
     grid-template-columns: repeat(2, auto);
     color: var(--score-color);
     text-transform: uppercase;
-    font-size: 9rem;
+    font-size: 7rem;
     width: 124rem;
     margin: auto;
     margin-top: var(--hu_8);
@@ -137,18 +137,7 @@ section.score {
 section.score div.row {
     display: contents;
     color: var(--score-row-color);
-    font-size: 11rem;
-}
-div[id^=scoreValue_] {
-    /* color: var(--bonus-color); */
-    -webkit-text-fill-color: transparent;
-    -webkit-text-stroke: 1px;
-    opacity: 0.0;
-    position: absolute;
-    z-index: 7777;
-    color: var(--score-row-color);
-    font-size: 11rem;
-    padding-top: 2rem;
+    font-size: 8rem;
 }
 section.score div.row > div {
     padding-top: 2rem;

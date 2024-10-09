@@ -5,7 +5,6 @@ import { QuizModule } from "./QuizModule";
 
 export interface QuizState {
     answerSpot: number;
-    award: number;
     best: number;
     currentItemIndex: number;
     event: EventState;
@@ -27,7 +26,6 @@ export function getCurrentItem(state: QuizState): QuizItem | null {
 export function createInitialState(settings: AppSettings): QuizState {
     return {
         answerSpot: 0,
-        award: 0,
         best: 0,
         currentItemIndex: 0,
         event: EventState.QuizStart,

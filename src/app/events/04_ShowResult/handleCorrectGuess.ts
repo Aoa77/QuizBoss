@@ -1,17 +1,25 @@
 import { calcAward } from "./calcAward";
 import { identifyButtons } from "./identifyButtons";
-import { flow } from "../../../core/context/flow";
 import { QuizState } from "../../models/QuizState";
 import { GuessButton } from "../../elements/GuessButton";
 
 export async function handleCorrectGuess(
+    state: QuizState,
     wrongGuesses: number[],
 ): Promise<void> {
     //
-    const [state] = flow<QuizState>();
-    
-    state.award = calcAward(wrongGuesses);
-
+    const award = calcAward(wrongGuesses);
+    state.score += award;
+    if (state.score > state.best) {
+        state.best = state.score;
+        localStorage.setItem("bestScore", state.best.toString());
+    }
     const { correct, top, wrong } = identifyButtons();
-    await GuessButton.correctGuessSequence(correct, top, wrong);
+    const seq = GuessButton.correctGuessSequence(
+        award,
+        correct,
+        top,
+        wrong,
+    );
+    await seq;
 }
