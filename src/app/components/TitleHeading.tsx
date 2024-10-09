@@ -8,10 +8,9 @@ export function TitleHeading(state: QuizState) {
     const [title] = createXref.headings(ELEMENT.title);
 
     function onPointerDown() {
-        if (state.settings.demoMode === DemoMode.OFF) {
-            return;
+        if (window.location.hostname.endsWith("use.devtunnels.ms")) {
+            window.location.reload();
         }
-        window.location.reload();
     }
     return (
         <h1
