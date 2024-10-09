@@ -17,7 +17,7 @@ export function GuessButtonArea() {
         <section
             id={buttonArea.id}
             ref={buttonArea.ref}
-            className="buttons hidden">
+            className="buttons">
             {buttons}
         </section>
     );

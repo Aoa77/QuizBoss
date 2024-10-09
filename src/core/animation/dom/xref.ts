@@ -2,6 +2,10 @@ import { AnimeParams } from "animejs";
 import { runAnimation } from "../runners";
 import { Factory } from "./Factory";
 import { Xelement } from "./Xelement";
+import { FadeParams, ScaleParams, SlideParams } from "../params";
+import { fadeIn, fadeOut, fadeTo } from "../fade";
+import { scaleImmediately, scaleTo } from "../scale";
+import { slideReset, slideTo } from "../slide";
 
 export const xref = {
     buttons: (...keys: string[]): Xelement<HTMLButtonElement>[] => {
@@ -67,5 +71,33 @@ export abstract class Xref {
     public async runAnimation(xp: AnimeParams): Promise<void> {
         xp.targets = this.idSelector;
         await runAnimation(xp);
+    }
+
+    public async fadeIn(p: FadeParams): Promise<void> {
+        await this.runAnimation(fadeIn(p));
+    }
+
+    public async fadeOut(p: FadeParams): Promise<void> {
+        await this.runAnimation(fadeOut(p));
+    }
+
+    public async fadeTo(p: FadeParams): Promise<void> {
+        await this.runAnimation(fadeTo(p));
+    }
+
+    public async scaleTo(p: ScaleParams): Promise<void> {
+        await this.runAnimation(scaleTo(p));
+    }
+
+    public async scaleImmediately(scale: number): Promise<void> {
+        await this.runAnimation(scaleImmediately(scale));
+    }
+
+    public async slideTo(p: SlideParams): Promise<void> {
+        await this.runAnimation(slideTo(p));
+    }
+
+    public async slideReset(): Promise<void> {
+        await this.runAnimation(slideReset());
     }
 }

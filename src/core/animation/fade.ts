@@ -1,29 +1,21 @@
 import { AnimeParams } from "animejs";
-import { AnimationDefaultSettings, AnimationGlobalSettings } from "./config";
 import { BaseParams, FadeParams } from "./params";
+import { EASING, OPACITY } from "./constants";
 
-export function fadeIn(p?: BaseParams): AnimeParams {
-    p ??= {};
-    return fadeTo({ ...p, opacity: AnimationGlobalSettings.config.maxOpacity });
+export function fadeIn(p: BaseParams): AnimeParams {
+    return fadeTo({ ...p, opacity: OPACITY.MAX });
 }
 
-export function fadeOut(p?: BaseParams): AnimeParams {
-    p ??= {};
-    return fadeTo({ ...p, opacity: AnimationGlobalSettings.config.minOpacity });
+export function fadeOut(p: BaseParams): AnimeParams {
+    return fadeTo({ ...p, opacity: OPACITY.MIN });
 }
 
 export function fadeTo(p: FadeParams): AnimeParams {
     const params: AnimeParams = {
-        duration: p.duration ?? AnimationDefaultSettings.config.fadeDuration,
-        easing: p.easing ?? AnimationDefaultSettings.config.fadeEasing,
+        duration: p.duration,
+        easing: p.easing ?? EASING.linear,
         opacity: p.opacity,
     };
-    if (p.delay) {
-        params.delay = p.delay;
-    }
-    if (p.endDelay) {
-        params.endDelay = p.endDelay;
-    }
     return params;
 }
 

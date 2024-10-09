@@ -3,7 +3,7 @@ import { ELEMENT } from "../constants/ELEMENT";
 import { createXref } from "../../core/animation/dom/createXref";
 
 export function ProgressDisplay(state: QuizState) {
-    const [progress] = createXref.divs(ELEMENT.progress);
+    const [progress] = createXref.divs(ELEMENT.progressDisplay);
 
     const { currentItemIndex, totalItems } = state;
 

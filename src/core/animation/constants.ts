@@ -1,3 +1,5 @@
+export const PERCENT_100 = 100;
+
 export const EASING = {
     linear: "linear",
     easeInBack: "easeInBack",
@@ -38,4 +40,7 @@ export const EASING = {
     easeOutSine: "easeOutSine",
 };
 
-export const EASING_ARRAY = Object.values(EASING);
+export const OPACITY = {
+    MIN: 0,
+    MAX: 1,
+}

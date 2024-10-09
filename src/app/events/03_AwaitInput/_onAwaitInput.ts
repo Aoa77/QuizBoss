@@ -3,8 +3,8 @@ import { QuizState } from "../../models/QuizState";
 import { EventState } from "../../constants/EventState";
 import { wait } from "../../../core/animation/wait";
 import { doDemoInput } from "./doDemoInput";
-import { INPUT } from "../../constants/INPUT";
 import { DemoMode } from "../../constants/DemoMode";
+import { TIME } from "../../constants/TIME";
 
 export async function onAwaitInput() {
     const [state, setState] = flow<QuizState>();
@@ -17,7 +17,7 @@ export async function onAwaitInput() {
     }
 
     console.info("waiting for DEMO input...");
-    await wait(INPUT.DEMO_DELAY);
+    await wait(TIME.DEMO_DELAY);
 
     const spotButton = doDemoInput(state.answerSpot, demoMode);
     setState({

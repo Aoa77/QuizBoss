@@ -1,7 +1,5 @@
 export interface BaseParams {
-    delay?: number;
-    duration?: number;
-    endDelay?: number;
+    duration: number;
     easing?: string;
 }
 
@@ -11,4 +9,9 @@ export interface FadeParams extends BaseParams {
 
 export interface ScaleParams extends BaseParams {
     scale: number;
+}
+
+export interface SlideParams extends BaseParams {
+    x: number;
+    y: number;
 }

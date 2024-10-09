@@ -1,37 +1,23 @@
-import { scaleImmediately, scaleTo } from "../../../core/animation/scale";
-import { ELEMENT } from "../../constants/ELEMENT";
 import { flow } from "../../../core/context/flow";
 import { QuizState } from "../../models/QuizState";
-// import { incrementScore } from "./incrementScore";
-import { fadeOut } from "../../../core/animation/fade";
-import { wait } from "../../../core/animation/wait";
-import { Xelement } from "../../../core/animation/dom/Xelement";
-import { xref } from "../../../core/animation/dom/xref";
+import { BonusValue } from "../../elements/BonusValue";
 
 export async function applyScoreAward(award: number): Promise<void> {
     const [state] = flow<QuizState>();
-    const bonusValue = xref.headings(ELEMENT.bonusValue)[0];
-    await bonusValue.runAnimation(scaleImmediately(0));
-    bonusValue.opacity = 1;
+    await BonusValue.reset();
 
     if (award > 0) {
-        bonusValue.removeClass("noBonus");
-        bonusValue.innerHTML = `+${award} points`;
+        BonusValue.xref().removeClass("noBonus");
+        BonusValue.xref().innerHTML = `+${award} points`;
     } else {
-        bonusValue.addClass("noBonus");
-        bonusValue.innerHTML = "no points";
+        BonusValue.xref().addClass("noBonus");
+        BonusValue.xref().innerHTML = "no points";
     }
 
     await Promise.all([
-        bonusAnimation(bonusValue),
+        BonusValue.scaleUp(),
         scoreAnimation(award, state)
     ]);
-}
-
-async function bonusAnimation(bonusValue: Xelement<HTMLHeadingElement>) {
-    await bonusValue.runAnimation(scaleTo({ scale: 1.0, duration: 400 }));
-    await wait(800);
-    await bonusValue.runAnimation(fadeOut());
 }
 
 async function scoreAnimation(award: number, state: QuizState) {
