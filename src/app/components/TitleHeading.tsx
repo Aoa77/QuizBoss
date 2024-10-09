@@ -1,7 +1,6 @@
 import { QuizState } from "../models/QuizState";
 import { ELEMENT } from "../constants/ELEMENT";
 import { createXref } from "../../core/animation/dom/createXref";
-import { DemoMode } from "../constants/DemoMode";
 
 export function TitleHeading(state: QuizState) {
     ///
