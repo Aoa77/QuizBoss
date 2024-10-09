@@ -1,5 +1,6 @@
 import { EASING } from "../../core/animation/constants";
 import { Xelement } from "../../core/animation/dom/Xelement";
+import { wait } from "../../core/animation/wait";
 import { TIME } from "../constants/TIME";
 import { BonusValue } from "./BonusValue";
 import { GuessButtonGroup } from "./GuessButtonGroup";
@@ -16,6 +17,7 @@ export class GuessButton {
         const y = -1 * (correct.element.getBoundingClientRect().top - yTop);
 
         await GuessButton.scaleUp(correct);
+
         GuessButtonGroup.fadeOut(wrong);
         QuestionHeading.fadeOut();
         await GuessButton.scaleDown(correct);
@@ -55,13 +57,16 @@ export class GuessButton {
     private static async scaleUp(button: Xelement<HTMLButtonElement>) {
         await button.scaleTo({
             duration: TIME.BUTTON_SCALE,
-            scale: 1.3,
+            easing: EASING.easeOutExpo,
+            scale: 1.30,
         });
+        await wait(TIME.BUTTON_DISPLAY);
     }
 
     private static async scaleDown(button: Xelement<HTMLButtonElement>) {
         await button.scaleTo({
             duration: TIME.BUTTON_SCALE,
+            easing: EASING.easeOutExpo,
             scale: 1.0,
         });
     }
