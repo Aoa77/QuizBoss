@@ -4,8 +4,8 @@
     The min() function is used to force the 9:16 portrait orientation.
 */
 :root {
-    --width: min(100vw, calc(0.5625 * 100vh));
-    --height: min(100vh, calc(1.77777777 * 100vw));
+    --width: min(100svw, calc(0.5625 * 100svh));
+    --height: min(100svh, calc(1.77777777 * 100svw));
 }
 
 /* 
@@ -26,10 +26,10 @@
     css property that needs to be scaled relative to the app container's width.
 */
 html {
-    font-size: calc(var(--width) / 220);
+    font-size: calc(var(--width) / 200);
 }
 body {
-    background-color: var(--background-color);
+    background-color: var(--body-background);
     overflow: hidden;
     text-align: center;
 }

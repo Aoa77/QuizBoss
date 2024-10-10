@@ -2,7 +2,7 @@
 /* main element is used as the app container */
 /*********************************************/
 main {
-    background-color: var(--background-color);
+    background-color: var(--main-background);
     width: var(--width);
     height: var(--height);
     margin-left: var(--main_center);
@@ -16,7 +16,7 @@ h1 {
     font-family: "Garamond", serif;
     font-size: 18rem;
     font-weight: normal;
-    margin-top: calc(var(--height) * 0.045);
+    padding-top: calc(var(--height) * 0.045);
     margin-bottom: calc(var(--height) * 0.035);
 }
 h2 {
@@ -32,7 +32,7 @@ h2#bonusValue {
     margin-top: calc(var(--height) * -0.05);
     font-size: 11rem;
     position: relative;
-    top: calc(var(--height) * -0.025);
+    top: calc(var(--height) * 0.025);
 }
 h2#bonusValue.noBonus {
     color: var(--no-bonus-color);
@@ -60,7 +60,7 @@ h2#bonusValue.noBonus {
 /* The loading spinner and the question image occupy the same space */
 /********************************************************************/
 :root {
-    --imageHeight: calc(var(--height) * 0.21);
+    --imageHeight: calc(var(--height) * 0.18);
 }
 section.loading,
 section.image {
@@ -82,15 +82,16 @@ section.image > img {
 /************************/
 section.buttons {
     margin-top: calc(var(--height) * 0.025);
-    background-color: var(--background-color);
 }
 button {
     all: unset;
     appearance: none;
+    border-style: none;
+    position: sticky;
     font-family: "Tahoma", sans-serif;
-    font-size: 7.84rem;
+    font-size: 7rem;
     font-weight: normal;
-    width: 130rem;
+    width: 120rem;
     height: calc(var(--height) * 0.07);
     margin: calc(var(--height) * 0.03) auto 0 auto;
     opacity: 0;
@@ -125,8 +126,7 @@ button.wrong {
 /***************************/
 section.score {
     display: grid;
-    font-family: "Tahoma", sans-serif;
-    grid-template-columns: repeat(3, auto);
+    font-family: "Courier New", monospace;
     grid-template-columns: repeat(2, auto);
     color: var(--score-color);
     text-transform: uppercase;
@@ -136,27 +136,9 @@ section.score {
     margin-top: calc(var(--height) * 0.04);
     margin-bottom: calc(var(--height) * 0.01);
 }
-section.score div.row {
-    display: contents;
-    color: var(--score-row-color);
-    font-size: 8rem;
-}
-section.score div.row > div {
-    padding-top: 2rem;
-}
 
-/****************************/
-/* progress                 */
-/****************************/
-section.progress {
-    color: var(--progress-color);
-    font-family: "Courier New", monospace;
-    font-size: 5.5rem;
-    position: relative;
-    top: -12rem;
-}
-section.progress span {
-    margin: 0 0.5rem;
+section.score > div {
+    text-align: left;
 }
 
 /*****************************/
@@ -165,5 +147,3 @@ section.progress span {
 .hidden {
     opacity: 0;
 }
-
-

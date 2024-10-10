@@ -7,13 +7,9 @@ export enum ELEMENT {
     button = "buttons",
     questionImage = "image",
     loadingSpinner = "loading",
-    progressDisplay = "progress",
     question = "question",
     scoreValue = "scoreValue",
     scoreArea = "scoreArea",
-    settingsPanel = "settingsPanel",
-    sliderGrip = "sliderGrip",
-    sliderNotch = "sliderNotch",
     title = "title",
 }
 

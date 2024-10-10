@@ -2,7 +2,8 @@
     colors
 */
 :root {
-    --background-color:               #000000;
+    --body-background:                #000055;
+    --main-background:                #000000;
     --lds-ellipsis-color:             #1c4c5b;
 
     --h1-color:                       #ffffff;
@@ -17,12 +18,6 @@
     --bonus-color:                    #00ff00;
     --no-bonus-color:                 #FFA500CC;
     --progress-color:                 #ffffffbb;
-
-    --settings-panel-background:      #000033;
-    --slider-grip-background:         #000000;
-    --slider-grip-background-active:  #000033;
-    --slider-notch-background:        #ffffff33;
-
 
     --button-correct-background:      #007700;
     --button-correct-text:            #ffffff;

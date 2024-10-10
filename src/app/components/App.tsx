@@ -1,7 +1,6 @@
 import "../styles";
 import { GuessButtonArea } from "./GuessButtonArea";
 import { LoadingSpinner } from "./LoadingSpinner";
-import { ProgressDisplay } from "./ProgressDisplay";
 import { QuestionHeading } from "./QuestionHeading";
 import { QuestionImage } from "./QuestionImage";
 import { ScoreDisplay } from "./ScoreDisplay";
@@ -48,7 +47,6 @@ export function App(settings: AppSettings) {
             {bonusNotification}
             {guessButtonArea}
             <ScoreDisplay {...state} />
-            <ProgressDisplay {...state} />
         </main>
     );
 }

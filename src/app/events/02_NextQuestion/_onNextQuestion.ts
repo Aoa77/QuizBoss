@@ -9,7 +9,6 @@ import { TIME } from "../../constants/TIME";
 import { LoadingSpinner } from "../../elements/LoadingSpinner";
 import { QuestionHeading } from "../../elements/QuestionHeading";
 import { ScoreArea } from "../../elements/ScoreArea";
-import { ProgressDisplay } from "../../elements/ProgressDisplay";
 import { GuessButtonGroup } from "../../elements/GuessButtonGroup";
 import { QuizItem } from "../../models/QuizItem";
 
@@ -46,7 +45,6 @@ export async function onNextQuestion() {
         LoadingSpinner.fadeOut().then(() => QuestionImage.fadeIn()),
         QuestionHeading.fadeIn(),
         ScoreArea.fadeIn(),
-        ProgressDisplay.fadeIn(),
     ]);
 
     await GuessButtonGroup.fadeIn();
