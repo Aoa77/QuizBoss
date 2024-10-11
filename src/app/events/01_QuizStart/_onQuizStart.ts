@@ -5,8 +5,8 @@ import { initBestScore } from "./initBestScore";
 import { wait } from "../../../core/animation/wait";
 import { EventState } from "../../constants/EventState";
 import { TIME } from "../../constants/TIME";
-import { Title } from "../../elements/TitleHeading";
-import { LoadingSpinner } from "../../elements/LoadingSpinner";
+import { Title } from "../../animations/TitleHeading";
+import { LoadingSpinner } from "../../animations/LoadingSpinner";
 
 export async function onQuizStart() {
     const [state, setState] = flow<QuizState>();

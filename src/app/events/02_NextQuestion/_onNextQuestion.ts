@@ -4,12 +4,12 @@ import { bindGuessButtons } from "./bindGuessButtons";
 import { EventState } from "../../constants/EventState";
 import { randomInt } from "../../../core/util/randomInt";
 import { wait } from "../../../core/animation/wait";
-import { QuestionImage } from "../../elements/QuestionImage";
+import { QuestionImage } from "../../animations/QuestionImage";
 import { TIME } from "../../constants/TIME";
-import { LoadingSpinner } from "../../elements/LoadingSpinner";
-import { QuestionHeading } from "../../elements/QuestionHeading";
-import { ScoreArea } from "../../elements/ScoreArea";
-import { GuessButtonGroup } from "../../elements/GuessButtonGroup";
+import { LoadingSpinner } from "../../animations/LoadingSpinner";
+import { QuestionHeading } from "../../animations/QuestionHeading";
+import { ScoreArea } from "../../animations/ScoreArea";
+import { GuessButtonGroup } from "../../animations/GuessButtonGroup";
 import { QuizItem } from "../../models/QuizItem";
 
 ///

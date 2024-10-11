@@ -3,7 +3,6 @@ import { Xelement } from "../../core/animation/dom/Xelement";
 import { wait } from "../../core/animation/wait";
 import { TIME } from "../constants/TIME";
 import { BonusValue } from "./BonusValue";
-import { GuessButtonArea } from "./GuessButtonArea";
 import { GuessButtonGroup } from "./GuessButtonGroup";
 import { QuestionHeading } from "./QuestionHeading";
 

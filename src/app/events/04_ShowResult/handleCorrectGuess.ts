@@ -1,7 +1,7 @@
 import { calcAward } from "./calcAward";
 import { identifyButtons } from "./identifyButtons";
 import { QuizState } from "../../models/QuizState";
-import { GuessButton } from "../../elements/GuessButton";
+import { GuessButton } from "../../animations/GuessButton";
 
 export async function handleCorrectGuess(
     state: QuizState,
