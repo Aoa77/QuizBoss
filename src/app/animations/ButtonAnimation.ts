@@ -2,9 +2,9 @@ import { EASING } from "../../core/animation/constants";
 import { Xelement } from "../../core/animation/dom/Xelement";
 import { wait } from "../../core/animation/wait";
 import { TIME } from "../constants/TIME";
-import { BonusValue } from "./BonusValue";
-import { GuessButtonGroup } from "./GuessButtonGroup";
-import { QuestionHeading } from "./QuestionHeading";
+import { BonusValue } from "./BonusAnimation";
+import { GuessButtonGroup } from "./ButtonGroupAnimation";
+import { QuestionHeading } from "./LayoutAnimation";
 
 export class GuessButton {
     public static async correctGuessSequence(

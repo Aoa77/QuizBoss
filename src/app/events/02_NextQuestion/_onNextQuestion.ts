@@ -7,9 +7,9 @@ import { wait } from "../../../core/animation/wait";
 import { QuestionImage } from "../../animations/QuestionImage";
 import { TIME } from "../../constants/TIME";
 import { LoadingSpinner } from "../../animations/LoadingSpinner";
-import { QuestionHeading } from "../../animations/QuestionHeading";
+import { QuestionHeading } from "../../animations/LayoutAnimation";
 import { ScoreArea } from "../../animations/ScoreArea";
-import { GuessButtonGroup } from "../../animations/GuessButtonGroup";
+import { GuessButtonGroup } from "../../animations/ButtonGroupAnimation";
 import { QuizItem } from "../../models/QuizItem";
 
 ///
