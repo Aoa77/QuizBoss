@@ -7,10 +7,9 @@ import { wait } from "../../../core/animation/wait";
 import { QuestionImage } from "../../animations/QuestionImage";
 import { TIME } from "../../constants/TIME";
 import { LoadingSpinner } from "../../animations/LoadingSpinner";
-import { QuestionHeading } from "../../animations/LayoutAnimation";
-import { ScoreArea } from "../../animations/ScoreArea";
-import { GuessButtonGroup } from "../../animations/ButtonGroupAnimation";
+import { ButtonGroupAnimation } from "../../animations/ButtonGroupAnimation";
 import { QuizItem } from "../../models/QuizItem";
+import { LayoutAnimation } from "../../animations/LayoutAnimation";
 
 ///
 export async function onNextQuestion() {
@@ -43,11 +42,11 @@ export async function onNextQuestion() {
 
     await Promise.all([
         LoadingSpinner.fadeOut().then(() => QuestionImage.fadeIn()),
-        QuestionHeading.fadeIn(),
-        ScoreArea.fadeIn(),
+        LayoutAnimation.QuestionHeading.fadeIn(),
+        LayoutAnimation.ScoreArea.fadeIn(),
     ]);
 
-    await GuessButtonGroup.fadeIn();
+    await ButtonGroupAnimation.fadeIn();
     setState({ ...state, event: EventState.AwaitInput });
 }
 

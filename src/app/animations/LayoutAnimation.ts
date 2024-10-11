@@ -1,21 +1,26 @@
-import { Xelement } from "../../core/animation/dom/Xelement";
 import { xref } from "../../core/animation/dom/xref";
+import { XrefAnimation } from "../../core/animation/dom/XrefAnimation";
 import { ELEMENT } from "../constants/ELEMENT";
 import { TIME } from "../constants/TIME";
 
-export class QuestionHeading {
-    public static xref(): Xelement<HTMLHeadingElement> {
-        return xref.headings(ELEMENT.question)[0];
-    }
+export class LayoutAnimation {
+    ///
+    public static readonly TitleHeading: XrefAnimation = new XrefAnimation(
+        xref.headings(ELEMENT.title)[0],
+        TIME.TITLE_FADE,
+    );
 
-    public static async fadeIn() {
-        await QuestionHeading.xref().fadeIn({ duration: TIME.QUESTION_FADE });
-    }
+    ///
+    public static readonly QuestionHeading: XrefAnimation = new XrefAnimation(
+        xref.headings(ELEMENT.question)[0],
+        TIME.QUESTION_FADE,
+    );
 
-    public static async fadeOut() {
-        await QuestionHeading.xref().fadeOut({ duration: TIME.QUESTION_FADE });
-    }
+    ///
+    public static readonly ScoreArea: XrefAnimation = new XrefAnimation(
+        xref.divs(ELEMENT.scoreArea)[0],
+        TIME.SCORE_AREA_FADE,
+    );
 }
-
 
 

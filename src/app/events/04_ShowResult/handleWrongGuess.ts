@@ -1,10 +1,10 @@
 import { xref } from "../../../core/animation/dom/xref";
 import { ButtonState } from "../../constants/ButtonState";
-import { GuessButton } from "../../animations/ButtonAnimation";
+import { ButtonAnimation } from "../../animations/ButtonAnimation";
 
 export async function handleWrongGuess(): Promise<void> {
     const wrongButton = xref.buttons().find(
         (x) => x.className === ButtonState.WRONG,
     )!;
-    await GuessButton.wrongGuessSequence(wrongButton);
+    await ButtonAnimation.wrongGuessSequence(wrongButton);
 }

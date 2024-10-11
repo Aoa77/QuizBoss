@@ -1,7 +1,7 @@
 import { calcAward } from "./calcAward";
 import { identifyButtons } from "./identifyButtons";
 import { QuizState } from "../../models/QuizState";
-import { GuessButton } from "../../animations/ButtonAnimation";
+import { ButtonAnimation } from "../../animations/ButtonAnimation";
 
 export async function handleCorrectGuess(
     state: QuizState,
@@ -15,7 +15,7 @@ export async function handleCorrectGuess(
         localStorage.setItem("bestScore", state.best.toString());
     }
     const { correct, top, wrong } = identifyButtons();
-    const seq = GuessButton.correctGuessSequence(
+    const seq = ButtonAnimation.correctGuessSequence(
         award,
         correct,
         top,

@@ -2,11 +2,11 @@ import { EASING } from "../../core/animation/constants";
 import { Xelement } from "../../core/animation/dom/Xelement";
 import { wait } from "../../core/animation/wait";
 import { TIME } from "../constants/TIME";
-import { BonusValue } from "./BonusAnimation";
-import { GuessButtonGroup } from "./ButtonGroupAnimation";
-import { QuestionHeading } from "./LayoutAnimation";
+import { BonusAnimation } from "./BonusAnimation";
+import { ButtonGroupAnimation } from "./ButtonGroupAnimation";
+import { LayoutAnimation } from "./LayoutAnimation";
 
-export class GuessButton {
+export class ButtonAnimation {
     public static async correctGuessSequence(
         award: number,
         correct: Xelement<HTMLButtonElement>,
@@ -16,22 +16,22 @@ export class GuessButton {
         const yTop = top.element.getBoundingClientRect().top;
         const y = -1 * (correct.element.getBoundingClientRect().top - yTop);
 
-        await GuessButton.scaleUp(correct);
+        await ButtonAnimation.scaleUp(correct);
 
-        GuessButtonGroup.fadeOut(wrong);
-        QuestionHeading.fadeOut();
-        await GuessButton.scaleDown(correct);
+        ButtonGroupAnimation.fadeOut(wrong);
+        LayoutAnimation.QuestionHeading.fadeOut();
+        await ButtonAnimation.scaleDown(correct);
 
-        GuessButton.slideTo(correct, y).then(() =>
-            GuessButton.fadeOut(correct),
+        ButtonAnimation.slideTo(correct, y).then(() =>
+            ButtonAnimation.fadeOut(correct),
         );
-        await BonusValue.displaySequence(award);
-        await GuessButton.slideReset(correct);
+        await BonusAnimation.displaySequence(award);
+        await ButtonAnimation.slideReset(correct);
     }
 
     public static async wrongGuessSequence(wrong: Xelement<HTMLButtonElement>) {
-        await GuessButton.scaleUp(wrong);
-        await GuessButton.scaleDown(wrong);
+        await ButtonAnimation.scaleUp(wrong);
+        await ButtonAnimation.scaleDown(wrong);
     }
 
     private static async fadeOut(button: Xelement<HTMLButtonElement>) {

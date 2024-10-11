@@ -5,7 +5,7 @@ import { TIME } from "../constants/TIME";
 import { LoadingSpinner } from "./LoadingSpinner";
 import { QuestionImage } from "./QuestionImage";
 
-export class BonusValue {
+export class BonusAnimation {
     public static async displaySequence(award: number) {
         const ref = xref.headings(ELEMENT.bonusValue)[0];
         await ref.scaleImmediately(0.0);

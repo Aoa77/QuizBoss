@@ -3,13 +3,13 @@ import { xref } from "../../core/animation/dom/xref";
 import { wait } from "../../core/animation/wait";
 import { TIME } from "../constants/TIME";
 
-export class GuessButtonGroup {
+export class ButtonGroupAnimation {
     public static xref(): Xelement<HTMLButtonElement>[] {
         return xref.buttons();
     }
 
     public static async fadeIn(group?: Xelement<HTMLButtonElement>[]) {
-        group ??= GuessButtonGroup.xref();
+        group ??= ButtonGroupAnimation.xref();
         for (const button of group) {
             button.fadeIn({ duration: TIME.BUTTON_FADE });
             await wait(TIME.BUTTON_FADE_STAGGER);
@@ -17,7 +17,7 @@ export class GuessButtonGroup {
     }
 
     public static async fadeOut(group?: Xelement<HTMLButtonElement>[]) {
-        group ??= GuessButtonGroup.xref();
+        group ??= ButtonGroupAnimation.xref();
         for (const button of group) {
             button.fadeOut({ duration: TIME.BUTTON_FADE });
             await wait(TIME.BUTTON_FADE_STAGGER);

@@ -5,8 +5,8 @@ import { initBestScore } from "./initBestScore";
 import { wait } from "../../../core/animation/wait";
 import { EventState } from "../../constants/EventState";
 import { TIME } from "../../constants/TIME";
-import { Title } from "../../animations/TitleHeading";
 import { LoadingSpinner } from "../../animations/LoadingSpinner";
+import { LayoutAnimation } from "../../animations/LayoutAnimation";
 
 export async function onQuizStart() {
     const [state, setState] = flow<QuizState>();
@@ -22,7 +22,7 @@ export async function onQuizStart() {
         return;
     }
     
-    await Title.fadeIn();
+    await LayoutAnimation.TitleHeading.fadeIn();
     await wait(TIME.START_DELAY);
     setState({ ...state, event: EventState.NextQuestion });
 }
