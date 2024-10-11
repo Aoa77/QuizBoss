@@ -19,7 +19,7 @@ export class ButtonAnimation {
         await ButtonAnimation.scaleUp(correct);
 
         ButtonGroupAnimation.fadeOut(wrong);
-        LayoutAnimation.QuestionHeading.fadeOut();
+        LayoutAnimation.QuestionHeading().fadeOut();
         await ButtonAnimation.scaleDown(correct);
 
         ButtonAnimation.slideTo(correct, y).then(() =>

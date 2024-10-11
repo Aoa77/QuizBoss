@@ -4,12 +4,14 @@ import { bindGuessButtons } from "./bindGuessButtons";
 import { EventState } from "../../constants/EventState";
 import { randomInt } from "../../../core/util/randomInt";
 import { wait } from "../../../core/animation/wait";
-import { QuestionImage } from "../../animations/QuestionImage";
 import { TIME } from "../../constants/TIME";
-import { LoadingSpinner } from "../../animations/LoadingSpinner";
 import { ButtonGroupAnimation } from "../../animations/ButtonGroupAnimation";
 import { QuizItem } from "../../models/QuizItem";
 import { LayoutAnimation } from "../../animations/LayoutAnimation";
+import { xref } from "../../../core/animation/dom/xref";
+import { ELEMENT } from "../../constants/ELEMENT";
+import { AsyncGroup } from "../../../core/util/AsyncGroup";
+import { TransitionAnimation } from "../../animations/TransitionAnimation";
 
 ///
 export async function onNextQuestion() {
@@ -22,8 +24,9 @@ export async function onNextQuestion() {
     const quizData = state.quizModule.quizData;
     const quizItems = quizData.items;
     const currentItem = quizItems[state.currentItemIndex];
+    const [questionImage] = xref.divs(ELEMENT.questionImage);
 
-    if (!isReady(currentItem)) {
+    if (!isReady(currentItem, questionImage.element)) {
         await wait(TIME.LOADING_POLL);
         setState({ ...state, eventWait: ++state.eventWait });
         return;
@@ -40,20 +43,18 @@ export async function onNextQuestion() {
         quizData,
     );
 
-    await Promise.all([
-        LoadingSpinner.fadeOut().then(() => QuestionImage.fadeIn()),
-        LayoutAnimation.QuestionHeading.fadeIn(),
-        LayoutAnimation.ScoreArea.fadeIn(),
-    ]);
+    const anims = new AsyncGroup();
+    anims.add(TransitionAnimation.NextQuestionReady());
+    anims.add(LayoutAnimation.QuestionHeading().fadeIn());
+    anims.add(LayoutAnimation.ScoreArea().fadeIn());
+    await anims.all();
 
     await ButtonGroupAnimation.fadeIn();
     setState({ ...state, event: EventState.AwaitInput });
 }
 
-function isReady(currentItem: QuizItem) {
+function isReady(currentItem: QuizItem, questionImage: HTMLElement) {
     return (
-        currentItem &&
-        currentItem.isLoaded &&
-        QuestionImage.element().children.length > 0
+        currentItem && currentItem.isLoaded && questionImage.children.length > 0
     );
 }

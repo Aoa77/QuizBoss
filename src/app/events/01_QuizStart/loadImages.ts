@@ -6,6 +6,6 @@ export async function loadImages(module: QuizModule) {
     console.info("Loading quiz images...");
     for (const item of module.quizData.items) {
         item.image.src = item.imageSrc;
-        await wait(TIME.THROTTLE);
+        await wait(TIME.LOADING_THROTTLE);
     }
 }

@@ -1,5 +1,6 @@
 import anime, { AnimeParams } from "animejs";
 import { applyTimePercentage } from "./percentages";
+import { wait } from "./wait";
 
 export function runAnimation(xp: AnimeParams): Promise<void> {
     ////
@@ -8,11 +9,4 @@ export function runAnimation(xp: AnimeParams): Promise<void> {
     }
     ////
     return anime(xp).finished;
-}
-
-export function runAnimationSync(xp: AnimeParams): void {
-    if (typeof xp.duration === "number") {
-        xp.duration = applyTimePercentage(xp.duration);
-    }
-    anime(xp);
 }

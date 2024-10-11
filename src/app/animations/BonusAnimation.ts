@@ -1,9 +1,9 @@
 import { xref } from "../../core/animation/dom/xref";
 import { wait } from "../../core/animation/wait";
+import { AsyncGroup } from "../../core/util/AsyncGroup";
 import { ELEMENT } from "../constants/ELEMENT";
 import { TIME } from "../constants/TIME";
-import { LoadingSpinner } from "./LoadingSpinner";
-import { QuestionImage } from "./QuestionImage";
+import { TransitionAnimation } from "./TransitionAnimation";
 
 export class BonusAnimation {
     public static async displaySequence(award: number) {
@@ -25,13 +25,12 @@ export class BonusAnimation {
         });
 
         await wait(TIME.BONUS_DISPLAY);
-
-        const p1 = QuestionImage.fadeOut().then(() => LoadingSpinner.fadeIn());
-        const p2 = ref.scaleTo({
+        const anims = new AsyncGroup();
+        anims.add(TransitionAnimation.NextQuestionLoading());
+        anims.add(ref.scaleTo({
             duration: TIME.BONUS_SCALE,
             scale: 0.0,
-        });
-
-        await Promise.all([p1, p2]);
+        }));
+        await anims.all();
     }
 }
