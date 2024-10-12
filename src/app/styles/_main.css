@@ -14,7 +14,7 @@ main {
 h1 {
     color: var(--h1-color);
     font-family: "Garamond", serif;
-    font-size: 18rem;
+    font-size: 16rem;
     font-weight: normal;
     padding-top: calc(var(--height) * 0.045);
     margin-bottom: calc(var(--height) * 0.035);
@@ -22,16 +22,17 @@ h1 {
 h2 {
     color: var(--h2-color);
     font-family: "Tahoma", sans-serif;
-    font-size: 9rem;
+    font-size: 8rem;
     font-weight: normal;
-    margin-top: calc(var(--height) * 0.05);
+    margin-top: calc(var(--height) * 0.06);
 }
 h2#bonusValue {
     color: var(--bonus-color);
-    font-weight: normal;
-    margin-top: calc(var(--height) * -0.05);
-    font-size: 11rem;
+    font-family: "Courier New", monospace;
+    font-size: 9rem;
+    font-weight: bold;
     position: relative;
+    margin-top: calc(var(--height) * -0.05);
     top: calc(var(--height) * 0.025);
 }
 h2#bonusValue.noBonus {
@@ -61,7 +62,7 @@ h2#bonusValue.noBonus {
 /********************************************************************/
 :root {
     --imageHeight: calc(var(--height) * 0.18);
-}
+} 
 section.loading,
 section.image {
     background-color: #00990000;
@@ -81,9 +82,9 @@ section.image > img {
 /* "guess" button rules */
 /************************/
 section.buttons {
-    margin-top: calc(var(--height) * 0.025);
+    margin-top: calc(var(--height) * 0.02);
 }
-button {
+section.buttons > button {
     all: unset;
     appearance: none;
     border-style: none;
@@ -93,52 +94,68 @@ button {
     font-weight: normal;
     width: 120rem;
     height: calc(var(--height) * 0.07);
-    margin: calc(var(--height) * 0.03) auto 0 auto;
+    margin: calc(var(--height) * 0.04) auto 0 auto;
     opacity: 0;
 }
-button.correct {
+section.buttons > button.correct {
     background-color: var(--button-correct-background);
     color: var(--button-correct-text);
 }
-button.dimmed {
+section.buttons > button.dimmed {
     background-color: var(--button-dimmed-background);
     color: var(--button-dimmed-text);
 }
-button.disabled {
+section.buttons > button.disabled {
     background-color: var(--button-disabled-background);
     color: var(--button-disabled-text);
 }
-button.normal {
+section.buttons > button.normal {
     background-color: var(--button-normal-background);
     color: var(--button-normal-text);
 }
-button.reveal {
+section.buttons > button.reveal {
     background-color: var(--button-reveal-background);
     color: var(--button-reveal-text);
 }
-button.wrong {
+section.buttons > button.wrong {
     background-color: var(--button-wrong-background);
     color: var(--button-wrong-text);
 }
 
 /***************************/
-/* score                   */
+/* progress & score        */
 /***************************/
+section.progress,
 section.score {
-    display: grid;
     font-family: "Courier New", monospace;
-    grid-template-columns: repeat(2, auto);
-    color: var(--score-color);
     text-transform: uppercase;
-    font-size: 7rem;
-    width: 124rem;
+    width: 140rem;
     margin: auto;
-    margin-top: calc(var(--height) * 0.04);
-    margin-bottom: calc(var(--height) * 0.01);
 }
 
-section.score > div {
-    text-align: left;
+section.progress {
+    color: var(--progress-color);
+    font-size: 5rem;
+    padding-top: calc(var(--height) * 0.08);
+}
+
+section.score {
+    color: var(--score-color);
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    font-size: 8rem;
+    margin-top: calc(var(--height) * -0.04);
+    font-weight: bold;
+}
+
+section.score > label {
+    color: var(--score-label-color);
+    display: block;
+    font-weight: normal;
+    font-size: 8rem;
+    padding-bottom: 6rex;
+    text-decoration: underline;
+    text-underline-offset: 6rex;
 }
 
 /*****************************/

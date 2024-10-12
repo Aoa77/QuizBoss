@@ -4,7 +4,6 @@ import { handleWrongGuess } from "./handleWrongGuess";
 import { revealCorrectAnswer } from "./revealCorrectAnswer";
 import { unlockButtons } from "./unlockButtons";
 import { wrongGuessesExhausted } from "./wrongGuessesExhausted";
-import { wait } from "../../../core/animation/wait";
 import { flow } from "../../../core/context/flow";
 import { QuizState } from "../../models/QuizState";
 import { xref } from "../../../core/animation/dom/xref";
@@ -45,7 +44,6 @@ export async function lockButtons(
         if (wrongGuessesExhausted(wrongGuesses)) {
             await handleWrongGuess();
             await unlockButtons(wrongGuesses);
-            await wait(800);
             revealCorrectAnswer(currentItem, wrongGuesses);
             break;
         }

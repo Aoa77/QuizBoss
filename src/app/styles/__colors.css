@@ -2,8 +2,8 @@
     colors
 */
 :root {
-    --body-background:                #000055;
-    --main-background:                #000000;
+    --body-background:                #000000;
+    --main-background:                #000011;
     --lds-ellipsis-color:             #1c4c5b;
 
     --h1-color:                       #ffffff;
@@ -13,10 +13,10 @@
     --prompt-color:                   #ffff00;
     --image-shadow:                   #a5a5c8cc;
     
-    --score-color:                    #00ffff;
-    --score-row-color:                #ffff00;
+    --score-label-color:              #00ffff;
+    --score-color:                    #ffff00;
     --bonus-color:                    #00ff00;
-    --no-bonus-color:                 #FFA500CC;
+    --no-bonus-color:                 #ff0000;
     --progress-color:                 #ffffffbb;
 
     --button-correct-background:      #007700;

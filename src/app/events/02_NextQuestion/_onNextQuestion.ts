@@ -46,6 +46,7 @@ export async function onNextQuestion() {
     const anims = new AsyncGroup();
     anims.add(TransitionAnimation.NextQuestionReady());
     anims.add(LayoutAnimation.QuestionHeading().fadeIn());
+    anims.add(LayoutAnimation.ProgressArea().fadeIn());
     anims.add(LayoutAnimation.ScoreArea().fadeIn());
     await anims.all();
 

@@ -17,20 +17,23 @@ export class ButtonAnimation {
         const y = -1 * (correct.element.getBoundingClientRect().top - yTop);
 
         await ButtonAnimation.scaleUp(correct);
+        await wait(TIME.BUTTON_DISPLAY_CORRECT);
 
         ButtonGroupAnimation.fadeOut(wrong);
         LayoutAnimation.QuestionHeading().fadeOut();
         await ButtonAnimation.scaleDown(correct);
 
-        ButtonAnimation.slideTo(correct, y).then(() =>
-            ButtonAnimation.fadeOut(correct),
-        );
+        ButtonAnimation.slideTo(correct, y).then(async () => {
+            await wait(TIME.BUTTON_DISPLAY_FINAL);
+            ButtonAnimation.fadeOut(correct);
+        });
         await BonusAnimation.displaySequence(award);
         await ButtonAnimation.slideReset(correct);
     }
 
     public static async wrongGuessSequence(wrong: Xelement<HTMLButtonElement>) {
         await ButtonAnimation.scaleUp(wrong);
+        await wait(TIME.BUTTON_DISPLAY_WRONG);
         await ButtonAnimation.scaleDown(wrong);
     }
 
@@ -57,19 +60,13 @@ export class ButtonAnimation {
     private static async scaleUp(button: Xelement<HTMLButtonElement>) {
         await button.scaleTo({
             duration: TIME.BUTTON_SCALE,
-            // easing: EASING.easeOutExpo,
             scale: 1.3,
         });
-        await wait(TIME.BUTTON_DISPLAY);
-        // await GuessButtonArea.fadeOut();
-        // await GuessButtonArea.fadeIn();
-
     }
 
     private static async scaleDown(button: Xelement<HTMLButtonElement>) {
         await button.scaleTo({
             duration: TIME.BUTTON_SCALE,
-            // easing: EASING.easeOutExpo,
             scale: 1.0,
         });
     }

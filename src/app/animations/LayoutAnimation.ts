@@ -29,10 +29,26 @@ export class LayoutAnimation {
     }
 
     ///
+    public static NavigationArea() {
+        return new XrefAnimation(
+            xref.divs(ELEMENT.navigationArea)[0],
+            TIME.AREA_FADE,
+        );
+    }
+
+    ///
+    public static ProgressArea() {
+        return new XrefAnimation(
+            xref.divs(ELEMENT.progressArea)[0],
+            TIME.AREA_FADE,
+        );
+    }
+
+    ///
     public static ScoreArea() {
         return new XrefAnimation(
             xref.divs(ELEMENT.scoreArea)[0],
-            TIME.SCORE_AREA_FADE,
+            TIME.AREA_FADE,
         );
     }
 

@@ -1,6 +1,5 @@
 import anime, { AnimeParams } from "animejs";
 import { applyTimePercentage } from "./percentages";
-import { wait } from "./wait";
 
 export function runAnimation(xp: AnimeParams): Promise<void> {
     ////
