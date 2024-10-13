@@ -1,17 +1,20 @@
 import { getQueryParams } from "../../core/util/getQueryParams";
 import { DemoMode } from "../constants/DemoMode";
+import { LightTheme, Theme } from "../styles/themes";
 
 export class AppSettings {
     public readonly quizModuleName: string;
     public readonly demoMode: DemoMode;
     public readonly guessButtonCount: number;
     public readonly maxQuestions: number;
+    public readonly theme: Theme;
 
     constructor(params: {
         quizModuleName?: string;
         demoMode?: DemoMode;
         guessButtonCount?: number;
         maxQuestions?: number;
+        theme?: Theme;
     }) {
         let { quizModuleName, demoMode } = params;
         const { guessButtonCount, maxQuestions } = params;
@@ -33,7 +36,11 @@ export class AppSettings {
 
         this.maxQuestions =
             maxQuestions ?? +(queryParams.get("maxQuestions") ?? "0");
+
+        this.theme = params.theme ?? LightTheme;
+        applyTheme(this.theme);
     }
+
 }
 
 function parseDemoMode(value: string | undefined | null): DemoMode {
@@ -49,5 +56,11 @@ function parseDemoMode(value: string | undefined | null): DemoMode {
             return DemoMode.WRONG;
         default:
             return DemoMode.OFF;
+    }
+}
+
+export function applyTheme(theme: Theme): void {
+    for (const [key, value] of Object.entries(theme)) {
+        document.documentElement.style.setProperty(`--${key}`, value);
     }
 }

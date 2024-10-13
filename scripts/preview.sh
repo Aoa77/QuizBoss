@@ -8,7 +8,7 @@ line=$(printf "%${LEN}s" | tr " " "$CHAR")
 printf "\n%s\n%s\n%s\n\n" "$line" "$script" "$line"
 set -x
 ###############################################################
-vite preview
+vite preview --host
 ###############################################################
 set +x
 echo

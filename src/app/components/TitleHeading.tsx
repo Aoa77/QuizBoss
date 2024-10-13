@@ -1,6 +1,9 @@
 import { QuizState } from "../models/QuizState";
 import { ELEMENT } from "../constants/ELEMENT";
 import { createXref } from "../../core/animation/dom/createXref";
+import { DarkTheme, LightTheme, Themes } from "../styles/themes";
+import { applyTheme } from "../models/AppSettings";
+import { flow } from "../../core/context/flow";
 
 export function TitleHeading(state: QuizState) {
     ///
@@ -9,7 +12,16 @@ export function TitleHeading(state: QuizState) {
     function onPointerDown() {
         if (window.location.hostname.endsWith("use.devtunnels.ms")) {
             window.location.reload();
+            return;
         }
+
+        const [state, setState] = flow<QuizState>();
+        const theme =
+            state.settings.theme.NAME === Themes.Light /////
+                ? DarkTheme
+                : LightTheme;
+        applyTheme(theme);
+        setState({ ...state, settings: { ...state.settings, theme } });
     }
     return (
         <h1

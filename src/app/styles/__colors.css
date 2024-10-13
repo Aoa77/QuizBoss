@@ -2,8 +2,8 @@
     colors
 */
 :root {
-    --body-background:                #000000;
-    --main-background:                #000011;
+    --bodyBackground:                #000000;
+    --mainBackground:                #000011;
     --lds-ellipsis-color:             #1c4c5b;
 
     --h1-color:                       #ffffff;
