@@ -23,8 +23,7 @@ export function GuessButton(params: { index: number }) {
 
 async function handleButtonPointerDown(xref: Xelement<HTMLButtonElement>) {
     const [state, setState] = flow<QuizState>();
-    const { event: gameState } = state;
-    if (gameState !== EventState.AwaitInput) {
+    if (state.event !== EventState.AwaitInput) {
         return;
     }
     if (xref.className !== ButtonState.NORMAL) {

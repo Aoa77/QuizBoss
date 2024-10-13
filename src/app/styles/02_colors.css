@@ -2,39 +2,28 @@
     colors
 */
 :root {
-    --bodyBackground:                #000000;
-    --mainBackground:                #000011;
-    --lds-ellipsis-color:             #1c4c5b;
-
-    --h1-color:                       #ffffff;
-    --h2-color:                       #00ffff;
-    --h6-color:                       #ffffff33;
-    
-    --prompt-color:                   #ffff00;
-    --image-shadow:                   #a5a5c8cc;
-    
-    --score-label-color:              #00ffff;
-    --score-color:                    #ffff00;
-    --bonus-color:                    #00ff00;
-    --no-bonus-color:                 #ff0000;
-    --progress-color:                 #ffffffbb;
-
-    --button-correct-background:      #007700;
-    --button-correct-text:            #ffffff;
-
-    --button-dimmed-background:       #44447755;
-    --button-dimmed-text:             #ffffff55;
-
-    --button-disabled-background:     #44447755;
-    --button-disabled-text:           #ffffff55;
-
-    --button-normal-background:       #444477;
-    --button-normal-text:             #ffffff;
-
-    --button-wrong-background:        #ff0000;
-    --button-wrong-text:              #ffffff;
-
-    --button-reveal-background:       #550055;
-    --button-reveal-text:             #ffff00;
-
+    --bodyBackground: #000000;
+    --mainBackground: #000011;
+    --loadingSpinner: #1c4c5b;
+    --titleHeading: #ffffff;
+    --questionHeading: #00ffff;
+    --actionLink: #ffff00;
+    --imageShadow: #a5a5c8cc;
+    --scoreLabel: #00ffff;
+    --scoreValue: #ffff00;
+    --bonus: #00ff00;
+    --noBonus: #ff0000;
+    --progress: #ffffffbb;
+    --buttonCorrectBackground: #007700;
+    --buttonCorrectText: #ffffff;
+    --buttonDimmedBackground: #44447755;
+    --buttonDimmedText: #ffffff55;
+    --buttonDisabledBackground: #44447755;
+    --buttonDisabledText: #ffffff55;
+    --buttonNormalBackground: #444477;
+    --buttonNormalText: #ffffff;
+    --buttonWrongBackground: #ff0000;
+    --buttonWrongText: #ffffff;
+    --buttonRevealBackground: #550055;
+    --buttonRevealText: #ffff00;
 }

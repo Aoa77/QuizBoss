@@ -12,7 +12,7 @@ main {
 /* heading text rules */
 /**********************/
 h1 {
-    color: var(--h1-color);
+    color: var(--titleHeading);
     font-family: "Garamond", serif;
     font-size: 16rem;
     font-weight: normal;
@@ -20,14 +20,14 @@ h1 {
     margin-bottom: calc(var(--height) * 0.035);
 }
 h2 {
-    color: var(--h2-color);
+    color: var(--questionHeading);
     font-family: "Tahoma", sans-serif;
     font-size: 8rem;
     font-weight: normal;
     margin-top: calc(var(--height) * 0.06);
 }
 h2#bonusValue {
-    color: var(--bonus-color);
+    color: var(--bonus);
     font-family: "Courier New", monospace;
     font-size: 9rem;
     font-weight: bold;
@@ -36,24 +36,14 @@ h2#bonusValue {
     top: calc(var(--height) * 0.025);
 }
 h2#bonusValue.noBonus {
-    color: var(--no-bonus-color);
+    color: var(--noBonus);
 }
-
-/************************/
-/* app version display  */
-/************************/
-/* h6 {
-    color: var(--h6-color);
-    font-family: "Courier New", monospace;
-    font-size: 5rem;
-    font-weight: normal;
-} */
 
 /************************/
 /* "play again" prompt  */
 /************************/
 .prompt {
-    color: var(--prompt-color);
+    color: var(--actionLink);
     cursor: pointer;
 }
 
@@ -73,7 +63,7 @@ section.image {
     margin-top: calc(-1 * var(--imageHeight));
 }
 section.image > img {
-    box-shadow: 0 0 16rem 3rem var(--image-shadow);
+    box-shadow: 0 0 16rem 3rem var(--imageShadow);
     margin: auto;
     height: 100%;
 }
@@ -98,28 +88,28 @@ section.buttons > button {
     opacity: 0;
 }
 section.buttons > button.correct {
-    background-color: var(--button-correct-background);
-    color: var(--button-correct-text);
+    background-color: var(--buttonCorrectBackground);
+    color: var(--buttonCorrectText);
 }
 section.buttons > button.dimmed {
-    background-color: var(--button-dimmed-background);
-    color: var(--button-dimmed-text);
+    background-color: var(--buttonDimmedBackground);
+    color: var(--buttonDimmedText);
 }
 section.buttons > button.disabled {
-    background-color: var(--button-disabled-background);
-    color: var(--button-disabled-text);
+    background-color: var(--buttonDisabledBackground);
+    color: var(--buttonDisabledText);
 }
 section.buttons > button.normal {
-    background-color: var(--button-normal-background);
-    color: var(--button-normal-text);
+    background-color: var(--buttonNormalBackground);
+    color: var(--buttonNormalText);
 }
 section.buttons > button.reveal {
-    background-color: var(--button-reveal-background);
-    color: var(--button-reveal-text);
+    background-color: var(--buttonRevealBackground);
+    color: var(--buttonRevealText);
 }
 section.buttons > button.wrong {
-    background-color: var(--button-wrong-background);
-    color: var(--button-wrong-text);
+    background-color: var(--buttonWrongBackground);
+    color: var(--buttonWrongText);
 }
 
 /***************************/
@@ -134,13 +124,13 @@ section.score {
 }
 
 section.progress {
-    color: var(--progress-color);
+    color: var(--progress);
     font-size: 5rem;
     padding-top: calc(var(--height) * 0.08);
 }
 
 section.score {
-    color: var(--score-color);
+    color: var(--scoreValue);
     display: grid;
     grid-template-columns: repeat(3, auto);
     font-size: 8rem;
@@ -149,7 +139,7 @@ section.score {
 }
 
 section.score > label {
-    color: var(--score-label-color);
+    color: var(--scoreLabel);
     display: block;
     font-weight: normal;
     font-size: 8rem;

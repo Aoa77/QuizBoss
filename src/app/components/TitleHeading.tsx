@@ -4,6 +4,7 @@ import { createXref } from "../../core/animation/dom/createXref";
 import { DarkTheme, LightTheme, Themes } from "../styles/themes";
 import { applyTheme } from "../models/AppSettings";
 import { flow } from "../../core/context/flow";
+import { EventState } from "../constants/EventState";
 
 export function TitleHeading(state: QuizState) {
     ///
@@ -26,6 +27,9 @@ function onPointerDown() {
     }
 
     const [state, setState] = flow<QuizState>();
+    if (state.event !== EventState.AwaitInput) {
+        return;
+    }
     const theme =
         state.settings.theme.NAME === Themes.Light /////
             ? DarkTheme
