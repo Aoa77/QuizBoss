@@ -1,6 +1,6 @@
 import { getQueryParams } from "../../core/util/getQueryParams";
 import { DemoMode } from "../constants/DemoMode";
-import { LightTheme, Theme } from "../styles/themes";
+import { DarkTheme, LightTheme, Theme } from "../styles/themes";
 
 export class AppSettings {
     public readonly quizModuleName: string;
@@ -37,7 +37,7 @@ export class AppSettings {
         this.maxQuestions =
             maxQuestions ?? +(queryParams.get("maxQuestions") ?? "0");
 
-        this.theme = params.theme ?? LightTheme;
+        this.theme = params.theme ?? DarkTheme;
         applyTheme(this.theme);
     }
 

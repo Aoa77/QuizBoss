@@ -8,21 +8,6 @@ import { flow } from "../../core/context/flow";
 export function TitleHeading(state: QuizState) {
     ///
     const [title] = createXref.headings(ELEMENT.title);
-
-    function onPointerDown() {
-        if (window.location.hostname.endsWith("use.devtunnels.ms")) {
-            window.location.reload();
-            return;
-        }
-
-        const [state, setState] = flow<QuizState>();
-        const theme =
-            state.settings.theme.NAME === Themes.Light /////
-                ? DarkTheme
-                : LightTheme;
-        applyTheme(theme);
-        setState({ ...state, settings: { ...state.settings, theme } });
-    }
     return (
         <h1
             id={title.id}
@@ -32,4 +17,19 @@ export function TitleHeading(state: QuizState) {
             {state.quizModule?.quizData?.title ?? <>&nbsp;</>}
         </h1>
     );
+}
+
+function onPointerDown() {
+    if (window.location.hostname.endsWith("use.devtunnels.ms")) {
+        window.location.reload();
+        return;
+    }
+
+    const [state, setState] = flow<QuizState>();
+    const theme =
+        state.settings.theme.NAME === Themes.Light /////
+            ? DarkTheme
+            : LightTheme;
+    applyTheme(theme);
+    setState({ ...state, settings: { ...state.settings, theme } });
 }

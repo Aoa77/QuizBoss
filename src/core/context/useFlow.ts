@@ -12,7 +12,6 @@ export function useFlow<Tstate, Tflow>(params: {
 
     ///
     useEffect(() => {
-        console.debug(state);
         const flowEvent: Tflow = flowProperty(state);
         console.info(flowEvent);
 

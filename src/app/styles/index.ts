@@ -1,5 +1,5 @@
-import "./___universal.css";
-import "./__colors.css";
-import "./__layout.css";
-import "./_main.css";
-import "./_spinner.css";
+import "./01_universal.css";
+import "./02_colors.css";
+import "./03_layout.css";
+import "./04_main.css";
+import "./05_spinner.css";

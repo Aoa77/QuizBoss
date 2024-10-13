@@ -10,8 +10,8 @@ export function SocialShare() {
                             text: "Hello World",
                             url: window.location.href,
                         })
-                        .then(() => console.log("Successful share"))
-                        .catch((error) => console.log("Error sharing:", error));
+                        .then(() => console.info("Successful share"))
+                        .catch((error) => console.error("Error sharing:", error));
                 }
             }}>
             SHARE
