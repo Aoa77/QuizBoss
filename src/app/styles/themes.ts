@@ -97,6 +97,6 @@ export const LightTheme: Theme = {
 };
 
 export const Themes = [
-    LightTheme, ////////////////////////////
     DarkTheme, ///////////////////////////
+    LightTheme, ////////////////////////////
 ];
