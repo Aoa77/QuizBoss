@@ -1,8 +1,7 @@
 import { QuizState } from "../models/QuizState";
 import { ELEMENT } from "../constants/ELEMENT";
 import { createXref } from "../../core/animation/dom/createXref";
-import { DarkTheme, LightTheme, Themes } from "../styles/themes";
-import { applyTheme } from "../models/AppSettings";
+import { applyTheme, DarkTheme, LightTheme, ThemeNames } from "../styles/themes";
 import { flow } from "../../core/context/flow";
 import { EventState } from "../constants/EventState";
 
@@ -31,7 +30,7 @@ function onPointerDown() {
         return;
     }
     const theme =
-        state.settings.theme.NAME === Themes.Light /////
+        state.settings.theme.NAME === ThemeNames.Light /////
             ? DarkTheme
             : LightTheme;
     applyTheme(theme);

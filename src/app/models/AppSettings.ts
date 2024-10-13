@@ -1,6 +1,6 @@
 import { getQueryParams } from "../../core/util/getQueryParams";
 import { DemoMode } from "../constants/DemoMode";
-import { DarkTheme, LightTheme, Theme } from "../styles/themes";
+import { applyTheme, Theme, Themes } from "../styles/themes";
 
 export class AppSettings {
     public readonly quizModuleName: string;
@@ -37,7 +37,7 @@ export class AppSettings {
         this.maxQuestions =
             maxQuestions ?? +(queryParams.get("maxQuestions") ?? "0");
 
-        this.theme = params.theme ?? DarkTheme;
+        this.theme = params.theme ?? Themes[0];
         applyTheme(this.theme);
     }
 
@@ -56,11 +56,5 @@ function parseDemoMode(value: string | undefined | null): DemoMode {
             return DemoMode.WRONG;
         default:
             return DemoMode.OFF;
-    }
-}
-
-export function applyTheme(theme: Theme): void {
-    for (const [key, value] of Object.entries(theme)) {
-        document.documentElement.style.setProperty(`--${key}`, value);
     }
 }

@@ -1,4 +1,7 @@
-export function HamburgerIcon() {
+import { QuizState } from "../../models/QuizState";
+
+export function HamburgerIcon(state: QuizState) {
+    const { theme } = state.settings;
     return (
         <svg
             width="24"
@@ -8,7 +11,7 @@ export function HamburgerIcon() {
             xmlns="http://www.w3.org/2000/svg">
             <path
                 d="M5 17H19M5 12H19M5 7H19"
-                stroke="#ffffff22"
+                stroke={theme.iconStroke}
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"

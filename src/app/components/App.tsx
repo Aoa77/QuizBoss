@@ -50,7 +50,7 @@ export function App(settings: AppSettings) {
             {guessButtonArea}
             <ProgressDisplay {...state} />
             <ScoreDisplay {...state} />
-            <HamburgerIcon />
+            <HamburgerIcon {...state} />
         </main>
     );
 }
