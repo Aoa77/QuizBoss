@@ -14,17 +14,20 @@ main {
 button.icon {
     background-color: var(--iconBackground);
     border-radius: 50%;
-    height: calc(var(--iconSize) * 1px);
-    width:  calc(var(--iconSize) * 1px);
-    padding: calc(var(--iconSize) * 0.2px);
     cursor: pointer;
-    text-align: center;
+    padding: 1% 1.5%;
+    display: inline-block;
+}
+button.icon > svg {
+    width:  10rem;
+    height: 10rem;
+    opacity: 0.8;
 }
 section.menuButton {
     position: absolute;
     width: var(--width);
+    padding: 6rem 6rem 0 0;
     text-align: right;
-    padding: calc(var(--iconSize) * 0.5px);
     top: 0;
 }
 

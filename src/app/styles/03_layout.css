@@ -40,6 +40,7 @@ button {
     all: unset;
     appearance: none;
     border-style: none;
+    display: block;
     position: sticky;
     font-family: "Tahoma", sans-serif;
     font-size: 7rem;

@@ -1,4 +1,4 @@
-import { ICON, Theme } from "../Theme";
+import { Theme } from "../Theme";
 
 export const LightTheme: Theme = {
     NAME: "Light",
@@ -27,9 +27,6 @@ export const LightTheme: Theme = {
     buttonRevealBackground: "#550055",
     buttonRevealText: "#ffff00",
 
-    iconBackground: "#44447755",
+    iconBackground: "#44447733",
     iconForeground: "#000000bb",
-
-    iconSize: ICON.SIZE,
-    iconStroke: ICON.STROKE,
 };

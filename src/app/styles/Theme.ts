@@ -27,9 +27,6 @@ export interface Theme {
     
     iconBackground: string;
     iconForeground: string;
-
-    iconSize: string;
-    iconStroke: string;
 }
 
 export const ICON = {
