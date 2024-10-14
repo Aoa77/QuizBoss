@@ -1,5 +1,5 @@
 :root {
-    --lds-scale: 0.42;
+    --lds-scale: 0.33;
 }
 .lds-ellipsis {
     color: var(--loadingSpinner);
