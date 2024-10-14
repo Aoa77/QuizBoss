@@ -14,5 +14,3 @@ export enum ELEMENT {
     scoreArea = "scoreArea",
     title = "title",
 }
-
-

@@ -8,6 +8,26 @@ main {
     margin-left: var(--main_center);
 }
 
+/************************/
+/* icon buttons         */
+/************************/
+button.icon {
+    background-color: var(--iconBackground);
+    border-radius: 50%;
+    height: calc(var(--iconSize) * 1px);
+    width:  calc(var(--iconSize) * 1px);
+    padding: calc(var(--iconSize) * 0.2px);
+    cursor: pointer;
+    text-align: center;
+}
+section.menuButton {
+    position: absolute;
+    width: var(--width);
+    text-align: right;
+    padding: calc(var(--iconSize) * 0.5px);
+    top: 0;
+}
+
 /**********************/
 /* heading text rules */
 /**********************/
@@ -52,7 +72,7 @@ h2#bonusValue.noBonus {
 /********************************************************************/
 :root {
     --imageHeight: calc(var(--height) * 0.18);
-} 
+}
 section.loading,
 section.image {
     background-color: #00990000;
@@ -75,10 +95,6 @@ section.buttons {
     margin-top: calc(var(--height) * 0.04);
 }
 section.buttons > button {
-    all: unset;
-    appearance: none;
-    border-style: none;
-    position: sticky;
     font-family: "Tahoma", sans-serif;
     font-size: 7rem;
     font-weight: normal;

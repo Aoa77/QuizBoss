@@ -2,7 +2,6 @@ import "../styles";
 import { AppSettings } from "../models/AppSettings";
 import { BonusNotification } from "./BonusNotification";
 import { GuessButtonArea } from "./GuessButtonArea";
-import { HamburgerIcon } from "../styles/icons/HamburgerIcon";
 import { LoadingSpinner } from "./LoadingSpinner";
 import { ProgressDisplay } from "./ProgressDisplay";
 import { QuestionHeading } from "./QuestionHeading";
@@ -17,6 +16,7 @@ import { onQuizStart } from "../events/01_QuizStart/_onQuizStart";
 import { onNextQuestion } from "../events/02_NextQuestion/_onNextQuestion";
 import { onAwaitInput } from "../events/03_AwaitInput/_onAwaitInput";
 import { onShowResult } from "../events/04_ShowResult/_onShowResult";
+import { MenuButton } from "./MenuButton";
 
 ///
 export function App(settings: AppSettings) {
@@ -39,18 +39,33 @@ export function App(settings: AppSettings) {
         ]),
     });
 
+    const titleText = state.quizModule?.quizData?.title ?? "&nbsp;";
+    const titleHeading = useMemo(
+        () => <TitleHeading titleText={titleText} />,
+        [titleText],
+    );
+
+    const questionText = state.quizModule?.quizData?.questionText ?? "&nbsp;";
+    const questionHeading = useMemo(
+        () => <QuestionHeading questionText={questionText} />,
+        [questionText],
+    );
+
+    const { theme } = state.settings;
+    const menuButton = useMemo(() => <MenuButton {...theme} />, [theme]);
+
     ///
     return (
         <main>
-            <TitleHeading {...state} />
+            {titleHeading}
+            {menuButton}
             {loadingSpinner}
             <QuestionImage {...state} />
-            <QuestionHeading {...state} />
+            {questionHeading}
             {bonusNotification}
             {guessButtonArea}
             <ProgressDisplay {...state} />
             <ScoreDisplay {...state} />
-            <HamburgerIcon {...state} />
         </main>
     );
 }

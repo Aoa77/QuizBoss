@@ -26,5 +26,8 @@
     --buttonWrongText: #00000000;
     --buttonRevealBackground: #00000000;
     --buttonRevealText: #00000000;
-    --iconStroke: #00000000;
+    --iconBackground: #00000000;
+    --iconForeground: #00000000;
+    --iconSize: 0;
+    --iconStroke: 0;
 }

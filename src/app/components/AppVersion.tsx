@@ -12,3 +12,4 @@ export function AppVersion() {
         </h6>
     );
 }
+
