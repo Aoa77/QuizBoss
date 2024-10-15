@@ -2,6 +2,7 @@ export interface Theme {
     NAME: string;
     bodyBackground: string;
     mainBackground: string;
+    menuBackground: string;
     loadingSpinner: string;
     titleHeading: string;
     questionHeading: string;
@@ -27,11 +28,6 @@ export interface Theme {
     
     iconBackground: string;
     iconForeground: string;
-}
-
-export const ICON = {
-    SIZE: "24",
-    STROKE: "2",
 }
 
 export function applyTheme(theme: Theme): void {

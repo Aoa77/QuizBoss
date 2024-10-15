@@ -16,7 +16,7 @@ import { onQuizStart } from "../events/01_QuizStart/_onQuizStart";
 import { onNextQuestion } from "../events/02_NextQuestion/_onNextQuestion";
 import { onAwaitInput } from "../events/03_AwaitInput/_onAwaitInput";
 import { onShowResult } from "../events/04_ShowResult/_onShowResult";
-import { MenuButton } from "./MenuButton";
+import { Menu } from "./menu/Menu";
 
 ///
 export function App(settings: AppSettings) {
@@ -39,26 +39,26 @@ export function App(settings: AppSettings) {
         ]),
     });
 
-    const titleText = state.quizModule?.quizData?.title ?? "&nbsp;";
+    const titleText = state.quizModule?.quizData?.title ?? " ";
     const titleHeading = useMemo(
         () => <TitleHeading titleText={titleText} />,
         [titleText],
     );
 
-    const questionText = state.quizModule?.quizData?.questionText ?? "&nbsp;";
+    const questionText = state.quizModule?.quizData?.questionText ?? " ";
     const questionHeading = useMemo(
         () => <QuestionHeading questionText={questionText} />,
         [questionText],
     );
 
     const { theme } = state.settings;
-    const menuButton = useMemo(() => <MenuButton {...theme} />, [theme]);
+    const menu = useMemo(() => <Menu {...theme} />, [theme]);
 
     ///
     return (
         <main>
             {titleHeading}
-            {menuButton}
+            {menu}
             {loadingSpinner}
             <QuestionImage {...state} />
             {questionHeading}

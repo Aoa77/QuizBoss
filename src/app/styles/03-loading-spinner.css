@@ -1,8 +1,6 @@
 :root {
     --lds-scale: 0.33;
-}
-.lds-ellipsis {
-    color: var(--loadingSpinner);
+    --dotSize: calc(5 * var(--rWu));
 }
 .lds-ellipsis,
 .lds-ellipsis div {
@@ -11,14 +9,24 @@
 .lds-ellipsis {
     display: inline-block;
     position: relative;
-    width: calc(var(--lds-scale) * 80rem);
-    height: calc(var(--lds-scale) * 80rem);
+
+    /* width: calc(var(--lds-scale) * 80rem);
+    height: calc(var(--lds-scale) * 80rem); */
+
+
+    width: var(--dotSize);
+    height: var(--dotSize);
 }
 .lds-ellipsis div {
     position: absolute;
-    top: calc(var(--lds-scale) * 33.33333rem);
+    
+    /* top: calc(var(--lds-scale) * 33.33333rem);
     width: calc(var(--lds-scale) * 13.33333rem);
-    height: calc(var(--lds-scale) * 13.33333rem);
+    height: calc(var(--lds-scale) * 13.33333rem); */
+
+    width: var(--dotSize);
+    height: var(--dotSize);
+
     border-radius: 50%;
     background: currentColor;
     animation-timing-function: cubic-bezier(0, 1, 1, 0);
@@ -60,6 +68,7 @@
         transform: translate(0, 0);
     }
     100% {
-        transform: translate(calc(var(--lds-scale) * 24rem), 0);
+        transform: translate(100, 0);
+        /* transform: translate(calc(var(--lds-scale) * 24rem), 0); */
     }
 }

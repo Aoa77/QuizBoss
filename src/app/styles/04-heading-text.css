@@ -1,0 +1,24 @@
+
+/**********************/
+/* heading text rules */
+/**********************/
+h1 {
+    font-family: "Garamond", serif;
+    font-size: calc(8 * var(--rWu));
+    padding-top: calc(4 * var(--rHu));
+    margin-bottom: calc(4 * var(--rHu));
+}
+h2 {
+    font-family: "Tahoma", sans-serif;
+    font-size: 8rem;
+    font-weight: normal;
+    margin-top: calc(var(--height) * 0.06);
+}
+h2#bonusValue {
+    font-family: "Courier New", monospace;
+    font-size: 9rem;
+    font-weight: bold;
+    position: relative;
+    margin-top: calc(var(--height) * -0.05);
+    top: calc(var(--height) * 0.025);
+}

@@ -1,0 +1,24 @@
+/* un-bold headings */
+h1, h2, h3, h4, h5, h6 {
+    font-weight: normal;
+}
+
+/* Reset built-in button styles. */
+button {
+    all: unset;
+    appearance: none;
+    border-style: none;
+
+    /* use sticky positioning to prevent scaling animation issues */
+    position: sticky;
+}
+
+/* discourage use of rem units */
+html {
+    font-size: 0;
+}
+
+/* center everything by default */
+body {
+    text-align: center;
+}

@@ -4,11 +4,12 @@ export const DarkTheme: Theme = {
     NAME: "Dark",
     bodyBackground: "#000000",
     mainBackground: "#000022",
+    menuBackground: "#444444",
     loadingSpinner: "#1c4c5b",
     titleHeading: "#ffffff",
     questionHeading: "#00ffff",
     actionLink: "#ffff00",
-    imageShadow: "#a5a5c8cc",
+    imageShadow: "#a5a5c8aa",
     scoreLabel: "#00ffff",
     scoreValue: "#ffff00",
     bonus: "#00ff00",
@@ -27,6 +28,6 @@ export const DarkTheme: Theme = {
     buttonRevealBackground: "#550055",
     buttonRevealText: "#ffff00",
 
-    iconBackground: "#44447733",
-    iconForeground: "#ffffffbb",
+    iconBackground: "#555555ee",
+    iconForeground: "#ffffff",
 };

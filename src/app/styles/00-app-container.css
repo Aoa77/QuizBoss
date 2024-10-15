@@ -1,0 +1,60 @@
+:root {
+    /* Defines the app container's width and height. */
+    /* Width/Height aspect ratio of 9:16 (0.5625) and 16:9 (1.77777777). */
+    /* The min() function is used to force the 9:16 portrait orientation. */
+    --width: min(100svw, calc(0.5625 * 100svh));
+    --height: min(100svh, calc(1.77777777 * 100svw));
+
+    /* The app container is centered horizontally on the device screen. */
+    /* The main container is centered horizontally within the app container. */
+    --device_center: calc(100svw / 2);
+    --app_center: calc(var(--width) / 2);
+    --main_center: calc(var(--device_center) - var(--app_center));
+
+    /* relative units based on 1% of the app container's width and height */
+    --rHu: calc(var(--height) / 100);
+    --rWu: calc(var(--width) / 100);
+
+    /* Examples: 
+       ====================
+        Set the font-size to 8% of the app container's width...
+        { font-size: calc(8 * var(--rWu)); }
+
+        Set the font-size to 4% of the app container's height...
+        { font-size: calc(4 * var(--rHu)); }
+
+        Set the margin top/bottom to 4% of the app container's height...
+        and left/right to 8% of the app container's width...
+        { margin: calc(4 * var(--rHu)) calc(8 * var(--rWu)); }
+    */
+}
+
+/* normalize box-sizing for all elements */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* center the container within the body */
+/* body {
+    /* text-align: center; */
+   /* background-color: black;
+} */
+
+/* <main> is the main container for the app 
+    
+    * Set the width and height of the container.
+    * Set the margin so the container is centered within the body.
+    * Hide any overflow so the container's size is not affected by the browser viewport.
+    * Reset the text-align property so children aren't centered by default.
+*/
+main {
+    width: var(--width);
+    height: var(--height);
+    margin-left: var(--main_center);
+    /* margin: 0 auto; */
+    overflow: hidden;
+    /* text-align: initial; */
+    background-color: white;
+}

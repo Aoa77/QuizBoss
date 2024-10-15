@@ -4,6 +4,7 @@ export const LightTheme: Theme = {
     NAME: "Light",
     bodyBackground: "#ffffff",
     mainBackground: "#ddddff",
+    menuBackground: "#0000aa",
     loadingSpinner: "#ffffff",
     titleHeading: "#000000",
     questionHeading: "#0000ff",

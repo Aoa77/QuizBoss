@@ -1,0 +1,117 @@
+/* 
+    all theme colors variables (values controlled by javascript)
+*/
+:root {
+    --bodyBackground: #00000000;
+    --mainBackground: #00000000;
+    --menuBackground: #00000000;
+    --loadingSpinner: #00000000;
+    --titleHeading: #00000000;
+    --questionHeading: #00000000;
+    --actionLink: #00000000;
+    --imageShadow: #00000000;
+    --scoreLabel: #00000000;
+    --scoreValue: #00000000;
+    --bonus: #00000000;
+    --noBonus: #00000000;
+    --progress: #00000000;
+    --buttonCorrectBackground: #00000000;
+    --buttonCorrectText: #00000000;
+    --buttonDimmedBackground: #00000000;
+    --buttonDimmedText: #00000000;
+    --buttonDisabledBackground: #00000000;
+    --buttonDisabledText: #00000000;
+    --buttonNormalBackground: #00000000;
+    --buttonNormalText: #00000000;
+    --buttonWrongBackground: #00000000;
+    --buttonWrongText: #00000000;
+    --buttonRevealBackground: #00000000;
+    --buttonRevealText: #00000000;
+    --iconBackground: #00000000;
+    --iconForeground: #00000000;
+}
+
+body {
+    background-color: var(--bodyBackground);
+}
+
+main {
+    background-color: var(--mainBackground);
+}
+
+section.menu {
+    background-color: var(--menuBackground);
+}
+
+section.menu > div.menuGrid > * {
+    border-bottom-color: var(--imageShadow);
+}
+
+section.menu > div.menuGrid > label {
+    color: var(--scoreLabel);
+}
+
+button.icon {
+    background-color: var(--iconBackground);
+}
+
+h1 {
+    color: var(--titleHeading);
+}
+
+h2 {
+    color: var(--questionHeading);
+}
+
+h2#bonusValue {
+    color: var(--bonus);
+}
+
+h2#bonusValue.noBonus {
+    color: var(--noBonus);
+}
+
+section.image > img {
+    color: var(--imageShadow);
+}
+
+section.buttons > button.correct {
+    background-color: var(--buttonCorrectBackground);
+    color: var(--buttonCorrectText);
+}
+section.buttons > button.dimmed {
+    background-color: var(--buttonDimmedBackground);
+    color: var(--buttonDimmedText);
+}
+section.buttons > button.disabled {
+    background-color: var(--buttonDisabledBackground);
+    color: var(--buttonDisabledText);
+}
+section.buttons > button.normal {
+    background-color: var(--buttonNormalBackground);
+    color: var(--buttonNormalText);
+}
+section.buttons > button.reveal {
+    background-color: var(--buttonRevealBackground);
+    color: var(--buttonRevealText);
+}
+section.buttons > button.wrong {
+    background-color: var(--buttonWrongBackground);
+    color: var(--buttonWrongText);
+}
+
+section.progress {
+    color: var(--progress);
+}
+
+section.score {
+    color: var(--scoreValue);
+}
+
+section.score > label {
+    color: var(--scoreLabel);
+}
+
+.lds-ellipsis {
+    color: var(--loadingSpinner);
+}
