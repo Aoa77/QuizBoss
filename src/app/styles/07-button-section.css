@@ -4,8 +4,8 @@
 section.buttons {
     /* position: sticky; */
     text-align: center;
-    background-color: #220000;
     background-color: #002200;
+    background-color: #220000;
 }
 section.buttons > button {
     /* border-radius: 1rem; */
