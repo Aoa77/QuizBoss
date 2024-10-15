@@ -3,8 +3,8 @@
     /* Width/Height aspect ratio of 9:16 (0.5625) and 16:9 (1.77777777). */
     /* The min() function is used to force the 9:16 portrait orientation. */
     --width: min(100svw, calc(0.5625 * 100svh));
-    --height: min(100svh, calc(1.77777777 * 100svw));
-    /* --height: 100svh; */
+    /* --height: min(100svh, calc(1.77777777 * 100svw)); */
+    --height: 100svh;
 
     /* The app container is centered horizontally on the device screen. */
     /* The main container is centered horizontally within the app container. */

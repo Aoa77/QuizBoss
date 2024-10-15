@@ -2,7 +2,7 @@
 /* The loading spinner and the question image occupy the same space */
 /********************************************************************/
 :root {
-    --imageHeight: 30rem;
+    --imageHeight: 32rem;
     --boxShadow: 0 0 16rem 3rem;
 }
 section.loading,

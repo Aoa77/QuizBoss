@@ -6,12 +6,12 @@ export function Menu(theme: Theme) {
     const menu = [];
     for (let mock = 0; mock < 3; mock++) {
         menu.push(
-            <>
+            <div  key={mock}>
                 <label>Settings</label>
                 <div>
-                    <ShareButton {...theme} key={mock} />
+                    <ShareButton {...theme} />
                 </div>
-            </>,
+            </div>,
         );
     }
 
