@@ -1,6 +1,6 @@
 :root {
     --lds-scale: 0.33;
-    --dotSize: calc(5 * var(--rWu));
+    --dotSize: calc(5 * var(--rHu));
 }
 .lds-ellipsis,
 .lds-ellipsis div {

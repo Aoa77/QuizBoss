@@ -57,12 +57,16 @@ export function App(settings: AppSettings) {
     ///
     return (
         <main>
-            {titleHeading}
-            {menu}
-            {loadingSpinner}
-            <QuestionImage {...state} />
-            {questionHeading}
-            {bonusNotification}
+            <div className="top_wrapper">
+                {titleHeading}
+                {menu}
+                {loadingSpinner}
+                <QuestionImage {...state} />
+                <div className="h2_wrapper">
+                    {questionHeading}
+                    {bonusNotification}
+                </div>
+            </div>
             {guessButtonArea}
             <ProgressDisplay {...state} />
             <ScoreDisplay {...state} />

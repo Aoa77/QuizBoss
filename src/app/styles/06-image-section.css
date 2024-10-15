@@ -2,13 +2,12 @@
 /* The loading spinner and the question image occupy the same space */
 /********************************************************************/
 :root {
-    --imageHeight: calc(18 * var(--rHu));
-    --boxShadow: 0 0 calc(16 * var(--rHu)) calc(3 * var(--rWu));
+    --imageHeight: 30rem;
+    --boxShadow: 0 0 16rem 3rem;
 }
 section.loading,
 section.image {
     height: var(--imageHeight);
-    margin: auto;
 }
 section.image {
     margin-top: calc(-1 * var(--imageHeight));

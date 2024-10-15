@@ -5,28 +5,28 @@ section.progress,
 section.score {
     font-family: "Courier New", monospace;
     text-transform: uppercase;
-    width: calc(75 * var(--rWu));
+    width: 75rem;
     margin: auto;
 }
 
 section.progress {
-    font-size: calc(3 * var(--rWu));
-    padding-left: calc(1.44 * var(--rWu));
-    padding-top: calc(6 * var(--rHu));
+    font-size: 4rem;
+    padding-left: 3rem;
+    padding-top: 4rem;
 }
 
 section.score {
     display: grid;
     grid-template-columns: repeat(3, auto);
-    font-size: calc(5 * var(--rWu));
-    margin-top: calc(-4 * var(--rHu));
+    font-size: 6rem;
+    margin-top: -8rem;
     font-weight: bold;
 }
 
 section.score > label {
     display: block;
-    font-size: calc(4 * var(--rWu));
+    font-size: 4rem;
     text-decoration: underline;
-    padding-bottom: calc(0.5 * var(--rHu));
-    text-underline-offset: calc(0.5 * var(--rHu));
+    padding-bottom: 1rem;
+    text-underline-offset: 1rem;
 }

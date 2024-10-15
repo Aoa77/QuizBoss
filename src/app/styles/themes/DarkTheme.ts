@@ -9,7 +9,7 @@ export const DarkTheme: Theme = {
     titleHeading: "#ffffff",
     questionHeading: "#00ffff",
     actionLink: "#ffff00",
-    imageShadow: "#a5a5c8aa",
+    imageShadow: "#a5a5c877",
     scoreLabel: "#00ffff",
     scoreValue: "#ffff00",
     bonus: "#00ff00",

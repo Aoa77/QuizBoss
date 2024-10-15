@@ -15,7 +15,7 @@ button {
 
 /* discourage use of rem units */
 html {
-    font-size: 0;
+    font-size: var(--rWu);
 }
 
 /* center everything by default */

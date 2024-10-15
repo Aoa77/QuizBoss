@@ -3,22 +3,23 @@
 /**********************/
 h1 {
     font-family: "Garamond", serif;
-    font-size: calc(8 * var(--rWu));
-    padding-top: calc(4 * var(--rHu));
-    margin-bottom: calc(4 * var(--rHu));
+    font-size: 8rem;
+    padding-top: 6rem;
+    margin-bottom: 6rem;
     cursor: pointer;
+}
+div.h2_wrapper {
+    height: 16rem;
+    position: relative;
 }
 h2 {
     font-family: "Tahoma", sans-serif;
-    font-size: calc(4 * var(--rWu));
-    font-weight: normal;
-    margin-top: calc(4 * var(--rHu));
+    font-size: 4rem;
+    position: absolute;
+    width: var(--width);
+    top: 6rem;
 }
 h2#bonusValue {
     font-family: "Courier New", monospace;
-    font-size: calc(4 * var(--rWu));
-    font-weight: bold;
-    position: relative;
-    margin-top: calc(var(--height) * -0.05);
-    top: calc(var(--height) * 0.025);
+    font-size: 4rem;
 }

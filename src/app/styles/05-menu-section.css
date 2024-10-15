@@ -4,8 +4,8 @@
 /************************/
 :root {
     --menuButtonPadding: calc(2 * var(--rWu));
-    --menuIconSize: calc(4 * var(--rHu));
-    --menuIconSvgSize: calc(2 * var(--rHu));
+    --menuIconSize: calc(6 * var(--rWu));
+    --menuIconSvgSize: calc(4 * var(--rWu));
     --menuTextSize: calc(3.5 * var(--rWu));
     --menuContainerWidth: calc(60 * var(--rWu));
     --menuContainerHeight: calc(20 * var(--rHu));
