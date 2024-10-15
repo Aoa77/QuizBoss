@@ -4,12 +4,12 @@
 section.buttons {
     /* position: sticky; */
     text-align: center;
-    background-color: #220000;
+    background-color: #002200;
 }
 section.buttons > button {
     /* border-radius: 1rem; */
     cursor: pointer;
-    display:grid;
+    display:list-item;
     margin: 0 auto;
     font-family: "Tahoma", sans-serif;
     font-size: 4rem;
