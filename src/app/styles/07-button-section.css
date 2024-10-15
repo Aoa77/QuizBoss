@@ -4,15 +4,14 @@
 section.buttons {
     /* position: sticky; */
     text-align: center;
-    background-color: #002200;
+    will-change: transform;
     background-color: #220000;
+    background-color: #002200;
 }
 section.buttons > button {
     /* border-radius: 1rem; */
     cursor: pointer;
     display: block;
-    -webkit-transform: translate3d(0,0,0);
-    transform: translate3d(0,0,0);
     margin: 0 auto;
     font-family: "Tahoma", sans-serif;
     font-size: 4rem;
