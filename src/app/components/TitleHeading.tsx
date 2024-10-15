@@ -15,7 +15,7 @@ export function TitleHeading(props: { titleText: string }) {
     );
 }
 
-const ENABLE_SECRET_RELOAD = false;
+const ENABLE_SECRET_RELOAD = true;
 
 function onPointerDown() {
     if (ENABLE_SECRET_RELOAD) {

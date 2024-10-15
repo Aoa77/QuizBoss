@@ -18,7 +18,7 @@ export function Menu(theme: Theme) {
     return (
         <>
             <MenuButton {...theme} />
-            <section className="menu">
+            <section className="menu hidden">
                 <div className="menuGrid">{menu}</div>
             </section>
         </>

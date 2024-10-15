@@ -36,12 +36,6 @@
     box-sizing: border-box;
 }
 
-/* center the container within the body */
-/* body {
-    /* text-align: center; */
-   /* background-color: black;
-} */
-
 /* <main> is the main container for the app 
     
     * Set the width and height of the container.
@@ -53,8 +47,11 @@ main {
     width: var(--width);
     height: var(--height);
     margin-left: var(--main_center);
-    /* margin: 0 auto; */
     overflow: hidden;
-    /* text-align: initial; */
     background-color: white;
+}
+
+/* give <body> a black background to contrast with <main> */
+body {
+    background-color: black;
 }

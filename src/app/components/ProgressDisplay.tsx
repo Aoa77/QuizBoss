@@ -6,12 +6,18 @@ export function ProgressDisplay(state: QuizState) {
     const [progressArea] = createXref.divs(ELEMENT.progressArea);
     const { currentItemIndex, totalItems } = state;
 
+    const totalItemsString = totalItems.toString();
+    let currentItemString = (currentItemIndex + 1).toString();
+    while (currentItemString.length < totalItemsString.length) {
+        currentItemString = "0" + currentItemString;
+    }
+
     return (
         <section
             id={progressArea.id}
             ref={progressArea.ref}
             className="progress hidden">
-            {currentItemIndex + 1} <b>/</b> {totalItems}
+            {currentItemString} <b>/</b> {totalItemsString}
         </section>
     );
 }

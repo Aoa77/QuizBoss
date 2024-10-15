@@ -19,7 +19,6 @@ section.menu {
     display: block;
     top: 44px;
     left: 44px;
-    opacity: 0.97;
 }
 
 section.menu > div.menuGrid {

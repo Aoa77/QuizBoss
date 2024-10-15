@@ -22,3 +22,8 @@ html {
 body {
     text-align: center;
 }
+
+/* common class for hiding elements */
+.hidden {
+    opacity: 0;
+}
