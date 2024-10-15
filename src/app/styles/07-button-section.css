@@ -6,7 +6,7 @@ section.buttons {
 }
 section.buttons > button {
     border-radius: calc(2 * var(--rWu));
-    display: block;
+    display: inline-block;
     font-family: "Tahoma", sans-serif;
     font-size: calc(4 * var(--rWu));
     width: calc(63 * var(--rWu));
