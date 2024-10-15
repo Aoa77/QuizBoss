@@ -3,11 +3,13 @@
 /************************/
 section.buttons {
     /* position: sticky; */
+    text-align: center;
 }
 section.buttons > button {
     /* border-radius: 1rem; */
     cursor: pointer;
-    /* display: block; */
+    display: block;
+    margin: 0 auto;
     font-family: "Tahoma", sans-serif;
     font-size: 4rem;
     /* width: 70rem;
