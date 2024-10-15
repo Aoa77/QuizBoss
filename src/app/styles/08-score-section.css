@@ -10,8 +10,8 @@ section.score {
 }
 
 section.progress {
-    font-size: 4rem;
-    padding-left: 3rem;
+    font-size: 3rem;
+    /* padding-left: 3rem; */
     padding-top: 4rem;
 }
 
