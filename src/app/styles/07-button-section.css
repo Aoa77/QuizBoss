@@ -5,7 +5,8 @@ section.buttons {
     margin-top: calc(3 * var(--rHu));
 }
 section.buttons > button {
-    border-radius: calc(2 * var(--rWu));
+    /* border-radius: calc(2 * var(--rWu)); */
+    border-style: none;
     display: inline-block;
     font-family: "Tahoma", sans-serif;
     font-size: calc(4 * var(--rWu));
