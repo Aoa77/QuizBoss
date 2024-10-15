@@ -6,6 +6,7 @@ h1 {
     font-size: calc(8 * var(--rWu));
     padding-top: calc(4 * var(--rHu));
     margin-bottom: calc(4 * var(--rHu));
+    cursor: pointer;
 }
 h2 {
     font-family: "Tahoma", sans-serif;

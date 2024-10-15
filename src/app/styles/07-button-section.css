@@ -3,15 +3,17 @@
 /************************/
 section.buttons {
     margin-top: calc(3 * var(--rHu));
+    position: sticky;
 }
 section.buttons > button {
-    /* border-radius: calc(2 * var(--rWu)); */
-    border-style: none;
-    display: inline-block;
+    border-radius: calc(2 * var(--rWu));
+    cursor: pointer;
+    display: block;
     font-family: "Tahoma", sans-serif;
     font-size: calc(4 * var(--rWu));
-    width: calc(63 * var(--rWu));
-    height: calc(7.87 * var(--rHu));
-    margin-top: calc(3   * var(--rHu));
+    width: calc(70 * var(--rWu));
+    height: calc(8 * var(--rHu));
+    margin: calc(3  * var(--rHu)) auto 0 auto;
     opacity: 0;
+    position: sticky;
 }
