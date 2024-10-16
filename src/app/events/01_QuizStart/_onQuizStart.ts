@@ -6,17 +6,23 @@ import { wait } from "../../../core/animation/wait";
 import { EventState } from "../../constants/EventState";
 import { TIME } from "../../constants/TIME";
 import { LayoutAnimation } from "../../animations/LayoutAnimation";
-import { LoadingSpinnerAnimation } from "../../components/LoadingSpinner";
+import { LoadingAnimation } from "../../components/LoadingSpinner.animation";
+import { AsyncGroup } from "../../../core/util/AsyncGroup";
+import { applyTheme } from "../../components/App.theme";
 
 export async function onQuizStart() {
     const [state, setState] = flow<QuizState>();
 
     if (state.quizModule === null) {
         //
-        LoadingSpinnerAnimation.fadeIn();
+        LoadingAnimation.fadeIn();
         state.best = initBestScore(state);
 
-        await initQuizModule(state);
+        const asyncGroup = new AsyncGroup();
+        asyncGroup.add(applyTheme(state.settings.theme));
+        asyncGroup.add(initQuizModule(state));
+        await asyncGroup.all();
+
         await wait(TIME.START_DELAY);
         setState({ ...state, eventWait: ++state.eventWait });
         return;

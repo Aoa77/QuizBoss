@@ -1,7 +1,4 @@
 
-/************************/
-/* icon buttons         */
-/************************/
 :root {
     --menuButtonPadding: calc(2 * var(--rWu));
     --menuIconSize: calc(6 * var(--rWu));

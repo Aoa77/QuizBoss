@@ -1,35 +1,6 @@
 /* 
     all theme colors variables (values controlled by javascript)
 */
-:root {
-    --bodyBackground: #00000000;
-    --mainBackground: #00000000;
-    --menuBackground: #00000000;
-    --THEME_loadingSpinner: #00000000;
-    --titleHeading: #00000000;
-    --questionHeading: #00000000;
-    --actionLink: #00000000;
-    --imageShadow: #00000000;
-    --scoreLabel: #00000000;
-    --scoreValue: #00000000;
-    --bonus: #00000000;
-    --noBonus: #00000000;
-    --progress: #00000000;
-    --buttonCorrectBackground: #00000000;
-    --buttonCorrectText: #00000000;
-    --buttonDimmedBackground: #00000000;
-    --buttonDimmedText: #00000000;
-    --buttonDisabledBackground: #00000000;
-    --buttonDisabledText: #00000000;
-    --buttonNormalBackground: #00000000;
-    --buttonNormalText: #00000000;
-    --buttonWrongBackground: #00000000;
-    --buttonWrongText: #00000000;
-    --buttonRevealBackground: #00000000;
-    --buttonRevealText: #00000000;
-    --iconBackground: #00000000;
-    --iconForeground: #00000000;
-}
 
 body {
     background-color: var(--bodyBackground);

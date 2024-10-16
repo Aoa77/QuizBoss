@@ -1,0 +1,32 @@
+/************************/
+/* THEME VARS           */
+/************************/
+:root {
+    --THEME_actionLink               : "#00000000";
+    --THEME_bodyBackground           : "#00000000";
+    --THEME_bonus                    : "#00000000";
+    --THEME_buttonCorrectBackground  : "#00000000";
+    --THEME_buttonCorrectText        : "#00000000";
+    --THEME_buttonDimmedBackground   : "#00000000";
+    --THEME_buttonDimmedText         : "#00000000";
+    --THEME_buttonDisabledBackground : "#00000000";
+    --THEME_buttonDisabledText       : "#00000000";
+    --THEME_buttonNormalBackground   : "#00000000";
+    --THEME_buttonNormalText         : "#00000000";
+    --THEME_buttonRevealBackground   : "#00000000";
+    --THEME_buttonRevealText         : "#00000000";
+    --THEME_buttonWrongBackground    : "#00000000";
+    --THEME_buttonWrongText          : "#00000000";
+    --THEME_iconBackground           : "#00000000";
+    --THEME_iconForeground           : "#00000000";
+    --THEME_imageShadow              : "#00000000";
+    --THEME_loadingSpinner           : "#00000000";
+    --THEME_mainBackground           : "#00000000";
+    --THEME_menuBackground           : "#00000000";
+    --THEME_noBonus                  : "#00000000";
+    --THEME_progress                 : "#00000000";
+    --THEME_questionHeading          : "#00000000";
+    --THEME_scoreLabel               : "#00000000";
+    --THEME_scoreValue               : "#00000000";
+    --THEME_titleHeading             : "#00000000";
+}

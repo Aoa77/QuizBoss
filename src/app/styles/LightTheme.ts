@@ -1,0 +1,33 @@
+// import { Theme } from "./Theme";
+
+// export const LightTheme: Theme = {
+//     NAME: "Light",
+//     bodyBackground: "#ffffff",
+//     mainBackground: "#ddddff",
+//     menuBackground: "#0000aa",
+//     loadingSpinner: "#ffffff",
+//     titleHeading: "#000000",
+//     questionHeading: "#0000ff",
+//     actionLink: "#0000ff",
+//     imageShadow: "#676767cc",
+//     scoreLabel: "#000077",
+//     scoreValue: "#0000ff",
+//     bonus: "#009900",
+//     noBonus: "#ff0000",
+//     progress: "#000000cc",
+//     buttonCorrectBackground: "#007700",
+//     buttonCorrectText: "#ffffff",
+//     buttonDimmedBackground: "#44447755",
+//     buttonDimmedText: "#ffffff55",
+//     buttonDisabledBackground: "#44447755",
+//     buttonDisabledText: "#ffffff55",
+//     buttonNormalBackground: "#444477",
+//     buttonNormalText: "#ffffff",
+//     buttonWrongBackground: "#ff0000",
+//     buttonWrongText: "#ffffff",
+//     buttonRevealBackground: "#550055",
+//     buttonRevealText: "#ffff00",
+
+//     iconBackground: "#44447733",
+//     iconForeground: "#000000bb",
+// };

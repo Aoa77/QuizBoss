@@ -1,0 +1,69 @@
+:root {
+    /* Defines the app container's width and height. */
+    /* Width/Height aspect ratio of 9:16 (0.5625) and 16:9 (1.77777777). */
+    /* The min() function is used to force the 9:16 portrait orientation. */
+    --width: min(100svw, calc(0.5625 * 100svh));
+    --height: min(100svh, calc(1.77777777 * 100svw));
+
+    /* center the app container within the dimensions of device */
+    --deviceCenterWidth: calc(100svw / 2);
+    --deviceCenterHeight: calc(100svh / 2);
+
+    /* horizontal */
+    --appCenterWidth: calc(var(--width) / 2);
+    --mainCenterLeft: calc(var(--deviceCenterWidth) - var(--appCenterWidth));
+
+    /* vertical */
+    --appCenterHeight: calc(var(--height) / 2);
+    --mainCenterTop: calc(var(--deviceCenterHeight) - var(--appCenterHeight));
+}
+
+/* normalize box-sizing for all elements */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* discourage use of rem units */
+html {
+    font-size: calc(var(--width) / 100);
+}
+
+body {
+    background-color: var(--THEME_bodyBackground);
+}
+
+/* <main> is the main container for the app 
+    
+    * Set the width and height of the container.
+    * Set the margin so the container is centered within the body.
+    * Hide any overflow so the container's size is not affected by the browser viewport.
+    * Reset the text-align property so children aren't centered by default.
+*/
+main {
+    width: var(--width);
+    height: var(--height);
+    margin-left: var(--mainCenterLeft);
+    margin-top: var(--mainCenterTop);
+    overflow: hidden;
+    container-type: size;
+    will-change: transform;
+}
+
+section {
+    align-content: center;
+    text-align: center;
+    opacity: 0.00;
+    overflow: hidden;
+    background-color: #00660000;
+    color: #ffffff;
+    width: 100cqw;
+    height: 10cqh;
+    font-size: 10cqw;
+}
+
+div {
+    opacity: 1;
+}
+

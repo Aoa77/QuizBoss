@@ -1,8 +1,9 @@
-import "../styles";
+import "./App.theme.css";
+import "./App.layout.css";
 import { AppSettings } from "../models/AppSettings";
 import { BonusNotification } from "./BonusNotification";
 import { GuessButtonArea } from "./GuessButtonArea";
-import { LoadingSpinner } from "./LoadingSpinner.tsx";
+import { LoadingSpinner } from "./LoadingSpinner";
 import { ProgressDisplay } from "./ProgressDisplay";
 import { QuestionHeading } from "./QuestionHeading";
 import { QuestionImage } from "./QuestionImage";

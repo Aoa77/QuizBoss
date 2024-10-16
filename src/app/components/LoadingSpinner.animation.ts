@@ -1,35 +1,34 @@
-import { AnimeInstance } from "animejs";
+import anime, { AnimeInstance } from "animejs";
 import { xref } from "../../core/animation/dom/xref";
 import { XrefAnimation } from "../../core/animation/dom/XrefAnimation";
 import { createAnimation } from "../../core/animation/runners";
 import { wait } from "../../core/animation/wait";
 import { ELEMENT } from "../constants/ELEMENT";
 import { TIME } from "../constants/TIME";
-import anime from "animejs";
-import { LOADING_SPINNER } from "../constants/LOADING_SPINNER";
+import { RADIUS } from "./LoadingSpinner.constants";
 
-export class LoadingSpinnerAnimation {
+export class LoadingAnimation {
     ///
     public static async fadeIn() {
-        LoadingSpinnerAnimation.anim.restart();
-        await LoadingSpinnerAnimation.xref.fadeIn();
+        LoadingAnimation.anim.restart();
+        await LoadingAnimation.xref.fadeIn();
         await wait(TIME.LOADING_FADE * 3);
     }
 
     ///
     public static async fadeOut() {
-        await LoadingSpinnerAnimation.xref.fadeOut();
-        LoadingSpinnerAnimation.anim.pause();
+        await LoadingAnimation.xref.fadeOut();
+        LoadingAnimation.anim.pause();
     }
 
     ///
     private static _xref: XrefAnimation | null = null;
     private static get xref(): XrefAnimation {
-        LoadingSpinnerAnimation._xref ??= new XrefAnimation(
+        LoadingAnimation._xref ??= new XrefAnimation(
             xref.divs(ELEMENT.loadingSpinner)[0],
             TIME.LOADING_FADE,
         );
-        return LoadingSpinnerAnimation._xref;
+        return LoadingAnimation._xref;
     }
 
     ///
@@ -37,17 +36,17 @@ export class LoadingSpinnerAnimation {
     private static get anim(): AnimeInstance {
         const speed = 700;
         const targets = "section#loading > svg > circle";
-        LoadingSpinnerAnimation._anim ??= createAnimation({
+        LoadingAnimation._anim ??= createAnimation({
             targets,
             keyframes: [
-                { r: LOADING_SPINNER.RADIUS_LARGE },
-                { r: LOADING_SPINNER.RADIUS_SMALL, delay: speed },
+                { r: RADIUS.RADIUS_LARGE },
+                { r: RADIUS.RADIUS_SMALL, delay: speed },
             ],
             delay: anime.stagger(speed / 2),
             duration: speed,
             easing: "spring(1, 120, 10, 20)",
             loop: true,
         });
-        return LoadingSpinnerAnimation._anim;
+        return LoadingAnimation._anim;
     }
 }

@@ -1,8 +1,8 @@
 section#loading {
-    height: 20cqh;
+    height: 30cqh;
 }
 
 section#loading > svg {
-    height: 20cqh;
+    height: 10cqh;
     fill: var(--THEME_loadingSpinner);
 }

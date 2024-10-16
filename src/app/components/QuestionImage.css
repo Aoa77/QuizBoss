@@ -1,11 +1,11 @@
 section#image {
-    height: 20cqh;
-    margin-top: -20cqh;
+    height: 30cqh;
+    margin-top: -30cqh;
 }
 section#image > img {
     display: block;
     margin: 0 auto;
-    height: 20cqh;
+    height: 30cqh;
 }
 /* section.image > img {
     box-shadow: 0 0 16cqw 3cqw;
