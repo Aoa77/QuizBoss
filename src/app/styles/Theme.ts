@@ -38,4 +38,5 @@ export function applyTheme(theme: Theme): void {
 
 function cssVar(key: string, value: string) {
     document.documentElement.style.setProperty(`--${key}`, value);
+    document.documentElement.style.setProperty(`--THEME_${key}`, value);
 }

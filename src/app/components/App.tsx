@@ -2,7 +2,7 @@ import "../styles";
 import { AppSettings } from "../models/AppSettings";
 import { BonusNotification } from "./BonusNotification";
 import { GuessButtonArea } from "./GuessButtonArea";
-import { LoadingSpinner } from "./LoadingSpinner";
+import { LoadingSpinner } from "./LoadingSpinner.tsx";
 import { ProgressDisplay } from "./ProgressDisplay";
 import { QuestionHeading } from "./QuestionHeading";
 import { QuestionImage } from "./QuestionImage";
@@ -16,7 +16,6 @@ import { onQuizStart } from "../events/01_QuizStart/_onQuizStart";
 import { onNextQuestion } from "../events/02_NextQuestion/_onNextQuestion";
 import { onAwaitInput } from "../events/03_AwaitInput/_onAwaitInput";
 import { onShowResult } from "../events/04_ShowResult/_onShowResult";
-import { Menu } from "./menu/Menu";
 
 ///
 export function App(settings: AppSettings) {
@@ -51,22 +50,18 @@ export function App(settings: AppSettings) {
         [questionText],
     );
 
-    const { theme } = state.settings;
-    const menu = useMemo(() => <Menu {...theme} />, [theme]);
+    // const { theme } = state.settings;
+    // const menu = useMemo(() => <Menu {...theme} />, [theme]);
 
     ///
     return (
         <main>
-            <div className="top_wrapper">
-                {titleHeading}
-                {menu}
-                {loadingSpinner}
-                <QuestionImage {...state} />
-                <div className="h2_wrapper">
-                    {questionHeading}
-                    {bonusNotification}
-                </div>
-            </div>
+            {titleHeading}
+            {/* {menu} */}
+            {loadingSpinner}
+            <QuestionImage {...state} />
+            {questionHeading}
+            {bonusNotification}
             {guessButtonArea}
             <ProgressDisplay {...state} />
             <ScoreDisplay {...state} />

@@ -1,15 +1,14 @@
 import { LayoutAnimation } from "./LayoutAnimation";
+import { LoadingSpinnerAnimation } from "../components/LoadingSpinner";
 
 export class TransitionAnimation {
-
-    public static async NextQuestionLoading():Promise<void> {
+    public static async NextQuestionLoading(): Promise<void> {
         await LayoutAnimation.QuestionImage().fadeOut();
-        await LayoutAnimation.LoadingSpinner().fadeIn();
+        await LoadingSpinnerAnimation.fadeIn();
     }
     
-public static async NextQuestionReady():Promise<void> {
-    await LayoutAnimation.LoadingSpinner().fadeOut();
-    await LayoutAnimation.QuestionImage().fadeIn();
-}
-
+    public static async NextQuestionReady(): Promise<void> {
+        await LoadingSpinnerAnimation.fadeOut();
+        await LayoutAnimation.QuestionImage().fadeIn();
+    }
 }

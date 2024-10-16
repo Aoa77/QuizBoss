@@ -3,31 +3,19 @@
     /* Width/Height aspect ratio of 9:16 (0.5625) and 16:9 (1.77777777). */
     /* The min() function is used to force the 9:16 portrait orientation. */
     --width: min(100svw, calc(0.5625 * 100svh));
-    /* --height: min(100svh, calc(1.77777777 * 100svw)); */
-    --height: 100svh;
+    --height: min(100svh, calc(1.77777777 * 100svw));
 
-    /* The app container is centered horizontally on the device screen. */
-    /* The main container is centered horizontally within the app container. */
-    --device_center: calc(100svw / 2);
-    --app_center: calc(var(--width) / 2);
-    --main_center: calc(var(--device_center) - var(--app_center));
+    /* center the app container within the dimensions of device */
+    --deviceCenterWidth: calc(100svw / 2);
+    --deviceCenterHeight: calc(100svh / 2);
 
-    /* relative units based on 1% of the app container's width and height */
-    --rHu: calc(var(--height) / 100);
-    --rWu: calc(var(--width) / 100);
+    /* horizontal */
+    --appCenterWidth: calc(var(--width) / 2);
+    --mainCenterLeft: calc(var(--deviceCenterWidth) - var(--appCenterWidth));
 
-    /* Examples: 
-       ====================
-        Set the font-size to 8% of the app container's width...
-        { font-size: calc(8 * var(--rWu)); }
-
-        Set the font-size to 4% of the app container's height...
-        { font-size: calc(4 * var(--rHu)); }
-
-        Set the margin top/bottom to 4% of the app container's height...
-        and left/right to 8% of the app container's width...
-        { margin: calc(4 * var(--rHu)) calc(8 * var(--rWu)); }
-    */
+    /* vertical */
+    --appCenterHeight: calc(var(--height) / 2);
+    --mainCenterTop: calc(var(--deviceCenterHeight) - var(--appCenterHeight));
 }
 
 /* normalize box-sizing for all elements */
@@ -35,6 +23,11 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+/* discourage use of rem units */
+html {
+    font-size: calc(var(--width) / 100);
 }
 
 /* <main> is the main container for the app 
@@ -47,12 +40,26 @@
 main {
     width: var(--width);
     height: var(--height);
-    margin-left: var(--main_center);
+    margin-left: var(--mainCenterLeft);
+    margin-top: var(--mainCenterTop);
     overflow: hidden;
-    background-color: white;
+    container-type: size;
+    will-change: transform;
 }
 
-/* give <body> a black background to contrast with <main> */
-body {
-    background-color: black;
+section {
+    align-content: center;
+    text-align: center;
+    opacity: 0.00;
+    overflow: hidden;
+    background-color: #00660000;
+    color: #ffffff;
+    width: 100cqw;
+    height: 10cqh;
+    font-size: 10cqw;
 }
+
+div {
+    opacity: 1;
+}
+

@@ -7,7 +7,7 @@ import { TransitionAnimation } from "./TransitionAnimation";
 
 export class BonusAnimation {
     public static async displaySequence(award: number) {
-        const ref = xref.headings(ELEMENT.bonusValue)[0];
+        const ref = xref.divs(ELEMENT.bonusValue)[0];
         await ref.scaleImmediately(0.0);
         ref.opacity = 1.0;
 

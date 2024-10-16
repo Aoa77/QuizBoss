@@ -1,17 +1,14 @@
+import "./TitleHeading.css";
 import { ELEMENT } from "../constants/ELEMENT";
 import { createXref } from "../../core/animation/dom/createXref";
 
 export function TitleHeading(props: { titleText: string }) {
     ///
-    const [title] = createXref.headings(ELEMENT.title);
+    const [title] = createXref.divs(ELEMENT.title);
     return (
-        <h1
-            id={title.id}
-            ref={title.ref}
-            className="hidden"
-            onPointerDown={onPointerDown}>
+        <section id={title.id} ref={title.ref} onPointerDown={onPointerDown}>
             {props.titleText}
-        </h1>
+        </section>
     );
 }
 

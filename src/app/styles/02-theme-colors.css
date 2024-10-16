@@ -5,7 +5,7 @@
     --bodyBackground: #00000000;
     --mainBackground: #00000000;
     --menuBackground: #00000000;
-    --loadingSpinner: #00000000;
+    --THEME_loadingSpinner: #00000000;
     --titleHeading: #00000000;
     --questionHeading: #00000000;
     --actionLink: #00000000;
@@ -53,10 +53,6 @@ section.menu > div.menuGrid > label {
 
 button.icon {
     background-color: var(--iconBackground);
-}
-
-h1 {
-    color: var(--titleHeading);
 }
 
 h2 {
@@ -113,5 +109,5 @@ section.score > label {
 }
 
 .lds-ellipsis {
-    color: var(--loadingSpinner);
+    color: var(--THEME_loadingSpinner);
 }

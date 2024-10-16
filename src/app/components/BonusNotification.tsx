@@ -2,7 +2,7 @@ import { createXref } from "../../core/animation/dom/createXref";
 import { ELEMENT } from "../constants/ELEMENT";
 
 export function BonusNotification() {
-    const [bonusValue] = createXref.headings(ELEMENT.bonusValue);
+    const [bonusValue] = createXref.divs(ELEMENT.bonusValue);
     return (
         <h2
             id={bonusValue.id}

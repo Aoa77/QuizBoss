@@ -18,3 +18,5 @@ export const TIME = {
     START_DELAY: 1200,
     TITLE_FADE: 400,
 };
+
+

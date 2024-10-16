@@ -19,4 +19,6 @@ export function fadeTo(p: FadeParams): AnimeParams {
     return params;
 }
 
-
+export function fadeImmediately(opacity: number): AnimeParams {
+    return fadeTo({ duration: 0, easing: EASING.linear, opacity });
+}

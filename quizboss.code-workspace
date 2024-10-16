@@ -9,11 +9,14 @@
             "**/dist": true,
             "**/node_modules": true,
             "**/public": false,
+            "**/*.svg": true,
         },
         "prettier.printWidth": 80,
         "prettier.tabWidth": 4,
         "prettier.trailingComma": "all",
         "prettier.bracketSameLine": true,
+        "explorer.fileNesting.enabled": true,
+        "editor.wordWrap": "on",
     },
     "extensions": {
         "recommendations": [

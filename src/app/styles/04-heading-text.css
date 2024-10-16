@@ -2,15 +2,12 @@
 /* heading text rules */
 /**********************/
 h1 {
-    font-family: "Garamond", serif;
-    font-size: 8rem;
-    padding-top: 6rem;
-    margin-bottom: 6rem;
     cursor: pointer;
-}
-div.h2_wrapper {
-    height: 16rem;
-    position: relative;
+    font-family: "Garamond", serif;
+    width: 100cqw;
+    height: 10cqh;
+    font-size: 8cqw;
+    background-color: #ff000022;
 }
 h2 {
     font-family: "Tahoma", sans-serif;

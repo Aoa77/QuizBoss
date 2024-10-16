@@ -4,18 +4,11 @@ import { ELEMENT } from "../constants/ELEMENT";
 import { TIME } from "../constants/TIME";
 
 export class LayoutAnimation {
-    ///
-    public static LoadingSpinner() {
-        return new XrefAnimation(
-            xref.divs(ELEMENT.loadingSpinner)[0],
-            TIME.LOADING_FADE,
-        );
-    }
 
     ///
     public static QuestionHeading() {
         return new XrefAnimation(
-            xref.headings(ELEMENT.question)[0],
+            xref.divs(ELEMENT.question)[0],
             TIME.QUESTION_FADE,
         );
     }
@@ -54,9 +47,6 @@ export class LayoutAnimation {
 
     ///
     public static TitleHeading() {
-        return new XrefAnimation(
-            xref.headings(ELEMENT.title)[0],
-            TIME.TITLE_FADE,
-        );
+        return new XrefAnimation(xref.divs(ELEMENT.title)[0], TIME.TITLE_FADE);
     }
 }
