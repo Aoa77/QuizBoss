@@ -35,15 +35,16 @@ export class LoadingSpinnerAnimation {
     ///
     private static _anim: AnimeInstance | null = null;
     private static get anim(): AnimeInstance {
+        const speed = 700;
         const targets = "section#loading > svg > circle";
         LoadingSpinnerAnimation._anim ??= createAnimation({
             targets,
             keyframes: [
                 { r: LOADING_SPINNER.RADIUS_LARGE },
-                { r: LOADING_SPINNER.RADIUS_SMALL, delay: 800 },
+                { r: LOADING_SPINNER.RADIUS_SMALL, delay: speed },
             ],
-            delay: anime.stagger(400),
-            duration: 800,
+            delay: anime.stagger(speed / 2),
+            duration: speed,
             easing: "spring(1, 120, 10, 20)",
             loop: true,
         });
