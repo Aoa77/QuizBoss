@@ -1,8 +1,9 @@
 section#loading {
-    height: 30cqh;
+    height: var(--SECTION_LoadingSpinner);
 }
 
 section#loading > svg {
-    height: 10cqh;
+    height: calc(1 * var(--SECTION_LoadingSpinner));
     fill: var(--THEME_loadingSpinner);
+    /* background-color: aqua; */
 }

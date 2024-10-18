@@ -9,7 +9,8 @@
             "**/dist": true,
             "**/node_modules": true,
             "**/public": true,
-            "**/*.svg": true
+            "**/*.svg": true,
+            "**/package-lock.json": true,
         },
         "prettier.printWidth": 80,
         "prettier.tabWidth": 4,

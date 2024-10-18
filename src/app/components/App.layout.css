@@ -23,47 +23,27 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    will-change: transform;
 }
 
-/* discourage use of rem units */
+/* 1rem equals 1cqw of the main container */
 html {
     font-size: calc(var(--width) / 100);
 }
 
+/* set body background color */
 body {
     background-color: var(--THEME_bodyBackground);
 }
 
-/* <main> is the main container for the app 
-    
-    * Set the width and height of the container.
-    * Set the margin so the container is centered within the body.
-    * Hide any overflow so the container's size is not affected by the browser viewport.
-    * Reset the text-align property so children aren't centered by default.
-*/
+/* <main> is the app container */
+/* 100cqw and 100cqh are equal to its width and height */ 
 main {
+    background-color: var(--THEME_mainBackground);
     width: var(--width);
     height: var(--height);
     margin-left: var(--mainCenterLeft);
     margin-top: var(--mainCenterTop);
     overflow: hidden;
     container-type: size;
-    will-change: transform;
 }
-
-section {
-    align-content: center;
-    text-align: center;
-    opacity: 0.00;
-    overflow: hidden;
-    background-color: #00660000;
-    color: #ffffff;
-    width: 100cqw;
-    height: 10cqh;
-    font-size: 10cqw;
-}
-
-div {
-    opacity: 1;
-}
-

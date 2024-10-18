@@ -7,11 +7,13 @@ import { wait } from "../../../core/animation/wait";
 import { TIME } from "../../constants/TIME";
 import { ButtonGroupAnimation } from "../../animations/ButtonGroupAnimation";
 import { QuizItem } from "../../models/QuizItem";
-import { LayoutAnimation } from "../../animations/LayoutAnimation";
 import { xref } from "../../../core/animation/dom/xref";
 import { ELEMENT } from "../../constants/ELEMENT";
 import { AsyncGroup } from "../../../core/util/AsyncGroup";
 import { TransitionAnimation } from "../../animations/TransitionAnimation";
+import { ScoreAnimation } from "../../components/ScoreDisplay.animation";
+import { ProgressAnimation } from "../../components/ProgressDisplay.animation";
+import { QuestionAnimation } from "../../components/QuestionHeading.animation";
 
 ///
 export async function onNextQuestion() {
@@ -45,9 +47,9 @@ export async function onNextQuestion() {
 
     const anims = new AsyncGroup();
     anims.add(TransitionAnimation.NextQuestionReady());
-    anims.add(LayoutAnimation.QuestionHeading().fadeIn());
-    anims.add(LayoutAnimation.ProgressArea().fadeIn());
-    anims.add(LayoutAnimation.ScoreArea().fadeIn());
+    anims.add(QuestionAnimation.fadeIn());
+    anims.add(ProgressAnimation.fadeIn());
+    anims.add(ScoreAnimation.fadeIn());
     await anims.all();
 
     await ButtonGroupAnimation.fadeIn();

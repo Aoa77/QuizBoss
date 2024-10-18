@@ -1,4 +1,1 @@
-export const RADIUS = {
-    RADIUS_LARGE: 20,
-    RADIUS_SMALL: 10,
-};
+export const RadArray = [10, 5];

@@ -27,7 +27,7 @@ export async function applyTheme(theme: Theme): Promise<void> {
         const split = data.split(":");
         const key = split[0].trim();
         const value = split[1].trim().split('"')[1].trim();
-        console.info({key, value});
+        console.debug({key, value});
         setThemeVar(key, value);
     }
 }

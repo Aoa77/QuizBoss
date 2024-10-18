@@ -1,5 +1,9 @@
+/* stylesheets */
 import "./App.theme.css";
 import "./App.layout.css";
+import "./App.sections.css";
+
+/* modules */
 import { AppSettings } from "../models/AppSettings";
 import { BonusNotification } from "./BonusNotification";
 import { GuessButtonArea } from "./GuessButtonArea";

@@ -3,7 +3,7 @@ import { runAnimation } from "../runners";
 import { Factory } from "./Factory";
 import { Xelement } from "./Xelement";
 import { FadeParams, ScaleParams, SlideParams } from "../params";
-import { fadeIn, fadeOut, fadeTo } from "../fade";
+import { fadeImmediately, fadeIn, fadeOut, fadeTo } from "../fade";
 import { scaleImmediately, scaleTo } from "../scale";
 import { slideReset, slideTo } from "../slide";
 
@@ -71,6 +71,10 @@ export abstract class Xref {
     public async runAnimation(xp: AnimeParams): Promise<void> {
         xp.targets = this.idSelector;
         await runAnimation(xp);
+    }
+
+    public async fadeImmediately(opacity: number): Promise<void> {
+        await this.runAnimation(fadeImmediately(opacity));
     }
 
     public async fadeIn(p: FadeParams): Promise<void> {

@@ -2,7 +2,7 @@
 /* DARK THEME           */
 /************************/
 :root {
-    /* --THEME_actionLink               : "#ffff00ff"; */
+    --THEME_actionLink               : "#ffff00ff";
     --THEME_bodyBackground           : "#000000ff";
     --THEME_bonus                    : "#00ff00ff";
     --THEME_buttonCorrectBackground  : "#007700ff";

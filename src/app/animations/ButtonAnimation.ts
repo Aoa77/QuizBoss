@@ -1,10 +1,10 @@
 import { EASING } from "../../core/animation/constants";
 import { Xelement } from "../../core/animation/dom/Xelement";
 import { wait } from "../../core/animation/wait";
+import { QuestionAnimation } from "../components/QuestionHeading.animation";
 import { TIME } from "../constants/TIME";
 import { BonusAnimation } from "./BonusAnimation";
 import { ButtonGroupAnimation } from "./ButtonGroupAnimation";
-import { LayoutAnimation } from "./LayoutAnimation";
 
 export class ButtonAnimation {
     public static async correctGuessSequence(
@@ -20,7 +20,7 @@ export class ButtonAnimation {
         await wait(TIME.BUTTON_DISPLAY_CORRECT);
 
         ButtonGroupAnimation.fadeOut(wrong);
-        LayoutAnimation.QuestionHeading().fadeOut();
+        QuestionAnimation.fadeOut();
         await ButtonAnimation.scaleDown(correct);
 
         ButtonAnimation.slideTo(correct, y).then(async () => {

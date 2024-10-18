@@ -1,52 +1,79 @@
-import anime, { AnimeInstance } from "animejs";
-import { xref } from "../../core/animation/dom/xref";
-import { XrefAnimation } from "../../core/animation/dom/XrefAnimation";
+import { AnimeInstance } from "animejs";
 import { createAnimation } from "../../core/animation/runners";
 import { wait } from "../../core/animation/wait";
+import { RadArray } from "./LoadingSpinner.constants";
+import { EASING } from "../../core/animation/constants";
+import { xref } from "../../core/animation/dom/xref";
 import { ELEMENT } from "../constants/ELEMENT";
-import { TIME } from "../constants/TIME";
-import { RADIUS } from "./LoadingSpinner.constants";
+import { Xelement } from "../../core/animation/dom/Xelement";
 
 export class LoadingAnimation {
-    ///
-    public static async fadeIn() {
-        LoadingAnimation.anim.restart();
-        await LoadingAnimation.xref.fadeIn();
-        await wait(TIME.LOADING_FADE * 3);
+    public static async start() {
+        await LoadingAnimation.instance.start();
     }
 
-    ///
-    public static async fadeOut() {
-        await LoadingAnimation.xref.fadeOut();
-        LoadingAnimation.anim.pause();
+    public static async stop() {
+        await LoadingAnimation.instance.stop();
     }
 
-    ///
-    private static _xref: XrefAnimation | null = null;
-    private static get xref(): XrefAnimation {
-        LoadingAnimation._xref ??= new XrefAnimation(
-            xref.divs(ELEMENT.loadingSpinner)[0],
-            TIME.LOADING_FADE,
-        );
-        return LoadingAnimation._xref;
+    private static _instance: LoadingAnimation | null = null;
+    private static get instance(): LoadingAnimation {
+        return (LoadingAnimation._instance ??= new LoadingAnimation());
     }
 
-    ///
-    private static _anim: AnimeInstance | null = null;
-    private static get anim(): AnimeInstance {
-        const speed = 700;
-        const targets = "section#loading > svg > circle";
-        LoadingAnimation._anim ??= createAnimation({
-            targets,
-            keyframes: [
-                { r: RADIUS.RADIUS_LARGE },
-                { r: RADIUS.RADIUS_SMALL, delay: speed },
-            ],
-            delay: anime.stagger(speed / 2),
-            duration: speed,
-            easing: "spring(1, 120, 10, 20)",
-            loop: true,
+    public static readonly BALLS: number = 3;
+    private static readonly STAGGER_DELAY: number = 200;
+
+    private readonly _ballAnimations: AnimeInstance[] = [];
+    private readonly _resetBallAnimation: AnimeInstance;
+    private readonly _div: Xelement<HTMLDivElement>;
+
+    constructor() {
+        const delay = 25;
+        const duration = 1000;
+        const endDelay = 1000;
+        const easing = EASING.easeInOutBounce;
+
+        for (let i = 1; i <= LoadingAnimation.BALLS; i++) {
+            this._ballAnimations.push(
+                createAnimation({
+                    targets: `section#loading > svg > circle:nth-of-type(${i})`,
+                    keyframes: [{ r: RadArray[0] }, { delay, r: RadArray[1] }],
+                    loop: true,
+                    duration,
+                    endDelay,
+                    easing,
+                    autoplay: false,
+                }),
+            );
+        }
+
+        this._resetBallAnimation = createAnimation({
+            targets: `section#loading > svg > circle`,
+            r: RadArray[1],
+            loop: false,
+            duration: 0,
+            endDelay: 0,
+            easing: EASING.linear,
+            autoplay: false,
         });
-        return LoadingAnimation._anim;
+
+        this._div = xref.divs(ELEMENT.loadingSpinner)[0];
+    }
+
+    public async start() {
+        this._div.fadeIn({ duration: 500 });
+        
+        for (let i = 0; i < this._ballAnimations.length; i++) {
+            this._ballAnimations[i].restart();
+            await wait(LoadingAnimation.STAGGER_DELAY);
+        }
+        await wait(LoadingAnimation.STAGGER_DELAY * 8);
+    }
+    
+    public async stop() {
+        this._div.fadeOut({ duration: 200 });
+        await Promise.all(this._ballAnimations.map((a) => a.pause()));
+        await this._resetBallAnimation.play();
     }
 }

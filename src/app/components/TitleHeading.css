@@ -1,5 +1,5 @@
 section#title {
-    color: var(--titleHeading);
-    height: 10cqh;
-    font-size: 11cqw;
+    color: var(--THEME_titleHeading);
+    height: var(--SECTION_TitleHeading);
+    font-size: var(--TEXT_TitleHeading);
 }

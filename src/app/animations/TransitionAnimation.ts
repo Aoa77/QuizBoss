@@ -1,14 +1,17 @@
+import { wait } from "../../core/animation/wait";
 import { LoadingAnimation } from "../components/LoadingSpinner.animation";
+import { TIME } from "../constants/TIME";
 import { LayoutAnimation } from "./LayoutAnimation";
 
 export class TransitionAnimation {
     public static async NextQuestionLoading(): Promise<void> {
-        await LayoutAnimation.QuestionImage().fadeOut();
-        await LoadingAnimation.fadeIn();
+        LayoutAnimation.QuestionImage().scaleOut();
+        await LoadingAnimation.start();
+        await wait(TIME.START_DELAY);
     }
     
     public static async NextQuestionReady(): Promise<void> {
-        await LoadingAnimation.fadeOut();
+        LoadingAnimation.stop();
         await LayoutAnimation.QuestionImage().fadeIn();
     }
 }
