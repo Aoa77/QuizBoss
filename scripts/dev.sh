@@ -8,13 +8,8 @@ line=$(printf "%${LEN}s" | tr " " "$CHAR")
 printf "\n%s\n%s\n%s\n\n" "$line" "$script" "$line"
 set -x
 ###############################################################
-
-
-# copy files matching the pattern "components/App.theme.*.css" to the "public/themes" folder.
-# create a new folder "public/themes" if it does not exist.
 mkdir -p public/themes
-cp src/app/components/App.theme.*.css public/themes
-
+cp src/themes/theme.*.css public/themes
 vite --host --port 3001
 ###############################################################
 set +x

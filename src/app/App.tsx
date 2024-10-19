@@ -27,8 +27,14 @@ import { onNextQuestion } from "../../temp/app/events/02_NextQuestion/_onNextQue
 import { onAwaitInput } from "../../temp/app/events/03_AwaitInput/_onAwaitInput";
 import { onShowResult } from "../../temp/app/events/04_ShowResult/_onShowResult";
 
-///
+
 export function App(settings: AppSettings) {
+    return <h1 style={{ fontSize: "100px" }}>{settings.theme}</h1>
+}
+
+
+///
+export function App666(settings: AppSettings) {
     ///
     const loadingSpinner = useMemo(() => <LoadingSpinner />, []);
     const bonusNotification = useMemo(() => <BonusNotification />, []);
