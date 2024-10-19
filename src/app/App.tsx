@@ -3,7 +3,7 @@ import "./App.layout.css";
 import "./App.sections.css";
 
 /* models */
-import { AppSettings } from "../models/AppSettings";
+import { AppSettings } from "./AppSettings";
 import { QuizTitle } from "../components/QuizTitle";
 
 /* context */

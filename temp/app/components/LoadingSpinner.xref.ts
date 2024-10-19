@@ -5,7 +5,7 @@ import { RadArray } from "./LoadingSpinner.constants";
 import { EASING } from "../../core/animation/constants";
 // import { ELEMENT } from "../constants/ELEMENT";
 // import { Xelement } from "../../core/animation/dom/Xelement";
-import { Xref } from "../../core/util/Xref";
+import { Xref } from "../../core/animation/Xref";
 
 
 export class $LoadingSpinner extends Xref {

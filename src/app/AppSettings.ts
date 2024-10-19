@@ -1,6 +1,6 @@
-import { getQueryParams } from "../../temp/core/util/getQueryParams";
-import { DemoMode, parseDemoMode } from "./DemoMode";
-import { ThemeName } from "./ThemeName";
+import { getQueryParams } from "../util/getQueryParams";
+import { DemoMode, parseDemoMode } from "../models/DemoMode";
+import { ThemeName } from "../models/ThemeName";
 
 export class AppSettings {
     public readonly quizModuleName: string;

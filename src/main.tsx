@@ -1,6 +1,6 @@
 import { createRoot } from "react-dom/client";
 import { App } from "./app/App";
-import { AppSettings } from "./models/AppSettings";
+import { AppSettings } from "./app/AppSettings";
 import { Theme } from "./context/Theme";
 
 const quizModuleName = "quizboss-world-flags";

@@ -1,6 +1,6 @@
 import { xref } from "../../core/animation/dom/xref";
 import { wait } from "../../core/animation/wait";
-import { AsyncGroup } from "../../core/util/AsyncGroup";
+import { AsyncGroup } from "../../../src/util/AsyncGroup";
 import { ELEMENT } from "../constants/ELEMENT";
 import { TIME } from "../constants/TIME";
 import { TransitionAnimation } from "./TransitionAnimation";

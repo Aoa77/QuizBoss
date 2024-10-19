@@ -1,6 +1,6 @@
 import { AnimeInstance } from "animejs";
 import { EASING } from "../../core/animation/constants";
-import { Xref } from "../../core/util/Xref";
+import { Xref } from "../../core/animation/Xref";
 import { createAnimation } from "../../core/animation/runners";
 
 export class $TitleHeading extends Xref {

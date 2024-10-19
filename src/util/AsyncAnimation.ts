@@ -2,8 +2,30 @@ import anime from "animejs";
 import { Animatable, Animation, AnimeInstance, AnimeParams } from "animejs";
 
 export class AsyncAnimation implements AnimeInstance {
+    ///
+    public static createById(
+        ////////////////////////
+        id: string,
+        params: AnimeParams,
+        ////////////////////////
+    ): AsyncAnimation {
+        return AsyncAnimation.createByTarget(`#${id}`, params);
+    }
+
+    public static createByTarget(
+        ////////////////////////
+        target: string,
+        params: AnimeParams,
+        ////////////////////////
+    ): AsyncAnimation {
+        return new AsyncAnimation({
+            ...params,
+            targets: target,
+        });
+    }
+
     private readonly _instance: AnimeInstance;
-    public constructor(params: AnimeParams) {
+    private constructor(params: AnimeParams) {
         this._instance = anime(params);
     }
 

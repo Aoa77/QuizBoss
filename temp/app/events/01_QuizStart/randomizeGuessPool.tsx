@@ -1,6 +1,6 @@
-import { generateRandomString } from "../../../core/util/generateRandomString";
-import { shuffle } from "../../../core/util/shuffle";
-import { AppSettings } from "../../../../src/models/AppSettings";
+import { generateRandomString } from "../../../../src/util/generateRandomString";
+import { shuffle } from "../../../../src/util/shuffle";
+import { AppSettings } from "../../../../src/app/AppSettings";
 import { QuizItem } from "../../../../src/models/QuizItem";
 import { QuizModule } from "../../../../src/models/QuizModule";
 

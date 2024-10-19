@@ -2,14 +2,14 @@ import { FlowContext } from "../../../../src/context/FlowContext";
 import { QuizState } from "../../../../src/models/QuizState";
 import { bindGuessButtons } from "./bindGuessButtons";
 
-import { randomInt } from "../../../core/util/randomInt";
+import { randomInt } from "../../../../src/util/randomInt";
 import { wait } from "../../../core/animation/wait";
 import { TIME } from "../../constants/TIME";
 import { ButtonGroupAnimation } from "../../animations/ButtonGroupAnimation";
 import { QuizItem } from "../../../../src/models/QuizItem";
 import { xref } from "../../../core/animation/dom/xref";
 import { ELEMENT } from "../../constants/ELEMENT";
-import { AsyncGroup } from "../../../core/util/AsyncGroup";
+import { AsyncGroup } from "../../../../src/util/AsyncGroup";
 import { TransitionAnimation } from "../../animations/TransitionAnimation";
 import { ScoreAnimation } from "../../components/ScoreDisplay.animation";
 import { ProgressAnimation } from "../../components/ProgressDisplay.animation";

@@ -12,7 +12,7 @@ import { onNextQuestion } from "../../temp/app/events/02_NextQuestion/_onNextQue
 import { onAwaitInput } from "../../temp/app/events/03_AwaitInput/_onAwaitInput";
 import { onShowResult } from "../../temp/app/events/04_ShowResult/_onShowResult";
 import { useFlowContext } from "../context/useFlowContext";
-import { AppSettings } from "../models/AppSettings";
+import { AppSettings } from "./AppSettings";
 import { EventName } from "../models/EventName";
 import { QuizState, createInitialState } from "../models/QuizState";
 
