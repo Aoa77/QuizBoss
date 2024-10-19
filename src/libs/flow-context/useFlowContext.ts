@@ -25,6 +25,6 @@ export function useFlowContext<Tstate, Tflow>(params: {
     }, [flowEvents, state, flowProperty]);
 
     FlowContext.initHook([state, setState]);
-    return FlowContext.context();
+    return FlowContext.current();
 }
 

@@ -14,7 +14,7 @@ export async function lockButtons(
     isCorrectGuess: boolean,
     wrongGuesses: number[],
 ) {
-    const [state] = FlowContext.context<QuizState>();
+    const [state] = FlowContext.current<QuizState>();
     const buttons = xref.buttons();
     
     for (let guess = 0; guess < buttons.length; guess++) {

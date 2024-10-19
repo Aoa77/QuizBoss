@@ -33,13 +33,13 @@ html {
 
 /* set body background color */
 body {
-    background-color: var(--THEME_bodyBackground);
+    background-color: var(--tv_bodyBackground);
 }
 
 /* <main> is the app container */
 /* 100cqw and 100cqh are equal to its width and height */ 
 main {
-    background-color: var(--THEME_mainBackground);
+    background-color: var(--tv_mainBackground);
     width: var(--width);
     height: var(--height);
     margin-left: var(--mainCenterLeft);

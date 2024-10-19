@@ -7,7 +7,7 @@ import { TIME } from "../../constants/TIME";
 import { EventName } from "../../../../src/models/EventName";
 
 export async function onAwaitInput() {
-    const [state, setState] = FlowContext.context<QuizState>();
+    const [state, setState] = FlowContext.current<QuizState>();
     const { settings } = state;
     const { demoMode } = settings;
 

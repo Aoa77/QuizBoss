@@ -6,7 +6,7 @@ import { FlowContext } from "../../../src/libs/flow-context/FlowContext";
 
 export function GuessButtonArea() {
     ///
-    const [state] = FlowContext.context<QuizState>();
+    const [state] = FlowContext.current<QuizState>();
     const [buttonArea] = createXref.divs(ELEMENT.buttonArea);
     const buttons: JSX.Element[] = [];
     for (let i = 0; i < state.settings.guessButtonCount; i++) {

@@ -22,7 +22,7 @@ export function GuessButton(params: { index: number }) {
 }
 
 async function handleButtonPointerDown(xref: Xelement<HTMLButtonElement>) {
-    const [state, setState] = FlowContext.context<QuizState>();
+    const [state, setState] = FlowContext.current<QuizState>();
     if (state.eventName !== EventName.AwaitInput) {
         return;
     }

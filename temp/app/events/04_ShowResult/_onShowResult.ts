@@ -11,7 +11,7 @@ import { wrongGuessesExhausted } from "./wrongGuessesExhausted";
 const wrongGuesses: number[] = [];
 
 export async function onShowResult() {
-    const [state, setState] = FlowContext.context<QuizState>();
+    const [state, setState] = FlowContext.current<QuizState>();
     if (state.quizModule === null) {
         return;
     }

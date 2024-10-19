@@ -1,0 +1,32 @@
+/************************/
+/* LIGHT THEME          */
+/************************/
+:root {
+    --tv_actionLink               : "#ffff00ff";
+    --tv_bodyBackground           : "#000000ff";
+    --tv_bonus                    : "#00ff00ff";
+    --tv_buttonCorrectBackground  : "#007700ff";
+    --tv_buttonCorrectText        : "#ffffffff";
+    --tv_buttonDimmedBackground   : "#44447755";
+    --tv_buttonDimmedText         : "#ffffff55";
+    --tv_buttonDisabledBackground : "#44447755";
+    --tv_buttonDisabledText       : "#ffffff55";
+    --tv_buttonNormalBackground   : "#444477ff";
+    --tv_buttonNormalText         : "#ffffffff";
+    --tv_buttonRevealBackground   : "#550055ff";
+    --tv_buttonRevealText         : "#ffff00ff";
+    --tv_buttonWrongBackground    : "#ff0000ff";
+    --tv_buttonWrongText          : "#ffffffff";
+    --tv_iconBackground           : "#555555ee";
+    --tv_iconForeground           : "#ffffffff";
+    --tv_imageShadow              : "#a5a5c877";
+    --tv_loadingSpinner           : "#1c4c5bff";
+    --tv_mainBackground           : "#000022ff";
+    --tv_menuBackground           : "#444444ff";
+    --tv_noBonus                  : "#ff0000ff";
+    --tv_progress                 : "#ffffffbb";
+    --tv_questionHeading          : "#00ffffff";
+    --tv_scoreLabel               : "#00ffffff";
+    --tv_scoreValue               : "#ffff00ff";
+    --tv_titleHeading             : "#ffffffff";
+}

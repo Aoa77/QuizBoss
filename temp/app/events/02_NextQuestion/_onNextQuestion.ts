@@ -18,7 +18,7 @@ import { EventName } from "../../../../src/models/EventName";
 
 ///
 export async function onNextQuestion() {
-    const [state, setState] = FlowContext.context<QuizState>();
+    const [state, setState] = FlowContext.current<QuizState>();
     if (state.quizModule === null) {
         throw new Error("QuizModule is null");
     }

@@ -12,7 +12,7 @@ import { EventName } from "../../../../src/models/EventName";
 import { ThemeVars } from "../../../../src/libs/theme-vars/ThemeVars";
 
 export async function onQuizStart() {
-    const [state, setState] = FlowContext.context<QuizState>();
+    const [state, setState] = FlowContext.current<QuizState>();
 
     if (state.quizModule === null) {
         state.best = initBestScore(state);
