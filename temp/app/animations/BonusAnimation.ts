@@ -1,6 +1,6 @@
 import { xref } from "../../core/animation/dom/xref";
 import { wait } from "../../core/animation/wait";
-import { AsyncGroup } from "../../../src/libs/AsyncGroup";
+import { TaskGroup } from "../../../src/libs/Task";
 import { ELEMENT } from "../constants/ELEMENT";
 import { TIME } from "../constants/TIME";
 import { TransitionAnimation } from "./TransitionAnimation";
@@ -25,7 +25,7 @@ export class BonusAnimation {
         });
 
         await wait(TIME.BONUS_DISPLAY);
-        const anims = new AsyncGroup();
+        const anims = new TaskGroup();
         anims.add(TransitionAnimation.NextQuestionLoading());
         anims.add(ref.scaleTo({
             duration: TIME.BONUS_SCALE,

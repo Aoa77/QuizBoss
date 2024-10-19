@@ -1,4 +1,4 @@
-import { AsyncAnimation, EASING } from "../libs/AsyncAnimation";
+import { AnimationTask, EASING } from "../libs/AnimationTask";
 import "./QuizTitle.css";
 
 const config = {
@@ -15,8 +15,8 @@ export function QuizTitle(props: { text: string }) {
 }
 
 async function onPointerDown() {
-    await $QuizTitle.fadeIn.startAsync();
-    await $QuizTitle.fadeOut.startAsync();
+    await $QuizTitle.fadeIn.start();
+    await $QuizTitle.fadeOut.start();
     return;
 
     if (config.ENABLE_SECRET_RELOAD) {
@@ -27,10 +27,10 @@ async function onPointerDown() {
 
 export class $QuizTitle {
     ///
-    public static get fadeIn(): AsyncAnimation {
+    public static get fadeIn(): AnimationTask {
         return this._fadeIn.value;
     }
-    private static readonly _fadeIn = AsyncAnimation.createById(
+    private static readonly _fadeIn = AnimationTask.createById(
         config.ANIMATION_ID,
         {
             opacity: [0, 1],
@@ -40,10 +40,10 @@ export class $QuizTitle {
     );
     
     ///
-    public static get fadeOut(): AsyncAnimation {
+    public static get fadeOut(): AnimationTask {
         return this._fadeOut.value;
     }
-    private static readonly _fadeOut = AsyncAnimation.createById(
+    private static readonly _fadeOut = AnimationTask.createById(
         config.ANIMATION_ID,
         {
             opacity: [1, 0],

@@ -1,4 +1,4 @@
-import { AsyncGroup } from "../../../../src/libs/AsyncGroup";
+import { TaskGroup } from "../../../../src/libs/Task";
 import { wait } from "../wait";
 import { Xref } from "./xref";
 
@@ -22,7 +22,7 @@ export class XrefAnimation {
     }
 
     public async scaleOut() {
-        const asyncGroup = new AsyncGroup();
+        const asyncGroup = new TaskGroup();
         asyncGroup.add(
             this._xref.scaleTo({
                 scale: 0,

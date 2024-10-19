@@ -6,7 +6,7 @@ import { wait } from "../../../core/animation/wait";
 
 import { TIME } from "../../constants/TIME";
 import { LoadingAnimation } from "../../components/LoadingSpinner.xref";
-import { AsyncGroup } from "../../../../src/libs/AsyncGroup";
+import { TaskGroup } from "../../../../src/libs/Task";
 import { $TitleHeading } from "../../components/TitleHeading.xref";
 import { EventName } from "../../../../src/models/EventName";
 import { Theme } from "../../../../src/libs/Theme";
@@ -17,7 +17,7 @@ export async function onQuizStart() {
     if (state.quizModule === null) {
         state.best = initBestScore(state);
 
-        const asyncGroup = new AsyncGroup();
+        const asyncGroup = new TaskGroup();
         asyncGroup.add(
             Theme.apply(state.settings.theme).then(() =>
                 LoadingAnimation.start(),

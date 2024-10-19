@@ -9,7 +9,7 @@ import { ButtonGroupAnimation } from "../../animations/ButtonGroupAnimation";
 import { QuizItem } from "../../../../src/models/QuizItem";
 import { xref } from "../../../core/animation/dom/xref";
 import { ELEMENT } from "../../constants/ELEMENT";
-import { AsyncGroup } from "../../../../src/libs/AsyncGroup";
+import { TaskGroup } from "../../../../src/libs/Task";
 import { TransitionAnimation } from "../../animations/TransitionAnimation";
 import { ScoreAnimation } from "../../components/ScoreDisplay.animation";
 import { ProgressAnimation } from "../../components/ProgressDisplay.animation";
@@ -46,7 +46,7 @@ export async function onNextQuestion() {
         quizData,
     );
 
-    const anims = new AsyncGroup();
+    const anims = new TaskGroup();
     anims.add(TransitionAnimation.NextQuestionReady());
     anims.add(QuestionAnimation.fadeIn());
     anims.add(ProgressAnimation.fadeIn());

@@ -13,8 +13,8 @@ export function App(settings: AppSettings) {
 
     useEffect(() => {
         async function run() {
-            await $QuizTitle.fadeIn.startAsync();
-            await $QuizTitle.fadeOut.startAsync();
+            await $QuizTitle.fadeIn.start();
+            await $QuizTitle.fadeOut.start();
         }
         run();
     }, []);
