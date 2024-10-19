@@ -1,4 +1,4 @@
-import { AsyncGroup } from "../../../../src/util/AsyncGroup";
+import { AsyncGroup } from "../../../../src/utils/AsyncGroup";
 import { EASING } from "../constants";
 import { wait } from "../wait";
 import { Xref } from "./xref";

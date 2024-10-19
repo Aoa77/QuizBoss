@@ -1,4 +1,4 @@
-import { getQueryParams } from "../util/getQueryParams";
+import { getQueryParams } from "../utils/getQueryParams";
 import { DemoMode, parseDemoMode } from "../models/DemoMode";
 import { ThemeName } from "../models/ThemeName";
 
