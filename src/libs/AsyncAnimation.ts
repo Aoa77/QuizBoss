@@ -1,5 +1,6 @@
 import anime from "animejs";
 import { Animatable, Animation, AnimeInstance, AnimeParams } from "animejs";
+import { Lazy } from "./Lazy";
 
 export class AsyncAnimation implements AnimeInstance {
     ///
@@ -8,7 +9,7 @@ export class AsyncAnimation implements AnimeInstance {
         id: string,
         params: AnimeParams,
         ////////////////////////
-    ): AsyncAnimation {
+    ): Lazy<AsyncAnimation> {
         return AsyncAnimation.createByTarget(`#${id}`, params);
     }
 
@@ -17,18 +18,18 @@ export class AsyncAnimation implements AnimeInstance {
         target: string,
         params: AnimeParams,
         ////////////////////////
-    ): AsyncAnimation {
-        return new AsyncAnimation({
-            ...params,
-            targets: target,
-        });
+    ): Lazy<AsyncAnimation> {
+        return new Lazy(
+            () =>
+                new AsyncAnimation({
+                    ...params,
+                    targets: target,
+                    autoplay: false,
+                }),
+        );
     }
 
-    private readonly _instance: AnimeInstance;
-    public constructor(params: AnimeParams) {
-        this._instance = anime(params);
-    }
-
+    //////////////////////////////////////////////
     public startAsync(): Promise<void> {
         return new Promise((resolve) => {
             this._instance.finished.then(() => {
@@ -37,7 +38,12 @@ export class AsyncAnimation implements AnimeInstance {
             this.play();
         });
     }
+    //////////////////////////////////////////////
 
+    private readonly _instance: AnimeInstance;
+    public constructor(params: AnimeParams) {
+        this._instance = anime(params);
+    }
     play(): void {
         this._instance.play();
     }
@@ -105,7 +111,6 @@ export class AsyncAnimation implements AnimeInstance {
         return this._instance.animations;
     }
 }
-
 
 export const EASING = {
     linear: "linear",

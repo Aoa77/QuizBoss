@@ -4,8 +4,7 @@ import "./QuizTitle.css";
 const config = {
     ANIMATION_ID: "QuizTitle",
     ENABLE_SECRET_RELOAD: true,
-}
-
+};
 
 export function QuizTitle(props: { text: string }) {
     return (
@@ -15,7 +14,11 @@ export function QuizTitle(props: { text: string }) {
     );
 }
 
-function onPointerDown() {
+async function onPointerDown() {
+    await $QuizTitle.fadeIn.startAsync();
+    await $QuizTitle.fadeOut.startAsync();
+    return;
+
     if (config.ENABLE_SECRET_RELOAD) {
         window.location.reload();
         return;
@@ -23,9 +26,29 @@ function onPointerDown() {
 }
 
 export class $QuizTitle {
-    public static fadeIn: AsyncAnimation = AsyncAnimation.createById(config.ANIMATION_ID, {
-        opacity: [0, 1],
-        duration: 500,
-        easing: EASING.easeInOutQuad
-    });
+    ///
+    public static get fadeIn(): AsyncAnimation {
+        return this._fadeIn.value;
+    }
+    private static readonly _fadeIn = AsyncAnimation.createById(
+        config.ANIMATION_ID,
+        {
+            opacity: [0, 1],
+            duration: 500,
+            easing: EASING.easeInOutSine,
+        },
+    );
+    
+    ///
+    public static get fadeOut(): AsyncAnimation {
+        return this._fadeOut.value;
+    }
+    private static readonly _fadeOut = AsyncAnimation.createById(
+        config.ANIMATION_ID,
+        {
+            opacity: [1, 0],
+            duration: 500,
+            easing: EASING.easeInOutSine,
+        },
+    );
 }

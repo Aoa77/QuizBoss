@@ -2,7 +2,7 @@ import { FlowContext } from "../../../../src/context/FlowContext";
 import { Theme } from "../../../../src/context/Theme";
 import { EventName } from "../../../../src/models/EventName";
 import { QuizState } from "../../../../src/models/QuizState";
-import { ThemeName } from "../../../../src/models/ThemeName";
+import { ThemeName } from "../../../../src/models/Theme";
 
 export function MenuButton() {
     const svgSize = 24;
