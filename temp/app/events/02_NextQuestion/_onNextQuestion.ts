@@ -9,7 +9,7 @@ import { ButtonGroupAnimation } from "../../animations/ButtonGroupAnimation";
 import { QuizItem } from "../../../../src/models/QuizItem";
 import { xref } from "../../../core/animation/dom/xref";
 import { ELEMENT } from "../../constants/ELEMENT";
-import { AsyncGroup } from "../../../../src/utils/AsyncGroup";
+import { AsyncGroup } from "../../../../src/libs/AsyncGroup";
 import { TransitionAnimation } from "../../animations/TransitionAnimation";
 import { ScoreAnimation } from "../../components/ScoreDisplay.animation";
 import { ProgressAnimation } from "../../components/ProgressDisplay.animation";

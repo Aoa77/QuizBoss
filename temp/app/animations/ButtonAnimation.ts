@@ -1,4 +1,4 @@
-import { EASING } from "../../core/animation/constants";
+
 import { Xelement } from "../../core/animation/dom/Xelement";
 import { wait } from "../../core/animation/wait";
 import { QuestionAnimation } from "../components/QuestionHeading.animation";
@@ -47,7 +47,6 @@ export class ButtonAnimation {
     ) {
         await button.slideTo({
             duration: TIME.BUTTON_SLIDE,
-            easing: EASING.easeOutQuint,
             x: 0,
             y: y,
         });

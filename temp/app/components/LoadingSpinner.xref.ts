@@ -2,7 +2,7 @@ import { AnimeInstance } from "animejs";
 import { createAnimation } from "../../core/animation/runners";
 import { wait } from "../../core/animation/wait";
 import { RadArray } from "./LoadingSpinner.constants";
-import { EASING } from "../../core/animation/constants";
+// import { EASING } from "../../core/animation/constants";
 // import { ELEMENT } from "../constants/ELEMENT";
 // import { Xelement } from "../../core/animation/dom/Xelement";
 import { Xref } from "../../core/animation/Xref";
@@ -30,7 +30,7 @@ export class $LoadingSpinner extends Xref {
             targets: this.idSelector,
             opacity: [0, 1],
             duration: 500,
-            easing: EASING.easeInQuad,
+            // EASING.easeInQuad,
             autoplay: false,
         });
     }
@@ -63,7 +63,7 @@ export class LoadingAnimation {
         const delay = 25;
         const duration = 1000;
         const endDelay = 1000;
-        const easing = EASING.easeInOutBounce;
+        const easing = "";//EASING.easeInOutBounce;
 
         for (let i = 1; i <= LoadingAnimation.BALLS; i++) {
             this._ballAnimations.push(
@@ -85,7 +85,7 @@ export class LoadingAnimation {
             loop: false,
             duration: 0,
             endDelay: 0,
-            easing: EASING.linear,
+            // EASING.linear,
             autoplay: false,
         });
 

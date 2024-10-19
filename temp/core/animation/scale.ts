@@ -1,6 +1,5 @@
 import { AnimeParams } from "animejs";
 import { ScaleParams } from "./params";
-import { EASING } from "./constants";
 
 export function scaleTo(p: ScaleParams): AnimeParams {
     const params: AnimeParams = {
@@ -14,7 +13,7 @@ export function scaleTo(p: ScaleParams): AnimeParams {
 }
 
 export function scaleImmediately(scale: number): AnimeParams {
-    return scaleTo({ duration: 0, easing: EASING.linear, scale });
+    return scaleTo({ duration: 0, scale });
 }
 
 

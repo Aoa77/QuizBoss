@@ -6,7 +6,7 @@ import { wait } from "../../../core/animation/wait";
 
 import { TIME } from "../../constants/TIME";
 import { LoadingAnimation } from "../../components/LoadingSpinner.xref";
-import { AsyncGroup } from "../../../../src/utils/AsyncGroup";
+import { AsyncGroup } from "../../../../src/libs/AsyncGroup";
 import { $TitleHeading } from "../../components/TitleHeading.xref";
 import { EventName } from "../../../../src/models/EventName";
 import { Theme } from "../../../../src/context/Theme";

@@ -1,5 +1,5 @@
 import { AnimeInstance } from "animejs";
-import { EASING } from "../../core/animation/constants";
+// import { EASING } from "../../core/animation/constants";
 import { Xref } from "../../core/animation/Xref";
 import { createAnimation } from "../../core/animation/runners";
 
@@ -27,7 +27,7 @@ export class $TitleHeading extends Xref {
             targets: this.idSelector,
             opacity: [0, 1],
             duration: 500,
-            easing: EASING.easeInQuad,
+            // easing: EASING.easeInQuad,
             autoplay: false,
         });
     }

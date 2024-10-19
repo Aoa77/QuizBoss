@@ -1,9 +1,11 @@
+import { AsyncAnimation, EASING } from "../libs/AsyncAnimation";
 import "./QuizTitle.css";
 
 const config = {
     ANIMATION_ID: "QuizTitle",
     ENABLE_SECRET_RELOAD: true,
 }
+
 
 export function QuizTitle(props: { text: string }) {
     return (
@@ -20,9 +22,10 @@ function onPointerDown() {
     }
 }
 
-// export class $QuizTitle {
-//     public static fadeIn() : Promise<void> {
-
-
-//     }    
-// }
+export class $QuizTitle {
+    public static fadeIn: AsyncAnimation = AsyncAnimation.createById(config.ANIMATION_ID, {
+        opacity: [0, 1],
+        duration: 500,
+        easing: EASING.easeInOutQuad
+    });
+}

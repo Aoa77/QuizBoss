@@ -1,5 +1,4 @@
-import { AsyncGroup } from "../../../../src/utils/AsyncGroup";
-import { EASING } from "../constants";
+import { AsyncGroup } from "../../../../src/libs/AsyncGroup";
 import { wait } from "../wait";
 import { Xref } from "./xref";
 
@@ -28,7 +27,7 @@ export class XrefAnimation {
             this._xref.scaleTo({
                 scale: 0,
                 duration: this._scaleDuration * 3,
-                easing: EASING.easeInOutBack,
+             //   easing: EASING.easeInOutBack,
             }),
         );
         asyncGroup.add(
