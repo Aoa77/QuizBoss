@@ -1,6 +1,9 @@
+import { CSSProperties } from "react";
 import { AnimationTask } from "../libs/anime+/AnimationTask";
 import { EASING } from "../libs/anime+/EASING";
-import "./QuizTitle.css";
+import { CssUnit } from "../libs/theme-vars/CssUnit";
+import { ThemeVars } from "../libs/theme-vars/ThemeVars";
+import { ThemeFont, TV } from "../models/Theme";
 
 const config = {
     ANIMATION_ID: "QuizTitle",
@@ -8,9 +11,22 @@ const config = {
 };
 
 export function QuizTitle(props: { text: string }) {
+    const style: CSSProperties = {
+        alignContent: "normal",
+        backgroundColor: "red",//ThemeVars.getRef(TV.titleBackground),
+        color: ThemeVars.getRef(TV.titleHeading),
+        fontFamily: ThemeFont.serif,
+        fontSize: CssUnit.rem(10),
+        height: CssUnit.cqh(10),
+        top: CssUnit.cqh(5),
+    };
+    const text = "World Flags Quiz";
     return (
-        <section id={config.ANIMATION_ID} onPointerDown={onPointerDown}>
-            {props.text}
+        <section
+            id={config.ANIMATION_ID}
+            style={style}
+            onPointerDown={onPointerDown}>
+            {text}
         </section>
     );
 }
@@ -39,7 +55,7 @@ export class $QuizTitle {
             easing: EASING.easeInOutSine,
         },
     );
-    
+
     ///
     public static get fadeOut(): AnimationTask {
         return this._fadeOut.value;

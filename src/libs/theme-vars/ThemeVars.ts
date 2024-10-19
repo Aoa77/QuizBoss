@@ -3,27 +3,36 @@ class VarMap extends Map<string, string> {}
 
 export class ThemeVars {
     private static _map: ThemeMap = new ThemeMap();
-    public static async register<TName extends string, TVar extends string>(
+    private static _names: string[] = [];
+    private static _vars: string[] = [];
+
+    public static async config<TName extends string, TVar extends string>(
         nameType: unknown,
         varType: unknown,
         path: string,
     ) {
-        const names = Object.values(
+        if (this._names.length > 0 || this._vars.length > 0) {
+            throw new Error("ThemeVars already configured");
+        }
+
+        this._names = Object.values(
             nameType as { [key: string]: TName },
         ) as string[];
-        const vars = Object.values(
+
+        this._vars = Object.values(
             varType as { [key: string]: TVar },
         ) as string[];
-        for (const name of names) {
+
+        for (const name of this._names) {
             const map = new VarMap();
-            for (const variable of vars) {
+            for (const variable of this._vars) {
                 map.set(variable, "?");
             }
             this._map.set(name, map);
         }
 
         path = path.trim().replace(/\/$/, "");
-        for (const name of names) {
+        for (const name of this._names) {
             //
             const file = `${path}/tv.${name}.css`;
             const response = await fetch(file, {
@@ -51,16 +60,16 @@ export class ThemeVars {
 
                 console.debug({ key, value });
 
-                if (!this._map.get(name)?.get(key)) {
-                    console.error(this._map.get(name));
+                if (!this._vars.includes(key)) {
+                    console.error(this._map);
                     throw new Error(`Unknown variable: ${key}`);
                 }
                 this._map.get(name)!.set(key, value);
             }
 
-            for (const tvar of this._map.get(name)!.keys()) {
+            for (const tvar of this._vars) {
                 if ("?" === this._map.get(name)!.get(tvar)) {
-                    console.error(this._map.get(name));
+                    console.error(this._map);
                     throw new Error(`Missing variable: ${tvar}`);
                 }
             }
@@ -78,16 +87,27 @@ export class ThemeVars {
     }
 
     public static getRef(key: string): string {
+        if (!this._vars.includes(key)) {
+            throw new Error(`Unknown variable: ${key}`);
+        }
         return `var(${key})`;
     }
 
     public static getValue(key: string): string {
+        if (!this._vars.includes(key)) {
+            throw new Error(`Unknown variable: ${key}`);
+        }
         return getComputedStyle(document.documentElement)
             .getPropertyValue(key)
             .trim();
     }
 
     public static setValue(key: string, value: string): void {
+        if (!this._vars.includes(key)) {
+            throw new Error(`Unknown variable: ${key}`);
+        }
         document.documentElement.style.setProperty(key, value.trim());
     }
 }
+
+

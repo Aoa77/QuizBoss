@@ -1,9 +1,15 @@
+export enum ThemeFont {
+    mono = `"Courier New", monospace`,
+    sans = `"Tahoma", sans-serif`,
+    serif = `"Garamond", serif`,
+}
+
 export enum ThemeName {
     dark = "dark",
     light = "light",
 }
 
-export enum ThemeVar {
+export enum TV {
     actionLink = "--tv_actionLink",
     bodyBackground = "--tv_bodyBackground",
     bonus = "--tv_bonus",
