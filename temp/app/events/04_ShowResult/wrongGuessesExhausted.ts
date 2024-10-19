@@ -1,4 +1,4 @@
-import { Flow } from "../../../core/flow/Flow";
+import { Flow } from "../../../../src/context/FlowContext";
 import { QuizState } from "../../../../src/models/QuizState";
 
 export function wrongGuessesExhausted(wrongGuesses: number[]): boolean {

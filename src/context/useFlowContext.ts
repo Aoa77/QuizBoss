@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction, useState, useEffect } from "react";
-import { Flow } from "./Flow";
+import { Flow } from "./FlowContext";
 
 export function useFlow<Tstate, Tflow>(params: {
     initialState: Tstate;

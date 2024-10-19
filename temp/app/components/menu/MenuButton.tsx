@@ -1,4 +1,4 @@
-import { Flow } from "../../../core/flow/Flow";
+import { Flow } from "../../../../src/context/FlowContext";
 import { EventState } from "../../constants/EventState";
 import { QuizState } from "../../../../src/models/QuizState";
 import { applyTheme, getThemeVar, Theme } from "../App.theme";

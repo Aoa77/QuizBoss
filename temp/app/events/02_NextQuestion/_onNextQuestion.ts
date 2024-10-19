@@ -1,4 +1,4 @@
-import { Flow } from "../../../core/flow/Flow";
+import { Flow } from "../../../../src/context/FlowContext";
 import { QuizState } from "../../../../src/models/QuizState";
 import { bindGuessButtons } from "./bindGuessButtons";
 import { EventState } from "../../constants/EventState";

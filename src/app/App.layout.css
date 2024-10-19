@@ -1,0 +1,49 @@
+:root {
+    /* Defines the app container's width and height. */
+    /* Width/Height aspect ratio of 9:16 (0.5625) and 16:9 (1.77777777). */
+    /* The min() function is used to force the 9:16 portrait orientation. */
+    --width: min(100svw, calc(0.5625 * 100svh));
+    --height: min(100svh, calc(1.77777777 * 100svw));
+
+    /* center the app container within the dimensions of device */
+    --deviceCenterWidth: calc(100svw / 2);
+    --deviceCenterHeight: calc(100svh / 2);
+
+    /* horizontal */
+    --appCenterWidth: calc(var(--width) / 2);
+    --mainCenterLeft: calc(var(--deviceCenterWidth) - var(--appCenterWidth));
+
+    /* vertical */
+    --appCenterHeight: calc(var(--height) / 2);
+    --mainCenterTop: calc(var(--deviceCenterHeight) - var(--appCenterHeight));
+}
+
+/* normalize box-sizing for all elements */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    will-change: transform;
+}
+
+/* 1rem equals 1cqw of the main container */
+html {
+    font-size: calc(var(--width) / 100);
+}
+
+/* set body background color */
+body {
+    background-color: var(--THEME_bodyBackground);
+}
+
+/* <main> is the app container */
+/* 100cqw and 100cqh are equal to its width and height */ 
+main {
+    background-color: var(--THEME_mainBackground);
+    width: var(--width);
+    height: var(--height);
+    margin-left: var(--mainCenterLeft);
+    margin-top: var(--mainCenterTop);
+    overflow: hidden;
+    container-type: size;
+}
