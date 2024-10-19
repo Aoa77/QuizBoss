@@ -1,0 +1,7 @@
+section#QuizTitle {
+    align-content: normal;
+    color: var(--THEME_titleHeading);
+    font-size: 10rem;
+    height: 10cqh;
+    top: 5cqh;
+}

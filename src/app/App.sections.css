@@ -1,15 +1,21 @@
-/* one section per component, 100cqw, specified heights... */
-/* sections are transparent, their inner divs are opaque */
+/* each section overlays <main> */
 section {
+    position: absolute;
+    top: 0;
+    left: 0;
+ 
+    width: 100cqw;
+    height: 100cqh;
+
     align-content: center;
     text-align: center;
+ 
     opacity: 0.00;
     overflow: hidden;
-    width: 100cqw;
-    height: 10cqh;
-    font-size: 10cqw;
 }
-div {
+
+/* sections are initially transparent, their inner divs are opaque */
+section > div {
     opacity: 1;
 }
 
