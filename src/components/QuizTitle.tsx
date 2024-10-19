@@ -1,6 +1,5 @@
 import { CSSProperties } from "react";
 import { AnimationTask } from "../libs/anime+/AnimationTask";
-import { EASING } from "../libs/anime+/EASING";
 import { CssUnit } from "../libs/theme-vars/CssUnit";
 import { ThemeVars } from "../libs/theme-vars/ThemeVars";
 import { ThemeFont, TV } from "../models/Theme";
@@ -30,10 +29,6 @@ export function QuizTitle(props: { text: string }) {
 }
 
 async function onPointerDown() {
-    await $QuizTitle.fadeIn.start();
-    await $QuizTitle.fadeOut.start();
-    return;
-
     if (config.ENABLE_SECRET_RELOAD) {
         window.location.reload();
         return;
@@ -50,7 +45,6 @@ export class $QuizTitle {
         {
             opacity: [0, 1],
             duration: 500,
-            easing: EASING.easeInOutSine,
         },
     );
 
@@ -63,7 +57,6 @@ export class $QuizTitle {
         {
             opacity: [1, 0],
             duration: 500,
-            easing: EASING.easeInOutSine,
         },
     );
 }

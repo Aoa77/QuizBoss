@@ -49,3 +49,24 @@ main {
     overflow: hidden;
     container-type: size;
 }
+
+/* each section overlays <main> */
+section {
+    position: absolute;
+    top: 0;
+    left: 0;
+ 
+    width: 100cqw;
+    height: 100cqh;
+
+    align-content: center;
+    text-align: center;
+ 
+    opacity: 0.00;
+    overflow: hidden;
+}
+
+/* sections are initially transparent, their inner divs are opaque */
+section > div {
+    opacity: 1;
+}

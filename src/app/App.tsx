@@ -1,6 +1,5 @@
 /* stylesheets */
 import "./App.layout.css";
-import "./App.sections.css";
 
 /* models */
 import { AppSettings } from "./AppSettings";
@@ -10,11 +9,12 @@ import { useEffect } from "react";
 /* context */
 
 export function App(settings: AppSettings) {
-
     useEffect(() => {
         async function run() {
-            await $QuizTitle.fadeIn.start();
-            //await $QuizTitle.fadeOut.start();
+            while (true) {
+                await $QuizTitle.fadeIn.start();
+                await $QuizTitle.fadeOut.start();
+            }
         }
         run();
     }, []);
