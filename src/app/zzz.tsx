@@ -40,7 +40,7 @@ export function App666(settings: AppSettings) {
     });
 
     const titleText = state.quizModule?.quizData?.title ?? " ";
-    const titleHeading = useMemo(
+    const QuizTitle_text = useMemo(
         () => <TitleHeading titleText={titleText} />,
         [titleText]
     );
@@ -56,7 +56,7 @@ export function App666(settings: AppSettings) {
     ///
     return (
         <main>
-            {titleHeading}
+            {QuizTitle_text}
             {/* {menu} */}
             {loadingSpinner}
             <QuestionImage {...state} />

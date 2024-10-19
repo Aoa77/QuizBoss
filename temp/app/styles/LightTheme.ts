@@ -6,7 +6,7 @@
 //     mainBackground: "#ddddff",
 //     menuBackground: "#0000aa",
 //     loadingSpinner: "#ffffff",
-//     titleHeading: "#000000",
+//     QuizTitle_text: "#000000",
 //     questionHeading: "#0000ff",
 //     actionLink: "#0000ff",
 //     imageShadow: "#676767cc",

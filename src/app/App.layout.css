@@ -26,9 +26,11 @@
     will-change: transform;
 }
 
-/* 1rem equals 1cqw of the main container */
+/* 1rem scales relative to the dimensions of the container */
 html {
-    font-size: calc(var(--width) / 100);
+    --fw: calc(var(--width) / 100);
+    --fh: calc(var(--height) / 100);
+    font-size: calc(0.5 * (var(--fw) + var(--fh)));
 }
 
 /* set body background color */
@@ -37,7 +39,7 @@ body {
 }
 
 /* <main> is the app container */
-/* 100cqw and 100cqh are equal to its width and height */ 
+/* 100cqw and 100cqh are equal to its width and height */
 main {
     background-color: var(--tv_mainBackground);
     width: var(--width);

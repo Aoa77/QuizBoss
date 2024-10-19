@@ -36,5 +36,5 @@ export enum TV {
     questionHeading = "--tv_questionHeading",
     scoreLabel = "--tv_scoreLabel",
     scoreValue = "--tv_scoreValue",
-    titleHeading = "--tv_titleHeading",
+    QuizTitle_text = "--tv_QuizTitle_text",
 }

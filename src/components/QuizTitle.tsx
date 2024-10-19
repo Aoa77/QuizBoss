@@ -13,20 +13,18 @@ const config = {
 export function QuizTitle(props: { text: string }) {
     const style: CSSProperties = {
         alignContent: "normal",
-        backgroundColor: "red",//ThemeVars.getRef(TV.titleBackground),
-        color: ThemeVars.getRef(TV.titleHeading),
+        color: ThemeVars.getRef(TV.QuizTitle_text),
         fontFamily: ThemeFont.serif,
-        fontSize: CssUnit.rem(10),
+        fontSize: CssUnit.rem(8),
         height: CssUnit.cqh(10),
         top: CssUnit.cqh(5),
     };
-    const text = "World Flags Quiz";
     return (
         <section
             id={config.ANIMATION_ID}
             style={style}
             onPointerDown={onPointerDown}>
-            {text}
+            {props.text}
         </section>
     );
 }
