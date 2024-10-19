@@ -1,10 +1,10 @@
 import { FlowContext } from "../../../../src/context/FlowContext";
 import { QuizState } from "../../../../src/models/QuizState";
-import { EventState } from "../../constants/EventState";
 import { wait } from "../../../core/animation/wait";
 import { doDemoInput } from "./doDemoInput";
 import { DemoMode } from "../../../../src/models/DemoMode";
 import { TIME } from "../../constants/TIME";
+import { EventName } from "../../../../src/models/EventName";
 
 export async function onAwaitInput() {
     const [state, setState] = FlowContext.context<QuizState>();
@@ -23,6 +23,6 @@ export async function onAwaitInput() {
     setState({
         ...state,
         guessValue: spotButton.dataValue,
-        event: EventState.ShowResult,
+        eventName: EventName.ShowResult,
     });
 }

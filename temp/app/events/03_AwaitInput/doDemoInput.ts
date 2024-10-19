@@ -1,7 +1,7 @@
 import { randomInt } from "../../../core/util/randomInt";
 import { Xelement } from "../../../core/animation/dom/Xelement";
 import { xref } from "../../../core/animation/dom/xref";
-import { ButtonState } from "../../../../src/models/ButtonState";
+import { ButtonStyle } from "../../../../src/models/ButtonStyle";
 import { DemoMode } from "../../../../src/models/DemoMode";
 
 export function doDemoInput(
@@ -13,7 +13,7 @@ export function doDemoInput(
     let spotButton = buttons[answerSpot];
     if (demoMode === DemoMode.RANDOM) {
         const activeButtons = buttons.filter(
-            (button) => button.className === ButtonState.NORMAL,
+            (button) => button.className === ButtonStyle.NORMAL,
         );
         spotButton = activeButtons[randomInt(0, activeButtons.length)];
     } else if (demoMode === DemoMode.WRONG) {
@@ -22,7 +22,7 @@ export function doDemoInput(
                 continue;
             }
             spotButton = buttons[i];
-            if (spotButton.className === ButtonState.NORMAL) {
+            if (spotButton.className === ButtonStyle.NORMAL) {
                 break;
             }
         }

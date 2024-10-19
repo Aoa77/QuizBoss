@@ -1,7 +1,7 @@
 import { FlowContext } from "../../../../src/context/FlowContext";
 import { QuizState } from "../../../../src/models/QuizState";
 import { bindGuessButtons } from "./bindGuessButtons";
-import { EventState } from "../../constants/EventState";
+
 import { randomInt } from "../../../core/util/randomInt";
 import { wait } from "../../../core/animation/wait";
 import { TIME } from "../../constants/TIME";
@@ -14,6 +14,7 @@ import { TransitionAnimation } from "../../animations/TransitionAnimation";
 import { ScoreAnimation } from "../../components/ScoreDisplay.animation";
 import { ProgressAnimation } from "../../components/ProgressDisplay.animation";
 import { QuestionAnimation } from "../../components/QuestionHeading.animation";
+import { EventName } from "../../../../src/models/EventName";
 
 ///
 export async function onNextQuestion() {
@@ -53,7 +54,7 @@ export async function onNextQuestion() {
     await anims.all();
 
     await ButtonGroupAnimation.fadeIn();
-    setState({ ...state, event: EventState.AwaitInput });
+    setState({ ...state, eventName: EventName.AwaitInput });
 }
 
 function isReady(currentItem: QuizItem, questionImage: HTMLElement) {

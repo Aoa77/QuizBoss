@@ -1,5 +1,5 @@
 import { xref } from "../../../core/animation/dom/xref";
-import { ButtonState } from "../../../../src/models/ButtonState";
+import { ButtonStyle } from "../../../../src/models/ButtonStyle";
 
 export async function unlockButtons(
     wrongGuesses: number[],
@@ -8,13 +8,13 @@ export async function unlockButtons(
     for (let guess = 0; guess < buttons.length; guess++) {
         const button = buttons[guess];
         switch (button.className) {
-            case ButtonState.DIMMED:
+            case ButtonStyle.DIMMED:
                 if (!wrongGuesses.includes(guess)) {
-                    button.className = ButtonState.NORMAL;
+                    button.className = ButtonStyle.NORMAL;
                 }
                 break;
-            case ButtonState.WRONG:
-                button.className = ButtonState.DIMMED;
+            case ButtonStyle.WRONG:
+                button.className = ButtonStyle.DIMMED;
                 break;
             default:
                 break;

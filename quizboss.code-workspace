@@ -10,7 +10,7 @@
             "**/node_modules": true,
             "**/public": true,
             "**/*.svg": true,
-            "**/package-lock.json": true,
+            "**/package-lock.json": true
         },
         "prettier.printWidth": 80,
         "prettier.tabWidth": 4,
@@ -19,7 +19,8 @@
         "explorer.fileNesting.enabled": true,
         "editor.wordWrap": "on",
         "explorer.fileNesting.patterns": {
-            "*.ts": "$(capture).js, $(capture).d.ts.map, $(capture).*.ts, $(capture)_*.js, $(capture)_*.ts",
+            "*.ts": "$(capture).js, $(capture).d.ts.map, $(capture).*.ts, $(capture)_*.js, $(capture)_*.ts, use$(capture).ts",
+
             "*.tsx": "$(capture).ts, $(capture).*.tsx, $(capture)_*.ts, $(capture)_*.tsx, $(capture).less, $(capture).module.less, $(capture).module.less.d.ts, $(capture).scss, $(capture).module.scss, $(capture).module.scss.d.ts, $(capture).css.ts, $(capture).css, $(capture).*.css, $(capture).*.ts"
         }
     },

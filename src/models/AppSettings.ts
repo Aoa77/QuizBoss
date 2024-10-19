@@ -1,20 +1,20 @@
 import { getQueryParams } from "../../temp/core/util/getQueryParams";
-import { DemoMode } from "./DemoMode";
-import { Themes } from "./Themes";
+import { DemoMode, parseDemoMode } from "./DemoMode";
+import { ThemeName } from "./ThemeName";
 
 export class AppSettings {
     public readonly quizModuleName: string;
     public readonly demoMode: DemoMode;
     public readonly guessButtonCount: number;
     public readonly maxQuestions: number;
-    public readonly theme: Themes;
+    public readonly theme: ThemeName;
 
     constructor(params: {
         quizModuleName?: string;
         demoMode?: DemoMode;
         guessButtonCount?: number;
         maxQuestions?: number;
-        theme?: Themes;
+        theme?: ThemeName;
     }) {
         let { quizModuleName, demoMode } = params;
         const { guessButtonCount, maxQuestions } = params;
@@ -37,23 +37,7 @@ export class AppSettings {
         this.maxQuestions =
             maxQuestions ?? +(queryParams.get("maxQuestions") ?? "0");
 
-        this.theme = params.theme ?? Themes.dark;
+        this.theme = params.theme ?? ThemeName.dark;
     }
 
-}
-
-function parseDemoMode(value: string | undefined | null): DemoMode {
-    if (!value) {
-        return DemoMode.OFF;
-    }
-    switch (value.toUpperCase()) {
-        case DemoMode.RANDOM:
-            return DemoMode.RANDOM;
-        case DemoMode.RIGHT:
-            return DemoMode.RIGHT;
-        case DemoMode.WRONG:
-            return DemoMode.WRONG;
-        default:
-            return DemoMode.OFF;
-    }
 }

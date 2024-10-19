@@ -1,4 +1,4 @@
-export enum EventState {
+export enum EventName {
     QuizStart = "QuizStart",
     NextQuestion = "NextQuestion",
     AwaitInput = "Input",

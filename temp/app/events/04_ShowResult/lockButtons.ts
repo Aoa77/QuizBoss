@@ -7,7 +7,7 @@ import { wrongGuessesExhausted } from "./wrongGuessesExhausted";
 import { FlowContext } from "../../../../src/context/FlowContext";
 import { QuizState } from "../../../../src/models/QuizState";
 import { xref } from "../../../core/animation/dom/xref";
-import { ButtonState } from "../../../../src/models/ButtonState";
+import { ButtonStyle } from "../../../../src/models/ButtonStyle";
 
 export async function lockButtons(
     currentItem: QuizItem,
@@ -21,25 +21,25 @@ export async function lockButtons(
         //
         const button: Xelement<HTMLButtonElement> = buttons[guess];
 
-        if (button.className === ButtonState.DISABLED) {
+        if (button.className === ButtonStyle.DISABLED) {
             continue;
         }
-        if (button.className === ButtonState.HIDDEN) {
+        if (button.className === ButtonStyle.HIDDEN) {
             continue;
         }
         if (state.guessValue !== button.dataValue) {
-            button.className = ButtonState.DIMMED;
+            button.className = ButtonStyle.DIMMED;
             continue;
         }
 
         if (isCorrectGuess) {
-            button.className = ButtonState.CORRECT;
+            button.className = ButtonStyle.CORRECT;
             currentItem.answeredCorrectly = true;
             continue;
         }
 
         wrongGuesses.push(guess);
-        button.className = ButtonState.WRONG;
+        button.className = ButtonStyle.WRONG;
 
         if (wrongGuessesExhausted(wrongGuesses)) {
             await handleWrongGuess();

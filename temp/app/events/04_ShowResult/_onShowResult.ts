@@ -1,4 +1,5 @@
 import { FlowContext } from "../../../../src/context/FlowContext";
+import { EventName } from "../../../../src/models/EventName";
 import { QuizState } from "../../../../src/models/QuizState";
 import { handleCorrectGuess }    from "./handleCorrectGuess";
 import { handleWrongGuess }      from "./handleWrongGuess";
@@ -6,7 +7,6 @@ import { lockButtons }           from "./lockButtons";
 import { resetWrongGuesses }     from "./resetWrongGuesses";
 import { unlockButtons }         from "./unlockButtons";
 import { wrongGuessesExhausted } from "./wrongGuessesExhausted";
-import { EventState }             from "../../constants/EventState";
 
 const wrongGuesses: number[] = [];
 
@@ -27,19 +27,19 @@ export async function onShowResult() {
         await handleCorrectGuess(state, wrongGuesses);
 
         if (1 + state.currentItemIndex === quizItems.length) {
-           // setState({ ...state, event: EventState.GAMEOVER });
+           // setState({ ...state, event: EventName.GAMEOVER });
             return;
         }
 
         ///
         ++state.currentItemIndex;
         resetWrongGuesses(wrongGuesses);
-        setState({ ...state, event: EventState.NextQuestion });
+        setState({ ...state, eventName: EventName.NextQuestion });
         return;
     }
 
     ///
     await handleWrongGuess();
     await unlockButtons(wrongGuesses);
-    setState({ ...state, event: EventState.AwaitInput });
+    setState({ ...state, eventName: EventName.AwaitInput });
 }

@@ -3,12 +3,13 @@ import { QuizState } from "../../../../src/models/QuizState";
 import { initQuizModule } from "./initQuizModule";
 import { initBestScore } from "./initBestScore";
 import { wait } from "../../../core/animation/wait";
-import { EventState } from "../../constants/EventState";
+
 import { TIME } from "../../constants/TIME";
 import { LoadingAnimation } from "../../components/LoadingSpinner.xref";
 import { AsyncGroup } from "../../../core/util/AsyncGroup";
-import { applyTheme } from "../../components/App.theme";
 import { $TitleHeading } from "../../components/TitleHeading.xref";
+import { EventName } from "../../../../src/models/EventName";
+import { Theme } from "../../../../src/context/Theme";
 
 export async function onQuizStart() {
     const [state, setState] = FlowContext.context<QuizState>();
@@ -18,7 +19,7 @@ export async function onQuizStart() {
 
         const asyncGroup = new AsyncGroup();
         asyncGroup.add(
-            applyTheme(state.settings.theme).then(() =>
+            Theme.apply(state.settings.theme).then(() =>
                 LoadingAnimation.start(),
             ),
         );
@@ -32,5 +33,5 @@ export async function onQuizStart() {
 
     await $TitleHeading.xref.fadeIn.play();
     await wait(TIME.START_DELAY);
-    setState({ ...state, event: EventState.NextQuestion });
+    setState({ ...state, eventName: EventName.NextQuestion });
 }

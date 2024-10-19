@@ -1,11 +1,11 @@
 /* stylesheets */
-import "./App.theme.css";
+import "../themes/theme.css";
 import "./App.layout.css";
 import "./App.sections.css";
 
 /* models */
 import { AppSettings } from "../models/AppSettings";
-import { EventState } from "../models/EventState";
+import { EventName } from "../models/EventName";
 import { QuizState, createInitialState } from "../models/QuizState";
 
 /* context */
@@ -35,16 +35,16 @@ export function App(settings: AppSettings) {
     const guessButtonArea = useMemo(() => <GuessButtonArea />, []);
 
     ///
-    const [state] = useFlowContext<QuizState, EventState>({
+    const [state] = useFlowContext<QuizState, EventName>({
         initialState: createInitialState(settings),
         flowProperty: (state) => {
-            return state.event;
+            return state.eventName;
         },
-        flowEvents: new Map<EventState, (state: QuizState) => Promise<void>>([
-            [EventState.QuizStart, onQuizStart],
-            [EventState.NextQuestion, onNextQuestion],
-            [EventState.AwaitInput, onAwaitInput],
-            [EventState.ShowResult, onShowResult],
+        flowEvents: new Map<EventName, (state: QuizState) => Promise<void>>([
+            [EventName.QuizStart, onQuizStart],
+            [EventName.NextQuestion, onNextQuestion],
+            [EventName.AwaitInput, onAwaitInput],
+            [EventName.ShowResult, onShowResult],
         ]),
     });
 
