@@ -1,7 +1,7 @@
 import { ELEMENT } from "../constants/ELEMENT";
 import { createXref } from "../../core/animation/dom/createXref";
 import { Xelement } from "../../core/animation/dom/Xelement";
-import { FlowContext } from "../../../src/libs/FlowContext";
+import { FlowContext } from "../../../src/libs/flow-context/FlowContext";
 import { QuizState } from "../../../src/models/QuizState";
 import { ButtonStyle } from "../../../src/models/ButtonStyle";
 import { EventName } from "../../../src/models/EventName";

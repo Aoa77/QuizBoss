@@ -1,4 +1,5 @@
-import { AnimationTask, EASING } from "../libs/AnimationTask";
+import { AnimationTask } from "../libs/anime+/AnimationTask";
+import { EASING } from "../libs/anime+/EASING";
 import "./QuizTitle.css";
 
 const config = {

@@ -1,4 +1,4 @@
-import { FlowContext } from "../../../../src/libs/FlowContext";
+import { FlowContext } from "../../../../src/libs/flow-context/FlowContext";
 import { QuizState } from "../../../../src/models/QuizState";
 import { wait } from "../../../core/animation/wait";
 import { doDemoInput } from "./doDemoInput";

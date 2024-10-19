@@ -1,16 +1,16 @@
-export class Theme {
+export class ThemeVars {
     private static _themeDirectory: string | null = null;
 
     public static config(themeDirectory: string): void {
         // remove any trailing slashes
         themeDirectory = themeDirectory.trim().replace(/\/$/, "");
-        Theme._themeDirectory = themeDirectory;
+        ThemeVars._themeDirectory = themeDirectory;
     }
 
     public static async apply(themeName: string): Promise<void> {
         //
         // if no theme directory is set, throw an error
-        if (!Theme._themeDirectory) {
+        if (!ThemeVars._themeDirectory) {
             throw new Error("Theme directory is not set");
         }
 
@@ -38,17 +38,17 @@ export class Theme {
             const key = split[0].trim();
             const value = split[1].trim().split('"')[1].trim();
             console.debug({ key, value });
-            Theme.setColor(key, value);
+            ThemeVars.set(key, value);
         }
     }
 
-    public static setColor(key: string, value: string): void {
-        key = Theme.normalizeKey(key);
+    public static set(key: string, value: string): void {
+        key = ThemeVars.normalizeKey(key);
         document.documentElement.style.setProperty(`--${key}`, value.trim());
     }
 
-    public static getColor(key: string): string {
-        key = Theme.normalizeKey(key);
+    public static get(key: string): string {
+        key = ThemeVars.normalizeKey(key);
         return getComputedStyle(document.documentElement)
             .getPropertyValue(`--${key}`)
             .trim();

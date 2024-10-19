@@ -1,4 +1,4 @@
-import { FlowContext } from "../../../../src/libs/FlowContext";
+import { FlowContext } from "../../../../src/libs/flow-context/FlowContext";
 import { QuizState } from "../../../../src/models/QuizState";
 import { initQuizModule } from "./initQuizModule";
 import { initBestScore } from "./initBestScore";
@@ -6,10 +6,10 @@ import { wait } from "../../../core/animation/wait";
 
 import { TIME } from "../../constants/TIME";
 import { LoadingAnimation } from "../../components/LoadingSpinner.xref";
-import { TaskGroup } from "../../../../src/libs/Task";
+import { TaskGroup } from "../../../../src/libs/anime+/Task";
 import { $TitleHeading } from "../../components/TitleHeading.xref";
 import { EventName } from "../../../../src/models/EventName";
-import { Theme } from "../../../../src/libs/Theme";
+import { ThemeVars } from "../../../../src/libs/theme-vars/ThemeVars";
 
 export async function onQuizStart() {
     const [state, setState] = FlowContext.context<QuizState>();
@@ -19,7 +19,7 @@ export async function onQuizStart() {
 
         const asyncGroup = new TaskGroup();
         asyncGroup.add(
-            Theme.apply(state.settings.theme).then(() =>
+            ThemeVars.apply(state.settings.theme).then(() =>
                 LoadingAnimation.start(),
             ),
         );

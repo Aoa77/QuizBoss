@@ -2,7 +2,7 @@ import { ELEMENT } from "../constants/ELEMENT";
 import { GuessButton } from "./GuessButton";
 import { createXref } from "../../core/animation/dom/createXref";
 import { QuizState } from "../../../src/models/QuizState";
-import { FlowContext } from "../../../src/libs/FlowContext";
+import { FlowContext } from "../../../src/libs/flow-context/FlowContext";
 
 export function GuessButtonArea() {
     ///

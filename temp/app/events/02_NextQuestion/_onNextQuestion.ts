@@ -1,4 +1,4 @@
-import { FlowContext } from "../../../../src/libs/FlowContext";
+import { FlowContext } from "../../../../src/libs/flow-context/FlowContext";
 import { QuizState } from "../../../../src/models/QuizState";
 import { bindGuessButtons } from "./bindGuessButtons";
 
@@ -9,7 +9,7 @@ import { ButtonGroupAnimation } from "../../animations/ButtonGroupAnimation";
 import { QuizItem } from "../../../../src/models/QuizItem";
 import { xref } from "../../../core/animation/dom/xref";
 import { ELEMENT } from "../../constants/ELEMENT";
-import { TaskGroup } from "../../../../src/libs/Task";
+import { TaskGroup } from "../../../../src/libs/anime+/Task";
 import { TransitionAnimation } from "../../animations/TransitionAnimation";
 import { ScoreAnimation } from "../../components/ScoreDisplay.animation";
 import { ProgressAnimation } from "../../components/ProgressDisplay.animation";

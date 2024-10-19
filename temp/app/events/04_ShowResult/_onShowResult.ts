@@ -1,4 +1,4 @@
-import { FlowContext } from "../../../../src/libs/FlowContext";
+import { FlowContext } from "../../../../src/libs/flow-context/FlowContext";
 import { EventName } from "../../../../src/models/EventName";
 import { QuizState } from "../../../../src/models/QuizState";
 import { handleCorrectGuess }    from "./handleCorrectGuess";

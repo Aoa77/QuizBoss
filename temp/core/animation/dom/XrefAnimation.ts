@@ -1,4 +1,4 @@
-import { TaskGroup } from "../../../../src/libs/Task";
+import { TaskGroup } from "../../../../src/libs/anime+/Task";
 import { wait } from "../wait";
 import { Xref } from "./xref";
 
