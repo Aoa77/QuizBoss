@@ -1,5 +1,5 @@
-import { QuizItem } from "../../models/QuizItem";
-import { QuizModule } from "../../models/QuizModule";
+import { QuizItem } from "../../../../src/models/QuizItem";
+import { QuizModule } from "../../../../src/models/QuizModule";
 
 export function initQuizItem(
     item: QuizItem,

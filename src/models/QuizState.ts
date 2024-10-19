@@ -1,5 +1,5 @@
 import { AppSettings } from "./AppSettings";
-import { EventState } from "../constants/EventState";
+import { EventState } from "../../temp/app/constants/EventState";
 import { QuizItem } from "./QuizItem";
 import { QuizModule } from "./QuizModule";
 

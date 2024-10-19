@@ -1,8 +1,8 @@
 import { generateRandomString } from "../../../core/util/generateRandomString";
 import { shuffle } from "../../../core/util/shuffle";
-import { AppSettings } from "../../models/AppSettings";
-import { QuizItem } from "../../models/QuizItem";
-import { QuizModule } from "../../models/QuizModule";
+import { AppSettings } from "../../../../src/models/AppSettings";
+import { QuizItem } from "../../../../src/models/QuizItem";
+import { QuizModule } from "../../../../src/models/QuizModule";
 
 
 export function randomizeGuessPool(module: QuizModule, settings: AppSettings): void {

@@ -1,7 +1,7 @@
 import { Xelement } from "../../../core/animation/dom/Xelement";
 import { xref } from "../../../core/animation/dom/xref";
 import { ButtonState } from "../../constants/ButtonState";
-import { QuizItem } from "../../models/QuizItem";
+import { QuizItem } from "../../../../src/models/QuizItem";
 
 export  function revealCorrectAnswer(
     currentItem: QuizItem,

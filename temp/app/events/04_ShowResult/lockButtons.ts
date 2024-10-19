@@ -1,11 +1,11 @@
 import { Xelement } from "../../../core/animation/dom/Xelement";
-import { QuizItem } from "../../models/QuizItem";
+import { QuizItem } from "../../../../src/models/QuizItem";
 import { handleWrongGuess } from "./handleWrongGuess";
 import { revealCorrectAnswer } from "./revealCorrectAnswer";
 import { unlockButtons } from "./unlockButtons";
 import { wrongGuessesExhausted } from "./wrongGuessesExhausted";
 import { Flow } from "../../../core/flow/Flow";
-import { QuizState } from "../../models/QuizState";
+import { QuizState } from "../../../../src/models/QuizState";
 import { xref } from "../../../core/animation/dom/xref";
 import { ButtonState } from "../../constants/ButtonState";
 

@@ -1,5 +1,5 @@
 import { Flow } from "../../../core/flow/Flow";
-import { QuizState } from "../../models/QuizState";
+import { QuizState } from "../../../../src/models/QuizState";
 import { handleCorrectGuess }    from "./handleCorrectGuess";
 import { handleWrongGuess }      from "./handleWrongGuess";
 import { lockButtons }           from "./lockButtons";

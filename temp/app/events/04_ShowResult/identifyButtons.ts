@@ -1,5 +1,5 @@
 import { Flow } from "../../../core/flow/Flow";
-import { QuizState } from "../../models/QuizState";
+import { QuizState } from "../../../../src/models/QuizState";
 import { Xelement } from "../../../core/animation/dom/Xelement";
 import { xref } from "../../../core/animation/dom/xref";
 

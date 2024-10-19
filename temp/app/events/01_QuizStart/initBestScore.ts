@@ -1,4 +1,4 @@
-import { QuizState } from "../../models/QuizState";
+import { QuizState } from "../../../../src/models/QuizState";
 
 let initBestScoreComplete = false;
 export function initBestScore(state: QuizState): number {

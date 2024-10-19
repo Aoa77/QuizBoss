@@ -4,7 +4,7 @@ import "./App.layout.css";
 import "./App.sections.css";
 
 /* modules */
-import { AppSettings } from "../models/AppSettings";
+import { AppSettings } from "../../../src/models/AppSettings";
 import { BonusNotification } from "./BonusNotification";
 import { GuessButtonArea } from "./GuessButtonArea";
 import { LoadingSpinner } from "./LoadingSpinner";
@@ -15,7 +15,7 @@ import { ScoreDisplay } from "./ScoreDisplay";
 import { TitleHeading } from "./TitleHeading";
 import { useMemo } from "react";
 import { useFlow } from "../../core/flow/useFlow";
-import { QuizState, createInitialState } from "../models/QuizState";
+import { QuizState, createInitialState } from "../../../src/models/QuizState";
 import { EventState } from "../constants/EventState";
 import { onQuizStart } from "../events/01_QuizStart/_onQuizStart";
 import { onNextQuestion } from "../events/02_NextQuestion/_onNextQuestion";

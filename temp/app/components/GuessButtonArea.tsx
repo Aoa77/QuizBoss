@@ -1,7 +1,7 @@
 import { ELEMENT } from "../constants/ELEMENT";
 import { GuessButton } from "./GuessButton";
 import { createXref } from "../../core/animation/dom/createXref";
-import { QuizState } from "../models/QuizState";
+import { QuizState } from "../../../src/models/QuizState";
 import { Flow } from "../../core/flow/Flow";
 
 export function GuessButtonArea() {

@@ -3,7 +3,7 @@ import { createXref } from "../../core/animation/dom/createXref";
 import { Xelement } from "../../core/animation/dom/Xelement";
 import { EventState } from "../constants/EventState";
 import { Flow } from "../../core/flow/Flow";
-import { QuizState } from "../models/QuizState";
+import { QuizState } from "../../../src/models/QuizState";
 import { ButtonState } from "../constants/ButtonState";
 
 export function GuessButton(params: { index: number }) {

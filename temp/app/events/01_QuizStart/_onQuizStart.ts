@@ -1,5 +1,5 @@
 import { Flow } from "../../../core/flow/Flow";
-import { QuizState } from "../../models/QuizState";
+import { QuizState } from "../../../../src/models/QuizState";
 import { initQuizModule } from "./initQuizModule";
 import { initBestScore } from "./initBestScore";
 import { wait } from "../../../core/animation/wait";

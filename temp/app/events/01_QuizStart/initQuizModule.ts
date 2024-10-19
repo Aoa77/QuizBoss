@@ -1,5 +1,5 @@
 import { shuffle } from "../../../core/util/shuffle";
-import { QuizState } from "../../models/QuizState";
+import { QuizState } from "../../../../src/models/QuizState";
 import { randomizeGuessPool } from "./randomizeGuessPool";
 import { truncateQuizItems } from "./truncateQuizItems";
 import { initQuizItem } from "./initQuizItem";

@@ -1,6 +1,6 @@
 import { wait } from "../../../core/animation/wait";
 import { TIME } from "../../constants/TIME";
-import { QuizModule } from "../../models/QuizModule";
+import { QuizModule } from "../../../../src/models/QuizModule";
 
 export async function loadImages(module: QuizModule) {
     console.info("Loading quiz images...");

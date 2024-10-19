@@ -1,5 +1,5 @@
-import { AppSettings } from "../../models/AppSettings";
-import { QuizModule } from "../../models/QuizModule";
+import { AppSettings } from "../../../../src/models/AppSettings";
+import { QuizModule } from "../../../../src/models/QuizModule";
 
 
 export function truncateQuizItems(settings: AppSettings, module: QuizModule): void {

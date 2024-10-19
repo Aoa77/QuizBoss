@@ -1,5 +1,5 @@
-import { QuizData } from "../../models/QuizData";
-import { QuizItem } from "../../models/QuizItem";
+import { QuizData } from "../../../../src/models/QuizData";
+import { QuizItem } from "../../../../src/models/QuizItem";
 import { assignAnswerToButton } from "./assignAnswerToButton";
 import { selectRandomQuestionChoice } from "./selectRandomQuestionChoice";
 

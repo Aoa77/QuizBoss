@@ -1,6 +1,6 @@
 import { Flow } from "../../../core/flow/Flow";
 import { EventState } from "../../constants/EventState";
-import { QuizState } from "../../models/QuizState";
+import { QuizState } from "../../../../src/models/QuizState";
 import { applyTheme, getThemeVar, Theme } from "../App.theme";
 
 export function MenuButton() {

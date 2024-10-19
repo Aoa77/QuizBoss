@@ -1,6 +1,6 @@
 import { calcAward } from "./calcAward";
 import { identifyButtons } from "./identifyButtons";
-import { QuizState } from "../../models/QuizState";
+import { QuizState } from "../../../../src/models/QuizState";
 import { ButtonAnimation } from "../../animations/ButtonAnimation";
 
 export async function handleCorrectGuess(

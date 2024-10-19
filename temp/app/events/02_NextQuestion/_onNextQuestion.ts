@@ -1,12 +1,12 @@
 import { Flow } from "../../../core/flow/Flow";
-import { QuizState } from "../../models/QuizState";
+import { QuizState } from "../../../../src/models/QuizState";
 import { bindGuessButtons } from "./bindGuessButtons";
 import { EventState } from "../../constants/EventState";
 import { randomInt } from "../../../core/util/randomInt";
 import { wait } from "../../../core/animation/wait";
 import { TIME } from "../../constants/TIME";
 import { ButtonGroupAnimation } from "../../animations/ButtonGroupAnimation";
-import { QuizItem } from "../../models/QuizItem";
+import { QuizItem } from "../../../../src/models/QuizItem";
 import { xref } from "../../../core/animation/dom/xref";
 import { ELEMENT } from "../../constants/ELEMENT";
 import { AsyncGroup } from "../../../core/util/AsyncGroup";

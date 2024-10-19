@@ -1,6 +1,6 @@
 import { createXref } from "../../core/animation/dom/createXref";
 import { ELEMENT } from "../constants/ELEMENT";
-import { QuizState } from "../models/QuizState";
+import { QuizState } from "../../../src/models/QuizState";
 
 export function ProgressDisplay(state: QuizState) {
     const [progressArea] = createXref.divs(ELEMENT.progressArea);
