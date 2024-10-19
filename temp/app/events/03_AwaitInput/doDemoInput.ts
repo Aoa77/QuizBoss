@@ -1,8 +1,8 @@
 import { randomInt } from "../../../core/util/randomInt";
 import { Xelement } from "../../../core/animation/dom/Xelement";
 import { xref } from "../../../core/animation/dom/xref";
-import { ButtonState } from "../../constants/ButtonState";
-import { DemoMode } from "../../constants/DemoMode";
+import { ButtonState } from "../../../../src/models/ButtonState";
+import { DemoMode } from "../../../../src/models/DemoMode";
 
 export function doDemoInput(
     answerSpot: number,

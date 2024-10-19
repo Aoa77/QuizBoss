@@ -3,7 +3,7 @@ import { QuizState } from "../../../../src/models/QuizState";
 import { EventState } from "../../constants/EventState";
 import { wait } from "../../../core/animation/wait";
 import { doDemoInput } from "./doDemoInput";
-import { DemoMode } from "../../constants/DemoMode";
+import { DemoMode } from "../../../../src/models/DemoMode";
 import { TIME } from "../../constants/TIME";
 
 export async function onAwaitInput() {

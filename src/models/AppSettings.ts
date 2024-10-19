@@ -1,20 +1,20 @@
 import { getQueryParams } from "../../temp/core/util/getQueryParams";
-import { Theme } from "../../temp/app/components/App.theme";
-import { DemoMode } from "../../temp/app/constants/DemoMode";
+import { DemoMode } from "./DemoMode";
+import { Themes } from "./Themes";
 
 export class AppSettings {
     public readonly quizModuleName: string;
     public readonly demoMode: DemoMode;
     public readonly guessButtonCount: number;
     public readonly maxQuestions: number;
-    public readonly theme: Theme;
+    public readonly theme: Themes;
 
     constructor(params: {
         quizModuleName?: string;
         demoMode?: DemoMode;
         guessButtonCount?: number;
         maxQuestions?: number;
-        theme?: Theme;
+        theme?: Themes;
     }) {
         let { quizModuleName, demoMode } = params;
         const { guessButtonCount, maxQuestions } = params;
@@ -37,7 +37,7 @@ export class AppSettings {
         this.maxQuestions =
             maxQuestions ?? +(queryParams.get("maxQuestions") ?? "0");
 
-        this.theme = params.theme ?? Theme.dark;
+        this.theme = params.theme ?? Themes.dark;
     }
 
 }

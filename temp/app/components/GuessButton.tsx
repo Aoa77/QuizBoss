@@ -4,7 +4,7 @@ import { Xelement } from "../../core/animation/dom/Xelement";
 import { EventState } from "../constants/EventState";
 import { FlowContext } from "../../../src/context/FlowContext";
 import { QuizState } from "../../../src/models/QuizState";
-import { ButtonState } from "../constants/ButtonState";
+import { ButtonState } from "../../../src/models/ButtonState";
 
 export function GuessButton(params: { index: number }) {
     const [button] = createXref.buttons(`${ELEMENT.button}_${params.index}`);

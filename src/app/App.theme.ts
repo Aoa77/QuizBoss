@@ -1,9 +1,6 @@
-export enum Theme {
-    dark = "dark",
-    light = "light",
-}
+import { Themes } from "../models/Themes";
 
-export async function applyTheme(theme: Theme): Promise<void> {
+export async function applyTheme(theme: Themes): Promise<void> {
     // use fetch to load the theme file
     const response = await fetch(`themes/App.theme.${theme}.css`, {
         headers: {

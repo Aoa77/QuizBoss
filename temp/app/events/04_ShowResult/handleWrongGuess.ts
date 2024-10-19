@@ -1,5 +1,5 @@
 import { xref } from "../../../core/animation/dom/xref";
-import { ButtonState } from "../../constants/ButtonState";
+import { ButtonState } from "../../../../src/models/ButtonState";
 import { ButtonAnimation } from "../../animations/ButtonAnimation";
 
 export async function handleWrongGuess(): Promise<void> {

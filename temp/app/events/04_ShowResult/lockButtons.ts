@@ -7,7 +7,7 @@ import { wrongGuessesExhausted } from "./wrongGuessesExhausted";
 import { FlowContext } from "../../../../src/context/FlowContext";
 import { QuizState } from "../../../../src/models/QuizState";
 import { xref } from "../../../core/animation/dom/xref";
-import { ButtonState } from "../../constants/ButtonState";
+import { ButtonState } from "../../../../src/models/ButtonState";
 
 export async function lockButtons(
     currentItem: QuizItem,
