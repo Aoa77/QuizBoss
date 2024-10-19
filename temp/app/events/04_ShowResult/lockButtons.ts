@@ -4,7 +4,7 @@ import { handleWrongGuess } from "./handleWrongGuess";
 import { revealCorrectAnswer } from "./revealCorrectAnswer";
 import { unlockButtons } from "./unlockButtons";
 import { wrongGuessesExhausted } from "./wrongGuessesExhausted";
-import { Flow } from "../../../../src/context/FlowContext";
+import { FlowContext } from "../../../../src/context/FlowContext";
 import { QuizState } from "../../../../src/models/QuizState";
 import { xref } from "../../../core/animation/dom/xref";
 import { ButtonState } from "../../constants/ButtonState";
@@ -14,7 +14,7 @@ export async function lockButtons(
     isCorrectGuess: boolean,
     wrongGuesses: number[],
 ) {
-    const [state] = Flow.context<QuizState>();
+    const [state] = FlowContext.context<QuizState>();
     const buttons = xref.buttons();
     
     for (let guess = 0; guess < buttons.length; guess++) {

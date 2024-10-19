@@ -1,4 +1,4 @@
-import { Flow } from "../../../../src/context/FlowContext";
+import { FlowContext } from "../../../../src/context/FlowContext";
 import { QuizState } from "../../../../src/models/QuizState";
 import { initQuizModule } from "./initQuizModule";
 import { initBestScore } from "./initBestScore";
@@ -11,7 +11,7 @@ import { applyTheme } from "../../components/App.theme";
 import { $TitleHeading } from "../../components/TitleHeading.xref";
 
 export async function onQuizStart() {
-    const [state, setState] = Flow.context<QuizState>();
+    const [state, setState] = FlowContext.context<QuizState>();
 
     if (state.quizModule === null) {
         state.best = initBestScore(state);

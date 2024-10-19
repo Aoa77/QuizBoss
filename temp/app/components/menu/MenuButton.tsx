@@ -1,4 +1,4 @@
-import { Flow } from "../../../../src/context/FlowContext";
+import { FlowContext } from "../../../../src/context/FlowContext";
 import { EventState } from "../../constants/EventState";
 import { QuizState } from "../../../../src/models/QuizState";
 import { applyTheme, getThemeVar, Theme } from "../App.theme";
@@ -27,7 +27,7 @@ export function MenuButton() {
 }
 
 function onPointerDown() {
-    const [state, setState] = Flow.context<QuizState>();
+    const [state, setState] = FlowContext.context<QuizState>();
     if (state.event !== EventState.AwaitInput) {
         return;
     }

@@ -1,4 +1,4 @@
-import { Flow } from "../../../../src/context/FlowContext";
+import { FlowContext } from "../../../../src/context/FlowContext";
 import { QuizState } from "../../../../src/models/QuizState";
 import { handleCorrectGuess }    from "./handleCorrectGuess";
 import { handleWrongGuess }      from "./handleWrongGuess";
@@ -11,7 +11,7 @@ import { EventState }             from "../../constants/EventState";
 const wrongGuesses: number[] = [];
 
 export async function onShowResult() {
-    const [state, setState] = Flow.context<QuizState>();
+    const [state, setState] = FlowContext.context<QuizState>();
     if (state.quizModule === null) {
         return;
     }

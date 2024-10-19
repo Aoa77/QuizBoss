@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction, useState, useEffect } from "react";
-import { Flow } from "./FlowContext";
+import { FlowContext } from "./FlowContext";
 
-export function useFlow<Tstate, Tflow>(params: {
+export function useFlowContext<Tstate, Tflow>(params: {
     initialState: Tstate;
     flowProperty: (state: Tstate) => Tflow;
     flowEvents: Map<Tflow, (state: Tstate) => void>;
@@ -24,7 +24,7 @@ export function useFlow<Tstate, Tflow>(params: {
         ///
     }, [flowEvents, state, flowProperty]);
 
-    Flow.initHook([state, setState]);
-    return Flow.context();
+    FlowContext.initHook([state, setState]);
+    return FlowContext.context();
 }
 

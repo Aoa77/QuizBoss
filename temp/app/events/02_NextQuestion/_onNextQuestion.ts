@@ -1,4 +1,4 @@
-import { Flow } from "../../../../src/context/FlowContext";
+import { FlowContext } from "../../../../src/context/FlowContext";
 import { QuizState } from "../../../../src/models/QuizState";
 import { bindGuessButtons } from "./bindGuessButtons";
 import { EventState } from "../../constants/EventState";
@@ -17,7 +17,7 @@ import { QuestionAnimation } from "../../components/QuestionHeading.animation";
 
 ///
 export async function onNextQuestion() {
-    const [state, setState] = Flow.context<QuizState>();
+    const [state, setState] = FlowContext.context<QuizState>();
     if (state.quizModule === null) {
         throw new Error("QuizModule is null");
     }

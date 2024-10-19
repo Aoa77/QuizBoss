@@ -1,11 +1,11 @@
-import { Flow } from "../../../../src/context/FlowContext";
+import { FlowContext } from "../../../../src/context/FlowContext";
 import { QuizState } from "../../../../src/models/QuizState";
 import { Xelement } from "../../../core/animation/dom/Xelement";
 import { xref } from "../../../core/animation/dom/xref";
 
 
 export function identifyButtons(): IdentifyButtonsResult {
-    const [state] = Flow.context<QuizState>();
+    const [state] = FlowContext.context<QuizState>();
     const { answerSpot } = state;
     const all = xref.buttons();
     const correct = all[answerSpot];

@@ -1,4 +1,4 @@
-import { Flow } from "../../../../src/context/FlowContext";
+import { FlowContext } from "../../../../src/context/FlowContext";
 import { QuizState } from "../../../../src/models/QuizState";
 import { EventState } from "../../constants/EventState";
 import { wait } from "../../../core/animation/wait";
@@ -7,7 +7,7 @@ import { DemoMode } from "../../constants/DemoMode";
 import { TIME } from "../../constants/TIME";
 
 export async function onAwaitInput() {
-    const [state, setState] = Flow.context<QuizState>();
+    const [state, setState] = FlowContext.context<QuizState>();
     const { settings } = state;
     const { demoMode } = settings;
 

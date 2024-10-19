@@ -14,7 +14,7 @@ import { QuestionImage } from "../../temp/app/components/QuestionImage";
 import { ScoreDisplay } from "../../temp/app/components/ScoreDisplay";
 import { TitleHeading } from "../../temp/app/components/TitleHeading";
 import { useMemo } from "react";
-import { useFlow } from "../context/useFlowContext";
+import { useFlowContext } from "../context/useFlowContext";
 import { QuizState, createInitialState } from "../models/QuizState";
 import { EventState } from "../../temp/app/constants/EventState";
 import { onQuizStart } from "../../temp/app/events/01_QuizStart/_onQuizStart";
@@ -30,7 +30,7 @@ export function App(settings: AppSettings) {
     const guessButtonArea = useMemo(() => <GuessButtonArea />, []);
 
     ///
-    const [state] = useFlow<QuizState, EventState>({
+    const [state] = useFlowContext<QuizState, EventState>({
         initialState: createInitialState(settings),
         flowProperty: (state) => {
             return state.event;
