@@ -1,4 +1,4 @@
-import { FlowContext } from "../../../../src/context/FlowContext";
+import { FlowContext } from "../../../../src/libs/FlowContext";
 import { QuizState } from "../../../../src/models/QuizState";
 
 export function wrongGuessesExhausted(wrongGuesses: number[]): boolean {

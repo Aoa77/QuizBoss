@@ -1,5 +1,5 @@
-import { FlowContext } from "../../../../src/context/FlowContext";
-import { Theme } from "../../../../src/context/Theme";
+import { FlowContext } from "../../../../src/libs/FlowContext";
+import { Theme } from "../../../../src/libs/Theme";
 import { EventName } from "../../../../src/models/EventName";
 import { QuizState } from "../../../../src/models/QuizState";
 import { ThemeName } from "../../../../src/models/Theme";

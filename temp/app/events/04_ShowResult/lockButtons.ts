@@ -4,7 +4,7 @@ import { handleWrongGuess } from "./handleWrongGuess";
 import { revealCorrectAnswer } from "./revealCorrectAnswer";
 import { unlockButtons } from "./unlockButtons";
 import { wrongGuessesExhausted } from "./wrongGuessesExhausted";
-import { FlowContext } from "../../../../src/context/FlowContext";
+import { FlowContext } from "../../../../src/libs/FlowContext";
 import { QuizState } from "../../../../src/models/QuizState";
 import { xref } from "../../../core/animation/dom/xref";
 import { ButtonStyle } from "../../../../src/models/ButtonStyle";

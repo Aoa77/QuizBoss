@@ -1,4 +1,4 @@
-import { Theme } from "../../../../src/context/Theme";
+import { Theme } from "../../../../src/libs/Theme";
 
 export function ShareButton() {
     const svgSize = 48;

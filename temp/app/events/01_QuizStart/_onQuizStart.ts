@@ -1,4 +1,4 @@
-import { FlowContext } from "../../../../src/context/FlowContext";
+import { FlowContext } from "../../../../src/libs/FlowContext";
 import { QuizState } from "../../../../src/models/QuizState";
 import { initQuizModule } from "./initQuizModule";
 import { initBestScore } from "./initBestScore";
@@ -9,7 +9,7 @@ import { LoadingAnimation } from "../../components/LoadingSpinner.xref";
 import { AsyncGroup } from "../../../../src/libs/AsyncGroup";
 import { $TitleHeading } from "../../components/TitleHeading.xref";
 import { EventName } from "../../../../src/models/EventName";
-import { Theme } from "../../../../src/context/Theme";
+import { Theme } from "../../../../src/libs/Theme";
 
 export async function onQuizStart() {
     const [state, setState] = FlowContext.context<QuizState>();
