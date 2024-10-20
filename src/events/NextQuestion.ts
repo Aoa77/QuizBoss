@@ -51,7 +51,7 @@ export async function NextQuestion() {
     // const currentItem = quizItems[state.currentItemIndex];
 
     await loadingSpinner.fadeOut.start();
-    await questionImage.fadeIn.start();
+     questionImage.fadeIn.start();
 
     state.eventWait = 0;
     // setState({ ...state, eventName: EventName.ShowResult });

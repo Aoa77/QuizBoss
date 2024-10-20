@@ -36,4 +36,8 @@ export class TaskGroup {
     public async any() {
         await Promise.race(this._tasks);
     }
+
+    public async first() {
+        await this._tasks[0];
+    }
 }

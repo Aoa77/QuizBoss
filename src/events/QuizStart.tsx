@@ -10,10 +10,9 @@ import { EventName } from "../models/EventName";
 import { QuizItem } from "../models/QuizItem";
 import { QuizModule } from "../models/QuizModule";
 import { QuizState } from "../models/QuizState";
-import { QuestionImage } from "../components/QuestionImage";
 
 const config = {
-    FIRST_QUESTION_DELAY: 1000,
+    FIRST_QUESTION_DELAY: 1,
 };
 
 export async function QuizStart() {
@@ -129,32 +128,32 @@ function randomizeGuessPool(module: QuizModule, settings: AppSettings): void {
 async function loadImages(module: QuizModule) {
     ///
     console.info("Loading quiz images...");
-    const questionImage = QuestionImage.animation;
 
     ///
+    const tasks = Task.group();
     for (const item of module.quizData.items) {
-        const [width, height] = await fetchImageSize(item.imageSrc);
-        item.imageWidth = width;
-        item.imageHeight = height;
-        if (questionImage.minHeight < 1 || questionImage.minHeight > height) {
-            questionImage.minHeight = height;
-        }
+        tasks.add(fetchImage(item));
     }
+    await tasks.first();
 }
-async function fetchImageSize(src: string): Promise<[number, number]> {
-    const response = await fetch(src);
+async function fetchImage(item: QuizItem): Promise<void> {
+    const response = await fetch(item.imageSrc);
     if (!response.ok) {
-        throw new Error(`Failed to load image: ${src}`);
+        throw new Error(`Failed to load image: ${item.imageSrc}`);
     }
+    
     const blob = await response.blob();
     const img = new Image();
-    const load = new Promise<[number,number]>((resolve) => {
+    const load = new Promise<[number, number]>((resolve) => {
         img.onload = () => {
             const size: [number, number] = [img.width, img.height];
-            console.debug(`Image ${src} loaded:`, size);
+            console.debug(`Image ${item.imageSrc} loaded:`, size);
             resolve(size);
         };
     });
+
     img.src = URL.createObjectURL(blob);
-    return await load;
+    const [width, height] = await load;
+    item.imageWidth = width;
+    item.imageHeight = height;
 }

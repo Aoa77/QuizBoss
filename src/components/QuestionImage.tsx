@@ -5,6 +5,7 @@ import { AnimationTask } from "../libs/anime+/AnimationTask";
 import { Ease } from "../libs/anime+/Ease";
 import { Lazy } from "../libs/csharp-sim/Lazy";
 import { LoadingSpinner } from "./LoadingSpinner";
+import { CssUnit } from "../libs/theme-vars/CssUnit";
 
 const config = {
     SECTION_ID: "QuestionImage",
@@ -24,13 +25,10 @@ export function QuestionImage() {
 
     const item = currentQuizItem(state);
     if (item !== null) {
-        jsx = (
-            <img
-                src={item.imageSrc}
-                height={QuestionImage.animation.minHeight}
-                alt=""
-            />
-        );
+        const imgStyle: CSSProperties = {
+            height: CssUnit.cqh(loadingSpinner.height),
+        };
+        jsx = <img src={item.imageSrc} style={imgStyle} alt="" />;
     }
 
     return (
@@ -46,8 +44,6 @@ class QuestionImageAnimation {
     public constructor(ref: RefObject<HTMLDivElement>) {
         this.ref = ref;
     }
-
-    public minHeight: number = 0;
 
     ///
     public get fadeIn(): AnimationTask {

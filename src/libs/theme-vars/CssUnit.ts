@@ -8,6 +8,10 @@ export class CssUnit {
         return `${value}cqh`;
     }
 
+    public static px(value: number): string {
+        return `${value}px`;
+    }
+
     public static rem(value: number): string {
         return `${value}rem`;
     }

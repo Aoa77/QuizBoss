@@ -1,4 +1,4 @@
-import { CSSProperties } from "react";
+import { createRef, CSSProperties, RefObject } from "react";
 import { SvgThings } from "../libs/theme-vars/SvgThings";
 import { CssUnit } from "../libs/theme-vars/CssUnit";
 import { ThemeVars } from "../libs/theme-vars/ThemeVars";
@@ -16,7 +16,7 @@ const config = {
     CY: 50,
     FADE_DURATION: 1000,
     BALL_STAGGER: 420,
-    HEIGHT: 40,
+    HEIGHT: 10,
 };
 
 const sectionStyle: CSSProperties = {
@@ -27,8 +27,10 @@ const sectionStyle: CSSProperties = {
 };
 
 const svgStyle: CSSProperties = {
-    height: CssUnit.cqh(0.50 * config.HEIGHT),
+    height: CssUnit.cqh(1 * config.HEIGHT),
 };
+
+const ref: RefObject<HTMLDivElement> = createRef<HTMLDivElement>();
 
 export function LoadingSpinner() {
     const viewBox = SvgThings.viewBox(config.VIEWBOX);
@@ -42,7 +44,7 @@ export function LoadingSpinner() {
     ));
 
     return (
-        <section id={config.SECTION_ID} style={sectionStyle}>
+        <section id={config.SECTION_ID} ref={ref} style={sectionStyle}>
             <svg
                 style={svgThemeStyle}
                 viewBox={viewBox}
@@ -55,8 +57,12 @@ export function LoadingSpinner() {
 
 class LoadingSpinnerAnimation {
     ///
+    public readonly height: number;
+    public readonly ref: RefObject<HTMLDivElement>;
     public readonly sectionStyle: CSSProperties;
-    public constructor(sectionStyle: CSSProperties) {
+    public constructor(height:number, ref: RefObject<HTMLDivElement>, sectionStyle: CSSProperties) {
+        this.height = height;
+        this.ref = ref;
         this.sectionStyle = sectionStyle;
     }
 
@@ -105,4 +111,4 @@ class LoadingSpinnerAnimation {
     );
 }
 
-LoadingSpinner.animation = new LoadingSpinnerAnimation(sectionStyle);
+LoadingSpinner.animation = new LoadingSpinnerAnimation(config.HEIGHT, ref, sectionStyle);
