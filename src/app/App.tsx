@@ -17,6 +17,14 @@ export function App(settings: AppSettings) {
             $QuizTitle.fadeIn.start();
             await $LoadingSpinner.fadeIn.start();
             $LoadingSpinner.loop.play();
+            await Task.delay(1765);
+            $LoadingSpinner.loop.pause();
+            await Task.delay(1765);
+            $LoadingSpinner.loop.restart();
+            await Task.delay(1765);
+            $LoadingSpinner.loop.pause();
+            await Task.delay(1765);
+            $LoadingSpinner.loop.play();
         }
 
         run();
