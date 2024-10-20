@@ -8,7 +8,7 @@ line=$(printf "%${LEN}s" | tr " " "$CHAR")
 printf "\n%s\n%s\n%s\n\n" "$line" "$script" "$line"
 set -x
 ###############################################################
-vite --host --port 3001
+vite --host --port 3000
 ###############################################################
 set +x
 echo

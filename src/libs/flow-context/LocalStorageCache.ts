@@ -5,7 +5,7 @@ export class LocalStorageCache<T> {
 
     public constructor(
         reader: (item: string) => T,
-        writer: (value: T) => string
+        writer: (value: T) => string,
     ) {
         this._cache = new Map();
         this._reader = reader;
@@ -25,7 +25,7 @@ export class LocalStorageCache<T> {
         localStorage.setItem(key, raw);
     }
 
-    public get(key: string): T {
+    public get(key: string, initValue?: T): T {
         const cached = this._cache.get(key);
         if (cached !== undefined) {
             return cached;
@@ -33,7 +33,11 @@ export class LocalStorageCache<T> {
 
         const value = this.read(key);
         if (value === null) {
-            throw new Error(`Key not found: ${key}`);
+            if (initValue === undefined) {
+                throw new Error(`Key not found: ${key}, and no initValue provided.`);
+            }
+            this.set(key, initValue);
+            return initValue;
         }
 
         this._cache.set(key, value);

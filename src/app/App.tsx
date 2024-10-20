@@ -6,6 +6,8 @@ import { useFlowContext } from "../libs/flow-context/useFlowContext";
 import { initQuizState, QuizState } from "../models/QuizState";
 import { EventName } from "../models/EventName";
 import { QuizStart } from "../events/QuizStart";
+import { NextQuestion } from "../events/NextQuestion";
+import { QuestionImage } from "../components/QuestionImage";
 
 export function App(settings: AppSettings) {
     
@@ -17,7 +19,7 @@ export function App(settings: AppSettings) {
         },
         flowEvents: new Map<EventName, (state: QuizState) => Promise<void>>([
             [EventName.QuizStart, QuizStart],
-            // [EventName.NextQuestion, onNextQuestion],
+            [EventName.NextQuestion, NextQuestion],
             // [EventName.AwaitInput, onAwaitInput],
             // [EventName.ShowResult, onShowResult],
         ]),
@@ -28,8 +30,9 @@ export function App(settings: AppSettings) {
 
     return (
         <main>
-            <QuizTitle text={settings.quizModuleName} />
+            <QuizTitle />
             <LoadingSpinner />
+            <QuestionImage />
         </main>
     );
 }
