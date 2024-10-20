@@ -22,12 +22,22 @@
             "*.ts": "$(capture).js, $(capture).d.ts.map, $(capture).*.ts, $(capture)_*.js, $(capture)_*.ts, use$(capture).ts, $$(capture).ts",
 
             "*.tsx": "$(capture).ts, $(capture).*.tsx, $(capture)_*.ts, $(capture)_*.tsx, $(capture).less, $(capture).module.less, $(capture).module.less.d.ts, $(capture).scss, $(capture).module.scss, $(capture).module.scss.d.ts, $(capture).css.ts, $(capture).css, $(capture).*.css, $(capture).*.ts"
-        }
+        },
+        "colorize.include": [
+            "**/*.ts",
+            "**/*.tsx",
+            "**/*.css",
+            "**/*.scss",
+            "**/*.sass",
+            "**/*.less",
+            "**/*.styl"
+        ]
     },
     "extensions": {
         "recommendations": [
             "esbenp.prettier-vscode",
             "github.copilot-chat",
+            "kamikillerto.vscode-colorize",
             "mhutchie.git-graph"
         ]
     }

@@ -33,15 +33,17 @@ html {
     font-size: calc(0.5 * (var(--fw) + var(--fh)));
 }
 
-/* set body background color */
+/* set background colors */
 body {
     background-color: var(--tv_BODY_backgroundColor);
+}
+main {
+    background-color: var(--tv_MAIN_backgroundColor);
 }
 
 /* <main> is the app container */
 /* 100cqw and 100cqh are equal to its width and height */
 main {
-    background-color: var(--tv_MAIN_backgroundColor);
     width: var(--width);
     height: var(--height);
     margin-left: var(--mainCenterLeft);
@@ -60,13 +62,21 @@ section {
     height: 100cqh;
 
     align-content: center;
+    align-items: center;
     text-align: center;
  
     opacity: 0.00;
     overflow: hidden;
 }
 
-/* sections are initially transparent, their inner divs are opaque */
-section > div {
+/* sections are initially transparent, their inner elements are opaque */
+section > * {
     opacity: 1;
+}
+
+/* set image width */
+section > img {
+    /* display: block; */
+    width: 80cqw;
+    /* margin: 0 auto; */
 }

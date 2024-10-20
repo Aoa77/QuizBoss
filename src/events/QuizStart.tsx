@@ -1,6 +1,6 @@
 import { AppSettings } from "../app/AppSettings";
-import { $LoadingSpinner } from "../components/LoadingSpinner";
-import { $QuizTitle } from "../components/QuizTitle";
+import { LoadingSpinner } from "../components/LoadingSpinner";
+import { QuizTitle } from "../components/QuizTitle";
 import { Task } from "../libs/csharp-sim/Task";
 import { $LocalStorageCache } from "../libs/flow-context/$LocalStorageCache";
 import { FlowContext } from "../libs/flow-context/FlowContext";
@@ -11,16 +11,23 @@ import { QuizItem } from "../models/QuizItem";
 import { QuizModule } from "../models/QuizModule";
 import { QuizState } from "../models/QuizState";
 
+const config = {
+    FIRST_QUESTION_DELAY: 1000,
+}
+
 export async function QuizStart() {
     const [state, setState] = FlowContext.current<QuizState>();
+    const loadingSpinner = LoadingSpinner.animation;
+    const quizTitle = QuizTitle.animation;
 
-    await $LoadingSpinner.fadeIn.start();
-    $LoadingSpinner.loop.play();
-
+    
     if (state.quizModule === null) {
         if (state.eventWait > 0) {
             throw new Error("quizModel init has failed.");
         }
+        
+        await loadingSpinner.fadeIn.start();
+        loadingSpinner.loop.play();
 
         state.best = $LocalStorageCache.numbers.get("best", 0);
         await initQuizModule(state);
@@ -28,7 +35,8 @@ export async function QuizStart() {
         return;
     }
 
-    await $QuizTitle.fadeIn.start();
+    await quizTitle.fadeIn.start();
+    await Task.delay(config.FIRST_QUESTION_DELAY);
     setState({ ...state, eventName: EventName.NextQuestion });
 }
 

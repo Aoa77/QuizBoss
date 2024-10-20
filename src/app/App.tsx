@@ -1,4 +1,4 @@
-import "./App.layout.css";
+import "./App.css";
 import { AppSettings } from "./AppSettings";
 import { LoadingSpinner } from "../components/LoadingSpinner";
 import { QuizTitle } from "../components/QuizTitle";
@@ -12,7 +12,8 @@ import { QuestionImage } from "../components/QuestionImage";
 export function App(settings: AppSettings) {
     
     ///
-    const [state] = useFlowContext<QuizState, EventName>({
+    //const [state] = 
+    useFlowContext<QuizState, EventName>({
         initialState: initQuizState(settings),
         flowProperty: (state) => {
             return state.eventName;
@@ -21,12 +22,9 @@ export function App(settings: AppSettings) {
             [EventName.QuizStart, QuizStart],
             [EventName.NextQuestion, NextQuestion],
             // [EventName.AwaitInput, onAwaitInput],
-            // [EventName.ShowResult, onShowResult],
+            [EventName.ShowResult, NextQuestion],
         ]),
     });
-    console.info("App", state);
-
-
 
     return (
         <main>

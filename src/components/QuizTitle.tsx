@@ -17,7 +17,7 @@ const config = {
 const style: CSSProperties = {
     alignContent: "normal",
     fontFamily: ThemeFont.serif,
-    fontSize: CssUnit.rem(8),
+    fontSize: CssUnit.rem(7),
     height: CssUnit.cqh(10),
     top: CssUnit.cqh(5),
 };
@@ -45,12 +45,12 @@ async function onPointerDown() {
     }
 }
 
-export class $QuizTitle {
+class QuizTitleAnimation {
     ///
-    public static get fadeIn(): AnimationTask {
+    public get fadeIn(): AnimationTask {
         return this._fadeIn.value;
     }
-    private static readonly _fadeIn: Lazy<AnimationTask> =
+    private readonly _fadeIn: Lazy<AnimationTask> =
         AnimationTask.createById(config.SECTION_ID, {
             opacity: [0, 1],
             duration: config.FADE_DURATION,
@@ -58,10 +58,10 @@ export class $QuizTitle {
         });
 
     ///
-    public static get fadeOut(): AnimationTask {
+    public get fadeOut(): AnimationTask {
         return this._fadeOut.value;
     }
-    private static readonly _fadeOut: Lazy<AnimationTask> =
+    private readonly _fadeOut: Lazy<AnimationTask> =
         AnimationTask.createById(config.SECTION_ID, {
             opacity: [1, 0],
             duration: config.FADE_DURATION,
@@ -69,6 +69,7 @@ export class $QuizTitle {
         });
 }
 
+QuizTitle.animation = new QuizTitleAnimation();
 
 
 

@@ -1,9 +1,10 @@
-import { $LoadingSpinner } from "../components/LoadingSpinner";
-import { $QuestionImage } from "../components/QuestionImage";
-import { Task } from "../libs/csharp-sim/Task";
 import { FlowContext } from "../libs/flow-context/FlowContext";
+import { Task } from "../libs/csharp-sim/Task";
+import { LoadingSpinner } from "../components/LoadingSpinner";
+import { QuestionImage } from "../components/QuestionImage";
 import { QuizItem } from "../models/QuizItem";
 import { QuizState } from "../models/QuizState";
+import { EventName } from "../models/EventName";
 
 export async function NextQuestion() {
     const [state, setState] = FlowContext.current<QuizState>();
@@ -11,19 +12,40 @@ export async function NextQuestion() {
         throw new Error("QuizModule is null");
     }
 
+    const loadingSpinner = LoadingSpinner.animation;
+    const questionImage = QuestionImage.animation;
+
+    if (state.eventName === EventName.ShowResult) {
+        
+        console.info({
+            index: state.quizModule.quizData.items.length - state.currentItemIndex,
+        });
+        await Task.delay(25);
+        ++state.currentItemIndex;
+        if (state.currentItemIndex >= state.quizModule.quizData.items.length) {
+            state.currentItemIndex = 0;
+            return;
+        }
+        setState({ ...state, eventName: EventName.ShowResult });
+        return;
+    }
+
     // const currentGuessPool: string[] = [];
     const quizData = state.quizModule.quizData;
     const quizItems = quizData.items;
     const currentItem = quizItems[state.currentItemIndex];
 
-    if (!isReady(currentItem, $QuestionImage.ref.current!)) {
+    if (!isReady(currentItem, questionImage.ref.current!)) {
         await Task.delay(100);
         setState({ ...state, eventWait: ++state.eventWait });
         return;
     }
 
-    await $LoadingSpinner.fadeOut.start();
-    await $QuestionImage.fadeIn.start();
+    await loadingSpinner.fadeOut.start();
+    await questionImage.fadeIn.start();
+
+    state.eventWait = 0;
+    setState({ ...state, eventName: EventName.ShowResult });
 
     // state.answerSpot = randomInt(0, state.settings.guessButtonCount);
     // console.info("answerSpot: ", state.answerSpot);

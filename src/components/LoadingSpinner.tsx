@@ -14,17 +14,20 @@ const config = {
     RADIUS_ARRAY: [10, 5],
     CX_ARRAY: [45, 70, 95],
     CY: 50,
-    FADE_DURATION: 250,
+    FADE_DURATION: 1000,
     BALL_STAGGER: 420,
+    HEIGHT: 40,
 };
 
 const sectionStyle: CSSProperties = {
-    height: CssUnit.cqh(15),
+    height: CssUnit.cqh(config.HEIGHT),
     top: CssUnit.cqh(15),
+    opacity: 0,
+    backgroundColor: "#00ff0022",
 };
 
 const svgStyle: CSSProperties = {
-    height: sectionStyle.height,
+    height: CssUnit.cqh(0.50 * config.HEIGHT),
 };
 
 export function LoadingSpinner() {
@@ -50,45 +53,56 @@ export function LoadingSpinner() {
     );
 }
 
-export class $LoadingSpinner {
+class LoadingSpinnerAnimation {
     ///
-    public static get fadeIn(): AnimationTask {
+    public readonly sectionStyle: CSSProperties;
+    public constructor(sectionStyle: CSSProperties) {
+        this.sectionStyle = sectionStyle;
+    }
+
+    ///
+    public get fadeIn(): AnimationTask {
         return this._fadeIn.value;
     }
-    private static readonly _fadeIn: Lazy<AnimationTask> =
-        AnimationTask.createById(config.SECTION_ID, {
+    private readonly _fadeIn: Lazy<AnimationTask> = AnimationTask.createById(
+        config.SECTION_ID,
+        {
             opacity: [0, 1],
             duration: config.FADE_DURATION,
             easing: Ease.linear,
-        });
+        },
+    );
 
     ///
-    public static get fadeOut(): AnimationTask {
+    public get fadeOut(): AnimationTask {
         return this._fadeOut.value;
     }
-    private static readonly _fadeOut: Lazy<AnimationTask> =
-        AnimationTask.createById(config.SECTION_ID, {
+    private readonly _fadeOut: Lazy<AnimationTask> = AnimationTask.createById(
+        config.SECTION_ID,
+        {
             opacity: [1, 0],
             duration: config.FADE_DURATION,
             easing: Ease.linear,
-        });
+        },
+    );
 
     ///
-    public static get loop(): AnimationTask {
+    public get loop(): AnimationTask {
         return this._loop.value;
     }
-    private static readonly _loop: Lazy<AnimationTask> =
-        AnimationTask.createByQuery(
-            `section#${config.SECTION_ID} > svg > circle`,
-            {
-                keyframes: [
-                    { r: config.RADIUS_ARRAY[0] },
-                    { r: config.RADIUS_ARRAY[1] },
-                ],
-                loop: true,
-                delay: anime.stagger(config.BALL_STAGGER),
-                duration: config.BALL_STAGGER,
-                endDelay: (_, i, l) => (i === l - 1 ? 0 : config.BALL_STAGGER),
-            },
-        );
+    private readonly _loop: Lazy<AnimationTask> = AnimationTask.createByQuery(
+        `section#${config.SECTION_ID} > svg > circle`,
+        {
+            keyframes: [
+                { r: config.RADIUS_ARRAY[0] },
+                { r: config.RADIUS_ARRAY[1] },
+            ],
+            loop: true,
+            delay: anime.stagger(config.BALL_STAGGER),
+            duration: config.BALL_STAGGER,
+            endDelay: (_, i, l) => (i === l - 1 ? 0 : config.BALL_STAGGER),
+        },
+    );
 }
+
+LoadingSpinner.animation = new LoadingSpinnerAnimation(sectionStyle);
