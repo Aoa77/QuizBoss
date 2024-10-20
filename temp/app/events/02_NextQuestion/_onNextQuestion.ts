@@ -2,7 +2,7 @@ import { FlowContext } from "../../../../src/libs/flow-context/FlowContext";
 import { QuizState } from "../../../../src/models/QuizState";
 import { bindGuessButtons } from "./bindGuessButtons";
 
-import { randomInt } from "../../../../src/util/randomInt";
+import { randomInt } from "../../../../src/libs/random-funcs/randomInt";
 import { wait } from "../../../core/animation/wait";
 import { TIME } from "../../constants/TIME";
 import { ButtonGroupAnimation } from "../../animations/ButtonGroupAnimation";

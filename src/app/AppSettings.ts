@@ -1,6 +1,6 @@
+import { HttpUtility } from "../libs/csharp-sim/HttpUtility";
 import { DemoMode, parseDemoMode } from "../models/DemoMode";
 import { ThemeName } from "../models/Theme";
-import { getQueryParams } from "../util/getQueryParams";
 
 export class AppSettings {
     public readonly quizModuleName: string;
@@ -18,24 +18,24 @@ export class AppSettings {
     }) {
         let { quizModuleName, demoMode } = params;
         const { guessButtonCount, maxQuestions } = params;
-        const queryParams = getQueryParams(window.location.search);
+        const qp = HttpUtility.parseQueryString(window.location.search);
 
-        quizModuleName ??= queryParams.get("quizModuleName");
+        quizModuleName ??= qp.get("quizModuleName");
         if (!quizModuleName) {
             throw new Error("quizModuleName is required.");
         }
         this.quizModuleName = quizModuleName;
 
         if (!demoMode) {
-            demoMode = parseDemoMode(queryParams.get("demoMode"));
+            demoMode = parseDemoMode(qp.get("demoMode"));
         }
         this.demoMode = demoMode;
 
         this.guessButtonCount =
-            guessButtonCount ?? +(queryParams.get("guessButtonCount") ?? "4");
+            guessButtonCount ?? +(qp.get("guessButtonCount") ?? "4");
 
         this.maxQuestions =
-            maxQuestions ?? +(queryParams.get("maxQuestions") ?? "0");
+            maxQuestions ?? +(qp.get("maxQuestions") ?? "0");
 
         this.theme = params.theme ?? ThemeName.dark;
     }

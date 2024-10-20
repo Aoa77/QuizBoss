@@ -16,14 +16,14 @@ export interface QuizState {
     totalItems: number;
 }
 
-export function getCurrentItem(state: QuizState): QuizItem | null {
+export function currentQuizItem(state: QuizState): QuizItem | null {
     if (!state.quizModule) {
         return null;
     }
     return state.quizModule.quizData.items[state.currentItemIndex];
 }
 
-export function createInitialState(settings: AppSettings): QuizState {
+export function initQuizState(settings: AppSettings): QuizState {
     return {
         answerSpot: 0,
         best: 0,

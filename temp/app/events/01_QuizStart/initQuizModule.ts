@@ -1,4 +1,4 @@
-import { shuffle } from "../../../../src/util/shuffle";
+import { shuffle } from "../../../../src/libs/random-funcs/shuffle";
 import { QuizState } from "../../../../src/models/QuizState";
 import { randomizeGuessPool } from "./randomizeGuessPool";
 import { truncateQuizItems } from "./truncateQuizItems";

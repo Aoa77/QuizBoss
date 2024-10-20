@@ -12,7 +12,7 @@ import { onShowResult } from "../../temp/app/events/04_ShowResult/_onShowResult"
 import { useFlowContext } from "../libs/flow-context/useFlowContext";
 import { AppSettings } from "./AppSettings";
 import { EventName } from "../models/EventName";
-import { QuizState, createInitialState } from "../models/QuizState";
+import { QuizState, initQuizState } from "../models/QuizState";
 
 ///
 
@@ -24,7 +24,7 @@ export function App666(settings: AppSettings) {
 
     ///
     const [state] = useFlowContext<QuizState, EventName>({
-        initialState: createInitialState(settings),
+        initialState: initQuizState(settings),
         flowProperty: (state) => {
             return state.eventName;
         },

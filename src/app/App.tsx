@@ -1,34 +1,30 @@
-/* stylesheets */
 import "./App.layout.css";
-
-/* models */
 import { AppSettings } from "./AppSettings";
-import { $QuizTitle, QuizTitle } from "../components/QuizTitle";
-import { useEffect } from "react";
-import { Task } from "../libs/csharp-sim/Task";
-import { $LoadingSpinner, LoadingSpinner } from "../components/LoadingSpinner";
-
-/* context */
+import { LoadingSpinner } from "../components/LoadingSpinner";
+import { QuizTitle } from "../components/QuizTitle";
+import { useFlowContext } from "../libs/flow-context/useFlowContext";
+import { initQuizState, QuizState } from "../models/QuizState";
+import { EventName } from "../models/EventName";
+import { QuizStart } from "../events/QuizStart";
 
 export function App(settings: AppSettings) {
-    useEffect(() => {
-        async function run() {
-            await Task.delay(500);
-            $QuizTitle.fadeIn.start();
-            await $LoadingSpinner.fadeIn.start();
-            $LoadingSpinner.loop.play();
-            await Task.delay(1765);
-            $LoadingSpinner.loop.pause();
-            await Task.delay(1765);
-            $LoadingSpinner.loop.restart();
-            await Task.delay(1765);
-            $LoadingSpinner.loop.pause();
-            await Task.delay(1765);
-            $LoadingSpinner.loop.play();
-        }
+    
+    ///
+    const [state] = useFlowContext<QuizState, EventName>({
+        initialState: initQuizState(settings),
+        flowProperty: (state) => {
+            return state.eventName;
+        },
+        flowEvents: new Map<EventName, (state: QuizState) => Promise<void>>([
+            [EventName.QuizStart, QuizStart],
+            // [EventName.NextQuestion, onNextQuestion],
+            // [EventName.AwaitInput, onAwaitInput],
+            // [EventName.ShowResult, onShowResult],
+        ]),
+    });
+    console.info("App", state);
 
-        run();
-    }, []);
+
 
     return (
         <main>
