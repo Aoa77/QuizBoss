@@ -20,9 +20,22 @@ const ref: RefObject<HTMLDivElement> = createRef<HTMLDivElement>();
 
 export function QuestionImage() {
     const [state] = FlowContext.current<QuizState>();
+    let jsx: JSX.Element | null = null;
+
+    const item = currentQuizItem(state);
+    if (item !== null) {
+        jsx = (
+            <img
+                src={item.imageSrc}
+                height={QuestionImage.animation.minHeight}
+                alt=""
+            />
+        );
+    }
+
     return (
         <section id={config.SECTION_ID} ref={ref} style={sectionStyle}>
-            {currentQuizItem(state)?.imageJsx ?? null}
+            {jsx}
         </section>
     );
 }
@@ -33,6 +46,8 @@ class QuestionImageAnimation {
     public constructor(ref: RefObject<HTMLDivElement>) {
         this.ref = ref;
     }
+
+    public minHeight: number = 0;
 
     ///
     public get fadeIn(): AnimationTask {

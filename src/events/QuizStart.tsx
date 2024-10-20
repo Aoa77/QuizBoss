@@ -10,22 +10,22 @@ import { EventName } from "../models/EventName";
 import { QuizItem } from "../models/QuizItem";
 import { QuizModule } from "../models/QuizModule";
 import { QuizState } from "../models/QuizState";
+import { QuestionImage } from "../components/QuestionImage";
 
 const config = {
     FIRST_QUESTION_DELAY: 1000,
-}
+};
 
 export async function QuizStart() {
     const [state, setState] = FlowContext.current<QuizState>();
     const loadingSpinner = LoadingSpinner.animation;
     const quizTitle = QuizTitle.animation;
 
-    
     if (state.quizModule === null) {
         if (state.eventWait > 0) {
             throw new Error("quizModel init has failed.");
         }
-        
+
         await loadingSpinner.fadeIn.start();
         loadingSpinner.loop.play();
 
@@ -61,7 +61,7 @@ async function initQuizModule(state: QuizState): Promise<void> {
 
     state.quizModule = module;
     state.totalItems = module.quizData.items.length;
-    loadImages(module);
+    await loadImages(module);
 }
 
 async function fetchQuizModule(quizModuleName: string): Promise<QuizModule> {
@@ -82,13 +82,7 @@ function initQuizItem(item: QuizItem, indez: number, module: QuizModule) {
     item.index = indez;
     item.isDummy = false;
     item.duplicateItemKeys ??= [];
-
     item.imageSrc = `${module.name}/${item.imageSrc}`;
-    item.image = new Image();
-    item.image.onload = () => {
-        item.imageJsx = <img src={item.image.src} alt="" />;
-        item.isLoaded = true;
-    };
 }
 
 function randomizeGuessPool(module: QuizModule, settings: AppSettings): void {
@@ -122,10 +116,9 @@ function randomizeGuessPool(module: QuizModule, settings: AppSettings): void {
             key: dummy,
             duplicateItemKeys: [],
             name: dummy,
-            image: new Image(),
-            imageJsx: <img src="" alt="" />,
             imageSrc: "",
-            isLoaded: true,
+            imageWidth: 0,
+            imageHeight: 0,
             answeredCorrectly: false,
         };
         module.quizData.randomizedGuessPool.push(dummyItem);
@@ -134,11 +127,34 @@ function randomizeGuessPool(module: QuizModule, settings: AppSettings): void {
 }
 
 async function loadImages(module: QuizModule) {
+    ///
     console.info("Loading quiz images...");
-    const THROTTLE = 2;
+    const questionImage = QuestionImage.animation;
+
+    ///
     for (const item of module.quizData.items) {
-        item.image.src = item.imageSrc;
-        console.debug(item.imageSrc);
-        await Task.delay(THROTTLE);
+        const [width, height] = await fetchImageSize(item.imageSrc);
+        item.imageWidth = width;
+        item.imageHeight = height;
+        if (questionImage.minHeight < 1 || questionImage.minHeight > height) {
+            questionImage.minHeight = height;
+        }
     }
+}
+async function fetchImageSize(src: string): Promise<[number, number]> {
+    const response = await fetch(src);
+    if (!response.ok) {
+        throw new Error(`Failed to load image: ${src}`);
+    }
+    const blob = await response.blob();
+    const img = new Image();
+    const load = new Promise<[number,number]>((resolve) => {
+        img.onload = () => {
+            const size: [number, number] = [img.width, img.height];
+            console.debug(`Image ${src} loaded:`, size);
+            resolve(size);
+        };
+    });
+    img.src = URL.createObjectURL(blob);
+    return await load;
 }

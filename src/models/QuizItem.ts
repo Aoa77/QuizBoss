@@ -4,9 +4,8 @@ export interface QuizItem {
     key: string;
     duplicateItemKeys: string[];
     name: string;
-    image: HTMLImageElement;
-    imageJsx: JSX.Element;
     imageSrc: string;
-    isLoaded: boolean;
+    imageWidth: number;
+    imageHeight: number;
     answeredCorrectly: boolean;
 }

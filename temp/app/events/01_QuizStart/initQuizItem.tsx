@@ -11,9 +11,9 @@ export function initQuizItem(
     item.duplicateItemKeys ??= [];
 
     item.imageSrc = `${module.name}/${item.imageSrc}`;
-    item.image = new Image();
-    item.image.onload = () => {
-        item.imageJsx = <img src={item.image.src} alt="" />;
-        item.isLoaded = true;
-    };
+    // item.image = new Image();
+    // item.image.onload = () => {
+    //     item.imageJsx = <img src={item.image.src} alt="" />;
+    //     item.isLoaded = true;
+    // };
 }

@@ -36,10 +36,9 @@ export function randomizeGuessPool(module: QuizModule, settings: AppSettings): v
             key: dummy,
             duplicateItemKeys: [],
             name: dummy,
-            image: new Image(),
-            imageJsx: <img src="" alt="" />,
             imageSrc: "",
-            isLoaded: true,
+            imageWidth: 0,
+            imageHeight: 0,
             answeredCorrectly: false,
         };
         module.quizData.randomizedGuessPool.push(dummyItem);
