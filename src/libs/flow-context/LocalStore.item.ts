@@ -1,4 +1,4 @@
-export class LocalStorageCache<T> {
+export class LocalStoreItem<T> {
     private readonly _cache: Map<string, T>;
     private readonly _reader: (item: string) => T;
     private readonly _writer: (value: T) => string;

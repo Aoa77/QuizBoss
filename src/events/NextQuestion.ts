@@ -5,6 +5,7 @@ import { QuestionImage } from "../components/QuestionImage";
 import { QuizItem } from "../models/QuizItem";
 import { QuizState } from "../models/QuizState";
 import { EventName } from "../models/EventName";
+import { LocalStore } from "../libs/flow-context/LocalStore";
 
 export async function NextQuestion() {
     const [state, setState] = FlowContext.current<QuizState>();
@@ -15,14 +16,31 @@ export async function NextQuestion() {
     const loadingSpinner = LoadingSpinner.animation;
     const questionImage = QuestionImage.animation;
 
+    const MIN_HEIGHT = "MIN_HEIGHT";
+
     if (state.eventName === EventName.ShowResult) {
-        
-        console.info({
-            index: state.quizModule.quizData.items.length - state.currentItemIndex,
-        });
-        await Task.delay(25);
+        const minHeight = LocalStore.numbers.read(MIN_HEIGHT);
+        const img = questionImage.ref.current!.children[0];
+        const imgHeight = img.clientHeight;
+        const imgSrc = img.getAttribute("src");
+
+        console.group();
+        console.info("imgSrc: ", imgSrc);
+        console.info("imgHeight: ", imgHeight);
+        console.info("minHeight: ", minHeight);
+        console.groupEnd();
+
+        if (minHeight === null) {
+            throw new Error("minHeight is null");
+        }
+        if (imgHeight < minHeight) {
+            LocalStore.numbers.write(MIN_HEIGHT, imgHeight);
+        }
+
+        await Task.delay(5);
         ++state.currentItemIndex;
         if (state.currentItemIndex >= state.quizModule.quizData.items.length) {
+            console.info("MIN_HEIGHT: ", minHeight);
             state.currentItemIndex = 0;
             return;
         }
@@ -30,6 +48,7 @@ export async function NextQuestion() {
         return;
     }
 
+    LocalStore.numbers.write(MIN_HEIGHT, 999999999);
     // const currentGuessPool: string[] = [];
     const quizData = state.quizModule.quizData;
     const quizItems = quizData.items;

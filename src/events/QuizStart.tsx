@@ -2,7 +2,7 @@ import { AppSettings } from "../app/AppSettings";
 import { LoadingSpinner } from "../components/LoadingSpinner";
 import { QuizTitle } from "../components/QuizTitle";
 import { Task } from "../libs/csharp-sim/Task";
-import { $LocalStorageCache } from "../libs/flow-context/$LocalStorageCache";
+import { LocalStore } from "../libs/flow-context/LocalStore";
 import { FlowContext } from "../libs/flow-context/FlowContext";
 import { generateRandomString } from "../libs/random-funcs/generateRandomString";
 import { shuffle } from "../libs/random-funcs/shuffle";
@@ -29,7 +29,7 @@ export async function QuizStart() {
         await loadingSpinner.fadeIn.start();
         loadingSpinner.loop.play();
 
-        state.best = $LocalStorageCache.numbers.get("best", 0);
+        state.best = LocalStore.numbers.get("best", 0);
         await initQuizModule(state);
         setState({ ...state, eventWait: ++state.eventWait });
         return;
