@@ -3,6 +3,8 @@ import { AnimationTask } from "../libs/anime+/AnimationTask";
 import { CssUnit } from "../libs/theme-vars/CssUnit";
 import { ThemeVars } from "../libs/theme-vars/ThemeVars";
 import { ThemeFont, TV } from "../models/Theme";
+import anime from "animejs";
+import { Ease } from "../libs/anime+/Ease";
 
 const config = {
     ANIMATION_ID: "QuizTitle",
@@ -45,7 +47,8 @@ export class $QuizTitle {
         {
             opacity: [0, 1],
             duration: 500,
-        },
+            easing: Ease.linear
+        }
     );
 
     ///
@@ -57,6 +60,7 @@ export class $QuizTitle {
         {
             opacity: [1, 0],
             duration: 500,
+            easing: Ease.linear
         },
     );
 }
