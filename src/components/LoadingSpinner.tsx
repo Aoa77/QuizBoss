@@ -5,17 +5,17 @@ import { ThemeVars } from "../libs/theme-vars/ThemeVars";
 import { TV } from "../models/Theme";
 import { AnimationTask } from "../libs/anime+/AnimationTask";
 import { Ease } from "../libs/anime+/Ease";
-import { Duration } from "../models/Duration";
 import { Lazy } from "../libs/csharp-sim/Lazy";
 import anime from "animejs";
 
 const config = {
     SECTION_ID: "LoadingSpinner",
-    VIEW_BOX_SIZE: 140,
+    VIEWBOX: [0, 0, 140, 140],
     RADIUS_ARRAY: [10, 5],
     CX_ARRAY: [45, 70, 95],
     CY: 50,
-    FADE_DURATION: Duration.Fade * 0.25,
+    FADE_DURATION: 250,
+    BALL_STAGGER: 420,
 };
 
 const sectionStyle: CSSProperties = {
@@ -28,17 +28,11 @@ const svgStyle: CSSProperties = {
 };
 
 export function LoadingSpinner() {
+    const viewBox = SvgThings.viewBox(config.VIEWBOX);
     const svgThemeStyle: CSSProperties = {
         ...svgStyle,
         fill: ThemeVars.getRef(TV.LoadingSpinner_fill),
     };
-
-    const viewBox = SvgThings.viewBox(
-        0,
-        0,
-        config.VIEW_BOX_SIZE,
-        config.VIEW_BOX_SIZE,
-    );
 
     const balls = config.CX_ARRAY.map((cx, key) => (
         <circle key={key} cx={cx} cy={config.CY} r={config.RADIUS_ARRAY[1]} />
@@ -89,12 +83,12 @@ export class $LoadingSpinner {
             {
                 keyframes: [
                     { r: config.RADIUS_ARRAY[0] },
-                    { delay: 25, r: config.RADIUS_ARRAY[1] },
+                    { r: config.RADIUS_ARRAY[1] },
                 ],
                 loop: true,
-                delay: anime.stagger(200),
-                duration: 1000,
-                endDelay: 1000,
+                delay: anime.stagger(config.BALL_STAGGER),
+                duration: config.BALL_STAGGER,
+                endDelay: (e, i, l) => (i === l - 1 ? 0 : config.BALL_STAGGER),
             },
         );
 }

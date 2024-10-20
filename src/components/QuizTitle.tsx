@@ -1,16 +1,15 @@
 import { CSSProperties } from "react";
 import { AnimationTask } from "../libs/anime+/AnimationTask";
+import { Ease } from "../libs/anime+/Ease";
+import { Lazy } from "../libs/csharp-sim/Lazy";
 import { CssUnit } from "../libs/theme-vars/CssUnit";
 import { ThemeVars } from "../libs/theme-vars/ThemeVars";
 import { ThemeFont, TV } from "../models/Theme";
-import { Ease } from "../libs/anime+/Ease";
-import { Duration } from "../models/Duration";
-import { Lazy } from "../libs/csharp-sim/Lazy";
 
 const config = {
     SECTION_ID: "QuizTitle",
     ENABLE_SECRET_RELOAD: true,
-    FADE_DURATION: Duration.Fade,
+    FADE_DURATION: 500,
 };
 
 const style: CSSProperties = {
