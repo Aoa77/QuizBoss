@@ -1,5 +1,5 @@
 section#title {
-    color: var(--THEME_QuizTitle_text);
+    color: var(--THEME_QuizTitle_color);
     height: var(--SECTION_TitleHeading);
     font-size: var(--TEXT_TitleHeading);
 }

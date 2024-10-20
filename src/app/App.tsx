@@ -5,26 +5,28 @@ import "./App.layout.css";
 import { AppSettings } from "./AppSettings";
 import { $QuizTitle, QuizTitle } from "../components/QuizTitle";
 import { useEffect } from "react";
-import { Task } from "../libs/anime+/Task";
+import { Task } from "../libs/csharp-sim/Task";
+import { $LoadingSpinner, LoadingSpinner } from "../components/LoadingSpinner";
+import { Duration } from "../models/Duration";
 
 /* context */
 
 export function App(settings: AppSettings) {
     useEffect(() => {
         async function run() {
-            while (true) {
-                await $QuizTitle.fadeIn.start();
-                await Task.delay(1000);
-                await $QuizTitle.fadeOut.start();
-                await Task.delay(1000);
-            }
+            await Task.delay(Duration.Delay);
+            await $QuizTitle.fadeIn.start();
+            await Task.delay(Duration.Delay);
+            await $LoadingSpinner.fadeIn.start();
         }
+
         run();
     }, []);
 
     return (
         <main>
             <QuizTitle text={settings.quizModuleName} />
+            <LoadingSpinner />
         </main>
     );
 }

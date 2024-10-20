@@ -6,7 +6,7 @@ export enum ELEMENT {
     buttonArea = "buttonArea",
     button = "buttons",
     questionImage = "image",
-    loadingSpinner = "loading",
+    LoadingSpinner_fill = "loading",
     navigationArea = "navigationArea",
     progressArea = "progressArea",
     question = "question",

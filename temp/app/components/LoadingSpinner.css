@@ -4,6 +4,7 @@ section#loading {
 
 section#loading > svg {
     height: calc(1 * var(--SECTION_LoadingSpinner));
-    fill: var(--THEME_loadingSpinner);
+    fill: var(--THEME_LoadingSpinner_fill);
+    
     /* background-color: aqua; */
 }

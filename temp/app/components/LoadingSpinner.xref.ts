@@ -89,7 +89,7 @@ export class LoadingAnimation {
             autoplay: false,
         });
 
-      //  this._div = xref.divs(ELEMENT.loadingSpinner)[0];
+      //  this._div = xref.divs(ELEMENT.LoadingSpinner_fill)[0];
     }
 
     public async start() {

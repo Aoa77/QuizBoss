@@ -3,11 +3,11 @@
 */
 
 body {
-    background-color: var(--bodyBackground);
+    background-color: var(--BODY_backgroundColor);
 }
 
 main {
-    background-color: var(--mainBackground);
+    background-color: var(--MAIN_backgroundColor);
 }
 
 section.menu {
@@ -80,5 +80,5 @@ section.score > label {
 }
 
 .lds-ellipsis {
-    color: var(--THEME_loadingSpinner);
+    color: var(--THEME_LoadingSpinner_fill);
 }

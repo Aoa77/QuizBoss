@@ -1,6 +1,6 @@
 import anime from "animejs";
 import { AnimeInstance, AnimeParams } from "animejs";
-import { Lazy } from "./Lazy";
+import { Lazy } from "../csharp-sim/Lazy";
 
 export class AnimationTask {
     ///

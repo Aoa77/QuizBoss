@@ -9,7 +9,7 @@ import { ButtonGroupAnimation } from "../../animations/ButtonGroupAnimation";
 import { QuizItem } from "../../../../src/models/QuizItem";
 import { xref } from "../../../core/animation/dom/xref";
 import { ELEMENT } from "../../constants/ELEMENT";
-import { TaskGroup } from "../../../../src/libs/anime+/Task";
+import { TaskGroup } from "../../../../src/libs/csharp-sim/Task";
 import { TransitionAnimation } from "../../animations/TransitionAnimation";
 import { ScoreAnimation } from "../../components/ScoreDisplay.animation";
 import { ProgressAnimation } from "../../components/ProgressDisplay.animation";

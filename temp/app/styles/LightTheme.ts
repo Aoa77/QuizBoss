@@ -2,11 +2,11 @@
 
 // export const LightTheme: Theme = {
 //     NAME: "Light",
-//     bodyBackground: "#ffffff",
-//     mainBackground: "#ddddff",
+//     BODY_backgroundColor: "#ffffff",
+//     MAIN_backgroundColor: "#ddddff",
 //     menuBackground: "#0000aa",
-//     loadingSpinner: "#ffffff",
-//     QuizTitle_text: "#000000",
+//     LoadingSpinner_fill: "#ffffff",
+//     QuizTitle_color: "#000000",
 //     questionHeading: "#0000ff",
 //     actionLink: "#0000ff",
 //     imageShadow: "#676767cc",

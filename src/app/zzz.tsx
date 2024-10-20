@@ -21,7 +21,7 @@ import { QuizState, createInitialState } from "../models/QuizState";
 
 export function App666(settings: AppSettings) {
     ///
-    const loadingSpinner = useMemo(() => <LoadingSpinner />, []);
+    const LoadingSpinner_fill = useMemo(() => <LoadingSpinner />, []);
     const bonusNotification = useMemo(() => <BonusNotification />, []);
     const guessButtonArea = useMemo(() => <GuessButtonArea />, []);
 
@@ -40,7 +40,7 @@ export function App666(settings: AppSettings) {
     });
 
     const titleText = state.quizModule?.quizData?.title ?? " ";
-    const QuizTitle_text = useMemo(
+    const QuizTitle_color = useMemo(
         () => <TitleHeading titleText={titleText} />,
         [titleText]
     );
@@ -56,9 +56,9 @@ export function App666(settings: AppSettings) {
     ///
     return (
         <main>
-            {QuizTitle_text}
+            {QuizTitle_color}
             {/* {menu} */}
-            {loadingSpinner}
+            {LoadingSpinner_fill}
             <QuestionImage {...state} />
             {questionHeading}
             {bonusNotification}

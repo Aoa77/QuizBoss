@@ -6,7 +6,7 @@ import { wait } from "../../../core/animation/wait";
 
 import { TIME } from "../../constants/TIME";
 import { LoadingAnimation } from "../../components/LoadingSpinner.xref";
-import { TaskGroup } from "../../../../src/libs/anime+/Task";
+import { TaskGroup } from "../../../../src/libs/csharp-sim/Task";
 import { $TitleHeading } from "../../components/TitleHeading.xref";
 import { EventName } from "../../../../src/models/EventName";
 import { ThemeVars } from "../../../../src/libs/theme-vars/ThemeVars";

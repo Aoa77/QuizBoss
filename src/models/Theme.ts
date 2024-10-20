@@ -10,8 +10,15 @@ export enum ThemeName {
 }
 
 export enum TV {
+    BODY_backgroundColor = "--tv_BODY_backgroundColor",
+    MAIN_backgroundColor = "--tv_MAIN_backgroundColor",
+
+    QuizTitle_color = "--tv_QuizTitle_color",
+    LoadingSpinner_fill = "--tv_LoadingSpinner_fill",
+
+
+
     actionLink = "--tv_actionLink",
-    bodyBackground = "--tv_bodyBackground",
     bonus = "--tv_bonus",
     buttonCorrectBackground = "--tv_buttonCorrectBackground",
     buttonCorrectText = "--tv_buttonCorrectText",
@@ -28,13 +35,10 @@ export enum TV {
     iconBackground = "--tv_iconBackground",
     iconForeground = "--tv_iconForeground",
     imageShadow = "--tv_imageShadow",
-    loadingSpinner = "--tv_loadingSpinner",
-    mainBackground = "--tv_mainBackground",
     menuBackground = "--tv_menuBackground",
     noBonus = "--tv_noBonus",
     progress = "--tv_progress",
     questionHeading = "--tv_questionHeading",
     scoreLabel = "--tv_scoreLabel",
     scoreValue = "--tv_scoreValue",
-    QuizTitle_text = "--tv_QuizTitle_text",
 }
