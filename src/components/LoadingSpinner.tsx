@@ -6,6 +6,8 @@ import { TV } from "../models/Theme";
 import { AnimationTask } from "../libs/anime+/AnimationTask";
 import { Ease } from "../libs/anime+/Ease";
 import { Duration } from "../models/Duration";
+import { Lazy } from "../libs/csharp-sim/Lazy";
+import anime from "animejs";
 
 const config = {
     SECTION_ID: "LoadingSpinner",
@@ -13,7 +15,7 @@ const config = {
     RADIUS_ARRAY: [10, 5],
     CX_ARRAY: [45, 70, 95],
     CY: 50,
-    FADE_DURATION: Duration.Fade,
+    FADE_DURATION: Duration.Fade * 0.25,
 };
 
 const sectionStyle: CSSProperties = {
@@ -59,25 +61,40 @@ export class $LoadingSpinner {
     public static get fadeIn(): AnimationTask {
         return this._fadeIn.value;
     }
-    private static readonly _fadeIn = AnimationTask.createById(
-        config.SECTION_ID,
-        {
+    private static readonly _fadeIn: Lazy<AnimationTask> =
+        AnimationTask.createById(config.SECTION_ID, {
             opacity: [0, 1],
             duration: config.FADE_DURATION,
             easing: Ease.linear,
-        },
-    );
+        });
 
     ///
     public static get fadeOut(): AnimationTask {
         return this._fadeOut.value;
     }
-    private static readonly _fadeOut = AnimationTask.createById(
-        config.SECTION_ID,
-        {
+    private static readonly _fadeOut: Lazy<AnimationTask> =
+        AnimationTask.createById(config.SECTION_ID, {
             opacity: [1, 0],
             duration: config.FADE_DURATION,
             easing: Ease.linear,
-        },
-    );
+        });
+
+    ///
+    public static get loop(): AnimationTask {
+        return this._loop.value;
+    }
+    private static readonly _loop: Lazy<AnimationTask> =
+        AnimationTask.createByQuery(
+            `section#${config.SECTION_ID} > svg > circle`,
+            {
+                keyframes: [
+                    { r: config.RADIUS_ARRAY[0] },
+                    { delay: 25, r: config.RADIUS_ARRAY[1] },
+                ],
+                loop: true,
+                delay: anime.stagger(200),
+                duration: 1000,
+                endDelay: 1000,
+            },
+        );
 }

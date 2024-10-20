@@ -5,6 +5,7 @@ import { ThemeVars } from "../libs/theme-vars/ThemeVars";
 import { ThemeFont, TV } from "../models/Theme";
 import { Ease } from "../libs/anime+/Ease";
 import { Duration } from "../models/Duration";
+import { Lazy } from "../libs/csharp-sim/Lazy";
 
 const config = {
     SECTION_ID: "QuizTitle",
@@ -47,25 +48,21 @@ export class $QuizTitle {
     public static get fadeIn(): AnimationTask {
         return this._fadeIn.value;
     }
-    private static readonly _fadeIn = AnimationTask.createById(
-        config.SECTION_ID,
-        {
+    private static readonly _fadeIn: Lazy<AnimationTask> =
+        AnimationTask.createById(config.SECTION_ID, {
             opacity: [0, 1],
             duration: config.FADE_DURATION,
             easing: Ease.linear,
-        },
-    );
+        });
 
     ///
     public static get fadeOut(): AnimationTask {
         return this._fadeOut.value;
     }
-    private static readonly _fadeOut = AnimationTask.createById(
-        config.SECTION_ID,
-        {
+    private static readonly _fadeOut: Lazy<AnimationTask> =
+        AnimationTask.createById(config.SECTION_ID, {
             opacity: [1, 0],
             duration: config.FADE_DURATION,
             easing: Ease.linear,
-        },
-    );
+        });
 }

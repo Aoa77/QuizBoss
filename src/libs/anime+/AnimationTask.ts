@@ -8,18 +8,18 @@ export class AnimationTask {
         id: string,
         params: AnimeParams,
     ): Lazy<AnimationTask> {
-        return AnimationTask.createByTarget(`#${id}`, params);
+        return AnimationTask.createByQuery(`#${id}`, params);
     }
 
-    public static createByTarget(
-        target: string,
+    public static createByQuery(
+        query: string,
         params: AnimeParams,
     ): Lazy<AnimationTask> {
         return new Lazy(
             () =>
                 new AnimationTask({
                     ...params,
-                    targets: target,
+                    targets: query,
                     autoplay: false,
                 }),
         );
