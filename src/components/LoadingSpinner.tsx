@@ -88,7 +88,7 @@ export class $LoadingSpinner {
                 loop: true,
                 delay: anime.stagger(config.BALL_STAGGER),
                 duration: config.BALL_STAGGER,
-                endDelay: (e, i, l) => (i === l - 1 ? 0 : config.BALL_STAGGER),
+                endDelay: (_, i, l) => (i === l - 1 ? 0 : config.BALL_STAGGER),
             },
         );
 }
