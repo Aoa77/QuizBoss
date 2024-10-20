@@ -5,11 +5,8 @@ import { initBestScore } from "./initBestScore";
 import { wait } from "../../../core/animation/wait";
 
 import { TIME } from "../../constants/TIME";
-import { LoadingAnimation } from "../../components/LoadingSpinner.xref";
 import { TaskGroup } from "../../../../src/libs/csharp-sim/Task";
-import { $TitleHeading } from "../../components/TitleHeading.xref";
 import { EventName } from "../../../../src/models/EventName";
-import { ThemeVars } from "../../../../src/libs/theme-vars/ThemeVars";
 
 export async function onQuizStart() {
     const [state, setState] = FlowContext.current<QuizState>();
@@ -18,11 +15,11 @@ export async function onQuizStart() {
         state.best = initBestScore(state);
 
         const asyncGroup = new TaskGroup();
-        asyncGroup.add(
-            ThemeVars.apply(state.settings.theme).then(() =>
-                LoadingAnimation.start(),
-            ),
-        );
+        // asyncGroup.add(
+        //     ThemeVars.apply(state.settings.theme).then(() =>
+        //         // LoadingAnimation.start(),
+        //     ),
+        // );
         asyncGroup.add(initQuizModule(state));
         await asyncGroup.all();
 
@@ -31,7 +28,7 @@ export async function onQuizStart() {
         return;
     }
 
-    await $TitleHeading.xref.fadeIn.play();
+    // await $TitleHeading.xref.fadeIn.play();
     await wait(TIME.START_DELAY);
     setState({ ...state, eventName: EventName.NextQuestion });
 }
