@@ -23,6 +23,8 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+
+    /* forces hardware acceleration for animations */
     will-change: transform;
 }
 
@@ -57,15 +59,15 @@ section {
     position: absolute;
     top: 0;
     left: 0;
- 
+
     width: 100cqw;
     height: 100cqh;
 
     align-content: center;
     align-items: center;
     text-align: center;
- 
-    opacity: 0.00;
+
+    opacity: 0;
     overflow: hidden;
 }
 

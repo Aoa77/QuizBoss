@@ -6,10 +6,13 @@ import { Ease } from "../libs/anime+/Ease";
 import { Lazy } from "../libs/csharp-sim/Lazy";
 import { LoadingSpinner } from "./LoadingSpinner";
 import { CssUnit } from "../libs/theme-vars/CssUnit";
+import { EventName } from "../models/EventName";
+import { Task } from "../libs/csharp-sim/Task";
 
 const config = {
     SECTION_ID: "QuestionImage",
     FADE_DURATION: 500,
+    ENABLE_SECRET_NEXT_IMAGE: true,
 };
 
 const loadingSpinner = LoadingSpinner.animation;
@@ -28,7 +31,14 @@ export function QuestionImage() {
         const imgStyle: CSSProperties = {
             height: CssUnit.cqh(loadingSpinner.height),
         };
-        jsx = <img src={item.imageSrc} style={imgStyle} alt="" />;
+        jsx = (
+            <img
+                src={item.imageSrc}
+                style={imgStyle}
+                alt=""
+                onPointerDown={onPointerDown}
+            />
+        );
     }
 
     return (
@@ -38,15 +48,47 @@ export function QuestionImage() {
     );
 }
 
+async function onPointerDown() {
+    if (!config.ENABLE_SECRET_NEXT_IMAGE) {
+        return;
+    }
+
+    const [state, setState] = FlowContext.current<QuizState>();
+    if (state.eventName !== EventName.NextQuestion) {
+        return;
+    }
+
+    const questionImage = QuestionImage.animation;
+    const task = Task.group();
+    task.add(loadingSpinner.begin());
+    task.add(questionImage.end());
+    await task.all();
+
+    ++state.currentItemIndex;
+    if (state.currentItemIndex >= state.quizModule!.quizData.items.length) {
+        state.currentItemIndex = 0;
+    }
+    setState({ ...state });
+}
+
 class QuestionImageAnimation {
+///
+
     ///
-    public readonly ref: RefObject<HTMLDivElement>;
-    public constructor(ref: RefObject<HTMLDivElement>) {
-        this.ref = ref;
+    public async begin(): Promise<void> {
+        await this.fadeIn.start();
     }
 
     ///
-    public get fadeIn(): AnimationTask {
+    public async end(): Promise<void> {
+        await this.scaleOut.start();
+        await this.fadeReset.start();
+        await this.scaleReset.start();
+    }
+
+
+    ///
+    private get fadeIn(): AnimationTask {
         return this._fadeIn.value;
     }
     private readonly _fadeIn: Lazy<AnimationTask> = AnimationTask.createById(
@@ -59,17 +101,43 @@ class QuestionImageAnimation {
     );
 
     ///
-    public get fadeOut(): AnimationTask {
-        return this._fadeOut.value;
+    private get fadeReset(): AnimationTask {
+        return this._fadeReset.value;
     }
-    private readonly _fadeOut: Lazy<AnimationTask> = AnimationTask.createById(
+    private readonly _fadeReset: Lazy<AnimationTask> = AnimationTask.createById(
         config.SECTION_ID,
         {
             opacity: [1, 0],
+            duration: 0,
+            easing: Ease.linear,
+        },
+    );
+
+    ///
+    private get scaleOut(): AnimationTask {
+        return this._scaleOut.value;
+    }
+    private readonly _scaleOut: Lazy<AnimationTask> = AnimationTask.createById(
+        config.SECTION_ID,
+        {
+            scale: [1, 0],
             duration: config.FADE_DURATION,
+            easing: Ease.inOutBack,
+        },
+    );
+
+    ///
+    private get scaleReset(): AnimationTask {
+        return this._scaleReset.value;
+    }
+    private readonly _scaleReset: Lazy<AnimationTask> = AnimationTask.createById(
+        config.SECTION_ID,
+        {
+            scale: [0, 1],
+            duration: 1,
             easing: Ease.linear,
         },
     );
 }
 
-QuestionImage.animation = new QuestionImageAnimation(ref);
+QuestionImage.animation = new QuestionImageAnimation();

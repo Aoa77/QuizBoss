@@ -4,7 +4,7 @@ import { createXref } from "../../core/animation/dom/createXref";
 
 export function ScoreDisplay(state: QuizState) {
     const [scoreArea] = createXref.divs(ELEMENT.scoreArea);
-    const { score, best, quizModule } = state;
+    const { score, bestScore: best, quizModule } = state;
     const { scoreText, bestText } = quizModule?.quizData ?? {};
 
     return (

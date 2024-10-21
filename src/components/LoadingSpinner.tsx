@@ -1,4 +1,4 @@
-import { createRef, CSSProperties, RefObject } from "react";
+import { CSSProperties } from "react";
 import { SvgThings } from "../libs/theme-vars/SvgThings";
 import { CssUnit } from "../libs/theme-vars/CssUnit";
 import { ThemeVars } from "../libs/theme-vars/ThemeVars";
@@ -14,23 +14,21 @@ const config = {
     RADIUS_ARRAY: [10, 5],
     CX_ARRAY: [45, 70, 95],
     CY: 50,
-    FADE_DURATION: 1000,
     BALL_STAGGER: 420,
     HEIGHT: 10,
+    FADE_DELAY: 750,
+    FADE_DURATION: 500,
+    FADE_END_DELAY: 750,
 };
 
 const sectionStyle: CSSProperties = {
     height: CssUnit.cqh(config.HEIGHT),
     top: CssUnit.cqh(15),
-    opacity: 0,
-    backgroundColor: "#00ff0022",
 };
 
 const svgStyle: CSSProperties = {
     height: CssUnit.cqh(1 * config.HEIGHT),
 };
-
-const ref: RefObject<HTMLDivElement> = createRef<HTMLDivElement>();
 
 export function LoadingSpinner() {
     const viewBox = SvgThings.viewBox(config.VIEWBOX);
@@ -44,7 +42,7 @@ export function LoadingSpinner() {
     ));
 
     return (
-        <section id={config.SECTION_ID} ref={ref} style={sectionStyle}>
+        <section id={config.SECTION_ID} style={sectionStyle}>
             <svg
                 style={svgThemeStyle}
                 viewBox={viewBox}
@@ -58,42 +56,57 @@ export function LoadingSpinner() {
 class LoadingSpinnerAnimation {
     ///
     public readonly height: number;
-    public readonly ref: RefObject<HTMLDivElement>;
     public readonly sectionStyle: CSSProperties;
-    public constructor(height:number, ref: RefObject<HTMLDivElement>, sectionStyle: CSSProperties) {
+    public constructor(height: number, sectionStyle: CSSProperties) {
         this.height = height;
-        this.ref = ref;
         this.sectionStyle = sectionStyle;
     }
 
     ///
-    public get fadeIn(): AnimationTask {
+    public async begin(): Promise<void> {
+        await this.fadeIn.start();
+        this.loop.restart();
+    }
+
+    ///
+    public async end(): Promise<void> {
+        this.loop.pause();
+        this.loop.restart();
+        this.loop.pause();
+        await this.fadeOut.start();
+    }
+
+    ///
+    private get fadeIn(): AnimationTask {
         return this._fadeIn.value;
     }
     private readonly _fadeIn: Lazy<AnimationTask> = AnimationTask.createById(
         config.SECTION_ID,
         {
             opacity: [0, 1],
+            delay: config.FADE_DELAY,
             duration: config.FADE_DURATION,
             easing: Ease.linear,
+            endDelay: config.FADE_END_DELAY,
         },
     );
 
     ///
-    public get fadeOut(): AnimationTask {
+    private get fadeOut(): AnimationTask {
         return this._fadeOut.value;
     }
     private readonly _fadeOut: Lazy<AnimationTask> = AnimationTask.createById(
         config.SECTION_ID,
         {
             opacity: [1, 0],
+            delay: config.FADE_DELAY,
             duration: config.FADE_DURATION,
             easing: Ease.linear,
         },
     );
 
     ///
-    public get loop(): AnimationTask {
+    private get loop(): AnimationTask {
         return this._loop.value;
     }
     private readonly _loop: Lazy<AnimationTask> = AnimationTask.createByQuery(
@@ -111,4 +124,7 @@ class LoadingSpinnerAnimation {
     );
 }
 
-LoadingSpinner.animation = new LoadingSpinnerAnimation(config.HEIGHT, ref, sectionStyle);
+LoadingSpinner.animation = new LoadingSpinnerAnimation(
+    config.HEIGHT,
+    sectionStyle,
+);

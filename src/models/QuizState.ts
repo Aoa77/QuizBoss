@@ -5,10 +5,9 @@ import { QuizModule } from "./QuizModule";
 
 export interface QuizState {
     answerSpot: number;
-    best: number;
+    bestScore: number;
     currentItemIndex: number;
     eventName: EventName;
-    eventWait: number,
     guessValue: string;
     quizModule: QuizModule | null;
     settings: AppSettings;
@@ -26,10 +25,9 @@ export function currentQuizItem(state: QuizState): QuizItem | null {
 export function initQuizState(settings: AppSettings): QuizState {
     return {
         answerSpot: 0,
-        best: 0,
+        bestScore: 0,
         currentItemIndex: 0,
-        eventName: EventName.QuizStart,
-        eventWait: 0,
+        eventName: EventName.AppStart,
         guessValue: "",
         quizModule: null,
         settings,

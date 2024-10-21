@@ -22,13 +22,6 @@ export async function onNextQuestion() {
     const quizData = state.quizModule.quizData;
     const quizItems = quizData.items;
     const currentItem = quizItems[state.currentItemIndex];
-    // const [questionImage] = xref.divs(ELEMENT.questionImage);
-
-    // if (false) {//!isReady(currentItem, questionImage.element)) {
-    //     await wait(TIME.LOADING_POLL);
-    //     setState({ ...state, eventWait: ++state.eventWait });
-    //     return;
-    // }
 
     state.answerSpot = randomInt(0, state.settings.guessButtonCount);
     console.info("answerSpot: ", state.answerSpot);

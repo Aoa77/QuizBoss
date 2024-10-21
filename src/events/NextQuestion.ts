@@ -2,6 +2,11 @@ import { FlowContext } from "../libs/flow-context/FlowContext";
 import { LoadingSpinner } from "../components/LoadingSpinner";
 import { QuestionImage } from "../components/QuestionImage";
 import { QuizState } from "../models/QuizState";
+import { Task } from "../libs/csharp-sim/Task";
+
+const config = {
+    NEXT_IMAGE_DELAY: 1000,
+};
 
 export async function NextQuestion() {
     const [state] = FlowContext.current<QuizState>();
@@ -9,51 +14,18 @@ export async function NextQuestion() {
         throw new Error("QuizModule is null");
     }
 
+    await Task.delay(config.NEXT_IMAGE_DELAY);
     const loadingSpinner = LoadingSpinner.animation;
     const questionImage = QuestionImage.animation;
 
-    // const MIN_HEIGHT = "MIN_HEIGHT";
-
-    // if (state.eventName === EventName.ShowResult) {
-    //     const minHeight = LocalStore.numbers.read(MIN_HEIGHT);
-    //     const img = questionImage.ref.current!.children[0];
-    //     const imgHeight = img.clientHeight;
-    //     const imgSrc = img.getAttribute("src");
-
-    //     console.group();
-    //     console.debug("imgSrc: ", imgSrc);
-    //     console.debug("imgHeight: ", imgHeight);
-    //     console.debug("minHeight: ", minHeight);
-    //     console.groupEnd();
-
-    //     if (minHeight === null) {
-    //         throw new Error("minHeight is null");
-    //     }
-    //     if (imgHeight < minHeight) {
-    //         LocalStore.numbers.write(MIN_HEIGHT, imgHeight);
-    //     }
-
-    //     await Task.delay(5);
-    //     ++state.currentItemIndex;
-    //     if (state.currentItemIndex >= state.quizModule.quizData.items.length) {
-    //         console.info("MIN_HEIGHT: ", minHeight);
-    //         state.currentItemIndex = 0;
-    //         return;
-    //     }
-    //     setState({ ...state, eventName: EventName.ShowResult });
-    //     return;
-    // }
-
-    // LocalStore.numbers.write(MIN_HEIGHT, 999999999);
     // const currentGuessPool: string[] = [];
     // const quizData = state.quizModule.quizData;
     // const quizItems = quizData.items;
     // const currentItem = quizItems[state.currentItemIndex];
 
-    await loadingSpinner.fadeOut.start();
-     questionImage.fadeIn.start();
+    await loadingSpinner.end();
+    await questionImage.begin();
 
-    state.eventWait = 0;
     // setState({ ...state, eventName: EventName.ShowResult });
 
     // state.answerSpot = randomInt(0, state.settings.guessButtonCount);
@@ -77,4 +49,3 @@ export async function NextQuestion() {
     // await ButtonGroupAnimation.fadeIn();
     // setState({ ...state, eventName: EventName.AwaitInput });
 }
-

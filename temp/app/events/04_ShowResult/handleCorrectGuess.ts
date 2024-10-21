@@ -10,9 +10,9 @@ export async function handleCorrectGuess(
     //
     const award = calcAward(wrongGuesses);
     state.score += award;
-    if (state.score > state.best) {
-        state.best = state.score;
-        localStorage.setItem("bestScore", state.best.toString());
+    if (state.score > state.bestScore) {
+        state.bestScore = state.score;
+        localStorage.setItem("bestScore", state.bestScore.toString());
     }
     const { correct, top, wrong } = identifyButtons();
     const seq = ButtonAnimation.correctGuessSequence(

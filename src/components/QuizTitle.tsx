@@ -11,7 +11,7 @@ import { QuizState } from "../models/QuizState";
 const config = {
     SECTION_ID: "QuizTitle",
     ENABLE_SECRET_RELOAD: true,
-    FADE_DURATION: 500,
+    FADE_DURATION: 1500,
 };
 
 const style: CSSProperties = {
@@ -50,26 +50,27 @@ class QuizTitleAnimation {
     public get fadeIn(): AnimationTask {
         return this._fadeIn.value;
     }
-    private readonly _fadeIn: Lazy<AnimationTask> =
-        AnimationTask.createById(config.SECTION_ID, {
+    private readonly _fadeIn: Lazy<AnimationTask> = AnimationTask.createById(
+        config.SECTION_ID,
+        {
             opacity: [0, 1],
             duration: config.FADE_DURATION,
             easing: Ease.linear,
-        });
+        },
+    );
 
     ///
     public get fadeOut(): AnimationTask {
         return this._fadeOut.value;
     }
-    private readonly _fadeOut: Lazy<AnimationTask> =
-        AnimationTask.createById(config.SECTION_ID, {
+    private readonly _fadeOut: Lazy<AnimationTask> = AnimationTask.createById(
+        config.SECTION_ID,
+        {
             opacity: [1, 0],
             duration: config.FADE_DURATION,
             easing: Ease.linear,
-        });
+        },
+    );
 }
 
 QuizTitle.animation = new QuizTitleAnimation();
-
-
-

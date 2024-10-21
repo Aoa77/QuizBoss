@@ -12,7 +12,7 @@ export async function onQuizStart() {
     const [state, setState] = FlowContext.current<QuizState>();
 
     if (state.quizModule === null) {
-        state.best = initBestScore(state);
+        state.bestScore = initBestScore(state);
 
         const asyncGroup = new TaskGroup();
         // asyncGroup.add(
@@ -24,7 +24,7 @@ export async function onQuizStart() {
         await asyncGroup.all();
 
         await wait(TIME.START_DELAY);
-        setState({ ...state, eventWait: ++state.eventWait });
+        // setState({ ...state, eventWait: ++state.eventWait });
         return;
     }
 

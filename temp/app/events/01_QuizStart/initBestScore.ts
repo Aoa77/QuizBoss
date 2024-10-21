@@ -2,7 +2,7 @@ import { QuizState } from "../../../../src/models/QuizState";
 
 let initBestScoreComplete = false;
 export function initBestScore(state: QuizState): number {
-    let value = state.best;
+    let value = state.bestScore;
 
     if (initBestScoreComplete) {
         return value;
