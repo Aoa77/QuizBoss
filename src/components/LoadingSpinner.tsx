@@ -7,18 +7,23 @@ import { AnimationTask } from "../libs/anime+/AnimationTask";
 import { Ease } from "../libs/anime+/Ease";
 import { Lazy } from "../libs/csharp-sim/Lazy";
 import anime from "animejs";
+import { Task } from "../libs/csharp-sim/Task";
 
 const config = {
     SECTION_ID: "LoadingSpinner",
     VIEWBOX: [0, 0, 140, 140],
     RADIUS_ARRAY: [10, 5],
     CX_ARRAY: [45, 70, 95],
+    CX_MOVE: [50, 75, 100],
     CY: 50,
-    BALL_STAGGER: 420,
-    HEIGHT: 10,
-    FADE_DELAY: 750,
-    FADE_DURATION: 500,
-    FADE_END_DELAY: 750,
+    HEIGHT: 20,
+
+    LOOP_STAGGER: 0,
+    LOOP_DURATION: 120,
+
+    FADE_DELAY: 250,
+    FADE_DURATION: 200,
+    FADE_END_DELAY: 50,
 };
 
 const sectionStyle: CSSProperties = {
@@ -55,6 +60,7 @@ export function LoadingSpinner() {
 
 class LoadingSpinnerAnimation {
     ///
+    private _loopStarted = false;
     public readonly height: number;
     public readonly sectionStyle: CSSProperties;
     public constructor(height: number, sectionStyle: CSSProperties) {
@@ -65,14 +71,15 @@ class LoadingSpinnerAnimation {
     ///
     public async begin(): Promise<void> {
         await this.fadeIn.start();
-        this.loop.restart();
+        if (!this._loopStarted) {
+            this._loopStarted = true;
+            this.loop.start();
+        }
+        // await Task.delay(999999);
     }
 
     ///
     public async end(): Promise<void> {
-        this.loop.pause();
-        this.loop.restart();
-        this.loop.pause();
         await this.fadeOut.start();
     }
 
@@ -112,14 +119,12 @@ class LoadingSpinnerAnimation {
     private readonly _loop: Lazy<AnimationTask> = AnimationTask.createByQuery(
         `section#${config.SECTION_ID} > svg > circle`,
         {
-            keyframes: [
-                { r: config.RADIUS_ARRAY[0] },
-                { r: config.RADIUS_ARRAY[1] },
-            ],
+            r: [5,10,5],
             loop: true,
-            delay: anime.stagger(config.BALL_STAGGER),
-            duration: config.BALL_STAGGER,
-            endDelay: (_, i, l) => (i === l - 1 ? 0 : config.BALL_STAGGER),
+            // direction: "alternate",
+            delay: anime.stagger(250),
+            duration: 500,
+            easing: Ease.linear,
         },
     );
 }

@@ -59,10 +59,8 @@ async function onPointerDown() {
     }
 
     const questionImage = QuestionImage.animation;
-    const task = Task.group();
-    task.add(loadingSpinner.begin());
-    task.add(questionImage.end());
-    await task.all();
+    await questionImage.end();
+    await loadingSpinner.begin();
 
     ++state.currentItemIndex;
     if (state.currentItemIndex >= state.quizModule!.quizData.items.length) {
