@@ -1,6 +1,6 @@
 import anime from "animejs";
 import { AnimeInstance, AnimeParams } from "animejs";
-import { Lazy } from "../csharp-sim/Lazy";
+import { Lazy } from "../friendlies/Lazy";
 
 export class AnimationTask {
     ///
@@ -26,6 +26,7 @@ export class AnimationTask {
     }
 
     private readonly _instance: AnimeInstance;
+
     private constructor(params: AnimeParams) {
         this._instance = anime(params);
     }
@@ -38,24 +39,23 @@ export class AnimationTask {
         this._instance.pause();
     }
 
-    public restart(): Promise<void> {
-        return new Promise((resolve) => {
-            this._instance.finished.then(() => {
-                resolve();
-            });
-            this._instance.restart();
-        });
-    }
+    // public restart(): Promise<void> {
+    //     return new Promise((resolve) => {
+    //         this._instance.finished.then(() => {
+    //             resolve();
+    //         });
+    //         this._instance.restart();
+    //     });
+    // }
 
-    public start(): Promise<void> {
+    public run(): Promise<void> {
         return new Promise((resolve, reject) => {
             this._instance.finished
                 .then(() => {
                     resolve();
                 })
-                .catch((e) => {
-                    console.error(e);
-                    reject(e);
+                .catch((error) => {
+                    reject(error);
                 });
 
             this.play();

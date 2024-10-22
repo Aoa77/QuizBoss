@@ -5,7 +5,7 @@ import { initBestScore } from "./initBestScore";
 import { wait } from "../../../core/animation/wait";
 
 import { TIME } from "../../constants/TIME";
-import { TaskGroup } from "../../../../src/libs/csharp-sim/Task";
+import { TaskGroup } from "../../../../src/libs/friendlies/Task";
 import { EventName } from "../../../../src/models/EventName";
 
 export async function onQuizStart() {

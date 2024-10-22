@@ -20,6 +20,10 @@ export class Task {
             }, pollingInterval);
         });
     }
+
+    public static throwError(error: unknown) {
+        throw error;
+    }
 }
 
 export class TaskGroup {

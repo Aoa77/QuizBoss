@@ -34,7 +34,7 @@ export function LoadingProgress() {
     ///
     config.progBarCompleted = {
         backgroundColor: ThemeVars.getRef(TV, TV.LoadingProgress_BAR_color),
-        width: "50%",
+        width: ThemeVars.getRef(TV, TV.LoadingProgress_BAR_width),
         height: "100%",
     };
 

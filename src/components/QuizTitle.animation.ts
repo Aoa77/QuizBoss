@@ -1,6 +1,6 @@
 import { AnimationTask } from "../libs/anime+/AnimationTask";
 import { Ease } from "../libs/anime+/Ease";
-import { Lazy } from "../libs/csharp-sim/Lazy";
+import { Lazy } from "../libs/friendlies/Lazy";
 import { QuizTitleConfig } from "./QuizTitle.config";
 
 export class QuizTitleAnimation {

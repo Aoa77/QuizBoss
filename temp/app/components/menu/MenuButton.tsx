@@ -1,8 +1,5 @@
-import { FlowContext } from "../../../../src/libs/flow-context/FlowContext";
 import { ThemeVars } from "../../../../src/libs/theme-vars/ThemeVars";
-import { EventName } from "../../../../src/models/EventName";
-import { QuizState } from "../../../../src/models/QuizState";
-import { ThemeName, TV } from "../../../../src/models/Theme";
+import { TV } from "../../../../src/models/Theme";
 
 export function MenuButton() {
     const svgSize = 24;
@@ -28,15 +25,4 @@ export function MenuButton() {
 }
 
 function onPointerDown() {
-    const [state, setState] = FlowContext.current<QuizState>();
-    if (state.eventName !== EventName.AwaitInput) {
-        return;
-    }
-    const theme =
-        state.settings.theme === ThemeName.light /////
-            ? ThemeName.dark
-            : ThemeName.light;
-            
-    ThemeVars.apply(theme);
-    setState({ ...state, settings: { ...state.settings, theme } });
 }

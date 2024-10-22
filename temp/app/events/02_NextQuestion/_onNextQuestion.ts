@@ -2,9 +2,9 @@ import { FlowContext } from "../../../../src/libs/flow-context/FlowContext";
 import { QuizState } from "../../../../src/models/QuizState";
 import { bindGuessButtons } from "./bindGuessButtons";
 
-import { randomInt } from "../../../../src/libs/random-funcs/randomInt";
+import { randomInt } from "../../../../src/libs/randos/randomInt";
 import { ButtonGroupAnimation } from "../../animations/ButtonGroupAnimation";
-import { TaskGroup } from "../../../../src/libs/csharp-sim/Task";
+import { TaskGroup } from "../../../../src/libs/friendlies/Task";
 import { TransitionAnimation } from "../../animations/TransitionAnimation";
 import { ScoreAnimation } from "../../components/ScoreDisplay.animation";
 import { ProgressAnimation } from "../../components/ProgressDisplay.animation";

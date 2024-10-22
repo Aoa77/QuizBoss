@@ -1,6 +1,6 @@
 import { AnimationTask } from "../libs/anime+/AnimationTask";
 import { Ease } from "../libs/anime+/Ease";
-import { Lazy } from "../libs/csharp-sim/Lazy";
+import { Lazy } from "../libs/friendlies/Lazy";
 import { QuestionImageConfig } from "./QuestionImage.config";
 
 export class QuestionImageAnimation {
@@ -47,14 +47,14 @@ export class QuestionImageAnimation {
     ///
     ///
     public async begin(): Promise<void> {
-        await this.fadeIn.start();
+        await this.fadeIn.run();
     }
 
     ///
     public async end(): Promise<void> {
-        await this.scaleOut.start();
-        await this.fadeReset.start();
-        await this.scaleReset.start();
+        await this.scaleOut.run();
+        await this.fadeReset.run();
+        await this.scaleReset.run();
     }
 
     ///

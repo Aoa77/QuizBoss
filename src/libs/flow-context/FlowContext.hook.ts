@@ -1,5 +1,6 @@
 import { Dispatch, SetStateAction, useState, useEffect } from "react";
 import { FlowContext } from "./FlowContext";
+import { Task } from "../friendlies/Task";
 
 export function useFlowContext<Tstate, Tflow>(params: {
     errorHandler?: (error: unknown) => void;
@@ -8,7 +9,7 @@ export function useFlowContext<Tstate, Tflow>(params: {
     flowEvents: Map<Tflow, (state: Tstate) => Promise<void>>;
 }): [Tstate, Dispatch<SetStateAction<Tstate>>] {
     ///
-    const errorHandler = params.errorHandler ?? _errorHandler;
+    const errorHandler = params.errorHandler ?? Task.throwError;
     const { initialState, flowProperty, flowEvents } = params;
     const [state, setState] = useState<Tstate>(initialState);
 
@@ -36,7 +37,3 @@ export function useFlowContext<Tstate, Tflow>(params: {
     return FlowContext.current();
 }
 
-
-function _errorHandler(error: unknown) {
-    throw error;
-}

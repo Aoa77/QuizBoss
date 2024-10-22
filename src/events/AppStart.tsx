@@ -1,5 +1,5 @@
 import { LoadingSpinner } from "../components/LoadingSpinner";
-import { Task } from "../libs/csharp-sim/Task";
+import { Task } from "../libs/friendlies/Task";
 import { FlowContext } from "../libs/flow-context/FlowContext";
 import { EventName } from "../models/EventName";
 import { QuizState } from "../models/QuizState";
@@ -12,8 +12,8 @@ export async function AppStart() {
     ///
     await Task.delay(config.START_DELAY);
     const loadingSpinner = LoadingSpinner.animation;
-     loadingSpinner.begin();
-throw new Error("Not implemented");
+    await loadingSpinner.begin();
+
     ///
     const [state, setState] = FlowContext.current<QuizState>();
     if (state.quizModule === null) {

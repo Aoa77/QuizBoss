@@ -1,4 +1,4 @@
-import { randomInt } from "../../../../src/libs/random-funcs/randomInt";
+import { randomInt } from "../../../../src/libs/randos/randomInt";
 import { Xelement } from "../../../core/animation/dom/Xelement";
 import { xref } from "../../../core/animation/dom/xref";
 import { ButtonStyle } from "../../../../src/models/ButtonStyle";

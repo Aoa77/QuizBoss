@@ -1,23 +1,25 @@
 import { AppSettings } from "../app/App.settings";
-import { Task } from "../libs/csharp-sim/Task";
 import { FlowContext } from "../libs/flow-context/FlowContext";
-import { LocalStore } from "../libs/flow-context/LocalStore";
-import { generateRandomString } from "../libs/random-funcs/generateRandomString";
-import { shuffle } from "../libs/random-funcs/shuffle";
+import { LocalStore } from "../libs/friendlies/LocalStore";
+import { generateRandomString } from "../libs/randos/generateRandomString";
+import { shuffle } from "../libs/randos/shuffle";
+import { ThemeVars } from "../libs/theme-vars/ThemeVars";
 import { EventName } from "../models/EventName";
 import { QuizItem } from "../models/QuizItem";
 import { QuizModule } from "../models/QuizModule";
 import { QuizState } from "../models/QuizState";
+import { TV } from "../models/Theme";
 
-const config = {
-    IMAGE_LOAD_THROTTLE: 100,
+const count = {
+    imagesLoaded: 0,
 };
 
 export async function LoadQuizModule(): Promise<void> {
     const [state, setState] = FlowContext.current<QuizState>();
     const { settings } = state;
+    count.imagesLoaded = 0;
 
-    state.bestScore = LocalStore.numbers.get("bestScore", 0);
+    state.bestScore = LocalStore.numbers.get("bestScore", 0)!;
     console.info("Best score restored: ", state.bestScore);
 
     const module = await fetchQuizModule(settings.quizModuleName);
@@ -110,16 +112,13 @@ async function loadImages(module: QuizModule) {
     console.info("Loading quiz images...");
 
     ///
-    const tasks = Task.group();
     for (const item of module.quizData.items) {
-        tasks.add(
-            fetchImage(item).then(() =>
-                /////////////
-                Task.delay(config.IMAGE_LOAD_THROTTLE),
-            ),
+        await fetchImage(item);
+        ThemeVars.setValue(
+            TV.LoadingProgress_BAR_width,
+            `${(++count.imagesLoaded / module.quizData.items.length) * 100}%`,
         );
     }
-    await tasks.first();
 }
 
 async function fetchImage(item: QuizItem): Promise<void> {

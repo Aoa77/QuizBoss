@@ -1,4 +1,4 @@
-import { Task } from "../../../src/libs/csharp-sim/Task";
+import { Task } from "../../../src/libs/friendlies/Task";
 import { xref } from "../../core/animation/dom/xref";
 import { wait } from "../../core/animation/wait";
 import { ELEMENT } from "../constants/ELEMENT";

@@ -1,4 +1,4 @@
-import { HttpUtility } from "../libs/csharp-sim/HttpUtility";
+import { HttpUtility } from "../libs/friendlies/HttpUtility";
 import { DemoMode, parseDemoMode } from "../models/DemoMode";
 import { ThemeName } from "../models/Theme";
 

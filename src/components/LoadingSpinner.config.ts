@@ -4,7 +4,7 @@ import { ComponentConfig } from "../app/App.config";
 export interface LoadingSpinnerConfig extends ComponentConfig {
     cxArray?: number[];
     cy?:number;
-    extraDelay?: number;
+    delayBeforeProgressBar?: number;
     loopIteration?: number;
     loopStagger?: number;
     radiusArray?: number[];

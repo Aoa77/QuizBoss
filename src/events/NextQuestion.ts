@@ -2,7 +2,7 @@ import { FlowContext } from "../libs/flow-context/FlowContext";
 import { LoadingSpinner } from "../components/LoadingSpinner";
 import { QuestionImage } from "../components/QuestionImage";
 import { QuizState } from "../models/QuizState";
-import { Task } from "../libs/csharp-sim/Task";
+import { Task } from "../libs/friendlies/Task";
 
 const config = {
     NEXT_IMAGE_DELAY: 1000,

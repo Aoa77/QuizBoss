@@ -1,4 +1,4 @@
-import { TaskGroup } from "../../../../src/libs/csharp-sim/Task";
+import { TaskGroup } from "../../../../src/libs/friendlies/Task";
 import { wait } from "../wait";
 import { Xref } from "./xref";
 

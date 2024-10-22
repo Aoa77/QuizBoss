@@ -1,6 +1,6 @@
 import { CSSProperties } from "react";
 import { AnimationTask } from "../libs/anime+/AnimationTask";
-import { Lazy } from "../libs/csharp-sim/Lazy";
+import { Lazy } from "../libs/friendlies/Lazy";
 import { Ease } from "../libs/anime+/Ease";
 
 export interface ComponentConfig {
