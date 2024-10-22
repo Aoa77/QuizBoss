@@ -10,6 +10,7 @@ import { NextQuestion } from "../events/NextQuestion";
 import { QuestionImage } from "../components/QuestionImage";
 import { QuizStart } from "../events/QuizStart";
 import { LoadQuizModule } from "../events/LoadQuizModule";
+import { LoadingProgress } from "../components/LoadingProgress";
 
 export function App(settings: AppSettings) {
     
@@ -30,6 +31,7 @@ export function App(settings: AppSettings) {
         <main>
             <QuizTitle />
             <LoadingSpinner />
+            <LoadingProgress />
             <QuestionImage />
         </main>
     );

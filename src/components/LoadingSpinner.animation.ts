@@ -4,36 +4,17 @@ import { Ease } from "../libs/anime+/Ease";
 import { Lazy } from "../libs/csharp-sim/Lazy";
 import { Task } from "../libs/csharp-sim/Task";
 import { LoadingSpinnerConfig } from "./LoadingSpinner.config";
+import { ComponentAnimation } from "../app/App.config";
+import { LoadingProgress } from "./LoadingProgress";
 
-export class LoadingSpinnerAnimation {
+export class LoadingSpinnerAnimation extends ComponentAnimation<LoadingSpinnerConfig> {
     ///
-    private readonly _config: LoadingSpinnerConfig;
-    private readonly _fadeIn: Lazy<AnimationTask>;
-    private readonly _fadeOut: Lazy<AnimationTask>;
     private readonly _loop: Lazy<AnimationTask>;
     private _loopStarted = false;
 
     ///
     public constructor(config: LoadingSpinnerConfig) {
-        
-        this._config = config;
-        console.debug("config", this._config);
-        this._config.extraDelay = 0;//999999;
-
-        this._fadeIn = AnimationTask.createById(config.animationId!, {
-            opacity: [0, 1],
-            delay: config.fadeDelay,
-            duration: config.fadeDuration,
-            easing: Ease.linear,
-            endDelay: config.fadeEndDelay,
-        });
-
-        this._fadeOut = AnimationTask.createById(config.animationId!, {
-            opacity: [1, 0],
-            delay: config.fadeDelay,
-            duration: config.fadeDuration,
-            easing: Ease.linear,
-        });
+        super(config);
 
         this._loop = AnimationTask.createByQuery(
             `section#${config.animationId} > svg > circle`,
@@ -48,11 +29,9 @@ export class LoadingSpinnerAnimation {
     }
 
     ///
-
-    ///
     public async begin(): Promise<void> {
+        LoadingProgress.animation.fadeIn.start();
         await this.fadeIn.start();
-        console.info("3");
         if (!this._loopStarted) {
             this._loopStarted = true;
             this.loop.start();
@@ -65,16 +44,6 @@ export class LoadingSpinnerAnimation {
     ///
     public async end(): Promise<void> {
         await this.fadeOut.start();
-    }
-
-    ///
-    private get fadeIn(): AnimationTask {
-        return this._fadeIn.value;
-    }
-
-    ///
-    private get fadeOut(): AnimationTask {
-        return this._fadeOut.value;
     }
 
     ///

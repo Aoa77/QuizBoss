@@ -9,7 +9,7 @@ import { loadImages } from "./$loadImages";
 export async function initQuizModule(state: QuizState): Promise<void> {
     const { settings } = state;
     const module = await fetchQuizModule(settings.quizModuleName);
-    console.info(`Quiz module loading: ${module.name}`, module);
+    //info(`Quiz module loading: ${module.name}`, module);
 
     shuffle(module.quizData.items);
     for (let index = 0; index < module.quizData.items.length; index++) {

@@ -16,7 +16,6 @@ config.imgStyle = {
 };
 
 export function QuestionImage() {
-
     const [state] = FlowContext.current<QuizState>();
     let jsx: JSX.Element | null = null;
 
@@ -62,4 +61,5 @@ async function onPointerDown() {
     setState({ ...state });
 }
 
+QuestionImage.config = config;
 QuestionImage.animation = new QuestionImageAnimation(config);

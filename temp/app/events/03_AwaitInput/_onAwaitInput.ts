@@ -12,11 +12,11 @@ export async function onAwaitInput() {
     const { demoMode } = settings;
 
     if (demoMode === DemoMode.OFF) {
-        console.info("waiting for player input...");
+        //info("waiting for player input...");
         return;
     }
 
-    console.info("waiting for DEMO input...");
+    //info("waiting for DEMO input...");
     await wait(TIME.DEMO_DELAY);
 
     const spotButton = doDemoInput(state.answerSpot, demoMode);

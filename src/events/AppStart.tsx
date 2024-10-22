@@ -12,9 +12,7 @@ export async function AppStart() {
     ///
     await Task.delay(config.START_DELAY);
     const loadingSpinner = LoadingSpinner.animation;
-    console.info("1");
     await loadingSpinner.begin();
-    console.info("2");
 
     ///
     const [state, setState] = FlowContext.current<QuizState>();

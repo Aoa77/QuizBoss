@@ -6,15 +6,17 @@ export enum ThemeFont {
 
 export enum ThemeName {
     dark = "dark",
-    light = "light",
+    //light = "light",
 }
 
 export enum TV {
-    BODY_backgroundColor = "--tv_BODY_backgroundColor",
-    LoadingSpinner_fill = "--tv_LoadingSpinner_fill",
-    LoadingSpinner_color = "--tv_LoadingSpinner_color",
-    MAIN_backgroundColor = "--tv_MAIN_backgroundColor",
-    QuizTitle_color = "--tv_QuizTitle_color",
+    BODY_backgroundColor                = "--tv_BODY_backgroundColor",
+    LoadingSpinner_fill                 = "--tv_LoadingSpinner_fill",
+    LoadingProgress_BAR_backgroundColor = "--tv_LoadingProgress_BAR_backgroundColor",
+    LoadingProgress_BAR_color           = "--tv_LoadingProgress_BAR_color",
+    LoadingProgress_TEXT_color          = "--tv_LoadingProgress_TEXT_color",
+    MAIN_backgroundColor                = "--tv_MAIN_backgroundColor",
+    QuizTitle_color                     = "--tv_QuizTitle_color",
 
 
 

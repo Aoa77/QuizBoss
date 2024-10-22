@@ -15,7 +15,6 @@ export class AnimationTask {
         query: string,
         params: AnimeParams,
     ): Lazy<AnimationTask> {
-        console.info("params", params);
         return new Lazy(
             () =>
                 new AnimationTask({
@@ -49,15 +48,15 @@ export class AnimationTask {
     }
 
     public start(): Promise<void> {
-        console.log("start");
-        return new Promise((resolve) => {
-            console.info("instance", this._instance);
-            this._instance.finished.then(() => {
-                console.log("finished");
-                resolve();
-            }).catch((e) => {
-                console.error(e);
-            });
+        return new Promise((resolve, reject) => {
+            this._instance.finished
+                .then(() => {
+                    resolve();
+                })
+                .catch((e) => {
+                    console.error(e);
+                    reject(e);
+                });
 
             this.play();
         });

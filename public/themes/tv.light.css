@@ -4,7 +4,7 @@
 :root {
     --tv_BODY_backgroundColor        : "#000000ff";
     --tv_LoadingSpinner_fill         : "#1c4c5bff";
-    --tv_LoadingSpinner_color         : "#ffffffff";
+    --tv_LoadingProgress_TEXT_color         : "#ffffffff";
     --tv_MAIN_backgroundColor        : "#000022ff";
     --tv_QuizTitle_color             : "#ffffffff";
     

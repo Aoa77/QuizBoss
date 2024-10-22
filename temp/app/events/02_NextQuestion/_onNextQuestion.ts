@@ -24,7 +24,7 @@ export async function onNextQuestion() {
     const currentItem = quizItems[state.currentItemIndex];
 
     state.answerSpot = randomInt(0, state.settings.guessButtonCount);
-    console.info("answerSpot: ", state.answerSpot);
+    //info("answerSpot: ", state.answerSpot);
 
     await bindGuessButtons(
         state.answerSpot,

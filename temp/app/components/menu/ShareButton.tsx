@@ -28,22 +28,22 @@ export function ShareButton() {
 
 function onPointerDown() {
     if (!navigator.share) {
-        console.error("Web Share API is not supported in this browser.");
+        //rror("Web Share API is not supported in this browser.");
         return;
     }
 
-    navigator
-        .share({
-            title: document.title,
-            text: "Hello World",
-            url: window.location.href,
-        })
-        .then(() =>
-            ////////////
-            console.info("navigator.share() succeeded."),
-        )
-        .catch((error) =>
-            ////////////
-            console.error("navigator.share() failed.", error),
-        );
+    // navigator
+    //     .share({
+    //         title: document.title,
+    //         text: "Hello World",
+    //         url: window.location.href,
+    //     })
+    //     .then(() =>
+    //         ////////////
+    //         //nfo("navigator.share() succeeded."),
+    //     )
+    //     .catch((error) =>
+    //         ////////////
+    //         //error("navigator.share() failed.", error),
+    //     );
 }

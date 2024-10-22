@@ -1,21 +1,14 @@
 import { CSSProperties } from "react";
+import { ComponentConfig } from "../app/App.config";
 
-export interface LoadingSpinnerConfig {
-    animationId?: string;
+export interface LoadingSpinnerConfig extends ComponentConfig {
     cxArray?: number[];
     cy?:number;
     extraDelay?: number;
-    fadeDelay?: number;
-    fadeDuration?: number;
-    fadeEndDelay?: number;
     loopIteration?: number;
     loopStagger?: number;
     radiusArray?: number[];
     radiusBase?: number;
-    sectionHeight?: number;
-    sectionMarginTop?: number;
-    sectionStyle?: CSSProperties;
     svgStyle?: CSSProperties;
-    textStyle?: CSSProperties;
     viewBox?: string;
 }
