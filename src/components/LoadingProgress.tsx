@@ -1,3 +1,4 @@
+import { createRef } from "react";
 import { CssUnit } from "../libs/theme-vars/CssUnit";
 import { ThemeVars } from "../libs/theme-vars/ThemeVars";
 import { ThemeFont, TV } from "../models/Theme";
@@ -5,8 +6,9 @@ import { LoadingProgressAnimation } from "./LoadingProgress.animation";
 import { LoadingProgressConfig } from "./LoadingProgress.config";
 import { LoadingSpinner } from "./LoadingSpinner";
 
-const config: LoadingProgressConfig = {};
+const config: LoadingProgressConfig = { ref: createRef() };
 config.animationId = "LoadingProgress";
+config.animationDuration = 1000;
 
 export function LoadingProgress() {
     ///
@@ -40,7 +42,10 @@ export function LoadingProgress() {
 
     ///
     return (
-        <section id={config.animationId} style={config.sectionStyle}>
+        <section
+            id={config.animationId}
+            ref={config.ref}
+            style={config.sectionStyle}>
             LOADING
             <div style={config.progBarBackground}>
                 <div style={config.progBarCompleted}></div>

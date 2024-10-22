@@ -3,10 +3,6 @@ export class Task {
         return new Promise((resolve) => setTimeout(resolve, ms));
     }
 
-    public static group(): TaskGroup {
-        return new TaskGroup();
-    }
-
     public static until(
         predicate: () => boolean,
         pollingInterval: number = 100,
@@ -27,6 +23,11 @@ export class Task {
 }
 
 export class TaskGroup {
+    ////
+    public static create(): TaskGroup {
+        return new TaskGroup();
+    }
+
     private _tasks: Promise<unknown>[] = [];
 
     public add(task: Promise<unknown>) {

@@ -1,9 +1,5 @@
-import { CSSProperties } from "react";
+import { ComponentConfig } from "../app/App.config";
 
-
-export interface QuizTitleConfig {
-    animationId?: string;
+export interface QuizTitleConfig extends ComponentConfig{
     enableSecretReload?: boolean;
-    fadeDuration?: number;
-    style?: CSSProperties;
 }

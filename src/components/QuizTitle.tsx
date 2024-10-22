@@ -5,12 +5,13 @@ import { QuizState } from "../models/QuizState";
 import { QuizTitleConfig } from "./QuizTitle.config";
 import { QuizTitleAnimation } from "./QuizTitle.animation";
 import { ThemeVars } from "../libs/theme-vars/ThemeVars";
+import { createRef } from "react";
 
-const config: QuizTitleConfig = {};
+const config: QuizTitleConfig = { ref: createRef() };
 config.animationId = "QuizTitle";
 config.enableSecretReload = true;
-config.fadeDuration = 1500;
-config.style = {
+config.animationDuration = 1500;
+config.sectionStyle = {
     alignContent: "normal",
     color: ThemeVars.getRef(TV, TV.QuizTitle_color),
     fontFamily: ThemeFont.serif,
@@ -20,13 +21,13 @@ config.style = {
 };
 
 export function QuizTitle() {
-
     const [state] = FlowContext.current<QuizState>();
 
     return (
         <section
             id={config.animationId}
-            style={config.style}
+            ref={config.ref}
+            style={config.sectionStyle}
             onPointerDown={onPointerDown}>
             {state.quizModule?.quizData.title}
         </section>

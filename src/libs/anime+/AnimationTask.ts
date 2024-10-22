@@ -1,6 +1,7 @@
 import anime from "animejs";
 import { AnimeInstance, AnimeParams } from "animejs";
 import { Lazy } from "../friendlies/Lazy";
+import { TaskGroup } from "../friendlies/Task";
 
 export class AnimationTask {
     ///
@@ -60,5 +61,14 @@ export class AnimationTask {
 
             this.play();
         });
+    }
+
+    public runWithGroup(others: Promise<unknown>[]): TaskGroup {
+        const group = TaskGroup.create();
+        group.add(this.run());
+        for (const other of others) {
+            group.add(other);
+        }
+        return group;
     }
 }

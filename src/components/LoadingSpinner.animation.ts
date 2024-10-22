@@ -43,11 +43,15 @@ export class LoadingSpinnerAnimation extends ComponentAnimation<LoadingSpinnerCo
 
     ///
     public async end(): Promise<void> {
-        await this.fadeOut.run();
+        const group = [];
+        if (LoadingProgress.animation.opacity > 0) {
+            group.push(LoadingProgress.animation.fadeOut.run());
+        }
+        await this.fadeOut.runWithGroup(group).all();
     }
 
     ///
     private get loop(): AnimationTask {
-        return this._loop.value;
+        return this._loop.instance;
     }
 }

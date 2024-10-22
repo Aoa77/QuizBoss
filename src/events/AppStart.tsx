@@ -5,7 +5,7 @@ import { EventName } from "../models/EventName";
 import { QuizState } from "../models/QuizState";
 
 const config = {
-    START_DELAY: 1000,
+    START_DELAY: 200,
 };
 
 export async function AppStart() {

@@ -5,10 +5,11 @@ import { CssUnit } from "../libs/theme-vars/CssUnit";
 import { EventName } from "../models/EventName";
 import { QuestionImageConfig } from "./QuestionImage.config";
 import { QuestionImageAnimation } from "./QuestionImage.animation";
+import { createRef } from "react";
 
-const config: QuestionImageConfig = {};
+const config: QuestionImageConfig = { ref: createRef() };
 config.animationId = "QuestionImage";
-config.fadeDuration = 500;
+config.animationDuration = 500;
 config.enableSecretNextImage = true;
 config.sectionStyle = { ...LoadingSpinner.config.sectionStyle };
 config.imgStyle = {
@@ -32,7 +33,10 @@ export function QuestionImage() {
     }
 
     return (
-        <section id={config.animationId} style={config.sectionStyle}>
+        <section
+            id={config.animationId}
+            ref={config.ref}
+            style={config.sectionStyle}>
             {jsx}
         </section>
     );
