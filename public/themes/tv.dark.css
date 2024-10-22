@@ -2,8 +2,13 @@
 /* DARK THEME           */
 /************************/
 :root {
+    --tv_BODY_backgroundColor        : "#000000ff";
+    --tv_LoadingSpinner_fill         : "#1c4c5bff";
+    --tv_LoadingSpinner_color         : "#ffffffff";
+    --tv_MAIN_backgroundColor        : "#000022ff";
+    --tv_QuizTitle_color             : "#ffffffff";
+    
     --tv_actionLink               : "#ffff00ff";
-    --tv_BODY_backgroundColor           : "#000000ff";
     --tv_bonus                    : "#00ff00ff";
     --tv_buttonCorrectBackground  : "#007700ff";
     --tv_buttonCorrectText        : "#ffffffff";
@@ -20,13 +25,10 @@
     --tv_iconBackground           : "#555555ee";
     --tv_iconForeground           : "#ffffffff";
     --tv_imageShadow              : "#a5a5c877";
-    --tv_LoadingSpinner_fill           : "#1c4c5bff";
-    --tv_MAIN_backgroundColor           : "#000022ff";
     --tv_menuBackground           : "#444444ff";
     --tv_noBonus                  : "#ff0000ff";
     --tv_progress                 : "#ffffffbb";
     --tv_questionHeading          : "#00ffffff";
     --tv_scoreLabel               : "#00ffffff";
     --tv_scoreValue               : "#ffff00ff";
-    --tv_QuizTitle_color             : "#ffffffff";
 }

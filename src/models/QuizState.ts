@@ -1,4 +1,4 @@
-import { AppSettings } from "../app/AppSettings";
+import { AppSettings } from "../app/App.settings";
 import { EventName } from "./EventName";
 import { QuizItem } from "./QuizItem";
 import { QuizModule } from "./QuizModule";

@@ -46,19 +46,19 @@ main {
 /* <main> is the app container */
 /* 100cqw and 100cqh are equal to its width and height */
 main {
+    position: fixed;
+    left: var(--mainCenterLeft);
+    top: var(--mainCenterTop);
     width: var(--width);
     height: var(--height);
-    margin-left: var(--mainCenterLeft);
-    margin-top: var(--mainCenterTop);
     overflow: hidden;
     container-type: size;
 }
 
 /* each section overlays <main> */
+/* use margin-top/left to offset */
 section {
-    position: absolute;
-    top: 0;
-    left: 0;
+    position: fixed;
 
     width: 100cqw;
     height: 100cqh;

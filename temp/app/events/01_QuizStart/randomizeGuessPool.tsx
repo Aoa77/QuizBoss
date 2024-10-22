@@ -1,6 +1,6 @@
 import { generateRandomString } from "../../../../src/libs/random-funcs/generateRandomString";
 import { shuffle } from "../../../../src/libs/random-funcs/shuffle";
-import { AppSettings } from "../../../../src/app/AppSettings";
+import { AppSettings } from "../../../../src/app/App.settings";
 import { QuizItem } from "../../../../src/models/QuizItem";
 import { QuizModule } from "../../../../src/models/QuizModule";
 

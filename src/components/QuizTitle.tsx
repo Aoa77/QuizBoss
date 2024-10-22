@@ -1,37 +1,32 @@
-import { CSSProperties } from "react";
-import { AnimationTask } from "../libs/anime+/AnimationTask";
-import { Ease } from "../libs/anime+/Ease";
-import { Lazy } from "../libs/csharp-sim/Lazy";
 import { CssUnit } from "../libs/theme-vars/CssUnit";
-import { ThemeVars } from "../libs/theme-vars/ThemeVars";
 import { ThemeFont, TV } from "../models/Theme";
 import { FlowContext } from "../libs/flow-context/FlowContext";
 import { QuizState } from "../models/QuizState";
+import { QuizTitleConfig } from "./QuizTitle.config";
+import { QuizTitleAnimation } from "./QuizTitle.animation";
+import { ThemeVars } from "../libs/theme-vars/ThemeVars";
 
-const config = {
-    SECTION_ID: "QuizTitle",
-    ENABLE_SECRET_RELOAD: true,
-    FADE_DURATION: 1500,
-};
-
-const style: CSSProperties = {
+const config: QuizTitleConfig = {};
+config.animationId = "QuizTitle";
+config.enableSecretReload = true;
+config.fadeDuration = 1500;
+config.style = {
     alignContent: "normal",
+    color: ThemeVars.getRef(TV, TV.QuizTitle_color),
     fontFamily: ThemeFont.serif,
     fontSize: CssUnit.rem(7),
     height: CssUnit.cqh(10),
-    top: CssUnit.cqh(5),
+    marginTop: CssUnit.cqh(5),
 };
 
 export function QuizTitle() {
+
     const [state] = FlowContext.current<QuizState>();
-    const themeStyle: CSSProperties = {
-        ...style,
-        color: ThemeVars.getRef(TV.QuizTitle_color),
-    };
+
     return (
         <section
-            id={config.SECTION_ID}
-            style={themeStyle}
+            id={config.animationId}
+            style={config.style}
             onPointerDown={onPointerDown}>
             {state.quizModule?.quizData.title}
         </section>
@@ -39,38 +34,11 @@ export function QuizTitle() {
 }
 
 async function onPointerDown() {
-    if (config.ENABLE_SECRET_RELOAD) {
+    if (config.enableSecretReload) {
         window.location.reload();
         return;
     }
 }
 
-class QuizTitleAnimation {
-    ///
-    public get fadeIn(): AnimationTask {
-        return this._fadeIn.value;
-    }
-    private readonly _fadeIn: Lazy<AnimationTask> = AnimationTask.createById(
-        config.SECTION_ID,
-        {
-            opacity: [0, 1],
-            duration: config.FADE_DURATION,
-            easing: Ease.linear,
-        },
-    );
-
-    ///
-    public get fadeOut(): AnimationTask {
-        return this._fadeOut.value;
-    }
-    private readonly _fadeOut: Lazy<AnimationTask> = AnimationTask.createById(
-        config.SECTION_ID,
-        {
-            opacity: [1, 0],
-            duration: config.FADE_DURATION,
-            easing: Ease.linear,
-        },
-    );
-}
-
-QuizTitle.animation = new QuizTitleAnimation();
+QuizTitle.config = config;
+QuizTitle.animation = new QuizTitleAnimation(config);

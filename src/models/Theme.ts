@@ -11,10 +11,10 @@ export enum ThemeName {
 
 export enum TV {
     BODY_backgroundColor = "--tv_BODY_backgroundColor",
-    MAIN_backgroundColor = "--tv_MAIN_backgroundColor",
-
-    QuizTitle_color = "--tv_QuizTitle_color",
     LoadingSpinner_fill = "--tv_LoadingSpinner_fill",
+    LoadingSpinner_color = "--tv_LoadingSpinner_color",
+    MAIN_backgroundColor = "--tv_MAIN_backgroundColor",
+    QuizTitle_color = "--tv_QuizTitle_color",
 
 
 

@@ -1,4 +1,4 @@
-import { AppSettings } from "../app/AppSettings";
+import { AppSettings } from "../app/App.settings";
 import { Task } from "../libs/csharp-sim/Task";
 import { FlowContext } from "../libs/flow-context/FlowContext";
 import { LocalStore } from "../libs/flow-context/LocalStore";
@@ -8,6 +8,10 @@ import { EventName } from "../models/EventName";
 import { QuizItem } from "../models/QuizItem";
 import { QuizModule } from "../models/QuizModule";
 import { QuizState } from "../models/QuizState";
+
+const config = {
+    IMAGE_LOAD_THROTTLE: 100,
+};
 
 export async function LoadQuizModule(): Promise<void> {
     const [state, setState] = FlowContext.current<QuizState>();
@@ -108,7 +112,12 @@ async function loadImages(module: QuizModule) {
     ///
     const tasks = Task.group();
     for (const item of module.quizData.items) {
-        tasks.add(fetchImage(item));
+        tasks.add(
+            fetchImage(item).then(() =>
+                /////////////
+                Task.delay(config.IMAGE_LOAD_THROTTLE),
+            ),
+        );
     }
     await tasks.first();
 }

@@ -3,25 +3,16 @@ class VarMap extends Map<string, string> {}
 
 export class ThemeVars {
     private static _map: ThemeMap = new ThemeMap();
-    private static _names: string[] = [];
-    private static _vars: string[] = [];
+    private static _names: string[] | null = null;
+    private static _vars: string[] | null = null;
 
     public static async config<TName extends string, TVar extends string>(
         nameType: unknown,
         varType: unknown,
         path: string,
     ) {
-        if (this._names.length > 0 || this._vars.length > 0) {
-            throw new Error("ThemeVars already configured");
-        }
-
-        this._names = Object.values(
-            nameType as { [key: string]: TName },
-        ) as string[];
-
-        this._vars = Object.values(
-            varType as { [key: string]: TVar },
-        ) as string[];
+        this._names = this.initNames<TName>(nameType);
+        this._vars = this.initVars<TVar>(varType);
 
         for (const name of this._names) {
             const map = new VarMap();
@@ -86,7 +77,11 @@ export class ThemeVars {
         }
     }
 
-    public static getRef(key: string): string {
+    public static getRef<TVar extends string>(
+        varType: unknown,
+        key: string,
+    ): string {
+        this._vars = this.initVars<TVar>(varType);
         if (!this._vars.includes(key)) {
             throw new Error(`Unknown variable: ${key}`);
         }
@@ -94,7 +89,7 @@ export class ThemeVars {
     }
 
     public static getValue(key: string): string {
-        if (!this._vars.includes(key)) {
+        if (true !== this._vars?.includes(key)) {
             throw new Error(`Unknown variable: ${key}`);
         }
         return getComputedStyle(document.documentElement)
@@ -103,10 +98,27 @@ export class ThemeVars {
     }
 
     public static setValue(key: string, value: string): void {
-        if (!this._vars.includes(key)) {
+        if (true !== this._vars?.includes(key)) {
             throw new Error(`Unknown variable: ${key}`);
         }
         document.documentElement.style.setProperty(key, value.trim());
     }
-}
 
+    private static initNames<TName extends string>(
+        nameType: unknown,
+    ): string[] {
+        this._names ??= Object.values(
+            nameType as { [key: string]: TName },
+        ) as string[];
+        return this._names;
+    }
+
+    private static initVars<TVar extends string>(
+        varType: unknown,
+    ): string[] {
+        this._vars ??= Object.values(
+            varType as { [key: string]: TVar },
+        ) as string[];
+        return this._vars
+    }
+}

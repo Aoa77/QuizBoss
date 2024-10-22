@@ -1,8 +1,8 @@
 import "./App.css";
-import { AppSettings } from "./AppSettings";
+import { AppSettings } from "./App.settings";
 import { LoadingSpinner } from "../components/LoadingSpinner";
 import { QuizTitle } from "../components/QuizTitle";
-import { useFlowContext } from "../libs/flow-context/useFlowContext";
+import { useFlowContext } from "../libs/flow-context/FlowContext.hook";
 import { initQuizState, QuizState } from "../models/QuizState";
 import { EventName } from "../models/EventName";
 import { AppStart } from "../events/AppStart";

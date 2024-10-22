@@ -9,8 +9,8 @@ import { onQuizStart } from "../../temp/app/events/01_QuizStart/_onQuizStart";
 import { onNextQuestion } from "../../temp/app/events/02_NextQuestion/_onNextQuestion";
 import { onAwaitInput } from "../../temp/app/events/03_AwaitInput/_onAwaitInput";
 import { onShowResult } from "../../temp/app/events/04_ShowResult/_onShowResult";
-import { useFlowContext } from "../libs/flow-context/useFlowContext";
-import { AppSettings } from "./AppSettings";
+import { useFlowContext } from "../libs/flow-context/FlowContext.hook";
+import { AppSettings } from "./App.settings";
 import { EventName } from "../models/EventName";
 import { QuizState, initQuizState } from "../models/QuizState";
 

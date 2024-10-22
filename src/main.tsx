@@ -1,6 +1,6 @@
 import { createRoot } from "react-dom/client";
 import { App } from "./app/App";
-import { AppSettings } from "./app/AppSettings";
+import { AppSettings } from "./app/App.settings";
 import { ThemeVars } from "./libs/theme-vars/ThemeVars";
 import { ThemeName, TV } from "./models/Theme";
 

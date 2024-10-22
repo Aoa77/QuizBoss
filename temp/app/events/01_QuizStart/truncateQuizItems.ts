@@ -1,4 +1,4 @@
-import { AppSettings } from "../../../../src/app/AppSettings";
+import { AppSettings } from "../../../../src/app/App.settings";
 import { QuizModule } from "../../../../src/models/QuizModule";
 
 
