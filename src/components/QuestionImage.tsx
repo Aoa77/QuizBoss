@@ -55,8 +55,8 @@ async function onPointerDown() {
     const questionImage = QuestionImage.animation;
     const loadingSpinner = LoadingSpinner.animation;
 
-    await questionImage.end();
-    await loadingSpinner.begin();
+    await questionImage.transitionOut();
+    await loadingSpinner.transitionIn();
 
     ++state.currentItemIndex;
     if (state.currentItemIndex >= state.quizModule!.quizData.items.length) {

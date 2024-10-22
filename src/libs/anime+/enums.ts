@@ -1,3 +1,13 @@
+export enum Fade {
+    max = 1,
+    min = 0
+}
+
+export enum Scale {
+    one = 1,
+    zero = 0
+}
+
 export enum Ease {
     linear = "linear",
 

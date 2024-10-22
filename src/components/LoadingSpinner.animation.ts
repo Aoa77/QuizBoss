@@ -1,8 +1,7 @@
 import anime from "animejs";
 import { AnimationTask } from "../libs/anime+/AnimationTask";
-import { Ease } from "../libs/anime+/Ease";
+import { Ease, Fade } from "../libs/anime+/enums";
 import { Lazy } from "../libs/friendlies/Lazy";
-import { Task } from "../libs/friendlies/Task";
 import { LoadingSpinnerConfig } from "./LoadingSpinner.config";
 import { ComponentAnimation } from "../app/App.config";
 import { LoadingProgress } from "./LoadingProgress";
@@ -29,29 +28,53 @@ export class LoadingSpinnerAnimation extends ComponentAnimation<LoadingSpinnerCo
     }
 
     ///
-    public async begin(): Promise<void> {
-        if (!this._loopStarted) {
-            this.loop.run();
-            await Task.delay(this._config.delayBeforeProgressBar!);
-            LoadingProgress.animation.fadeIn.run();
-            this._loopStarted = true;
-        } else {
-            // reset??
-        }
-        await this.fadeIn.run();
-    }
-
-    ///
-    public async end(): Promise<void> {
+    public async transitionIn(): Promise<void> {
+        
         const group = [];
-        if (LoadingProgress.animation.opacity > 0) {
-            group.push(LoadingProgress.animation.fadeOut.run());
+
+        if (!this._loopStarted) {
+            this._loop.instance.run();
+            this._loopStarted = true;
+
+            group.push(LoadingProgress.animation.fade({
+                value: Fade.max,
+                delay: this._config.delayBeforeProgressBar!,
+                duration: this._config.animationDuration!,
+                endDelay: 0,
+                easing: Ease.linear,
+            }).instance);
         }
-        await this.fadeOut.runWithGroup(group).all();
+
+        await this.fade({
+            value: Fade.max,
+            delay: 0,
+            duration: this._config.animationDuration!,
+            endDelay: 0,
+            easing: Ease.linear,
+        }).instance.runWithGroup(group).all();
     }
 
     ///
-    private get loop(): AnimationTask {
-        return this._loop.instance;
+    public async transitionOut(): Promise<void> {
+        const group = [];
+
+        if (LoadingProgress.animation.opacity > 0) {
+            group.push(LoadingProgress.animation.fade({
+                value: Fade.min,
+                delay: 0,
+                duration: this._config.animationDuration!,
+                endDelay: 0,
+                easing: Ease.linear,
+            }).instance);
+        }
+
+        await this.fade({
+            value: Fade.min,
+            delay: 0,
+            duration: this._config.animationDuration!,
+            endDelay: 0,
+            easing: Ease.linear,
+        }).instance.runWithGroup(group).all();
     }
+
 }

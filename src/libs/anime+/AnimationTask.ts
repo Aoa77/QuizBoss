@@ -63,12 +63,14 @@ export class AnimationTask {
         });
     }
 
-    public runWithGroup(others: Promise<unknown>[]): TaskGroup {
+    public runWithGroup(others: AnimationTask[]): TaskGroup {
         const group = TaskGroup.create();
         group.add(this.run());
         for (const other of others) {
-            group.add(other);
+            group.add(other.run());
         }
         return group;
     }
 }
+
+

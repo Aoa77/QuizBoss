@@ -23,8 +23,8 @@ export async function NextQuestion() {
     // const quizItems = quizData.items;
     // const currentItem = quizItems[state.currentItemIndex];
 
-    await loadingSpinner.end();
-    await questionImage.begin();
+    await loadingSpinner.transitionOut();
+    await questionImage.transitionIn();
 
     // setState({ ...state, eventName: EventName.ShowResult });
 

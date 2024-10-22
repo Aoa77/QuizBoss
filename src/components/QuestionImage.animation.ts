@@ -1,4 +1,5 @@
 import { ComponentAnimation } from "../app/App.config";
+import { Ease, Fade, Scale } from "../libs/anime+/enums";
 import { QuestionImageConfig } from "./QuestionImage.config";
 
 export class QuestionImageAnimation extends ComponentAnimation<QuestionImageConfig> {
@@ -7,15 +8,36 @@ export class QuestionImageAnimation extends ComponentAnimation<QuestionImageConf
         super(config);
     }
 
-    ///
-    public async begin(): Promise<void> {
-        await this.fadeIn.run();
+    public async transitionIn(): Promise<void> {
+        await this.fade({
+            value: Fade.max,
+            delay: 0,
+            duration: this._config.animationDuration!,
+            endDelay: 0,
+            easing: Ease.linear,
+        }).instance.run();
     }
 
     ///
-    public async end(): Promise<void> {
-        await this.scaleTo({ value: 0 }).instance.run();
+    public async transitionOut(): Promise<void> {
+        await this.scale({
+            value: Scale.zero,
+            delay: 0,
+            duration: this._config.animationDuration!,
+            endDelay: 0,
+            easing: Ease.inOutBack,
+        }).instance.run();
+
+        ///////////////////////
         this.opacity = 0;
-        this.scale = 1;
+        ///////////////////////
+
+        await this.scale({
+            value: Scale.one,
+            duration: 0,
+            delay: 0,
+            endDelay: 0,
+            easing: Ease.linear,
+        }).instance.run();
     }
 }
