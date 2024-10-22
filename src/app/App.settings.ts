@@ -8,6 +8,7 @@ export class AppSettings {
     public readonly guessButtonCount: number;
     public readonly maxQuestions: number;
     public readonly theme: ThemeName;
+    public readonly errorHandler?: (error: unknown) => void;
 
     constructor(params: {
         quizModuleName?: string;
@@ -15,6 +16,7 @@ export class AppSettings {
         guessButtonCount?: number;
         maxQuestions?: number;
         theme?: ThemeName;
+        errorHandler?: (error: unknown) => void;
     }) {
         let { quizModuleName, demoMode } = params;
         const { guessButtonCount, maxQuestions } = params;
@@ -38,6 +40,7 @@ export class AppSettings {
             maxQuestions ?? +(qp.get("maxQuestions") ?? "0");
 
         this.theme = params.theme ?? ThemeName.dark;
+        this.errorHandler = params.errorHandler;
     }
 
 }

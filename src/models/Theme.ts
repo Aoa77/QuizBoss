@@ -14,6 +14,7 @@ export enum TV {
     LoadingSpinner_fill                 = "--tv_LoadingSpinner_fill",
     LoadingProgress_BAR_backgroundColor = "--tv_LoadingProgress_BAR_backgroundColor",
     LoadingProgress_BAR_color           = "--tv_LoadingProgress_BAR_color",
+    LoadingProgress_BAR_width           = "--tv_LoadingProgress_BAR_width",
     LoadingProgress_TEXT_color          = "--tv_LoadingProgress_TEXT_color",
     MAIN_backgroundColor                = "--tv_MAIN_backgroundColor",
     QuizTitle_color                     = "--tv_QuizTitle_color",

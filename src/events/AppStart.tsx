@@ -12,8 +12,8 @@ export async function AppStart() {
     ///
     await Task.delay(config.START_DELAY);
     const loadingSpinner = LoadingSpinner.animation;
-    await loadingSpinner.begin();
-
+     loadingSpinner.begin();
+throw new Error("Not implemented");
     ///
     const [state, setState] = FlowContext.current<QuizState>();
     if (state.quizModule === null) {

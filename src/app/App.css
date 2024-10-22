@@ -74,10 +74,3 @@ section {
 section > * {
     opacity: 1;
 }
-
-/* set image width */
-section > img {
-    /* display: block; */
-    width: 80cqw;
-    /* margin: 0 auto; */
-}

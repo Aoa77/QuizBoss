@@ -13,8 +13,9 @@ import { LoadQuizModule } from "../events/LoadQuizModule";
 import { LoadingProgress } from "../components/LoadingProgress";
 
 export function App(settings: AppSettings) {
-    
+    ///
     useFlowContext<QuizState, EventName>({
+        errorHandler: settings.errorHandler,
         initialState: initQuizState(settings),
         flowProperty: (state) => {
             return state.eventName;
