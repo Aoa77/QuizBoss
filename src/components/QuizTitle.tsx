@@ -1,24 +1,12 @@
-import { CssUnit } from "../libs/theme-vars/CssUnit";
-import { ThemeFont, TV } from "../models/Theme";
 import { FlowContext } from "../libs/flow-context/FlowContext";
 import { QuizState } from "../models/QuizState";
-import { QuizTitleConfig } from "./QuizTitle.config";
-import { QuizTitleAnimation } from "./QuizTitle.animation";
-import { ThemeVars } from "../libs/theme-vars/ThemeVars";
-import { createRef } from "react";
+import { createConfig } from "./QuizTitle.config";
+import { createAnimation } from "./LoadingSpinner.animation";
 
-const config: QuizTitleConfig = { ref: createRef() };
-config.animationId = "QuizTitle";
-config.enableSecretReload = true;
-config.animationDuration = 1500;
-config.sectionStyle = {
-    alignContent: "normal",
-    color: ThemeVars.getRef(TV, TV.QuizTitle_color),
-    fontFamily: ThemeFont.serif,
-    fontSize: CssUnit.rem(7),
-    height: CssUnit.cqh(10),
-    marginTop: CssUnit.cqh(5),
-};
+/////////////////////////////////////////////
+const config = createConfig();
+const animation = createAnimation(config);
+/////////////////////////////////////////////
 
 export function QuizTitle() {
     const [state] = FlowContext.current<QuizState>();
@@ -41,5 +29,7 @@ async function onPointerDown() {
     }
 }
 
+/////////////////////////////////////////////
 QuizTitle.config = config;
-QuizTitle.animation = new QuizTitleAnimation(config);
+QuizTitle.animation = animation;
+/////////////////////////////////////////////

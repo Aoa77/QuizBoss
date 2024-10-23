@@ -1,20 +1,14 @@
 import { FlowContext } from "../libs/flow-context/FlowContext";
 import { currentQuizItem, QuizState } from "../models/QuizState";
 import { LoadingSpinner } from "./LoadingSpinner";
-import { CssUnit } from "../libs/theme-vars/CssUnit";
 import { EventName } from "../models/EventName";
-import { QuestionImageConfig } from "./QuestionImage.config";
-import { QuestionImageAnimation } from "./QuestionImage.animation";
-import { createRef } from "react";
+import { createAnimation } from "./QuestionImage.animation";
+import { createConfig } from "./QuestionImage.config";
 
-const config: QuestionImageConfig = { ref: createRef() };
-config.animationId = "QuestionImage";
-config.animationDuration = 500;
-config.enableSecretNextImage = true;
-config.sectionStyle = { ...LoadingSpinner.config.sectionStyle };
-config.imgStyle = {
-    height: CssUnit.cqh(LoadingSpinner.config.sectionHeight!),
-};
+/////////////////////////////////////////////
+const config = createConfig();
+const animation = createAnimation(config);
+/////////////////////////////////////////////
 
 export function QuestionImage() {
     const [state] = FlowContext.current<QuizState>();
@@ -65,5 +59,7 @@ async function onPointerDown() {
     setState({ ...state });
 }
 
+/////////////////////////////////////////////
 QuestionImage.config = config;
-QuestionImage.animation = new QuestionImageAnimation(config);
+QuestionImage.animation = animation;
+/////////////////////////////////////////////

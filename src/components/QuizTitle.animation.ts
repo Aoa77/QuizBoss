@@ -2,7 +2,14 @@ import { ComponentAnimation } from "../app/App.config";
 import { Ease, Fade } from "../libs/anime+/enums";
 import { QuizTitleConfig } from "./QuizTitle.config";
 
-export class QuizTitleAnimation extends ComponentAnimation<QuizTitleConfig> {
+export function createAnimation(config: QuizTitleConfig): QuizTitleAnimation {
+    /////////////////////
+    return new QuizTitleAnimation(config);
+}
+
+export class QuizTitleAnimation ////////////////////
+    extends ComponentAnimation<QuizTitleConfig>
+{
     ///
     public constructor(config: QuizTitleConfig) {
         super(config);

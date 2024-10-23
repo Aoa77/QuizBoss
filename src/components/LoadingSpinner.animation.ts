@@ -6,7 +6,15 @@ import { LoadingSpinnerConfig } from "./LoadingSpinner.config";
 import { ComponentAnimation } from "../app/App.config";
 import { LoadingProgress } from "./LoadingProgress";
 
-export class LoadingSpinnerAnimation extends ComponentAnimation<LoadingSpinnerConfig> {
+export function createAnimation(
+    config: LoadingSpinnerConfig,
+): LoadingSpinnerAnimation {
+    return new LoadingSpinnerAnimation(config);
+}
+
+export class LoadingSpinnerAnimation ///////////////////////
+    extends ComponentAnimation<LoadingSpinnerConfig>
+{
     ///
     private readonly _loop: Lazy<AnimationTask>;
     private _loopStarted = false;
@@ -29,20 +37,21 @@ export class LoadingSpinnerAnimation extends ComponentAnimation<LoadingSpinnerCo
 
     ///
     public async transitionIn(): Promise<void> {
-        
         const group = [];
 
         if (!this._loopStarted) {
             this._loop.instance.run();
             this._loopStarted = true;
 
-            group.push(LoadingProgress.animation.fade({
-                value: Fade.max,
-                delay: this._config.delayBeforeProgressBar!,
-                duration: this._config.animationDuration!,
-                endDelay: 0,
-                easing: Ease.linear,
-            }).instance);
+            group.push(
+                LoadingProgress.animation.fade({
+                    value: Fade.max,
+                    delay: this._config.delayBeforeProgressBar!,
+                    duration: this._config.animationDuration!,
+                    endDelay: 0,
+                    easing: Ease.linear,
+                }).instance,
+            );
         }
 
         await this.fade({
@@ -51,7 +60,9 @@ export class LoadingSpinnerAnimation extends ComponentAnimation<LoadingSpinnerCo
             duration: this._config.animationDuration!,
             endDelay: 0,
             easing: Ease.linear,
-        }).instance.runWithGroup(group).all();
+        })
+            .instance.runWithGroup(group)
+            .all();
     }
 
     ///
@@ -59,13 +70,15 @@ export class LoadingSpinnerAnimation extends ComponentAnimation<LoadingSpinnerCo
         const group = [];
 
         if (LoadingProgress.animation.opacity > 0) {
-            group.push(LoadingProgress.animation.fade({
-                value: Fade.min,
-                delay: 0,
-                duration: this._config.animationDuration!,
-                endDelay: 0,
-                easing: Ease.linear,
-            }).instance);
+            group.push(
+                LoadingProgress.animation.fade({
+                    value: Fade.min,
+                    delay: 0,
+                    duration: this._config.animationDuration!,
+                    endDelay: 0,
+                    easing: Ease.linear,
+                }).instance,
+            );
         }
 
         await this.fade({
@@ -74,7 +87,8 @@ export class LoadingSpinnerAnimation extends ComponentAnimation<LoadingSpinnerCo
             duration: this._config.animationDuration!,
             endDelay: 0,
             easing: Ease.linear,
-        }).instance.runWithGroup(group).all();
+        })
+            .instance.runWithGroup(group)
+            .all();
     }
-
 }

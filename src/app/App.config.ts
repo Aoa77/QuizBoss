@@ -1,7 +1,7 @@
 import { CSSProperties, RefObject } from "react";
 import { AnimationTask } from "../libs/anime+/AnimationTask";
-import { Lazy } from "../libs/friendlies/Lazy";
 import { TransitionParams } from "../libs/anime+/TransitionParams";
+import { Lazy } from "../libs/friendlies/Lazy";
 
 export interface ComponentConfig {
     ///
@@ -9,8 +9,6 @@ export interface ComponentConfig {
     ///
     animationId?: string;
     animationDuration?: number;
-    sectionHeight?: number;
-    sectionMarginTop?: number;
     sectionStyle?: CSSProperties;
 }
 

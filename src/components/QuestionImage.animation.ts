@@ -2,7 +2,15 @@ import { ComponentAnimation } from "../app/App.config";
 import { Ease, Fade, Scale } from "../libs/anime+/enums";
 import { QuestionImageConfig } from "./QuestionImage.config";
 
-export class QuestionImageAnimation extends ComponentAnimation<QuestionImageConfig> {
+export function createAnimation(
+    config: QuestionImageConfig,
+): QuestionImageAnimation {
+    return new QuestionImageAnimation(config);
+}
+
+export class QuestionImageAnimation //////////////////////
+    extends ComponentAnimation<QuestionImageConfig>
+{
     ///
     public constructor(config: QuestionImageConfig) {
         super(config);
