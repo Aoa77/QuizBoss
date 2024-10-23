@@ -1,5 +1,5 @@
 import { createRef, CSSProperties } from "react";
-import { ComponentConfig } from "../app/App.config";
+import { ComponentConfig } from "../app/App.base";
 import { CssUnit } from "../libs/theme-vars/CssUnit";
 
 export interface QuestionImageConfig extends ComponentConfig {

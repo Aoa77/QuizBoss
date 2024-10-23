@@ -28,7 +28,7 @@ export class TaskGroup {
         return new TaskGroup();
     }
 
-    private _tasks: Promise<unknown>[] = [];
+    private readonly _tasks: Promise<unknown>[] = [];
 
     public add(task: Promise<unknown>) {
         this._tasks.push(task);

@@ -1,7 +1,6 @@
 import anime from "animejs";
 import { AnimeInstance, AnimeParams } from "animejs";
 import { Lazy } from "../friendlies/Lazy";
-import { TaskGroup } from "../friendlies/Task";
 
 export class AnimationTask {
     ///
@@ -27,27 +26,24 @@ export class AnimationTask {
     }
 
     private readonly _instance: AnimeInstance;
+    private readonly _params: AnimeParams;
 
     private constructor(params: AnimeParams) {
         this._instance = anime(params);
+        this._params = params;
     }
 
-    play(): void {
+    public getOriginalParams(): AnimeParams {
+        return this._params;
+    }
+
+    public play(): void {
         this._instance.play();
     }
 
-    pause(): void {
+    public pause(): void {
         this._instance.pause();
     }
-
-    // public restart(): Promise<void> {
-    //     return new Promise((resolve) => {
-    //         this._instance.finished.then(() => {
-    //             resolve();
-    //         });
-    //         this._instance.restart();
-    //     });
-    // }
 
     public run(): Promise<void> {
         return new Promise((resolve, reject) => {
@@ -62,15 +58,5 @@ export class AnimationTask {
             this.play();
         });
     }
-
-    public runWithGroup(others: AnimationTask[]): TaskGroup {
-        const group = TaskGroup.create();
-        group.add(this.run());
-        for (const other of others) {
-            group.add(other.run());
-        }
-        return group;
-    }
 }
-
 

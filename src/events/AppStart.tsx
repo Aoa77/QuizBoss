@@ -1,8 +1,8 @@
-import { LoadingSpinner } from "../components/LoadingSpinner";
 import { Task } from "../libs/friendlies/Task";
 import { FlowContext } from "../libs/flow-context/FlowContext";
 import { EventName } from "../models/EventName";
 import { QuizState } from "../models/QuizState";
+import { LoadingProgress } from "../components/LoadingProgress";
 
 const config = {
     START_DELAY: 200,
@@ -11,7 +11,7 @@ const config = {
 export async function AppStart() {
     ///
     await Task.delay(config.START_DELAY);
-    await LoadingSpinner.animation.transitionIn();
+    await LoadingProgress.animation.transitionIn();
 
     ///
     const [state, setState] = FlowContext.current<QuizState>();
