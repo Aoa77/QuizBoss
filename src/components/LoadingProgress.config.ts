@@ -7,7 +7,7 @@ import { TV, ThemeFont } from "../models/Theme";
 export function createConfig(): LoadingProgressConfig {
     const config: LoadingProgressConfig = {
         ///
-        id: "LoadingSpinner",
+        id: "LoadingProgress",
         ref: createRef(),
 
         ///

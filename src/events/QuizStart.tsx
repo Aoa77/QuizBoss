@@ -15,8 +15,9 @@ export async function QuizStart() {
             .then(() => LoadingSpinner.animation.in()),
     );
     anims.add(
-        Task.delay(LoadingProgress.config.transitionDuration / 2) //////
-            .then(() => QuizTitle.animation.in()),
+        Task.delay(LoadingProgress.config.transitionDuration / 2).then(() =>
+            QuizTitle.animation.in(),
+        ),
     );
     await anims.all();
 

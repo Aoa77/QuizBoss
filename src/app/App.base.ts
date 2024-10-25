@@ -1,12 +1,14 @@
 import { AnimationTask } from "../libs/anime+/AnimationTask";
-import { Lazy } from "../libs/friendlies/Lazy";
 import { TransformRegex } from "../libs/anime+/Constants";
 import { AnimeParams } from "animejs";
 import { AnimConfig } from "../models/AnimConfig";
 
 export abstract class ComponentAnimation<TConfig extends AnimConfig, TKey> {
-    private readonly _anim: Map<TKey, Lazy<AnimationTask>> = new Map();
     protected readonly _config: TConfig;
+    private readonly _anim: Map<
+        TKey,
+        (overrides: AnimeParams) => AnimationTask
+    > = new Map();
 
     public constructor(config: TConfig) {
         ///
@@ -23,38 +25,42 @@ export abstract class ComponentAnimation<TConfig extends AnimConfig, TKey> {
         this._anim.set(name, anim);
     }
 
-    protected createChild(name: TKey, childSelector: string, params: AnimeParams) {
+    protected createChild(
+        name: TKey,
+        childSelector: string,
+        params: AnimeParams,
+    ) {
         const query = `#${this._config.id} ${childSelector.trim()}`;
         const anim = AnimationTask.createByQuery(query, params);
         this._anim.set(name, anim);
     }
 
-    protected get(name: TKey): AnimationTask | null {
-        return this._anim.get(name)?.instance ?? null;
+    protected get(name: TKey, overrides?: AnimeParams): AnimationTask {
+        return this._anim.get(name)!(overrides ?? {});
     }
 
     protected isCompleted(name: TKey): boolean {
-        return this.get(name)!.isCompleted();
+        return this.get(name).isCompleted();
     }
 
     protected isPaused(name: TKey): boolean {
-        return this.get(name)!.isPaused();
+        return this.get(name).isPaused();
     }
 
     protected isPlaying(name: TKey): boolean {
-        return this.get(name)!.isPlaying();
+        return this.get(name).isPlaying();
     }
 
     public play(name: TKey): void {
-        this.get(name)!.play();
+        this.get(name).play();
     }
 
     public pause(name: TKey): void {
-        this.get(name)!.pause();
+        this.get(name).pause();
     }
 
     protected async run(name: TKey): Promise<void> {
-        await this.get(name)!.run();
+        await this.get(name).run();
     }
 
     protected getOpacity(): number | null {

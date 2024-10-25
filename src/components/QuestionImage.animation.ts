@@ -22,7 +22,7 @@ class QuestionImageAnimation extends ComponentAnimation<
         });
 
         this.create(AnimKey.zoomOut, {
-            value: Scale.zero,
+            scale: Scale.zero,
             duration: config.transitionDuration,
             easing: Ease.inOutBack,
         });

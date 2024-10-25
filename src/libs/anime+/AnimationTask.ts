@@ -1,28 +1,28 @@
 import anime from "animejs";
 import { AnimeInstance, AnimeParams } from "animejs";
-import { Lazy } from "../friendlies/Lazy";
 
 export class AnimationTask {
     ///
     public static createById(
         id: string,
         params: AnimeParams,
-    ): Lazy<AnimationTask> {
+    ): (overrides: AnimeParams) => AnimationTask {
         return AnimationTask.createByQuery(`#${id}`, params);
     }
 
+    ///
     public static createByQuery(
         query: string,
         params: AnimeParams,
-    ): Lazy<AnimationTask> {
-        return new Lazy(
-            () =>
-                new AnimationTask({
-                    ...params,
-                    targets: query,
-                    autoplay: false,
-                }),
-        );
+    ): (overrides: AnimeParams) => AnimationTask {
+        return (overrides: AnimeParams) => {
+            return new AnimationTask({
+                ...params,
+                ...overrides,
+                targets: query,
+                autoplay: false,
+            });
+        };
     }
 
     private readonly _instance: AnimeInstance;
