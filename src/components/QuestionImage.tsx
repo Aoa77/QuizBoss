@@ -1,4 +1,6 @@
+import { Duration } from "../libs/anime+/Constants";
 import { FlowContext } from "../libs/flow-context/FlowContext";
+import { TaskGroup } from "../libs/friendlies/Task";
 import { currentQuizItem, QuizState } from "../models/QuizState";
 import { LoadingSpinner } from "./LoadingSpinner";
 import { createAnimation } from "./QuestionImage.animation";
@@ -26,10 +28,7 @@ export function QuestionImage() {
     }
 
     return (
-        <section
-            id={config.id}
-            ref={config.ref}
-            style={config.sectionStyle}>
+        <section id={config.id} ref={config.ref} style={config.sectionStyle}>
             {jsx}
         </section>
     );
@@ -41,6 +40,14 @@ async function onPointerDown() {
     }
 
     const [state, setState] = FlowContext.current<QuizState>();
+
+    const anims = TaskGroup.create();
+    const duration = Duration.oneSecond;
+    anims.add(QuestionImage.animation.out({ duration }));
+    anims.add(
+        LoadingSpinner.animation.in({ delay: 0.45 * duration, duration }),
+    );
+    await anims.all();
 
     await QuestionImage.animation.out();
     await LoadingSpinner.animation.in();

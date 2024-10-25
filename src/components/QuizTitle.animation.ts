@@ -1,9 +1,11 @@
+import { AnimeParams } from "animejs";
 import { ComponentAnimation } from "../app/App.base";
-import { Ease, Fade } from "../libs/anime+/Constants";
+import { Duration, Ease, Fade } from "../libs/anime+/Constants";
 import { QuizTitleConfig } from "./QuizTitle.config";
 
 enum AnimKey {
     fadeIn = "fadeIn",
+    fadeOut = "fadeOut",
 }
 
 class QuizTitleAnimation extends ComponentAnimation<QuizTitleConfig, AnimKey> {
@@ -11,21 +13,29 @@ class QuizTitleAnimation extends ComponentAnimation<QuizTitleConfig, AnimKey> {
     public constructor(config: QuizTitleConfig) {
         super(config);
 
-        this.create(AnimKey.fadeIn, {
+        this.define(AnimKey.fadeIn, {
             opacity: Fade.max,
-            duration: config.animationDuration,
+            duration: Duration.oneSecond,
+            easing: Ease.linear,
+        });
+
+        this.define(AnimKey.fadeOut, {
+            opacity: Fade.min,
+            duration: Duration.oneSecond,
             easing: Ease.linear,
         });
     }
 
     ///
-    public in(): Promise<void> {
-        return this.run(AnimKey.fadeIn);
+    public async in(overrides?: AnimeParams): Promise<void> {
+        const anim = this.build(AnimKey.fadeIn, overrides);
+        await anim.run();
     }
 
     ///
-    public out(): Promise<void> {
-        throw new Error("Method not implemented.");
+    public async out(overrides?: AnimeParams): Promise<void> {
+        const anim = this.build(AnimKey.fadeOut, overrides);
+        await anim.run();
     }
 }
 

@@ -11,7 +11,6 @@ export function createConfig(): LoadingProgressConfig {
         ref: createRef(),
 
         ///
-        transitionDuration: 1000,
         progBarBackground: {},
         progBarForeground: {},
         sectionStyle: {},
@@ -51,7 +50,6 @@ export function createConfig(): LoadingProgressConfig {
 }
 
 export interface LoadingProgressConfig extends AnimConfig {
-    transitionDuration: number;
     progBarBackground: CSSProperties;
     progBarForeground: CSSProperties;
     sectionStyle: CSSProperties;

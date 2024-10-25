@@ -2,10 +2,11 @@ import { FlowContext } from "../libs/flow-context/FlowContext";
 import { LoadingSpinner } from "../components/LoadingSpinner";
 import { QuestionImage } from "../components/QuestionImage";
 import { QuizState } from "../models/QuizState";
-import { Task } from "../libs/friendlies/Task";
+import { Task, TaskGroup } from "../libs/friendlies/Task";
 import { randomInt } from "../libs/randos/randomInt";
 import { QuizData } from "../models/QuizData";
 import { QuizItem } from "../models/QuizItem";
+import { Duration } from "../libs/anime+/Constants";
 // import { ButtonStyle } from "../models/ButtonStyle";
 
 const config = {
@@ -27,8 +28,12 @@ export async function PrepQuestion() {
     console.info("answerSpot: ", state.answerButtonIndex);
 
     await Task.delay(config.NEXT_IMAGE_DELAY);
-    await LoadingSpinner.animation.out();
-    await QuestionImage.animation.in();
+
+    const anims = TaskGroup.create();
+    const duration = Duration.oneSecond;
+    anims.add(LoadingSpinner.animation.out({ duration }));
+    anims.add(QuestionImage.animation.in({ delay: 0.5 * duration, duration }));
+    await anims.all();
 
     state.answerButtonIndex = randomInt(0, state.settings.guessButtonCount);
     console.info("answerSpot: ", state.answerButtonIndex);
@@ -59,21 +64,17 @@ function bindGuessButtons(
     currentItem: QuizItem,
     quizData: QuizData,
 ) {
-    for (
-        let buttonIndex = 0;
-        buttonIndex < guessButtonCount;
-        buttonIndex++
-    ) {
+    for (let buttonIndex = 0; buttonIndex < guessButtonCount; buttonIndex++) {
         let item = currentItem;
         if (buttonIndex !== answerSpot) {
-            item =  selectRandomQuestionChoice(
+            item = selectRandomQuestionChoice(
                 currentGuessPool,
                 currentItem,
                 quizData,
             );
         }
         currentGuessPool.push(item.key);
-         assignAnswerToButton(buttonIndex, item);
+        assignAnswerToButton(buttonIndex, item);
     }
 }
 
@@ -118,10 +119,7 @@ class RANDOMIZER {
     public static INDEX: number = -1;
 }
 
-function assignAnswerToButton(
-    buttonIndex: number,
-    item: QuizItem,
-) {
+function assignAnswerToButton(buttonIndex: number, item: QuizItem) {
     console.debug("assignAnswerToButton", buttonIndex, item);
     // const buttons = xref.buttons();
     // const spotButton = buttons[buttonIndex];

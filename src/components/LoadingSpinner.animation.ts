@@ -1,7 +1,8 @@
-import anime from "animejs";
-import { Ease, Fade } from "../libs/anime+/Constants";
+import anime, { AnimeParams } from "animejs";
+import { Duration, Ease, Fade } from "../libs/anime+/Constants";
 import { LoadingSpinnerConfig } from "./LoadingSpinner.config";
 import { ComponentAnimation } from "../app/App.base";
+import { AnimationTask } from "../libs/anime+/AnimationTask";
 
 enum AnimKey {
     fadeIn = "fadeIn",
@@ -13,27 +14,29 @@ class LoadingSpinnerAnimation extends ComponentAnimation<
     LoadingSpinnerConfig,
     AnimKey
 > {
+    private _loop: AnimationTask | null = null;
+
     ///
     public constructor(config: LoadingSpinnerConfig) {
         ///
         super(config);
 
         ///
-        this.create(AnimKey.fadeIn, {
+        this.define(AnimKey.fadeIn, {
             opacity: Fade.max,
-            duration: config.fadeDuration,
+            duration: Duration.oneSecond,
             easing: Ease.linear,
         });
 
         ///
-        this.create(AnimKey.fadeOut, {
+        this.define(AnimKey.fadeOut, {
             opacity: Fade.min,
-            duration: config.fadeDuration,
+            duration: Duration.oneSecond,
             easing: Ease.linear,
         });
 
         ///
-        this.createChild(AnimKey.loop, " > svg > circle", {
+        this.defineChild(AnimKey.loop, " > svg > circle", {
             r: config.radiusArray,
             loop: true,
             delay: anime.stagger(config.loopStagger),
@@ -43,17 +46,19 @@ class LoadingSpinnerAnimation extends ComponentAnimation<
     }
 
     ///
-    public async in(): Promise<void> {
-        const loop = this.get(AnimKey.loop);
-        if (!loop!.isPlaying()) {
-            loop!.play();
+    public async in(overrides?: AnimeParams): Promise<void> {
+        if (this._loop === null) {
+            this._loop = this.build(AnimKey.loop);
+            this._loop.play();
         }
-        await this.run(AnimKey.fadeIn);
+        const anim = this.build(AnimKey.fadeIn, overrides);
+        await anim.run();
     }
 
     ///
-    public out(): Promise<void> {
-        return this.run(AnimKey.fadeOut);
+    public async out(overrides?: AnimeParams): Promise<void> {
+        const anim = this.build(AnimKey.fadeOut, overrides);
+        await anim.run();
     }
 }
 

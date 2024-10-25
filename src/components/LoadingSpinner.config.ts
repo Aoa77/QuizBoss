@@ -12,7 +12,6 @@ export function createConfig(): LoadingSpinnerConfig {
         ref: createRef(),
 
         ///
-        fadeDuration: 1000,
         cxArray: [45, 70, 95],
         cy: 50,
         loopIteration: 700,
@@ -45,7 +44,6 @@ export function createConfig(): LoadingSpinnerConfig {
 export interface LoadingSpinnerConfig extends AnimConfig {
     cxArray: number[];
     cy: number;
-    fadeDuration: number;
     loopIteration: number;
     loopStagger: number;
     radiusArray: number[];

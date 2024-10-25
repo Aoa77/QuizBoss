@@ -9,7 +9,6 @@ export function createConfig(): QuestionImageConfig {
         ref: createRef(),
         
         ///
-        transitionDuration: 500,
         enableSecretNextImage: true,
         
         ///
@@ -36,5 +35,4 @@ export interface QuestionImageConfig extends AnimConfig {
     enableSecretNextImage: boolean;
     imgStyle: CSSProperties;
     sectionStyle: CSSProperties;
-    transitionDuration: number;
 }

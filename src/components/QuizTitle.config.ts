@@ -11,7 +11,6 @@ export function createConfig(): QuizTitleConfig {
         ref: createRef(),
 
         ///
-        animationDuration: 500,
         enableSecretReload: true,
 
         ///
@@ -27,7 +26,6 @@ export function createConfig(): QuizTitleConfig {
 }
 
 export interface QuizTitleConfig extends AnimConfig {
-    animationDuration: number;
     enableSecretReload: boolean;
     style: CSSProperties;
 }

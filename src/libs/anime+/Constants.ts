@@ -1,3 +1,8 @@
+export enum Duration {
+    zero = 0,
+    oneSecond = 1000,
+}
+
 export enum Fade {
     max = 1,
     min = 0,

@@ -17,50 +17,26 @@ export abstract class ComponentAnimation<TConfig extends AnimConfig, TKey> {
         console.debug("config", this._config);
     }
 
-    public abstract in(): Promise<void>;
-    public abstract out(): Promise<void>;
+    public abstract in(overrides?: AnimeParams): Promise<void>;
+    public abstract out(overrides?: AnimeParams): Promise<void>;
 
-    protected create(name: TKey, params: AnimeParams) {
-        const anim = AnimationTask.createById(this._config.id, params);
+    protected define(name: TKey, params: AnimeParams) {
+        const anim = AnimationTask.idFactory(this._config.id, params);
         this._anim.set(name, anim);
     }
 
-    protected createChild(
+    protected defineChild(
         name: TKey,
         childSelector: string,
         params: AnimeParams,
     ) {
         const query = `#${this._config.id} ${childSelector.trim()}`;
-        const anim = AnimationTask.createByQuery(query, params);
+        const anim = AnimationTask.queryFactory(query, params);
         this._anim.set(name, anim);
     }
 
-    protected get(name: TKey, overrides?: AnimeParams): AnimationTask {
+    protected build(name: TKey, overrides?: AnimeParams): AnimationTask {
         return this._anim.get(name)!(overrides ?? {});
-    }
-
-    protected isCompleted(name: TKey): boolean {
-        return this.get(name).isCompleted();
-    }
-
-    protected isPaused(name: TKey): boolean {
-        return this.get(name).isPaused();
-    }
-
-    protected isPlaying(name: TKey): boolean {
-        return this.get(name).isPlaying();
-    }
-
-    public play(name: TKey): void {
-        this.get(name).play();
-    }
-
-    public pause(name: TKey): void {
-        this.get(name).pause();
-    }
-
-    protected async run(name: TKey): Promise<void> {
-        await this.get(name).run();
     }
 
     protected getOpacity(): number | null {

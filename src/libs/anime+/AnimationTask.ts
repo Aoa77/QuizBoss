@@ -3,15 +3,15 @@ import { AnimeInstance, AnimeParams } from "animejs";
 
 export class AnimationTask {
     ///
-    public static createById(
+    public static idFactory(
         id: string,
         params: AnimeParams,
     ): (overrides: AnimeParams) => AnimationTask {
-        return AnimationTask.createByQuery(`#${id}`, params);
+        return AnimationTask.queryFactory(`#${id}`, params);
     }
 
     ///
-    public static createByQuery(
+    public static queryFactory(
         query: string,
         params: AnimeParams,
     ): (overrides: AnimeParams) => AnimationTask {
