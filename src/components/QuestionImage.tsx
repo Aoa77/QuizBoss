@@ -1,6 +1,7 @@
 import { Duration } from "../libs/anime+/Constants";
 import { FlowContext } from "../libs/flow-context/FlowContext";
 import { TaskGroup } from "../libs/friendlies/Task";
+import { EventName } from "../models/EventName";
 import { currentQuizItem, QuizState } from "../models/QuizState";
 import { LoadingSpinner } from "./LoadingSpinner";
 import { createAnimation } from "./QuestionImage.animation";
@@ -49,14 +50,8 @@ async function onPointerDown() {
     );
     await anims.all();
 
-    await QuestionImage.animation.out();
-    await LoadingSpinner.animation.in();
 
-    ++state.currentItemIndex;
-    if (state.currentItemIndex >= state.quizModule!.quizData.items.length) {
-        state.currentItemIndex = 0;
-    }
-    setState({ ...state });
+    setState({ ...state, eventName: EventName.PrepQuestion });
 }
 
 /////////////////////////////////////////////

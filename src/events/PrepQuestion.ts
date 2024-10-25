@@ -1,42 +1,29 @@
 import { FlowContext } from "../libs/flow-context/FlowContext";
-import { LoadingSpinner } from "../components/LoadingSpinner";
-import { QuestionImage } from "../components/QuestionImage";
 import { QuizState } from "../models/QuizState";
-import { Task, TaskGroup } from "../libs/friendlies/Task";
 import { randomInt } from "../libs/randos/randomInt";
 import { QuizData } from "../models/QuizData";
 import { QuizItem } from "../models/QuizItem";
-import { Duration } from "../libs/anime+/Constants";
-// import { ButtonStyle } from "../models/ButtonStyle";
+import { EventName } from "../models/EventName";
 
-const config = {
-    NEXT_IMAGE_DELAY: 1000,
-};
 
 export async function PrepQuestion() {
-    const [state] = FlowContext.current<QuizState>();
+    const [state, setState] = FlowContext.current<QuizState>();
     if (state.quizModule === null) {
         throw new Error("QuizModule is null");
     }
 
+    ++state.currentItemIndex;
+    if (state.currentItemIndex >= state.quizModule.quizData.items.length) {
+        state.currentItemIndex = 0;
+    }
+    
     const currentGuessPool: string[] = [];
     const quizData = state.quizModule.quizData;
     const quizItems = quizData.items;
     const currentItem = quizItems[state.currentItemIndex];
 
     state.answerButtonIndex = randomInt(0, state.settings.guessButtonCount);
-    console.info("answerSpot: ", state.answerButtonIndex);
-
-    await Task.delay(config.NEXT_IMAGE_DELAY);
-
-    const anims = TaskGroup.create();
-    const duration = Duration.oneSecond;
-    anims.add(LoadingSpinner.animation.out({ duration }));
-    anims.add(QuestionImage.animation.in({ delay: 0.5 * duration, duration }));
-    await anims.all();
-
-    state.answerButtonIndex = randomInt(0, state.settings.guessButtonCount);
-    console.info("answerSpot: ", state.answerButtonIndex);
+    console.info("answerButtonIndex: ", state.answerButtonIndex);
 
     bindGuessButtons(
         state.answerButtonIndex,
@@ -46,15 +33,9 @@ export async function PrepQuestion() {
         quizData,
     );
 
-    // const anims = new TaskGroup();
-    // anims.add(TransitionAnimation.NextQuestionReady());
-    // anims.add(QuestionAnimation.fadeIn());
-    // anims.add(ProgressAnimation.fadeIn());
-    // anims.add(ScoreAnimation.fadeIn());
-    // await anims.all();
+    ///
+    setState({ ...state, eventName: EventName.AskQuestion });
 
-    // await ButtonGroupAnimation.fadeIn();
-    // setState({ ...state, eventName: EventName.AwaitInput });
 }
 
 function bindGuessButtons(

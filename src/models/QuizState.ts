@@ -20,7 +20,7 @@ export function currentQuizItem(state: QuizState): QuizItem | null {
     if (!state.quizModule) {
         return null;
     }
-    return state.quizModule.quizData.items[state.currentItemIndex];
+    return state.quizModule.quizData.items[state.currentItemIndex] ?? null;
 }
 
 export function initQuizState(settings: AppSettings): QuizState {
@@ -32,7 +32,7 @@ export function initQuizState(settings: AppSettings): QuizState {
         answerButtonIndex: 0,
         bestScore: 0,
         buttonAnswerMap: [],
-        currentItemIndex: 0,
+        currentItemIndex: -1,
         eventName: EventName.AppStart,
         guessValue: "",
         quizModule: null,

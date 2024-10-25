@@ -4,6 +4,7 @@ import { Task } from "../friendlies/Task";
 
 export function useFlowContext<Tstate, Tflow>(params: {
     errorHandler?: (error: unknown) => void;
+    stateLogger? : (state: Tstate) => void;
     initialState: Tstate;
     flowProperty: (state: Tstate) => Tflow;
     flowEvents: Map<Tflow, (state: Tstate) => Promise<void>>;
@@ -17,7 +18,7 @@ export function useFlowContext<Tstate, Tflow>(params: {
     useEffect(() => {
         try {
             const flowEvent: Tflow = flowProperty(state);
-            console.info(flowEvent);
+            params.stateLogger?.(state);
 
             const eventHandler = flowEvents.get(flowEvent);
             if (eventHandler) {
