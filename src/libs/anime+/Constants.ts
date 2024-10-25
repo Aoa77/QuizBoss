@@ -1,11 +1,11 @@
 export enum Fade {
     max = 1,
-    min = 0
+    min = 0,
 }
 
 export enum Scale {
     one = 1,
-    zero = 0
+    zero = 0,
 }
 
 export enum Ease {
@@ -51,3 +51,7 @@ export enum Ease {
     outInQuint = "easeOutInQuint",
     outInSine = "easeOutInSine",
 }
+
+export const TransformRegex = {
+    scale: /scale\((\d+(\.\d+)?)\)/,
+};

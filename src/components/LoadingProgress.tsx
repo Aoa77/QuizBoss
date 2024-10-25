@@ -10,12 +10,12 @@ export function LoadingProgress() {
     ///
     return (
         <section
-            id={config.animationId}
+            id={config.id}
             ref={config.ref}
             style={config.sectionStyle}>
             LOADING
             <div style={config.progBarBackground}>
-                <div style={config.progBarCompleted}></div>
+                <div style={config.progBarForeground}></div>
             </div>
         </section>
     );

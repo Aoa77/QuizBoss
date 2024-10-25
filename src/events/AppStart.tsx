@@ -11,7 +11,7 @@ const config = {
 export async function AppStart() {
     ///
     await Task.delay(config.START_DELAY);
-    await LoadingProgress.animation.transitionIn();
+    await LoadingProgress.animation.in();
 
     ///
     const [state, setState] = FlowContext.current<QuizState>();

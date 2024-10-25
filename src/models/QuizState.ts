@@ -4,8 +4,9 @@ import { QuizItem } from "./QuizItem";
 import { QuizModule } from "./QuizModule";
 
 export interface QuizState {
-    answerSpot: number;
+    answerButtonIndex: number;
     bestScore: number;
+    buttonAnswerMap: (number | null)[];
     currentItemIndex: number;
     eventName: EventName;
     guessValue: string;
@@ -23,9 +24,14 @@ export function currentQuizItem(state: QuizState): QuizItem | null {
 }
 
 export function initQuizState(settings: AppSettings): QuizState {
+    const buttonAnswerMap: (number | null)[] = [];
+    for (let i = 0; i < settings.guessButtonCount; i++) {
+        buttonAnswerMap.push(null);
+    }
     return {
-        answerSpot: 0,
+        answerButtonIndex: 0,
         bestScore: 0,
+        buttonAnswerMap: [],
         currentItemIndex: 0,
         eventName: EventName.AppStart,
         guessValue: "",

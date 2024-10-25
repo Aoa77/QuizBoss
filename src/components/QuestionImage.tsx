@@ -1,7 +1,6 @@
 import { FlowContext } from "../libs/flow-context/FlowContext";
 import { currentQuizItem, QuizState } from "../models/QuizState";
 import { LoadingSpinner } from "./LoadingSpinner";
-import { EventName } from "../models/EventName";
 import { createAnimation } from "./QuestionImage.animation";
 import { createConfig } from "./QuestionImage.config";
 
@@ -28,7 +27,7 @@ export function QuestionImage() {
 
     return (
         <section
-            id={config.animationId}
+            id={config.id}
             ref={config.ref}
             style={config.sectionStyle}>
             {jsx}
@@ -42,15 +41,9 @@ async function onPointerDown() {
     }
 
     const [state, setState] = FlowContext.current<QuizState>();
-    if (state.eventName !== EventName.NextQuestion) {
-        return;
-    }
 
-    const questionImage = QuestionImage.animation;
-    const loadingSpinner = LoadingSpinner.animation;
-
-    await questionImage.transitionOut();
-    await loadingSpinner.transitionIn();
+    await QuestionImage.animation.out();
+    await LoadingSpinner.animation.in();
 
     ++state.currentItemIndex;
     if (state.currentItemIndex >= state.quizModule!.quizData.items.length) {

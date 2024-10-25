@@ -6,7 +6,7 @@ import { xref } from "../../../core/animation/dom/xref";
 
 export function identifyButtons(): IdentifyButtonsResult {
     const [state] = FlowContext.current<QuizState>();
-    const { answerSpot } = state;
+    const { answerButtonIndex: answerSpot } = state;
     const all = xref.buttons();
     const correct = all[answerSpot];
     const top = all[0];

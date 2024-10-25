@@ -1,7 +1,7 @@
 import { FlowContext } from "../libs/flow-context/FlowContext";
 import { QuizState } from "../models/QuizState";
+import { createAnimation } from "./QuizTitle.animation";
 import { createConfig } from "./QuizTitle.config";
-import { createAnimation } from "./LoadingSpinner.animation";
 
 /////////////////////////////////////////////
 const config = createConfig();
@@ -13,9 +13,9 @@ export function QuizTitle() {
 
     return (
         <section
-            id={config.animationId}
+            id={config.id}
             ref={config.ref}
-            style={config.sectionStyle}
+            style={config.style}
             onPointerDown={onPointerDown}>
             {state.quizModule?.quizData.title}
         </section>

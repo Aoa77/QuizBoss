@@ -37,12 +37,28 @@ export class AnimationTask {
         return this._params;
     }
 
-    public play(): void {
-        this._instance.play();
+    public isCompleted(): boolean {
+        return this._instance.completed;
+    }
+
+    public isPaused(): boolean {
+        return this._instance.paused;
+    }
+
+    public isPlaying(): boolean {
+        return (
+            this._instance.began &&
+            !this._instance.completed &&
+            !this._instance.paused
+        );
     }
 
     public pause(): void {
         this._instance.pause();
+    }
+
+    public play(): void {
+        this._instance.play();
     }
 
     public run(): Promise<void> {
@@ -59,4 +75,3 @@ export class AnimationTask {
         });
     }
 }
-

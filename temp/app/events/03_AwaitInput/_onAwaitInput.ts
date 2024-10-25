@@ -19,7 +19,7 @@ export async function onAwaitInput() {
     //info("waiting for DEMO input...");
     await wait(TIME.DEMO_DELAY);
 
-    const spotButton = doDemoInput(state.answerSpot, demoMode);
+    const spotButton = doDemoInput(state.answerButtonIndex, demoMode);
     setState({
         ...state,
         guessValue: spotButton.dataValue,

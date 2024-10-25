@@ -23,11 +23,11 @@ export async function onNextQuestion() {
     const quizItems = quizData.items;
     const currentItem = quizItems[state.currentItemIndex];
 
-    state.answerSpot = randomInt(0, state.settings.guessButtonCount);
+    state.answerButtonIndex = randomInt(0, state.settings.guessButtonCount);
     //info("answerSpot: ", state.answerSpot);
 
     await bindGuessButtons(
-        state.answerSpot,
+        state.answerButtonIndex,
         state.settings.guessButtonCount,
         currentGuessPool,
         currentItem,

@@ -15,7 +15,7 @@ export function LoadingSpinner() {
 
     return (
         <section
-            id={config.animationId}
+            id={config.id}
             ref={config.ref}
             style={config.sectionStyle}>
             <svg

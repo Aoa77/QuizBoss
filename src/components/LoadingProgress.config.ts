@@ -1,18 +1,21 @@
 import { createRef, CSSProperties } from "react";
-import { ComponentConfig } from "../app/App.base";
+import { AnimConfig } from "../models/AnimConfig";
 import { CssUnit } from "../libs/theme-vars/CssUnit";
 import { ThemeVars } from "../libs/theme-vars/ThemeVars";
 import { TV, ThemeFont } from "../models/Theme";
 
-export interface LoadingProgressConfig extends ComponentConfig {
-    progBarBackground?: CSSProperties;
-    progBarCompleted?: CSSProperties;
-}
-
 export function createConfig(): LoadingProgressConfig {
-    const config: LoadingProgressConfig = { ref: createRef() };
-    config.animationId = "LoadingProgress";
-    config.animationDuration = 1000;
+    const config: LoadingProgressConfig = {
+        ///
+        id: "LoadingSpinner",
+        ref: createRef(),
+
+        ///
+        transitionDuration: 1000,
+        progBarBackground: {},
+        progBarForeground: {},
+        sectionStyle: {},
+    };
 
     ///
     config.sectionStyle = {
@@ -37,11 +40,19 @@ export function createConfig(): LoadingProgressConfig {
     };
 
     ///
-    config.progBarCompleted = {
+    config.progBarForeground = {
         backgroundColor: ThemeVars.getRef(TV, TV.LoadingProgress_BAR_color),
         width: ThemeVars.getRef(TV, TV.LoadingProgress_BAR_width),
         height: "100%",
     };
 
+    ///
     return config;
+}
+
+export interface LoadingProgressConfig extends AnimConfig {
+    transitionDuration: number;
+    progBarBackground: CSSProperties;
+    progBarForeground: CSSProperties;
+    sectionStyle: CSSProperties;
 }

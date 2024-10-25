@@ -6,7 +6,7 @@ import { useFlowContext } from "../libs/flow-context/FlowContext.hook";
 import { initQuizState, QuizState } from "../models/QuizState";
 import { EventName } from "../models/EventName";
 import { AppStart } from "../events/AppStart";
-import { NextQuestion } from "../events/NextQuestion";
+import { PrepQuestion } from "../events/PrepQuestion";
 import { QuestionImage } from "../components/QuestionImage";
 import { QuizStart } from "../events/QuizStart";
 import { LoadQuizModule } from "../events/LoadQuizModule";
@@ -23,7 +23,7 @@ export function App(settings: AppSettings) {
         flowEvents: new Map<EventName, (state: QuizState) => Promise<void>>([
             [EventName.AppStart, AppStart],
             [EventName.LoadQuizModule, LoadQuizModule],
-            [EventName.NextQuestion, NextQuestion],
+            [EventName.PrepQuestion, PrepQuestion],
             [EventName.QuizStart, QuizStart],
         ]),
     });

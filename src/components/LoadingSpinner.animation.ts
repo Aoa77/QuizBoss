@@ -1,52 +1,64 @@
 import anime from "animejs";
-import { AnimationTask } from "../libs/anime+/AnimationTask";
-import { Ease } from "../libs/anime+/enums";
-import { Lazy } from "../libs/friendlies/Lazy";
+import { Ease, Fade } from "../libs/anime+/Constants";
 import { LoadingSpinnerConfig } from "./LoadingSpinner.config";
 import { ComponentAnimation } from "../app/App.base";
 
-export function createAnimation(
-    config: LoadingSpinnerConfig,
-): LoadingSpinnerAnimation {
-    return new LoadingSpinnerAnimation(config);
+enum AnimKey {
+    fadeIn = "fadeIn",
+    fadeOut = "fadeOut",
+    loop = "loop",
 }
 
-class LoadingSpinnerAnimation ///////////////////////
-    extends ComponentAnimation<LoadingSpinnerConfig>
-{
-    ///
-    private readonly _loop: Lazy<AnimationTask>;
-    private _loopStarted = false;
-
+class LoadingSpinnerAnimation extends ComponentAnimation<
+    LoadingSpinnerConfig,
+    AnimKey
+> {
     ///
     public constructor(config: LoadingSpinnerConfig) {
         ///
         super(config);
 
         ///
-        this._loop = AnimationTask.createByQuery(
-            `section#${config.animationId} > svg > circle`,
-            {
-                r: config.radiusArray,
-                loop: true,
-                delay: anime.stagger(config.loopStagger!),
-                duration: config.loopIteration,
-                easing: Ease.linear,
-            },
-        );
+        this.create(AnimKey.fadeIn, {
+            opacity: Fade.max,
+            duration: config.fadeDuration,
+            easing: Ease.linear,
+        });
+
+        ///
+        this.create(AnimKey.fadeOut, {
+            opacity: Fade.min,
+            duration: config.fadeDuration,
+            easing: Ease.linear,
+        });
+
+        ///
+        this.createChild(AnimKey.loop, " > svg > circle", {
+            r: config.radiusArray,
+            loop: true,
+            delay: anime.stagger(config.loopStagger),
+            duration: config.loopIteration,
+            easing: Ease.linear,
+        });
     }
 
     ///
-    public async transitionIn(): Promise<void> {
-        if (!this._loopStarted) {
-            this._loop.instance.run();
-            this._loopStarted = true;
+    public async in(): Promise<void> {
+        const loop = this.get(AnimKey.loop);
+        if (!loop!.isPlaying()) {
+            loop!.play();
         }
-        await this._fade[1].instance.run();
+        await this.run(AnimKey.fadeIn);
     }
 
     ///
-    public async transitionOut(): Promise<void> {
-        await this._fade[0].instance.run();
+    public out(): Promise<void> {
+        return this.run(AnimKey.fadeOut);
     }
+}
+
+export function createAnimation(
+    config: LoadingSpinnerConfig,
+): LoadingSpinnerAnimation {
+    return new LoadingSpinnerAnimation(config);
 }

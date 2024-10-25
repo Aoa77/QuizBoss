@@ -11,16 +11,16 @@ export async function QuizStart() {
     const anims = TaskGroup.create();
     anims.add(
         LoadingProgress.animation
-            .transitionOut()
-            .then(() => LoadingSpinner.animation.transitionIn()),
+            .out()
+            .then(() => LoadingSpinner.animation.in()),
     );
     anims.add(
-        Task.delay(LoadingProgress.config.animationDuration! / 2) /////////
-            .then(() => QuizTitle.animation.transitionIn()),
+        Task.delay(LoadingProgress.config.transitionDuration / 2) //////
+            .then(() => QuizTitle.animation.in()),
     );
     await anims.all();
 
     //
     const [state, setState] = FlowContext.current<QuizState>();
-    setState({ ...state, eventName: EventName.NextQuestion });
+    setState({ ...state, eventName: EventName.PrepQuestion });
 }

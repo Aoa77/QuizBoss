@@ -1,9 +1,10 @@
 export enum EventName {
     AppStart = "AppStart",
+    AskQuestion = "AskQuestion",
+    AwaitInput = "AwaitInput",
     LoadQuizModule = "LoadQuizModule",
-    QuizStart = "QuizStart",
-    NextQuestion = "NextQuestion",
-    AwaitInput = "Input",
-    ShowResult = "ShowResult",
+    PrepQuestion = "PrepQuestion",
     QuizComplete = "QuizComplete",
+    QuizStart = "QuizStart",
+    ShowResult = "ShowResult",
 }
