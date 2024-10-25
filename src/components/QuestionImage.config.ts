@@ -9,7 +9,7 @@ export function createConfig(): QuestionImageConfig {
         ref: createRef(),
         
         ///
-        enableSecretNextImage: true,
+        enableSecretInput: true,
         
         ///
         imgStyle: {},
@@ -32,7 +32,7 @@ export function createConfig(): QuestionImageConfig {
 }
 
 export interface QuestionImageConfig extends AnimConfig {
-    enableSecretNextImage: boolean;
+    enableSecretInput: boolean;
     imgStyle: CSSProperties;
     sectionStyle: CSSProperties;
 }

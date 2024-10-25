@@ -14,6 +14,7 @@ import { LoadingProgress } from "../components/LoadingProgress";
 import { GuessButton } from "../components/GuessButton";
 import { GuessButtonConfig } from "../components/GuessButton.config";
 import { AskQuestion } from "../events/AskQuestion";
+import { ConcludeQuestion } from "../events/ConcludeQuestion";
 
 export function App(settings: AppSettings) {
     ///
@@ -26,6 +27,7 @@ export function App(settings: AppSettings) {
             [EventName.AppStart, AppStart],
             [EventName.AskQuestion, AskQuestion],
             [EventName.AwaitInput, () => Promise.resolve()],
+            [EventName.ConcludeQuestion, ConcludeQuestion],
             [EventName.LoadQuizModule, LoadQuizModule],
             [EventName.PrepQuestion, PrepQuestion],
             [EventName.QuizStart, QuizStart],
