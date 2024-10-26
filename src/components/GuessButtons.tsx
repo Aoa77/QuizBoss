@@ -1,10 +1,13 @@
 import { FlowContext } from "../libs/flow-context/FlowContext";
 import { QuizState } from "../models/QuizState";
-import { createConfig } from "./GuessButtons.config";
+import { createAnimation, GuessButtonsAnimation } from "./GuessButtons.animation";
+import { createConfig, GuessButtonsConfig } from "./GuessButtons.config";
+import { createStyles } from "./GuessButtons.style";
 
 /////////////////////////////////////////////
-const config = createConfig();
-// const animation = createAnimation(config);
+const configs: GuessButtonsConfig[] = [];
+const animations: GuessButtonsAnimation[] = [];
+const style = createStyles();
 /////////////////////////////////////////////
 
 export function GuessButtons() {
@@ -14,23 +17,24 @@ export function GuessButtons() {
     const buttonJsx = [];
 
     for (let i = 0; i < guessButtonCount; i++) {
+        const config = createConfig(i);
+        configs.push(config);
+        animations.push(createAnimation(config));
+
         const item = buttonAnswerMap[i];
         const text = item === null ? null : item.name;
 
         buttonJsx.push(
-            <span key={i} style={config.spanStyle}>
+            <span key={i} style={style.spanStyle}>
                 {text}
             </span>,
         );
     }
 
-    return (
-        <section id={config.id} ref={config.ref} style={config.sectionStyle}>
-            {buttonJsx}
-        </section>
-    );
+    return <section style={style.sectionStyle}>{buttonJsx}</section>;
 }
 
 /////////////////////////////////////////////
-GuessButtons.config = config;
+GuessButtons.configs = configs;
+GuessButtons.animations = animations;
 /////////////////////////////////////////////
