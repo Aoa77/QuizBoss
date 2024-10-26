@@ -37,10 +37,10 @@ html {
 
 /* set background colors */
 body {
-    background-color: var(--tv_BODY_backgroundColor);
+    background-color: var(--tv-BODY_backgroundColor);
 }
 main {
-    background-color: var(--tv_MAIN_backgroundColor);
+    background-color: var(--tv-MAIN_backgroundColor);
 }
 
 /* <main> is the app container */

@@ -3,57 +3,57 @@
 /************************/
 :root {
     /**/
-    --tv_BODY_backgroundColor                 : "#000000ff";
-    --tv_MAIN_backgroundColor                 : "#000022ff";
+    --tv-BODY_backgroundColor                 : "#000000ff";
+    --tv-MAIN_backgroundColor                 : "#000022ff";
 
     /**/
-    --tv_GuessButton_CORRECT_backgroundColor  : "#007700ff";
-    --tv_GuessButton_CORRECT_borderColor      : "#007700dd";
-    --tv_GuessButton_CORRECT_color            : "#ffffffff";
+    --tv-GuessButton_CORRECT_backgroundColor  : "#007700ff";
+    --tv-GuessButton_CORRECT_borderColor      : "#007700dd";
+    --tv-GuessButton_CORRECT_color            : "#ffffffff";
 
     /**/
-    --tv_GuessButton_DIMMED_backgroundColor   : "#44447755";
-    --tv_GuessButton_DIMMED_borderColor       : "#44447733";
-    --tv_GuessButton_DIMMED_color             : "#ffffff55";
+    --tv-GuessButton_DIMMED_backgroundColor   : "#44447755";
+    --tv-GuessButton_DIMMED_borderColor       : "#44447733";
+    --tv-GuessButton_DIMMED_color             : "#ffffff55";
 
     /**/
-    --tv_GuessButton_NORMAL_backgroundColor   : "#444477ff";
-    --tv_GuessButton_NORMAL_borderColor       : "#444477dd";
-    --tv_GuessButton_NORMAL_color             : "#ffffffff";
+    --tv-GuessButton_NORMAL_backgroundColor   : "#444477ff";
+    --tv-GuessButton_NORMAL_borderColor       : "#444477dd";
+    --tv-GuessButton_NORMAL_color             : "#ffffffff";
 
     /**/
-    --tv_GuessButton_REVEAL_backgroundColor   : "#550055ff";
-    --tv_GuessButton_REVEAL_borderColor       : "#550055dd";
-    --tv_GuessButton_REVEAL_color             : "#ffff00ff";
+    --tv-GuessButton_REVEAL_backgroundColor   : "#550055ff";
+    --tv-GuessButton_REVEAL_borderColor       : "#550055dd";
+    --tv-GuessButton_REVEAL_color             : "#ffff00ff";
 
     /**/
-    --tv_GuessButton_WRONG_backgroundColor    : "#ff0000ff";
-    --tv_GuessButton_WRONG_borderColor        : "#ff0000dd";
-    --tv_GuessButton_WRONG_color              : "#ffffffff";
+    --tv-GuessButton_WRONG_backgroundColor    : "#ff0000ff";
+    --tv-GuessButton_WRONG_borderColor        : "#ff0000dd";
+    --tv-GuessButton_WRONG_color              : "#ffffffff";
 
     /**/
-    --tv_LoadingSpinner_fill                  : "#1c4c5bff";
-    --tv_LoadingProgress_BAR_backgroundColor  : "#1c4c5bff";
-    --tv_LoadingProgress_BAR_color            : "#ffffff33";
-    --tv_LoadingProgress_BAR_width            : "0%";
-    --tv_LoadingProgress_TEXT_color           : "#1c4c5bff";
+    --tv-LoadingSpinner_fill                  : "#1c4c5bff";
+    --tv-LoadingProgress_BAR_backgroundColor  : "#1c4c5bff";
+    --tv-LoadingProgress_BAR_color            : "#ffffff33";
+    --tv-LoadingProgress_BAR_width            : "0%";
+    --tv-LoadingProgress_TEXT_color           : "#1c4c5bff";
 
     /**/
-    --tv_QuizTitle_color                      : "#ffffffff";
+    --tv-QuizTitle_color                      : "#ffffffff";
     
 
 
 
 
-    --tv_actionLink               : "#ffff00ff";
-    --tv_bonus                    : "#00ff00ff";
-    --tv_iconBackground           : "#555555ee";
-    --tv_iconForeground           : "#ffffffff";
-    --tv_imageShadow              : "#a5a5c877";
-    --tv_menuBackground           : "#444444ff";
-    --tv_noBonus                  : "#ff0000ff";
-    --tv_progress                 : "#ffffffbb";
-    --tv_questionHeading          : "#00ffffff";
-    --tv_scoreLabel               : "#00ffffff";
-    --tv_scoreValue               : "#ffff00ff";
+    --tv-actionLink               : "#ffff00ff";
+    --tv-bonus                    : "#00ff00ff";
+    --tv-iconBackground           : "#555555ee";
+    --tv-iconForeground           : "#ffffffff";
+    --tv-imageShadow              : "#a5a5c877";
+    --tv-menuBackground           : "#444444ff";
+    --tv-noBonus                  : "#ff0000ff";
+    --tv-progress                 : "#ffffffbb";
+    --tv-questionHeading          : "#00ffffff";
+    --tv-scoreLabel               : "#00ffffff";
+    --tv-scoreValue               : "#ffff00ff";
 }
