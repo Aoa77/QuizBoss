@@ -1,4 +1,3 @@
-import { AppSettings } from "../app/App.settings";
 import { FlowContext } from "../libs/flow-context/FlowContext";
 import { LocalStore } from "../libs/friendlies/LocalStore";
 import { generateRandomString } from "../libs/randos/generateRandomString";
@@ -22,26 +21,24 @@ export async function LoadQuizModule(): Promise<void> {
     state.bestScore = LocalStore.numbers.get("bestScore", 0)!;
     console.info("Best score restored: ", state.bestScore);
 
-    const module = await fetchQuizModule(settings.quizModuleName);
-    console.info(`Quiz module loading: ${module.name}`, module);
+    state.quizModule = await fetchQuizModule(settings.quizModuleName);
+    console.info(`Quiz module loading: ${state.quizModule!.name}`, state.quizModule!);
+    const { quizModule } = state;
+    const { quizData } = quizModule;
 
-    shuffle(module.quizData.items);
-    for (let index = 0; index < module.quizData.items.length; index++) {
-        const item = module.quizData.items[index];
-        initQuizItem(item, index, module);
+    shuffle(quizData.items);
+    for (let index = 0; index < quizData.items.length; index++) {
+        const item = quizData.items[index];
+        initQuizItem(item, index, quizModule.name);
     }
 
-    randomizeGuessPool(module, settings);
+    randomizeGuessPool(state);
     if (settings.maxQuestions > 0) {
-        module.quizData.items = module.quizData.items.slice(
-            0,
-            settings.maxQuestions,
-        );
+        quizData.items = quizData.items.slice(0, settings.maxQuestions);
     }
+    state.totalItems = quizData.items.length;
 
-    state.quizModule = module;
-    state.totalItems = module.quizData.items.length;
-    await loadImages(module);
+    await loadImages(state);
     setState({ ...state, eventName: EventName.QuizStart });
 }
 
@@ -59,20 +56,22 @@ async function fetchQuizModule(quizModuleName: string): Promise<QuizModule> {
     return module;
 }
 
-function initQuizItem(item: QuizItem, indez: number, module: QuizModule) {
-    item.index = indez;
+function initQuizItem(item: QuizItem, index: number, moduleName: string) {
+    item.index = index;
     item.isDummy = false;
     item.duplicateItemKeys ??= [];
-    item.imageSrc = `${module.name}/${item.imageSrc}`;
+    item.imageSrc = `${moduleName}/${item.imageSrc}`;
 }
 
-function randomizeGuessPool(module: QuizModule, settings: AppSettings): void {
+function randomizeGuessPool(state: QuizState): void {
+    const { settings, quizModule } = state;
+    const { quizData } = quizModule!;
     const { guessButtonCount } = settings;
-    module.quizData.randomizedGuessPool = module.quizData.items.slice();
+    quizData.randomizedGuessPool = quizData.items.slice();
 
     // need at least number of dummy items as number of guess buttons
     // to avoid duplicates answer choices.
-    while (module.quizData.dummies.length < guessButtonCount) {
+    while (quizData.dummies.length < guessButtonCount) {
         while (true) {
             const dummyGen = generateRandomString().split("");
             if (dummyGen.length === 0) {
@@ -83,14 +82,14 @@ function randomizeGuessPool(module: QuizModule, settings: AppSettings): void {
                 dummy += dummyGen.pop()!.toLowerCase();
             }
 
-            if (!module.quizData.dummies.includes(dummy)) {
-                module.quizData.dummies.push(dummy);
+            if (!quizData.dummies.includes(dummy)) {
+                quizData.dummies.push(dummy);
                 break;
             }
         }
     }
 
-    for (const dummy of module.quizData.dummies) {
+    for (const dummy of quizData.dummies) {
         const dummyItem: QuizItem = {
             index: -1,
             isDummy: true,
@@ -102,21 +101,29 @@ function randomizeGuessPool(module: QuizModule, settings: AppSettings): void {
             imageHeight: 0,
             answeredCorrectly: false,
         };
-        module.quizData.randomizedGuessPool.push(dummyItem);
+        quizData.randomizedGuessPool.push(dummyItem);
     }
-    shuffle(module.quizData.randomizedGuessPool);
+    shuffle(quizData.randomizedGuessPool);
 }
 
-async function loadImages(module: QuizModule) {
+async function loadImages(state: QuizState) {
     ///
     console.info("Loading quiz images...");
+    const { settings, quizModule } = state;
+    const { awaitImageLoading } = settings;
+    const { quizData } = quizModule!;
 
     ///
-    for (const item of module.quizData.items) {
-        await fetchImage(item);
+    for (const item of quizData.items) {
+        if (awaitImageLoading) {
+            await fetchImage(item);
+        } else {
+            fetchImage(item);
+        }
+
         ThemeVars.setValue(
             TV.LoadingProgress_BAR_width,
-            `${(++count.imagesLoaded / module.quizData.items.length) * 100}%`,
+            `${(++count.imagesLoaded / quizData.items.length) * 100}%`,
         );
     }
 }

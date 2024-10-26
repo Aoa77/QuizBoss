@@ -12,7 +12,11 @@ const errorHandler = showErrorUI;
 
 const root: HTMLElement | null = document.getElementById("root");
 try {
-    const settings = new AppSettings({ quizModuleName, errorHandler });
+    const settings = new AppSettings({
+        quizModuleName,
+        errorHandler,
+        awaitImageLoading: false,
+    });
     await ThemeVars.config(ThemeName, TV, "themes");
     await ThemeVars.apply(settings.theme);
     createRoot(root!).render(<App {...settings} />);
