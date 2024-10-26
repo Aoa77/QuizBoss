@@ -26,8 +26,8 @@ export function createStyles() : StyleConfig {
 
     config.spanStyle = {
         alignContent: "center",
-        backgroundColor: ThemeVars.getRef(TV, TV.GuessButton_backgroundColor),
-        color: ThemeVars.getRef(TV, TV.GuessButton_color),
+        backgroundColor: ThemeVars.getRef(TV, TV.GuessButton_NORMAL_backgroundColor),
+        color: ThemeVars.getRef(TV, TV.GuessButton_NORMAL_color),
         display: "block",
 
         fontFamily: ThemeFont.sans,

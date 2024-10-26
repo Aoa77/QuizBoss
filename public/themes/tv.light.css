@@ -1,27 +1,52 @@
 /************************/
-/* LIGHT THEME          */
+/* DARK THEME           */
 /************************/
 :root {
-    --tv_BODY_backgroundColor        : "#000000ff";
-    --tv_LoadingSpinner_fill         : "#1c4c5bff";
-    --tv_LoadingProgress_TEXT_color         : "#ffffffff";
-    --tv_MAIN_backgroundColor        : "#000022ff";
-    --tv_QuizTitle_color             : "#ffffffff";
+    /**/
+    --tv_BODY_backgroundColor                 : "#000000ff";
+    --tv_MAIN_backgroundColor                 : "#000022ff";
+
+    /**/
+    --tv_GuessButton_CORRECT_backgroundColor  : "#007700ff";
+    --tv_GuessButton_CORRECT_borderColor      : "#007700dd";
+    --tv_GuessButton_CORRECT_color            : "#ffffffff";
+
+    /**/
+    --tv_GuessButton_DIMMED_backgroundColor   : "#44447755";
+    --tv_GuessButton_DIMMED_borderColor       : "#44447733";
+    --tv_GuessButton_DIMMED_color             : "#ffffff55";
+
+    /**/
+    --tv_GuessButton_NORMAL_backgroundColor   : "#444477ff";
+    --tv_GuessButton_NORMAL_borderColor       : "#444477dd";
+    --tv_GuessButton_NORMAL_color             : "#ffffffff";
+
+    /**/
+    --tv_GuessButton_REVEAL_backgroundColor   : "#550055ff";
+    --tv_GuessButton_REVEAL_borderColor       : "#550055dd";
+    --tv_GuessButton_REVEAL_color             : "#ffff00ff";
+
+    /**/
+    --tv_GuessButton_WRONG_backgroundColor    : "#ff0000ff";
+    --tv_GuessButton_WRONG_borderColor        : "#ff0000dd";
+    --tv_GuessButton_WRONG_color              : "#ffffffff";
+
+    /**/
+    --tv_LoadingSpinner_fill                  : "#1c4c5bff";
+    --tv_LoadingProgress_BAR_backgroundColor  : "#1c4c5bff";
+    --tv_LoadingProgress_BAR_color            : "#ffffff33";
+    --tv_LoadingProgress_BAR_width            : "0%";
+    --tv_LoadingProgress_TEXT_color           : "#1c4c5bff";
+
+    /**/
+    --tv_QuizTitle_color                      : "#ffffffff";
     
+
+
+
+
     --tv_actionLink               : "#ffff00ff";
     --tv_bonus                    : "#00ff00ff";
-    --tv_buttonCorrectBackground  : "#007700ff";
-    --tv_buttonCorrectText        : "#ffffffff";
-    --tv_buttonDimmedBackground   : "#44447755";
-    --tv_buttonDimmedText         : "#ffffff55";
-    --tv_buttonDisabledBackground : "#44447755";
-    --tv_buttonDisabledText       : "#ffffff55";
-    --tv_buttonNormalBackground   : "#444477ff";
-    --tv_buttonNormalText         : "#ffffffff";
-    --tv_buttonRevealBackground   : "#550055ff";
-    --tv_buttonRevealText         : "#ffff00ff";
-    --tv_buttonWrongBackground    : "#ff0000ff";
-    --tv_buttonWrongText          : "#ffffffff";
     --tv_iconBackground           : "#555555ee";
     --tv_iconForeground           : "#ffffffff";
     --tv_imageShadow              : "#a5a5c877";
