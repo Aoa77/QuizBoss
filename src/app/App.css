@@ -51,6 +51,7 @@ main {
     width: var(--width);
     height: var(--height);
     container-type: size;
+    overflow: hidden;
 }
 
 /* each section overlays <main> */
@@ -64,7 +65,6 @@ section {
     height: 100cqh;
 
     align-content: center;
-    align-items: center;
     text-align: center;
 
     opacity: 0;

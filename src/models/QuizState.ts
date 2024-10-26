@@ -4,10 +4,11 @@ import { QuizItem } from "./QuizItem";
 import { QuizModule } from "./QuizModule";
 
 export interface QuizState {
-    answerButtonIndex: number;
     bestScore: number;
-    buttonAnswerMap: (number | null)[];
+    buttonAnswerMap: (QuizItem | null)[];
+    correctAnswerButtonIndex: number;
     currentItemIndex: number;
+    currentItem: QuizItem | null;
     eventName: EventName;
     guessValue: string;
     quizModule: QuizModule | null;
@@ -16,23 +17,17 @@ export interface QuizState {
     totalItems: number;
 }
 
-export function currentQuizItem(state: QuizState): QuizItem | null {
-    if (!state.quizModule) {
-        return null;
-    }
-    return state.quizModule.quizData.items[state.currentItemIndex] ?? null;
-}
-
 export function initQuizState(settings: AppSettings): QuizState {
-    const buttonAnswerMap: (number | null)[] = [];
+    const buttonAnswerMap: (QuizItem | null)[] = [];
     for (let i = 0; i < settings.guessButtonCount; i++) {
         buttonAnswerMap.push(null);
     }
     return {
-        answerButtonIndex: 0,
         bestScore: 0,
-        buttonAnswerMap: [],
+        buttonAnswerMap,
+        correctAnswerButtonIndex: -1,
         currentItemIndex: -1,
+        currentItem: null,
         eventName: EventName.AppStart,
         guessValue: "",
         quizModule: null,

@@ -1,5 +1,5 @@
 import { FlowContext } from "../libs/flow-context/FlowContext";
-import { currentQuizItem, QuizState } from "../models/QuizState";
+import { QuizState } from "../models/QuizState";
 import { createAnimation } from "./QuestionImage.animation";
 import { createConfig } from "./QuestionImage.config";
 import { EventName } from "../models/EventName";
@@ -11,23 +11,19 @@ const animation = createAnimation(config);
 
 export function QuestionImage() {
     const [state] = FlowContext.current<QuizState>();
-    let jsx: JSX.Element | null = null;
+    const item = state.currentItem;
+    if (item === null) {
+        return null;
+    }
 
-    const item = currentQuizItem(state);
-    if (item !== null) {
-        jsx = (
+    return (
+        <section id={config.id} ref={config.ref} style={config.sectionStyle}>
             <img
                 src={item.imageSrc}
                 style={config.imgStyle}
                 alt=""
                 onPointerDown={onPointerDown}
             />
-        );
-    }
-
-    return (
-        <section id={config.id} ref={config.ref} style={config.sectionStyle}>
-            {jsx}
         </section>
     );
 }

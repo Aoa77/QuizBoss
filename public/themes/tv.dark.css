@@ -3,6 +3,8 @@
 /************************/
 :root {
     --tv_BODY_backgroundColor                 : "#000000ff";
+    --tv_GuessButton_backgroundColor          : "#1c4c5bff";
+    --tv_GuessButton_color                    : "#ffffffff";
     --tv_LoadingSpinner_fill                  : "#1c4c5bff";
     --tv_LoadingProgress_BAR_backgroundColor  : "#1c4c5bff";
     --tv_LoadingProgress_BAR_color            : "#ffffff33";

@@ -11,8 +11,7 @@ import { QuestionImage } from "../components/QuestionImage";
 import { QuizStart } from "../events/QuizStart";
 import { LoadQuizModule } from "../events/LoadQuizModule";
 import { LoadingProgress } from "../components/LoadingProgress";
-import { GuessButton } from "../components/GuessButton";
-import { GuessButtonConfig } from "../components/GuessButton.config";
+import { GuessButtons } from "../components/GuessButtons";
 import { AskQuestion } from "../events/AskQuestion";
 import { ConcludeQuestion } from "../events/ConcludeQuestion";
 
@@ -37,19 +36,18 @@ export function App(settings: AppSettings) {
             console.group("state");
             console.info("eventName: ", state.eventName);
             console.info("currentItemIndex: ", state.currentItemIndex);
-            console.info("answerButtonIndex: ", state.answerButtonIndex);
+            console.info("correctAnswerButtonIndex: ", state.correctAnswerButtonIndex);
             console.groupEnd();
         },
     });
 
-    const config: GuessButtonConfig = {};
     return (
         <main>
             <QuizTitle />
             <LoadingSpinner />
             <LoadingProgress />
             <QuestionImage />
-            <GuessButton {...config} />
+            <GuessButtons />
         </main>
     );
 }

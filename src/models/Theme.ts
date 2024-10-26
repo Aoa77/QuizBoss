@@ -11,6 +11,8 @@ export enum ThemeName {
 
 export enum TV {
     BODY_backgroundColor                = "--tv_BODY_backgroundColor",
+    GuessButton_backgroundColor         = "--tv_GuessButton_backgroundColor",
+    GuessButton_color                   = "--tv_GuessButton_color",
     LoadingSpinner_fill                 = "--tv_LoadingSpinner_fill",
     LoadingProgress_BAR_backgroundColor = "--tv_LoadingProgress_BAR_backgroundColor",
     LoadingProgress_BAR_color           = "--tv_LoadingProgress_BAR_color",
