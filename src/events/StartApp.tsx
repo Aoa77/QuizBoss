@@ -8,7 +8,7 @@ const config = {
     START_DELAY: 200,
 };
 
-export async function AppStart() {
+export async function StartApp() {
     ///
     await Task.delay(config.START_DELAY);
     await LoadingProgress.animation.in();
@@ -20,5 +20,5 @@ export async function AppStart() {
         return;
     }
     ///
-    setState({ ...state, eventName: EventName.QuizStart });
+    setState({ ...state, eventName: EventName.StartQuiz });
 }

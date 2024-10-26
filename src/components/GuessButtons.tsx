@@ -1,14 +1,15 @@
 import { FlowContext } from "../libs/flow-context/FlowContext";
+import { EventName } from "../models/EventName";
 import { QuizState } from "../models/QuizState";
 import { createAnimation, GuessButtonsAnimation } from "./GuessButtons.animation";
 import { createConfig, GuessButtonsConfig } from "./GuessButtons.config";
 import { createStyles } from "./GuessButtons.style";
 
-/////////////////////////////////////////////
+///////////////////////////////////////////////////
 const configs: GuessButtonsConfig[] = [];
 const animations: GuessButtonsAnimation[] = [];
 const style = createStyles();
-/////////////////////////////////////////////
+///////////////////////////////////////////////////
 
 export function GuessButtons() {
     const [state] = FlowContext.current<QuizState>();
@@ -25,13 +26,23 @@ export function GuessButtons() {
         const text = item === null ? null : item.name;
 
         buttonJsx.push(
-            <span key={i} style={style.spanStyle}>
+            <span key={i} style={style.spanStyle} 
+            onPointerDown={onPointerDown}>
                 {text}
             </span>,
         );
     }
 
     return <section style={style.sectionStyle}>{buttonJsx}</section>;
+}
+
+
+async function onPointerDown() {
+    const [state, setState] = FlowContext.current<QuizState>();
+    if (state.eventName !== EventName.AwaitInput) {
+        return;
+    }
+    setState({ ...state, eventName: EventName.ConcludeQuestion });
 }
 
 /////////////////////////////////////////////

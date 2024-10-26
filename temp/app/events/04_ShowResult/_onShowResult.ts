@@ -10,7 +10,7 @@
 
 // const wrongGuesses: number[] = [];
 
-// export async function onShowResult() {
+// export async function onShowGuessResult() {
 //     const [state, setState] = FlowContext.current<QuizState>();
 //     if (state.quizModule === null) {
 //         return;

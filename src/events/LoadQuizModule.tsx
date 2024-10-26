@@ -39,7 +39,7 @@ export async function LoadQuizModule(): Promise<void> {
     state.totalItems = quizData.items.length;
 
     await loadImages(state);
-    setState({ ...state, eventName: EventName.QuizStart });
+    setState({ ...state, eventName: EventName.StartQuiz });
 }
 
 async function fetchQuizModule(quizModuleName: string): Promise<QuizModule> {

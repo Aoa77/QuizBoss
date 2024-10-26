@@ -28,7 +28,7 @@ export function initQuizState(settings: AppSettings): QuizState {
         correctAnswerButtonIndex: -1,
         currentItemIndex: -1,
         currentItem: null,
-        eventName: EventName.AppStart,
+        eventName: EventName.StartApp,
         guessValue: "",
         quizModule: null,
         settings,

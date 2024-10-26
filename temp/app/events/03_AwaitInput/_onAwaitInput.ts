@@ -22,6 +22,6 @@ export async function onAwaitInput() {
     setState({
         ...state,
         guessValue: "",//spotButton.dataValue,
-        eventName: EventName.ShowResult,
+        eventName: EventName.ShowGuessResult,
     });
 }

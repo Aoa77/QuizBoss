@@ -7,7 +7,7 @@ import { TaskGroup } from "../libs/friendlies/Task";
 import { EventName } from "../models/EventName";
 import { QuizState } from "../models/QuizState";
 
-export async function QuizStart() {
+export async function StartQuiz() {
     //
     const anims = TaskGroup.create();
     const duration = Duration.oneSecond;

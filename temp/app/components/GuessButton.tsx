@@ -32,6 +32,6 @@ async function handleButtonPointerDown(xref: Xelement<HTMLButtonElement>) {
     setState({
         ...state,
         guessValue: xref.dataValue,
-        eventName: EventName.ShowResult,
+        eventName: EventName.ShowGuessResult,
     });
 }

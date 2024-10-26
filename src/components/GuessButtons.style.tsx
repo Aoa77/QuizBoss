@@ -3,19 +3,18 @@ import { CssUnit } from "../libs/theme-vars/CssUnit";
 import { ThemeVars } from "../libs/theme-vars/ThemeVars";
 import { TV, ThemeFont } from "../models/Theme";
 
-
-export interface StyleConfig  {
+export interface StyleConfig {
     sectionStyle: CSSProperties;
     spanStyle: CSSProperties;
 }
 
-
-export function createStyles() : StyleConfig {
-
+export function createStyles(): StyleConfig {
+    ///
     const config: StyleConfig = {
         sectionStyle: {},
         spanStyle: {},
     };
+
     ///
     config.sectionStyle = {
         alignContent: "normal",
@@ -24,10 +23,17 @@ export function createStyles() : StyleConfig {
         textAlign: "center",
     };
 
+    ///
     config.spanStyle = {
-        alignContent: "center",
+        
         backgroundColor: ThemeVars.getRef(TV, TV.GuessButton_NORMAL_backgroundColor),
+        borderColor: ThemeVars.getRef(TV, TV.GuessButton_NORMAL_borderColor),
         color: ThemeVars.getRef(TV, TV.GuessButton_NORMAL_color),
+        
+        alignContent: "center",
+        borderStyle: "solid",
+        borderRadius: CssUnit.rem(1),
+        borderWidth: CssUnit.rem(1),
         display: "block",
 
         fontFamily: ThemeFont.sans,
@@ -39,5 +45,7 @@ export function createStyles() : StyleConfig {
         width: CssUnit.cqw(60),
         height: CssUnit.cqh(7),
     };
+
+    ///
     return config;
 }

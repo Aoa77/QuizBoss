@@ -5,10 +5,10 @@ import { QuizTitle } from "../components/QuizTitle";
 import { useFlowContext } from "../libs/flow-context/FlowContext.hook";
 import { initQuizState, QuizState } from "../models/QuizState";
 import { EventName } from "../models/EventName";
-import { AppStart } from "../events/AppStart";
+import { StartApp } from "../events/StartApp";
 import { PrepQuestion } from "../events/PrepQuestion";
 import { QuestionImage } from "../components/QuestionImage";
-import { QuizStart } from "../events/QuizStart";
+import { StartQuiz } from "../events/StartQuiz";
 import { LoadQuizModule } from "../events/LoadQuizModule";
 import { LoadingProgress } from "../components/LoadingProgress";
 import { GuessButtons } from "../components/GuessButtons";
@@ -23,13 +23,13 @@ export function App(settings: AppSettings) {
             return state.eventName;
         },
         flowEvents: new Map<EventName, (state: QuizState) => Promise<void>>([
-            [EventName.AppStart, AppStart],
             [EventName.AskQuestion, AskQuestion],
             [EventName.AwaitInput, () => Promise.resolve()],
             [EventName.ConcludeQuestion, ConcludeQuestion],
             [EventName.LoadQuizModule, LoadQuizModule],
             [EventName.PrepQuestion, PrepQuestion],
-            [EventName.QuizStart, QuizStart],
+            [EventName.StartApp, StartApp],
+            [EventName.StartQuiz, StartQuiz],
         ]),
         errorHandler: settings.errorHandler,
         stateLogger(state) {
