@@ -1,17 +1,8 @@
-import { FlowContext } from "../../../../src/libs/flow-context/FlowContext";
-import { QuizState } from "../../../../src/models/QuizState";
 import { Xelement } from "../../../core/animation/dom/Xelement";
-import { xref } from "../../../core/animation/dom/xref";
 
 
-export function identifyButtons(): IdentifyButtonsResult {
-    const [state] = FlowContext.current<QuizState>();
-    const { answerButtonIndex: answerSpot } = state;
-    const all = xref.buttons();
-    const correct = all[answerSpot];
-    const top = all[0];
-    const wrong = all.filter((x) => x.id !== correct.id);
-    return { all, answerSpot, correct, top, wrong };
+export function identifyButtons(): IdentifyButtonsResult | null {
+    return null;
 }
 
 
