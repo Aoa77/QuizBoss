@@ -11,8 +11,20 @@ export async function ConcludeQuestion() {
 
     const duration = Duration.oneSecond;
     const anims = TaskGroup.create();
-    anims.add(QuestionImage.animation.out({ delay: 0, duration }));
-    anims.add(LoadingSpinner.animation.in({ delay: 0.45 * duration, duration }));
+    anims.add(
+        QuestionImage.animation.out({
+            delay: 0,
+            duration,
+            enable: true,
+        }),
+    );
+    anims.add(
+        LoadingSpinner.animation.in({
+            delay: 0.45 * duration,
+            duration,
+            enable: true,
+        }),
+    );
     await anims.all();
 
     setState({ ...state, eventName: EventName.PrepQuestion });

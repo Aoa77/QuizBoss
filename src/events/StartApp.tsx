@@ -7,7 +7,11 @@ import { Duration } from "../libs/anime+/Constants";
 export async function StartApp() {
     ///
     const duration = Duration.oneSecond;
-    await LoadingProgress.animation.in({ delay: 0.2 * duration, duration });
+    await LoadingProgress.animation.in({
+        delay: 0.2 * duration,
+        duration,
+        enable: true,
+    });
 
     ///
     const [state, setState] = FlowContext.current<QuizState>();

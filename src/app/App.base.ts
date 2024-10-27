@@ -5,10 +5,8 @@ import { AnimConfig } from "../models/AnimConfig";
 
 export abstract class ComponentAnimation<TConfig extends AnimConfig, TKey> {
     protected readonly _config: TConfig;
-    private readonly _anim: Map<
-        TKey,
-        (overrides: AnimeParams) => AnimationTask
-    > = new Map();
+    private readonly _anim: Map<TKey, (overrides: AnimeParams) => AnimationTask> =
+        new Map();
 
     public constructor(config: TConfig) {
         ///
@@ -22,18 +20,22 @@ export abstract class ComponentAnimation<TConfig extends AnimConfig, TKey> {
         this._anim.set(name, anim);
     }
 
-    protected defineChild(
-        name: TKey,
-        childSelector: string,
-        params: AnimeParams,
-    ) {
+    protected defineChild(name: TKey, childSelector: string, params: AnimeParams) {
         const query = `#${this._config.id} ${childSelector.trim()}`;
         const anim = AnimationTask.queryFactory(query, params);
         this._anim.set(name, anim);
     }
 
-    protected build(name: TKey, overrides?: AnimeParams): AnimationTask {
-        return this._anim.get(name)!(overrides ?? {});
+    protected build(
+        name: TKey,
+        enable: boolean,
+        overrides?: AnimeParams,
+    ): AnimationTask | null {
+        if (!enable) {
+            return null;
+        }
+        const anim = this._anim.get(name);
+        return anim ? anim(overrides ?? {}) : null;
     }
 
     protected getOpacity(): number | null {
@@ -70,4 +72,5 @@ export abstract class ComponentAnimation<TConfig extends AnimConfig, TKey> {
 export interface AnimParams {
     delay: number;
     duration: number;
+    enable: boolean;
 }

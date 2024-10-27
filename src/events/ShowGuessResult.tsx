@@ -14,6 +14,7 @@ export async function ShowGuessResult() {
         GuessButtons.animations[state.guessButtonIndex].validGuess({
             delay: 0,
             duration,
+            enable: true,
         }),
     );
     await anims.all();

@@ -11,8 +11,20 @@ export async function AskQuestion() {
 
     const duration = Duration.oneSecond;
     const anims = TaskGroup.create();
-    anims.add(LoadingSpinner.animation.out({ delay: duration, duration }));
-    anims.add(QuestionImage.animation.in({ delay: 0.5 * duration, duration }));
+    anims.add(
+        LoadingSpinner.animation.out({
+            delay: duration,
+            duration,
+            enable: true,
+        }),
+    );
+    anims.add(
+        QuestionImage.animation.in({
+            delay: 0.5 * duration,
+            duration,
+            enable: true,
+        }),
+    );
     await anims.all();
 
     setState({ ...state, eventName: EventName.AwaitGuess });

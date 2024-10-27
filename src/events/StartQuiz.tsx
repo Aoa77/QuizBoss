@@ -11,9 +11,27 @@ export async function StartQuiz() {
     //
     const duration = Duration.oneSecond;
     const anims = TaskGroup.create();
-    anims.add(LoadingProgress.animation.out({ delay: 0, duration }));
-    anims.add(QuizTitle.animation.in({ delay: 0.5 * duration, duration }));
-    anims.add(LoadingSpinner.animation.in({ delay: 0.75 * duration, duration }));
+    anims.add(
+        LoadingProgress.animation.out({
+            delay: 0,
+            duration,
+            enable: true,
+        }),
+    );
+    anims.add(
+        QuizTitle.animation.in({
+            delay: 0.5 * duration,
+            duration,
+            enable: true,
+        }),
+    );
+    anims.add(
+        LoadingSpinner.animation.in({
+            delay: 0.75 * duration,
+            duration,
+            enable: true,
+        }),
+    );
     await anims.all();
 
     //

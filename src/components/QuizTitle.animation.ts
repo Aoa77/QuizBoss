@@ -27,14 +27,18 @@ class QuizTitleAnimation extends ComponentAnimation<QuizTitleConfig, AnimKey> {
 
     ///
     public async in(params: AnimParams): Promise<void> {
-        const anim = this.build(AnimKey.fadeIn, params);
-        await anim.run();
+        const anim = this.build(AnimKey.fadeIn, params.enable, params);
+        if (anim) {
+            await anim.run();
+        }
     }
 
     ///
     public async out(params: AnimParams): Promise<void> {
-        const anim = this.build(AnimKey.fadeOut, params);
-        await anim.run();
+        const anim = this.build(AnimKey.fadeOut, params.enable, params);
+        if (anim) {
+            await anim.run();
+        }
     }
 }
 

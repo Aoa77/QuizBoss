@@ -48,17 +48,24 @@ class LoadingSpinnerAnimation extends ComponentAnimation<
     ///
     public async in(params: AnimParams): Promise<void> {
         if (this._loop === null) {
-            this._loop = this.build(AnimKey.loop);
+            this._loop = this.build(AnimKey.loop, params.enable);
+            if (!this._loop) {
+                return;
+            }
             this._loop.play();
         }
-        const anim = this.build(AnimKey.fadeIn, params);
-        await anim.run();
+        const anim = this.build(AnimKey.fadeIn, params.enable, params);
+        if (anim) {
+            await anim.run();
+        }
     }
 
     ///
     public async out(params: AnimParams): Promise<void> {
-        const anim = this.build(AnimKey.fadeOut, params);
-        await anim.run();
+        const anim = this.build(AnimKey.fadeOut, params.enable, params);
+        if (anim) {
+            await anim.run();
+        }
     }
 }
 
