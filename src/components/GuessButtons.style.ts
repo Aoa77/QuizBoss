@@ -10,13 +10,13 @@ export interface StyleConfig {
 
 export function createStyles(): StyleConfig {
     ///
-    const config: StyleConfig = {
+    const style: StyleConfig = {
         section: {},
         span: {},
     };
 
     ///
-    config.section = {
+    style.section = {
         alignContent: "normal",
         marginTop: CssUnit.cqh(45),
         opacity: 1,
@@ -24,7 +24,7 @@ export function createStyles(): StyleConfig {
     };
 
     ///
-    config.span = {
+    style.span = {
         
         backgroundColor: ThemeVars.getRef(TV, TV.GuessButton_NORMAL_backgroundColor),
         borderColor: ThemeVars.getRef(TV, TV.GuessButton_NORMAL_borderColor),
@@ -49,5 +49,5 @@ export function createStyles(): StyleConfig {
     };
 
     ///
-    return config;
+    return style;
 }
