@@ -1,7 +1,7 @@
-import anime, { AnimeParams } from "animejs";
+import anime from "animejs";
 import { Duration, Ease, Fade } from "../libs/anime+/Constants";
 import { LoadingSpinnerConfig } from "./LoadingSpinner.config";
-import { ComponentAnimation } from "../app/App.base";
+import { AnimParams, ComponentAnimation } from "../app/App.base";
 import { AnimationTask } from "../libs/anime+/AnimationTask";
 
 enum AnimKey {
@@ -46,24 +46,22 @@ class LoadingSpinnerAnimation extends ComponentAnimation<
     }
 
     ///
-    public async in(overrides?: AnimeParams): Promise<void> {
+    public async in(params: AnimParams): Promise<void> {
         if (this._loop === null) {
             this._loop = this.build(AnimKey.loop);
             this._loop.play();
         }
-        const anim = this.build(AnimKey.fadeIn, overrides);
+        const anim = this.build(AnimKey.fadeIn, params);
         await anim.run();
     }
 
     ///
-    public async out(overrides?: AnimeParams): Promise<void> {
-        const anim = this.build(AnimKey.fadeOut, overrides);
+    public async out(params: AnimParams): Promise<void> {
+        const anim = this.build(AnimKey.fadeOut, params);
         await anim.run();
     }
 }
 
-export function createAnimation(
-    config: LoadingSpinnerConfig,
-): LoadingSpinnerAnimation {
+export function createAnimation(config: LoadingSpinnerConfig): LoadingSpinnerAnimation {
     return new LoadingSpinnerAnimation(config);
 }

@@ -1,17 +1,13 @@
-import { Task } from "../libs/friendlies/Task";
 import { FlowContext } from "../libs/flow-context/FlowContext";
 import { EventName } from "../models/EventName";
 import { QuizState } from "../models/QuizState";
 import { LoadingProgress } from "../components/LoadingProgress";
-
-const config = {
-    START_DELAY: 200,
-};
+import { Duration } from "../libs/anime+/Constants";
 
 export async function StartApp() {
     ///
-    await Task.delay(config.START_DELAY);
-    await LoadingProgress.animation.in();
+    const duration = Duration.oneSecond;
+    await LoadingProgress.animation.in({ delay: 0.2 * duration, duration });
 
     ///
     const [state, setState] = FlowContext.current<QuizState>();

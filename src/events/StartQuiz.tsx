@@ -9,13 +9,11 @@ import { QuizState } from "../models/QuizState";
 
 export async function StartQuiz() {
     //
-    const anims = TaskGroup.create();
     const duration = Duration.oneSecond;
-    anims.add(LoadingProgress.animation.out({ duration }));
+    const anims = TaskGroup.create();
+    anims.add(LoadingProgress.animation.out({ delay: 0, duration }));
     anims.add(QuizTitle.animation.in({ delay: 0.5 * duration, duration }));
-    anims.add(
-        LoadingSpinner.animation.in({ delay: 0.75 * duration, duration }),
-    );
+    anims.add(LoadingSpinner.animation.in({ delay: 0.75 * duration, duration }));
     await anims.all();
 
     //

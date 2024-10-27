@@ -17,9 +17,6 @@ export abstract class ComponentAnimation<TConfig extends AnimConfig, TKey> {
         console.debug("config", this._config);
     }
 
-    public abstract in(overrides?: AnimeParams): Promise<void>;
-    public abstract out(overrides?: AnimeParams): Promise<void>;
-
     protected define(name: TKey, params: AnimeParams) {
         const anim = AnimationTask.idFactory(this._config.id, params);
         this._anim.set(name, anim);
@@ -68,4 +65,9 @@ export abstract class ComponentAnimation<TConfig extends AnimConfig, TKey> {
             `scale(${value})`,
         );
     }
+}
+
+export interface AnimParams {
+    delay: number;
+    duration: number;
 }

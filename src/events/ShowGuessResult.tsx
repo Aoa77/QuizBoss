@@ -5,16 +5,18 @@ import { TaskGroup } from "../libs/friendlies/Task";
 import { EventName } from "../models/EventName";
 import { QuizState } from "../models/QuizState";
 
-
-
 export async function ShowGuessResult() {
     const [state, setState] = FlowContext.current<QuizState>();
 
-    const anims = TaskGroup.create();
     const duration = Duration.oneSecond;
-    anims.add(GuessButtons.animations[state.guessButtonIndex].validGuess({ duration }));
+    const anims = TaskGroup.create();
+    anims.add(
+        GuessButtons.animations[state.guessButtonIndex].validGuess({
+            delay: 0,
+            duration,
+        }),
+    );
     await anims.all();
-
 
     setState({ ...state, eventName: EventName.AwaitGuess });
 }

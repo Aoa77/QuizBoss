@@ -1,5 +1,4 @@
-import { AnimeParams } from "animejs";
-import { ComponentAnimation } from "../app/App.base";
+import { AnimParams, ComponentAnimation } from "../app/App.base";
 import { Duration, Ease, Fade } from "../libs/anime+/Constants";
 import { GuessButtonsConfig } from "./GuessButtons.config";
 
@@ -37,20 +36,20 @@ export class GuessButtonsAnimation extends ComponentAnimation<
     }
 
     ///
-    public async in(overrides?: AnimeParams): Promise<void> {
-        const anim = this.build(AnimKey.fadeIn, overrides);
+    public async in(params: AnimParams): Promise<void> {
+        const anim = this.build(AnimKey.fadeIn, params);
         await anim.run();
     }
 
     ///
-    public async out(overrides?: AnimeParams): Promise<void> {
-        const anim = this.build(AnimKey.fadeOut, overrides);
+    public async out(params: AnimParams): Promise<void> {
+        const anim = this.build(AnimKey.fadeOut, params);
         await anim.run();
     }
 
     ///
-    public async validGuess(overrides?: AnimeParams): Promise<void> {
-        const anim = this.build(AnimKey.validGuess, overrides);
+    public async validGuess(params: AnimParams): Promise<void> {
+        const anim = this.build(AnimKey.validGuess, params);
         await anim.run();
     }
 }

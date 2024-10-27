@@ -9,17 +9,11 @@ import { QuestionImage } from "../components/QuestionImage";
 export async function ConcludeQuestion() {
     const [state, setState] = FlowContext.current<QuizState>();
 
-    const anims = TaskGroup.create();
     const duration = Duration.oneSecond;
-    anims.add(QuestionImage.animation.out({ duration }));
-    anims.add(
-        LoadingSpinner.animation.in({ delay: 0.45 * duration, duration })
-    );
+    const anims = TaskGroup.create();
+    anims.add(QuestionImage.animation.out({ delay: 0, duration }));
+    anims.add(LoadingSpinner.animation.in({ delay: 0.45 * duration, duration }));
     await anims.all();
-
 
     setState({ ...state, eventName: EventName.PrepQuestion });
 }
-
-
-

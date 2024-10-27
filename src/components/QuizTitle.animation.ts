@@ -1,5 +1,4 @@
-import { AnimeParams } from "animejs";
-import { ComponentAnimation } from "../app/App.base";
+import { AnimParams, ComponentAnimation } from "../app/App.base";
 import { Duration, Ease, Fade } from "../libs/anime+/Constants";
 import { QuizTitleConfig } from "./QuizTitle.config";
 
@@ -27,14 +26,14 @@ class QuizTitleAnimation extends ComponentAnimation<QuizTitleConfig, AnimKey> {
     }
 
     ///
-    public async in(overrides?: AnimeParams): Promise<void> {
-        const anim = this.build(AnimKey.fadeIn, overrides);
+    public async in(params: AnimParams): Promise<void> {
+        const anim = this.build(AnimKey.fadeIn, params);
         await anim.run();
     }
 
     ///
-    public async out(overrides?: AnimeParams): Promise<void> {
-        const anim = this.build(AnimKey.fadeOut, overrides);
+    public async out(params: AnimParams): Promise<void> {
+        const anim = this.build(AnimKey.fadeOut, params);
         await anim.run();
     }
 }
