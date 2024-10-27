@@ -37,7 +37,7 @@ export function GuessButtons() {
 
 async function onPointerDown() {
     const [state, setState] = FlowContext.current<QuizState>();
-    if (state.eventName !== EventName.AwaitInput) {
+    if (state.eventName !== EventName.AwaitGuess) {
         return;
     }
     setState({ ...state, eventName: EventName.ConcludeQuestion });

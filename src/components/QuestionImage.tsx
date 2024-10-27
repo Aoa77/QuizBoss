@@ -30,7 +30,7 @@ export function QuestionImage() {
 
 async function onPointerDown() {
     const [state, setState] = FlowContext.current<QuizState>();
-    if (!config.enableSecretInput || state.eventName !== EventName.AwaitInput) {
+    if (!config.enableSecretInput || state.eventName !== EventName.AwaitGuess) {
         return;
     }
     setState({ ...state, eventName: EventName.ConcludeQuestion });

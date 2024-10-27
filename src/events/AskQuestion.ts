@@ -19,5 +19,5 @@ export async function AskQuestion() {
     await anims.all();
 
 
-    setState({ ...state, eventName: EventName.AwaitInput });
+    setState({ ...state, eventName: EventName.AwaitGuess });
 }

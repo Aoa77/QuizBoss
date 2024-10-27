@@ -30,7 +30,7 @@ export function App(settings: AppSettings) {
         },
         flowEvents: new Map<EventName, (state: QuizState) => Promise<void>>([
             [EventName.AskQuestion, AskQuestion],
-            [EventName.AwaitInput, () => Promise.resolve()],
+            [EventName.AwaitGuess, () => Promise.resolve()],
             [EventName.ConcludeQuestion, ConcludeQuestion],
             [EventName.LoadQuizModule, LoadQuizModule],
             [EventName.PrepQuestion, PrepQuestion],

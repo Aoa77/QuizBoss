@@ -1,6 +1,6 @@
 export enum EventName {
     AskQuestion = "AskQuestion",
-    AwaitInput = "AwaitInput",
+    AwaitGuess = "AwaitGuess",
     ConcludeQuestion = "ConcludeQuestion",
     LoadQuizModule = "LoadQuizModule",
     PrepQuestion = "PrepQuestion",
