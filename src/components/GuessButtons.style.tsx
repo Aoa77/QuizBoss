@@ -4,19 +4,19 @@ import { ThemeVars } from "../libs/theme-vars/ThemeVars";
 import { TV, ThemeFont } from "../models/Theme";
 
 export interface StyleConfig {
-    sectionStyle: CSSProperties;
-    spanStyle: CSSProperties;
+    section: CSSProperties;
+    span: CSSProperties;
 }
 
 export function createStyles(): StyleConfig {
     ///
     const config: StyleConfig = {
-        sectionStyle: {},
-        spanStyle: {},
+        section: {},
+        span: {},
     };
 
     ///
-    config.sectionStyle = {
+    config.section = {
         alignContent: "normal",
         marginTop: CssUnit.cqh(45),
         opacity: 1,
@@ -24,7 +24,7 @@ export function createStyles(): StyleConfig {
     };
 
     ///
-    config.spanStyle = {
+    config.span = {
         
         backgroundColor: ThemeVars.getRef(TV, TV.GuessButton_NORMAL_backgroundColor),
         borderColor: ThemeVars.getRef(TV, TV.GuessButton_NORMAL_borderColor),
@@ -34,7 +34,9 @@ export function createStyles(): StyleConfig {
         borderStyle: "solid",
         borderRadius: CssUnit.rem(1),
         borderWidth: CssUnit.rem(1),
+        cursor: "pointer",
         display: "block",
+        opacity: 0,
 
         fontFamily: ThemeFont.sans,
         fontSize: CssUnit.rem(2.5),

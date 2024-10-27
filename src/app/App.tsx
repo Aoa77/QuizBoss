@@ -20,6 +20,7 @@ import { PrepQuestion }             from "../events/PrepQuestion";
 import { StartApp }                 from "../events/StartApp";
 import { StartQuiz }                from "../events/StartQuiz";
 import { ShowGuessResult } from "../events/ShowGuessResult";
+import { QuestionText } from "../components/QuestionText";
 
 ///
 export function App(settings: AppSettings) {
@@ -56,6 +57,7 @@ export function App(settings: AppSettings) {
             <LoadingSpinner />
             <LoadingProgress />
             <QuestionImage />
+            <QuestionText />
             <GuessButtons />
         </main>
     );

@@ -30,14 +30,14 @@ export function GuessButtons() {
                 id={config.id}
                 key={config.id}
                 ref={config.ref}
-                style={style.spanStyle}
+                style={style.span}
                 onPointerDown={() => onPointerDown(i)}>
                 {text}
             </span>,
         );
     }
 
-    return <section style={style.sectionStyle}>{buttonJsx}</section>;
+    return <section style={style.section}>{buttonJsx}</section>;
 }
 
 async function onPointerDown(buttonIndex: number) {

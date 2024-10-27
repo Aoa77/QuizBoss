@@ -7,13 +7,13 @@
     --tv-MAIN_backgroundColor                 : "#000022ff";
 
     /**/
-    --tv-GuessButton_CORRECT_backgroundColor  : "#007700ff";
-    --tv-GuessButton_CORRECT_borderColor      : "#007700dd";
+    --tv-GuessButton_CORRECT_backgroundColor  : "#007700dd";
+    --tv-GuessButton_CORRECT_borderColor      : "#007700ff";
     --tv-GuessButton_CORRECT_color            : "#ffffffff";
 
     /**/
-    --tv-GuessButton_DIMMED_backgroundColor   : "#44447755";
-    --tv-GuessButton_DIMMED_borderColor       : "#44447733";
+    --tv-GuessButton_DIMMED_backgroundColor   : "#44447777";
+    --tv-GuessButton_DIMMED_borderColor       : "#44447799";
     --tv-GuessButton_DIMMED_color             : "#ffffff55";
 
     /**/
@@ -22,13 +22,13 @@
     --tv-GuessButton_NORMAL_color             : "#ffffffff";
 
     /**/
-    --tv-GuessButton_REVEAL_backgroundColor   : "#550055ff";
-    --tv-GuessButton_REVEAL_borderColor       : "#550055dd";
+    --tv-GuessButton_REVEAL_backgroundColor   : "#550055dd";
+    --tv-GuessButton_REVEAL_borderColor       : "#550055ff";
     --tv-GuessButton_REVEAL_color             : "#ffff00ff";
 
     /**/
-    --tv-GuessButton_WRONG_backgroundColor    : "#ff0000ff";
-    --tv-GuessButton_WRONG_borderColor        : "#ff0000dd";
+    --tv-GuessButton_WRONG_backgroundColor    : "#ff0000dd";
+    --tv-GuessButton_WRONG_borderColor        : "#ff0000ff";
     --tv-GuessButton_WRONG_color              : "#ffffffff";
 
     /**/
@@ -39,6 +39,8 @@
     --tv-LoadingProgress_TEXT_color           : "#1c4c5bff";
 
     /**/
+    --tv-QuestionImage_shadow                 : "#a5a5c877";
+    --tv-QuestionText_color                   : "#00ffffff";
     --tv-QuizTitle_color                      : "#ffffffff";
     
 
@@ -49,11 +51,9 @@
     --tv-bonus                    : "#00ff00ff";
     --tv-iconBackground           : "#555555ee";
     --tv-iconForeground           : "#ffffffff";
-    --tv-imageShadow              : "#a5a5c877";
     --tv-menuBackground           : "#444444ff";
     --tv-noBonus                  : "#ff0000ff";
     --tv-progress                 : "#ffffffbb";
-    --tv-questionHeading          : "#00ffffff";
     --tv-scoreLabel               : "#00ffffff";
     --tv-scoreValue               : "#ffff00ff";
 }

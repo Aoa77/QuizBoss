@@ -47,7 +47,10 @@ export enum TV {
     LoadingProgress_TEXT_color           = "--tv-LoadingProgress_TEXT_color",
     
     ///
+    QuestionImage_shadow                 = "--tv-QuestionImage_shadow",
+    QuestionText_color                   = "--tv-QuestionText_color",
     QuizTitle_color                      = "--tv-QuizTitle_color",
+
 
 
 
@@ -56,11 +59,9 @@ export enum TV {
     
     iconBackground = "--tv-iconBackground",
     iconForeground = "--tv-iconForeground",
-    imageShadow = "--tv-imageShadow",
     menuBackground = "--tv-menuBackground",
     noBonus = "--tv-noBonus",
     progress = "--tv-progress",
-    questionHeading = "--tv-questionHeading",
     scoreLabel = "--tv-scoreLabel",
     scoreValue = "--tv-scoreValue",
 }
