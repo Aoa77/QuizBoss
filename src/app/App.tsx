@@ -19,6 +19,7 @@ import { LoadQuizModule }           from "../events/LoadQuizModule";
 import { PrepQuestion }             from "../events/PrepQuestion";
 import { StartApp }                 from "../events/StartApp";
 import { StartQuiz }                from "../events/StartQuiz";
+import { ShowGuessResult } from "../events/ShowGuessResult";
 
 ///
 export function App(settings: AppSettings) {
@@ -34,6 +35,7 @@ export function App(settings: AppSettings) {
             [EventName.ConcludeQuestion, ConcludeQuestion],
             [EventName.LoadQuizModule, LoadQuizModule],
             [EventName.PrepQuestion, PrepQuestion],
+            [EventName.ShowGuessResult, ShowGuessResult],
             [EventName.StartApp, StartApp],
             [EventName.StartQuiz, StartQuiz],
         ]),
@@ -43,6 +45,7 @@ export function App(settings: AppSettings) {
             console.info("eventName: ", state.eventName);
             console.info("currentItemIndex: ", state.currentItemIndex);
             console.info("correctAnswerButtonIndex: ", state.correctAnswerButtonIndex);
+            console.info("guessButtonIndex: ", state.guessButtonIndex);
             console.groupEnd();
         },
     });

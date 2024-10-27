@@ -15,7 +15,7 @@ try {
     const settings = new AppSettings({
         quizModuleName,
         errorHandler,
-        awaitImageLoading: false,
+        awaitImageLoading: true,
     });
     await ThemeVars.config(ThemeName, TV, "themes");
     await ThemeVars.apply(settings.theme);

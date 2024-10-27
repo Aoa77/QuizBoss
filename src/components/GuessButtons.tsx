@@ -26,7 +26,12 @@ export function GuessButtons() {
         const text = item === null ? null : item.name;
 
         buttonJsx.push(
-            <span key={i} style={style.spanStyle} onPointerDown={onPointerDown}>
+            <span
+                id={config.id}
+                key={config.id}
+                ref={config.ref}
+                style={style.spanStyle}
+                onPointerDown={() => onPointerDown(i)}>
                 {text}
             </span>,
         );
@@ -35,12 +40,13 @@ export function GuessButtons() {
     return <section style={style.sectionStyle}>{buttonJsx}</section>;
 }
 
-async function onPointerDown() {
+async function onPointerDown(buttonIndex: number) {
     const [state, setState] = FlowContext.current<QuizState>();
     if (state.eventName !== EventName.AwaitGuess) {
         return;
     }
-    setState({ ...state, eventName: EventName.ConcludeQuestion });
+    state.guessButtonIndex = buttonIndex;
+    setState({ ...state, eventName: EventName.ShowGuessResult });
 }
 
 /////////////////////////////////////////////

@@ -6,9 +6,13 @@ import { GuessButtonsConfig } from "./GuessButtons.config";
 enum AnimKey {
     fadeIn = "fadeIn",
     fadeOut = "fadeOut",
+    validGuess = "validGuess",
 }
 
-export class GuessButtonsAnimation extends ComponentAnimation<GuessButtonsConfig, AnimKey> {
+export class GuessButtonsAnimation extends ComponentAnimation<
+    GuessButtonsConfig,
+    AnimKey
+> {
     ///
     public constructor(config: GuessButtonsConfig) {
         super(config);
@@ -24,6 +28,12 @@ export class GuessButtonsAnimation extends ComponentAnimation<GuessButtonsConfig
             duration: Duration.oneSecond,
             easing: Ease.linear,
         });
+
+        this.define(AnimKey.validGuess, {
+            scale: [1, 1.2, 1],
+            duration: Duration.oneSecond,
+            easing: Ease.linear,
+        });
     }
 
     ///
@@ -35,6 +45,12 @@ export class GuessButtonsAnimation extends ComponentAnimation<GuessButtonsConfig
     ///
     public async out(overrides?: AnimeParams): Promise<void> {
         const anim = this.build(AnimKey.fadeOut, overrides);
+        await anim.run();
+    }
+
+    ///
+    public async validGuess(overrides?: AnimeParams): Promise<void> {
+        const anim = this.build(AnimKey.validGuess, overrides);
         await anim.run();
     }
 }

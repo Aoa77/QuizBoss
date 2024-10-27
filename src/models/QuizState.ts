@@ -10,7 +10,7 @@ export interface QuizState {
     currentItemIndex: number;
     currentItem: QuizItem | null;
     eventName: EventName;
-    guessValue: string;
+    guessButtonIndex: number;
     quizModule: QuizModule | null;
     settings: AppSettings;
     score: number;
@@ -29,7 +29,7 @@ export function initQuizState(settings: AppSettings): QuizState {
         currentItemIndex: -1,
         currentItem: null,
         eventName: EventName.StartApp,
-        guessValue: "",
+        guessButtonIndex: -1,
         quizModule: null,
         settings,
         score: 0,

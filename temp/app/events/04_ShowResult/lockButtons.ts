@@ -4,8 +4,6 @@ import { handleWrongGuess } from "./handleWrongGuess";
 import { revealCorrectAnswer } from "./revealCorrectAnswer";
 import { unlockButtons } from "./unlockButtons";
 import { wrongGuessesExhausted } from "./wrongGuessesExhausted";
-import { FlowContext } from "../../../../src/libs/flow-context/FlowContext";
-import { QuizState } from "../../../../src/models/QuizState";
 import { xref } from "../../../core/animation/dom/xref";
 import { ButtonStyle } from "../../../../src/models/ButtonStyle";
 
@@ -14,7 +12,7 @@ export async function lockButtons(
     isCorrectGuess: boolean,
     wrongGuesses: number[],
 ) {
-    const [state] = FlowContext.current<QuizState>();
+    // const [state] = FlowContext.current<QuizState>();
     const buttons = xref.buttons();
     
     for (let guess = 0; guess < buttons.length; guess++) {
@@ -27,10 +25,10 @@ export async function lockButtons(
         if (button.className === ButtonStyle.HIDDEN) {
             continue;
         }
-        if (state.guessValue !== button.dataValue) {
-            button.className = ButtonStyle.DIMMED;
-            continue;
-        }
+        // if (state.guessValue !== button.dataValue) {
+        //     button.className = ButtonStyle.DIMMED;
+        //     continue;
+        // }
 
         if (isCorrectGuess) {
             button.className = ButtonStyle.CORRECT;
