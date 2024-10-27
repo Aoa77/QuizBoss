@@ -3,14 +3,14 @@ import { CssUnit } from "../libs/theme-vars/CssUnit";
 import { ThemeVars } from "../libs/theme-vars/ThemeVars";
 import { TV, ThemeFont } from "../models/Theme";
 
-export interface StyleConfig {
+interface Style {
     section: CSSProperties;
     span: CSSProperties;
 }
 
-export function createStyles(): StyleConfig {
+export function useStyle(): Style {
     ///
-    const style: StyleConfig = {
+    const style: Style = {
         section: {},
         span: {},
     };

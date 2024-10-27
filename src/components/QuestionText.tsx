@@ -1,14 +1,14 @@
 import { FlowContext } from "../libs/flow-context/FlowContext";
 import { QuizState } from "../models/QuizState";
 import { createAnimation } from "./QuestionText.animation";
-import { createConfig } from "./QuestionText.config";
+import { useStyle } from "./QuestionText.style";
 
 /////////////////////////////////////////////
-const config = createConfig();
-const animation = createAnimation(config);
+const animation = createAnimation();
 /////////////////////////////////////////////
 
 export function QuestionText() {
+    const style = useStyle();
     const [state] = FlowContext.current<QuizState>();
     const { quizModule } = state;
     if (!quizModule) {
@@ -18,13 +18,12 @@ export function QuestionText() {
     const { questionText } = quizData;
 
     return (
-        <section id={config.id} ref={config.ref} style={config.style}>
+        <section id={animation.id} ref={animation.ref} style={style.section}>
             {questionText}
         </section>
     );
 }
 
 /////////////////////////////////////////////
-QuestionText.config = config;
 QuestionText.animation = animation;
 /////////////////////////////////////////////

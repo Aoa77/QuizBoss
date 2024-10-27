@@ -1,27 +1,26 @@
-import { createConfig } from "./LoadingProgress.config";
 import { createAnimation } from "./LoadingProgress.animation";
+import { useStyle } from "./LoadingProgress.style";
 
 /////////////////////////////////////////////
-const config = createConfig();
-const animation = createAnimation(config);
+const animation = createAnimation();
 /////////////////////////////////////////////
 
 export function LoadingProgress() {
+    const style = useStyle();
     ///
     return (
         <section
-            id={config.id}
-            ref={config.ref}
-            style={config.sectionStyle}>
+            id={animation.id}
+            ref={animation.ref}
+            style={style.section}>
             LOADING
-            <div style={config.progBarBackground}>
-                <div style={config.progBarForeground}></div>
+            <div style={style.progBarBackground}>
+                <div style={style.progBarForeground}></div>
             </div>
         </section>
     );
 }
 
 /////////////////////////////////////////////
-LoadingProgress.config = config;
 LoadingProgress.animation = animation;
 /////////////////////////////////////////////

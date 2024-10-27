@@ -1,15 +1,15 @@
 import { FlowContext } from "../libs/flow-context/FlowContext";
 import { QuizState } from "../models/QuizState";
 import { createAnimation } from "./QuestionImage.animation";
-import { createConfig } from "./QuestionImage.config";
 import { EventName } from "../models/EventName";
+import { useStyle } from "./QuestionImage.style";
 
 /////////////////////////////////////////////
-const config = createConfig();
-const animation = createAnimation(config);
+const animation = createAnimation();
 /////////////////////////////////////////////
 
 export function QuestionImage() {
+    const style = useStyle();
     const [state] = FlowContext.current<QuizState>();
     const item = state.currentItem;
     if (item === null) {
@@ -17,10 +17,10 @@ export function QuestionImage() {
     }
 
     return (
-        <section id={config.id} ref={config.ref} style={config.sectionStyle}>
+        <section id={animation.id} ref={animation.ref} style={style.section}>
             <img
                 src={item.imageSrc}
-                style={config.imgStyle}
+                style={style.image}
                 alt=""
                 onPointerDown={onPointerDown}
             />
@@ -30,13 +30,14 @@ export function QuestionImage() {
 
 async function onPointerDown() {
     const [state, setState] = FlowContext.current<QuizState>();
-    if (!config.enableSecretInput || state.eventName !== EventName.AwaitGuess) {
+    const { settings } = state;
+    const { enableSecretQuestionSkip } = settings;
+    if (!enableSecretQuestionSkip || state.eventName !== EventName.AwaitGuess) {
         return;
     }
     setState({ ...state, eventName: EventName.ConcludeQuestion });
 }
 
 /////////////////////////////////////////////
-QuestionImage.config = config;
 QuestionImage.animation = animation;
 /////////////////////////////////////////////

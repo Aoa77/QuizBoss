@@ -1,6 +1,6 @@
-import { AnimParams, ComponentAnimation } from "../app/App.base";
+import { ComponentAnimation } from "../app/App.base";
+import { AnimParams } from "../models/AnimParams";
 import { Duration, Ease, Fade } from "../libs/anime+/Constants";
-import { GuessButtonsConfig } from "./GuessButtons.config";
 
 enum AnimKey {
     fadeIn = "fadeIn",
@@ -8,13 +8,14 @@ enum AnimKey {
     validGuess = "validGuess",
 }
 
-export class GuessButtonsAnimation extends ComponentAnimation<
-    GuessButtonsConfig,
-    AnimKey
-> {
+export function createAnimation(index: number): GuessButtonsAnimation {
+    return new GuessButtonsAnimation(index);
+}
+
+export class GuessButtonsAnimation extends ComponentAnimation<AnimKey> {
     ///
-    public constructor(config: GuessButtonsConfig) {
-        super(config);
+    public constructor(index: number) {
+        super(`GuessButton_${index}`);
 
         this.define(AnimKey.fadeIn, {
             opacity: Fade.max,
@@ -60,6 +61,3 @@ export class GuessButtonsAnimation extends ComponentAnimation<
     }
 }
 
-export function createAnimation(config: GuessButtonsConfig): GuessButtonsAnimation {
-    return new GuessButtonsAnimation(config);
-}

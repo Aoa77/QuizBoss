@@ -1,26 +1,26 @@
 import { SvgThings } from "../libs/theme-vars/SvgThings";
 import { createAnimation } from "./LoadingSpinner.animation";
-import { createConfig } from "./LoadingSpinner.config";
+import { useStyle } from "./LoadingSpinner.style";
 
 /////////////////////////////////////////////
-const config = createConfig();
-const animation = createAnimation(config);
+const animation = createAnimation();
 /////////////////////////////////////////////
 
 export function LoadingSpinner() {
     ///
-    const balls = config.cxArray!.map((cx, key) => (
-        <circle key={key} cx={cx} cy={config.cy} r={config.radiusBase} />
+    const style = useStyle();
+    const balls = style.cxArray.map((cx, key) => (
+        <circle key={key} cx={cx} cy={style.cy} r={style.radiusBase} />
     ));
 
     return (
         <section
-            id={config.id}
-            ref={config.ref}
-            style={config.sectionStyle}>
+            id={animation.id}
+            ref={animation.ref}
+            style={style.section}>
             <svg
-                style={config.svgStyle}
-                viewBox={config.viewBox}
+                style={style.svg}
+                viewBox={style.viewBox}
                 xmlns={SvgThings.xmlns}>
                 {balls}
             </svg>
@@ -29,6 +29,5 @@ export function LoadingSpinner() {
 }
 
 /////////////////////////////////////////////
-LoadingSpinner.config = config;
 LoadingSpinner.animation = animation;
 /////////////////////////////////////////////

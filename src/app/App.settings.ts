@@ -5,6 +5,8 @@ import { ThemeName } from "../models/Theme";
 export class AppSettings {
     public readonly quizModuleName: string;
     public readonly awaitImageLoading: boolean;
+    public readonly enableSecretQuestionSkip: boolean;
+    public readonly enableSecretWindowReload: boolean;
     public readonly demoMode: DemoMode;
     public readonly guessButtonCount: number;
     public readonly maxQuestions: number;
@@ -14,6 +16,8 @@ export class AppSettings {
     constructor(params: {
         quizModuleName?: string;
         awaitImageLoading?: boolean;
+        enableSecretQuestionSkip?: boolean;
+        enableSecretWindowReload?: boolean;
         demoMode?: DemoMode;
         guessButtonCount?: number;
         maxQuestions?: number;
@@ -44,6 +48,8 @@ export class AppSettings {
         this.theme = params.theme ?? ThemeName.dark;
         this.errorHandler = params.errorHandler;
         this.awaitImageLoading = params.awaitImageLoading ?? true;
+        this.enableSecretQuestionSkip = params.enableSecretQuestionSkip ?? false;
+        this.enableSecretWindowReload = params.enableSecretWindowReload ?? false;
     }
 
 }

@@ -1,5 +1,5 @@
-import { LoadingProgressConfig } from "./LoadingProgress.config";
-import { AnimParams, ComponentAnimation } from "../app/App.base";
+import { ComponentAnimation } from "../app/App.base";
+import { AnimParams } from "../models/AnimParams";
 import { Fade, Ease, Duration } from "../libs/anime+/Constants";
 
 enum AnimKey {
@@ -7,13 +7,14 @@ enum AnimKey {
     fadeOut = "fadeOut",
 }
 
-class LoadingProgressAnimation extends ComponentAnimation<
-    LoadingProgressConfig,
-    AnimKey
-> {
+export function createAnimation(): LoadingProgressAnimation {
+    return new LoadingProgressAnimation();
+}
+
+class LoadingProgressAnimation extends ComponentAnimation<AnimKey> {
     ///
-    public constructor(config: LoadingProgressConfig) {
-        super(config);
+    public constructor() {
+        super("LoadingProgress");
 
         ///
         this.define(AnimKey.fadeIn, {
@@ -45,11 +46,5 @@ class LoadingProgressAnimation extends ComponentAnimation<
             await anim.run();
         }
     }
-}
-
-export function createAnimation(
-    config: LoadingProgressConfig,
-): LoadingProgressAnimation {
-    return new LoadingProgressAnimation(config);
 }
 

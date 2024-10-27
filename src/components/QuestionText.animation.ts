@@ -1,16 +1,21 @@
-import { AnimParams, ComponentAnimation } from "../app/App.base";
+import { ComponentAnimation } from "../app/App.base";
+import { AnimParams } from "../models/AnimParams";
 import { Duration, Ease, Fade } from "../libs/anime+/Constants";
-import { QuestionTextConfig } from "./QuestionText.config";
 
 enum AnimKey {
     fadeIn = "fadeIn",
     fadeOut = "fadeOut",
 }
 
-class QuestionTextAnimation extends ComponentAnimation<QuestionTextConfig, AnimKey> {
+export function createAnimation(): QuestionTextAnimation {
+    return new QuestionTextAnimation();
+}
+
+
+class QuestionTextAnimation extends ComponentAnimation<AnimKey> {
     ///
-    public constructor(config: QuestionTextConfig) {
-        super(config);
+    public constructor() {
+        super("QuestionText");
 
         this.define(AnimKey.fadeIn, {
             opacity: Fade.max,
@@ -40,8 +45,4 @@ class QuestionTextAnimation extends ComponentAnimation<QuestionTextConfig, AnimK
             await anim.run();
         }
     }
-}
-
-export function createAnimation(config: QuestionTextConfig): QuestionTextAnimation {
-    return new QuestionTextAnimation(config);
 }

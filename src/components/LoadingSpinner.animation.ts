@@ -1,7 +1,7 @@
 import anime from "animejs";
 import { Duration, Ease, Fade } from "../libs/anime+/Constants";
-import { LoadingSpinnerConfig } from "./LoadingSpinner.config";
-import { AnimParams, ComponentAnimation } from "../app/App.base";
+import { ComponentAnimation } from "../app/App.base";
+import { AnimParams } from "../models/AnimParams";
 import { AnimationTask } from "../libs/anime+/AnimationTask";
 
 enum AnimKey {
@@ -10,16 +10,23 @@ enum AnimKey {
     loop = "loop",
 }
 
-class LoadingSpinnerAnimation extends ComponentAnimation<
-    LoadingSpinnerConfig,
-    AnimKey
-> {
+const config = {
+    loopIteration: 700,
+    loopStagger: 100,
+    radiusArray: [3, 12, 3],
+};
+
+export function createAnimation(): LoadingSpinnerAnimation {
+    return new LoadingSpinnerAnimation();
+}
+
+class LoadingSpinnerAnimation extends ComponentAnimation<AnimKey> {
     private _loop: AnimationTask | null = null;
 
     ///
-    public constructor(config: LoadingSpinnerConfig) {
+    public constructor() {
         ///
-        super(config);
+        super("LoadingSpinner");
 
         ///
         this.define(AnimKey.fadeIn, {
@@ -67,8 +74,4 @@ class LoadingSpinnerAnimation extends ComponentAnimation<
             await anim.run();
         }
     }
-}
-
-export function createAnimation(config: LoadingSpinnerConfig): LoadingSpinnerAnimation {
-    return new LoadingSpinnerAnimation(config);
 }

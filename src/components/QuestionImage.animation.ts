@@ -1,7 +1,7 @@
-import { AnimParams, ComponentAnimation } from "../app/App.base";
+import { ComponentAnimation } from "../app/App.base";
+import { AnimParams } from "../models/AnimParams";
 import { Duration, Ease, Fade, Scale } from "../libs/anime+/Constants";
 import { TaskGroup } from "../libs/friendlies/Task";
-import { QuestionImageConfig } from "./QuestionImage.config";
 
 enum AnimKey {
     fadeIn = "fadeIn",
@@ -9,10 +9,14 @@ enum AnimKey {
     zoomOut = "zoomOut",
 }
 
-class QuestionImageAnimation extends ComponentAnimation<QuestionImageConfig, AnimKey> {
+export function createAnimation(): QuestionImageAnimation {
+    return new QuestionImageAnimation();
+}
+
+class QuestionImageAnimation extends ComponentAnimation<AnimKey> {
     ///
-    public constructor(config: QuestionImageConfig) {
-        super(config);
+    public constructor() {
+        super("QuestionImage");
 
         this.define(AnimKey.fadeIn, {
             opacity: Fade.max,
@@ -61,8 +65,4 @@ class QuestionImageAnimation extends ComponentAnimation<QuestionImageConfig, Ani
         await anim.all();
         this.setScale(Scale.one);
     }
-}
-
-export function createAnimation(config: QuestionImageConfig): QuestionImageAnimation {
-    return new QuestionImageAnimation(config);
 }

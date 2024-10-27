@@ -2,36 +2,33 @@ import { FlowContext } from "../libs/flow-context/FlowContext";
 import { EventName } from "../models/EventName";
 import { QuizState } from "../models/QuizState";
 import { createAnimation, GuessButtonsAnimation } from "./GuessButtons.animation";
-import { createConfig, GuessButtonsConfig } from "./GuessButtons.config";
-import { createStyles } from "./GuessButtons.style";
+import { useStyle } from "./GuessButtons.style";
 
 ///////////////////////////////////////////////////
-const configs: GuessButtonsConfig[] = [];
 const animations: GuessButtonsAnimation[] = [];
-const style = createStyles();
 ///////////////////////////////////////////////////
 
 export function GuessButtons() {
+    const style = useStyle();
     const [state] = FlowContext.current<QuizState>();
     const guessButtonCount = state.settings.guessButtonCount;
     const buttonAnswerMap = state.buttonAnswerMap;
     const buttonJsx = [];
 
-    for (let i = 0; i < guessButtonCount; i++) {
-        const config = createConfig(i);
-        configs.push(config);
-        animations.push(createAnimation(config));
+    for (let bidx = 0; bidx < guessButtonCount; bidx++) {
+        const anim = createAnimation(bidx);
+        animations.push(anim);
 
-        const item = buttonAnswerMap[i];
+        const item = buttonAnswerMap[bidx];
         const text = item === null ? null : item.name;
 
         buttonJsx.push(
             <span
-                id={config.id}
-                key={config.id}
-                ref={config.ref}
+                id={anim.id}
+                key={anim.id}
+                ref={anim.ref}
                 style={style.span}
-                onPointerDown={() => onPointerDown(i)}>
+                onPointerDown={() => onPointerDown(bidx)}>
                 {text}
             </span>,
         );
@@ -50,6 +47,5 @@ async function onPointerDown(buttonIndex: number) {
 }
 
 /////////////////////////////////////////////
-GuessButtons.configs = configs;
 GuessButtons.animations = animations;
 /////////////////////////////////////////////

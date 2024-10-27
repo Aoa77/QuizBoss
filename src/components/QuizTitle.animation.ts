@@ -1,16 +1,20 @@
-import { AnimParams, ComponentAnimation } from "../app/App.base";
+import { ComponentAnimation } from "../app/App.base";
+import { AnimParams } from "../models/AnimParams";
 import { Duration, Ease, Fade } from "../libs/anime+/Constants";
-import { QuizTitleConfig } from "./QuizTitle.config";
 
 enum AnimKey {
     fadeIn = "fadeIn",
     fadeOut = "fadeOut",
 }
 
-class QuizTitleAnimation extends ComponentAnimation<QuizTitleConfig, AnimKey> {
+export function createAnimation(): QuizTitleAnimation {
+    return new QuizTitleAnimation();
+}
+
+class QuizTitleAnimation extends ComponentAnimation<AnimKey> {
     ///
-    public constructor(config: QuizTitleConfig) {
-        super(config);
+    public constructor() {
+        super("QuizTitle");
 
         this.define(AnimKey.fadeIn, {
             opacity: Fade.max,
@@ -40,8 +44,4 @@ class QuizTitleAnimation extends ComponentAnimation<QuizTitleConfig, AnimKey> {
             await anim.run();
         }
     }
-}
-
-export function createAnimation(config: QuizTitleConfig): QuizTitleAnimation {
-    return new QuizTitleAnimation(config);
 }

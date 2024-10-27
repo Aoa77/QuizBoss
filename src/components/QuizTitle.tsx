@@ -1,35 +1,37 @@
 import { FlowContext } from "../libs/flow-context/FlowContext";
 import { QuizState } from "../models/QuizState";
 import { createAnimation } from "./QuizTitle.animation";
-import { createConfig } from "./QuizTitle.config";
+import { useStyle } from "./QuizTitle.style";
 
 /////////////////////////////////////////////
-const config = createConfig();
-const animation = createAnimation(config);
+const animation = createAnimation();
 /////////////////////////////////////////////
 
 export function QuizTitle() {
+    const style = useStyle();
     const [state] = FlowContext.current<QuizState>();
 
     return (
         <section
-            id={config.id}
-            ref={config.ref}
-            style={config.style}
+            id={animation.id}
+            ref={animation.ref}
+            style={style.section}
             onPointerDown={onPointerDown}>
             {state.quizModule?.quizData.title}
         </section>
     );
 }
 
-async function onPointerDown() {
-    if (config.enableSecretReload) {
-        window.location.reload();
+function onPointerDown() {
+    const [state] = FlowContext.current<QuizState>();
+    const { settings } = state;
+    const { enableSecretWindowReload } = settings;
+    if (!enableSecretWindowReload) {
         return;
     }
+    window.location.reload();
 }
 
 /////////////////////////////////////////////
-QuizTitle.config = config;
 QuizTitle.animation = animation;
 /////////////////////////////////////////////
