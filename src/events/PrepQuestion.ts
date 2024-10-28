@@ -3,6 +3,7 @@ import { QuizState } from "../models/QuizState";
 import { randomInt } from "../libs/randos/randomInt";
 import { QuizItem } from "../models/QuizItem";
 import { EventName } from "../models/EventName";
+import { ButtonStyle } from "../models/ButtonStyle";
 
 export async function PrepQuestion() {
     const [state, setState] = FlowContext.current<QuizState>();
@@ -28,6 +29,10 @@ export async function PrepQuestion() {
         }
         state.buttonAnswerMap[bidx] = selectRandomQuestionChoice(state);
     }
+
+    state.buttonAnswerMap.forEach((item) => {
+        item!.buttonStyle = ButtonStyle.normal; 
+    });
     setState({ ...state, eventName: EventName.AskQuestion });
 }
 

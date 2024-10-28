@@ -1,6 +1,5 @@
 import { Xelement } from "../../../core/animation/dom/Xelement";
 import { xref } from "../../../core/animation/dom/xref";
-import { ButtonStyle } from "../../../../src/models/ButtonStyle";
 import { QuizItem } from "../../../../src/models/QuizItem";
 
 export  function revealCorrectAnswer(
@@ -14,7 +13,7 @@ export  function revealCorrectAnswer(
             continue;
         }
         correctButton = buttons[i];
-        correctButton.className = ButtonStyle.REVEAL;
+        // correctButton.className = ButtonStyle.REVEAL;
         currentItem.answeredCorrectly = true;
         break;
     }

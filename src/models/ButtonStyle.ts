@@ -1,12 +1,12 @@
 export enum ButtonStyle {
-    CORRECT = "correct",
-    DIMMED = "dimmed",
-    DISABLED = "disabled",
-    HIDDEN = "hidden",
-    NORMAL = "normal",
-    REVEAL = "reveal",
-    WRONG = "wrong",
+    correct = "correct",
+    dimmed = "dimmed",
+    disabled = "disabled",
+    normal = "normal",
+    reveal = "reveal",
+    wrong = "wrong",
 }
+
 
 
 

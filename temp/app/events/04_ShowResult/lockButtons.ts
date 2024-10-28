@@ -5,7 +5,6 @@ import { revealCorrectAnswer } from "./revealCorrectAnswer";
 import { unlockButtons } from "./unlockButtons";
 import { wrongGuessesExhausted } from "./wrongGuessesExhausted";
 import { xref } from "../../../core/animation/dom/xref";
-import { ButtonStyle } from "../../../../src/models/ButtonStyle";
 
 export async function lockButtons(
     currentItem: QuizItem,
@@ -19,10 +18,10 @@ export async function lockButtons(
         //
         const button: Xelement<HTMLButtonElement> = buttons[guess];
 
-        if (button.className === ButtonStyle.DISABLED) {
+        if (button.className === "ButtonStyle.DISABL") {
             continue;
         }
-        if (button.className === ButtonStyle.HIDDEN) {
+        if (button.className === "ButtonStyle.HIDDEN") {
             continue;
         }
         // if (state.guessValue !== button.dataValue) {
@@ -31,13 +30,13 @@ export async function lockButtons(
         // }
 
         if (isCorrectGuess) {
-            button.className = ButtonStyle.CORRECT;
+            // button.className = ButtonStyle.CORRECT;
             currentItem.answeredCorrectly = true;
             continue;
         }
 
         wrongGuesses.push(guess);
-        button.className = ButtonStyle.WRONG;
+        // button.className = ButtonStyle.WRONG;
 
         if (wrongGuessesExhausted(wrongGuesses)) {
             await handleWrongGuess();

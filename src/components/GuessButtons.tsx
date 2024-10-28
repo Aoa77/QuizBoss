@@ -4,6 +4,7 @@ import { EventName } from "../models/EventName";
 import { QuizState } from "../models/QuizState";
 import { createAnimation, GuessButtonsAnimation } from "./GuessButtons.animation";
 import { useStyle } from "./GuessButtons.style";
+import { ButtonStyle } from "../models/ButtonStyle";
 
 ///////////////////////////////////////////////////
 const animations: GuessButtonsAnimation[] = [];
@@ -12,8 +13,8 @@ const animations: GuessButtonsAnimation[] = [];
 export function GuessButtons() {
     const style = useMemo(useStyle, []);
     const [state] = FlowContext.current<QuizState>();
-    const guessButtonCount = state.settings.guessButtonCount;
-    const buttonAnswerMap = state.buttonAnswerMap;
+    const { buttonAnswerMap, settings } = state;
+    const { guessButtonCount } = settings;
     const buttonJsx = [];
 
     for (let bidx = 0; bidx < guessButtonCount; bidx++) {
@@ -21,16 +22,24 @@ export function GuessButtons() {
         animations.push(anim);
 
         const item = buttonAnswerMap[bidx];
-        const text = item === null ? null : item.name;
+        if (!item) {
+            continue;
+        }
+
+        const buttonText = item.name;
+        const buttonStyle = {
+            ...style.span, //////////
+            ...style.button.get(item.buttonStyle),
+        };
 
         buttonJsx.push(
             <span
                 id={anim.id}
                 key={anim.id}
                 ref={anim.ref}
-                style={style.span}
+                style={buttonStyle}
                 onPointerDown={() => onPointerDown(bidx)}>
-                {text}
+                {buttonText}
             </span>,
         );
     }
@@ -38,12 +47,17 @@ export function GuessButtons() {
     return <section style={style.section}>{buttonJsx}</section>;
 }
 
-async function onPointerDown(buttonIndex: number) {
+async function onPointerDown(bidx: number) {
     const [state, setState] = FlowContext.current<QuizState>();
-    if (state.eventName !== EventName.AwaitGuess) {
+    const { buttonAnswerMap, eventName } = state;
+    if (eventName !== EventName.AwaitGuess) {
         return;
     }
-    state.guessButtonIndex = buttonIndex;
+    if (buttonAnswerMap[bidx]!.buttonStyle !== ButtonStyle.normal) {
+        return;
+    }
+
+    state.guessButtonIndex = bidx;
     setState({ ...state, eventName: EventName.ShowGuessResult });
 }
 

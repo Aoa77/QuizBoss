@@ -1,3 +1,5 @@
+import { ButtonStyle } from "./ButtonStyle";
+
 export interface QuizItem {
     index: number;
     isDummy: boolean;
@@ -8,4 +10,6 @@ export interface QuizItem {
     imageWidth: number;
     imageHeight: number;
     answeredCorrectly: boolean;
+    buttonStyle: ButtonStyle;
 }
+

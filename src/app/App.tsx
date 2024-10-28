@@ -19,7 +19,7 @@ import { LoadQuizModule } from "../events/LoadQuizModule";
 import { PrepQuestion } from "../events/PrepQuestion";
 import { StartApp } from "../events/StartApp";
 import { StartQuiz } from "../events/StartQuiz";
-import { ShowGuessResult } from "../events/ShowGuessResult";
+import { ShowGuessResult, ShowGuessResultPart2 } from "../events/ShowGuessResult";
 import { QuestionText } from "../components/QuestionText";
 
 ///
@@ -37,6 +37,7 @@ export function App(settings: AppSettings) {
             [EventName.LoadQuizModule, LoadQuizModule],
             [EventName.PrepQuestion, PrepQuestion],
             [EventName.ShowGuessResult, ShowGuessResult],
+            [EventName.ShowGuessResultPart2, ShowGuessResultPart2],
             [EventName.StartApp, StartApp],
             [EventName.StartQuiz, StartQuiz],
         ]),

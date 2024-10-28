@@ -6,6 +6,7 @@ export enum EventName {
     PrepQuestion = "PrepQuestion",
     QuizComplete = "QuizComplete",
     ShowGuessResult = "ShowGuessResult",
+    ShowGuessResultPart2 = "ShowGuessResultPart2",
     StartApp = "StartApp",
     StartQuiz = "StartQuiz",
 }
