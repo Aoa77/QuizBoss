@@ -48,6 +48,9 @@ export function GuessButtons() {
 }
 
 async function onPointerDown(bidx: number) {
+    //const animation = animations[bidx];
+    //await animation.borderGlow();
+
     const [state, setState] = FlowContext.current<QuizState>();
     const { buttonAnswerMap, eventName } = state;
     if (eventName !== EventName.AwaitGuess) {
@@ -58,7 +61,7 @@ async function onPointerDown(bidx: number) {
     }
 
     state.guessButtonIndex = bidx;
-    setState({ ...state, eventName: EventName.ShowGuessResult });
+    setState({ ...state, eventName: EventName.PrepGuessResult });
 }
 
 /////////////////////////////////////////////

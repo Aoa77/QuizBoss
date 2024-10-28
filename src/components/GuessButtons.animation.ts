@@ -7,6 +7,7 @@ enum AnimKey {
     fadeOut = "fadeOut",
     zoomIn = "zoomIn",
     zoomOut = "zoomOut",
+    borderGlow = "borderGlow",
 }
 
 export function createAnimation(index: number): GuessButtonsAnimation {
@@ -42,6 +43,12 @@ export class GuessButtonsAnimation extends ComponentAnimation<AnimKey> {
             duration: 0.50 * Duration.oneSecond,
             easing: "easeOutElastic(3, 1)"
         });
+
+        this.define(AnimKey.borderGlow, {
+            borderColor: ["#ff0000", "#00ff00"],
+            duration: 0.50 * Duration.oneSecond,
+            easing: "easeOutElastic(3, 1)"
+        });
     }
 
     ///
@@ -71,6 +78,14 @@ export class GuessButtonsAnimation extends ComponentAnimation<AnimKey> {
     ///
     public async zoomOut(): Promise<void> {
         const anim = this.build(AnimKey.zoomOut, true);
+        if (anim) {
+            await anim.run();
+        }
+    }
+
+    ///
+    public async borderGlow(): Promise<void> {
+        const anim = this.build(AnimKey.borderGlow, true);
         if (anim) {
             await anim.run();
         }

@@ -4,27 +4,8 @@ import { ButtonStyle } from "../models/ButtonStyle";
 import { EventName } from "../models/EventName";
 import { QuizState } from "../models/QuizState";
 
-export async function ShowGuessResult() {
-    const [state, setState] = FlowContext.current<QuizState>();
 
-    state.buttonAnswerMap.forEach((_item, idx) => {
-        const item = _item!;
-        if (idx === state.guessButtonIndex) {
-            item.buttonStyle =
-                idx === state.correctAnswerButtonIndex
-                    ? ButtonStyle.correct
-                    : ButtonStyle.wrong;
-            return;
-        }
-        if (item.buttonStyle === ButtonStyle.normal) {
-            item.buttonStyle = ButtonStyle.dimmed;
-        }
-    });
-
-    setState({ ...state, eventName: EventName.ShowGuessResultPart2 });
-}
-
-export async function ShowGuessResultPart2() {
+export async function RevealGuessResult() {
     const [state, setState] = FlowContext.current<QuizState>();
 
     const animation = GuessButtons.animations[state.guessButtonIndex];
