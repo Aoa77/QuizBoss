@@ -8,6 +8,7 @@ enum AnimKey {
 }
 
 export function createAnimation(): QuizTitleAnimation {
+    console.log("QuizTitleAnimation");
     return new QuizTitleAnimation();
 }
 

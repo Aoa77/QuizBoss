@@ -3,13 +3,14 @@ import { QuizState } from "../models/QuizState";
 import { createAnimation } from "./QuestionImage.animation";
 import { EventName } from "../models/EventName";
 import { useStyle } from "./QuestionImage.style";
+import { useMemo } from "react";
 
 /////////////////////////////////////////////
 const animation = createAnimation();
 /////////////////////////////////////////////
 
 export function QuestionImage() {
-    const style = useStyle();
+    const style = useMemo(useStyle, []);
     const [state] = FlowContext.current<QuizState>();
     const item = state.currentItem;
     if (item === null) {

@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import { FlowContext } from "../libs/flow-context/FlowContext";
 import { QuizState } from "../models/QuizState";
 import { createAnimation } from "./QuestionText.animation";
@@ -8,7 +9,7 @@ const animation = createAnimation();
 /////////////////////////////////////////////
 
 export function QuestionText() {
-    const style = useStyle();
+    const style = useMemo(useStyle, []);
     const [state] = FlowContext.current<QuizState>();
     const { quizModule } = state;
     if (!quizModule) {

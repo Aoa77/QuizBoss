@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import { createAnimation } from "./LoadingProgress.animation";
 import { useStyle } from "./LoadingProgress.style";
 
@@ -6,9 +7,9 @@ const animation = createAnimation();
 /////////////////////////////////////////////
 
 export function LoadingProgress() {
-    const style = useStyle();
+    const style = useMemo(useStyle, []);
     ///
-    return (
+    return useMemo(() => (
         <section
             id={animation.id}
             ref={animation.ref}
@@ -18,7 +19,7 @@ export function LoadingProgress() {
                 <div style={style.progBarForeground}></div>
             </div>
         </section>
-    );
+    ), [style]);
 }
 
 /////////////////////////////////////////////

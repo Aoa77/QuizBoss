@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import { FlowContext } from "../libs/flow-context/FlowContext";
 import { EventName } from "../models/EventName";
 import { QuizState } from "../models/QuizState";
@@ -9,7 +10,7 @@ const animations: GuessButtonsAnimation[] = [];
 ///////////////////////////////////////////////////
 
 export function GuessButtons() {
-    const style = useStyle();
+    const style = useMemo(useStyle, []);
     const [state] = FlowContext.current<QuizState>();
     const guessButtonCount = state.settings.guessButtonCount;
     const buttonAnswerMap = state.buttonAnswerMap;
