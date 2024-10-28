@@ -3,6 +3,7 @@ import { LocalStore } from "../libs/friendlies/LocalStore";
 import { generateRandomString } from "../libs/randos/generateRandomString";
 import { shuffle } from "../libs/randos/shuffle";
 import { ThemeVars } from "../libs/theme-vars/ThemeVars";
+import { ButtonStyle } from "../models/ButtonStyle";
 import { EventName } from "../models/EventName";
 import { QuizItem } from "../models/QuizItem";
 import { QuizModule } from "../models/QuizModule";
@@ -100,6 +101,7 @@ function randomizeGuessPool(state: QuizState): void {
             imageWidth: 0,
             imageHeight: 0,
             answeredCorrectly: false,
+            buttonStyle: ButtonStyle.normal,
         };
         quizData.randomizedGuessPool.push(dummyItem);
     }

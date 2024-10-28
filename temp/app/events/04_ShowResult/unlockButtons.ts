@@ -9,11 +9,11 @@ export async function unlockButtons(
         switch (button.className) {
             case "ButtonStyle.DIMMED":
                 if (!wrongGuesses.includes(guess)) {
-                    button.className = ButtonStyle.NORMAL;
+                    //button.className = ButtonStyle.NORMAL;
                 }
                 break;
             case "ButtonStyle.WRONG":
-                button.className = ButtonStyle.DIMMED;
+                //button.className = ButtonStyle.DIMMED;
                 break;
             default:
                 break;

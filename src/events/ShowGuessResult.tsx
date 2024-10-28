@@ -1,6 +1,5 @@
 import { GuessButtons } from "../components/GuessButtons";
 import { FlowContext } from "../libs/flow-context/FlowContext";
-import { TaskGroup } from "../libs/friendlies/Task";
 import { ButtonStyle } from "../models/ButtonStyle";
 import { EventName } from "../models/EventName";
 import { QuizState } from "../models/QuizState";
@@ -31,11 +30,11 @@ export async function ShowGuessResultPart2() {
     const animation = GuessButtons.animations[state.guessButtonIndex];
     await animation.zoomIn();
 
-    let correctGuess = false;
-    state.buttonAnswerMap.forEach((_item, idx) => {
-        if (correctGuess) {
-            return;
-        }
+    //let correctGuess = false;
+    state.buttonAnswerMap.forEach((_item) => {
+        // if (correctGuess) {
+        //     return;
+        // }
         const item = _item!;
         switch (item.buttonStyle) {
             case ButtonStyle.correct:
