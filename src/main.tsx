@@ -14,7 +14,7 @@ const root: HTMLElement | null = document.getElementById("root");
 try {
     const settings = new AppSettings({
         quizModuleName,
-        awaitImageLoading: true,
+        awaitImageLoading: false,
         enableSecretQuestionSkip: true,
         enableSecretWindowReload: true,
         errorHandler,

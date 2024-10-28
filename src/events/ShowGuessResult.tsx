@@ -29,9 +29,7 @@ export async function ShowGuessResultPart2() {
     const [state, setState] = FlowContext.current<QuizState>();
 
     const animation = GuessButtons.animations[state.guessButtonIndex];
-    const anims = TaskGroup.create();
-    anims.add(animation.buttonPress());
-    await anims.all();
+    await animation.zoomIn();
 
     let correctGuess = false;
     state.buttonAnswerMap.forEach((_item, idx) => {
@@ -53,5 +51,6 @@ export async function ShowGuessResultPart2() {
         }
     });
 
+    await animation.zoomOut();
     setState({ ...state, eventName: EventName.AwaitGuess });
 }
