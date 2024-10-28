@@ -15,6 +15,8 @@ try {
     const settings = new AppSettings({
         quizModuleName,
         awaitImageLoading: false,
+        enableSecretQuestionSkip: true,
+        enableSecretWindowReload: true,
         errorHandler,
     });
     await ThemeVars.config(ThemeName, TV, "themes");

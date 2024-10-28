@@ -8,10 +8,10 @@ import { QuizState } from "../models/QuizState";
 export async function ShowGuessResult() {
     const [state, setState] = FlowContext.current<QuizState>();
 
-    const duration = Duration.oneSecond;
+    const duration = 2 * Duration.oneSecond;
     const anims = TaskGroup.create();
     anims.add(
-        GuessButtons.animations[state.guessButtonIndex].validGuess({
+        GuessButtons.animations[state.guessButtonIndex].buttonPress({
             delay: 0,
             duration,
             enable: true,

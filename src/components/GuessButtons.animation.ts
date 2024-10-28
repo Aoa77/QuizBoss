@@ -5,7 +5,7 @@ import { Duration, Ease, Fade } from "../libs/anime+/Constants";
 enum AnimKey {
     fadeIn = "fadeIn",
     fadeOut = "fadeOut",
-    validGuess = "validGuess",
+    buttonPress = "validGuess",
 }
 
 export function createAnimation(index: number): GuessButtonsAnimation {
@@ -29,10 +29,10 @@ export class GuessButtonsAnimation extends ComponentAnimation<AnimKey> {
             easing: Ease.linear,
         });
 
-        this.define(AnimKey.validGuess, {
-            scale: [1, 1.2, 1],
-            duration: Duration.oneSecond,
-            easing: Ease.linear,
+        this.define(AnimKey.buttonPress, {
+            scale: [1.3],
+            duration: 2 * Duration.oneSecond,
+            easing: "easeOutElastic(3, 0.40)"
         });
     }
 
@@ -53,8 +53,8 @@ export class GuessButtonsAnimation extends ComponentAnimation<AnimKey> {
     }
 
     ///
-    public async validGuess(params: AnimParams): Promise<void> {
-        const anim = this.build(AnimKey.validGuess, params.enable, params);
+    public async buttonPress(): Promise<void> {
+        const anim = this.build(AnimKey.buttonPress, true);
         if (anim) {
             await anim.run();
         }
