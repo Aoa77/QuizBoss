@@ -32,7 +32,6 @@ export function GuessButtons() {
             <span
                 id={anim.id}
                 key={anim.id}
-                ref={anim.ref}
                 style={buttonStyle}
                 onPointerDown={() => onPointerDown(bidx)}>
                 {buttonText}

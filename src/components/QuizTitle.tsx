@@ -19,7 +19,6 @@ export function QuizTitle() {
     return (
         <section
             id={animation.id}
-            ref={animation.ref}
             style={style.section}
             onPointerDown={onPointerDown}>
             {title}

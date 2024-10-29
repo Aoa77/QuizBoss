@@ -1,10 +1,9 @@
-import { Duration } from "../libs/anime-context/AnimeContext.constants";
+import { Duration, Ease, Fade } from "../libs/anime-context/AnimeContext.constants";
 import { FlowContext } from "../libs/flow-context/FlowContext";
 import { TaskGroup } from "../libs/friendlies/Task";
 import { EventName } from "../models/EventName";
 import { QuizState } from "../models/QuizState";
-import { LoadingSpinner } from "../components/LoadingSpinner";
-import { QuestionImage } from "../components/QuestionImage";
+import { Anime } from "../models/Anime";
 
 export async function ConcludeQuestion() {
     const [state, setState] = FlowContext.current<QuizState>();
@@ -12,17 +11,19 @@ export async function ConcludeQuestion() {
     const duration = Duration.oneSecond;
     const anims = TaskGroup.create();
     anims.add(
-        QuestionImage.animation.out({
+        Anime.QuestionImage.run({
+            opacity: Fade.out,
             delay: 0,
             duration,
-            enable: true,
+            easing: Ease.linear,
         }),
     );
     anims.add(
-        LoadingSpinner.animation.in({
+        Anime.LoadingSpinner.run({
+            opacity: Fade.in,
             delay: 0.45 * duration,
             duration,
-            enable: true,
+            easing: Ease.linear,
         }),
     );
     await anims.all();

@@ -1,14 +1,20 @@
-import { GuessButtons } from "../components/GuessButtons";
+import { Duration } from "../libs/anime-context/AnimeContext.constants";
 import { FlowContext } from "../libs/flow-context/FlowContext";
+import { Anime } from "../models/Anime";
 import { ButtonStyle } from "../models/ButtonStyle";
 import { EventName } from "../models/EventName";
 import { QuizState } from "../models/QuizState";
 
 export async function RevealGuessResult() {
     const [state, setState] = FlowContext.current<QuizState>();
-    const animations = GuessButtons.animations;
-    const animation = animations[state.guessButtonIndex];
-    await animation.zoomBig();
+
+    const duration = Duration.oneSecond;
+    await Anime.GuessButton(state.guessButtonIndex).run({
+        scale: 1.3,
+        delay: 0.25 * duration,
+        duration,
+        easing: "easeOutElastic(3, 1)",
+    });
 
     let correctGuess = false;
     state.buttonAnswerMap.forEach((_item) => {
@@ -34,6 +40,13 @@ export async function RevealGuessResult() {
         setState({ ...state, eventName: EventName.ConcludeCorrectGuess });
         return;
     }
-    await animation.zoomNormal();
+
+    await Anime.GuessButton(state.guessButtonIndex).run({
+        scale: 1,
+        delay: 0.25 * duration,
+        duration,
+        easing: "easeOutElastic(3, 1)",
+    });
+
     setState({ ...state, eventName: EventName.AwaitGuess });
 }

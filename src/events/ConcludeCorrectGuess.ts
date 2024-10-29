@@ -1,35 +1,37 @@
-import { GuessButtons } from "../components/GuessButtons";
-import { Duration } from "../libs/anime-context/AnimeContext.constants";
+import { Duration, Scale } from "../libs/anime-context/AnimeContext.constants";
 import { FlowContext } from "../libs/flow-context/FlowContext";
 import { TaskGroup } from "../libs/friendlies/Task";
+import { Anime } from "../models/Anime";
 import { EventName } from "../models/EventName";
 import { QuizState } from "../models/QuizState";
 
 export async function ConcludeCorrectGuess() {
     ///
     const [state, setState] = FlowContext.current<QuizState>();
-    const animations = GuessButtons.animations;
 
     ///
     const duration = Duration.oneSecond;
-    const banims = TaskGroup.create();
-    animations.forEach((anim, bidx) => {
+    const anims = TaskGroup.create();
+    state.buttonAnswerMap.forEach((_, bidx) => {
         if (bidx === state.guessButtonIndex) {
             return;
         }
-        banims.add(
-            anim.zoomZero({
-                delay: 125 * bidx, ///////////
+        anims.add(
+            Anime.GuessButton(bidx).run({
+                scale: Scale.zero,
+                delay: 0.25 * duration,
                 duration,
-                enable: true,
+                easing: "easeOutElastic(3, 1)",
             }),
         );
     });
-    await banims.all();
-    await animations[state.guessButtonIndex].zoomZero({
+
+    await anims.all();
+    await Anime.GuessButton(state.guessButtonIndex).run({
+        scale: Scale.zero,
         delay: 0.25 * duration,
         duration,
-        enable: true,
+        easing: "easeOutElastic(3, 0.75)",
     });
 
     ///
