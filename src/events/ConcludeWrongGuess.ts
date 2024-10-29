@@ -1,4 +1,4 @@
-import { Ease } from "../libs/anime-context/AnimeContext.constants";
+import { Ease, Scale } from "../libs/anime-context/AnimeContext.constants";
 import { FlowContext } from "../libs/flow-context/FlowContext";
 import { Anime } from "../models/Anime";
 import { ButtonStyle } from "../models/ButtonStyle";
@@ -12,8 +12,8 @@ export async function ConcludeWrongGuess() {
 
     const duration = oneTickAtSpeed;
     await Anime.GuessButton(guessButtonIndex).run({
-        scale: 1,
-        delay: 0.25 * duration,
+        scale: Scale.one,
+        delay: 1.05 * duration,
         duration,
         easing: Ease.out.elastic(3, 1),
     });
@@ -32,7 +32,8 @@ export async function ConcludeWrongGuess() {
 
     if (state.itemScore === 0) {
         state.guessButtonIndex = state.correctAnswerButtonIndex;
-        buttonAnswerMap[state.guessButtonIndex]!.buttonStyle = ButtonStyle.reveal;
+        const button = buttonAnswerMap[state.guessButtonIndex]!;
+        button.buttonStyle = ButtonStyle.reveal;
         setState({ ...state, eventName: EventName.RevealGuessResult });
         return;
     }

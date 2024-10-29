@@ -1,9 +1,7 @@
 export enum EventName {
     AskQuestion = "AskQuestion",
     AwaitGuess = "AwaitGuess",
-    ConcludeFinalGuess = "ConcludeFinalGuess",
     ConcludeQuestion = "ConcludeQuestion",
-    ConcludeWrongFinalGuess = "ConcludeWrongFinalGuess",
     ConcludeWrongGuess = "ConcludeWrongGuess",
     LoadQuizModule = "LoadQuizModule",
     PrepGuessResult = "PrepGuessResult",
@@ -12,6 +10,4 @@ export enum EventName {
     RevealGuessResult = "RevealGuessResult",
     StartApp = "StartApp",
     StartQuiz = "StartQuiz",
-
-    STOP_DEV = "STOP_DEV",
 }

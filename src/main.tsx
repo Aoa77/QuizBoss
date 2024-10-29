@@ -15,7 +15,7 @@ try {
     const settings = new AppSettings({
         quizModuleName,
         awaitImageLoading: true,
-        enableSecretQuestionSkip: true,
+        enableSecretQuestionSkip: false,
         enableSecretWindowReload: true,
         errorHandler,
     });

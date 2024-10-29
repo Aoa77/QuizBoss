@@ -2,15 +2,21 @@ import { AnimeContext } from "../libs/anime-context/AnimeContext";
 import { AnimeRef } from "../libs/anime-context/AnimeRef";
 
 export enum AnimeComponent {
+    CorrectGuessPoints = "CorrectGuessPoints",
     GuessButton = "GuessButton",
     LoadingProgress = "LoadingProgress",
     LoadingSpinner = "LoadingSpinner",
     QuestionImage = "QuestionImage",
     QuestionText = "QuestionText",
     QuizTitle = "QuizTitle",
+    RevealGuessNoPoints = "RevealGuessNoPoints",
 }
 
 export class Anime {
+    public static get CorrectGuessPoints(): AnimeRef {
+        return AnimeContext.get(AnimeComponent.CorrectGuessPoints)!;
+    }
+
     public static GuessButton(index: number): AnimeRef {
         return AnimeContext.get(AnimeComponent.GuessButton, index)!;
     }
@@ -33,5 +39,9 @@ export class Anime {
 
     public static get QuizTitle(): AnimeRef {
         return AnimeContext.get(AnimeComponent.QuizTitle)!;
+    }
+
+    public static get RevealGuessNoPoints(): AnimeRef {
+        return AnimeContext.get(AnimeComponent.RevealGuessNoPoints)!;
     }
 }

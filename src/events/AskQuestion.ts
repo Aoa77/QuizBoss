@@ -40,9 +40,9 @@ export async function AskQuestion() {
         anims.add(
             Anime.GuessButton(i).run({
                 opacity: Fade.in,
-                delay: (2 + 0.75 * i) * duration,
-                duration,
-                easing: Ease.linear,
+                delay: (2.50 * duration) + (i * (0.50 * duration)),
+                duration: 0.25 * duration,
+                easing: Ease.in.back,
             }),
         );
     }

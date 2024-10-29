@@ -6,18 +6,18 @@ import { initQuizState, QuizState } from "../models/QuizState";
 import { useFlowContext } from "../libs/flow-context/FlowContext.hook";
 
 ///
+import { CorrectGuessPoints } from "../components/CorrectGuessPoints";
 import { GuessButtons } from "../components/GuessButtons";
 import { LoadingProgress } from "../components/LoadingProgress";
 import { LoadingSpinner } from "../components/LoadingSpinner";
 import { QuestionImage } from "../components/QuestionImage";
 import { QuestionText } from "../components/QuestionText";
 import { QuizTitle } from "../components/QuizTitle";
+import { RevealGuessNoPoints } from "../components/RevealGuessNoPoints";
 
 ///
 import { AskQuestion } from "../events/AskQuestion";
-import { ConcludeFinalGuess } from "../events/ConcludeFinalGuess";
 import { ConcludeQuestion } from "../events/ConcludeQuestion";
-import { ConcludeWrongFinalGuess } from "../events/ConcludeWrongFinalGuess";
 import { ConcludeWrongGuess } from "../events/ConcludeWrongGuess";
 import { LoadQuizModule } from "../events/LoadQuizModule";
 import { PrepGuessResult } from "../events/PrepGuessResult";
@@ -37,9 +37,7 @@ export function App(settings: AppSettings) {
         flowEvents: new Map<EventName, (state: QuizState) => Promise<void>>([
             [EventName.AskQuestion, AskQuestion],
             [EventName.AwaitGuess, () => Promise.resolve()],
-            [EventName.ConcludeFinalGuess, ConcludeFinalGuess],
             [EventName.ConcludeQuestion, ConcludeQuestion],
-            [EventName.ConcludeWrongFinalGuess, ConcludeWrongFinalGuess],
             [EventName.ConcludeWrongGuess, ConcludeWrongGuess],
             [EventName.LoadQuizModule, LoadQuizModule],
             [EventName.PrepGuessResult, PrepGuessResult],
@@ -66,6 +64,8 @@ export function App(settings: AppSettings) {
             <LoadingProgress />
             <QuestionImage />
             <QuestionText />
+            <CorrectGuessPoints />
+            <RevealGuessNoPoints />
             <GuessButtons />
         </main>
     );
