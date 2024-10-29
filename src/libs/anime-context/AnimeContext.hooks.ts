@@ -1,24 +1,29 @@
 import anime, { AnimeParams } from "animejs";
-import { AnimeContext, AnimeRefObject } from "./AnimeContext";
+import { AnimeContext } from "./AnimeContext";
+import { AnimeRef } from "./AnimeRef";
 import { TransformRegex } from "./AnimeContext.constants";
 import { AnimeTask } from "./AnimeTask";
 
-export function useAnimeRef<T extends string>(id: T): AnimeRefObject {
+export function useAnimeRef<T extends string>(id: T): AnimeRef {
     return useAnimeRefs(id, 1)[0];
 }
 
 export function useAnimeRefs<T extends string>(
     baseId: T,
     count: number,
-): AnimeRefObject[] {
-    const animRefs: AnimeRefObject[] = [];
+): AnimeRef[] {
+    const animRefs: AnimeRef[] = [];
     for (let i = 0; i < count; i++) {
         const id = `${baseId}-${i}`;
         const target = `#${id}`;
 
-        const obj: AnimeRefObject = {
+        const obj: AnimeRef = {
             id,
             target,
+            get rect(): DOMRect | null {
+                const el = document.getElementById(this.id);
+                return el?.getBoundingClientRect() ?? null;
+            },
             get opacity(): number | null {
                 const el = document.getElementById(this.id);
                 const value = parseFloat(el?.style?.opacity ?? "-1");
@@ -56,6 +61,13 @@ export function useAnimeRefs<T extends string>(
                     targets: target,
                     ...params,
                 });
+            },
+            clearTransforms() {
+                const el = document.getElementById(this.id);
+                if (!el) {
+                    return;
+                }
+                el.style.transform = "";
             },
             run(params: AnimeParams) {
                 return AnimeTask.run(this.build(params));

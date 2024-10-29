@@ -1,4 +1,4 @@
-import { Duration, Ease, Fade } from "../libs/anime-context/AnimeContext.constants";
+import { Ease, Fade } from "../libs/anime-context/AnimeContext.constants";
 import { FlowContext } from "../libs/flow-context/FlowContext";
 import { TaskGroup } from "../libs/friendlies/Task";
 import { Anime } from "../models/Anime";
@@ -6,8 +6,13 @@ import { EventName } from "../models/EventName";
 import { QuizState } from "../models/QuizState";
 
 export async function StartQuiz() {
-    //
-    const duration = Duration.oneSecond;
+    ///
+    const [state, setState] = FlowContext.current<QuizState>();
+    const { settings } = state;
+    const { oneTickAtSpeed } = settings;
+
+    ///
+    const duration = oneTickAtSpeed;
     const anims = TaskGroup.create();
     anims.add(
         Anime.LoadingProgress.run({
@@ -36,6 +41,5 @@ export async function StartQuiz() {
     await anims.all();
 
     //
-    const [state, setState] = FlowContext.current<QuizState>();
     setState({ ...state, eventName: EventName.PrepQuestion });
 }

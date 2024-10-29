@@ -24,6 +24,7 @@ export function useStyle(): Style {
 
     ///
     style.image = {
+        cursor: "pointer",
         height: style.section.height,
         boxShadow: `0 0 ${CssUnit.cqw(16)} ${CssUnit.cqw(3)} ${ThemeVars.getRef(
             TV,

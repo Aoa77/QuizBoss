@@ -1,6 +1,6 @@
-import { AnimeInstance, AnimeParams } from "animejs";
+import { AnimeRef } from "./AnimeRef";
 
-class AnimeRefMap extends Map<string, AnimeRefObject> {}
+class AnimeRefMap extends Map<string, AnimeRef> {}
 
 export class AnimeContext {
     private static readonly _map: AnimeRefMap = new AnimeRefMap();
@@ -15,25 +15,15 @@ export class AnimeContext {
     public static get<T extends string>(
         id: T,
         index: number = 0,
-    ): AnimeRefObject | null {
+    ): AnimeRef | null {
         const key: string = AnimeContext.composeKey<T>(id, index);
         return AnimeContext._map.get(key) ?? null;
     }
 
-    public static set<T extends string>(id: T, ref: AnimeRefObject, index: number) {
+    public static set<T extends string>(id: T, ref: AnimeRef, index: number) {
         const key: string = AnimeContext.composeKey<T>(id, index);
         AnimeContext._map.set(key, ref);
     }
 }
 
-export interface AnimeRefObject {
-    id: string;
-    target: string;
-    get opacity(): number | null;
-    set opacity(value: number);
-    get scale(): number | null;
-    set scale(value: number);
-    build(params: AnimeParams): AnimeInstance;
-    run(params: AnimeParams): Promise<void>;
-}
 

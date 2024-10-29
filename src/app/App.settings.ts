@@ -1,3 +1,4 @@
+import { Duration } from "../libs/anime-context/AnimeContext.constants";
 import { HttpUtility } from "../libs/friendlies/HttpUtility";
 import { DemoMode, parseDemoMode } from "../models/DemoMode";
 import { ThemeName } from "../models/Theme";
@@ -10,6 +11,7 @@ export class AppSettings {
     public readonly demoMode: DemoMode;
     public readonly guessButtonCount: number;
     public readonly maxQuestions: number;
+    public readonly oneTickAtSpeed: number;
     public readonly theme: ThemeName;
     public readonly errorHandler?: (error: unknown) => void;
 
@@ -21,6 +23,7 @@ export class AppSettings {
         demoMode?: DemoMode;
         guessButtonCount?: number;
         maxQuestions?: number;
+        oneTickAtSpeed?: number;
         theme?: ThemeName;
         errorHandler?: (error: unknown) => void;
     }) {
@@ -42,8 +45,8 @@ export class AppSettings {
         this.guessButtonCount =
             guessButtonCount ?? +(qp.get("guessButtonCount") ?? "4");
 
-        this.maxQuestions =
-            maxQuestions ?? +(qp.get("maxQuestions") ?? "0");
+        this.maxQuestions = maxQuestions ?? +(qp.get("maxQuestions") ?? "0");
+        this.oneTickAtSpeed = +(qp.get("oneTickAtSpeed") ?? Duration.oneSecond);
 
         this.theme = params.theme ?? ThemeName.dark;
         this.errorHandler = params.errorHandler;
@@ -51,9 +54,4 @@ export class AppSettings {
         this.enableSecretQuestionSkip = params.enableSecretQuestionSkip ?? false;
         this.enableSecretWindowReload = params.enableSecretWindowReload ?? false;
     }
-
 }
-
-
-
-

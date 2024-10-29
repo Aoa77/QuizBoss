@@ -13,49 +13,68 @@ export enum Scale {
     zero = 0,
 }
 
-export enum Ease {
-    linear = "linear",
+export const Ease = {
+    linear: "linear",
+    in: {
+        elastic: (amplitude: number, period: number) =>
+            `easeInElastic(${amplitude}, ${period})`,
 
-    inBack = "easeInBack",
-    inBounce = "easeInBounce",
-    inCirc = "easeInCirc",
-    inCubic = "easeInCubic",
-    inExpo = "easeInExpo",
-    inQuad = "easeInQuad",
-    inQuart = "easeInQuart",
-    inQuint = "easeInQuint",
-    inSine = "easeInSine",
+        back: "easeInBack",
+        bounce: "easeInBounce",
+        circ: "easeInCirc",
+        cubic: "easeInCubic",
+        expo: "easeInExpo",
+        quad: "easeInQuad",
+        quart: "easeInQuart",
+        quint: "easeInQuint",
+        sine: "easeInSine",
 
-    outBack = "easeOutBack",
-    outBounce = "easeOutBounce",
-    outCirc = "easeOutCirc",
-    outCubic = "easeOutCubic",
-    outExpo = "easeOutExpo",
-    outQuad = "easeOutQuad",
-    outQuart = "easeOutQuart",
-    outQuint = "easeOutQuint",
-    outSine = "easeOutSine",
+        out: {
+            elastic: (amplitude: number, period: number) =>
+                `easeInOutElastic(${amplitude}, ${period})`,
 
-    inOutBack = "easeInOutBack",
-    inOutBounce = "easeInOutBounce",
-    inOutCirc = "easeInOutCirc",
-    inOutCubic = "easeInOutCubic",
-    inOutExpo = "easeInOutExpo",
-    inOutQuad = "easeInOutQuad",
-    inOutQuart = "easeInOutQuart",
-    inOutQuint = "easeInOutQuint",
-    inOutSine = "easeInOutSine",
+            back: "easeInOutBack",
+            bounce: "easeInOutBounce",
+            circ: "easeInOutCirc",
+            cubic: "easeInOutCubic",
+            expo: "easeInOutExpo",
+            quad: "easeInOutQuad",
+            quart: "easeInOutQuart",
+            quint: "easeInOutQuint",
+            sine: "easeInOutSine",
+        },
+    },
+    out: {
+        elastic: (amplitude: number, period: number) =>
+            `easeOutElastic(${amplitude}, ${period})`,
 
-    outInBack = "easeOutInBack",
-    outInBounce = "easeOutInBounce",
-    outInCirc = "easeOutInCirc",
-    outInCubic = "easeOutInCubic",
-    outInExpo = "easeOutInExpo",
-    outInQuad = "easeOutInQuad",
-    outInQuart = "easeOutInQuart",
-    outInQuint = "easeOutInQuint",
-    outInSine = "easeOutInSine",
-}
+        back: "easeOutBack",
+        bounce: "easeOutBounce",
+        circ: "easeOutCirc",
+        cubic: "easeOutCubic",
+        expo: "easeOutExpo",
+        quad: "easeOutQuad",
+        quart: "easeOutQuart",
+        quint: "easeOutQuint",
+        sine: "easeOutSine",
+
+        in: {
+            elastic: (amplitude: number, period: number) =>
+                `easeOutInElastic(${amplitude}, ${period})`,
+
+            back: "easeOutInBack",
+            bounce: "easeOutInBounce",
+            circ: "easeOutInCirc",
+            cubic: "easeOutInCubic",
+            expo: "easeOutInExpo",
+            quad: "easeOutInQuad",
+            quart: "easeOutInQuart",
+            quint: "easeOutInQuint",
+            sine: "easeOutInSine",
+        },
+    },
+
+};
 
 export const TransformRegex = {
     scale: /scale\((\d+(\.\d+)?)\)/,

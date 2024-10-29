@@ -1,4 +1,4 @@
-import { Duration } from "../libs/anime-context/AnimeContext.constants";
+import { Ease } from "../libs/anime-context/AnimeContext.constants";
 import { FlowContext } from "../libs/flow-context/FlowContext";
 import { Anime } from "../models/Anime";
 import { ButtonStyle } from "../models/ButtonStyle";
@@ -7,46 +7,23 @@ import { QuizState } from "../models/QuizState";
 
 export async function RevealGuessResult() {
     const [state, setState] = FlowContext.current<QuizState>();
+    const { guessButtonIndex, settings, buttonAnswerMap } = state;
+    const button = buttonAnswerMap[guessButtonIndex]!;
+    const { oneTickAtSpeed } = settings;
 
-    const duration = Duration.oneSecond;
-    await Anime.GuessButton(state.guessButtonIndex).run({
+    const duration = oneTickAtSpeed;
+    await Anime.GuessButton(guessButtonIndex).run({
         scale: 1.3,
-        delay: 0.25 * duration,
-        duration,
-        easing: "easeOutElastic(3, 1)",
+        delay: 0,
+        duration: 0.25 * duration,
+        endDelay: duration,
+        easing: Ease.out.elastic(3, 1),
     });
 
-    let correctGuess = false;
-    state.buttonAnswerMap.forEach((_item) => {
-        if (correctGuess) {
-            return;
-        }
-        const item = _item!;
-        switch (item.buttonStyle) {
-            case ButtonStyle.correct:
-                correctGuess = true;
-                item.buttonStyle = ButtonStyle.disabled;
-                return;
-            case ButtonStyle.wrong:
-                item.buttonStyle = ButtonStyle.disabled;
-                return;
-            case ButtonStyle.dimmed:
-                item.buttonStyle = ButtonStyle.normal;
-                return;
-        }
-    });
-
-    if (correctGuess) {
+    if (button.buttonStyle === ButtonStyle.correct) {
         setState({ ...state, eventName: EventName.ConcludeCorrectGuess });
         return;
     }
 
-    await Anime.GuessButton(state.guessButtonIndex).run({
-        scale: 1,
-        delay: 0.25 * duration,
-        duration,
-        easing: "easeOutElastic(3, 1)",
-    });
-
-    setState({ ...state, eventName: EventName.AwaitGuess });
+    setState({ ...state, eventName: EventName.ConcludeWrongGuess });
 }
