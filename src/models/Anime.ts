@@ -4,7 +4,6 @@ export enum AnimeComponent {
     GuessButton = "GuessButton",
     LoadingProgress = "LoadingProgress",
     LoadingSpinner = "LoadingSpinner",
-    LoadingSpinnerBall = "LoadingSpinnerBall",
     QuestionImage = "QuestionImage",
     QuestionText = "QuestionText",
     QuizTitle = "QuizTitle",
