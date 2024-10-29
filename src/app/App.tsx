@@ -15,7 +15,7 @@ import { QuizTitle } from "../components/QuizTitle";
 
 ///
 import { AskQuestion } from "../events/AskQuestion";
-import { ConcludeCorrectGuess } from "../events/ConcludeCorrectGuess";
+import { ConcludeFinalGuess } from "../events/ConcludeFinalGuess";
 import { ConcludeQuestion } from "../events/ConcludeQuestion";
 import { ConcludeWrongFinalGuess } from "../events/ConcludeWrongFinalGuess";
 import { ConcludeWrongGuess } from "../events/ConcludeWrongGuess";
@@ -37,7 +37,7 @@ export function App(settings: AppSettings) {
         flowEvents: new Map<EventName, (state: QuizState) => Promise<void>>([
             [EventName.AskQuestion, AskQuestion],
             [EventName.AwaitGuess, () => Promise.resolve()],
-            [EventName.ConcludeCorrectGuess, ConcludeCorrectGuess],
+            [EventName.ConcludeFinalGuess, ConcludeFinalGuess],
             [EventName.ConcludeQuestion, ConcludeQuestion],
             [EventName.ConcludeWrongFinalGuess, ConcludeWrongFinalGuess],
             [EventName.ConcludeWrongGuess, ConcludeWrongGuess],

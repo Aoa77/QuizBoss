@@ -1,7 +1,7 @@
 export enum EventName {
     AskQuestion = "AskQuestion",
     AwaitGuess = "AwaitGuess",
-    ConcludeCorrectGuess = "ConcludeCorrectGuess",
+    ConcludeFinalGuess = "ConcludeFinalGuess",
     ConcludeQuestion = "ConcludeQuestion",
     ConcludeWrongFinalGuess = "ConcludeWrongFinalGuess",
     ConcludeWrongGuess = "ConcludeWrongGuess",

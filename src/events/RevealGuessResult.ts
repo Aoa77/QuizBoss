@@ -20,10 +20,10 @@ export async function RevealGuessResult() {
         easing: Ease.out.elastic(3, 1),
     });
 
-    if (button.buttonStyle === ButtonStyle.correct) {
-        setState({ ...state, eventName: EventName.ConcludeCorrectGuess });
+    if (button.buttonStyle === ButtonStyle.wrong) {
+        setState({ ...state, eventName: EventName.ConcludeWrongGuess });
         return;
     }
-
-    setState({ ...state, eventName: EventName.ConcludeWrongGuess });
+    
+    setState({ ...state, eventName: EventName.ConcludeFinalGuess });
 }

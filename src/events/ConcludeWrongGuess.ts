@@ -30,5 +30,11 @@ export async function ConcludeWrongGuess() {
         }
     });
 
+    if (state.itemScore === 0) {
+        state.guessButtonIndex = state.correctAnswerButtonIndex;
+        buttonAnswerMap[state.guessButtonIndex]!.buttonStyle = ButtonStyle.reveal;
+        setState({ ...state, eventName: EventName.RevealGuessResult });
+        return;
+    }
     setState({ ...state, eventName: EventName.AwaitGuess });
 }

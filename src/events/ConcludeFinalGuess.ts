@@ -5,7 +5,7 @@ import { Anime } from "../models/Anime";
 import { EventName } from "../models/EventName";
 import { QuizState } from "../models/QuizState";
 
-export async function ConcludeCorrectGuess() {
+export async function ConcludeFinalGuess() {
     ///
     const [state, setState] = FlowContext.current<QuizState>();
     const { settings } = state;
@@ -73,12 +73,12 @@ export async function ConcludeCorrectGuess() {
 
     ///
     await slide.all();
-    button.clearTransforms();
     await button.run({
         opacity: Fade.out,
         delay: 0.5 * duration,
         duration,
         easing: Ease.linear,
     });
+    button.clearTransforms();
     setState({ ...state, eventName: EventName.AwaitGuess });
 }

@@ -5,6 +5,9 @@ import { QuizModule } from "./QuizModule";
 
 export interface QuizState {
     bestScore: number;
+    quizScore: number;
+    itemScore: number;
+    itemTimer: number;
     buttonAnswerMap: (QuizItem | null)[];
     correctAnswerButtonIndex: number;
     currentItemIndex: number;
@@ -13,7 +16,6 @@ export interface QuizState {
     guessButtonIndex: number;
     quizModule: QuizModule | null;
     settings: AppSettings;
-    score: number;
     totalItems: number;
 }
 
@@ -24,6 +26,9 @@ export function initQuizState(settings: AppSettings): QuizState {
     }
     return {
         bestScore: 0,
+        quizScore: 0,
+        itemScore: 0,
+        itemTimer: 0,
         buttonAnswerMap,
         correctAnswerButtonIndex: -1,
         currentItemIndex: -1,
@@ -32,7 +37,6 @@ export function initQuizState(settings: AppSettings): QuizState {
         guessButtonIndex: -1,
         quizModule: null,
         settings,
-        score: 0,
         totalItems: 0,
     };
 }

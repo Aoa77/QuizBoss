@@ -33,6 +33,7 @@ export async function PrepQuestion() {
     state.buttonAnswerMap.forEach((item) => {
         item!.buttonStyle = ButtonStyle.normal; 
     });
+    state.itemScore = state.buttonAnswerMap.length - 1;
     setState({ ...state, eventName: EventName.AskQuestion });
 }
 
