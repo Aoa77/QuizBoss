@@ -19,7 +19,7 @@ export function QuestionImage() {
 
     ///
     return (
-        <section id={animation.id} ref={animation.ref} style={style.section}>
+        <section id={animation.id} style={style.section}>
             <img
                 src={item.imageSrc}
                 style={style.image}

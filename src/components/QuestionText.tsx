@@ -17,7 +17,7 @@ export function QuestionText() {
     const { questionText } = quizData;
 
     return (
-        <section id={animation.id} ref={animation.ref} style={style.section}>
+        <section id={animation.id} style={style.section}>
             {questionText}
         </section>
     );

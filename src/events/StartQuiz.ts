@@ -7,6 +7,8 @@ import { QuizState } from "../models/QuizState";
 
 export async function StartQuiz() {
     //
+    
+
     const duration = Duration.oneSecond;
     const anims = TaskGroup.create();
     anims.add(

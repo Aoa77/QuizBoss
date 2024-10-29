@@ -7,7 +7,7 @@ export function LoadingProgress() {
     const animation = useAnimeRef(AnimeComponent.LoadingProgress);
     ///
     return (
-        <section id={animation.id} ref={animation.ref} style={style.section}>
+        <section id={animation.id} style={style.section}>
             LOADING
             <div style={style.progBarBackground}>
                 <div style={style.progBarForeground}></div>
