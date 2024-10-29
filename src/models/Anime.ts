@@ -10,8 +10,8 @@ export enum AnimeComponent {
 }
 
 export class Anime {
-    public static get GuessButton(): AnimeRefObject {
-        return AnimeContext.get(AnimeComponent.GuessButton)!;
+    public static GuessButton(index: number): AnimeRefObject {
+        return AnimeContext.get(AnimeComponent.GuessButton, index)!;
     }
 
     public static get LoadingProgress(): AnimeRefObject {
@@ -28,5 +28,9 @@ export class Anime {
 
     public static get QuestionText(): AnimeRefObject {
         return AnimeContext.get(AnimeComponent.QuestionText)!;
+    }
+
+    public static get QuizTitle(): AnimeRefObject {
+        return AnimeContext.get(AnimeComponent.QuizTitle)!;
     }
 }

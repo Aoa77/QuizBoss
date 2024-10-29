@@ -8,7 +8,7 @@ export async function StartApp() {
     ///
     const duration = Duration.oneSecond;
     Anime.LoadingProgress.run({
-        opacity: Fade.max,
+        opacity: Fade.in,
         delay: 0.2 * duration,
         duration,
     });

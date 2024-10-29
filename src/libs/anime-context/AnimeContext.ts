@@ -1,5 +1,4 @@
 import { AnimeInstance, AnimeParams } from "animejs";
-import { RefObject } from "react";
 
 class AnimeRefMap extends Map<string, AnimeRefObject> {}
 
@@ -29,7 +28,6 @@ export class AnimeContext {
 
 export interface AnimeRefObject {
     id: string;
-    ref: RefObject<HTMLElement>;
     target: string;
     get opacity(): number | null;
     set opacity(value: number);

@@ -4,8 +4,8 @@ export enum Duration {
 }
 
 export enum Fade {
-    max = 1,
-    min = 0,
+    in = 1,
+    out = 0,
 }
 
 export enum Scale {

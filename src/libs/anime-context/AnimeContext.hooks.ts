@@ -1,5 +1,4 @@
 import anime, { AnimeParams } from "animejs";
-import { createRef } from "react";
 import { AnimeContext, AnimeRefObject } from "./AnimeContext";
 import { TransformRegex } from "./AnimeContext.constants";
 import { AnimeTask } from "./AnimeTask";
@@ -16,23 +15,24 @@ export function useAnimeRefs<T extends string>(
     for (let i = 0; i < count; i++) {
         const id = `${baseId}-${i}`;
         const target = `#${id}`;
-        const ref = createRef<HTMLElement>();
 
         const obj: AnimeRefObject = {
             id,
-            ref,
             target,
             get opacity(): number | null {
-                const el = this.ref.current as HTMLElement;
+                const el = document.getElementById(this.id);
                 const value = parseFloat(el?.style?.opacity ?? "-1");
                 return value >= 0 ? value : null;
             },
             set opacity(value: number) {
-                const el = this.ref.current as HTMLElement;
+                const el = document.getElementById(this.id);
+                if (!el) {
+                    return;
+                }
                 el.style.opacity = value.toString();
             },
             get scale(): number | null {
-                const el = this.ref.current as HTMLElement;
+                const el = document.getElementById(this.id);
                 const transform = el?.style?.transform;
                 const scale = transform?.match(TransformRegex.scale);
                 if (!scale) {
@@ -42,7 +42,10 @@ export function useAnimeRefs<T extends string>(
                 return value >= 0 ? value : null;
             },
             set scale(value: number) {
-                const el = this.ref.current as HTMLElement;
+                const el = document.getElementById(this.id);
+                if (!el) {
+                    return;
+                }
                 el.style.transform = el.style.transform.replace(
                     TransformRegex.scale,
                     `scale(${value})`,
@@ -55,8 +58,8 @@ export function useAnimeRefs<T extends string>(
                 });
             },
             run(params: AnimeParams) {
-                return AnimeTask.run(this.build(params));   
-            }
+                return AnimeTask.run(this.build(params));
+            },
         };
         AnimeContext.set(baseId, obj, i);
         animRefs.push(obj);
