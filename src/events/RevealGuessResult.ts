@@ -4,22 +4,21 @@ import { ButtonStyle } from "../models/ButtonStyle";
 import { EventName } from "../models/EventName";
 import { QuizState } from "../models/QuizState";
 
-
 export async function RevealGuessResult() {
     const [state, setState] = FlowContext.current<QuizState>();
+    const animations = GuessButtons.animations;
+    const animation = animations[state.guessButtonIndex];
+    await animation.zoomBig();
 
-    const animation = GuessButtons.animations[state.guessButtonIndex];
-    await animation.zoomIn();
-
-    //let correctGuess = false;
+    let correctGuess = false;
     state.buttonAnswerMap.forEach((_item) => {
-        // if (correctGuess) {
-        //     return;
-        // }
+        if (correctGuess) {
+            return;
+        }
         const item = _item!;
         switch (item.buttonStyle) {
             case ButtonStyle.correct:
-                // correctGuess = true;
+                correctGuess = true;
                 item.buttonStyle = ButtonStyle.disabled;
                 return;
             case ButtonStyle.wrong:
@@ -31,6 +30,10 @@ export async function RevealGuessResult() {
         }
     });
 
-    await animation.zoomOut();
+    if (correctGuess) {
+        setState({ ...state, eventName: EventName.ConcludeCorrectGuess });
+        return;
+    }
+    await animation.zoomNormal();
     setState({ ...state, eventName: EventName.AwaitGuess });
 }

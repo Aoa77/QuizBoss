@@ -1,15 +1,12 @@
-import { useMemo } from "react";
 import { FlowContext } from "../libs/flow-context/FlowContext";
 import { QuizState } from "../models/QuizState";
-import { createAnimation } from "./QuizTitle.animation";
 import { useStyle } from "./QuizTitle.style";
-
-/////////////////////////////////////////////
-const animation = createAnimation();
-/////////////////////////////////////////////
+import { useAnimeRef } from "../libs/anime-context/AnimeContext.hooks";
+import { AnimeComponent } from "../models/Anime";
 
 export function QuizTitle() {
-    const style = useMemo(useStyle, []);
+    const animation = useAnimeRef(AnimeComponent.QuizTitle);
+    const style = useStyle();
 
     const [state] = FlowContext.current<QuizState>();
     const { quizModule } = state;
@@ -40,6 +37,3 @@ function onPointerDown() {
     window.location.reload();
 }
 
-/////////////////////////////////////////////
-QuizTitle.animation = animation;
-/////////////////////////////////////////////

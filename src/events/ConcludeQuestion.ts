@@ -1,4 +1,4 @@
-import { Duration } from "../libs/anime+/Constants";
+import { Duration } from "../libs/anime-context/AnimeContext.constants";
 import { FlowContext } from "../libs/flow-context/FlowContext";
 import { TaskGroup } from "../libs/friendlies/Task";
 import { EventName } from "../models/EventName";

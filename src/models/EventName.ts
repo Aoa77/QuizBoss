@@ -12,4 +12,6 @@ export enum EventName {
     RevealGuessResult = "RevealGuessResult",
     StartApp = "StartApp",
     StartQuiz = "StartQuiz",
+
+    STOP_DEV = "STOP_DEV",
 }

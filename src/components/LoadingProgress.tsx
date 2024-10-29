@@ -1,27 +1,17 @@
-import { useMemo } from "react";
-import { createAnimation } from "./LoadingProgress.animation";
+import { useAnimeRef } from "../libs/anime-context/AnimeContext.hooks";
+import { AnimeComponent } from "../models/Anime";
 import { useStyle } from "./LoadingProgress.style";
 
-/////////////////////////////////////////////
-const animation = createAnimation();
-/////////////////////////////////////////////
-
 export function LoadingProgress() {
-    const style = useMemo(useStyle, []);
+    const style = useStyle();
+    const animation = useAnimeRef(AnimeComponent.LoadingProgress);
     ///
-    return useMemo(() => (
-        <section
-            id={animation.id}
-            ref={animation.ref}
-            style={style.section}>
+    return (
+        <section id={animation.id} ref={animation.ref} style={style.section}>
             LOADING
             <div style={style.progBarBackground}>
                 <div style={style.progBarForeground}></div>
             </div>
         </section>
-    ), [style]);
+    );
 }
-
-/////////////////////////////////////////////
-LoadingProgress.animation = animation;
-/////////////////////////////////////////////

@@ -2,7 +2,7 @@ import { GuessButtons } from "../components/GuessButtons";
 import { LoadingSpinner } from "../components/LoadingSpinner";
 import { QuestionImage } from "../components/QuestionImage";
 import { QuestionText } from "../components/QuestionText";
-import { Duration } from "../libs/anime+/Constants";
+import { Duration } from "../libs/anime-context/AnimeContext.constants";
 import { FlowContext } from "../libs/flow-context/FlowContext";
 import { TaskGroup } from "../libs/friendlies/Task";
 import { EventName } from "../models/EventName";
@@ -18,13 +18,13 @@ export async function AskQuestion() {
     anims.add(
         LoadingSpinner.animation.out({
             delay: duration,
-            duration,
+            duration: 0.15 * duration,
             enable: true,
         }),
     );
     anims.add(
         QuestionImage.animation.in({
-            delay: 0.5 * duration,
+            delay: duration,
             duration,
             enable: true,
         }),

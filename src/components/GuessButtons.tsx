@@ -1,26 +1,21 @@
-import { useMemo } from "react";
-import { FlowContext } from "../libs/flow-context/FlowContext";
+import { useStyle } from "./GuessButtons.style";
 import { EventName } from "../models/EventName";
 import { QuizState } from "../models/QuizState";
-import { createAnimation, GuessButtonsAnimation } from "./GuessButtons.animation";
-import { useStyle } from "./GuessButtons.style";
+import { AnimeComponent } from "../models/Anime";
 import { ButtonStyle } from "../models/ButtonStyle";
-
-///////////////////////////////////////////////////
-const animations: GuessButtonsAnimation[] = [];
-///////////////////////////////////////////////////
+import { FlowContext } from "../libs/flow-context/FlowContext";
+import { useAnimeRefs } from "../libs/anime-context/AnimeContext.hooks";
 
 export function GuessButtons() {
-    const style = useMemo(useStyle, []);
+    const style = useStyle();
     const [state] = FlowContext.current<QuizState>();
     const { buttonAnswerMap, settings } = state;
     const { guessButtonCount } = settings;
     const buttonJsx = [];
+    
+    const animations = useAnimeRefs(AnimeComponent.GuessButton, guessButtonCount);
 
     for (let bidx = 0; bidx < guessButtonCount; bidx++) {
-        const anim = createAnimation(bidx);
-        animations.push(anim);
-
         const item = buttonAnswerMap[bidx];
         if (!item) {
             continue;
@@ -32,6 +27,7 @@ export function GuessButtons() {
             ...style.button.get(item.buttonStyle),
         };
 
+        const anim = animations[bidx];
         buttonJsx.push(
             <span
                 id={anim.id}
@@ -47,10 +43,7 @@ export function GuessButtons() {
     return <section style={style.section}>{buttonJsx}</section>;
 }
 
-async function onPointerDown(bidx: number) {
-    //const animation = animations[bidx];
-    //await animation.borderGlow();
-
+function onPointerDown(bidx: number) {
     const [state, setState] = FlowContext.current<QuizState>();
     const { buttonAnswerMap, eventName } = state;
     if (eventName !== EventName.AwaitGuess) {
@@ -63,7 +56,3 @@ async function onPointerDown(bidx: number) {
     state.guessButtonIndex = bidx;
     setState({ ...state, eventName: EventName.PrepGuessResult });
 }
-
-/////////////////////////////////////////////
-GuessButtons.animations = animations;
-/////////////////////////////////////////////

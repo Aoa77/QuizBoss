@@ -1,15 +1,13 @@
-import { useMemo } from "react";
+import { useAnimeRef } from "../libs/anime-context/AnimeContext.hooks";
 import { FlowContext } from "../libs/flow-context/FlowContext";
+import { AnimeComponent } from "../models/Anime";
 import { QuizState } from "../models/QuizState";
-import { createAnimation } from "./QuestionText.animation";
 import { useStyle } from "./QuestionText.style";
 
-/////////////////////////////////////////////
-const animation = createAnimation();
-/////////////////////////////////////////////
-
 export function QuestionText() {
-    const style = useMemo(useStyle, []);
+    ////
+    const animation = useAnimeRef(AnimeComponent.QuestionText);
+    const style = useStyle();
     const [state] = FlowContext.current<QuizState>();
     const { quizModule } = state;
     if (!quizModule) {
@@ -24,7 +22,3 @@ export function QuestionText() {
         </section>
     );
 }
-
-/////////////////////////////////////////////
-QuestionText.animation = animation;
-/////////////////////////////////////////////

@@ -1,22 +1,23 @@
 import { FlowContext } from "../libs/flow-context/FlowContext";
 import { QuizState } from "../models/QuizState";
-import { createAnimation } from "./QuestionImage.animation";
 import { EventName } from "../models/EventName";
 import { useStyle } from "./QuestionImage.style";
-import { useMemo } from "react";
-
-/////////////////////////////////////////////
-const animation = createAnimation();
-/////////////////////////////////////////////
+import { useAnimeRef } from "../libs/anime-context/AnimeContext.hooks";
+import { AnimeComponent } from "../models/Anime";
 
 export function QuestionImage() {
-    const style = useMemo(useStyle, []);
+    ///
+    const style = useStyle();
+    const animation = useAnimeRef(AnimeComponent.QuestionImage);
+
+    ///
     const [state] = FlowContext.current<QuizState>();
     const item = state.currentItem;
     if (item === null) {
         return null;
     }
 
+    ///
     return (
         <section id={animation.id} ref={animation.ref} style={style.section}>
             <img
@@ -38,7 +39,3 @@ async function onPointerDown() {
     }
     setState({ ...state, eventName: EventName.ConcludeQuestion });
 }
-
-/////////////////////////////////////////////
-QuestionImage.animation = animation;
-/////////////////////////////////////////////

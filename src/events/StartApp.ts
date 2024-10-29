@@ -1,16 +1,16 @@
 import { FlowContext } from "../libs/flow-context/FlowContext";
 import { EventName } from "../models/EventName";
 import { QuizState } from "../models/QuizState";
-import { LoadingProgress } from "../components/LoadingProgress";
-import { Duration } from "../libs/anime+/Constants";
+import { Duration, Fade } from "../libs/anime-context/AnimeContext.constants";
+import { Anime } from "../models/Anime";
 
 export async function StartApp() {
     ///
     const duration = Duration.oneSecond;
-    await LoadingProgress.animation.in({
+    Anime.LoadingProgress.run({
+        opacity: Fade.max,
         delay: 0.2 * duration,
         duration,
-        enable: true,
     });
 
     ///

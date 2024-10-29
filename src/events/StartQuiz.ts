@@ -1,7 +1,7 @@
 import { LoadingProgress } from "../components/LoadingProgress";
 import { LoadingSpinner } from "../components/LoadingSpinner";
 import { QuizTitle } from "../components/QuizTitle";
-import { Duration } from "../libs/anime+/Constants";
+import { Duration } from "../libs/anime-context/AnimeContext.constants";
 import { FlowContext } from "../libs/flow-context/FlowContext";
 import { TaskGroup } from "../libs/friendlies/Task";
 import { EventName } from "../models/EventName";
