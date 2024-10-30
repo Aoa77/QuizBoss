@@ -26,23 +26,28 @@
         "runTerminalCommand.commands": [
             {
                 "name": "build",
-                "command": "npm run build"
+                "command": "npm run build",
+                "auto": true
             },
             {
                 "name": "dev",
-                "command": "npm run dev"
+                "command": "npm run dev",
+                "auto": true
             },
             {
                 "name": "lint",
-                "command": "npm run lint"
+                "command": "npm run lint",
+                "auto": true
             },
             {
                 "name": "preview",
-                "command": "npm run preview"
+                "command": "npm run preview",
+                "auto": true
             },
             {
                 "name": "version",
-                "command": "npm run version"
+                "command": "npm run version",
+                "auto": true
             }
         ]
     },
