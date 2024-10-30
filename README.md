@@ -18,7 +18,9 @@ QuizBoss is a web platform for crafting and sharing quizzes and trivia games. Th
 
 -   ### UX/UI design and animation
 
-    -   UI design follows a mobile-first approach using [pure vanilla CSS](src/components/styles).
+    - UI design follows a mobile-first approach, using [pure vanilla CSS techniques](src/app/App.css) including `calc()`, viewport units, and container queries.
+ 
+    - Dark/light color theming implemented with a custom CSS variable controller: [theme-vars](src/libs/theme-vars).  
 
     - User interaction is enhanced by the [Anime.js](https://github.com/juliangarnier/anime) animation engine. 
 
