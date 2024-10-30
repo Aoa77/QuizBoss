@@ -10,9 +10,9 @@ QuizBoss is a web platform for crafting and sharing quizzes and trivia games. Th
 
   [https://quizboss.a77.space](https://quizboss.a77.space)
 
-- ### Watch a sped-up, live automated demo
+- ### Watch a live automated demo
 
-  [https://quizboss.a77.space?oneTickAtSpeed=350&demoMode=random](https://quizboss.a77.space?oneTickAtSpeed=350&demoMode=random)
+  [https://quizboss.a77.space?demoMode=random](https://quizboss.a77.space?demoMode=random)
 <br clear="left" />
 
 
