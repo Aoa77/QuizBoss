@@ -25,7 +25,7 @@
     box-sizing: border-box;
 
     /* forces hardware acceleration for animations */
-    will-change: transform;
+    /* will-change: transform; */
 }
 
 /* 1rem scales relative to the dimensions of the container */
