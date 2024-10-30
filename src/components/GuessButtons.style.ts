@@ -28,7 +28,7 @@ export function useStyle(): Style {
 
     ///
     style.span = {
-        
+        willChange: "transform, opacity",
         alignContent: "center",
         borderStyle: "solid",
         borderRadius: CssUnit.rem(1),
@@ -46,7 +46,6 @@ export function useStyle(): Style {
         width: CssUnit.cqw(60),
         height: CssUnit.cqh(7),
     };
-
 
     style.button.set(ButtonStyle.normal, {
         backgroundColor: ThemeVars.getRef(TV, TV.GuessButton_NORMAL_backgroundColor),
@@ -78,7 +77,6 @@ export function useStyle(): Style {
         borderColor: ThemeVars.getRef(TV, TV.GuessButton_REVEAL_borderColor),
         color: ThemeVars.getRef(TV, TV.GuessButton_REVEAL_color),
     });
-
 
     ///
     return style;
