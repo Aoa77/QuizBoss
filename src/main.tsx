@@ -17,7 +17,7 @@ try {
         awaitImageLoading: true,
         enableSecretQuestionSkip: false,
         enableSecretWindowReload: false,
-        maxQuestions: 50,
+        maxQuestions: 150,
         oneTickAtSpeed: 650,
         errorHandler,
     });
