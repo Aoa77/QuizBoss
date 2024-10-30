@@ -1,0 +1,76 @@
+:root {
+    /* Defines the app container's width and height. */
+    /* Width/Height aspect ratio of 9:16 (0.5625) and 16:9 (1.77777777). */
+    /* The min() function is used to force the 9:16 portrait orientation. */
+    --width: min(100svw, calc(0.5625 * 100svh));
+    --height: min(100svh, calc(1.77777777 * 100svw));
+
+    /* center the app container within the dimensions of device */
+    --deviceCenterWidth: calc(100svw / 2);
+    --deviceCenterHeight: calc(100svh / 2);
+
+    /* horizontal */
+    --appCenterWidth: calc(var(--width) / 2);
+    --mainCenterLeft: calc(var(--deviceCenterWidth) - var(--appCenterWidth));
+
+    /* vertical */
+    --appCenterHeight: calc(var(--height) / 2);
+    --mainCenterTop: calc(var(--deviceCenterHeight) - var(--appCenterHeight));
+}
+
+/* normalize box-sizing for all elements */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+    /* forces hardware acceleration for animations */
+    will-change: transform;
+}
+
+/* 1rem scales relative to the dimensions of the container */
+html {
+    --fw: calc(var(--width) / 100);
+    --fh: calc(var(--height) / 100);
+    font-size: calc(0.5 * (var(--fw) + var(--fh)));
+}
+
+/* set background colors */
+body {
+    background-color: var(--tv-BODY_backgroundColor);
+}
+main {
+    background-color: var(--tv-MAIN_backgroundColor);
+}
+
+/* <main> is the app container */
+/* 100cqw and 100cqh are equal to its width and height */
+main {
+    margin-left: var(--mainCenterLeft);
+    margin-top: var(--mainCenterTop);
+    width: var(--width);
+    height: var(--height);
+    container-type: size;
+    overflow: hidden;
+}
+
+/* each section overlays <main> */
+/* use top to offset */
+section {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100cqw;
+    height: 100cqh;
+
+    align-content: center;
+    text-align: center;
+
+    opacity: 0;
+}
+
+/* sections are initially transparent, their inner elements are opaque */
+section > * {
+    opacity: 1;
+}

@@ -9,16 +9,49 @@
             "**/dist": true,
             "**/node_modules": true,
             "**/public": false,
+            "**/*.svg": true,
+            "**/package-lock.json": true
         },
-        "prettier.printWidth": 80,
+        "prettier.printWidth": 88,
         "prettier.tabWidth": 4,
         "prettier.trailingComma": "all",
         "prettier.bracketSameLine": true,
+        "explorer.fileNesting.enabled": true,
+        "editor.wordWrap": "on",
+        "explorer.fileNesting.patterns": {
+            "*.ts": "$(capture)*",
+            "*.tsx": "$(capture)*"
+        },
+        "colorize.include": ["**/*.ts", "**/*.tsx", "**/*.css"],
+        "runTerminalCommand.commands": [
+            {
+                "name": "build",
+                "command": "npm run build"
+            },
+            {
+                "name": "dev",
+                "command": "npm run dev"
+            },
+            {
+                "name": "lint",
+                "command": "npm run lint"
+            },
+            {
+                "name": "preview",
+                "command": "npm run preview"
+            },
+            {
+                "name": "version",
+                "command": "npm run version"
+            }
+        ]
     },
     "extensions": {
         "recommendations": [
+            "adrianwilczynski.terminal-commands",
             "esbenp.prettier-vscode",
             "github.copilot-chat",
+            "kamikillerto.vscode-colorize",
             "mhutchie.git-graph"
         ]
     }
