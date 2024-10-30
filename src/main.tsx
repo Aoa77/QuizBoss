@@ -14,10 +14,10 @@ const root: HTMLElement | null = document.getElementById("root");
 try {
     const settings = new AppSettings({
         quizModuleName,
-        awaitImageLoading: true,
         enableSecretQuestionSkip: false,
         enableSecretWindowReload: false,
         maxQuestions: 0,
+        preloadImageCount: 25,
         oneTickAtSpeed: 750,
         errorHandler,
     });

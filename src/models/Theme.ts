@@ -9,6 +9,23 @@ export enum ThemeName {
     //light = "light",
 }
 
+export function parseThemeName(
+    value: string | undefined | null,
+    defaultValue: ThemeName,
+): ThemeName {
+    if (!value) {
+        return defaultValue;
+    }
+    switch (value.toLowerCase().trim()) {
+        case ThemeName.dark:
+            return ThemeName.dark;
+        // case ThemeName.light:
+        //     return ThemeName.light;
+        default:
+            return defaultValue;
+    }
+}
+
 export enum TV {
     ///
     BODY_backgroundColor                 = "--tv-BODY_backgroundColor",
@@ -17,7 +34,7 @@ export enum TV {
     ///
     CorrectGuessPoints_color             = "--tv-CorrectGuessPoints_color",
     RevealGuessNoPoints_color            = "--tv-RevealGuessNoPoints_color",
-    
+
     ///
     GuessButton_CORRECT_backgroundColor  = "--tv-GuessButton_CORRECT_backgroundColor",
     GuessButton_CORRECT_borderColor      = "--tv-GuessButton_CORRECT_borderColor",
@@ -42,14 +59,14 @@ export enum TV {
     GuessButton_WRONG_backgroundColor    = "--tv-GuessButton_WRONG_backgroundColor",
     GuessButton_WRONG_borderColor        = "--tv-GuessButton_WRONG_borderColor",
     GuessButton_WRONG_color              = "--tv-GuessButton_WRONG_color",
-    
+
     ///
     LoadingSpinner_fill                  = "--tv-LoadingSpinner_fill",
     LoadingProgress_BAR_backgroundColor  = "--tv-LoadingProgress_BAR_backgroundColor",
     LoadingProgress_BAR_color            = "--tv-LoadingProgress_BAR_color",
     LoadingProgress_BAR_width            = "--tv-LoadingProgress_BAR_width",
     LoadingProgress_TEXT_color           = "--tv-LoadingProgress_TEXT_color",
-    
+
     ///
     QuestionImage_shadow                 = "--tv-QuestionImage_shadow",
     QuestionText_color                   = "--tv-QuestionText_color",
@@ -59,7 +76,7 @@ export enum TV {
 
 
     actionLink = "--tv-actionLink",
-    
+
     iconBackground = "--tv-iconBackground",
     iconForeground = "--tv-iconForeground",
     menuBackground = "--tv-menuBackground",

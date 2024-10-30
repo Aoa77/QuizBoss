@@ -5,11 +5,14 @@ export enum DemoMode {
     WRONG = "WRONG",
 }
 
-export function parseDemoMode(value: string | undefined | null): DemoMode {
+export function parseDemoMode(
+    value: string | undefined | null,
+    defaultValue: DemoMode,
+): DemoMode {
     if (!value) {
-        return DemoMode.OFF;
+        return defaultValue;
     }
-    switch (value.toUpperCase()) {
+    switch (value.toUpperCase().trim()) {
         case DemoMode.RANDOM:
             return DemoMode.RANDOM;
         case DemoMode.RIGHT:
@@ -17,7 +20,7 @@ export function parseDemoMode(value: string | undefined | null): DemoMode {
         case DemoMode.WRONG:
             return DemoMode.WRONG;
         default:
-            return DemoMode.OFF;
+            return defaultValue;
     }
 }
 
