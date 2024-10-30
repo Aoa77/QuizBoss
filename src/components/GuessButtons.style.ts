@@ -21,7 +21,7 @@ export function useStyle(): Style {
     ///
     style.section = {
         alignContent: "normal",
-        marginTop: CssUnit.cqh(45),
+        top: CssUnit.cqh(45),
         opacity: 1,
         textAlign: "center",
     };

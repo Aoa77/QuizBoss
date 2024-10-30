@@ -25,7 +25,7 @@ export function useStyle(): Style {
         fontSize: CssUnit.rem(2),
         fontWeight: "bold",
         height: CssUnit.cqh(20),
-        marginTop: CssUnit.cqh(15),
+        top: CssUnit.cqh(15),
     };
 
     ///

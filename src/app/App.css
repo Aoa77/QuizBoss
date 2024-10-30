@@ -55,7 +55,7 @@ main {
 }
 
 /* each section overlays <main> */
-/* use margin-top/left to offset */
+/* use top to offset */
 section {
     position: absolute;
     top: 0;

@@ -15,7 +15,7 @@ export function useStyle(): Style {
             fontFamily: ThemeFont.sans,
             fontSize: CssUnit.rem(3),
             height: CssUnit.cqh(10),
-            marginTop: CssUnit.cqh(37),
+            top: CssUnit.cqh(37),
         },
     };
 }
