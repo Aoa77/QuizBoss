@@ -18,7 +18,7 @@ try {
         enableSecretQuestionSkip: false,
         enableSecretWindowReload: false,
         maxQuestions: 50,
-        oneTickAtSpeed: 850,
+        oneTickAtSpeed: 650,
         errorHandler,
     });
     await ThemeVars.config(ThemeName, TV, "themes");
