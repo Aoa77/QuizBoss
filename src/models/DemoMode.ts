@@ -20,3 +20,7 @@ export function parseDemoMode(value: string | undefined | null): DemoMode {
             return DemoMode.OFF;
     }
 }
+
+export class DEMO {
+    public static readonly guess: number[] = [];
+}

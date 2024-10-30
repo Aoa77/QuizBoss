@@ -25,6 +25,7 @@ import { PrepQuestion } from "../events/PrepQuestion";
 import { RevealGuessResult } from "../events/RevealGuessResult";
 import { StartApp } from "../events/StartApp";
 import { StartQuiz } from "../events/StartQuiz";
+import { AwaitGuess } from "../events/AwaitGuess";
 
 ///
 export function App(settings: AppSettings) {
@@ -36,7 +37,7 @@ export function App(settings: AppSettings) {
         },
         flowEvents: new Map<EventName, (state: QuizState) => Promise<void>>([
             [EventName.AskQuestion, AskQuestion],
-            [EventName.AwaitGuess, () => Promise.resolve()],
+            [EventName.AwaitGuess, AwaitGuess],
             [EventName.ConcludeQuestion, ConcludeQuestion],
             [EventName.ConcludeWrongGuess, ConcludeWrongGuess],
             [EventName.LoadQuizModule, LoadQuizModule],

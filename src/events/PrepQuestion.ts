@@ -4,11 +4,16 @@ import { randomInt } from "../libs/randos/randomInt";
 import { QuizItem } from "../models/QuizItem";
 import { EventName } from "../models/EventName";
 import { ButtonStyle } from "../models/ButtonStyle";
+import { DEMO, DemoMode } from "../models/DemoMode";
 
 export async function PrepQuestion() {
     const [state, setState] = FlowContext.current<QuizState>();
     if (state.quizModule === null) {
         throw new Error("QuizModule is null");
+    }
+
+    if (state.settings.demoMode !== DemoMode.OFF) {
+        DEMO.guess.length = 0;
     }
 
     const guessButtonCount = state.settings.guessButtonCount;
@@ -31,21 +36,20 @@ export async function PrepQuestion() {
     }
 
     state.buttonAnswerMap.forEach((item) => {
-        item!.buttonStyle = ButtonStyle.normal; 
+        item!.buttonStyle = ButtonStyle.normal;
     });
     state.itemScore = state.buttonAnswerMap.length - 1;
     setState({ ...state, eventName: EventName.AskQuestion });
 }
 
 function selectRandomQuestionChoice(state: QuizState): QuizItem {
-
     if (state.currentItem === null) {
         throw new Error("state.currentItem === null");
     }
     if (state.quizModule === null) {
         throw new Error("state.quizModule === null");
     }
-    
+
     const buttonAnswerMapKeys = state.buttonAnswerMap.map((item) => item?.key);
     const currentItem = state.currentItem;
     const quizData = state.quizModule.quizData;

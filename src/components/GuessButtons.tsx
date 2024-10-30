@@ -1,10 +1,9 @@
 import { useStyle } from "./GuessButtons.style";
-import { EventName } from "../models/EventName";
 import { QuizState } from "../models/QuizState";
 import { AnimeComponent } from "../models/Anime";
-import { ButtonStyle } from "../models/ButtonStyle";
 import { FlowContext } from "../libs/flow-context/FlowContext";
 import { useAnimeRefs } from "../libs/anime-context/AnimeContext.hooks";
+import { TriggerGuess } from "../events/AwaitGuess";
 
 export function GuessButtons() {
     const style = useStyle();
@@ -12,7 +11,7 @@ export function GuessButtons() {
     const { buttonAnswerMap, settings } = state;
     const { guessButtonCount } = settings;
     const buttonJsx = [];
-    
+
     const animations = useAnimeRefs(AnimeComponent.GuessButton, guessButtonCount);
 
     for (let bidx = 0; bidx < guessButtonCount; bidx++) {
@@ -43,15 +42,5 @@ export function GuessButtons() {
 }
 
 function onPointerDown(bidx: number) {
-    const [state, setState] = FlowContext.current<QuizState>();
-    const { buttonAnswerMap, eventName } = state;
-    if (eventName !== EventName.AwaitGuess) {
-        return;
-    }
-    if (buttonAnswerMap[bidx]!.buttonStyle !== ButtonStyle.normal) {
-        return;
-    }
-
-    state.guessButtonIndex = bidx;
-    setState({ ...state, eventName: EventName.PrepGuessResult });
+    TriggerGuess(bidx);
 }
