@@ -39,6 +39,7 @@ export async function RevealGuessResult() {
             : Anime.RevealGuessNoPoints;
 
     await _concludeFinalGuess(state, scoreRef, duration);
+    state.quizScore += state.itemScore;
     setState({ ...state, eventName: EventName.ConcludeQuestion });
 }
 

@@ -10,6 +10,7 @@ export enum AnimeComponent {
     QuestionText = "QuestionText",
     QuizTitle = "QuizTitle",
     RevealGuessNoPoints = "RevealGuessNoPoints",
+    ScoreInfo = "ScoreInfo",
 }
 
 export class Anime {
@@ -43,5 +44,9 @@ export class Anime {
 
     public static get RevealGuessNoPoints(): AnimeRef {
         return AnimeContext.get(AnimeComponent.RevealGuessNoPoints)!;
+    }
+
+    public static get ScoreInfo(): AnimeRef {
+        return AnimeContext.get(AnimeComponent.ScoreInfo)!;
     }
 }

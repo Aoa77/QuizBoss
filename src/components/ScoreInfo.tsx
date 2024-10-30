@@ -2,19 +2,18 @@ import { useAnimeRef } from "../libs/anime-context/AnimeContext.hooks";
 import { FlowContext } from "../libs/flow-context/FlowContext";
 import { AnimeComponent } from "../models/Anime";
 import { QuizState } from "../models/QuizState";
-import { useStyle } from "./CorrectGuessPoints.style";
+import { useStyle } from "./ScoreInfo.style";
 
-export function CorrectGuessPoints() {
+export function ScoreInfo() {
     ////
-    const animation = useAnimeRef(AnimeComponent.CorrectGuessPoints);
+    const animation = useAnimeRef(AnimeComponent.ScoreInfo);
     const style = useStyle();
     const [state] = FlowContext.current<QuizState>();
-    const { itemScore } = state;
-    const label = itemScore === 1 ? "point" : "points";
+    const { quizScore } = state;
 
     return (
         <section id={animation.id} style={style.section}>
-            +{itemScore} {label}
+            {quizScore}
         </section>
     );
 }

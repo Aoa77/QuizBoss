@@ -15,6 +15,10 @@ export enum TV {
     MAIN_backgroundColor                 = "--tv-MAIN_backgroundColor",
 
     ///
+    CorrectGuessPoints_color             = "--tv-CorrectGuessPoints_color",
+    RevealGuessNoPoints_color            = "--tv-RevealGuessNoPoints_color",
+    
+    ///
     GuessButton_CORRECT_backgroundColor  = "--tv-GuessButton_CORRECT_backgroundColor",
     GuessButton_CORRECT_borderColor      = "--tv-GuessButton_CORRECT_borderColor",
     GuessButton_CORRECT_color            = "--tv-GuessButton_CORRECT_color",
@@ -55,12 +59,10 @@ export enum TV {
 
 
     actionLink = "--tv-actionLink",
-    bonus = "--tv-bonus",
     
     iconBackground = "--tv-iconBackground",
     iconForeground = "--tv-iconForeground",
     menuBackground = "--tv-menuBackground",
-    noBonus = "--tv-noBonus",
     progress = "--tv-progress",
     scoreLabel = "--tv-scoreLabel",
     scoreValue = "--tv-scoreValue",

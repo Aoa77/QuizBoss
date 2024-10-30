@@ -26,6 +26,7 @@ import { RevealGuessResult } from "../events/RevealGuessResult";
 import { StartApp } from "../events/StartApp";
 import { StartQuiz } from "../events/StartQuiz";
 import { AwaitGuess } from "../events/AwaitGuess";
+import { ScoreInfo } from "../components/ScoreInfo";
 
 ///
 export function App(settings: AppSettings) {
@@ -67,6 +68,7 @@ export function App(settings: AppSettings) {
             <QuestionText />
             <CorrectGuessPoints />
             <RevealGuessNoPoints />
+            <ScoreInfo />
             <GuessButtons />
         </main>
     );

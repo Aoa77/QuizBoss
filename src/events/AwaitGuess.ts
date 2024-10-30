@@ -8,7 +8,7 @@ import { randomInt } from "../libs/randos/randomInt";
 
 export async function AwaitGuess() {
     const [state] = FlowContext.current<QuizState>();
-    const { settings, buttonAnswerMap, correctAnswerButtonIndex } = state;
+    const { settings, correctAnswerButtonIndex } = state;
     const { demoMode, oneTickAtSpeed, guessButtonCount } = settings;
 
     if (demoMode === DemoMode.OFF) {
