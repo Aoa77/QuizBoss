@@ -16,7 +16,9 @@ try {
         quizModuleName,
         awaitImageLoading: true,
         enableSecretQuestionSkip: false,
-        enableSecretWindowReload: true,
+        enableSecretWindowReload: false,
+        maxQuestions: 50,
+        oneTickAtSpeed: 850,
         errorHandler,
     });
     await ThemeVars.config(ThemeName, TV, "themes");
