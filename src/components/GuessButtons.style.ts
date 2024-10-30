@@ -28,7 +28,7 @@ export function useStyle(): Style {
 
     ///
     style.span = {
-        //willChange: "transform, opacity",
+        willChange: "transform, opacity",
         alignContent: "center",
         borderStyle: "solid",
         borderRadius: CssUnit.rem(1),
