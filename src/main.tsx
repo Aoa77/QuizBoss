@@ -17,8 +17,8 @@ try {
         awaitImageLoading: true,
         enableSecretQuestionSkip: false,
         enableSecretWindowReload: false,
-        maxQuestions: 150,
-        oneTickAtSpeed: 650,
+        maxQuestions: 25,
+        oneTickAtSpeed: 600,
         errorHandler,
     });
     await ThemeVars.config(ThemeName, TV, "themes");
