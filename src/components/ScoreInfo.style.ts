@@ -5,12 +5,12 @@ import { TV, ThemeFont } from "../models/Theme";
 
 interface Style {
     section: CSSProperties;
+    span: CSSProperties;
 }
 
 export function useStyle(): Style {
     return {
         section: {
-            opacity: 1,
             alignContent: "normal",
             color: ThemeVars.getRef(TV, TV.CorrectGuessPoints_color),
             fontFamily: ThemeFont.mono,
@@ -19,6 +19,10 @@ export function useStyle(): Style {
             height: CssUnit.cqh(10),
             top: CssUnit.cqh(90),
         },
+        span: {
+            color: ThemeVars.getRef(TV, TV.QuestionText_color),
+            fontWeight: "normal",
+        }
     };
 }
 

@@ -13,7 +13,7 @@ export function ScoreInfo() {
 
     return (
         <section id={animation.id} style={style.section}>
-            {quizScore}
+            <span style={style.span}>SCORE: </span>{quizScore}
         </section>
     );
 }
