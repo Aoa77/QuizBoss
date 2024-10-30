@@ -46,6 +46,17 @@ export async function AskQuestion() {
             }),
         );
     }
+
+    if (Anime.ScoreInfo.opacity !== Fade.in) {
+        anims.add(
+            Anime.ScoreInfo.run({
+                opacity: [Fade.out, Fade.in],
+                delay: 2.50 * duration,
+                duration: 3 * duration,
+                easing: Ease.linear,
+            }),
+        );
+    }
     await anims.all();
 
     setState({ ...state, eventName: EventName.AwaitGuess });

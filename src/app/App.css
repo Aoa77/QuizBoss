@@ -23,9 +23,6 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-
-    /* forces hardware acceleration for animations */
-    will-change: transform;
 }
 
 /* 1rem scales relative to the dimensions of the container */
@@ -59,7 +56,6 @@ main {
 section {
     position: absolute;
     top: 0;
-    left: 0;
 
     width: 100cqw;
     height: 100cqh;
