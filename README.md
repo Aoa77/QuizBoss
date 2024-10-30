@@ -4,9 +4,7 @@ QuizBoss is a web platform for crafting and sharing quizzes and trivia games. Th
 
 ## Demos
 
-![image](https://github.com/user-attachments/assets/876c2b8b-079a-4b17-a57a-49bdac74dfbb)
-
-
+<img align="left" width="123" src="https://github.com/user-attachments/assets/876c2b8b-079a-4b17-a57a-49bdac74dfbb" />
 
 - ### Take the "World Flags Quiz"
 
@@ -15,6 +13,8 @@ QuizBoss is a web platform for crafting and sharing quizzes and trivia games. Th
 - ### Watch a sped-up, live automated demo
 
   [https://quizboss.a77.space?oneTickAtSpeed=350&demoMode=random](https://quizboss.a77.space?oneTickAtSpeed=350&demoMode=random)
+<br clear="left" />
+
 
 ## Developer notes
 
