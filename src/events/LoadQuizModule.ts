@@ -112,21 +112,24 @@ async function loadImages(state: QuizState) {
     ///
     console.info("Loading quiz images...");
     const { settings, quizModule } = state;
-    const { awaitImageLoading } = settings;
     const { quizData } = quizModule!;
+    const { preloadImageCount } = settings;
+    const preloadCount =
+        preloadImageCount > 0 //
+            ? preloadImageCount
+            : quizData.items.length;
 
     ///
     for (const item of quizData.items) {
-        if (awaitImageLoading) {
+        if (count.imagesLoaded < preloadCount) {
             await fetchImage(item);
-        } else {
-            fetchImage(item);
+            ThemeVars.setValue(
+                TV.LoadingProgress_BAR_width,
+                `${(++count.imagesLoaded / preloadCount) * 100}%`,
+            );
+            continue;
         }
-
-        ThemeVars.setValue(
-            TV.LoadingProgress_BAR_width,
-            `${(++count.imagesLoaded / quizData.items.length) * 100}%`,
-        );
+        fetchImage(item);
     }
 }
 
