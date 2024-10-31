@@ -4,6 +4,7 @@ import { AnimeParams, AnimeInstance } from "animejs";
 export interface AnimeRef {
     id: string;
     target: string;
+    targetWith(companions: AnimeRef[]) : AnimeRef;
     get rect(): DOMRect | null;
     get opacity(): number | null;
     set opacity(value: number);

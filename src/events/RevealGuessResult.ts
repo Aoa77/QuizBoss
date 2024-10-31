@@ -2,7 +2,7 @@ import { Ease, Fade, Scale } from "../libs/anime-context/AnimeContext.constants"
 import { AnimeRef } from "../libs/anime-context/AnimeRef";
 import { FlowContext } from "../libs/flow-context/FlowContext";
 import { TaskGroup } from "../libs/friendlies/Task";
-import { Anime } from "../models/Anime";
+import { Anime, GuessButtonRef } from "../models/Anime";
 import { ButtonStyle } from "../models/ButtonStyle";
 import { EventName } from "../models/EventName";
 import { QuizState } from "../models/QuizState";
@@ -14,14 +14,15 @@ export async function RevealGuessResult() {
     const { oneTickAtSpeed } = settings;
 
     Anime.CorrectGuessPoints.scale = Scale.zero;
-    Anime.CorrectGuessPoints.opacity = Fade.out;
+    Anime.CorrectGuessPoints.opacity = Fade.zero;
 
     Anime.RevealGuessNoPoints.scale = Scale.zero;
-    Anime.RevealGuessNoPoints.opacity = Fade.out;
+    Anime.RevealGuessNoPoints.opacity = Fade.zero;
 
     const duration = oneTickAtSpeed;
-    await Anime.GuessButton(guessButtonIndex).run({
-        scale: 1.3,
+    const buttonRef = Anime.GuessButton(guessButtonIndex); 
+    await buttonRef.run({
+        scale: buttonRef.scaleUp,
         delay: 0,
         duration: 0.25 * duration,
         endDelay: 0,
@@ -38,12 +39,13 @@ export async function RevealGuessResult() {
             ? Anime.CorrectGuessPoints
             : Anime.RevealGuessNoPoints;
 
-    await _concludeFinalGuess(state, scoreRef, duration);
+    await _concludeFinalGuess(buttonRef, state, scoreRef, duration);
     state.quizScore += state.itemScore;
     setState({ ...state, eventName: EventName.ConcludeQuestion });
 }
 
 async function _concludeFinalGuess(
+    buttonRef: GuessButtonRef,
     state: QuizState,
     scoreRef: AnimeRef,
     duration: number,
@@ -58,7 +60,7 @@ async function _concludeFinalGuess(
         if (bidx === guessButtonIndex) {
             return;
         }
-        const button = Anime.GuessButton(bidx);
+        const button:GuessButtonRef = Anime.GuessButton(bidx);
         anims.add(
             button
                 .run({
@@ -68,8 +70,8 @@ async function _concludeFinalGuess(
                     easing: Ease.linear,
                 })
                 .then(() => {
-                    button.opacity = Fade.out;
-                    button.scale = Scale.one;
+                    button.opacity = Fade.zero;
+                    button.scale = button.scaleMin;
                 }),
         );
         ++otherButton;
@@ -80,11 +82,10 @@ async function _concludeFinalGuess(
 
     ///
     const questionText = Anime.QuestionText;
-    const button = Anime.GuessButton(guessButtonIndex);
-    const translateY = questionText.rect!.top - button.rect!.top;
+    const translateY = questionText.rect!.top - buttonRef.rect!.top;
 
-    await button.run({
-        scale: Scale.one,
+    await buttonRef.run({
+        scale: [buttonRef.scaleDown],
         delay: 0,
         duration: 0.5 * duration,
         easing: Ease.out.elastic(3, 0.75),
@@ -100,7 +101,7 @@ async function _concludeFinalGuess(
         }),
     );
     slide.add(
-        button.run({
+        buttonRef.run({
             translateY,
             delay: 0.25 * duration,
             duration,
@@ -111,16 +112,15 @@ async function _concludeFinalGuess(
 
     ///
     await slide.all();
-    await _showScoreAndTransition(state, scoreRef, duration);
+    await _showScoreAndTransition(buttonRef, scoreRef, duration);
 }
 
 async function _showScoreAndTransition(
-    state: QuizState,
+    buttonRef: GuessButtonRef,
     scoreRef: AnimeRef,
     duration: number,
 ) {
-    const { guessButtonIndex } = state;
-    scoreRef.opacity = Fade.in;
+    scoreRef.opacity = Fade.one;
     await scoreRef.run({
         scale: [Scale.zero, Scale.one],
         duration: 0.25 * duration,
@@ -128,10 +128,9 @@ async function _showScoreAndTransition(
         easing: Ease.out.elastic(3, 0.75),
     });
 
-    const button = Anime.GuessButton(guessButtonIndex);
     const anims = TaskGroup.create();
     anims.add(
-        button.run({
+        buttonRef.run({
             opacity: Fade.out,
             delay: 0,
             duration: 0.5 * duration,
@@ -149,7 +148,7 @@ async function _showScoreAndTransition(
 
     ///
     await anims.all();
-    button.clearTransforms();
+    buttonRef.clearTransforms();
     scoreRef.scale = Scale.zero;
-    scoreRef.opacity = Fade.out;
+    scoreRef.opacity = Fade.zero;
 }

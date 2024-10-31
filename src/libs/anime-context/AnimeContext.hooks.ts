@@ -8,10 +8,7 @@ export function useAnimeRef<T extends string>(id: T): AnimeRef {
     return useAnimeRefs(id, 1)[0];
 }
 
-export function useAnimeRefs<T extends string>(
-    baseId: T,
-    count: number,
-): AnimeRef[] {
+export function useAnimeRefs<T extends string>(baseId: T, count: number): AnimeRef[] {
     const animRefs: AnimeRef[] = [];
     for (let i = 0; i < count; i++) {
         const id = `${baseId}-${i}`;
@@ -57,8 +54,9 @@ export function useAnimeRefs<T extends string>(
                 );
             },
             build(params: AnimeParams) {
+                console.debug("1", target);
                 return anime({
-                    targets: target,
+                    targets: obj.target,
                     ...params,
                 });
             },
@@ -71,6 +69,12 @@ export function useAnimeRefs<T extends string>(
             },
             run(params: AnimeParams) {
                 return AnimeTask.run(this.build(params));
+            },
+            targetWith(companions: AnimeRef[]) {
+                const targets = companions.map((c) => c.target).join(", ");
+                obj.target += ", " + targets;
+                console.debug("@", obj.target);
+                return obj;
             },
         };
         AnimeContext.set(baseId, obj, i);

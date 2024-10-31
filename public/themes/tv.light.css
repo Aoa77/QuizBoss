@@ -41,21 +41,12 @@
     --tv-LoadingProgress_BAR_color            : "#ffffff33";
     --tv-LoadingProgress_BAR_width            : "0%";
     --tv-LoadingProgress_TEXT_color           : "#1c4c5bff";
-
+    
     /**/
     --tv-QuestionImage_shadow                 : "#a5a5c877";
     --tv-QuestionText_color                   : "#00ffffff";
-    --tv-QuizTitle_color                      : "#ffffffff";
     
-
-
-
-
-    --tv-actionLink               : "#ffff00ff";
-    --tv-iconBackground           : "#555555ee";
-    --tv-iconForeground           : "#ffffffff";
-    --tv-menuBackground           : "#444444ff";
-    --tv-progress                 : "#ffffffbb";
-    --tv-scoreLabel               : "#00ffffff";
-    --tv-scoreValue               : "#ffff00ff";
+    /**/
+    --tv-QuizTitle_color                      : "#ffffffff";
+    --tv-QuizProgress_color                   : "#1c4c5bff";
 }

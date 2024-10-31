@@ -1,4 +1,5 @@
 import { AnimeContext } from "../libs/anime-context/AnimeContext";
+import { Scale } from "../libs/anime-context/AnimeContext.constants";
 import { AnimeRef } from "../libs/anime-context/AnimeRef";
 
 export enum AnimeComponent {
@@ -8,9 +9,18 @@ export enum AnimeComponent {
     LoadingSpinner = "LoadingSpinner",
     QuestionImage = "QuestionImage",
     QuestionText = "QuestionText",
+    QuestionTimer = "QuestionTimer",
+    QuizProgress = "QuizProgress",
     QuizTitle = "QuizTitle",
     RevealGuessNoPoints = "RevealGuessNoPoints",
     ScoreInfo = "ScoreInfo",
+}
+
+export interface GuessButtonRef extends AnimeRef {
+    scaleMin: number;
+    scaleMax: number;
+    scaleUp: number[];
+    scaleDown: number[];
 }
 
 export class Anime {
@@ -18,8 +28,18 @@ export class Anime {
         return AnimeContext.get(AnimeComponent.CorrectGuessPoints)!;
     }
 
-    public static GuessButton(index: number): AnimeRef {
-        return AnimeContext.get(AnimeComponent.GuessButton, index)!;
+    public static GuessButton(index: number): GuessButtonRef {
+        const animeRef = AnimeContext.get(AnimeComponent.GuessButton, index)!;
+        const buttonRef: GuessButtonRef = {
+            ...animeRef,
+            scaleMin: Scale.one,
+            scaleMax: 1.3,
+            scaleUp: [],
+            scaleDown: [],
+        };
+        buttonRef.scaleUp = [buttonRef.scaleMin, buttonRef.scaleMax];
+        buttonRef.scaleDown = [buttonRef.scaleMax, buttonRef.scaleMin];
+        return buttonRef;
     }
 
     public static get LoadingProgress(): AnimeRef {
@@ -36,6 +56,14 @@ export class Anime {
 
     public static get QuestionText(): AnimeRef {
         return AnimeContext.get(AnimeComponent.QuestionText)!;
+    }
+
+    public static get QuestionTimer(): AnimeRef {
+        return AnimeContext.get(AnimeComponent.QuestionTimer)!;
+    }
+
+    public static get QuizProgress(): AnimeRef {
+        return AnimeContext.get(AnimeComponent.QuizProgress)!;
     }
 
     public static get QuizTitle(): AnimeRef {

@@ -6,7 +6,7 @@ export enum ThemeFont {
 
 export enum ThemeName {
     dark = "dark",
-    //light = "light",
+    light = "light",
 }
 
 export function parseThemeName(
@@ -19,8 +19,8 @@ export function parseThemeName(
     switch (value.toLowerCase().trim()) {
         case ThemeName.dark:
             return ThemeName.dark;
-        // case ThemeName.light:
-        //     return ThemeName.light;
+        case ThemeName.light:
+            return ThemeName.light;
         default:
             return defaultValue;
     }
@@ -66,21 +66,12 @@ export enum TV {
     LoadingProgress_BAR_color            = "--tv-LoadingProgress_BAR_color",
     LoadingProgress_BAR_width            = "--tv-LoadingProgress_BAR_width",
     LoadingProgress_TEXT_color           = "--tv-LoadingProgress_TEXT_color",
-
+    
     ///
     QuestionImage_shadow                 = "--tv-QuestionImage_shadow",
     QuestionText_color                   = "--tv-QuestionText_color",
+    
+    ///
     QuizTitle_color                      = "--tv-QuizTitle_color",
-
-
-
-
-    actionLink = "--tv-actionLink",
-
-    iconBackground = "--tv-iconBackground",
-    iconForeground = "--tv-iconForeground",
-    menuBackground = "--tv-menuBackground",
-    progress = "--tv-progress",
-    scoreLabel = "--tv-scoreLabel",
-    scoreValue = "--tv-scoreValue",
+    QuizProgress_color                   = "--tv-QuizProgress_color",
 }

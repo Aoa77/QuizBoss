@@ -12,11 +12,15 @@ import { LoadingProgress } from "../components/LoadingProgress";
 import { LoadingSpinner } from "../components/LoadingSpinner";
 import { QuestionImage } from "../components/QuestionImage";
 import { QuestionText } from "../components/QuestionText";
+import { QuestionTimer } from "../components/QuestionTimer";
+import { QuizProgress } from "../components/QuizProgress";
 import { QuizTitle } from "../components/QuizTitle";
 import { RevealGuessNoPoints } from "../components/RevealGuessNoPoints";
+import { ScoreInfo } from "../components/ScoreInfo";
 
 ///
 import { AskQuestion } from "../events/AskQuestion";
+import { AwaitGuess } from "../events/AwaitGuess";
 import { ConcludeQuestion } from "../events/ConcludeQuestion";
 import { ConcludeWrongGuess } from "../events/ConcludeWrongGuess";
 import { LoadQuizModule } from "../events/LoadQuizModule";
@@ -25,8 +29,6 @@ import { PrepQuestion } from "../events/PrepQuestion";
 import { RevealGuessResult } from "../events/RevealGuessResult";
 import { StartApp } from "../events/StartApp";
 import { StartQuiz } from "../events/StartQuiz";
-import { AwaitGuess } from "../events/AwaitGuess";
-import { ScoreInfo } from "../components/ScoreInfo";
 
 ///
 export function App(settings: AppSettings) {
@@ -52,9 +54,7 @@ export function App(settings: AppSettings) {
         stateLogger(state) {
             console.group("state");
             console.info("eventName: ", state.eventName);
-            console.info("currentItemIndex: ", state.currentItemIndex);
             console.info("correctAnswerButtonIndex: ", state.correctAnswerButtonIndex);
-            console.info("guessButtonIndex: ", state.guessButtonIndex);
             console.groupEnd();
         },
     });
@@ -66,8 +66,10 @@ export function App(settings: AppSettings) {
             <LoadingProgress />
             <QuestionImage />
             <QuestionText />
+            <QuestionTimer />
             <CorrectGuessPoints />
             <RevealGuessNoPoints />
+            <QuizProgress />
             <ScoreInfo />
             <GuessButtons />
         </main>

@@ -11,8 +11,9 @@ export async function ConcludeWrongGuess() {
     const { oneTickAtSpeed } = settings;
 
     const duration = oneTickAtSpeed;
-    await Anime.GuessButton(guessButtonIndex).run({
-        scale: Scale.one,
+    const buttonRef = Anime.GuessButton(guessButtonIndex);
+    await buttonRef.run({
+        scale: buttonRef.scaleDown,
         delay: 1.05 * duration,
         duration,
         easing: Ease.out.elastic(3, 1),

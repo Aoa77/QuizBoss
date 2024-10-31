@@ -29,9 +29,9 @@ export async function AskQuestion() {
         }),
     );
     anims.add(
-        Anime.QuestionText.run({
+        Anime.QuestionText.targetWith([Anime.QuestionTimer]).run({
             opacity: Fade.in,
-            delay: 1.50 * duration,
+            delay: 1.5 * duration,
             duration,
             easing: Ease.linear,
         }),
@@ -40,18 +40,29 @@ export async function AskQuestion() {
         anims.add(
             Anime.GuessButton(i).run({
                 opacity: Fade.in,
-                delay: (2.50 * duration) + (i * (0.50 * duration)),
+                delay: 2.5 * duration + i * (0.5 * duration),
                 duration: 0.25 * duration,
                 easing: Ease.in.back,
             }),
         );
     }
 
-    if (Anime.ScoreInfo.opacity !== Fade.in) {
+    if (Anime.ScoreInfo.opacity !== Fade.one) {
         anims.add(
             Anime.ScoreInfo.run({
-                opacity: [Fade.out, Fade.in],
-                delay: 2.50 * duration,
+                opacity: Fade.in,
+                delay: 2.5 * duration,
+                duration: 3 * duration,
+                easing: Ease.linear,
+            }),
+        );
+    }
+
+    if (Anime.QuizProgress.opacity !== Fade.one) {
+        anims.add(
+            Anime.QuizProgress.run({
+                opacity: Fade.in,
+                delay: 2.5 * duration,
                 duration: 3 * duration,
                 easing: Ease.linear,
             }),

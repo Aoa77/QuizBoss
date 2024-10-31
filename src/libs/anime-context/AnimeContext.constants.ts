@@ -3,10 +3,12 @@ export enum Duration {
     oneSecond = 1000,
 }
 
-export enum Fade {
-    in = 1,
-    out = 0,
-}
+export const Fade = {
+    in: [0, 1],
+    out: [1, 0],
+    one: 1,
+    zero: 0,
+};
 
 export enum Scale {
     one = 1,
@@ -73,7 +75,6 @@ export const Ease = {
             sine: "easeOutInSine",
         },
     },
-
 };
 
 export const TransformRegex = {

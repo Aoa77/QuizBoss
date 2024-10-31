@@ -2,18 +2,17 @@ import { useAnimeRef } from "../libs/anime-context/AnimeContext.hooks";
 import { FlowContext } from "../libs/flow-context/FlowContext";
 import { AnimeComponent } from "../models/Anime";
 import { QuizState } from "../models/QuizState";
-import { useStyle } from "./ScoreInfo.style";
+import { useStyle } from "./QuizProgress.style";
 
-export function ScoreInfo() {
+export function QuizProgress() {
     ////
-    const animation = useAnimeRef(AnimeComponent.ScoreInfo);
+    const animation = useAnimeRef(AnimeComponent.QuizProgress);
     const style = useStyle();
     const [state] = FlowContext.current<QuizState>();
-    const { quizScore } = state;
 
     return (
         <section id={animation.id} style={style.section}>
-            <div></div><span style={style.span}>SCORE: </span>{quizScore}
+            {state.currentItemIndex + 1} / {state.quizModule?.quizData?.items?.length}
         </section>
     );
 }

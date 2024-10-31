@@ -5,6 +5,8 @@ import { QuizItem } from "../models/QuizItem";
 import { EventName } from "../models/EventName";
 import { ButtonStyle } from "../models/ButtonStyle";
 import { DEMO, DemoMode } from "../models/DemoMode";
+import { Anime } from "../models/Anime";
+import { Scale } from "../libs/anime-context/AnimeContext.constants";
 
 export async function PrepQuestion() {
     const [state, setState] = FlowContext.current<QuizState>();
@@ -36,9 +38,10 @@ export async function PrepQuestion() {
     }
 
     state.buttonAnswerMap.forEach((item) => {
-        item!.buttonStyle = ButtonStyle.normal;
+        item!.buttonStyle = ButtonStyle.disabled;
     });
     state.itemScore = state.buttonAnswerMap.length - 1;
+    Anime.QuestionTimer.scale = Scale.zero;
     setState({ ...state, eventName: EventName.AskQuestion });
 }
 
@@ -88,3 +91,4 @@ class RANDOMIZER {
     public static FAILSAFE: number = -1;
     public static INDEX: number = -1;
 }
+
