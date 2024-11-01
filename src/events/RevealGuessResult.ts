@@ -160,7 +160,6 @@ async function _showScoreAndTransition(
             bonusRef.run({
                 opacity: Fade.out,
                 delay: 0.5 * duration,
-                delay: 0.25 * duration,
                 duration: 0.5 * duration,
                 easing: Ease.linear,
             }),
