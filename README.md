@@ -2,9 +2,19 @@
 
 QuizBoss is a web platform for crafting and sharing quizzes and trivia games. This repository contains the source code and configuration used to build and deploy the application.
 
-### :link: [quizboss.a77.space](https://quizboss.a77.space)
+## Demos
 
-`**********************************`
+<img align="left" width="123" src="https://github.com/user-attachments/assets/876c2b8b-079a-4b17-a57a-49bdac74dfbb" />
+
+- ### Take the "World Flags Quiz"
+
+  [https://quizboss.a77.space](https://quizboss.a77.space)
+
+- ### Watch a live automated demo
+
+  [https://quizboss.a77.space?demoMode=random](https://quizboss.a77.space?demoMode=random)
+<br clear="left" />
+
 
 ## Developer notes
 
