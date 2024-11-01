@@ -15,6 +15,7 @@ export class AppSettings {
     public readonly preloadImageCount: number;
     public readonly oneTickAtSpeed: number;
     public readonly theme: ThemeName;
+    public readonly timerSeconds: number = 10;
     public readonly errorHandler?: (error: unknown) => void;
 
     constructor(params: {
@@ -23,6 +24,7 @@ export class AppSettings {
         enableSecretWindowReload?: boolean;
         demoMode?: DemoMode;
         theme?: ThemeName;
+        timerSeconds?: number;
         guessButtonCount?: number;
         maxQuestions?: number;
         oneTickAtSpeed?: number;
@@ -40,18 +42,19 @@ export class AppSettings {
 
         ///
         const {
-            errorHandler,
+            errorHandler: handleError,
             guessButtonCount,
             maxQuestions,
             oneTickAtSpeed,
             preloadImageCount,
+            timerSeconds,
         } = params;
 
         ///
         const qp = HttpUtility.parseQueryString(window.location.search);
 
         ///
-        this.errorHandler = errorHandler;
+        this.errorHandler = handleError;
 
         ///
         quizModuleName ??= qp.get("quizModuleName");
@@ -120,6 +123,14 @@ export class AppSettings {
             +(
                 qp.get("preloadImageCount") ?? //
                 "0"
+            );
+
+        ///
+        this.timerSeconds =
+            timerSeconds ?? //
+            +(
+                qp.get("timerSeconds") ?? //
+                "5"
             );
     }
 }

@@ -6,8 +6,8 @@ import { initQuizState, QuizState } from "../models/QuizState";
 import { useFlowContext } from "../libs/flow-context/FlowContext.hook";
 
 ///
-import { CorrectGuessPoints } from "../components/CorrectGuessPoints";
 import { GuessButtons } from "../components/GuessButtons";
+import { GuessPoints } from "../components/GuessPoints";
 import { LoadingProgress } from "../components/LoadingProgress";
 import { LoadingSpinner } from "../components/LoadingSpinner";
 import { QuestionImage } from "../components/QuestionImage";
@@ -15,20 +15,19 @@ import { QuestionText } from "../components/QuestionText";
 import { QuestionTimer } from "../components/QuestionTimer";
 import { QuizProgress } from "../components/QuizProgress";
 import { QuizTitle } from "../components/QuizTitle";
-import { RevealGuessNoPoints } from "../components/RevealGuessNoPoints";
 import { ScoreInfo } from "../components/ScoreInfo";
 
 ///
-import { AskQuestion } from "../events/AskQuestion";
-import { AwaitGuess } from "../events/AwaitGuess";
-import { ConcludeQuestion } from "../events/ConcludeQuestion";
-import { ConcludeWrongGuess } from "../events/ConcludeWrongGuess";
-import { LoadQuizModule } from "../events/LoadQuizModule";
-import { PrepGuessResult } from "../events/PrepGuessResult";
-import { PrepQuestion } from "../events/PrepQuestion";
-import { RevealGuessResult } from "../events/RevealGuessResult";
-import { StartApp } from "../events/StartApp";
-import { StartQuiz } from "../events/StartQuiz";
+import { handleAskQuestion } from "../events/AskQuestion";
+import { handleAwaitGuess } from "../events/AwaitGuess";
+import { handleConcludeQuestion } from "../events/ConcludeQuestion";
+import { handleConcludeWrongGuess } from "../events/ConcludeWrongGuess";
+import { handleLoadQuizModule } from "../events/LoadQuizModule";
+import { handlePrepGuessResult } from "../events/PrepGuessResult";
+import { handlePrepQuestion } from "../events/PrepQuestion";
+import { handleRevealGuessResult } from "../events/RevealGuessResult";
+import { handleStartApp } from "../events/StartApp";
+import { handleStartQuiz } from "../events/StartQuiz";
 
 ///
 export function App(settings: AppSettings) {
@@ -38,17 +37,17 @@ export function App(settings: AppSettings) {
         flowProperty: (state) => {
             return state.eventName;
         },
-        flowEvents: new Map<EventName, (state: QuizState) => Promise<void>>([
-            [EventName.AskQuestion, AskQuestion],
-            [EventName.AwaitGuess, AwaitGuess],
-            [EventName.ConcludeQuestion, ConcludeQuestion],
-            [EventName.ConcludeWrongGuess, ConcludeWrongGuess],
-            [EventName.LoadQuizModule, LoadQuizModule],
-            [EventName.PrepGuessResult, PrepGuessResult],
-            [EventName.PrepQuestion, PrepQuestion],
-            [EventName.RevealGuessResult, RevealGuessResult],
-            [EventName.StartApp, StartApp],
-            [EventName.StartQuiz, StartQuiz],
+        flowEvents: new Map<EventName, () => Promise<void>>([
+            [EventName.AskQuestion, handleAskQuestion],
+            [EventName.AwaitGuess, handleAwaitGuess],
+            [EventName.ConcludeQuestion, handleConcludeQuestion],
+            [EventName.ConcludeWrongGuess, handleConcludeWrongGuess],
+            [EventName.LoadQuizModule, handleLoadQuizModule],
+            [EventName.PrepGuessResult, handlePrepGuessResult],
+            [EventName.PrepQuestion, handlePrepQuestion],
+            [EventName.RevealGuessResult, handleRevealGuessResult],
+            [EventName.StartApp, handleStartApp],
+            [EventName.StartQuiz, handleStartQuiz],
         ]),
         errorHandler: settings.errorHandler,
         stateLogger(state) {
@@ -67,8 +66,7 @@ export function App(settings: AppSettings) {
             <QuestionImage />
             <QuestionText />
             <QuestionTimer />
-            <CorrectGuessPoints />
-            <RevealGuessNoPoints />
+            <GuessPoints />
             <QuizProgress />
             <ScoreInfo />
             <GuessButtons />

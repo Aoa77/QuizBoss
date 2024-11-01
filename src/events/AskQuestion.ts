@@ -1,11 +1,12 @@
-import { Ease, Fade } from "../libs/anime-context/AnimeContext.constants";
+import { Ease, Fade, Scale } from "../libs/anime-context/AnimeContext.constants";
 import { FlowContext } from "../libs/flow-context/FlowContext";
-import { TaskGroup } from "../libs/friendlies/Task";
+import { Task, TaskGroup } from "../libs/friendlies/Task";
 import { Anime } from "../models/Anime";
+import { ButtonStyle } from "../models/ButtonStyle";
 import { EventName } from "../models/EventName";
 import { QuizState } from "../models/QuizState";
 
-export async function AskQuestion() {
+export async function handleAskQuestion() {
     const [state, setState] = FlowContext.current<QuizState>();
     const { settings } = state;
     const { guessButtonCount, oneTickAtSpeed } = settings;
@@ -29,8 +30,16 @@ export async function AskQuestion() {
         }),
     );
     anims.add(
-        Anime.QuestionText.targetWith([Anime.QuestionTimer]).run({
+        Anime.QuestionText.run({
             opacity: Fade.in,
+            delay: 1.5 * duration,
+            duration,
+            easing: Ease.linear,
+        }),
+    );
+    anims.add(
+        Anime.QuestionTimer.run({
+            opacity: [0,0.55],
             delay: 1.5 * duration,
             duration,
             easing: Ease.linear,
@@ -69,6 +78,19 @@ export async function AskQuestion() {
         );
     }
     await anims.all();
+
+    await Task.delay(0.75 * duration);
+
+    const questionTimer = Anime.QuestionTimer;
+    await questionTimer.run({
+        scale: Scale.up,
+        duration: 0.25 * duration,
+    });
+
+    await Task.delay(0.25 * duration);
+    state.buttonAnswerMap.forEach((item) => {
+        item!.buttonStyle = ButtonStyle.normal;
+    });
 
     setState({ ...state, eventName: EventName.AwaitGuess });
 }

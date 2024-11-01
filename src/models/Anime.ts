@@ -3,8 +3,8 @@ import { Scale } from "../libs/anime-context/AnimeContext.constants";
 import { AnimeRef } from "../libs/anime-context/AnimeRef";
 
 export enum AnimeComponent {
-    CorrectGuessPoints = "CorrectGuessPoints",
     GuessButton = "GuessButton",
+    GuessPoints = "CorrectGuessPoints",
     LoadingProgress = "LoadingProgress",
     LoadingSpinner = "LoadingSpinner",
     QuestionImage = "QuestionImage",
@@ -12,7 +12,6 @@ export enum AnimeComponent {
     QuestionTimer = "QuestionTimer",
     QuizProgress = "QuizProgress",
     QuizTitle = "QuizTitle",
-    RevealGuessNoPoints = "RevealGuessNoPoints",
     ScoreInfo = "ScoreInfo",
 }
 
@@ -24,10 +23,6 @@ export interface GuessButtonRef extends AnimeRef {
 }
 
 export class Anime {
-    public static get CorrectGuessPoints(): AnimeRef {
-        return AnimeContext.get(AnimeComponent.CorrectGuessPoints)!;
-    }
-
     public static GuessButton(index: number): GuessButtonRef {
         const animeRef = AnimeContext.get(AnimeComponent.GuessButton, index)!;
         const buttonRef: GuessButtonRef = {
@@ -40,6 +35,10 @@ export class Anime {
         buttonRef.scaleUp = [buttonRef.scaleMin, buttonRef.scaleMax];
         buttonRef.scaleDown = [buttonRef.scaleMax, buttonRef.scaleMin];
         return buttonRef;
+    }
+
+    public static get GuessPoints(): AnimeRef {
+        return AnimeContext.get(AnimeComponent.GuessPoints)!;
     }
 
     public static get LoadingProgress(): AnimeRef {
@@ -68,10 +67,6 @@ export class Anime {
 
     public static get QuizTitle(): AnimeRef {
         return AnimeContext.get(AnimeComponent.QuizTitle)!;
-    }
-
-    public static get RevealGuessNoPoints(): AnimeRef {
-        return AnimeContext.get(AnimeComponent.RevealGuessNoPoints)!;
     }
 
     public static get ScoreInfo(): AnimeRef {

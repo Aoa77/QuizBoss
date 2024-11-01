@@ -1,11 +1,11 @@
-import { Ease, Scale } from "../libs/anime-context/AnimeContext.constants";
-import { FlowContext } from "../libs/flow-context/FlowContext";
+import { Ease } from "../libs/anime-context/AnimeContext.constants";
 import { Anime } from "../models/Anime";
 import { ButtonStyle } from "../models/ButtonStyle";
 import { EventName } from "../models/EventName";
 import { QuizState } from "../models/QuizState";
+import { FlowContext } from "../libs/flow-context/FlowContext";
 
-export async function ConcludeWrongGuess() {
+export async function handleConcludeWrongGuess() {
     const [state, setState] = FlowContext.current<QuizState>();
     const { buttonAnswerMap, guessButtonIndex, settings } = state;
     const { oneTickAtSpeed } = settings;

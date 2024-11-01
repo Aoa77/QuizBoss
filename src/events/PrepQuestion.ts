@@ -1,4 +1,3 @@
-import { FlowContext } from "../libs/flow-context/FlowContext";
 import { QuizState } from "../models/QuizState";
 import { randomInt } from "../libs/randos/randomInt";
 import { QuizItem } from "../models/QuizItem";
@@ -6,9 +5,11 @@ import { EventName } from "../models/EventName";
 import { ButtonStyle } from "../models/ButtonStyle";
 import { DEMO, DemoMode } from "../models/DemoMode";
 import { Anime } from "../models/Anime";
-import { Scale } from "../libs/anime-context/AnimeContext.constants";
+import { Fade, Scale } from "../libs/anime-context/AnimeContext.constants";
+import { FlowContext } from "../libs/flow-context/FlowContext";
+import { Timer } from "../models/Timer";
 
-export async function PrepQuestion() {
+export async function handlePrepQuestion() {
     const [state, setState] = FlowContext.current<QuizState>();
     if (state.quizModule === null) {
         throw new Error("QuizModule is null");
@@ -41,7 +42,11 @@ export async function PrepQuestion() {
         item!.buttonStyle = ButtonStyle.disabled;
     });
     state.itemScore = state.buttonAnswerMap.length - 1;
-    Anime.QuestionTimer.scale = Scale.zero;
+
+    const questionTimer = Anime.QuestionTimer;
+    questionTimer.scale = Scale.zero;
+    questionTimer.opacity = Fade.one;
+    Timer.reset();
     setState({ ...state, eventName: EventName.AskQuestion });
 }
 
@@ -91,4 +96,3 @@ class RANDOMIZER {
     public static FAILSAFE: number = -1;
     public static INDEX: number = -1;
 }
-

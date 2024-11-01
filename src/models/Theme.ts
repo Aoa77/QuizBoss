@@ -32,8 +32,8 @@ export enum TV {
     MAIN_backgroundColor                 = "--tv-MAIN_backgroundColor",
 
     ///
-    CorrectGuessPoints_color             = "--tv-CorrectGuessPoints_color",
-    RevealGuessNoPoints_color            = "--tv-RevealGuessNoPoints_color",
+    GuessPoints_CORRECT_color             = "--tv-GuessPoints_CORRECT_color",
+    GuessPoints_WRONG_color            = "--tv-GuessPoints_WRONG_color",
 
     ///
     GuessButton_CORRECT_backgroundColor  = "--tv-GuessButton_CORRECT_backgroundColor",
@@ -73,5 +73,6 @@ export enum TV {
     
     ///
     QuizTitle_color                      = "--tv-QuizTitle_color",
+    QuizProgress_DIM_color               = "--tv-QuizProgress_DIM_color",
     QuizProgress_color                   = "--tv-QuizProgress_color",
 }

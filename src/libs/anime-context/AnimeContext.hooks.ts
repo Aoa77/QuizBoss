@@ -48,6 +48,10 @@ export function useAnimeRefs<T extends string>(baseId: T, count: number): AnimeR
                 if (!el) {
                     return;
                 }
+                if (!el.style.transform) {
+                    el.style.transform = `scale(${value})`;
+                    return;
+                }
                 el.style.transform = el.style.transform.replace(
                     TransformRegex.scale,
                     `scale(${value})`,

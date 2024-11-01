@@ -11,7 +11,7 @@ export function useStyle(): Style {
     return {
         section: {
             alignContent: "normal",
-            color: ThemeVars.getRef(TV, TV.CorrectGuessPoints_color),
+            color: ThemeVars.getRef(TV, TV.GuessPoints_CORRECT_color),
             fontFamily: ThemeFont.mono,
             fontWeight: "bold",
             fontSize: CssUnit.rem(3),

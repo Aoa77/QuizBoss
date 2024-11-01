@@ -10,10 +10,12 @@ export const Fade = {
     zero: 0,
 };
 
-export enum Scale {
-    one = 1,
-    zero = 0,
-}
+export const Scale = {
+    up: [0,1],
+    down: [1,0],
+    one: 1,
+    zero: 0,
+};
 
 export const Ease = {
     linear: "linear",

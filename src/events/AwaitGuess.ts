@@ -5,11 +5,15 @@ import { QuizState } from "../models/QuizState";
 import { ButtonStyle } from "../models/ButtonStyle";
 import { DEMO, DemoMode } from "../models/DemoMode";
 import { randomInt } from "../libs/randos/randomInt";
+import { Timer } from "../models/Timer";
+import { randomIntInclusive } from "../libs/randos/randomIntInclusive";
 
-export async function AwaitGuess() {
+export async function handleAwaitGuess() {
     const [state] = FlowContext.current<QuizState>();
     const { settings, correctAnswerButtonIndex } = state;
     const { demoMode, oneTickAtSpeed, guessButtonCount } = settings;
+
+    Timer.start();
 
     if (demoMode === DemoMode.OFF) {
         return;
@@ -36,7 +40,7 @@ export async function AwaitGuess() {
         }
     }
 
-    await Task.delay(1.5 * oneTickAtSpeed);
+    await Task.delay(randomIntInclusive(2, 5) * oneTickAtSpeed);
     TriggerGuess(DEMO.guess.shift()!);
 }
 

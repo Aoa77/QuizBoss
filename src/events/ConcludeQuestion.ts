@@ -1,11 +1,11 @@
 import { Ease, Fade } from "../libs/anime-context/AnimeContext.constants";
-import { FlowContext } from "../libs/flow-context/FlowContext";
 import { TaskGroup } from "../libs/friendlies/Task";
 import { EventName } from "../models/EventName";
 import { QuizState } from "../models/QuizState";
 import { Anime } from "../models/Anime";
+import { FlowContext } from "../libs/flow-context/FlowContext";
 
-export async function ConcludeQuestion() {
+export async function handleConcludeQuestion() {
     const [state, setState] = FlowContext.current<QuizState>();
     const { settings } = state;
     const { oneTickAtSpeed } = settings;

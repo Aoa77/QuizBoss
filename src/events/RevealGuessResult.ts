@@ -1,23 +1,18 @@
 import { Ease, Fade, Scale } from "../libs/anime-context/AnimeContext.constants";
-import { AnimeRef } from "../libs/anime-context/AnimeRef";
 import { FlowContext } from "../libs/flow-context/FlowContext";
 import { TaskGroup } from "../libs/friendlies/Task";
 import { Anime, GuessButtonRef } from "../models/Anime";
 import { ButtonStyle } from "../models/ButtonStyle";
 import { EventName } from "../models/EventName";
 import { QuizState } from "../models/QuizState";
+import { Timer } from "../models/Timer";
 
-export async function RevealGuessResult() {
+export async function handleRevealGuessResult() {
+    Timer.stop();
     const [state, setState] = FlowContext.current<QuizState>();
     const { guessButtonIndex, settings, buttonAnswerMap } = state;
     const button = buttonAnswerMap[guessButtonIndex]!;
     const { oneTickAtSpeed } = settings;
-
-    Anime.CorrectGuessPoints.scale = Scale.zero;
-    Anime.CorrectGuessPoints.opacity = Fade.zero;
-
-    Anime.RevealGuessNoPoints.scale = Scale.zero;
-    Anime.RevealGuessNoPoints.opacity = Fade.zero;
 
     const duration = oneTickAtSpeed;
     const buttonRef = Anime.GuessButton(guessButtonIndex); 
@@ -34,12 +29,7 @@ export async function RevealGuessResult() {
         return;
     }
 
-    const scoreRef =
-        button.buttonStyle === ButtonStyle.correct
-            ? Anime.CorrectGuessPoints
-            : Anime.RevealGuessNoPoints;
-
-    await _concludeFinalGuess(buttonRef, state, scoreRef, duration);
+    await _concludeFinalGuess(buttonRef, state, duration);
     state.quizScore += state.itemScore;
     setState({ ...state, eventName: EventName.ConcludeQuestion });
 }
@@ -47,7 +37,6 @@ export async function RevealGuessResult() {
 async function _concludeFinalGuess(
     buttonRef: GuessButtonRef,
     state: QuizState,
-    scoreRef: AnimeRef,
     duration: number,
 ) {
     ///
@@ -112,17 +101,17 @@ async function _concludeFinalGuess(
 
     ///
     await slide.all();
-    await _showScoreAndTransition(buttonRef, scoreRef, duration);
+    await _showScoreAndTransition(buttonRef, duration);
 }
 
 async function _showScoreAndTransition(
     buttonRef: GuessButtonRef,
-    scoreRef: AnimeRef,
     duration: number,
 ) {
+    const scoreRef = Anime.GuessPoints;
     scoreRef.opacity = Fade.one;
     await scoreRef.run({
-        scale: [Scale.zero, Scale.one],
+        scale: Scale.up,
         duration: 0.25 * duration,
         endDelay: 1.25 * duration,
         easing: Ease.out.elastic(3, 0.75),

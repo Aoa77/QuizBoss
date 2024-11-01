@@ -7,7 +7,6 @@ export interface QuizState {
     bestScore: number;
     quizScore: number;
     itemScore: number;
-    itemTimer: number;
     buttonAnswerMap: (QuizItem | null)[];
     correctAnswerButtonIndex: number;
     currentItemIndex: number;
@@ -28,7 +27,6 @@ export function initQuizState(settings: AppSettings): QuizState {
         bestScore: 0,
         quizScore: 0,
         itemScore: 0,
-        itemTimer: 0,
         buttonAnswerMap,
         correctAnswerButtonIndex: -1,
         currentItemIndex: -1,
