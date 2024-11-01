@@ -19,7 +19,7 @@ export function useStyle(): Style {
         fontSize: CssUnit.rem(2),
         fontWeight: "bold",
         height: CssUnit.cqh(20),
-        top: CssUnit.cqh(85),
+        marginTop: CssUnit.cqh(85),
     };
 
     ///

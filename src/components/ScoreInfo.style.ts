@@ -17,7 +17,7 @@ export function useStyle(): Style {
             fontWeight: "bold",
             fontSize: CssUnit.rem(3),
             height: CssUnit.cqh(10),
-            top: CssUnit.cqh(90),
+            marginTop: CssUnit.cqh(90),
         },
         span: {
             color: ThemeVars.getRef(TV, TV.QuestionText_color),

@@ -54,10 +54,11 @@ main {
 }
 
 /* each section overlays <main> */
-/* use top to offset */
+/* use margin to offset */
 section {
     position: absolute;
-    top: 0;
+    /* top: 0;
+    left: 0; */
 
     width: 100cqw;
     height: 100cqh;

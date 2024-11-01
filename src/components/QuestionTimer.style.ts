@@ -17,7 +17,7 @@ export function useStyle(): Style {
             fontWeight: "bold",
             fontSize: CssUnit.rem(3),
             height: CssUnit.cqh(5),
-            top: CssUnit.cqh(42),
+            marginTop: CssUnit.cqh(42),
         },
     };
 }
