@@ -36,9 +36,11 @@ html {
 /* set background colors */
 body {
     background-color: var(--tv-BODY_backgroundColor);
+    overflow: hidden;
 }
 main {
     background-color: var(--tv-MAIN_backgroundColor);
+    overflow: hidden;
 }
 
 /* <main> is the app container */
@@ -49,7 +51,6 @@ main {
     width: var(--width);
     height: var(--height);
     container-type: size;
-    overflow: hidden;
 }
 
 /* each section overlays <main> */

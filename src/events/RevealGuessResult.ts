@@ -15,7 +15,7 @@ export async function handleRevealGuessResult() {
     const { oneTickAtSpeed } = settings;
 
     const duration = oneTickAtSpeed;
-    const buttonRef = Anime.GuessButton(guessButtonIndex); 
+    const buttonRef = Anime.GuessButton(guessButtonIndex);
     await buttonRef.run({
         scale: buttonRef.scaleUp,
         delay: 0,
@@ -30,7 +30,7 @@ export async function handleRevealGuessResult() {
     }
 
     await _concludeFinalGuess(buttonRef, state, duration);
-    state.quizScore += state.itemScore;
+    state.quizScore += state.itemScore + Timer.secondsRemaining;
     setState({ ...state, eventName: EventName.ConcludeQuestion });
 }
 
@@ -40,7 +40,7 @@ async function _concludeFinalGuess(
     duration: number,
 ) {
     ///
-    const { guessButtonIndex } = state;
+    const { guessButtonIndex, itemScore } = state;
     const anims = TaskGroup.create();
 
     ///
@@ -49,7 +49,7 @@ async function _concludeFinalGuess(
         if (bidx === guessButtonIndex) {
             return;
         }
-        const button:GuessButtonRef = Anime.GuessButton(bidx);
+        const button: GuessButtonRef = Anime.GuessButton(bidx);
         anims.add(
             button
                 .run({
@@ -82,8 +82,8 @@ async function _concludeFinalGuess(
 
     const slide = TaskGroup.create();
     slide.add(
-        questionText.run({
-            opacity: Fade.out,
+        questionText.targetWith([Anime.QuestionTimer]).run({
+            opacity: Fade.zero,
             delay: 0.125 * duration,
             duration: 0.25 * duration,
             easing: Ease.linear,
@@ -101,21 +101,41 @@ async function _concludeFinalGuess(
 
     ///
     await slide.all();
-    await _showScoreAndTransition(buttonRef, duration);
+    await _showScoreAndTransition(itemScore, buttonRef, duration);
 }
 
 async function _showScoreAndTransition(
+    itemScore: number,
     buttonRef: GuessButtonRef,
     duration: number,
 ) {
     const scoreRef = Anime.GuessPoints;
     scoreRef.opacity = Fade.one;
-    await scoreRef.run({
-        scale: Scale.up,
-        duration: 0.25 * duration,
-        endDelay: 1.25 * duration,
-        easing: Ease.out.elastic(3, 0.75),
-    });
+
+    const bonusRef = Anime.TimeBonus;
+    bonusRef.opacity = Fade.one;
+
+    const scoreAnims = TaskGroup.create();
+    scoreAnims.add(
+        scoreRef.run({
+            scale: Scale.up,
+            duration: 0.25 * duration,
+            endDelay: 1.25 * duration,
+            easing: Ease.out.elastic(3, 0.75),
+        }),
+    );
+    if (itemScore > 0) {
+        scoreAnims.add(
+            bonusRef.run({
+                scale: Scale.up,
+                delay: 1.25 * duration,
+                duration: 0.25 * duration,
+                endDelay: 1.25 * duration,
+                easing: Ease.out.elastic(3, 0.75),
+            }),
+        );
+    }
+    await scoreAnims.all();
 
     const anims = TaskGroup.create();
     anims.add(
@@ -135,9 +155,25 @@ async function _showScoreAndTransition(
         }),
     );
 
+    if (itemScore > 0) {
+        anims.add(
+            bonusRef.run({
+                opacity: Fade.out,
+                delay: 0.5 * duration,
+                delay: 0.25 * duration,
+                duration: 0.5 * duration,
+                easing: Ease.linear,
+            }),
+        );
+    }
+
     ///
     await anims.all();
     buttonRef.clearTransforms();
+    
     scoreRef.scale = Scale.zero;
+    bonusRef.scale = Scale.zero;
+
     scoreRef.opacity = Fade.zero;
+    bonusRef.opacity = Fade.zero;
 }

@@ -4,7 +4,8 @@ import { AnimeRef } from "../libs/anime-context/AnimeRef";
 
 export enum AnimeComponent {
     GuessButton = "GuessButton",
-    GuessPoints = "CorrectGuessPoints",
+    GuessPoints = "GuessPoints",
+    TimeBonus = "TimeBonus",
     LoadingProgress = "LoadingProgress",
     LoadingSpinner = "LoadingSpinner",
     QuestionImage = "QuestionImage",
@@ -39,6 +40,10 @@ export class Anime {
 
     public static get GuessPoints(): AnimeRef {
         return AnimeContext.get(AnimeComponent.GuessPoints)!;
+    }
+
+    public static get TimeBonus(): AnimeRef {
+        return AnimeContext.get(AnimeComponent.TimeBonus)!;
     }
 
     public static get LoadingProgress(): AnimeRef {

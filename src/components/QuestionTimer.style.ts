@@ -10,12 +10,13 @@ interface Style {
 export function useStyle(): Style {
     return {
         section: {
+            willChange: "transform, opacity",
             alignContent: "normal",
             color: ThemeVars.getRef(TV, TV.QuizProgress_color),
             fontFamily: ThemeFont.mono,
             fontWeight: "bold",
             fontSize: CssUnit.rem(3),
-            height: CssUnit.cqh(10),
+            height: CssUnit.cqh(5),
             top: CssUnit.cqh(42),
         },
     };

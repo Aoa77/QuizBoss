@@ -29,22 +29,35 @@ export class Timer {
 
     public static async pulse() {
         await Anime.QuestionTimer.run({
-            opacity: [1.00, 0.55],
+            opacity: [1.0, 0.50],
             duration: 0.25 * Duration.oneSecond,
+            endDelay: 0.25 * Duration.oneSecond,
             easing: Ease.linear,
         });
     }
 
-    public static start() {
+    public static async start() {
         if (this._timer) {
             throw new Error("Timer.start() error: Timer already running.");
         }
+        if (this._secondsRemaining <= 0) {
+            return;
+        }
+        this.pulse();
+
         this._timer = setInterval(() => {
-            this.pulse();
             this._secondsRemaining--;
             this.updateUi();
+            const task = this.pulse();
             if (this._secondsRemaining <= 0) {
                 clearInterval(this._timer!);
+                task.then(() => {
+                    Anime.QuestionTimer.run({
+                        opacity: [0.50, 0.25],
+                        duration: 0.5 * Duration.oneSecond,
+                        easing: Ease.linear,
+                    });
+                });
             }
         }, Duration.oneSecond);
     }

@@ -1,20 +1,17 @@
 import { useAnimeRef } from "../libs/anime-context/AnimeContext.hooks";
-import { FlowContext } from "../libs/flow-context/FlowContext";
 import { ThemeVars } from "../libs/theme-vars/ThemeVars";
 import { AnimeComponent } from "../models/Anime";
-import { QuizState } from "../models/QuizState";
 import { TV } from "../models/Theme";
+import { Timer } from "../models/Timer";
 import { useStyle } from "./GuessPoints.style";
 
-export function GuessPoints() {
+export function TimeBonus() {
     ////
-    const animation = useAnimeRef(AnimeComponent.GuessPoints);
-    const style = useStyle({ timeBonus: false });
-    const [state] = FlowContext.current<QuizState>();
-    const { itemScore } = state;
-    const label = itemScore === 1 ? "point" : "points";
-    const render = itemScore ? `+${itemScore} ${label}` : "no points";
-    style.section.color = itemScore
+    const animation = useAnimeRef(AnimeComponent.TimeBonus);
+    const style = useStyle({ timeBonus: true });
+    const bonus = Timer.secondsRemaining;
+    const render = bonus ? `+${bonus} time bonus` : "no time bonus";
+    style.section.color = bonus
         ? ThemeVars.getValue(TV.GuessPoints_CORRECT_color)
         : ThemeVars.getValue(TV.GuessPoints_WRONG_color);
 

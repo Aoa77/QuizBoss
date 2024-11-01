@@ -28,6 +28,7 @@ import { handlePrepQuestion } from "../events/PrepQuestion";
 import { handleRevealGuessResult } from "../events/RevealGuessResult";
 import { handleStartApp } from "../events/StartApp";
 import { handleStartQuiz } from "../events/StartQuiz";
+import { TimeBonus } from "../components/GuessPoints.TimeBonus";
 
 ///
 export function App(settings: AppSettings) {
@@ -67,6 +68,7 @@ export function App(settings: AppSettings) {
             <QuestionText />
             <QuestionTimer />
             <GuessPoints />
+            <TimeBonus />
             <QuizProgress />
             <ScoreInfo />
             <GuessButtons />

@@ -1,4 +1,4 @@
-import { Ease, Fade, Scale } from "../libs/anime-context/AnimeContext.constants";
+import { Duration, Ease, Fade } from "../libs/anime-context/AnimeContext.constants";
 import { FlowContext } from "../libs/flow-context/FlowContext";
 import { Task, TaskGroup } from "../libs/friendlies/Task";
 import { Anime } from "../models/Anime";
@@ -39,7 +39,7 @@ export async function handleAskQuestion() {
     );
     anims.add(
         Anime.QuestionTimer.run({
-            opacity: [0,0.55],
+            opacity: Fade.in,
             delay: 1.5 * duration,
             duration,
             easing: Ease.linear,
@@ -79,15 +79,22 @@ export async function handleAskQuestion() {
     }
     await anims.all();
 
-    await Task.delay(0.75 * duration);
+    await Task.delay(0.75 * Duration.oneSecond);
 
     const questionTimer = Anime.QuestionTimer;
-    await questionTimer.run({
-        scale: Scale.up,
-        duration: 0.25 * duration,
-    });
+    questionTimer
+        .run({
+            scale: [0, 1.25],
+            duration: 0.25 * Duration.oneSecond,
+        })
+        .then(() => {
+            questionTimer.run({
+                scale: [1.25, 1],
+                duration: 0.50 * settings.timerSeconds * Duration.oneSecond,
+                easing: Ease.linear,
+            });
+        });
 
-    await Task.delay(0.25 * duration);
     state.buttonAnswerMap.forEach((item) => {
         item!.buttonStyle = ButtonStyle.normal;
     });
