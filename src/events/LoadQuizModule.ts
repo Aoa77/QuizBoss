@@ -14,7 +14,7 @@ const count = {
     imagesLoaded: 0,
 };
 
-export async function handleLoadQuizModule() {
+export async function LoadQuizModule() {
     const [state, setState] = FlowContext.current<QuizState>();
     const { settings } = state;
     count.imagesLoaded = 0;

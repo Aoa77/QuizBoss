@@ -4,7 +4,7 @@ import { Ease, Fade } from "../libs/anime-context/AnimeContext.constants";
 import { Anime } from "../models/Anime";
 import { FlowContext } from "../libs/flow-context/FlowContext";
 
-export async function handleStartApp() {
+export async function StartApp() {
     const [state, setState] = FlowContext.current<QuizState>();
     ///
     const { settings } = state;

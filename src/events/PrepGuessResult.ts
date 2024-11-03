@@ -3,7 +3,7 @@ import { ButtonStyle } from "../models/ButtonStyle";
 import { EventName } from "../models/EventName";
 import { QuizState } from "../models/QuizState";
 
-export async function handlePrepGuessResult() {
+export async function PrepGuessResult() {
     const [state, setState] = FlowContext.current<QuizState>();
     state.buttonAnswerMap.forEach((_item, idx) => {
         const item = _item!;

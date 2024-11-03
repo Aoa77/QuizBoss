@@ -8,6 +8,7 @@ import { useFlowContext } from "../libs/flow-context/FlowContext.hook";
 ///
 import { GuessButtons } from "../components/GuessButtons";
 import { GuessPoints } from "../components/GuessPoints";
+import { TimeBonus } from "../components/GuessPoints.TimeBonus";
 import { LoadingProgress } from "../components/LoadingProgress";
 import { LoadingSpinner } from "../components/LoadingSpinner";
 import { QuestionImage } from "../components/QuestionImage";
@@ -18,17 +19,16 @@ import { QuizTitle } from "../components/QuizTitle";
 import { ScoreInfo } from "../components/ScoreInfo";
 
 ///
-import { handleAskQuestion } from "../events/AskQuestion";
-import { handleAwaitGuess } from "../events/AwaitGuess";
-import { handleConcludeQuestion } from "../events/ConcludeQuestion";
-import { handleConcludeWrongGuess } from "../events/ConcludeWrongGuess";
-import { handleLoadQuizModule } from "../events/LoadQuizModule";
-import { handlePrepGuessResult } from "../events/PrepGuessResult";
-import { handlePrepQuestion } from "../events/PrepQuestion";
-import { handleRevealGuessResult } from "../events/RevealGuessResult";
-import { handleStartApp } from "../events/StartApp";
-import { handleStartQuiz } from "../events/StartQuiz";
-import { TimeBonus } from "../components/GuessPoints.TimeBonus";
+import { AskQuestion } from "../events/AskQuestion";
+import { AwaitGuess } from "../events/AwaitGuess";
+import { ConcludeQuestion } from "../events/ConcludeQuestion";
+import { ConcludeWrongGuess } from "../events/ConcludeWrongGuess";
+import { LoadQuizModule } from "../events/LoadQuizModule";
+import { PrepGuessResult } from "../events/PrepGuessResult";
+import { PrepQuestion } from "../events/PrepQuestion";
+import { RevealGuessResult } from "../events/RevealGuessResult";
+import { StartApp } from "../events/StartApp";
+import { StartQuiz } from "../events/StartQuiz";
 
 ///
 export function App(settings: AppSettings) {
@@ -39,16 +39,16 @@ export function App(settings: AppSettings) {
             return state.eventName;
         },
         flowEvents: new Map<EventName, () => Promise<void>>([
-            [EventName.AskQuestion, handleAskQuestion],
-            [EventName.AwaitGuess, handleAwaitGuess],
-            [EventName.ConcludeQuestion, handleConcludeQuestion],
-            [EventName.ConcludeWrongGuess, handleConcludeWrongGuess],
-            [EventName.LoadQuizModule, handleLoadQuizModule],
-            [EventName.PrepGuessResult, handlePrepGuessResult],
-            [EventName.PrepQuestion, handlePrepQuestion],
-            [EventName.RevealGuessResult, handleRevealGuessResult],
-            [EventName.StartApp, handleStartApp],
-            [EventName.StartQuiz, handleStartQuiz],
+            [EventName.AskQuestion,          AskQuestion],
+            [EventName.AwaitGuess,           AwaitGuess],
+            [EventName.ConcludeQuestion,     ConcludeQuestion],
+            [EventName.ConcludeWrongGuess,   ConcludeWrongGuess],
+            [EventName.LoadQuizModule,       LoadQuizModule],
+            [EventName.PrepGuessResult,      PrepGuessResult],
+            [EventName.PrepQuestion,         PrepQuestion],
+            [EventName.RevealGuessResult,    RevealGuessResult],
+            [EventName.StartApp,             StartApp],
+            [EventName.StartQuiz,            StartQuiz],
         ]),
         errorHandler: settings.errorHandler,
         stateLogger(state) {

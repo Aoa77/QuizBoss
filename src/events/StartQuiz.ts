@@ -5,7 +5,7 @@ import { EventName } from "../models/EventName";
 import { QuizState } from "../models/QuizState";
 import { FlowContext } from "../libs/flow-context/FlowContext";
 
-export async function handleStartQuiz() {
+export async function StartQuiz() {
     const [state, setState] = FlowContext.current<QuizState>();
     const { settings } = state;
     const { oneTickAtSpeed } = settings;

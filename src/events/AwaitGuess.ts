@@ -8,7 +8,7 @@ import { randomInt } from "../libs/randos/randomInt";
 import { Timer } from "../models/Timer";
 import { randomIntInclusive } from "../libs/randos/randomIntInclusive";
 
-export async function handleAwaitGuess() {
+export async function AwaitGuess() {
     const [state] = FlowContext.current<QuizState>();
     const { settings, correctAnswerButtonIndex } = state;
     const { demoMode, oneTickAtSpeed, guessButtonCount } = settings;

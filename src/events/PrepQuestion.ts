@@ -9,7 +9,7 @@ import { Fade, Scale } from "../libs/anime-context/AnimeContext.constants";
 import { FlowContext } from "../libs/flow-context/FlowContext";
 import { Timer } from "../models/Timer";
 
-export async function handlePrepQuestion() {
+export async function PrepQuestion() {
     const [state, setState] = FlowContext.current<QuizState>();
     if (state.quizModule === null) {
         throw new Error("QuizModule is null");

@@ -5,7 +5,7 @@ import { EventName } from "../models/EventName";
 import { QuizState } from "../models/QuizState";
 import { FlowContext } from "../libs/flow-context/FlowContext";
 
-export async function handleConcludeWrongGuess() {
+export async function ConcludeWrongGuess() {
     const [state, setState] = FlowContext.current<QuizState>();
     const { buttonAnswerMap, guessButtonIndex, settings } = state;
     const { oneTickAtSpeed } = settings;

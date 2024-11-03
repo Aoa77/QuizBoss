@@ -7,7 +7,7 @@ import { EventName } from "../models/EventName";
 import { QuizState } from "../models/QuizState";
 import { Timer } from "../models/Timer";
 
-export async function handleRevealGuessResult() {
+export async function RevealGuessResult() {
     Timer.stop();
     const [state, setState] = FlowContext.current<QuizState>();
     const { guessButtonIndex, settings, buttonAnswerMap } = state;

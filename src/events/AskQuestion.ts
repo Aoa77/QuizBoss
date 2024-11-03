@@ -6,7 +6,7 @@ import { ButtonStyle } from "../models/ButtonStyle";
 import { EventName } from "../models/EventName";
 import { QuizState } from "../models/QuizState";
 
-export async function handleAskQuestion() {
+export async function AskQuestion() {
     const [state, setState] = FlowContext.current<QuizState>();
     const { settings } = state;
     const { guessButtonCount, oneTickAtSpeed } = settings;

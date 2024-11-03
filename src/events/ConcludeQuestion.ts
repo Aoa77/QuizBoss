@@ -5,7 +5,7 @@ import { QuizState } from "../models/QuizState";
 import { Anime } from "../models/Anime";
 import { FlowContext } from "../libs/flow-context/FlowContext";
 
-export async function handleConcludeQuestion() {
+export async function ConcludeQuestion() {
     const [state, setState] = FlowContext.current<QuizState>();
     const { settings } = state;
     const { oneTickAtSpeed } = settings;
