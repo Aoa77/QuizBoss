@@ -1,3 +1,4 @@
+import { QuestionTimer } from "../components/QuestionTimer";
 import { Ease, Fade, Scale } from "../libs/anime-context/AnimeContext.constants";
 import { FlowContext } from "../libs/flow-context/FlowContext";
 import { TaskGroup } from "../libs/friendlies/Task";
@@ -5,14 +6,20 @@ import { Anime, GuessButtonRef } from "../models/Anime";
 import { ButtonStyle } from "../models/ButtonStyle";
 import { EventName } from "../models/EventName";
 import { QuizState } from "../models/QuizState";
-import { Timer } from "../models/Timer";
 
 export async function RevealGuessResult() {
-    Timer.stop();
     const [state, setState] = FlowContext.current<QuizState>();
     const { guessButtonIndex, settings, buttonAnswerMap } = state;
     const button = buttonAnswerMap[guessButtonIndex]!;
-    const { oneTickAtSpeed } = settings;
+    const {
+        oneTickAtSpeed,
+        pauseTimerBetweenQuestions,
+        convertRemainingTimeToBonusPoints,
+    } = settings;
+
+    if (pauseTimerBetweenQuestions) {
+        QuestionTimer.RefObject.stop();
+    }
 
     const duration = oneTickAtSpeed;
     const buttonRef = Anime.GuessButton(guessButtonIndex);
@@ -30,7 +37,10 @@ export async function RevealGuessResult() {
     }
 
     await _concludeFinalGuess(buttonRef, state, duration);
-    state.quizScore += state.itemScore + Timer.secondsRemaining;
+    state.quizScore += state.itemScore;
+    if (convertRemainingTimeToBonusPoints) {
+        state.quizScore += QuestionTimer.RefObject.secondsRemaining;
+    }
     setState({ ...state, eventName: EventName.ConcludeQuestion });
 }
 
@@ -169,7 +179,7 @@ async function _showScoreAndTransition(
     ///
     await anims.all();
     buttonRef.clearTransforms();
-    
+
     scoreRef.scale = Scale.zero;
     bonusRef.scale = Scale.zero;
 

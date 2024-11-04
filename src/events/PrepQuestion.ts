@@ -7,7 +7,7 @@ import { DEMO, DemoMode } from "../models/DemoMode";
 import { Anime } from "../models/Anime";
 import { Fade, Scale } from "../libs/anime-context/AnimeContext.constants";
 import { FlowContext } from "../libs/flow-context/FlowContext";
-import { Timer } from "../models/Timer";
+import { QuestionTimer } from "../components/QuestionTimer";
 
 export async function PrepQuestion() {
     const [state, setState] = FlowContext.current<QuizState>();
@@ -46,7 +46,7 @@ export async function PrepQuestion() {
     const questionTimer = Anime.QuestionTimer;
     questionTimer.scale = Scale.zero;
     questionTimer.opacity = Fade.one;
-    Timer.reset();
+    QuestionTimer.RefObject.reset();
     setState({ ...state, eventName: EventName.AskQuestion });
 }
 

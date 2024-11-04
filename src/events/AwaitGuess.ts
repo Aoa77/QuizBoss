@@ -5,15 +5,30 @@ import { QuizState } from "../models/QuizState";
 import { ButtonStyle } from "../models/ButtonStyle";
 import { DEMO, DemoMode } from "../models/DemoMode";
 import { randomInt } from "../libs/randos/randomInt";
-import { Timer } from "../models/Timer";
 import { randomIntInclusive } from "../libs/randos/randomIntInclusive";
+import { QuestionTimer } from "../components/QuestionTimer";
 
 export async function AwaitGuess() {
-    const [state] = FlowContext.current<QuizState>();
-    const { settings, correctAnswerButtonIndex } = state;
-    const { demoMode, oneTickAtSpeed, guessButtonCount } = settings;
+    const [state, setState] = FlowContext.current<QuizState>();
+    const { settings, buttonAnswerMap, correctAnswerButtonIndex } = state;
+    const {
+        demoMode,
+        oneTickAtSpeed,
+        guessButtonCount, ////////
+        forfeitQuestionOnTimeout,
+    } = settings;
 
-    Timer.start();
+    QuestionTimer.RefObject.start();
+    if (forfeitQuestionOnTimeout && QuestionTimer.RefObject.isExpired()) {
+        for (let i = 0; i < guessButtonCount; i++) {
+            const buttonStyle = buttonAnswerMap[i]!.buttonStyle;
+            if (buttonStyle === ButtonStyle.normal && i !== correctAnswerButtonIndex) {
+                buttonAnswerMap[i]!.buttonStyle = ButtonStyle.disabled;
+                --state.itemScore;
+            }
+        }
+        setState({ ...state, eventName: EventName.PrepGuessResult });
+    }
 
     if (demoMode === DemoMode.OFF) {
         return;
@@ -47,6 +62,9 @@ export async function AwaitGuess() {
 export function TriggerGuess(bidx: number) {
     const [state, setState] = FlowContext.current<QuizState>();
     const { buttonAnswerMap, eventName } = state;
+    if (forfeitQuestionOnTimeout && QuestionTimer.RefObject.isExpired()) {
+        return;
+    }
     if (eventName !== EventName.AwaitGuess) {
         return;
     }

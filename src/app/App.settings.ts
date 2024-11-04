@@ -7,29 +7,41 @@ import { parseThemeName, ThemeName } from "../models/Theme";
 
 export class AppSettings {
     public readonly quizModuleName: string;
+    public readonly errorHandler?: (error: unknown) => void;
+
     public readonly enableSecretQuestionSkip: boolean;
     public readonly enableSecretWindowReload: boolean;
     public readonly demoMode: DemoMode;
+
     public readonly guessButtonCount: number;
     public readonly maxQuestions: number;
     public readonly preloadImageCount: number;
-    public readonly oneTickAtSpeed: number;
     public readonly theme: ThemeName;
-    public readonly timerSeconds: number = 10;
-    public readonly errorHandler?: (error: unknown) => void;
+
+    public readonly oneTickAtSpeed: number;
+    public readonly timerSeconds: number;
+    public readonly pauseTimerBetweenQuestions: boolean;
+    public readonly convertRemainingTimeToBonusPoints: boolean;
+    public readonly forfeitQuestionOnTimeout: boolean;
 
     constructor(params: {
         quizModuleName?: string;
+        errorHandler?: (error: unknown) => void;
+
         enableSecretQuestionSkip?: boolean;
         enableSecretWindowReload?: boolean;
         demoMode?: DemoMode;
-        theme?: ThemeName;
-        timerSeconds?: number;
+        
         guessButtonCount?: number;
         maxQuestions?: number;
-        oneTickAtSpeed?: number;
         preloadImageCount?: number;
-        errorHandler?: (error: unknown) => void;
+        theme?: ThemeName;
+        
+        oneTickAtSpeed?: number;
+        timerSeconds?: number;
+        pauseTimerBetweenQuestions?: boolean;
+        convertRemainingTimeToBonusPoints?: boolean;
+        forfeitQuestionOnTimeout?: boolean;
     }) {
         ///
         let {
@@ -38,6 +50,9 @@ export class AppSettings {
             theme,
             enableSecretQuestionSkip,
             enableSecretWindowReload,
+            pauseTimerBetweenQuestions,
+            convertRemainingTimeToBonusPoints,
+            forfeitQuestionOnTimeout,
         } = params;
 
         ///
@@ -130,7 +145,34 @@ export class AppSettings {
             timerSeconds ?? //
             +(
                 qp.get("timerSeconds") ?? //
-                "5"
+                "1"
             );
+            
+        ///
+        if (isBooleanNullOrUndefined(pauseTimerBetweenQuestions)) {
+            pauseTimerBetweenQuestions = parseBoolean(
+                qp.get("pauseTimerBetweenQuestions"),
+                false,
+            );
+        }
+        this.pauseTimerBetweenQuestions = pauseTimerBetweenQuestions!;
+
+        ///
+        if (isBooleanNullOrUndefined(convertRemainingTimeToBonusPoints)) {
+            convertRemainingTimeToBonusPoints = parseBoolean(
+                qp.get("convertRemainingTimeToBonusPoints"),
+                true,
+            );
+        }
+        this.convertRemainingTimeToBonusPoints = convertRemainingTimeToBonusPoints!;
+
+        ///
+        if (isBooleanNullOrUndefined(forfeitQuestionOnTimeout)) {
+            forfeitQuestionOnTimeout = parseBoolean(
+                qp.get("forfeitQuestionOnTimeout"),
+                true,
+            );
+        }
+        this.forfeitQuestionOnTimeout = forfeitQuestionOnTimeout!;
     }
 }

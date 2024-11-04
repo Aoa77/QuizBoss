@@ -3,17 +3,17 @@ import { Scale } from "../libs/anime-context/AnimeContext.constants";
 import { AnimeRef } from "../libs/anime-context/AnimeRef";
 
 export enum AnimeComponent {
-    GuessButton = "GuessButton",
-    GuessPoints = "GuessPoints",
-    TimeBonus = "TimeBonus",
-    LoadingProgress = "LoadingProgress",
-    LoadingSpinner = "LoadingSpinner",
-    QuestionImage = "QuestionImage",
-    QuestionText = "QuestionText",
-    QuestionTimer = "QuestionTimer",
-    QuizProgress = "QuizProgress",
-    QuizTitle = "QuizTitle",
-    ScoreInfo = "ScoreInfo",
+    GuessButton      = "GuessButton",
+    GuessPoints      = "GuessPoints",
+    TimeBonus        = "TimeBonus",
+    LoadingProgress  = "LoadingProgress",
+    LoadingSpinner   = "LoadingSpinner",
+    QuestionImage    = "QuestionImage",
+    QuestionText     = "QuestionText",
+    QuestionTimer    = "QuestionTimer",
+    QuizProgress     = "QuizProgress",
+    QuizTitle        = "QuizTitle",
+    ScoreInfo        = "ScoreInfo",
 }
 
 export interface GuessButtonRef extends AnimeRef {
