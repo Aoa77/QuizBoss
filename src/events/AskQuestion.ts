@@ -1,13 +1,13 @@
-// import { QuestionTimer } from "../components/QuestionTimer";
 import { Duration, Ease, Fade } from "../libs/anime-context/AnimeContext.constants";
 import { FlowContext } from "../libs/flow-context/FlowContext";
 import { Task, TaskGroup } from "../libs/friendlies/Task";
 import { Anime } from "../models/Anime";
 import { ButtonStyle } from "../models/ButtonStyle";
-import { EventName } from "../models/EventName";
+import { assertFlowEvent, EventName } from "../models/EventName";
 import { QuizState } from "../models/QuizState";
 
 export async function AskQuestion() {
+    assertFlowEvent(EventName.AskQuestion);
     const [state, setState] = FlowContext.current<QuizState>();
     const { settings } = state;
     const { guessButtonCount, oneTickAtSpeed } = settings;

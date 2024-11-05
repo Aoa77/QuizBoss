@@ -4,18 +4,15 @@ import { FlowContext } from "../libs/flow-context/FlowContext";
 import { TaskGroup } from "../libs/friendlies/Task";
 import { Anime, GuessButtonRef } from "../models/Anime";
 import { ButtonStyle } from "../models/ButtonStyle";
-import { EventName } from "../models/EventName";
+import { assertFlowEvent, EventName } from "../models/EventName";
 import { QuizState } from "../models/QuizState";
 
 export async function RevealGuessResult() {
+    assertFlowEvent(EventName.RevealGuessResult);
     const [state, setState] = FlowContext.current<QuizState>();
     const { guessButtonIndex, settings, buttonAnswerMap } = state;
     const button = buttonAnswerMap[guessButtonIndex]!;
-    const {
-        oneTickAtSpeed,
-        convertRemainingTimeToBonusPoints,
-    } = settings;
-
+    const { oneTickAtSpeed, convertRemainingTimeToBonusPoints } = settings;
 
     const duration = oneTickAtSpeed;
     const buttonRef = Anime.GuessButton(guessButtonIndex);

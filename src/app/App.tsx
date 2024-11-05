@@ -54,6 +54,7 @@ export function App(settings: AppSettings) {
         stateLogger(state) {
             console.group("state");
             console.info("eventName: ", state.eventName);
+            console.info("currentItemIndex: ", state.currentItemIndex);
             console.info("correctAnswerButtonIndex: ", state.correctAnswerButtonIndex);
             console.groupEnd();
         },

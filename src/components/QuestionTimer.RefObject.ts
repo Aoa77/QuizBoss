@@ -1,3 +1,4 @@
+import { Dispatch, SetStateAction } from "react";
 import { AppSettings } from "../app/App.settings";
 import {
     Duration,
@@ -10,6 +11,8 @@ import { FlowContext } from "../libs/flow-context/FlowContext";
 import { Lazy } from "../libs/friendlies/Lazy";
 import { Anime } from "../models/Anime";
 import { QuizState } from "../models/QuizState";
+import { ButtonStyle } from "../models/ButtonStyle";
+import { EventName } from "../models/EventName";
 
 export class QuestionTimerRefObject {
     public get isRunning(): boolean {
@@ -23,9 +26,31 @@ export class QuestionTimerRefObject {
         const animation = this._animation.instance;
         animation.scale = Scale.zero;
         animation.opacity = Fade.one;
-        const { timerSeconds } = this._appSettings.instance;
+        const { timerSeconds } = this._settings.instance;
         this._secondsRemaining = timerSeconds;
         this.updateUi();
+    }
+
+    public runFailTransition(
+        state: QuizState,
+        setState: Dispatch<SetStateAction<QuizState>>,
+    ) {
+        state.itemScore = 0;
+        state.buttonAnswerMap.forEach((_item) => {
+            _item!.buttonStyle = ButtonStyle.disabled;
+        });
+        state.guessButtonIndex = state.correctAnswerButtonIndex;
+        const button = state.buttonAnswerMap[state.guessButtonIndex]!;
+        button.buttonStyle = ButtonStyle.reveal;
+        setState((_state) => { 
+            return {
+                ..._state, 
+                itemScore: state.itemScore,
+                buttonAnswerMap: state.buttonAnswerMap,
+                guessButtonIndex: state.guessButtonIndex,
+                eventName: EventName.RevealGuessResult 
+            };
+        });
     }
 
     public get secondsRemaining(): number {
@@ -56,15 +81,20 @@ export class QuestionTimerRefObject {
         return Anime.QuestionTimer;
     });
 
-    private readonly _appSettings: Lazy<AppSettings> = new Lazy<AppSettings>(() => {
-        const [state] = FlowContext.current<QuizState>();
+    private readonly _context: Lazy<[QuizState, Dispatch<SetStateAction<QuizState>>]> =
+        new Lazy<[QuizState, Dispatch<SetStateAction<QuizState>>]>(() => {
+            return FlowContext.current<QuizState>();
+        });
+
+    private readonly _settings: Lazy<AppSettings> = new Lazy<AppSettings>(() => {
+        const [state] = this._context.instance;
         const { settings } = state;
         return settings;
     });
 
     private async popIntoExistance() {
         const anim = this._animation.instance;
-        const settings = this._appSettings.instance;
+        const settings = this._settings.instance;
         await anim.run({
             scale: [0, 1.5],
             duration: 0.25 * Duration.oneSecond,
@@ -75,6 +105,7 @@ export class QuestionTimerRefObject {
             duration: settings.timerSeconds * Duration.oneSecond,
             easing: Ease.linear,
         });
+        console.debug(this._shrinkage);
     }
 
     private async pulse() {
@@ -88,6 +119,8 @@ export class QuestionTimerRefObject {
         }
 
         if (--this._secondsRemaining < 0) {
+            const [state, setState] = this._context.instance;
+            this.runFailTransition(state, setState);
             return;
         }
 
@@ -108,13 +141,6 @@ export class QuestionTimerRefObject {
             duration: Duration.oneSecond,
             easing: Ease.linear,
         });
-    }
-
-    private cancelIfStopped() {
-        if (!this.isRunning) {
-            console.log("222");
-            throw new Error("Stopped timer detected.");
-        }
     }
 
     private updateUi() {

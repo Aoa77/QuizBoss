@@ -1,7 +1,7 @@
 import { QuizState } from "../models/QuizState";
 import { randomInt } from "../libs/randos/randomInt";
 import { QuizItem } from "../models/QuizItem";
-import { EventName } from "../models/EventName";
+import { assertFlowEvent, EventName } from "../models/EventName";
 import { ButtonStyle } from "../models/ButtonStyle";
 import { DEMO, DemoMode } from "../models/DemoMode";
 import { Anime } from "../models/Anime";
@@ -10,6 +10,7 @@ import { FlowContext } from "../libs/flow-context/FlowContext";
 import { QuestionTimer } from "../components/QuestionTimer";
 
 export async function PrepQuestion() {
+    assertFlowEvent(EventName.PrepQuestion);
     const [state, setState] = FlowContext.current<QuizState>();
     if (state.quizModule === null) {
         throw new Error("QuizModule is null");

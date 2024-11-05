@@ -1,11 +1,13 @@
 import { Ease } from "../libs/anime-context/AnimeContext.constants";
 import { Anime } from "../models/Anime";
 import { ButtonStyle } from "../models/ButtonStyle";
-import { EventName } from "../models/EventName";
+import { assertFlowEvent, EventName } from "../models/EventName";
 import { QuizState } from "../models/QuizState";
 import { FlowContext } from "../libs/flow-context/FlowContext";
+import { QuestionTimer } from "../components/QuestionTimer";
 
 export async function ConcludeWrongGuess() {
+    assertFlowEvent(EventName.ConcludeWrongGuess);
     const [state, setState] = FlowContext.current<QuizState>();
     const { buttonAnswerMap, guessButtonIndex, settings } = state;
     const { oneTickAtSpeed } = settings;
@@ -32,10 +34,7 @@ export async function ConcludeWrongGuess() {
     });
 
     if (state.itemScore === 0) {
-        state.guessButtonIndex = state.correctAnswerButtonIndex;
-        const button = buttonAnswerMap[state.guessButtonIndex]!;
-        button.buttonStyle = ButtonStyle.reveal;
-        setState({ ...state, eventName: EventName.RevealGuessResult });
+        QuestionTimer.RefObject.runFailTransition(state, setState);
         return;
     }
     setState({ ...state, eventName: EventName.AwaitGuess });

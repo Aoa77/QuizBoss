@@ -4,7 +4,7 @@ import { generateRandomString } from "../libs/randos/generateRandomString";
 import { shuffle } from "../libs/randos/shuffle";
 import { ThemeVars } from "../libs/theme-vars/ThemeVars";
 import { ButtonStyle } from "../models/ButtonStyle";
-import { EventName } from "../models/EventName";
+import { assertFlowEvent, EventName } from "../models/EventName";
 import { QuizItem } from "../models/QuizItem";
 import { QuizModule } from "../models/QuizModule";
 import { QuizState } from "../models/QuizState";
@@ -15,6 +15,7 @@ const count = {
 };
 
 export async function LoadQuizModule() {
+    assertFlowEvent(EventName.LoadQuizModule);
     const [state, setState] = FlowContext.current<QuizState>();
     const { settings } = state;
     count.imagesLoaded = 0;

@@ -1,3 +1,6 @@
+import { FlowContext } from "../libs/flow-context/FlowContext";
+import { QuizState } from "./QuizState";
+
 export enum EventName {
     AskQuestion = "AskQuestion",
     AwaitGuess = "AwaitGuess",
@@ -12,4 +15,9 @@ export enum EventName {
     StartQuiz = "StartQuiz",
 }
 
-
+export function assertFlowEvent(eventName: EventName) {
+    const [state] = FlowContext.current<QuizState>();
+    if (eventName !== state.eventName) {
+        throw new Error(`Event map mismatch: ${eventName}`);
+    }
+}
