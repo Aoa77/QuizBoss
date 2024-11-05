@@ -76,7 +76,7 @@ export async function AwaitGuess() {
     if (!timer.isRunning || timer.secondsRemaining < 1) {
         return;
     }
-    await Task.delay(randomIntInclusive(2, 5) * oneTickAtSpeed);
+    await Task.delay(randomIntInclusive(200, 4000));
     TriggerGuess(DEMO.guess.shift()!);
 }
 

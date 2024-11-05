@@ -16,6 +16,7 @@ export function LoadingSpinner() {
             cx={cx}
             cy={style.cy}
             r={style.radiusBase}
+            will-change="r"
         />
     ));
 

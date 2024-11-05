@@ -41,5 +41,3 @@ export function useStyle(): Style {
     ///
     return style;
 }
-
-

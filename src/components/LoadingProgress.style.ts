@@ -3,13 +3,11 @@ import { CssUnit } from "../libs/theme-vars/CssUnit";
 import { ThemeVars } from "../libs/theme-vars/ThemeVars";
 import { TV, ThemeFont } from "../models/Theme";
 
-
 interface Style {
     progBarBackground: CSSProperties;
     progBarForeground: CSSProperties;
     section: CSSProperties;
 }
-
 
 export function useStyle(): Style {
     const style: Style = {
@@ -30,10 +28,7 @@ export function useStyle(): Style {
 
     ///
     style.progBarBackground = {
-        backgroundColor: ThemeVars.getRef(
-            TV,
-            TV.LoadingProgress_BAR_backgroundColor,
-        ),
+        backgroundColor: ThemeVars.getRef(TV, TV.LoadingProgress_BAR_backgroundColor),
         width: CssUnit.cqw(33),
         height: CssUnit.cqh(0.3),
         margin: "auto",
