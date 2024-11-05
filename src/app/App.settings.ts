@@ -145,7 +145,7 @@ export class AppSettings {
             timerSeconds ?? //
             +(
                 qp.get("timerSeconds") ?? //
-                "1"
+                "5"
             );
             
         ///

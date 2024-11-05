@@ -13,13 +13,9 @@ export async function RevealGuessResult() {
     const button = buttonAnswerMap[guessButtonIndex]!;
     const {
         oneTickAtSpeed,
-        pauseTimerBetweenQuestions,
         convertRemainingTimeToBonusPoints,
     } = settings;
 
-    if (pauseTimerBetweenQuestions) {
-        QuestionTimer.RefObject.stop();
-    }
 
     const duration = oneTickAtSpeed;
     const buttonRef = Anime.GuessButton(guessButtonIndex);
@@ -36,6 +32,7 @@ export async function RevealGuessResult() {
         return;
     }
 
+    QuestionTimer.RefObject.stop();
     await _concludeFinalGuess(buttonRef, state, duration);
     state.quizScore += state.itemScore;
     if (convertRemainingTimeToBonusPoints) {
@@ -124,6 +121,7 @@ async function _showScoreAndTransition(
 
     const bonusRef = Anime.TimeBonus;
     bonusRef.opacity = Fade.one;
+    bonusRef.scale = Scale.zero;
 
     const scoreAnims = TaskGroup.create();
     scoreAnims.add(

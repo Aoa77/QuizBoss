@@ -1,4 +1,4 @@
-import { QuestionTimer } from "../components/QuestionTimer";
+// import { QuestionTimer } from "../components/QuestionTimer";
 import { Duration, Ease, Fade } from "../libs/anime-context/AnimeContext.constants";
 import { FlowContext } from "../libs/flow-context/FlowContext";
 import { Task, TaskGroup } from "../libs/friendlies/Task";
@@ -38,11 +38,7 @@ export async function AskQuestion() {
             easing: Ease.linear,
         }),
     );
-    anims.add(
-        ///////////////////////////////////
-        QuestionTimer.RefObject.fadeIn(),
-        ///////////////////////////////////
-    );
+
     for (let i = 0; i < guessButtonCount; i++) {
         anims.add(
             Anime.GuessButton(i).run({
@@ -77,12 +73,10 @@ export async function AskQuestion() {
     }
     await anims.all();
 
-    await Task.delay(0.75 * Duration.oneSecond);
-    QuestionTimer.RefObject.countdownTick();
-
     state.buttonAnswerMap.forEach((item) => {
         item!.buttonStyle = ButtonStyle.normal;
     });
+    await Task.delay(0.75 * Duration.oneSecond);
 
     setState({ ...state, eventName: EventName.AwaitGuess });
 }
