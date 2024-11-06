@@ -11,69 +11,47 @@ import { FlowContext } from "../libs/flow-context/FlowContext";
 import { Lazy } from "../libs/friendlies/Lazy";
 import { Anime } from "../models/Anime";
 import { QuizState } from "../models/QuizState";
-import { ButtonStyle } from "../models/ButtonStyle";
-import { EventName } from "../models/EventName";
 
+export enum TimerStatus {
+    None = "None",
+    Reset = "Reset",
+    Running = "Running",
+    Stopped = "Stopped",
+    TimedOut = "TimedOut",
+}
 export class QuestionTimerRefObject {
-    public get isRunning(): boolean {
-        return this._isRunning;
+
+    private _status: TimerStatus = TimerStatus.None;
+    public get status(): TimerStatus {
+        return this._status;
     }
 
+
     public reset() {
-        if (this.isRunning) {
-            throw new Error("Timer.reset() error: Can't reset timer while running.");
-        }
         const animation = this._animation.instance;
         animation.scale = Scale.zero;
         animation.opacity = Fade.one;
         const { timerSeconds } = this._settings.instance;
         this._secondsRemaining = timerSeconds;
         this.updateUi();
+        this._status = TimerStatus.Reset;
     }
 
-    public runFailTransition(
-        state: QuizState,
-        setState: Dispatch<SetStateAction<QuizState>>,
-    ) {
-        state.itemScore = 0;
-        state.buttonAnswerMap.forEach((_item) => {
-            _item!.buttonStyle = ButtonStyle.disabled;
-        });
-        state.guessButtonIndex = state.correctAnswerButtonIndex;
-        const button = state.buttonAnswerMap[state.guessButtonIndex]!;
-        button.buttonStyle = ButtonStyle.reveal;
-        setState((_state) => { 
-            return {
-                ..._state, 
-                itemScore: state.itemScore,
-                buttonAnswerMap: state.buttonAnswerMap,
-                guessButtonIndex: state.guessButtonIndex,
-                eventName: EventName.RevealGuessResult 
-            };
-        });
-    }
 
     public get secondsRemaining(): number {
         return this._secondsRemaining < 1 ? 0 : this._secondsRemaining;
     }
 
     public async start() {
-        if (this.isRunning) {
-            throw new Error("Timer.start() error: Can't start timer while running.");
-        }
-        this._isRunning = true;
+        this._status = TimerStatus.Running;
         await this.popIntoExistance();
         this.pulse();
     }
 
     public stop() {
-        if (!this.isRunning) {
-            throw new Error("Timer.stop() error: Can't stop timer while not running.");
-        }
-        this._isRunning = false;
+        this._status = TimerStatus.Stopped;
     }
 
-    private _isRunning: boolean = false;
     private _secondsRemaining: number = 0;
     private _shrinkage: Promise<void> | null = null;
 
@@ -109,27 +87,26 @@ export class QuestionTimerRefObject {
     }
 
     private async pulse() {
-        if (!this.isRunning) {
+        if (this.status === TimerStatus.Stopped) {
             return;
         }
 
         await this.pulseAnimation();
-        if (!this.isRunning) {
+        if (this.status.toString() === TimerStatus.Stopped) {
             return;
         }
 
         if (--this._secondsRemaining < 0) {
-            const [state, setState] = this._context.instance;
-            this.runFailTransition(state, setState);
+            this._status = TimerStatus.TimedOut;
             return;
         }
 
-        if (!this.isRunning) {
+        if (this.status.toString() === TimerStatus.Stopped) {
             return;
         }
         this.updateUi();
 
-        if (!this.isRunning) {
+        if (this.status.toString() === TimerStatus.Stopped) {
             return;
         }
         await this.pulse();

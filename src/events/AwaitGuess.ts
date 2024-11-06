@@ -1,50 +1,71 @@
 import { FlowContext } from "../libs/flow-context/FlowContext";
-import { Task } from "../libs/friendlies/Task";
 import { assertFlowEvent, EventName } from "../models/EventName";
 import { QuizState } from "../models/QuizState";
-import { ButtonStyle } from "../models/ButtonStyle";
 import { DEMO, DemoMode } from "../models/DemoMode";
 import { randomInt } from "../libs/randos/randomInt";
 import { randomIntInclusive } from "../libs/randos/randomIntInclusive";
 import { QuestionTimer } from "../components/QuestionTimer";
+import { TriggerGuess } from "./TriggerGuess";
+import { TimerStatus } from "../components/QuestionTimer.RefObject";
+import { ButtonStyle } from "../models/ButtonStyle";
+import { Task } from "../libs/friendlies/Task";
 
 export async function AwaitGuess() {
+    ///
     assertFlowEvent(EventName.AwaitGuess);
-    const [state] = FlowContext.current<QuizState>();
 
-    const {
-        settings, //////////
-        correctAnswerButtonIndex,
-    } = state;
-
-    const {
-        demoMode,
-        oneTickAtSpeed,
-        guessButtonCount, ////////
-        forfeitQuestionOnTimeout,
-    } = settings;
+    if (countAvailableGuesses().length === 1) {
+        runFailTransition();
+        return;
+    }
 
     const timer = QuestionTimer.RefObject;
-    if (forfeitQuestionOnTimeout && !timer.isRunning) {
+    if (timer.status === TimerStatus.Reset) {
         timer.start();
     }
 
-    if (!timer.isRunning || timer.secondsRemaining < 1) {
-        return;
-    }
-    if (demoMode === DemoMode.OFF) {
+    const pollingLoop = setInterval(() => {
+        switch (timer.status) {
+            case TimerStatus.TimedOut:
+                clearInterval(pollingLoop);
+                runFailTransition();
+                return;
+            case TimerStatus.Running:
+                break;
+            default:
+                clearInterval(pollingLoop);
+                return;
+        }
+    }, 100);
+
+    if (!createDemoGuess()) {
         return;
     }
 
-    if (!timer.isRunning || timer.secondsRemaining < 1) {
-        return;
+    const delay = randomIntInclusive(200, 4000);
+    setTimeout(() => TriggerGuess(DEMO.guess.shift()!), delay);
+
+    await Task.delay(1);
+}
+
+function countAvailableGuesses() {
+    const [state] = FlowContext.current<QuizState>();
+    const { buttonAnswerMap } = state;
+    return buttonAnswerMap.filter((item) => item!.buttonStyle === ButtonStyle.normal);
+}
+
+function createDemoGuess(): boolean {
+    const [state] = FlowContext.current<QuizState>();
+    const { settings, correctAnswerButtonIndex } = state;
+    const { demoMode, guessButtonCount } = settings;
+
+    if (demoMode === DemoMode.OFF) {
+        return false;
     }
+
     if (DEMO.guess.length === 0) {
         console.info("demoMode: ", demoMode);
         for (let i = 0; i < guessButtonCount; i++) {
-            if (!timer.isRunning || timer.secondsRemaining < 1) {
-                return;
-            }
             DEMO.guess.push(i);
         }
         const bidx: number = randomInt(0, guessButtonCount);
@@ -53,58 +74,38 @@ export async function AwaitGuess() {
         DEMO.guess[bidx] = temp;
     }
 
-    if (!timer.isRunning || timer.secondsRemaining < 1) {
-        return;
-    }
-
     if (demoMode === DemoMode.RIGHT) {
         while (DEMO.guess[0] !== correctAnswerButtonIndex) {
-            if (!timer.isRunning || timer.secondsRemaining < 1) {
-                return;
-            }
             DEMO.guess.shift();
         }
     } else if (demoMode === DemoMode.WRONG) {
-        if (!timer.isRunning || timer.secondsRemaining < 1) {
-            return;
-        }
         while (DEMO.guess[0] === correctAnswerButtonIndex) {
             DEMO.guess.shift();
         }
     }
 
-    if (!timer.isRunning || timer.secondsRemaining < 1) {
-        return;
-    }
-    await Task.delay(randomIntInclusive(200, 4000));
-    TriggerGuess(DEMO.guess.shift()!);
+    return true;
 }
 
-export function TriggerGuess(bidx: number) {
-    const timer = QuestionTimer.RefObject;
-    if (!timer.isRunning || timer.secondsRemaining < 1) {
-        return;
-    }
-
+function runFailTransition() {
     const [state, setState] = FlowContext.current<QuizState>();
-    const { buttonAnswerMap, eventName, itemScore } = state;
-    if (eventName !== EventName.AwaitGuess) {
-        return;
-    }
-    if (buttonAnswerMap[bidx]!.buttonStyle !== ButtonStyle.normal) {
-        return;
-    }
-    if (itemScore < 1) {
-        return;
-    }
-
-    if (!timer.isRunning || timer.secondsRemaining < 1) {
-        return;
-    }
-    state.guessButtonIndex = bidx;
-
-    if (!timer.isRunning || timer.secondsRemaining < 1) {
-        return;
-    }
-    setState({ ...state, eventName: EventName.PrepGuessResult });
+    state.itemScore = 0;
+    state.buttonAnswerMap.forEach((_item) => {
+        _item!.buttonStyle = ButtonStyle.disabled;
+    });
+    state.guessButtonIndex = state.correctAnswerButtonIndex;
+    const button = state.buttonAnswerMap[state.guessButtonIndex]!;
+    button.buttonStyle = ButtonStyle.reveal;
+    setState((_state) => {
+        if (_state.eventName !== EventName.AwaitGuess) {
+            return _state;
+        }
+        return {
+            ..._state,
+            itemScore: state.itemScore,
+            buttonAnswerMap: state.buttonAnswerMap,
+            guessButtonIndex: state.guessButtonIndex,
+            eventName: EventName.RevealGuessResult,
+        };
+    });
 }

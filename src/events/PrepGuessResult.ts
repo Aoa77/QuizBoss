@@ -1,4 +1,3 @@
-import { QuestionTimer } from "../components/QuestionTimer";
 import { FlowContext } from "../libs/flow-context/FlowContext";
 import { ButtonStyle } from "../models/ButtonStyle";
 import { assertFlowEvent, EventName } from "../models/EventName";
@@ -6,16 +5,9 @@ import { QuizState } from "../models/QuizState";
 
 export async function PrepGuessResult() {
     assertFlowEvent(EventName.PrepGuessResult);
-    const timer = QuestionTimer.RefObject;
-    if (!timer.isRunning || timer.secondsRemaining < 1) {
-        return;
-    }
+
     const [state, setState] = FlowContext.current<QuizState>();
     state.buttonAnswerMap.forEach((_item, idx) => {
-
-    if (!timer.isRunning || timer.secondsRemaining < 1) {
-        return;
-    }
         const item = _item!;
         if (idx === state.guessButtonIndex) {
             if (idx === state.correctAnswerButtonIndex) {
@@ -32,9 +24,10 @@ export async function PrepGuessResult() {
         }
     });
 
-
-    if (!timer.isRunning || timer.secondsRemaining < 1) {
-        return;
-    }
-    setState({ ...state, eventName: EventName.RevealGuessResult });
+    setState((_state) => ({
+        ..._state,
+        buttonAnswerMap: state.buttonAnswerMap,
+        itemScore: state.itemScore,
+        eventName: EventName.RevealGuessResult,
+    }));
 }

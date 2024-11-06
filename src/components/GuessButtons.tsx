@@ -3,7 +3,7 @@ import { QuizState } from "../models/QuizState";
 import { AnimeComponent } from "../models/Anime";
 import { FlowContext } from "../libs/flow-context/FlowContext";
 import { useAnimeRefs } from "../libs/anime-context/AnimeContext.hooks";
-import { TriggerGuess } from "../events/AwaitGuess";
+import { TriggerGuess } from "../events/TriggerGuess";
 
 export function GuessButtons() {
     const style = useStyle();
