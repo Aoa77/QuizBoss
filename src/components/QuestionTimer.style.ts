@@ -12,12 +12,12 @@ export function useStyle(): Style {
         section: {
             willChange: "transform, opacity",
             alignContent: "normal",
-            color: ThemeVars.getRef(TV, TV.QuizProgress_color),
+            color: ThemeVars.getRef(TV, TV.QuestionTimer_color),
             fontFamily: ThemeFont.mono,
             fontWeight: "bold",
             fontSize: CssUnit.rem(3),
             height: CssUnit.cqh(5),
-            marginTop: CssUnit.cqh(42),
+            marginTop: CssUnit.cqh(43),
         },
     };
 }

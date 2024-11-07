@@ -42,7 +42,10 @@ export async function AwaitGuess() {
         return;
     }
 
-    const delay = randomIntInclusive(200, 4000);
+    const [state] = FlowContext.current<QuizState>();
+    const { settings } = state;
+    const { demoDelayMin, demoDelayMax } = settings;
+    const delay = randomIntInclusive(demoDelayMin, demoDelayMax);
     setTimeout(() => TriggerGuess(DEMO.guess.shift()!), delay);
 
     await Task.delay(1);

@@ -14,9 +14,9 @@ export function useStyle(): Style {
 
     ///
     style.section = {
-        color: ThemeVars.getRef(TV, TV.QuizProgress_DIM_color),
+        color: ThemeVars.getRef(TV, TV.QuizProgress_color),
         fontFamily: ThemeFont.mono,
-        fontSize: CssUnit.rem(2),
+        fontSize: CssUnit.rem(2.3),
         fontWeight: "bold",
         height: CssUnit.cqh(20),
         marginTop: CssUnit.cqh(85),

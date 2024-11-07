@@ -70,9 +70,9 @@ export enum TV {
     ///
     QuestionImage_shadow                 = "--tv-QuestionImage_shadow",
     QuestionText_color                   = "--tv-QuestionText_color",
+    QuestionTimer_color                  = "--tv-QuestionTimer_color",
     
     ///
-    QuizTitle_color                      = "--tv-QuizTitle_color",
-    QuizProgress_DIM_color               = "--tv-QuizProgress_DIM_color",
     QuizProgress_color                   = "--tv-QuizProgress_color",
+    QuizTitle_color                      = "--tv-QuizTitle_color",
 }

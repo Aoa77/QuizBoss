@@ -7,12 +7,13 @@ export const Fade = {
     in: [0, 1],
     out: [1, 0],
     one: 1,
+    half: 0.5,
     zero: 0,
 };
 
 export const Scale = {
-    up: [0,1],
-    down: [1,0],
+    up: [0, 1],
+    down: [1, 0],
     one: 1,
     zero: 0,
 };

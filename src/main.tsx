@@ -18,7 +18,6 @@ try {
         enableSecretWindowReload: false,
         maxQuestions: 0,
         preloadImageCount: 25,
-        oneTickAtSpeed: 750,
         errorHandler,
     });
     await ThemeVars.config(ThemeName, TV, "themes");

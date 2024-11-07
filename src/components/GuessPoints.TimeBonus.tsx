@@ -10,6 +10,7 @@ export function TimeBonus() {
     const animation = useAnimeRef(AnimeComponent.TimeBonus);
     const style = useStyle({ timeBonus: true });
     const bonus = QuestionTimer.RefObject.secondsRemaining;
+    console.log("TimeBonus: bonus", bonus);
     const render = bonus ? `+${bonus} time bonus` : "no time bonus";
     style.section.color = bonus
         ? ThemeVars.getValue(TV.GuessPoints_CORRECT_color)

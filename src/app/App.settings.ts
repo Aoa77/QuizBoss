@@ -19,6 +19,8 @@ export class AppSettings {
     public readonly theme: ThemeName;
 
     public readonly oneTickAtSpeed: number;
+    public readonly demoDelayMin: number;
+    public readonly demoDelayMax: number;
     public readonly timerSeconds: number;
     public readonly pauseTimerBetweenQuestions: boolean;
     public readonly convertRemainingTimeToBonusPoints: boolean;
@@ -31,12 +33,14 @@ export class AppSettings {
         enableSecretQuestionSkip?: boolean;
         enableSecretWindowReload?: boolean;
         demoMode?: DemoMode;
-        
+        demoDelayMin?: number;
+        demoDelayMax?: number;
+
         guessButtonCount?: number;
         maxQuestions?: number;
         preloadImageCount?: number;
         theme?: ThemeName;
-        
+
         oneTickAtSpeed?: number;
         timerSeconds?: number;
         pauseTimerBetweenQuestions?: boolean;
@@ -54,9 +58,11 @@ export class AppSettings {
             convertRemainingTimeToBonusPoints,
             forfeitQuestionOnTimeout,
         } = params;
-
+        
         ///
         const {
+            demoDelayMin,
+            demoDelayMax,
             errorHandler: handleError,
             guessButtonCount,
             maxQuestions,
@@ -125,6 +131,22 @@ export class AppSettings {
             );
 
         ///
+        this.demoDelayMin =
+            demoDelayMin ?? //
+            +(
+                qp.get("demoDelayMin") ?? //
+                "50"
+            );
+
+        ///
+        this.demoDelayMax =
+            demoDelayMax ?? //
+            +(
+                qp.get("demoDelayMax") ?? //
+                "300"
+            );
+
+        ///
         this.oneTickAtSpeed =
             oneTickAtSpeed ?? //
             +(
@@ -145,9 +167,9 @@ export class AppSettings {
             timerSeconds ?? //
             +(
                 qp.get("timerSeconds") ?? //
-                "10"
+                "3"
             );
-            
+
         ///
         if (isBooleanNullOrUndefined(pauseTimerBetweenQuestions)) {
             pauseTimerBetweenQuestions = parseBoolean(

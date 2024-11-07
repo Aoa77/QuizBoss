@@ -13,6 +13,7 @@ export async function AskQuestion() {
     const { guessButtonCount, oneTickAtSpeed } = settings;
 
     const duration = oneTickAtSpeed;
+
     const anims = TaskGroup.create();
     anims.add(
         Anime.LoadingSpinner.run({
@@ -50,27 +51,32 @@ export async function AskQuestion() {
         );
     }
 
-    if (Anime.ScoreInfo.opacity !== Fade.one) {
+    if (Anime.ScoreInfo.opacity !== Fade.half) {
         anims.add(
             Anime.ScoreInfo.run({
-                opacity: Fade.in,
-                delay: 2.5 * duration,
-                duration: 3 * duration,
+                opacity: [Fade.zero, Fade.half],
+                duration: Duration.oneSecond,
                 easing: Ease.linear,
             }),
         );
     }
+    anims.add(
+        Anime.QuizProgress.run({
+            opacity: [Fade.one, Fade.half],
+            scale: [1.25, 1],
+            duration: Duration.oneSecond,
+            easing: Ease.linear,
+        }),
+    );
+    anims.add(
+        Anime.QuizProgress.run({
+            opacity: [Fade.one, Fade.half],
+            scale: [1.25, 1],
+            duration: Duration.oneSecond,
+            easing: Ease.linear,
+        }),
+    );
 
-    if (Anime.QuizProgress.opacity !== Fade.one) {
-        anims.add(
-            Anime.QuizProgress.run({
-                opacity: Fade.in,
-                delay: 2.5 * duration,
-                duration: 3 * duration,
-                easing: Ease.linear,
-            }),
-        );
-    }
     await anims.all();
 
     state.buttonAnswerMap.forEach((item) => {

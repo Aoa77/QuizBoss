@@ -14,6 +14,9 @@ export function TriggerGuess(bidx: number) {
     if (QuestionTimer.RefObject.status !== TimerStatus.Running) {
         return;
     }
+    if (QuestionTimer.RefObject.secondsRemaining < 1) {
+        return;
+    }
 
     const [state, setState] = FlowContext.current<QuizState>();
     const { buttonAnswerMap } = state;
@@ -21,16 +24,21 @@ export function TriggerGuess(bidx: number) {
         return;
     }
 
-    state.guessButtonIndex = bidx;
 
     setState((_state) => {
         if (_state.eventName !== EventName.AwaitGuess) {
             return _state;
         }
+        if (QuestionTimer.RefObject.status !== TimerStatus.Running) {
+            return _state;
+        }
+        if (QuestionTimer.RefObject.secondsRemaining < 1) {
+            return _state;
+        }
 
         return {
             ..._state,
-            guessButtonIndex: state.guessButtonIndex,
+            guessButtonIndex: bidx,
             eventName: EventName.PrepGuessResult,
         };
     });

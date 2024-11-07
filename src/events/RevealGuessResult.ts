@@ -12,7 +12,7 @@ export async function RevealGuessResult() {
     const [state, setState] = FlowContext.current<QuizState>();
     const { guessButtonIndex, settings, buttonAnswerMap } = state;
     const button = buttonAnswerMap[guessButtonIndex]!;
-    const { oneTickAtSpeed, convertRemainingTimeToBonusPoints } = settings;
+    const { oneTickAtSpeed } = settings;
 
     const duration = oneTickAtSpeed;
     const buttonRef = Anime.GuessButton(guessButtonIndex);
@@ -29,10 +29,16 @@ export async function RevealGuessResult() {
         return;
     }
 
+    console.group("SCORE");
+    console.info("itemScore", state.itemScore);
+    console.info("quizScore", state.quizScore);
+    console.info("secondsRemaining", QuestionTimer.RefObject.secondsRemaining);
+    console.groupEnd();
+
     QuestionTimer.RefObject.stop();
     await _concludeFinalGuess(buttonRef, state, duration);
     state.quizScore += state.itemScore;
-    if (convertRemainingTimeToBonusPoints) {
+    if (state.itemScore > 0) {
         state.quizScore += QuestionTimer.RefObject.secondsRemaining;
     }
     setState({ ...state, eventName: EventName.ConcludeQuestion });

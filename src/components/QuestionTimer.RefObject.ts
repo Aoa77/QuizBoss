@@ -20,12 +20,10 @@ export enum TimerStatus {
     TimedOut = "TimedOut",
 }
 export class QuestionTimerRefObject {
-
     private _status: TimerStatus = TimerStatus.None;
     public get status(): TimerStatus {
         return this._status;
     }
-
 
     public reset() {
         const animation = this._animation.instance;
@@ -36,7 +34,6 @@ export class QuestionTimerRefObject {
         this.updateUi();
         this._status = TimerStatus.Reset;
     }
-
 
     public get secondsRemaining(): number {
         return this._secondsRemaining < 1 ? 0 : this._secondsRemaining;
@@ -114,7 +111,7 @@ export class QuestionTimerRefObject {
 
     private async pulseAnimation(): Promise<void> {
         await this._animation.instance.run({
-            opacity: [1.0, 0.35],
+            opacity: [1.0, 0.2],
             duration: Duration.oneSecond,
             easing: Ease.linear,
         });
