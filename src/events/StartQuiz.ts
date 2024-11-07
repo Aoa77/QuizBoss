@@ -41,5 +41,5 @@ export async function StartQuiz() {
     await anims.all();
 
     //
-    setState({ ...state, eventName: EventName.PrepQuestion });
+    setState((state) => ({ ...state, eventName: EventName.PrepQuestion }));
 }

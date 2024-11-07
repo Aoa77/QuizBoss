@@ -15,9 +15,10 @@ export enum EventName {
     StartQuiz = "StartQuiz",
 }
 
-export function assertFlowEvent(eventName: EventName) {
+export function assertFlowEvent(expected: EventName) {
     const [state] = FlowContext.current<QuizState>();
-    if (eventName !== state.eventName) {
-        throw new Error(`Event map mismatch: ${eventName}`);
+    const { eventName } = state;
+    if (expected !== eventName) {
+        throw new Error(`Event map mismatch: ${expected}`);
     }
 }

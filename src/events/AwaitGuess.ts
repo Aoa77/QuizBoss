@@ -92,22 +92,25 @@ function createDemoGuess(): boolean {
 
 function runFailTransition() {
     const [state, setState] = FlowContext.current<QuizState>();
-    state.itemScore = 0;
-    state.buttonAnswerMap.forEach((_item) => {
+    const { buttonAnswerMap, correctAnswerButtonIndex } = state;
+
+    buttonAnswerMap.forEach((_item) => {
         _item!.buttonStyle = ButtonStyle.disabled;
     });
-    state.guessButtonIndex = state.correctAnswerButtonIndex;
-    const button = state.buttonAnswerMap[state.guessButtonIndex]!;
+
+    const button = buttonAnswerMap[correctAnswerButtonIndex]!;
     button.buttonStyle = ButtonStyle.reveal;
-    setState((_state) => {
-        if (_state.eventName !== EventName.AwaitGuess) {
-            return _state;
+
+    setState((state) => {
+        const { eventName } = state;
+        if (eventName !== EventName.AwaitGuess) {
+            return state;
         }
         return {
-            ..._state,
-            itemScore: state.itemScore,
-            buttonAnswerMap: state.buttonAnswerMap,
-            guessButtonIndex: state.guessButtonIndex,
+            ...state,
+            itemScore: 0,
+            buttonAnswerMap,
+            guessButtonIndex: correctAnswerButtonIndex,
             eventName: EventName.RevealGuessResult,
         };
     });

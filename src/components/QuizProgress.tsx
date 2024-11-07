@@ -9,10 +9,19 @@ export function QuizProgress() {
     const animation = useAnimeRef(AnimeComponent.QuizProgress);
     const style = useStyle();
     const [state] = FlowContext.current<QuizState>();
+    const { currentItemIndex, quizModule } = state;
+    if (!quizModule) {
+        return null;
+    }
 
+    ///
+    const { quizData } = quizModule;
+    const { items } = quizData;
+
+    ///
     return (
         <section id={animation.id} style={style.section}>
-            {state.currentItemIndex + 1} / {state.quizModule?.quizData?.items?.length}
+            {currentItemIndex + 1} / {items.length}
         </section>
     );
 }

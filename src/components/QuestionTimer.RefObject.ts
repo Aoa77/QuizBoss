@@ -11,14 +11,17 @@ import { FlowContext } from "../libs/flow-context/FlowContext";
 import { Lazy } from "../libs/friendlies/Lazy";
 import { Anime } from "../models/Anime";
 import { QuizState } from "../models/QuizState";
+import { Task } from "../libs/friendlies/Task";
 
 export enum TimerStatus {
     None = "None",
     Reset = "Reset",
     Running = "Running",
     Stopped = "Stopped",
+    StopRequested = "StopRequested",
     TimedOut = "TimedOut",
 }
+
 export class QuestionTimerRefObject {
     private _status: TimerStatus = TimerStatus.None;
     public get status(): TimerStatus {
@@ -45,8 +48,19 @@ export class QuestionTimerRefObject {
         this.pulse();
     }
 
-    public stop() {
-        this._status = TimerStatus.Stopped;
+    public async stop() {
+        const { status } = this;
+        if (
+            status === TimerStatus.Stopped ||
+            status === TimerStatus.StopRequested ||
+            status === TimerStatus.TimedOut
+        ) {
+            return;
+        }
+        this._status = TimerStatus.StopRequested;
+        while (this.status !== TimerStatus.Stopped) {
+            await Task.delay(100);
+        }
     }
 
     private _secondsRemaining: number = 0;
@@ -84,28 +98,22 @@ export class QuestionTimerRefObject {
     }
 
     private async pulse() {
-        if (this.status === TimerStatus.Stopped) {
+        ///
+        console.log("pulse", this.status);
+        if (this.status === TimerStatus.StopRequested) {
+            this._status = TimerStatus.Stopped;
             return;
         }
 
+        ///
         await this.pulseAnimation();
-        if (this.status.toString() === TimerStatus.Stopped) {
-            return;
-        }
-
         if (--this._secondsRemaining < 0) {
             this._status = TimerStatus.TimedOut;
             return;
         }
 
-        if (this.status.toString() === TimerStatus.Stopped) {
-            return;
-        }
+        ///
         this.updateUi();
-
-        if (this.status.toString() === TimerStatus.Stopped) {
-            return;
-        }
         await this.pulse();
     }
 

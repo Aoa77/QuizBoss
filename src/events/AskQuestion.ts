@@ -9,7 +9,7 @@ import { QuizState } from "../models/QuizState";
 export async function AskQuestion() {
     assertFlowEvent(EventName.AskQuestion);
     const [state, setState] = FlowContext.current<QuizState>();
-    const { settings } = state;
+    const { settings, buttonAnswerMap } = state;
     const { guessButtonCount, oneTickAtSpeed } = settings;
 
     const duration = oneTickAtSpeed;
@@ -79,10 +79,10 @@ export async function AskQuestion() {
 
     await anims.all();
 
-    state.buttonAnswerMap.forEach((item) => {
+    buttonAnswerMap.forEach((item) => {
         item!.buttonStyle = ButtonStyle.normal;
     });
     await Task.delay(0.75 * Duration.oneSecond);
 
-    setState({ ...state, eventName: EventName.AwaitGuess });
+    setState((state) => ({ ...state, eventName: EventName.AwaitGuess }));
 }

@@ -7,14 +7,16 @@ export async function PrepGuessResult() {
     assertFlowEvent(EventName.PrepGuessResult);
 
     const [state, setState] = FlowContext.current<QuizState>();
-    state.buttonAnswerMap.forEach((_item, idx) => {
+    const { buttonAnswerMap, guessButtonIndex, correctAnswerButtonIndex } = state;
+    let { itemScore } = state;
+    buttonAnswerMap.forEach((_item, idx) => {
         const item = _item!;
-        if (idx === state.guessButtonIndex) {
-            if (idx === state.correctAnswerButtonIndex) {
+        if (idx === guessButtonIndex) {
+            if (idx === correctAnswerButtonIndex) {
                 item.buttonStyle = ButtonStyle.correct;
                 return;
             }
-            --state.itemScore;
+            --itemScore;
             item.buttonStyle = ButtonStyle.wrong;
             return;
         }
@@ -24,10 +26,10 @@ export async function PrepGuessResult() {
         }
     });
 
-    setState((_state) => ({
-        ..._state,
-        buttonAnswerMap: state.buttonAnswerMap,
-        itemScore: state.itemScore,
+    setState((state) => ({
+        ...state,
+        buttonAnswerMap,
+        itemScore,
         eventName: EventName.RevealGuessResult,
     }));
 }

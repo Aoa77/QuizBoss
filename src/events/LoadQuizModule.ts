@@ -5,6 +5,7 @@ import { shuffle } from "../libs/randos/shuffle";
 import { ThemeVars } from "../libs/theme-vars/ThemeVars";
 import { ButtonStyle } from "../models/ButtonStyle";
 import { assertFlowEvent, EventName } from "../models/EventName";
+import { QuizData } from "../models/QuizData";
 import { QuizItem } from "../models/QuizItem";
 import { QuizModule } from "../models/QuizModule";
 import { QuizState } from "../models/QuizState";
@@ -18,30 +19,36 @@ export async function LoadQuizModule() {
     assertFlowEvent(EventName.LoadQuizModule);
     const [state, setState] = FlowContext.current<QuizState>();
     const { settings } = state;
+    const { maxQuestions, guessButtonCount, preloadImageCount } = settings;
     count.imagesLoaded = 0;
 
-    state.bestScore = LocalStore.numbers.get("bestScore", 0)!;
-    console.info("Best score restored: ", state.bestScore);
+    const bestScore = LocalStore.numbers.get("bestScore", 0)!;
+    console.info("Best score restored: ", bestScore);
 
-    state.quizModule = await fetchQuizModule(settings.quizModuleName);
-    console.info(`Quiz module loading: ${state.quizModule!.name}`, state.quizModule!);
-    const { quizModule } = state;
+    const quizModule = await fetchQuizModule(settings.quizModuleName);
+    console.info(`Quiz module loading: ${quizModule.name}`, quizModule);
     const { quizData } = quizModule;
+    const { items } = quizData;
 
-    shuffle(quizData.items);
-    for (let index = 0; index < quizData.items.length; index++) {
-        const item = quizData.items[index];
+    shuffle(items);
+    for (let index = 0; index < items.length; index++) {
+        const item = items[index];
         initQuizItem(item, index, quizModule.name);
     }
 
-    randomizeGuessPool(state);
-    if (settings.maxQuestions > 0) {
-        quizData.items = quizData.items.slice(0, settings.maxQuestions);
+    randomizeGuessPool(guessButtonCount, quizData);
+    if (maxQuestions > 0) {
+        quizData.items = quizData.items.slice(0, maxQuestions);
     }
-    state.totalItems = quizData.items.length;
+    const totalItems = quizData.items.length;
 
-    await loadImages(state);
-    setState({ ...state, eventName: EventName.StartQuiz });
+    await loadImages(preloadImageCount, quizData);
+    setState((state) => ({
+        ...state,
+        totalItems,
+        quizModule,
+        eventName: EventName.StartQuiz,
+    }));
 }
 
 async function fetchQuizModule(quizModuleName: string): Promise<QuizModule> {
@@ -65,10 +72,7 @@ function initQuizItem(item: QuizItem, index: number, moduleName: string) {
     item.imageSrc = `${moduleName}/${item.imageSrc}`;
 }
 
-function randomizeGuessPool(state: QuizState): void {
-    const { settings, quizModule } = state;
-    const { quizData } = quizModule!;
-    const { guessButtonCount } = settings;
+function randomizeGuessPool(guessButtonCount: number, quizData: QuizData): void {
     quizData.randomizedGuessPool = quizData.items.slice();
 
     // need at least number of dummy items as number of guess buttons
@@ -109,24 +113,23 @@ function randomizeGuessPool(state: QuizState): void {
     shuffle(quizData.randomizedGuessPool);
 }
 
-async function loadImages(state: QuizState) {
+async function loadImages(
+    preloadImageCount: number,
+    quizData: QuizData,
+): Promise<void> {
     ///
     console.info("Loading quiz images...");
-    const { settings, quizModule } = state;
-    const { quizData } = quizModule!;
-    const { preloadImageCount } = settings;
-    const preloadCount =
-        preloadImageCount > 0 //
-            ? preloadImageCount
-            : quizData.items.length;
+    if (preloadImageCount < 1) {
+        preloadImageCount = quizData.items.length;
+    }
 
     ///
     for (const item of quizData.items) {
-        if (count.imagesLoaded < preloadCount) {
+        if (count.imagesLoaded < preloadImageCount) {
             await fetchImage(item);
             ThemeVars.setValue(
                 TV.LoadingProgress_BAR_width,
-                `${(++count.imagesLoaded / preloadCount) * 100}%`,
+                `${(++count.imagesLoaded / preloadImageCount) * 100}%`,
             );
             continue;
         }

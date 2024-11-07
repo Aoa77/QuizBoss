@@ -32,5 +32,5 @@ export async function ConcludeWrongGuess() {
         }
     });
 
-    setState({ ...state, eventName: EventName.AwaitGuess });
+    setState((state) => ({ ...state, eventName: EventName.AwaitGuess }));
 }

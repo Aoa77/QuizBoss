@@ -12,8 +12,8 @@ export function QuestionImage() {
 
     ///
     const [state] = FlowContext.current<QuizState>();
-    const item = state.currentItem;
-    if (item === null) {
+    const { currentItem } = state;
+    if (currentItem === null) {
         return null;
     }
 
@@ -21,7 +21,7 @@ export function QuestionImage() {
     return (
         <section id={animation.id} style={style.section}>
             <img
-                src={item.imageSrc}
+                src={currentItem.imageSrc}
                 style={style.image}
                 alt=""
                 onPointerDown={onPointerDown}
@@ -34,8 +34,10 @@ async function onPointerDown() {
     const [state, setState] = FlowContext.current<QuizState>();
     const { settings } = state;
     const { enableSecretQuestionSkip } = settings;
-    if (!enableSecretQuestionSkip || state.eventName !== EventName.AwaitGuess) {
+    let { eventName } = state;
+    if (!enableSecretQuestionSkip || eventName !== EventName.AwaitGuess) {
         return;
     }
-    setState({ ...state, eventName: EventName.ConcludeQuestion });
+    eventName = EventName.ConcludeQuestion;
+    setState((state) => ({ ...state, eventName: EventName.ConcludeQuestion }));
 }

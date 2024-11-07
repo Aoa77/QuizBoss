@@ -36,7 +36,8 @@ export function App(settings: AppSettings) {
     useFlowContext<QuizState, EventName>({
         initialState: initQuizState(settings),
         flowProperty: (state) => {
-            return state.eventName;
+            const { eventName } = state;
+            return eventName;
         },
         flowEvents: new Map<EventName, () => Promise<void>>([
             [EventName.AskQuestion,          AskQuestion],
@@ -52,10 +53,11 @@ export function App(settings: AppSettings) {
         ]),
         errorHandler: settings.errorHandler,
         stateLogger(state) {
+            const { eventName, currentItemIndex, correctAnswerButtonIndex } = state;
             console.group("state");
-            console.info("eventName: ", state.eventName);
-            console.info("currentItemIndex: ", state.currentItemIndex);
-            console.info("correctAnswerButtonIndex: ", state.correctAnswerButtonIndex);
+            console.info("eventName: ", eventName);
+            console.info("currentItemIndex: ", currentItemIndex);
+            console.info("correctAnswerButtonIndex: ", correctAnswerButtonIndex);
             console.groupEnd();
         },
     });

@@ -25,19 +25,23 @@ export function TriggerGuess(bidx: number) {
     }
 
 
-    setState((_state) => {
-        if (_state.eventName !== EventName.AwaitGuess) {
-            return _state;
+    setState((state) => {
+        const {eventName} = state;
+        if (eventName !== EventName.AwaitGuess) {
+            return state;
         }
-        if (QuestionTimer.RefObject.status !== TimerStatus.Running) {
-            return _state;
+
+        const timer = QuestionTimer.RefObject;
+        const {status, secondsRemaining} = timer;
+        if (status !== TimerStatus.Running) {
+            return state;
         }
-        if (QuestionTimer.RefObject.secondsRemaining < 1) {
-            return _state;
+        if (secondsRemaining < 1) {
+            return state;
         }
 
         return {
-            ..._state,
+            ...state,
             guessButtonIndex: bidx,
             eventName: EventName.PrepGuessResult,
         };

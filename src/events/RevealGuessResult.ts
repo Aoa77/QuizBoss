@@ -5,6 +5,7 @@ import { TaskGroup } from "../libs/friendlies/Task";
 import { Anime, GuessButtonRef } from "../models/Anime";
 import { ButtonStyle } from "../models/ButtonStyle";
 import { assertFlowEvent, EventName } from "../models/EventName";
+import { QuizItem } from "../models/QuizItem";
 import { QuizState } from "../models/QuizState";
 
 export async function RevealGuessResult() {
@@ -25,37 +26,64 @@ export async function RevealGuessResult() {
     });
 
     if (button.buttonStyle === ButtonStyle.wrong) {
-        setState({ ...state, eventName: EventName.ConcludeWrongGuess });
+        setState((state) => ({ ...state, eventName: EventName.ConcludeWrongGuess }));
         return;
     }
 
-    console.group("SCORE");
-    console.info("itemScore", state.itemScore);
-    console.info("quizScore", state.quizScore);
-    console.info("secondsRemaining", QuestionTimer.RefObject.secondsRemaining);
-    console.groupEnd();
+    ///
+    const timer = QuestionTimer.RefObject;
+    await timer.stop();
+    const { secondsRemaining } = timer;
 
-    QuestionTimer.RefObject.stop();
-    await _concludeFinalGuess(buttonRef, state, duration);
-    state.quizScore += state.itemScore;
-    if (state.itemScore > 0) {
-        state.quizScore += QuestionTimer.RefObject.secondsRemaining;
+    ///
+    const { itemScore } = state;
+    let { quizScore } = state;
+    _logScoreDetails(itemScore, quizScore, secondsRemaining);
+
+    ///
+    await _concludeFinalGuess(
+        buttonRef,
+        buttonAnswerMap,
+        duration,
+        guessButtonIndex,
+        itemScore,
+    );
+    quizScore += itemScore;
+    if (itemScore > 0) {
+        quizScore += secondsRemaining;
     }
-    setState({ ...state, eventName: EventName.ConcludeQuestion });
+    setState((state) => ({
+        ...state,
+        quizScore,
+        eventName: EventName.ConcludeQuestion,
+    }));
+}
+
+function _logScoreDetails(
+    itemScore: number,
+    quizScore: number,
+    secondsRemaining: number,
+) {
+    console.group("SCORE DETAILS");
+    console.info("itemScore", itemScore);
+    console.info("quizScore", quizScore);
+    console.info("secondsRemaining", secondsRemaining);
+    console.groupEnd();
 }
 
 async function _concludeFinalGuess(
     buttonRef: GuessButtonRef,
-    state: QuizState,
+    buttonAnswerMap: (QuizItem | null)[],
     duration: number,
+    guessButtonIndex: number,
+    itemScore: number,
 ) {
     ///
-    const { guessButtonIndex, itemScore } = state;
     const anims = TaskGroup.create();
+    let otherButton = 0;
 
     ///
-    let otherButton = 0;
-    state.buttonAnswerMap.forEach((_, bidx) => {
+    buttonAnswerMap.forEach((_, bidx) => {
         if (bidx === guessButtonIndex) {
             return;
         }

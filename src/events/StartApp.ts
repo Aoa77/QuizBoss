@@ -5,11 +5,14 @@ import { Anime } from "../models/Anime";
 import { FlowContext } from "../libs/flow-context/FlowContext";
 
 export async function StartApp() {
-    assertFlowEvent(EventName.StartApp);
-    const [state, setState] = FlowContext.current<QuizState>();
     ///
-    const { settings } = state;
+    assertFlowEvent(EventName.StartApp);
+    
+    ///
+    const [state, setState] = FlowContext.current<QuizState>();
+    const { settings, quizModule } = state;
     const { oneTickAtSpeed } = settings;
+
     ///
     const duration = oneTickAtSpeed;
     await Anime.LoadingProgress.run({
@@ -20,10 +23,8 @@ export async function StartApp() {
     });
 
     ///
-    if (state.quizModule === null) {
-        setState({ ...state, eventName: EventName.LoadQuizModule });
-        return;
-    }
-    ///
-    setState({ ...state, eventName: EventName.StartQuiz });
+    setState((state) => ({
+        ...state,
+        eventName: quizModule ? EventName.StartQuiz : EventName.LoadQuizModule,
+    }));
 }
