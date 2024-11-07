@@ -11,10 +11,8 @@ export function TriggerGuess(bidx: number) {
     } catch {
         return;
     }
+    
     if (QuestionTimer.RefObject.status !== TimerStatus.Running) {
-        return;
-    }
-    if (QuestionTimer.RefObject.secondsRemaining < 1) {
         return;
     }
 
@@ -31,12 +29,7 @@ export function TriggerGuess(bidx: number) {
             return state;
         }
 
-        const timer = QuestionTimer.RefObject;
-        const {status, secondsRemaining} = timer;
-        if (status !== TimerStatus.Running) {
-            return state;
-        }
-        if (secondsRemaining < 1) {
+        if (QuestionTimer.RefObject.status !== TimerStatus.Running) {
             return state;
         }
 

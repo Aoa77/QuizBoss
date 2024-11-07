@@ -134,7 +134,7 @@ export class AppSettings {
             demoDelayMin ?? //
             +(
                 qp.get("demoDelayMin") ?? //
-                "50"
+                "25"
             );
 
         ///
@@ -142,7 +142,7 @@ export class AppSettings {
             demoDelayMax ?? //
             +(
                 qp.get("demoDelayMax") ?? //
-                "300"
+                "2500"
             );
 
         ///
@@ -167,7 +167,7 @@ export class AppSettings {
             timerSeconds ?? //
             +(
                 qp.get("timerSeconds") ?? //
-                "3"
+                "8"
             );
 
         ///

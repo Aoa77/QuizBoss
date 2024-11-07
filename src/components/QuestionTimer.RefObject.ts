@@ -46,14 +46,17 @@ export class QuestionTimerRefObject {
     public async stop() {
         const { status } = this;
         if (
-            status === TimerStatus.Stopped ||
             status === TimerStatus.StopRequested ||
+            status === TimerStatus.Stopped ||
             status === TimerStatus.TimedOut
         ) {
             return;
         }
         this._status = TimerStatus.StopRequested;
-        while (this.status !== TimerStatus.Stopped) {
+        while (
+            this.status !== TimerStatus.Stopped &&
+            this.status !== TimerStatus.TimedOut
+        ) {
             await Task.delay(100);
         }
     }
@@ -91,14 +94,17 @@ export class QuestionTimerRefObject {
 
     private async pulse() {
         ///
-        console.log("pulse", this.status);
-        if (this.status === TimerStatus.StopRequested) {
-            this._status = TimerStatus.Stopped;
+        if (this.shouldStopTimer()) {
             return;
         }
 
         ///
         await this.pulseAnimation();
+        if (this.shouldStopTimer()) {
+            return;
+        }
+
+        ///
         if (--this._secondsRemaining < 0) {
             this._status = TimerStatus.TimedOut;
             return;
@@ -107,6 +113,15 @@ export class QuestionTimerRefObject {
         ///
         this.updateUi();
         await this.pulse();
+    }
+
+    private shouldStopTimer(): boolean {
+        if (this.status === TimerStatus.StopRequested) {
+            this._status = TimerStatus.Stopped;
+        }
+        return (
+            this.status === TimerStatus.Stopped || this.status === TimerStatus.TimedOut
+        );
     }
 
     private async pulseAnimation(): Promise<void> {
