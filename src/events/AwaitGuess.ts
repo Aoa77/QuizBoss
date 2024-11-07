@@ -13,6 +13,7 @@ import { Task } from "../libs/friendlies/Task";
 export async function AwaitGuess() {
     ///
     assertFlowEvent(EventName.AwaitGuess);
+    await Task.delay(1);
 
     if (countAvailableGuesses().length === 1) {
         runFailTransition();
@@ -46,9 +47,8 @@ export async function AwaitGuess() {
     const { settings } = state;
     const { demoDelayMin, demoDelayMax } = settings;
     const delay = randomIntInclusive(demoDelayMin, demoDelayMax);
-    setTimeout(() => TriggerGuess(DEMO.guess.shift()!), delay);
 
-    await Task.delay(1);
+    Task.delay(delay).then(() => TriggerGuess(DEMO.guess.shift()!));
 }
 
 function countAvailableGuesses() {
@@ -91,8 +91,6 @@ function createDemoGuess(): boolean {
 }
 
 function runFailTransition() {
-
-
     const [state, setState] = FlowContext.current<QuizState>();
     const { buttonAnswerMap, correctAnswerButtonIndex } = state;
 

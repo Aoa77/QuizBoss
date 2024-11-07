@@ -18,6 +18,10 @@ export enum EventName {
 export function assertFlowEvent(expected: EventName) {
     const [state] = FlowContext.current<QuizState>();
     const { eventName } = state;
+    console.group("assertFlowEvent");
+    console.info("expected", expected);
+    console.info("actual", eventName);
+    console.groupEnd();
     if (expected !== eventName) {
         throw new Error(`Event map mismatch: ${expected}`);
     }

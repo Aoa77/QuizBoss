@@ -6,7 +6,7 @@ import { FlowContext } from "../libs/flow-context/FlowContext";
 import { Lazy } from "../libs/friendlies/Lazy";
 import { Anime } from "../models/Anime";
 import { QuizState } from "../models/QuizState";
-import { Task, TaskGroup } from "../libs/friendlies/Task";
+import { Task } from "../libs/friendlies/Task";
 
 export enum TimerStatus {
     None = "None",
