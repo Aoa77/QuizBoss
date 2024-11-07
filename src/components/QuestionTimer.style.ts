@@ -10,7 +10,7 @@ interface Style {
 export function useStyle(): Style {
     return {
         section: {
-            willChange: "transform, opacity",
+            // willChange: "transform, opacity",
             alignContent: "normal",
             color: ThemeVars.getRef(TV, TV.QuestionTimer_color),
             fontFamily: ThemeFont.mono,

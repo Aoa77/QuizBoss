@@ -6,7 +6,7 @@ import { FlowContext } from "../libs/flow-context/FlowContext";
 import { Lazy } from "../libs/friendlies/Lazy";
 import { Anime } from "../models/Anime";
 import { QuizState } from "../models/QuizState";
-import { Task } from "../libs/friendlies/Task";
+import { Task, TaskGroup } from "../libs/friendlies/Task";
 
 export enum TimerStatus {
     None = "None",
@@ -18,6 +18,7 @@ export enum TimerStatus {
 }
 
 export class QuestionTimerRefObject {
+    private _pulseScale: number = 0;
     private _status: TimerStatus = TimerStatus.None;
     public get status(): TimerStatus {
         return this._status;
@@ -38,8 +39,21 @@ export class QuestionTimerRefObject {
     }
 
     public async start() {
+        if (this._status !== TimerStatus.Reset) {
+            throw new Error("Timer must be reset before starting.");
+        }
         this._status = TimerStatus.Running;
-        await this.popIntoExistance();
+
+        ///
+
+        const anim = this._animation.instance;
+        anim.opacity = 1;
+
+        await anim.run({
+            scale: [0, 1.5],
+            duration: $time.seconds(0.25),
+        });
+        this._pulseScale = 1.5;
         this.pulse();
     }
 
@@ -77,21 +91,6 @@ export class QuestionTimerRefObject {
         return settings;
     });
 
-    private async popIntoExistance() {
-        const anim = this._animation.instance;
-        const settings = this._settings.instance;
-        await anim.run({
-            scale: [0, 1.5],
-            duration: $time.seconds(0.25),
-        });
-
-        anim.run({
-            scale: [1.5, 1.0],
-            duration: $time.seconds(settings.timerSeconds),
-            easing: $ease.linear,
-        });
-    }
-
     private async pulse() {
         ///
         if (this.shouldStopTimer()) {
@@ -115,6 +114,29 @@ export class QuestionTimerRefObject {
         await this.pulse();
     }
 
+    private async pulseAnimation() {
+        const anim = this._animation.instance;
+
+        anim.opacity = 1;
+        if (this._pulseScale === 0) {
+            this._pulseScale = 1.5;
+        }
+        const nextScale = this._pulseScale - 0.05;
+
+        anim.run({
+            scale: [this._pulseScale, nextScale],
+            duration: $time.second,
+            easing: $ease.linear,
+        });
+
+        await anim.run({
+            opacity: [1, 0.2],
+            duration: $time.second,
+            easing: $ease.linear,
+        });
+        this._pulseScale = nextScale;
+    }
+
     private shouldStopTimer(): boolean {
         if (this.status === TimerStatus.StopRequested) {
             this._status = TimerStatus.Stopped;
@@ -122,14 +144,6 @@ export class QuestionTimerRefObject {
         return (
             this.status === TimerStatus.Stopped || this.status === TimerStatus.TimedOut
         );
-    }
-
-    private async pulseAnimation(): Promise<void> {
-        await this._animation.instance.run({
-            opacity: [1.0, 0.25],
-            duration: $time.second,
-            easing: $ease.linear,
-        });
     }
 
     private updateUi() {

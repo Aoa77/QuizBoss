@@ -21,6 +21,17 @@ export function useAnimeRefs<T extends string>(baseId: T, count: number): AnimeR
                 const el = document.getElementById(this.id);
                 return el?.getBoundingClientRect() ?? null;
             },
+            get color(): string | null {
+                const el = document.getElementById(this.id);
+                return el?.style?.color ?? "";
+            },
+            set color(value: string) {
+                const el = document.getElementById(this.id);
+                if (!el) {
+                    return;
+                }
+                el.style.color = value;
+            },
             get opacity(): number | null {
                 const el = document.getElementById(this.id);
                 const value = parseFloat(el?.style?.opacity ?? "-1");

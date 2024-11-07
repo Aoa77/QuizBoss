@@ -37,12 +37,12 @@ export async function AskQuestion() {
             easing: $ease.linear,
         }),
     );
-
+    await Task.delay($time.ticks(1.5));
     for (let i = 0; i < guessButtonCount; i++) {
         anims.add(
             Anime.GuessButton(i).run({
                 opacity: [0, 1],
-                delay: $time.ticks(2.5) + i * $time.ticks(0.5),
+                delay: i * $time.ticks(0.40),
                 duration: $time.ticks(0.25),
                 easing: $ease.in.back,
             }),

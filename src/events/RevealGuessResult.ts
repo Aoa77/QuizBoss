@@ -1,4 +1,5 @@
 import { QuestionTimer } from "../components/QuestionTimer";
+import { TimerStatus } from "../components/QuestionTimer.RefObject";
 import { $ease, $time } from "../libs/anime-context/AnimeContext.constants";
 import { FlowContext } from "../libs/flow-context/FlowContext";
 import { TaskGroup } from "../libs/friendlies/Task";
@@ -32,6 +33,14 @@ export async function RevealGuessResult() {
     const timer = QuestionTimer.RefObject;
     await timer.stop();
     const { secondsRemaining } = timer;
+
+    const anim = Anime.QuestionTimer;
+    anim.color = timer.status === TimerStatus.TimedOut ? "red" : "green";
+    anim.run({
+        opacity: 1,
+        duration: $time.tick,
+        easing: $ease.linear,
+    });
 
     ///
     const { itemScore } = state;
@@ -133,10 +142,7 @@ async function _concludeFinalGuess(
     await _showScoreAndTransition(itemScore, buttonRef);
 }
 
-async function _showScoreAndTransition(
-    itemScore: number,
-    buttonRef: GuessButtonRef,
-) {
+async function _showScoreAndTransition(itemScore: number, buttonRef: GuessButtonRef) {
     const scoreRef = Anime.GuessPoints;
     scoreRef.opacity = 1;
 
@@ -147,7 +153,7 @@ async function _showScoreAndTransition(
     const scoreAnims = TaskGroup.create();
     scoreAnims.add(
         scoreRef.run({
-            scale: [0,1],
+            scale: [0, 1],
             duration: $time.ticks(0.25),
             endDelay: $time.ticks(1.25),
             easing: $ease.out.elastic(3, 0.75),
@@ -156,7 +162,7 @@ async function _showScoreAndTransition(
     if (itemScore > 0) {
         scoreAnims.add(
             bonusRef.run({
-                scale: [0,1],
+                scale: [0, 1],
                 delay: $time.ticks(1.25),
                 duration: $time.ticks(0.25),
                 endDelay: $time.ticks(1.25),
@@ -204,4 +210,6 @@ async function _showScoreAndTransition(
 
     scoreRef.opacity = 0;
     bonusRef.opacity = 0;
+
+    Anime.QuestionTimer.color = "white";
 }
