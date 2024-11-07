@@ -1,4 +1,4 @@
-import { Ease } from "../libs/anime-context/AnimeContext.constants";
+import { $ease, $time } from "../libs/anime-context/AnimeContext.constants";
 import { Anime } from "../models/Anime";
 import { ButtonStyle } from "../models/ButtonStyle";
 import { assertFlowEvent, EventName } from "../models/EventName";
@@ -8,16 +8,14 @@ import { FlowContext } from "../libs/flow-context/FlowContext";
 export async function ConcludeWrongGuess() {
     assertFlowEvent(EventName.ConcludeWrongGuess);
     const [state, setState] = FlowContext.current<QuizState>();
-    const { buttonAnswerMap, guessButtonIndex, settings } = state;
-    const { oneTickAtSpeed } = settings;
+    const { buttonAnswerMap, guessButtonIndex } = state;
 
-    const duration = oneTickAtSpeed;
     const buttonRef = Anime.GuessButton(guessButtonIndex);
     await buttonRef.run({
         scale: buttonRef.scaleDown,
-        delay: 1.05 * duration,
-        duration,
-        easing: Ease.out.elastic(3, 1),
+        delay: $time.ticks(1.05),
+        duration: $time.tick,
+        easing: $ease.out.elastic(3, 1),
     });
 
     buttonAnswerMap.forEach((_item) => {

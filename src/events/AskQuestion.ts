@@ -1,4 +1,4 @@
-import { Duration, Ease, Fade } from "../libs/anime-context/AnimeContext.constants";
+import { $time, $ease } from "../libs/anime-context/AnimeContext.constants";
 import { FlowContext } from "../libs/flow-context/FlowContext";
 import { Task, TaskGroup } from "../libs/friendlies/Task";
 import { Anime } from "../models/Anime";
@@ -10,70 +10,68 @@ export async function AskQuestion() {
     assertFlowEvent(EventName.AskQuestion);
     const [state, setState] = FlowContext.current<QuizState>();
     const { settings, buttonAnswerMap } = state;
-    const { guessButtonCount, oneTickAtSpeed } = settings;
-
-    const duration = oneTickAtSpeed;
+    const { guessButtonCount } = settings;
 
     const anims = TaskGroup.create();
     anims.add(
         Anime.LoadingSpinner.run({
-            opacity: Fade.out,
-            delay: duration,
-            duration: 0.15 * duration,
-            easing: Ease.linear,
+            opacity: [1, 0],
+            delay: $time.tick,
+            duration: $time.ticks(0.15),
+            easing: $ease.linear,
         }),
     );
     anims.add(
         Anime.QuestionImage.run({
-            opacity: Fade.in,
-            delay: duration,
-            duration,
-            easing: Ease.linear,
+            opacity: [0, 1],
+            delay: $time.tick,
+            duration: $time.tick,
+            easing: $ease.linear,
         }),
     );
     anims.add(
         Anime.QuestionText.run({
-            opacity: Fade.in,
-            delay: 1.5 * duration,
-            duration,
-            easing: Ease.linear,
+            opacity: [0, 1],
+            delay: $time.ticks(1.5),
+            duration: $time.tick,
+            easing: $ease.linear,
         }),
     );
 
     for (let i = 0; i < guessButtonCount; i++) {
         anims.add(
             Anime.GuessButton(i).run({
-                opacity: Fade.in,
-                delay: 2.5 * duration + i * (0.5 * duration),
-                duration: 0.25 * duration,
-                easing: Ease.in.back,
+                opacity: [0, 1],
+                delay: $time.ticks(2.5) + i * $time.ticks(0.5),
+                duration: $time.ticks(0.25),
+                easing: $ease.in.back,
             }),
         );
     }
 
-    if (Anime.ScoreInfo.opacity !== Fade.half) {
+    if (Anime.ScoreInfo.opacity !== 0.5) {
         anims.add(
             Anime.ScoreInfo.run({
-                opacity: [Fade.zero, Fade.half],
-                duration: Duration.oneSecond,
-                easing: Ease.linear,
+                opacity: [0, 0.5],
+                duration: $time.tick,
+                easing: $ease.linear,
             }),
         );
     }
     anims.add(
         Anime.QuizProgress.run({
-            opacity: [Fade.one, Fade.half],
+            opacity: [1.0, 0.5],
             scale: [1.25, 1],
-            duration: Duration.oneSecond,
-            easing: Ease.linear,
+            duration: $time.tick,
+            easing: $ease.linear,
         }),
     );
     anims.add(
         Anime.QuizProgress.run({
-            opacity: [Fade.one, Fade.half],
-            scale: [1.25, 1],
-            duration: Duration.oneSecond,
-            easing: Ease.linear,
+            opacity: [1.0, 0.5],
+            scale: [1.25, 1.0],
+            duration: $time.tick,
+            easing: $ease.linear,
         }),
     );
 
@@ -82,7 +80,7 @@ export async function AskQuestion() {
     buttonAnswerMap.forEach((item) => {
         item!.buttonStyle = ButtonStyle.normal;
     });
-    await Task.delay(0.75 * Duration.oneSecond);
+    await Task.delay($time.tick);
 
     setState((state) => ({ ...state, eventName: EventName.AwaitGuess }));
 }

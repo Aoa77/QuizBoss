@@ -1,9 +1,9 @@
-import { Duration } from "../libs/anime-context/AnimeContext.constants";
 import { HttpUtility } from "../libs/friendlies/HttpUtility";
 import { isBooleanNullOrUndefined } from "../libs/friendlies/BooleanBuddies";
 import { parseBoolean } from "../libs/friendlies/BooleanBuddies";
 import { DemoMode, parseDemoMode } from "../models/DemoMode";
 import { parseThemeName, ThemeName } from "../models/Theme";
+import { $time } from "../libs/anime-context/AnimeContext.constants";
 
 export class AppSettings {
     public readonly quizModuleName: string;
@@ -18,7 +18,6 @@ export class AppSettings {
     public readonly preloadImageCount: number;
     public readonly theme: ThemeName;
 
-    public readonly oneTickAtSpeed: number;
     public readonly demoDelayMin: number;
     public readonly demoDelayMax: number;
     public readonly timerSeconds: number;
@@ -41,7 +40,7 @@ export class AppSettings {
         preloadImageCount?: number;
         theme?: ThemeName;
 
-        oneTickAtSpeed?: number;
+        tickTime?: number;
         timerSeconds?: number;
         pauseTimerBetweenQuestions?: boolean;
         convertRemainingTimeToBonusPoints?: boolean;
@@ -58,15 +57,15 @@ export class AppSettings {
             convertRemainingTimeToBonusPoints,
             forfeitQuestionOnTimeout,
         } = params;
-        
+
         ///
         const {
             demoDelayMin,
             demoDelayMax,
-            errorHandler: handleError,
+            errorHandler,
             guessButtonCount,
             maxQuestions,
-            oneTickAtSpeed,
+            tickTime,
             preloadImageCount,
             timerSeconds,
         } = params;
@@ -75,7 +74,7 @@ export class AppSettings {
         const qp = HttpUtility.parseQueryString(window.location.search);
 
         ///
-        this.errorHandler = handleError;
+        this.errorHandler = errorHandler;
 
         ///
         quizModuleName ??= qp.get("quizModuleName");
@@ -147,12 +146,13 @@ export class AppSettings {
             );
 
         ///
-        this.oneTickAtSpeed =
-            oneTickAtSpeed ?? //
-            +(
-                qp.get("oneTickAtSpeed") ?? //
-                Duration.oneSecond.toString()
-            );
+        $time.setTickTime(
+            tickTime ?? //
+                +(
+                    qp.get("tickTime") ?? //
+                    "750"
+                ),
+        );
 
         ///
         this.preloadImageCount =

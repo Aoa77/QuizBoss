@@ -1,5 +1,5 @@
 import { QuestionTimer } from "../components/QuestionTimer";
-import { Ease, Fade, Scale } from "../libs/anime-context/AnimeContext.constants";
+import { $ease, $time } from "../libs/anime-context/AnimeContext.constants";
 import { FlowContext } from "../libs/flow-context/FlowContext";
 import { TaskGroup } from "../libs/friendlies/Task";
 import { Anime, GuessButtonRef } from "../models/Anime";
@@ -11,18 +11,16 @@ import { QuizState } from "../models/QuizState";
 export async function RevealGuessResult() {
     assertFlowEvent(EventName.RevealGuessResult);
     const [state, setState] = FlowContext.current<QuizState>();
-    const { guessButtonIndex, settings, buttonAnswerMap } = state;
+    const { guessButtonIndex, buttonAnswerMap } = state;
     const button = buttonAnswerMap[guessButtonIndex]!;
-    const { oneTickAtSpeed } = settings;
 
-    const duration = oneTickAtSpeed;
     const buttonRef = Anime.GuessButton(guessButtonIndex);
     await buttonRef.run({
         scale: buttonRef.scaleUp,
         delay: 0,
-        duration: 0.25 * duration,
+        duration: $time.ticks(0.25),
         endDelay: 0,
-        easing: Ease.out.elastic(3, 1),
+        easing: $ease.out.elastic(3, 1),
     });
 
     if (button.buttonStyle === ButtonStyle.wrong) {
@@ -41,13 +39,7 @@ export async function RevealGuessResult() {
     _logScoreDetails(itemScore, quizScore, secondsRemaining);
 
     ///
-    await _concludeFinalGuess(
-        buttonRef,
-        buttonAnswerMap,
-        duration,
-        guessButtonIndex,
-        itemScore,
-    );
+    await _concludeFinalGuess(buttonRef, buttonAnswerMap, guessButtonIndex, itemScore);
     quizScore += itemScore;
     if (itemScore > 0) {
         quizScore += secondsRemaining;
@@ -74,7 +66,6 @@ function _logScoreDetails(
 async function _concludeFinalGuess(
     buttonRef: GuessButtonRef,
     buttonAnswerMap: (QuizItem | null)[],
-    duration: number,
     guessButtonIndex: number,
     itemScore: number,
 ) {
@@ -91,13 +82,13 @@ async function _concludeFinalGuess(
         anims.add(
             button
                 .run({
-                    opacity: Fade.out,
-                    delay: 0.35 * duration * otherButton,
-                    duration: 0.5 * duration,
-                    easing: Ease.linear,
+                    opacity: [1, 0],
+                    delay: $time.ticks(0.25) * otherButton,
+                    duration: $time.ticks(0.5),
+                    easing: $ease.linear,
                 })
                 .then(() => {
-                    button.opacity = Fade.zero;
+                    button.opacity = 0;
                     button.scale = button.scaleMin;
                 }),
         );
@@ -114,63 +105,62 @@ async function _concludeFinalGuess(
     await buttonRef.run({
         scale: [buttonRef.scaleDown],
         delay: 0,
-        duration: 0.5 * duration,
-        easing: Ease.out.elastic(3, 0.75),
+        duration: $time.ticks(0.5),
+        easing: $ease.out.elastic(3, 0.75),
     });
 
     const slide = TaskGroup.create();
     slide.add(
         questionText.targetWith([Anime.QuestionTimer]).run({
-            opacity: Fade.zero,
-            delay: 0.125 * duration,
-            duration: 0.25 * duration,
-            easing: Ease.linear,
+            opacity: 0,
+            delay: $time.ticks(0.125),
+            duration: $time.ticks(0.25),
+            easing: $ease.linear,
         }),
     );
     slide.add(
         buttonRef.run({
             translateY,
-            delay: 0.25 * duration,
-            duration,
+            delay: $time.ticks(0.25),
+            duration: $time.tick,
             endDelay: 0,
-            easing: Ease.out.elastic(2.75, 1),
+            easing: $ease.out.elastic(2.75, 1),
         }),
     );
 
     ///
     await slide.all();
-    await _showScoreAndTransition(itemScore, buttonRef, duration);
+    await _showScoreAndTransition(itemScore, buttonRef);
 }
 
 async function _showScoreAndTransition(
     itemScore: number,
     buttonRef: GuessButtonRef,
-    duration: number,
 ) {
     const scoreRef = Anime.GuessPoints;
-    scoreRef.opacity = Fade.one;
+    scoreRef.opacity = 1;
 
     const bonusRef = Anime.TimeBonus;
-    bonusRef.opacity = Fade.one;
-    bonusRef.scale = Scale.zero;
+    bonusRef.scale = 0;
+    bonusRef.opacity = 1;
 
     const scoreAnims = TaskGroup.create();
     scoreAnims.add(
         scoreRef.run({
-            scale: Scale.up,
-            duration: 0.25 * duration,
-            endDelay: 1.25 * duration,
-            easing: Ease.out.elastic(3, 0.75),
+            scale: [0,1],
+            duration: $time.ticks(0.25),
+            endDelay: $time.ticks(1.25),
+            easing: $ease.out.elastic(3, 0.75),
         }),
     );
     if (itemScore > 0) {
         scoreAnims.add(
             bonusRef.run({
-                scale: Scale.up,
-                delay: 1.25 * duration,
-                duration: 0.25 * duration,
-                endDelay: 1.25 * duration,
-                easing: Ease.out.elastic(3, 0.75),
+                scale: [0,1],
+                delay: $time.ticks(1.25),
+                duration: $time.ticks(0.25),
+                endDelay: $time.ticks(1.25),
+                easing: $ease.out.elastic(3, 0.75),
             }),
         );
     }
@@ -179,28 +169,28 @@ async function _showScoreAndTransition(
     const anims = TaskGroup.create();
     anims.add(
         buttonRef.run({
-            opacity: Fade.out,
+            opacity: [1, 0],
             delay: 0,
-            duration: 0.5 * duration,
-            easing: Ease.linear,
+            duration: $time.ticks(0.5),
+            easing: $ease.linear,
         }),
     );
     anims.add(
         scoreRef.run({
-            opacity: Fade.out,
-            delay: 0.25 * duration,
-            duration: 0.5 * duration,
-            easing: Ease.linear,
+            opacity: [1, 0],
+            delay: $time.ticks(0.25),
+            duration: $time.ticks(0.5),
+            easing: $ease.linear,
         }),
     );
 
     if (itemScore > 0) {
         anims.add(
             bonusRef.run({
-                opacity: Fade.out,
-                delay: 0.5 * duration,
-                duration: 0.5 * duration,
-                easing: Ease.linear,
+                opacity: [1, 0],
+                delay: $time.ticks(0.5),
+                duration: $time.ticks(0.5),
+                easing: $ease.linear,
             }),
         );
     }
@@ -209,9 +199,9 @@ async function _showScoreAndTransition(
     await anims.all();
     buttonRef.clearTransforms();
 
-    scoreRef.scale = Scale.zero;
-    bonusRef.scale = Scale.zero;
+    scoreRef.scale = 0;
+    bonusRef.scale = 0;
 
-    scoreRef.opacity = Fade.zero;
-    bonusRef.opacity = Fade.zero;
+    scoreRef.opacity = 0;
+    bonusRef.opacity = 0;
 }

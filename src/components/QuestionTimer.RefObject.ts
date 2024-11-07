@@ -1,11 +1,6 @@
 import { Dispatch, SetStateAction } from "react";
 import { AppSettings } from "../app/App.settings";
-import {
-    Duration,
-    Ease,
-    Fade,
-    Scale,
-} from "../libs/anime-context/AnimeContext.constants";
+import { $ease, $time } from "../libs/anime-context/AnimeContext.constants";
 import { AnimeRef } from "../libs/anime-context/AnimeRef";
 import { FlowContext } from "../libs/flow-context/FlowContext";
 import { Lazy } from "../libs/friendlies/Lazy";
@@ -30,8 +25,8 @@ export class QuestionTimerRefObject {
 
     public reset() {
         const animation = this._animation.instance;
-        animation.scale = Scale.zero;
-        animation.opacity = Fade.one;
+        animation.scale = 0;
+        animation.opacity = 1;
         const { timerSeconds } = this._settings.instance;
         this._secondsRemaining = timerSeconds;
         this.updateUi();
@@ -64,8 +59,6 @@ export class QuestionTimerRefObject {
     }
 
     private _secondsRemaining: number = 0;
-    private _shrinkage: Promise<void> | null = null;
-
     private readonly _animation: Lazy<AnimeRef> = new Lazy<AnimeRef>(() => {
         return Anime.QuestionTimer;
     });
@@ -86,15 +79,14 @@ export class QuestionTimerRefObject {
         const settings = this._settings.instance;
         await anim.run({
             scale: [0, 1.5],
-            duration: 0.25 * Duration.oneSecond,
+            duration: $time.seconds(0.25),
         });
 
-        this._shrinkage = anim.run({
-            scale: [1.5, 1],
-            duration: settings.timerSeconds * Duration.oneSecond,
-            easing: Ease.linear,
+        anim.run({
+            scale: [1.5, 1.0],
+            duration: $time.seconds(settings.timerSeconds),
+            easing: $ease.linear,
         });
-        console.debug(this._shrinkage);
     }
 
     private async pulse() {
@@ -119,9 +111,9 @@ export class QuestionTimerRefObject {
 
     private async pulseAnimation(): Promise<void> {
         await this._animation.instance.run({
-            opacity: [1.0, 0.2],
-            duration: Duration.oneSecond,
-            easing: Ease.linear,
+            opacity: [1.0, 0.25],
+            duration: $time.second,
+            easing: $ease.linear,
         });
     }
 

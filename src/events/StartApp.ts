@@ -1,25 +1,23 @@
 import { assertFlowEvent, EventName } from "../models/EventName";
 import { QuizState } from "../models/QuizState";
-import { Ease, Fade } from "../libs/anime-context/AnimeContext.constants";
+import { $ease, $time } from "../libs/anime-context/AnimeContext.constants";
 import { Anime } from "../models/Anime";
 import { FlowContext } from "../libs/flow-context/FlowContext";
 
 export async function StartApp() {
     ///
     assertFlowEvent(EventName.StartApp);
-    
-    ///
-    const [state, setState] = FlowContext.current<QuizState>();
-    const { settings, quizModule } = state;
-    const { oneTickAtSpeed } = settings;
 
     ///
-    const duration = oneTickAtSpeed;
+    const [state, setState] = FlowContext.current<QuizState>();
+    const { quizModule } = state;
+
+    ///
     await Anime.LoadingProgress.run({
-        opacity: Fade.in,
-        delay: 0.2 * duration,
-        duration,
-        easing: Ease.linear,
+        opacity: [0, 1],
+        delay: $time.ticks(0.25),
+        duration: $time.tick,
+        easing: $ease.linear,
     });
 
     ///

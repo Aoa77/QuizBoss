@@ -1,24 +1,29 @@
-export enum Duration {
-    zero = 0,
-    oneSecond = 1000,
+export class $time {
+    public static get millisecond() {
+        return 1;
+    }
+    public static get second() {
+        return 1000;
+    }
+    public static milliseconds(ms: number) {
+        return ms;
+    }
+    public static seconds(s: number) {
+        return s * 1000;
+    }
+    public static get tick() {
+        return this._tick;
+    }
+    public static ticks(t: number) {
+        return t * this._tick;
+    }
+    private static _tick: number = 500;
+    public static setTickTime(tick: number) {
+        this._tick = tick;
+    }
 }
 
-export const Fade = {
-    in: [0, 1],
-    out: [1, 0],
-    one: 1,
-    half: 0.5,
-    zero: 0,
-};
-
-export const Scale = {
-    up: [0, 1],
-    down: [1, 0],
-    one: 1,
-    zero: 0,
-};
-
-export const Ease = {
+export const $ease = {
     linear: "linear",
     in: {
         elastic: (amplitude: number, period: number) =>

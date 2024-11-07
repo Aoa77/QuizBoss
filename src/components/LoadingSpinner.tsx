@@ -4,7 +4,7 @@ import { SvgThings } from "../libs/theme-vars/SvgThings";
 import { AnimeComponent } from "../models/Anime";
 import { useStyle } from "./LoadingSpinner.style";
 import anime from "animejs";
-import { Ease } from "../libs/anime-context/AnimeContext.constants";
+import { $ease } from "../libs/anime-context/AnimeContext.constants";
 
 export function LoadingSpinner() {
     const style = useStyle();
@@ -27,7 +27,7 @@ export function LoadingSpinner() {
             loop: true,
             delay: anime.stagger(100),
             duration: 700,
-            easing: Ease.linear,
+            easing: $ease.linear,
         });
     }, []);
 

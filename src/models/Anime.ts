@@ -1,5 +1,4 @@
 import { AnimeContext } from "../libs/anime-context/AnimeContext";
-import { Scale } from "../libs/anime-context/AnimeContext.constants";
 import { AnimeRef } from "../libs/anime-context/AnimeRef";
 
 export enum AnimeComponent {
@@ -28,7 +27,7 @@ export class Anime {
         const animeRef = AnimeContext.get(AnimeComponent.GuessButton, index)!;
         const buttonRef: GuessButtonRef = {
             ...animeRef,
-            scaleMin: Scale.one,
+            scaleMin: 1.0,
             scaleMax: 1.3,
             scaleUp: [],
             scaleDown: [],
