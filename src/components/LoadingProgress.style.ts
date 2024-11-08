@@ -20,7 +20,7 @@ export function useStyle(): Style {
     style.section = {
         color: ThemeVars.getRef(TV, TV.LoadingProgress_TEXT_color),
         fontFamily: ThemeFont.mono,
-        fontSize: CssUnit.rem(2),
+        fontSize: CssUnit.rem(3),
         fontWeight: "bold",
         height: CssUnit.cqh(20),
         marginTop: CssUnit.cqh(15),
@@ -30,7 +30,7 @@ export function useStyle(): Style {
     style.progBarBackground = {
         backgroundColor: ThemeVars.getRef(TV, TV.LoadingProgress_BAR_backgroundColor),
         width: CssUnit.cqw(33),
-        height: CssUnit.cqh(0.3),
+        height: CssUnit.cqh(0.7),
         margin: "auto",
         marginTop: CssUnit.cqh(1.2),
     };

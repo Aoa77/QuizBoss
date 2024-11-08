@@ -13,9 +13,9 @@ export function useStyle(): Style {
             alignContent: "normal",
             color: ThemeVars.getRef(TV, TV.QuestionText_color),
             fontFamily: ThemeFont.sans,
-            fontSize: CssUnit.rem(3),
+            fontSize: CssUnit.rem(3.5),
             height: CssUnit.cqh(10),
-            marginTop: CssUnit.cqh(37),
+            marginTop: CssUnit.cqh(38),
         },
     };
 }

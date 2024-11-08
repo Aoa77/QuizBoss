@@ -17,35 +17,38 @@ export function useAnimeRefs<T extends string>(baseId: T, count: number): AnimeR
         const obj: AnimeRef = {
             id,
             target,
+            get element(): HTMLElement | null {
+                return document.getElementById(this.id);
+            },
             get rect(): DOMRect | null {
-                const el = document.getElementById(this.id);
+                const el = this.element;
                 return el?.getBoundingClientRect() ?? null;
             },
             get color(): string | null {
-                const el = document.getElementById(this.id);
+                const el = this.element;
                 return el?.style?.color ?? "";
             },
             set color(value: string) {
-                const el = document.getElementById(this.id);
+                const el = this.element;
                 if (!el) {
                     return;
                 }
                 el.style.color = value;
             },
             get opacity(): number | null {
-                const el = document.getElementById(this.id);
+                const el = this.element;
                 const value = parseFloat(el?.style?.opacity ?? "-1");
                 return value >= 0 ? value : null;
             },
             set opacity(value: number) {
-                const el = document.getElementById(this.id);
+                const el = this.element;
                 if (!el) {
                     return;
                 }
                 el.style.opacity = value.toString();
             },
             get scale(): number | null {
-                const el = document.getElementById(this.id);
+                const el = this.element;
                 const transform = el?.style?.transform;
                 const scale = transform?.match(TransformRegex.scale);
                 if (!scale) {
@@ -55,7 +58,7 @@ export function useAnimeRefs<T extends string>(baseId: T, count: number): AnimeR
                 return value >= 0 ? value : null;
             },
             set scale(value: number) {
-                const el = document.getElementById(this.id);
+                const el = this.element;
                 if (!el) {
                     return;
                 }
@@ -76,7 +79,7 @@ export function useAnimeRefs<T extends string>(baseId: T, count: number): AnimeR
                 });
             },
             clearTransforms() {
-                const el = document.getElementById(this.id);
+                const el = this.element;
                 if (!el) {
                     return;
                 }
@@ -84,12 +87,6 @@ export function useAnimeRefs<T extends string>(baseId: T, count: number): AnimeR
             },
             run(params: AnimeParams) {
                 return AnimeTask.run(this.build(params));
-            },
-            targetWith(companions: AnimeRef[]) {
-                const targets = companions.map((c) => c.target).join(", ");
-                obj.target += ", " + targets;
-                console.debug("@", obj.target);
-                return obj;
             },
         };
         AnimeContext.set(baseId, obj, i);

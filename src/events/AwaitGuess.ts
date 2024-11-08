@@ -9,6 +9,8 @@ import { TriggerGuess } from "./TriggerGuess";
 import { TimerStatus } from "../components/QuestionTimer.RefObject";
 import { ButtonStyle } from "../models/ButtonStyle";
 import { Task } from "../libs/friendlies/Task";
+import { Anime } from "../models/Anime";
+import { $ease, $time } from "../libs/anime-context/AnimeContext.constants";
 
 export async function AwaitGuess() {
     ///
@@ -22,6 +24,11 @@ export async function AwaitGuess() {
 
     const timer = QuestionTimer.RefObject;
     if (timer.status === TimerStatus.Reset) {
+        await Anime.QuestionText.run({
+            opacity: [1, 0],
+            duration: $time.ticks(0.25),
+            easing: $ease.linear,
+        });
         timer.start();
     }
 

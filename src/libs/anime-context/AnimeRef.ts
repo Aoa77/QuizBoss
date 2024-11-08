@@ -4,7 +4,7 @@ import { AnimeParams, AnimeInstance } from "animejs";
 export interface AnimeRef {
     id: string;
     target: string;
-    targetWith(companions: AnimeRef[]) : AnimeRef;
+    element: HTMLElement | null;
     get color() : string | null;
     set color(value: string);
     get rect(): DOMRect | null;

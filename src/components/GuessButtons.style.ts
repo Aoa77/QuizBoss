@@ -21,7 +21,7 @@ export function useStyle(): Style {
     ///
     style.section = {
         alignContent: "normal",
-        marginTop: CssUnit.cqh(48),
+        marginTop: CssUnit.cqh(46),
         opacity: 1,
         textAlign: "center",
     };
@@ -38,12 +38,11 @@ export function useStyle(): Style {
         opacity: 0,
 
         fontFamily: ThemeFont.sans,
-        fontSize: CssUnit.rem(2.5),
-
+        fontSize: CssUnit.rem(3),
         margin: "0 auto",
-        marginBottom: CssUnit.cqh(3),
+        marginBottom: CssUnit.cqh(3.4),
 
-        width: CssUnit.cqw(60),
+        width: CssUnit.cqw(62),
         height: CssUnit.cqh(7),
     };
 

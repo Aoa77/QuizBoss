@@ -70,7 +70,11 @@ export enum TV {
     ///
     QuestionImage_shadow                 = "--tv-QuestionImage_shadow",
     QuestionText_color                   = "--tv-QuestionText_color",
-    QuestionTimer_color                  = "--tv-QuestionTimer_color",
+
+    ///
+    QuestionTimer_NORMAL_color           = "--tv-QuestionTimer_NORMAL_color",
+    QuestionTimer_GOOD_color             = "--tv-QuestionTimer_GOOD_color",
+    QuestionTimer_BAD_color              = "--tv-QuestionTimer_BAD_color",
     
     ///
     QuizProgress_color                   = "--tv-QuizProgress_color",

@@ -3,11 +3,13 @@ import { TimerStatus } from "../components/QuestionTimer.RefObject";
 import { $ease, $time } from "../libs/anime-context/AnimeContext.constants";
 import { FlowContext } from "../libs/flow-context/FlowContext";
 import { TaskGroup } from "../libs/friendlies/Task";
+import { ThemeVars } from "../libs/theme-vars/ThemeVars";
 import { Anime, GuessButtonRef } from "../models/Anime";
 import { ButtonStyle } from "../models/ButtonStyle";
 import { assertFlowEvent, EventName } from "../models/EventName";
 import { QuizItem } from "../models/QuizItem";
 import { QuizState } from "../models/QuizState";
+import { TV } from "../models/Theme";
 
 export async function RevealGuessResult() {
     assertFlowEvent(EventName.RevealGuessResult);
@@ -35,7 +37,13 @@ export async function RevealGuessResult() {
     const { secondsRemaining } = timer;
 
     const anim = Anime.QuestionTimer;
-    anim.color = timer.status === TimerStatus.TimedOut ? "red" : "green";
+    let tv = TV.QuestionTimer_GOOD_color;
+    if (timer.status === TimerStatus.TimedOut) {
+        tv = TV.QuestionTimer_BAD_color;
+    } else if (button.buttonStyle === ButtonStyle.reveal) {
+        tv = TV.QuestionTimer_BAD_color;
+    }
+    anim.color = ThemeVars.getRef(TV, tv);
     anim.run({
         opacity: 1,
         duration: $time.tick,
@@ -120,7 +128,7 @@ async function _concludeFinalGuess(
 
     const slide = TaskGroup.create();
     slide.add(
-        questionText.targetWith([Anime.QuestionTimer]).run({
+        Anime.QuestionTimer.run({
             opacity: 0,
             delay: $time.ticks(0.125),
             duration: $time.ticks(0.25),
@@ -211,5 +219,5 @@ async function _showScoreAndTransition(itemScore: number, buttonRef: GuessButton
     scoreRef.opacity = 0;
     bonusRef.opacity = 0;
 
-    Anime.QuestionTimer.color = "white";
+    Anime.QuestionTimer.color = ThemeVars.getRef(TV, TV.QuestionTimer_NORMAL_color);
 }

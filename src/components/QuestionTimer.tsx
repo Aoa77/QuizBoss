@@ -7,7 +7,11 @@ export function QuestionTimer() {
     const animation = useAnimeRef(AnimeComponent.QuestionTimer);
     const style = useStyle();
 
-    return <section id={animation.id} style={style.section}></section>;
+    return (
+        <section  style={style.section}>
+            <div id={animation.id} style={style.digits}></div>
+        </section>
+    );
 }
 
 QuestionTimer.RefObject = new QuestionTimerRefObject();

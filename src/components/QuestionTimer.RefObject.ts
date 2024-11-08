@@ -48,6 +48,8 @@ export class QuestionTimerRefObject {
 
         const anim = this._animation.instance;
         anim.opacity = 1;
+        anim.scale = 1;
+        this.updateUi();
 
         await anim.run({
             scale: [0, 1.5],
@@ -116,7 +118,6 @@ export class QuestionTimerRefObject {
 
     private async pulseAnimation() {
         const anim = this._animation.instance;
-
         anim.opacity = 1;
         if (this._pulseScale === 0) {
             this._pulseScale = 1.5;
@@ -150,6 +151,10 @@ export class QuestionTimerRefObject {
         const minutes = Math.floor(this._secondsRemaining / 60);
         const seconds = this._secondsRemaining % 60;
         const text = `${minutes}:${seconds.toString().padStart(2, "0")}`;
-        document.getElementById(this._animation.instance.id)!.innerText = text;
+        const el = document.getElementById(this._animation.instance.id)!;
+        const top = el.getBoundingClientRect().top;
+        const parentTop = el.parentElement!.getBoundingClientRect().top;
+        el.style.top = `${top - parentTop}px`;
+        el.innerText = text;
     }
 }

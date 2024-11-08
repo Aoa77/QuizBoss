@@ -14,9 +14,9 @@ export function useStyle(): Style {
             alignContent: "normal",
             color: ThemeVars.getRef(TV, TV.QuizTitle_color),
             fontFamily: ThemeFont.serif,
-            fontSize: CssUnit.rem(7),
+            fontSize: CssUnit.rem(6.5),
             height: CssUnit.cqh(10),
-            marginTop: CssUnit.cqh(5),
+            marginTop: CssUnit.cqh(4),
         },
     };
 }

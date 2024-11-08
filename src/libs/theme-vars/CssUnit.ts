@@ -15,6 +15,10 @@ export class CssUnit {
     public static rem(value: number): string {
         return `${value}rem`;
     }
+
+    public static percent(value: number): string {
+        return `${value}%`;
+    }
 }
 
 

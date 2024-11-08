@@ -14,9 +14,9 @@ export function useStyle(params: { timeBonus: boolean }): Style {
             color: ThemeVars.getRef(TV, TV.GuessPoints_CORRECT_color),
             fontFamily: ThemeFont.mono,
             fontWeight: "bold",
-            fontSize: CssUnit.rem(params.timeBonus ? 3 : 4),
-            height: CssUnit.cqh(10),
-            marginTop: CssUnit.cqh(params.timeBonus ? 54 : 50),
+            fontSize: CssUnit.rem(3),
+            height: CssUnit.cqh(4),
+            marginTop: CssUnit.cqh(params.timeBonus ? 57 : 51),
         },
     };
 }

@@ -45,7 +45,11 @@
     /**/
     --tv-QuestionImage_shadow                 : "#a5a5c877";
     --tv-QuestionText_color                   : "#00ffffff";
-    --tv-QuestionTimer_color                  : "#ffffffff";
+    
+    /**/
+    --tv-QuestionTimer_NORMAL_color           : "#ffffffff";
+    --tv-QuestionTimer_GOOD_color             : "#00ff00ff";
+    --tv-QuestionTimer_BAD_color              : "#ff0000ff";
     
     /**/
     --tv-QuizProgress_color                   : "#00ffffff";
