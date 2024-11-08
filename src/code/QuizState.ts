@@ -2,19 +2,21 @@ import { AppSettings } from "../app/App.settings";
 import { EventName } from "./EventName";
 import { QuizItem } from "./QuizItem";
 import { QuizModule } from "./QuizModule";
+import { Timer } from "./Timer";
 
 export interface QuizState {
     bestScore: number;
-    quizScore: number;
-    itemScore: number;
     buttonAnswerMap: (QuizItem | null)[];
     correctAnswerButtonIndex: number;
-    currentItemIndex: number;
     currentItem: QuizItem | null;
+    currentItemIndex: number;
     eventName: EventName;
     guessButtonIndex: number;
+    itemScore: number;
     quizModule: QuizModule | null;
+    quizScore: number;
     settings: AppSettings;
+    timer: Timer;
     totalItems: number;
 }
 
@@ -25,16 +27,17 @@ export function initQuizState(settings: AppSettings): QuizState {
     }
     return {
         bestScore: 0,
-        quizScore: 0,
-        itemScore: 0,
         buttonAnswerMap,
         correctAnswerButtonIndex: -1,
-        currentItemIndex: -1,
         currentItem: null,
+        currentItemIndex: -1,
         eventName: EventName.StartApp,
         guessButtonIndex: -1,
+        itemScore: 0,
         quizModule: null,
+        quizScore: 0,
         settings,
+        timer: Timer.instance(),
         totalItems: 0,
     };
 }

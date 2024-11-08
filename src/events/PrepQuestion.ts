@@ -1,11 +1,11 @@
-import { QuizState } from "../models/QuizState";
+import { QuizState } from "../code/QuizState";
 import { randomInt } from "../libs/randos/randomInt";
-import { QuizItem } from "../models/QuizItem";
-import { assertFlowEvent, EventName } from "../models/EventName";
-import { ButtonStyle } from "../models/ButtonStyle";
-import { DEMO, DemoMode } from "../models/DemoMode";
+import { QuizItem } from "../code/QuizItem";
+import { assertFlowEvent, EventName } from "../code/EventName";
+import { ButtonStyle } from "../code/ButtonStyle";
+import { DEMO, DemoMode } from "../code/DemoMode";
 import { FlowContext } from "../libs/flow-context/FlowContext";
-import { QuestionTimer } from "../components/QuestionTimer";
+import { Timer } from "../code/Timer";
 
 export async function PrepQuestion() {
     ///
@@ -58,7 +58,7 @@ export async function PrepQuestion() {
     }
 
     ///
-    QuestionTimer.RefObject.reset();
+    Timer.instance().reset();
 
     ///
     setState((state) => ({

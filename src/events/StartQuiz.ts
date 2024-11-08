@@ -1,8 +1,8 @@
 import { $ease, $time } from "../libs/anime-context/AnimeContext.constants";
 import { TaskGroup } from "../libs/friendlies/Task";
-import { Anime } from "../models/Anime";
-import { assertFlowEvent, EventName } from "../models/EventName";
-import { QuizState } from "../models/QuizState";
+import { Anime } from "../code/Anime";
+import { assertFlowEvent, EventName } from "../code/EventName";
+import { QuizState } from "../code/QuizState";
 import { FlowContext } from "../libs/flow-context/FlowContext";
 
 export async function StartQuiz() {

@@ -1,8 +1,8 @@
 import { HttpUtility } from "../libs/friendlies/HttpUtility";
 import { isBooleanNullOrUndefined } from "../libs/friendlies/BooleanBuddies";
 import { parseBoolean } from "../libs/friendlies/BooleanBuddies";
-import { DemoMode, parseDemoMode } from "../models/DemoMode";
-import { parseThemeName, ThemeName } from "../models/Theme";
+import { DemoMode, parseDemoMode } from "../code/DemoMode";
+import { parseThemeName, ThemeName } from "../code/Theme";
 import { $time } from "../libs/anime-context/AnimeContext.constants";
 
 export class AppSettings {

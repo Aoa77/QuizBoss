@@ -2,7 +2,7 @@ import { createRoot } from "react-dom/client";
 import { App } from "./app/App";
 import { AppSettings } from "./app/App.settings";
 import { ThemeVars } from "./libs/theme-vars/ThemeVars";
-import { ThemeName, TV } from "./models/Theme";
+import { ThemeName, TV } from "./code/Theme";
 import { showErrorUI } from "./main.errors";
 
 //////////////////////////////////////////////////
@@ -16,8 +16,8 @@ try {
         quizModuleName,
         enableSecretQuestionSkip: false,
         enableSecretWindowReload: false,
-        maxQuestions: 0,
-        preloadImageCount: 25,
+        maxQuestions: 10,
+        preloadImageCount: 5,
         errorHandler,
     });
     await ThemeVars.config(ThemeName, TV, "themes");

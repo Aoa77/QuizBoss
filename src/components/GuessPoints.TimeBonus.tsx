@@ -1,15 +1,15 @@
 import { useAnimeRef } from "../libs/anime-context/AnimeContext.hooks";
 import { ThemeVars } from "../libs/theme-vars/ThemeVars";
-import { AnimeComponent } from "../models/Anime";
-import { TV } from "../models/Theme";
+import { AnimeComponent } from "../code/Anime";
+import { TV } from "../code/Theme";
 import { useStyle } from "./GuessPoints.style";
-import { QuestionTimer } from "./QuestionTimer";
+import { Timer } from "../code/Timer";
 
 export function TimeBonus() {
     ////
     const animation = useAnimeRef(AnimeComponent.TimeBonus);
     const style = useStyle({ timeBonus: true });
-    const bonus = QuestionTimer.RefObject.secondsRemaining;
+    const bonus = Timer.instance().secondsRemaining;
     console.log("TimeBonus: bonus", bonus);
     const render = bonus ? `+${bonus} time bonus` : "no time bonus";
     style.section.color = bonus

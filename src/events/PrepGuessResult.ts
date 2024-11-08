@@ -1,7 +1,7 @@
 import { FlowContext } from "../libs/flow-context/FlowContext";
-import { ButtonStyle } from "../models/ButtonStyle";
-import { assertFlowEvent, EventName } from "../models/EventName";
-import { QuizState } from "../models/QuizState";
+import { ButtonStyle } from "../code/ButtonStyle";
+import { assertFlowEvent, EventName } from "../code/EventName";
+import { QuizState } from "../code/QuizState";
 
 export async function PrepGuessResult() {
     assertFlowEvent(EventName.PrepGuessResult);

@@ -1,6 +1,6 @@
 import { useStyle } from "./GuessButtons.style";
-import { QuizState } from "../models/QuizState";
-import { AnimeComponent } from "../models/Anime";
+import { QuizState } from "../code/QuizState";
+import { AnimeComponent } from "../code/Anime";
 import { FlowContext } from "../libs/flow-context/FlowContext";
 import { useAnimeRefs } from "../libs/anime-context/AnimeContext.hooks";
 import { TriggerGuess } from "../events/TriggerGuess";

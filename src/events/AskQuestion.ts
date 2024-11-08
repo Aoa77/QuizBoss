@@ -1,10 +1,10 @@
 import { $time, $ease } from "../libs/anime-context/AnimeContext.constants";
 import { FlowContext } from "../libs/flow-context/FlowContext";
 import { Task, TaskGroup } from "../libs/friendlies/Task";
-import { Anime } from "../models/Anime";
-import { ButtonStyle } from "../models/ButtonStyle";
-import { assertFlowEvent, EventName } from "../models/EventName";
-import { QuizState } from "../models/QuizState";
+import { Anime } from "../code/Anime";
+import { ButtonStyle } from "../code/ButtonStyle";
+import { assertFlowEvent, EventName } from "../code/EventName";
+import { QuizState } from "../code/QuizState";
 
 export async function AskQuestion() {
     assertFlowEvent(EventName.AskQuestion);

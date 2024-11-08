@@ -1,9 +1,9 @@
 import { FlowContext } from "../libs/flow-context/FlowContext";
-import { QuizState } from "../models/QuizState";
-import { EventName } from "../models/EventName";
+import { QuizState } from "../code/QuizState";
+import { EventName } from "../code/EventName";
 import { useStyle } from "./QuestionImage.style";
 import { useAnimeRef } from "../libs/anime-context/AnimeContext.hooks";
-import { AnimeComponent } from "../models/Anime";
+import { AnimeComponent } from "../code/Anime";
 
 export function QuestionImage() {
     ///

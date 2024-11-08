@@ -1,7 +1,7 @@
-import { assertFlowEvent, EventName } from "../models/EventName";
-import { QuizState } from "../models/QuizState";
+import { assertFlowEvent, EventName } from "../code/EventName";
+import { QuizState } from "../code/QuizState";
 import { $ease, $time } from "../libs/anime-context/AnimeContext.constants";
-import { Anime } from "../models/Anime";
+import { Anime } from "../code/Anime";
 import { FlowContext } from "../libs/flow-context/FlowContext";
 
 export async function StartApp() {

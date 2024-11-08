@@ -1,20 +1,30 @@
-import { QuestionTimer } from "../components/QuestionTimer";
-import { TimerStatus } from "../components/QuestionTimer.RefObject";
-import { $ease, $time } from "../libs/anime-context/AnimeContext.constants";
-import { FlowContext } from "../libs/flow-context/FlowContext";
-import { TaskGroup } from "../libs/friendlies/Task";
+// Animation and UI
+import { Anime, GuessButtonRef } from "../code/Anime";
+import { ButtonStyle } from "../code/ButtonStyle";
+import { TV } from "../code/Theme";
 import { ThemeVars } from "../libs/theme-vars/ThemeVars";
-import { Anime, GuessButtonRef } from "../models/Anime";
-import { ButtonStyle } from "../models/ButtonStyle";
-import { assertFlowEvent, EventName } from "../models/EventName";
-import { QuizItem } from "../models/QuizItem";
-import { QuizState } from "../models/QuizState";
-import { TV } from "../models/Theme";
+
+// Flow and Events
+import { assertFlowEvent, EventName } from "../code/EventName";
+import { FlowContext } from "../libs/flow-context/FlowContext";
+
+// Game Logic
+import { QuizItem } from "../code/QuizItem";
+import { QuizState } from "../code/QuizState";
+import { TimerStatus } from "../code/Timer";
+
+// Utilities
+import { $ease, $time } from "../libs/anime-context/AnimeContext.constants";
+import { TaskGroup } from "../libs/friendlies/Task";
 
 export async function RevealGuessResult() {
     assertFlowEvent(EventName.RevealGuessResult);
     const [state, setState] = FlowContext.current<QuizState>();
-    const { guessButtonIndex, buttonAnswerMap } = state;
+    const {
+        buttonAnswerMap,
+        guessButtonIndex, /////////
+        timer,
+    } = state;
     const button = buttonAnswerMap[guessButtonIndex]!;
 
     const buttonRef = Anime.GuessButton(guessButtonIndex);
@@ -32,7 +42,6 @@ export async function RevealGuessResult() {
     }
 
     ///
-    const timer = QuestionTimer.RefObject;
     await timer.stop();
     const { secondsRemaining } = timer;
 

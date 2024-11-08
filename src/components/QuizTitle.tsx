@@ -1,8 +1,8 @@
 import { FlowContext } from "../libs/flow-context/FlowContext";
-import { QuizState } from "../models/QuizState";
+import { QuizState } from "../code/QuizState";
 import { useStyle } from "./QuizTitle.style";
 import { useAnimeRef } from "../libs/anime-context/AnimeContext.hooks";
-import { AnimeComponent } from "../models/Anime";
+import { AnimeComponent } from "../code/Anime";
 
 export function QuizTitle() {
     const animation = useAnimeRef(AnimeComponent.QuizTitle);

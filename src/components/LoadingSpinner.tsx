@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useAnimeRef } from "../libs/anime-context/AnimeContext.hooks";
 import { SvgThings } from "../libs/theme-vars/SvgThings";
-import { AnimeComponent } from "../models/Anime";
+import { AnimeComponent } from "../code/Anime";
 import { useStyle } from "./LoadingSpinner.style";
 import anime from "animejs";
 import { $ease } from "../libs/anime-context/AnimeContext.constants";

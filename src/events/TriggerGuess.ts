@@ -1,10 +1,10 @@
-import { QuestionTimer } from "../components/QuestionTimer";
-import { TimerStatus } from "../components/QuestionTimer.RefObject";
+import { Timer } from "../code/Timer";
+import { TimerStatus } from "../code/Timer";
 import { FlowContext } from "../libs/flow-context/FlowContext";
 import { Task } from "../libs/friendlies/Task";
-import { ButtonStyle } from "../models/ButtonStyle";
-import { assertFlowEvent, EventName } from "../models/EventName";
-import { QuizState } from "../models/QuizState";
+import { ButtonStyle } from "../code/ButtonStyle";
+import { assertFlowEvent, EventName } from "../code/EventName";
+import { QuizState } from "../code/QuizState";
 
 export async function TriggerGuess(bidx: number) {
     try {
@@ -15,8 +15,8 @@ export async function TriggerGuess(bidx: number) {
     }
 
     if (
-        QuestionTimer.RefObject.status !== TimerStatus.Running ||
-        QuestionTimer.RefObject.secondsRemaining < 1
+        Timer.instance().status !== TimerStatus.Running ||
+        Timer.instance().secondsRemaining < 1
     ) {
         return;
     }
@@ -34,8 +34,8 @@ export async function TriggerGuess(bidx: number) {
         }
 
         if (
-            QuestionTimer.RefObject.status !== TimerStatus.Running ||
-            QuestionTimer.RefObject.secondsRemaining < 1
+            Timer.instance().status !== TimerStatus.Running ||
+            Timer.instance().secondsRemaining < 1
         ) {
             return state;
         }

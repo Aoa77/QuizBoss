@@ -1,15 +1,15 @@
 import { FlowContext } from "../libs/flow-context/FlowContext";
-import { assertFlowEvent, EventName } from "../models/EventName";
-import { QuizState } from "../models/QuizState";
-import { DEMO, DemoMode } from "../models/DemoMode";
+import { assertFlowEvent, EventName } from "../code/EventName";
+import { QuizState } from "../code/QuizState";
+import { DEMO, DemoMode } from "../code/DemoMode";
 import { randomInt } from "../libs/randos/randomInt";
 import { randomIntInclusive } from "../libs/randos/randomIntInclusive";
-import { QuestionTimer } from "../components/QuestionTimer";
+import { Timer } from "../code/Timer";
 import { TriggerGuess } from "./TriggerGuess";
-import { TimerStatus } from "../components/QuestionTimer.RefObject";
-import { ButtonStyle } from "../models/ButtonStyle";
+import { TimerStatus } from "../code/Timer";
+import { ButtonStyle } from "../code/ButtonStyle";
 import { Task } from "../libs/friendlies/Task";
-import { Anime } from "../models/Anime";
+import { Anime } from "../code/Anime";
 import { $ease, $time } from "../libs/anime-context/AnimeContext.constants";
 
 export async function AwaitGuess() {
@@ -22,7 +22,7 @@ export async function AwaitGuess() {
         return;
     }
 
-    const timer = QuestionTimer.RefObject;
+    const timer = Timer.instance();
     if (timer.status === TimerStatus.Reset) {
         await Anime.QuestionText.run({
             opacity: [1, 0],

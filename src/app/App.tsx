@@ -1,8 +1,8 @@
 ///
 import "./App.css";
 import { AppSettings } from "./App.settings";
-import { EventName } from "../models/EventName";
-import { initQuizState, QuizState } from "../models/QuizState";
+import { EventName } from "../code/EventName";
+import { initQuizState, QuizState } from "../code/QuizState";
 import { useFlowContext } from "../libs/flow-context/FlowContext.hook";
 
 ///

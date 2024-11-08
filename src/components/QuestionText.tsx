@@ -1,7 +1,7 @@
 import { useAnimeRef } from "../libs/anime-context/AnimeContext.hooks";
 import { FlowContext } from "../libs/flow-context/FlowContext";
-import { AnimeComponent } from "../models/Anime";
-import { QuizState } from "../models/QuizState";
+import { AnimeComponent } from "../code/Anime";
+import { QuizState } from "../code/QuizState";
 import { useStyle } from "./QuestionText.style";
 
 export function QuestionText() {

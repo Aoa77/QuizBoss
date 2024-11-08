@@ -1,9 +1,9 @@
 import { useAnimeRef } from "../libs/anime-context/AnimeContext.hooks";
 import { FlowContext } from "../libs/flow-context/FlowContext";
 import { ThemeVars } from "../libs/theme-vars/ThemeVars";
-import { AnimeComponent } from "../models/Anime";
-import { QuizState } from "../models/QuizState";
-import { TV } from "../models/Theme";
+import { AnimeComponent } from "../code/Anime";
+import { QuizState } from "../code/QuizState";
+import { TV } from "../code/Theme";
 import { useStyle } from "./GuessPoints.style";
 
 export function GuessPoints() {

@@ -3,13 +3,13 @@ import { LocalStore } from "../libs/friendlies/LocalStore";
 import { generateRandomString } from "../libs/randos/generateRandomString";
 import { shuffle } from "../libs/randos/shuffle";
 import { ThemeVars } from "../libs/theme-vars/ThemeVars";
-import { ButtonStyle } from "../models/ButtonStyle";
-import { assertFlowEvent, EventName } from "../models/EventName";
-import { QuizData } from "../models/QuizData";
-import { QuizItem } from "../models/QuizItem";
-import { QuizModule } from "../models/QuizModule";
-import { QuizState } from "../models/QuizState";
-import { TV } from "../models/Theme";
+import { ButtonStyle } from "../code/ButtonStyle";
+import { assertFlowEvent, EventName } from "../code/EventName";
+import { QuizData } from "../code/QuizData";
+import { QuizItem } from "../code/QuizItem";
+import { QuizModule } from "../code/QuizModule";
+import { QuizState } from "../code/QuizState";
+import { TV } from "../code/Theme";
 
 const count = {
     imagesLoaded: 0,

@@ -1,8 +1,8 @@
 import { CSSProperties } from "react";
 import { CssUnit } from "../libs/theme-vars/CssUnit";
 import { ThemeVars } from "../libs/theme-vars/ThemeVars";
-import { TV, ThemeFont } from "../models/Theme";
-import { ButtonStyle } from "../models/ButtonStyle";
+import { TV, ThemeFont } from "../code/Theme";
+import { ButtonStyle } from "../code/ButtonStyle";
 
 interface Style {
     section: CSSProperties;

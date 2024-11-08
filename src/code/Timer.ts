@@ -4,8 +4,8 @@ import { $ease, $time } from "../libs/anime-context/AnimeContext.constants";
 import { AnimeRef } from "../libs/anime-context/AnimeRef";
 import { FlowContext } from "../libs/flow-context/FlowContext";
 import { Lazy } from "../libs/friendlies/Lazy";
-import { Anime } from "../models/Anime";
-import { QuizState } from "../models/QuizState";
+import { Anime } from "./Anime";
+import { QuizState } from "./QuizState";
 import { Task } from "../libs/friendlies/Task";
 
 export enum TimerStatus {
@@ -17,11 +17,17 @@ export enum TimerStatus {
     TimedOut = "TimedOut",
 }
 
-export class QuestionTimerRefObject {
+export class Timer {
     private _pulseScale: number = 0;
     private _status: TimerStatus = TimerStatus.None;
     public get status(): TimerStatus {
         return this._status;
+    }
+
+    private static _instance: Timer | null = null;
+    public static instance(): Timer {
+        this._instance ??= new Timer();
+        return this._instance;
     }
 
     public reset() {
