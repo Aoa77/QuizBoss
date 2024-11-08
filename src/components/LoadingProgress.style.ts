@@ -22,15 +22,15 @@ export function useStyle(): Style {
         fontFamily: ThemeFont.mono,
         fontSize: CssUnit.rem(3),
         fontWeight: "bold",
-        height: CssUnit.cqh(20),
+        height: CssUnit.cqh(2),
         marginTop: CssUnit.cqh(15),
     };
 
     ///
     style.progBarBackground = {
         backgroundColor: ThemeVars.getRef(TV, TV.LoadingProgress_BAR_backgroundColor),
-        width: CssUnit.cqw(33),
-        height: CssUnit.cqh(0.7),
+        width: CssUnit.cqw(44),
+        height: CssUnit.cqh(0.25),
         margin: "auto",
         marginTop: CssUnit.cqh(1.2),
     };

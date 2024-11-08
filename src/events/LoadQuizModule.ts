@@ -127,10 +127,10 @@ async function loadImages(
     for (const item of quizData.items) {
         if (count.imagesLoaded < preloadImageCount) {
             await fetchImage(item);
-            ThemeVars.setValue(
-                TV.LoadingProgress_BAR_width,
-                `${(++count.imagesLoaded / preloadImageCount) * 100}%`,
+            const progress = Math.round(
+                (++count.imagesLoaded / preloadImageCount) * 100,
             );
+            ThemeVars.setValue(TV.LoadingProgress_BAR_width, `${progress}%`);
             continue;
         }
         fetchImage(item);
