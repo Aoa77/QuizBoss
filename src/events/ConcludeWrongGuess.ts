@@ -2,12 +2,12 @@ import { $ease, $time } from "../libs/anime-context/AnimeContext.constants";
 import { Anime } from "../code/Anime";
 import { ButtonStyle } from "../code/ButtonStyle";
 import { assertFlowEvent, EventName } from "../code/EventName";
-import { QuizState } from "../code/QuizState";
+import { AppState } from "../app/App.state";
 import { FlowContext } from "../libs/flow-context/FlowContext";
 
 export async function ConcludeWrongGuess() {
     assertFlowEvent(EventName.ConcludeWrongGuess);
-    const [state, setState] = FlowContext.current<QuizState>();
+    const [state, setState] = FlowContext.current<AppState>();
     const { buttonAnswerMap, guessButtonIndex } = state;
 
     const buttonRef = Anime.GuessButton(guessButtonIndex);

@@ -5,7 +5,7 @@ import { AnimeRef } from "../libs/anime-context/AnimeRef";
 import { FlowContext } from "../libs/flow-context/FlowContext";
 import { Lazy } from "../libs/friendlies/Lazy";
 import { Anime } from "./Anime";
-import { QuizState } from "./QuizState";
+import { AppState } from "../app/App.state";
 import { Task } from "../libs/friendlies/Task";
 
 export enum TimerStatus {
@@ -88,9 +88,9 @@ export class Timer {
         return Anime.QuestionTimer;
     });
 
-    private readonly _context: Lazy<[QuizState, Dispatch<SetStateAction<QuizState>>]> =
-        new Lazy<[QuizState, Dispatch<SetStateAction<QuizState>>]>(() => {
-            return FlowContext.current<QuizState>();
+    private readonly _context: Lazy<[AppState, Dispatch<SetStateAction<AppState>>]> =
+        new Lazy<[AppState, Dispatch<SetStateAction<AppState>>]>(() => {
+            return FlowContext.current<AppState>();
         });
 
     private readonly _settings: Lazy<AppSettings> = new Lazy<AppSettings>(() => {

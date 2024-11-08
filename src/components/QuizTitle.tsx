@@ -1,5 +1,5 @@
 import { FlowContext } from "../libs/flow-context/FlowContext";
-import { QuizState } from "../code/QuizState";
+import { AppState } from "../app/App.state";
 import { useStyle } from "./QuizTitle.style";
 import { useAnimeRef } from "../libs/anime-context/AnimeContext.hooks";
 import { AnimeComponent } from "../code/Anime";
@@ -8,7 +8,7 @@ export function QuizTitle() {
     const animation = useAnimeRef(AnimeComponent.QuizTitle);
     const style = useStyle();
 
-    const [state] = FlowContext.current<QuizState>();
+    const [state] = FlowContext.current<AppState>();
     const { quizModule } = state;
     if (!quizModule) {
         return null;
@@ -27,7 +27,7 @@ export function QuizTitle() {
 }
 
 function onPointerDown() {
-    const [state] = FlowContext.current<QuizState>();
+    const [state] = FlowContext.current<AppState>();
     const { settings } = state;
     const { enableSecretWindowReload } = settings;
     if (!enableSecretWindowReload) {

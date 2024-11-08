@@ -10,7 +10,7 @@ import { FlowContext } from "../libs/flow-context/FlowContext";
 
 // Game Logic
 import { QuizItem } from "../code/QuizItem";
-import { QuizState } from "../code/QuizState";
+import { AppState } from "../app/App.state";
 import { TimerStatus } from "../code/Timer";
 
 // Utilities
@@ -19,7 +19,7 @@ import { TaskGroup } from "../libs/friendlies/Task";
 
 export async function RevealGuessResult() {
     assertFlowEvent(EventName.RevealGuessResult);
-    const [state, setState] = FlowContext.current<QuizState>();
+    const [state, setState] = FlowContext.current<AppState>();
     const {
         buttonAnswerMap,
         guessButtonIndex, /////////

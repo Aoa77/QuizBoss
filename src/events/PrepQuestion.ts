@@ -1,4 +1,4 @@
-import { QuizState } from "../code/QuizState";
+import { AppState } from "../app/App.state";
 import { randomInt } from "../libs/randos/randomInt";
 import { QuizItem } from "../code/QuizItem";
 import { assertFlowEvent, EventName } from "../code/EventName";
@@ -10,7 +10,7 @@ import { Timer } from "../code/Timer";
 export async function PrepQuestion() {
     ///
     assertFlowEvent(EventName.PrepQuestion);
-    const [state, setState] = FlowContext.current<QuizState>();
+    const [state, setState] = FlowContext.current<AppState>();
     const { buttonAnswerMap, quizModule, settings } = state;
 
     ///

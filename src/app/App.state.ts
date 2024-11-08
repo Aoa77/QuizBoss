@@ -1,10 +1,10 @@
-import { AppSettings } from "../app/App.settings";
-import { EventName } from "./EventName";
-import { QuizItem } from "./QuizItem";
-import { QuizModule } from "./QuizModule";
-import { Timer } from "./Timer";
+import { AppSettings } from "./App.settings";
+import { EventName } from "../code/EventName";
+import { QuizItem } from "../code/QuizItem";
+import { QuizModule } from "../code/QuizModule";
+import { Timer } from "../code/Timer";
 
-export interface QuizState {
+export interface AppState {
     bestScore: number;
     buttonAnswerMap: (QuizItem | null)[];
     correctAnswerButtonIndex: number;
@@ -20,7 +20,7 @@ export interface QuizState {
     totalItems: number;
 }
 
-export function initQuizState(settings: AppSettings): QuizState {
+export function initAppState(settings: AppSettings): AppState {
     const buttonAnswerMap: (QuizItem | null)[] = [];
     for (let i = 0; i < settings.guessButtonCount; i++) {
         buttonAnswerMap.push(null);

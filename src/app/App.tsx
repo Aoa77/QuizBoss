@@ -2,7 +2,7 @@
 import "./App.css";
 import { AppSettings } from "./App.settings";
 import { EventName } from "../code/EventName";
-import { initQuizState, QuizState } from "../code/QuizState";
+import { initAppState, AppState } from "./App.state";
 import { useFlowContext } from "../libs/flow-context/FlowContext.hook";
 
 ///
@@ -33,8 +33,8 @@ import { StartQuiz } from "../events/StartQuiz";
 ///
 export function App(settings: AppSettings) {
     ///
-    useFlowContext<QuizState, EventName>({
-        initialState: initQuizState(settings),
+    useFlowContext<AppState, EventName>({
+        initialState: initAppState(settings),
         flowProperty: (state) => {
             const { eventName } = state;
             return eventName;

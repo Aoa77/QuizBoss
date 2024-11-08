@@ -4,11 +4,11 @@ import { Task, TaskGroup } from "../libs/friendlies/Task";
 import { Anime } from "../code/Anime";
 import { ButtonStyle } from "../code/ButtonStyle";
 import { assertFlowEvent, EventName } from "../code/EventName";
-import { QuizState } from "../code/QuizState";
+import { AppState } from "../app/App.state";
 
 export async function AskQuestion() {
     assertFlowEvent(EventName.AskQuestion);
-    const [state, setState] = FlowContext.current<QuizState>();
+    const [state, setState] = FlowContext.current<AppState>();
     const { settings, buttonAnswerMap } = state;
     const { guessButtonCount } = settings;
 

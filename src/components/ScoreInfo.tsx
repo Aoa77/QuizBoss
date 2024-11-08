@@ -1,14 +1,14 @@
 import { useAnimeRef } from "../libs/anime-context/AnimeContext.hooks";
 import { FlowContext } from "../libs/flow-context/FlowContext";
 import { AnimeComponent } from "../code/Anime";
-import { QuizState } from "../code/QuizState";
+import { AppState } from "../app/App.state";
 import { useStyle } from "./ScoreInfo.style";
 
 export function ScoreInfo() {
     ////
     const animation = useAnimeRef(AnimeComponent.ScoreInfo);
     const style = useStyle();
-    const [state] = FlowContext.current<QuizState>();
+    const [state] = FlowContext.current<AppState>();
     const { quizScore } = state;
 
     return (

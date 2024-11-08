@@ -1,5 +1,5 @@
 import { useStyle } from "./GuessButtons.style";
-import { QuizState } from "../code/QuizState";
+import { AppState } from "../app/App.state";
 import { AnimeComponent } from "../code/Anime";
 import { FlowContext } from "../libs/flow-context/FlowContext";
 import { useAnimeRefs } from "../libs/anime-context/AnimeContext.hooks";
@@ -7,7 +7,7 @@ import { TriggerGuess } from "../events/TriggerGuess";
 
 export function GuessButtons() {
     const style = useStyle();
-    const [state] = FlowContext.current<QuizState>();
+    const [state] = FlowContext.current<AppState>();
     const { buttonAnswerMap, settings } = state;
     const { guessButtonCount } = settings;
     const buttonJsx = [];

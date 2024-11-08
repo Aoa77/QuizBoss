@@ -1,5 +1,5 @@
 import { FlowContext } from "../libs/flow-context/FlowContext";
-import { QuizState } from "../code/QuizState";
+import { AppState } from "../app/App.state";
 import { EventName } from "../code/EventName";
 import { useStyle } from "./QuestionImage.style";
 import { useAnimeRef } from "../libs/anime-context/AnimeContext.hooks";
@@ -11,7 +11,7 @@ export function QuestionImage() {
     const animation = useAnimeRef(AnimeComponent.QuestionImage);
 
     ///
-    const [state] = FlowContext.current<QuizState>();
+    const [state] = FlowContext.current<AppState>();
     const { currentItem } = state;
     if (currentItem === null) {
         return null;
@@ -31,7 +31,7 @@ export function QuestionImage() {
 }
 
 async function onPointerDown() {
-    const [state, setState] = FlowContext.current<QuizState>();
+    const [state, setState] = FlowContext.current<AppState>();
     const { settings } = state;
     const { enableSecretQuestionSkip } = settings;
     let { eventName } = state;

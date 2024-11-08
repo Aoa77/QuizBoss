@@ -4,7 +4,7 @@ import { FlowContext } from "../libs/flow-context/FlowContext";
 import { Task } from "../libs/friendlies/Task";
 import { ButtonStyle } from "../code/ButtonStyle";
 import { assertFlowEvent, EventName } from "../code/EventName";
-import { QuizState } from "../code/QuizState";
+import { AppState } from "../app/App.state";
 
 export async function TriggerGuess(bidx: number) {
     try {
@@ -21,7 +21,7 @@ export async function TriggerGuess(bidx: number) {
         return;
     }
 
-    const [state, setState] = FlowContext.current<QuizState>();
+    const [state, setState] = FlowContext.current<AppState>();
     const { buttonAnswerMap } = state;
     if (buttonAnswerMap[bidx]!.buttonStyle !== ButtonStyle.normal) {
         return;

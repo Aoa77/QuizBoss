@@ -8,7 +8,7 @@ import { assertFlowEvent, EventName } from "../code/EventName";
 import { QuizData } from "../code/QuizData";
 import { QuizItem } from "../code/QuizItem";
 import { QuizModule } from "../code/QuizModule";
-import { QuizState } from "../code/QuizState";
+import { AppState } from "../app/App.state";
 import { TV } from "../code/Theme";
 
 const count = {
@@ -17,7 +17,7 @@ const count = {
 
 export async function LoadQuizModule() {
     assertFlowEvent(EventName.LoadQuizModule);
-    const [state, setState] = FlowContext.current<QuizState>();
+    const [state, setState] = FlowContext.current<AppState>();
     const { settings } = state;
     const { maxQuestions, guessButtonCount, preloadImageCount } = settings;
     count.imagesLoaded = 0;

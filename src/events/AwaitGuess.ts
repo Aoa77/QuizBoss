@@ -1,6 +1,6 @@
 import { FlowContext } from "../libs/flow-context/FlowContext";
 import { assertFlowEvent, EventName } from "../code/EventName";
-import { QuizState } from "../code/QuizState";
+import { AppState } from "../app/App.state";
 import { DEMO, DemoMode } from "../code/DemoMode";
 import { randomInt } from "../libs/randos/randomInt";
 import { randomIntInclusive } from "../libs/randos/randomIntInclusive";
@@ -50,7 +50,7 @@ export async function AwaitGuess() {
         return;
     }
 
-    const [state] = FlowContext.current<QuizState>();
+    const [state] = FlowContext.current<AppState>();
     const { settings } = state;
     const { demoDelayMin, demoDelayMax } = settings;
     const delay = randomIntInclusive(demoDelayMin, demoDelayMax);
@@ -59,13 +59,13 @@ export async function AwaitGuess() {
 }
 
 function countAvailableGuesses() {
-    const [state] = FlowContext.current<QuizState>();
+    const [state] = FlowContext.current<AppState>();
     const { buttonAnswerMap } = state;
     return buttonAnswerMap.filter((item) => item!.buttonStyle === ButtonStyle.normal);
 }
 
 function createDemoGuess(): boolean {
-    const [state] = FlowContext.current<QuizState>();
+    const [state] = FlowContext.current<AppState>();
     const { settings, correctAnswerButtonIndex } = state;
     const { demoMode, guessButtonCount } = settings;
 
@@ -98,7 +98,7 @@ function createDemoGuess(): boolean {
 }
 
 function runFailTransition() {
-    const [state, setState] = FlowContext.current<QuizState>();
+    const [state, setState] = FlowContext.current<AppState>();
     const { buttonAnswerMap, correctAnswerButtonIndex } = state;
 
     buttonAnswerMap.forEach((_item) => {

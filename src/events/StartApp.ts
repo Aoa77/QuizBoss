@@ -1,5 +1,5 @@
 import { assertFlowEvent, EventName } from "../code/EventName";
-import { QuizState } from "../code/QuizState";
+import { AppState } from "../app/App.state";
 import { $ease, $time } from "../libs/anime-context/AnimeContext.constants";
 import { Anime } from "../code/Anime";
 import { FlowContext } from "../libs/flow-context/FlowContext";
@@ -9,7 +9,7 @@ export async function StartApp() {
     assertFlowEvent(EventName.StartApp);
 
     ///
-    const [state, setState] = FlowContext.current<QuizState>();
+    const [state, setState] = FlowContext.current<AppState>();
     const { quizModule } = state;
 
     ///

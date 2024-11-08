@@ -1,5 +1,5 @@
 import { FlowContext } from "../libs/flow-context/FlowContext";
-import { QuizState } from "./QuizState";
+import { AppState } from "../app/App.state";
 
 export enum EventName {
     AskQuestion = "AskQuestion",
@@ -16,7 +16,7 @@ export enum EventName {
 }
 
 export function assertFlowEvent(expected: EventName) {
-    const [state] = FlowContext.current<QuizState>();
+    const [state] = FlowContext.current<AppState>();
     const { eventName } = state;
     console.group("assertFlowEvent");
     console.info("expected", expected);

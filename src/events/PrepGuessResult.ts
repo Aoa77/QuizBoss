@@ -1,12 +1,12 @@
 import { FlowContext } from "../libs/flow-context/FlowContext";
 import { ButtonStyle } from "../code/ButtonStyle";
 import { assertFlowEvent, EventName } from "../code/EventName";
-import { QuizState } from "../code/QuizState";
+import { AppState } from "../app/App.state";
 
 export async function PrepGuessResult() {
     assertFlowEvent(EventName.PrepGuessResult);
 
-    const [state, setState] = FlowContext.current<QuizState>();
+    const [state, setState] = FlowContext.current<AppState>();
     const { buttonAnswerMap, guessButtonIndex, correctAnswerButtonIndex } = state;
     let { itemScore } = state;
     buttonAnswerMap.forEach((_item, idx) => {
