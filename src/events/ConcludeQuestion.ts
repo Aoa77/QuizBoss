@@ -10,7 +10,7 @@ export async function ConcludeQuestion() {
     const [, setState] = FlowContext.current<AppState>();
 
     const anims = TaskGroup.create();
-    anims.add(
+    anims.add(() =>
         Anime.QuestionImage.run({
             opacity: [1, 0],
             delay: 0,
@@ -18,7 +18,7 @@ export async function ConcludeQuestion() {
             easing: $ease.linear,
         }),
     );
-    anims.add(
+    anims.add(() =>
         Anime.LoadingSpinner.run({
             opacity: [0, 1],
             delay: $time.ticks(0.125),

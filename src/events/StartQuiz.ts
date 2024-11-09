@@ -11,7 +11,7 @@ export async function StartQuiz() {
 
     ///
     const anims = TaskGroup.create();
-    anims.add(
+    anims.add(() =>
         Anime.LoadingProgress.run({
             opacity: [1, 0],
             delay: $time.ticks(0.25),
@@ -19,7 +19,7 @@ export async function StartQuiz() {
             easing: $ease.linear,
         }),
     );
-    anims.add(
+    anims.add(() =>
         Anime.QuizTitle.run({
             opacity: [0, 1],
             delay: $time.ticks(0.5),
@@ -27,7 +27,7 @@ export async function StartQuiz() {
             easing: $ease.linear,
         }),
     );
-    anims.add(
+    anims.add(() =>
         Anime.LoadingSpinner.run({
             opacity: [0, 1],
             delay: $time.ticks(0.75),

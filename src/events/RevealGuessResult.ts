@@ -105,7 +105,7 @@ async function _concludeFinalGuess(
             return;
         }
         const button: GuessButtonRef = Anime.GuessButton(bidx);
-        anims.add(
+        anims.add(() =>
             button
                 .run({
                     opacity: [1, 0],
@@ -136,7 +136,7 @@ async function _concludeFinalGuess(
     });
 
     const slide = TaskGroup.create();
-    slide.add(
+    slide.add(() =>
         Anime.QuestionTimer.run({
             opacity: 0,
             delay: $time.ticks(0.125),
@@ -144,7 +144,7 @@ async function _concludeFinalGuess(
             easing: $ease.linear,
         }),
     );
-    slide.add(
+    slide.add(() =>
         buttonRef.run({
             translateY,
             delay: $time.ticks(0.25),
@@ -168,7 +168,7 @@ async function _showScoreAndTransition(itemScore: number, buttonRef: GuessButton
     bonusRef.opacity = 1;
 
     const scoreAnims = TaskGroup.create();
-    scoreAnims.add(
+    scoreAnims.add(() =>
         scoreRef.run({
             scale: [0, 1],
             duration: $time.ticks(0.25),
@@ -177,7 +177,7 @@ async function _showScoreAndTransition(itemScore: number, buttonRef: GuessButton
         }),
     );
     if (itemScore > 0) {
-        scoreAnims.add(
+        scoreAnims.add(() =>
             bonusRef.run({
                 scale: [0, 1],
                 delay: $time.ticks(1.25),
@@ -190,7 +190,7 @@ async function _showScoreAndTransition(itemScore: number, buttonRef: GuessButton
     await scoreAnims.all();
 
     const anims = TaskGroup.create();
-    anims.add(
+    anims.add(() =>
         buttonRef.run({
             opacity: [1, 0],
             delay: 0,
@@ -198,7 +198,7 @@ async function _showScoreAndTransition(itemScore: number, buttonRef: GuessButton
             easing: $ease.linear,
         }),
     );
-    anims.add(
+    anims.add(() =>
         scoreRef.run({
             opacity: [1, 0],
             delay: $time.ticks(0.25),
@@ -208,7 +208,7 @@ async function _showScoreAndTransition(itemScore: number, buttonRef: GuessButton
     );
 
     if (itemScore > 0) {
-        anims.add(
+        anims.add(() =>
             bonusRef.run({
                 opacity: [1, 0],
                 delay: $time.ticks(0.5),

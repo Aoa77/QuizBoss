@@ -16,8 +16,8 @@ try {
         quizModuleName,
         enableSecretQuestionSkip: false,
         enableSecretWindowReload: false,
-        maxQuestions: 10,
-        preloadImageCount: 5,
+        maxQuestions: 50,
+        preloadImageCount: 15,
         errorHandler,
     });
     await ThemeVars.config(ThemeName, TV, "themes");

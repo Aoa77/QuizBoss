@@ -13,44 +13,64 @@ export async function AskQuestion() {
     const { guessButtonCount } = settings;
 
     const anims = TaskGroup.create();
-    anims.add(
+    anims.add(()=>
         Anime.LoadingSpinner.run({
             opacity: [1, 0],
-            delay: $time.tick,
-            duration: $time.ticks(0.15),
+            duration: $time.ticks(1.25),
             easing: $ease.linear,
         }),
     );
-    anims.add(
+    anims.add(()=>
         Anime.QuestionImage.run({
             opacity: [0, 1],
-            delay: $time.tick,
-            duration: $time.tick,
+            duration: $time.ticks(2),
             easing: $ease.linear,
         }),
     );
-    anims.add(
+
+
+    anims.add(()=>
         Anime.QuestionText.run({
             opacity: [0, 1],
-            delay: $time.ticks(1.5),
-            duration: $time.tick,
+            delay: $time.ticks(1),
+            duration: $time.ticks(2),
             easing: $ease.linear,
         }),
     );
-    await Task.delay($time.ticks(1.5));
+    anims.add(()=>
+        Anime.QuizProgress.run({
+            opacity: [0, 1],
+            delay: $time.ticks(1.5),
+            duration: $time.ticks(2),
+            easing: $ease.linear,
+        }),
+    );
+    // anims.add(() =>
+    //     Anime.QuizProgress.run({
+    //         opacity: [1.0, 0.5],
+    //         scale: [1.25, 1.0],
+    //         delay: $time.ticks(1.5),
+    //         duration: $time.tick,
+    //         easing: $ease.linear,
+    //     }),
+    // );
+    
+    await anims.all();
+    // await Task.delay($time.ticks(2));
+
     for (let i = 0; i < guessButtonCount; i++) {
-        anims.add(
+        anims.add(()=>
             Anime.GuessButton(i).run({
                 opacity: [0, 1],
-                delay: i * $time.ticks(0.40),
-                duration: $time.ticks(0.25),
+                delay: i * $time.ticks(0.4),
+                duration: $time.ticks(0.125),
                 easing: $ease.in.back,
             }),
         );
     }
 
     if (Anime.ScoreInfo.opacity !== 0.5) {
-        anims.add(
+        anims.add(()=>
             Anime.ScoreInfo.run({
                 opacity: [0, 0.5],
                 duration: $time.tick,
@@ -58,23 +78,6 @@ export async function AskQuestion() {
             }),
         );
     }
-    anims.add(
-        Anime.QuizProgress.run({
-            opacity: [1.0, 0.5],
-            scale: [1.25, 1],
-            duration: $time.tick,
-            easing: $ease.linear,
-        }),
-    );
-    anims.add(
-        Anime.QuizProgress.run({
-            opacity: [1.0, 0.5],
-            scale: [1.25, 1.0],
-            duration: $time.tick,
-            easing: $ease.linear,
-        }),
-    );
-
     await anims.all();
 
     buttonAnswerMap.forEach((item) => {
