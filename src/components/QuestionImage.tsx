@@ -1,9 +1,7 @@
-import { FlowContext } from "../libs/flow-context/FlowContext";
-import { AppState } from "../app/App.state";
-import { EventName } from "../code/EventName";
-import { useStyle } from "./QuestionImage.style";
-import { useAnimeRef } from "../libs/anime-context/AnimeContext.hooks";
+import { useAppContext } from "../app/App.context";
 import { AnimeComponent } from "../code/Anime";
+import { useAnimeRef } from "../libs/anime-context/AnimeContext.hooks";
+import { useStyle } from "./QuestionImage.style";
 
 export function QuestionImage() {
     ///
@@ -11,7 +9,7 @@ export function QuestionImage() {
     const animation = useAnimeRef(AnimeComponent.QuestionImage);
 
     ///
-    const [state] = FlowContext.current<AppState>();
+    const { state } = useAppContext();
     const { currentItem } = state;
     if (currentItem === null) {
         return null;
@@ -24,20 +22,7 @@ export function QuestionImage() {
                 src={currentItem.imageSrc}
                 style={style.image}
                 alt=""
-                onPointerDown={onPointerDown}
             />
         </section>
     );
-}
-
-async function onPointerDown() {
-    const [state, setState] = FlowContext.current<AppState>();
-    const { settings } = state;
-    const { enableSecretQuestionSkip } = settings;
-    let { eventName } = state;
-    if (!enableSecretQuestionSkip || eventName !== EventName.AwaitGuess) {
-        return;
-    }
-    eventName = EventName.ConcludeQuestion;
-    setState((state) => ({ ...state, eventName: EventName.ConcludeQuestion }));
 }

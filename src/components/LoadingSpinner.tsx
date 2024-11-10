@@ -1,10 +1,13 @@
+///
 import { useEffect } from "react";
+import anime from "animejs";
+
+///
 import { useAnimeRef } from "../libs/anime-context/AnimeContext.hooks";
+import { $ease } from "../libs/anime-context/AnimeContext.constants";
 import { SvgThings } from "../libs/theme-vars/SvgThings";
 import { AnimeComponent } from "../code/Anime";
 import { useStyle } from "./LoadingSpinner.style";
-import anime from "animejs";
-import { $ease } from "../libs/anime-context/AnimeContext.constants";
 
 export function LoadingSpinner() {
     const style = useStyle();

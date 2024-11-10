@@ -1,24 +1,21 @@
-import { FlowContext } from "../libs/flow-context/FlowContext";
+import { AppContext } from "../app/App.context";
+import { ButtonStyle } from "../code/ButtonStyle";
+import { EventName } from "../code/EventName";
+import { QuizData } from "../code/QuizData";
+import { QuizItem } from "../code/QuizItem";
+import { QuizModule } from "../code/QuizModule";
+import { TV } from "../code/Theme";
 import { LocalStore } from "../libs/friendlies/LocalStore";
 import { generateRandomString } from "../libs/randos/generateRandomString";
 import { shuffle } from "../libs/randos/shuffle";
 import { ThemeVars } from "../libs/theme-vars/ThemeVars";
-import { ButtonStyle } from "../code/ButtonStyle";
-import { assertFlowEvent, EventName } from "../code/EventName";
-import { QuizData } from "../code/QuizData";
-import { QuizItem } from "../code/QuizItem";
-import { QuizModule } from "../code/QuizModule";
-import { AppState } from "../app/App.state";
-import { TV } from "../code/Theme";
 
 const count = {
     imagesLoaded: 0,
 };
 
 export async function LoadQuizModule() {
-    assertFlowEvent(EventName.LoadQuizModule);
-    const [state, setState] = FlowContext.current<AppState>();
-    const { settings } = state;
+    const { settings, flow } = AppContext.current(EventName.LoadQuizModule);
     const { maxQuestions, guessButtonCount, preloadImageCount } = settings;
     count.imagesLoaded = 0;
 
@@ -43,7 +40,7 @@ export async function LoadQuizModule() {
     const totalItems = quizData.items.length;
 
     await loadImages(preloadImageCount, quizData);
-    setState((state) => ({
+    flow.dispatch((state) => ({
         ...state,
         totalItems,
         quizModule,
@@ -72,7 +69,10 @@ function initQuizItem(item: QuizItem, index: number, moduleName: string) {
     item.imageSrc = `${moduleName}/${item.imageSrc}`;
 }
 
-function randomizeGuessPool(guessButtonCount: number, quizData: QuizData): void {
+function randomizeGuessPool(
+    guessButtonCount: number,
+    quizData: QuizData,
+): void {
     quizData.randomizedGuessPool = quizData.items.slice();
 
     // need at least number of dummy items as number of guess buttons

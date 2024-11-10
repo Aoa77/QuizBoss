@@ -1,9 +1,7 @@
 ///
-import "./App.css";
+import "./App.style.css";
 import { AppSettings } from "./App.settings";
-import { EventName } from "../code/EventName";
-import { initAppState, AppState } from "./App.state";
-import { useFlowContext } from "../libs/flow-context/FlowContext.hook";
+import { useAppContextSetup } from "./App.context";
 
 ///
 import { GuessButtons } from "../components/GuessButtons";
@@ -19,49 +17,8 @@ import { QuizTitle } from "../components/QuizTitle";
 import { ScoreInfo } from "../components/ScoreInfo";
 
 ///
-import { AskQuestion } from "../events/AskQuestion";
-import { AwaitGuess } from "../events/AwaitGuess";
-import { ConcludeQuestion } from "../events/ConcludeQuestion";
-import { ConcludeWrongGuess } from "../events/ConcludeWrongGuess";
-import { LoadQuizModule } from "../events/LoadQuizModule";
-import { PrepGuessResult } from "../events/PrepGuessResult";
-import { PrepQuestion } from "../events/PrepQuestion";
-import { RevealGuessResult } from "../events/RevealGuessResult";
-import { StartApp } from "../events/StartApp";
-import { StartQuiz } from "../events/StartQuiz";
-
-///
 export function App(settings: AppSettings) {
-    ///
-    useFlowContext<AppState, EventName>({
-        initialState: initAppState(settings),
-        flowProperty: (state) => {
-            const { eventName } = state;
-            return eventName;
-        },
-        flowEvents: new Map<EventName, () => Promise<void>>([
-            [EventName.AskQuestion,          AskQuestion],
-            [EventName.AwaitGuess,           AwaitGuess],
-            [EventName.ConcludeQuestion,     ConcludeQuestion],
-            [EventName.ConcludeWrongGuess,   ConcludeWrongGuess],
-            [EventName.LoadQuizModule,       LoadQuizModule],
-            [EventName.PrepGuessResult,      PrepGuessResult],
-            [EventName.PrepQuestion,         PrepQuestion],
-            [EventName.RevealGuessResult,    RevealGuessResult],
-            [EventName.StartApp,             StartApp],
-            [EventName.StartQuiz,            StartQuiz],
-        ]),
-        errorHandler: settings.errorHandler,
-        stateLogger(state) {
-            const { eventName, currentItemIndex, correctAnswerButtonIndex } = state;
-            console.group("state");
-            console.info("eventName: ", eventName);
-            console.info("currentItemIndex: ", currentItemIndex);
-            console.info("correctAnswerButtonIndex: ", correctAnswerButtonIndex);
-            console.groupEnd();
-        },
-    });
-
+    useAppContextSetup(settings);
     return (
         <main>
             <QuizTitle />

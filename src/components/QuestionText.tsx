@@ -1,14 +1,13 @@
-import { useAnimeRef } from "../libs/anime-context/AnimeContext.hooks";
-import { FlowContext } from "../libs/flow-context/FlowContext";
+import { useAppContext } from "../app/App.context";
 import { AnimeComponent } from "../code/Anime";
-import { AppState } from "../app/App.state";
+import { useAnimeRef } from "../libs/anime-context/AnimeContext.hooks";
 import { useStyle } from "./QuestionText.style";
 
 export function QuestionText() {
     ////
     const animation = useAnimeRef(AnimeComponent.QuestionText);
     const style = useStyle();
-    const [state] = FlowContext.current<AppState>();
+    const { state } = useAppContext();
     const { quizModule } = state;
     if (!quizModule) {
         return null;

@@ -1,26 +1,24 @@
-import { $time, $ease } from "../libs/anime-context/AnimeContext.constants";
-import { FlowContext } from "../libs/flow-context/FlowContext";
-import { Task, TaskGroup } from "../libs/friendlies/Task";
 import { Anime } from "../code/Anime";
 import { ButtonStyle } from "../code/ButtonStyle";
-import { assertFlowEvent, EventName } from "../code/EventName";
-import { AppState } from "../app/App.state";
+import { EventName } from "../code/EventName";
+import { AppContext } from "../app/App.context";
+import { $time, $ease } from "../libs/anime-context/AnimeContext.constants";
+import { Task, TaskGroup } from "../libs/friendlies/Task";
 
 export async function AskQuestion() {
-    assertFlowEvent(EventName.AskQuestion);
-    const [state, setState] = FlowContext.current<AppState>();
-    const { settings, buttonAnswerMap } = state;
+    const { settings, state, flow } = AppContext.current(EventName.AskQuestion);
     const { guessButtonCount } = settings;
+    const { buttonAnswerMap } = state;
 
     const anims = TaskGroup.create();
-    anims.add(()=>
+    anims.add(() =>
         Anime.LoadingSpinner.run({
             opacity: [1, 0],
             duration: $time.ticks(1.25),
             easing: $ease.linear,
         }),
     );
-    anims.add(()=>
+    anims.add(() =>
         Anime.QuestionImage.run({
             opacity: [0, 1],
             duration: $time.ticks(2),
@@ -28,8 +26,7 @@ export async function AskQuestion() {
         }),
     );
 
-
-    anims.add(()=>
+    anims.add(() =>
         Anime.QuestionText.run({
             opacity: [0, 1],
             delay: $time.ticks(1),
@@ -37,7 +34,7 @@ export async function AskQuestion() {
             easing: $ease.linear,
         }),
     );
-    anims.add(()=>
+    anims.add(() =>
         Anime.QuizProgress.run({
             opacity: [0, 1],
             delay: $time.ticks(1.5),
@@ -54,12 +51,12 @@ export async function AskQuestion() {
     //         easing: $ease.linear,
     //     }),
     // );
-    
+
     await anims.all();
     // await Task.delay($time.ticks(2));
 
     for (let i = 0; i < guessButtonCount; i++) {
-        anims.add(()=>
+        anims.add(() =>
             Anime.GuessButton(i).run({
                 opacity: [0, 1],
                 delay: i * $time.ticks(0.4),
@@ -70,7 +67,7 @@ export async function AskQuestion() {
     }
 
     if (Anime.ScoreInfo.opacity !== 0.5) {
-        anims.add(()=>
+        anims.add(() =>
             Anime.ScoreInfo.run({
                 opacity: [0, 0.5],
                 duration: $time.tick,
@@ -85,5 +82,5 @@ export async function AskQuestion() {
     });
     await Task.delay($time.tick);
 
-    setState((state) => ({ ...state, eventName: EventName.AwaitGuess }));
+    flow.dispatch((state) => ({ ...state, eventName: EventName.AwaitGuess }));
 }

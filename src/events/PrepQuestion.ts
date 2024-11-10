@@ -1,17 +1,16 @@
-import { AppState } from "../app/App.state";
-import { randomInt } from "../libs/randos/randomInt";
-import { QuizItem } from "../code/QuizItem";
-import { assertFlowEvent, EventName } from "../code/EventName";
+import { AppContext } from "../app/App.context";
 import { ButtonStyle } from "../code/ButtonStyle";
+import { EventName } from "../code/EventName";
+import { QuizItem } from "../code/QuizItem";
 import { DEMO, DemoMode } from "../code/DemoMode";
-import { FlowContext } from "../libs/flow-context/FlowContext";
-import { Timer } from "../code/Timer";
+import { randomInt } from "../libs/randos/randomInt";
 
 export async function PrepQuestion() {
     ///
-    assertFlowEvent(EventName.PrepQuestion);
-    const [state, setState] = FlowContext.current<AppState>();
-    const { buttonAnswerMap, quizModule, settings } = state;
+    const { settings, state, flow, timer } = AppContext.current(
+        EventName.PrepQuestion,
+    );
+    const { buttonAnswerMap, quizModule } = state;
 
     ///
     if (quizModule === null) {
@@ -58,10 +57,10 @@ export async function PrepQuestion() {
     }
 
     ///
-    Timer.instance().reset();
+    timer.reset();
 
     ///
-    setState((state) => ({
+    flow.dispatch((state) => ({
         ...state,
         itemScore,
         buttonAnswerMap,

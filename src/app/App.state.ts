@@ -1,10 +1,9 @@
-import { AppSettings } from "./App.settings";
 import { EventName } from "../code/EventName";
 import { QuizItem } from "../code/QuizItem";
 import { QuizModule } from "../code/QuizModule";
-import { Timer } from "../code/Timer";
 
 export interface AppState {
+    ///
     bestScore: number;
     buttonAnswerMap: (QuizItem | null)[];
     correctAnswerButtonIndex: number;
@@ -15,14 +14,12 @@ export interface AppState {
     itemScore: number;
     quizModule: QuizModule | null;
     quizScore: number;
-    settings: AppSettings;
-    timer: Timer;
     totalItems: number;
 }
 
-export function initAppState(settings: AppSettings): AppState {
+export function initAppState(params: { guessButtonCount: number }): AppState {
     const buttonAnswerMap: (QuizItem | null)[] = [];
-    for (let i = 0; i < settings.guessButtonCount; i++) {
+    for (let i = 0; i < params.guessButtonCount; i++) {
         buttonAnswerMap.push(null);
     }
     return {
@@ -36,8 +33,6 @@ export function initAppState(settings: AppSettings): AppState {
         itemScore: 0,
         quizModule: null,
         quizScore: 0,
-        settings,
-        timer: Timer.instance(),
         totalItems: 0,
     };
 }

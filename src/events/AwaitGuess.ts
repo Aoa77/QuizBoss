@@ -1,28 +1,28 @@
-import { FlowContext } from "../libs/flow-context/FlowContext";
-import { assertFlowEvent, EventName } from "../code/EventName";
+import { AppContext, AppFlow } from "../app/App.context";
+import { AppSettings } from "../app/App.settings";
 import { AppState } from "../app/App.state";
+import { Anime } from "../code/Anime";
+import { ButtonStyle } from "../code/ButtonStyle";
 import { DEMO, DemoMode } from "../code/DemoMode";
+import { EventName } from "../code/EventName";
+import { TimerStatus } from "../code/Timer";
+import { Task } from "../libs/friendlies/Task";
+import { $ease, $time } from "../libs/anime-context/AnimeContext.constants";
 import { randomInt } from "../libs/randos/randomInt";
 import { randomIntInclusive } from "../libs/randos/randomIntInclusive";
-import { Timer } from "../code/Timer";
 import { TriggerGuess } from "./TriggerGuess";
-import { TimerStatus } from "../code/Timer";
-import { ButtonStyle } from "../code/ButtonStyle";
-import { Task } from "../libs/friendlies/Task";
-import { Anime } from "../code/Anime";
-import { $ease, $time } from "../libs/anime-context/AnimeContext.constants";
 
 export async function AwaitGuess() {
     ///
-    assertFlowEvent(EventName.AwaitGuess);
-    await Task.delay(1);
+    const { settings, state, flow, timer } = AppContext.current(
+        EventName.AwaitGuess,
+    );
 
-    if (countAvailableGuesses().length === 1) {
-        runFailTransition();
+    if (countAvailableGuesses(state).length === 1) {
+        runFailTransition(state, flow);
         return;
     }
 
-    const timer = Timer.instance();
     if (timer.status === TimerStatus.Reset) {
         await Anime.QuestionText.run({
             opacity: [1, 0],
@@ -36,7 +36,7 @@ export async function AwaitGuess() {
         switch (timer.status) {
             case TimerStatus.TimedOut:
                 clearInterval(pollingLoop);
-                runFailTransition();
+                runFailTransition(state, flow);
                 return;
             case TimerStatus.Running:
                 break;
@@ -46,32 +46,24 @@ export async function AwaitGuess() {
         }
     }, 100);
 
-    if (!createDemoGuess()) {
+    triggerDemoGuess(settings, state);
+}
+
+function countAvailableGuesses(state: AppState) {
+    const { buttonAnswerMap } = state;
+    return buttonAnswerMap.filter(
+        (item) => item!.buttonStyle === ButtonStyle.normal,
+    );
+}
+
+function triggerDemoGuess(settings: AppSettings, state: AppState): void {
+    const { demoMode } = settings;
+    if (demoMode === DemoMode.OFF) {
         return;
     }
 
-    const [state] = FlowContext.current<AppState>();
-    const { settings } = state;
-    const { demoDelayMin, demoDelayMax } = settings;
-    const delay = randomIntInclusive(demoDelayMin, demoDelayMax);
-
-    Task.delay(delay).then(() => TriggerGuess(DEMO.guess.shift()!));
-}
-
-function countAvailableGuesses() {
-    const [state] = FlowContext.current<AppState>();
-    const { buttonAnswerMap } = state;
-    return buttonAnswerMap.filter((item) => item!.buttonStyle === ButtonStyle.normal);
-}
-
-function createDemoGuess(): boolean {
-    const [state] = FlowContext.current<AppState>();
-    const { settings, correctAnswerButtonIndex } = state;
-    const { demoMode, guessButtonCount } = settings;
-
-    if (demoMode === DemoMode.OFF) {
-        return false;
-    }
+    const { correctAnswerButtonIndex } = state;
+    const { demoDelayMin, demoDelayMax, guessButtonCount } = settings;
 
     if (DEMO.guess.length === 0) {
         console.info("demoMode: ", demoMode);
@@ -94,11 +86,12 @@ function createDemoGuess(): boolean {
         }
     }
 
-    return true;
+    const delay = randomIntInclusive(demoDelayMin, demoDelayMax);
+    Task.delay(delay).then(() => TriggerGuess(DEMO.guess.shift()!));
 }
 
-function runFailTransition() {
-    const [state, setState] = FlowContext.current<AppState>();
+function runFailTransition(state: AppState, flow: AppFlow): void {
+    ///
     const { buttonAnswerMap, correctAnswerButtonIndex } = state;
 
     buttonAnswerMap.forEach((_item) => {
@@ -108,7 +101,7 @@ function runFailTransition() {
     const button = buttonAnswerMap[correctAnswerButtonIndex]!;
     button.buttonStyle = ButtonStyle.reveal;
 
-    setState((state) => {
+    flow.dispatch((state) => {
         const { eventName } = state;
         if (eventName !== EventName.AwaitGuess) {
             return state;

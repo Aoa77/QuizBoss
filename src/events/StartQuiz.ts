@@ -1,13 +1,11 @@
+import { AppContext } from "../app/App.context";
+import { Anime } from "../code/Anime";
+import { EventName } from "../code/EventName";
 import { $ease, $time } from "../libs/anime-context/AnimeContext.constants";
 import { TaskGroup } from "../libs/friendlies/Task";
-import { Anime } from "../code/Anime";
-import { assertFlowEvent, EventName } from "../code/EventName";
-import { AppState } from "../app/App.state";
-import { FlowContext } from "../libs/flow-context/FlowContext";
 
 export async function StartQuiz() {
-    assertFlowEvent(EventName.StartQuiz);
-    const [, setState] = FlowContext.current<AppState>();
+    const { flow } = AppContext.current(EventName.StartQuiz);
 
     ///
     const anims = TaskGroup.create();
@@ -38,5 +36,5 @@ export async function StartQuiz() {
     await anims.all();
 
     //
-    setState((state) => ({ ...state, eventName: EventName.PrepQuestion }));
+    flow.dispatch((state) => ({ ...state, eventName: EventName.PrepQuestion }));
 }

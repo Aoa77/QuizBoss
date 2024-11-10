@@ -1,11 +1,7 @@
-import { Dispatch, SetStateAction } from "react";
-import { AppSettings } from "../app/App.settings";
 import { $ease, $time } from "../libs/anime-context/AnimeContext.constants";
 import { AnimeRef } from "../libs/anime-context/AnimeRef";
-import { FlowContext } from "../libs/flow-context/FlowContext";
 import { Lazy } from "../libs/friendlies/Lazy";
 import { Anime } from "./Anime";
-import { AppState } from "../app/App.state";
 import { Task } from "../libs/friendlies/Task";
 
 export enum TimerStatus {
@@ -18,24 +14,22 @@ export enum TimerStatus {
 }
 
 export class Timer {
+    public constructor(params: { timerSeconds: number }) {
+        this._timerSeconds = params.timerSeconds;
+    }
+
+    private _timerSeconds: number = 0;
     private _pulseScale: number = 0;
     private _status: TimerStatus = TimerStatus.None;
     public get status(): TimerStatus {
         return this._status;
     }
 
-    private static _instance: Timer | null = null;
-    public static instance(): Timer {
-        this._instance ??= new Timer();
-        return this._instance;
-    }
-
     public reset() {
         const animation = this._animation.instance;
         animation.scale = 0;
         animation.opacity = 1;
-        const { timerSeconds } = this._settings.instance;
-        this._secondsRemaining = timerSeconds;
+        this._secondsRemaining = this._timerSeconds;
         this.updateUi();
         this._status = TimerStatus.Reset;
     }
@@ -88,17 +82,6 @@ export class Timer {
         return Anime.QuestionTimer;
     });
 
-    private readonly _context: Lazy<[AppState, Dispatch<SetStateAction<AppState>>]> =
-        new Lazy<[AppState, Dispatch<SetStateAction<AppState>>]>(() => {
-            return FlowContext.current<AppState>();
-        });
-
-    private readonly _settings: Lazy<AppSettings> = new Lazy<AppSettings>(() => {
-        const [state] = this._context.instance;
-        const { settings } = state;
-        return settings;
-    });
-
     private async pulse() {
         ///
         if (this.shouldStopTimer()) {
@@ -149,7 +132,8 @@ export class Timer {
             this._status = TimerStatus.Stopped;
         }
         return (
-            this.status === TimerStatus.Stopped || this.status === TimerStatus.TimedOut
+            this.status === TimerStatus.Stopped ||
+            this.status === TimerStatus.TimedOut
         );
     }
 

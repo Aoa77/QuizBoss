@@ -1,30 +1,19 @@
-// Animation and UI
+import { AppContext } from "../app/App.context";
 import { Anime, GuessButtonRef } from "../code/Anime";
 import { ButtonStyle } from "../code/ButtonStyle";
+import { EventName } from "../code/EventName";
+import { QuizItem } from "../code/QuizItem";
+import { TimerStatus } from "../code/Timer";
 import { TV } from "../code/Theme";
 import { ThemeVars } from "../libs/theme-vars/ThemeVars";
-
-// Flow and Events
-import { assertFlowEvent, EventName } from "../code/EventName";
-import { FlowContext } from "../libs/flow-context/FlowContext";
-
-// Game Logic
-import { QuizItem } from "../code/QuizItem";
-import { AppState } from "../app/App.state";
-import { TimerStatus } from "../code/Timer";
-
-// Utilities
 import { $ease, $time } from "../libs/anime-context/AnimeContext.constants";
 import { TaskGroup } from "../libs/friendlies/Task";
 
 export async function RevealGuessResult() {
-    assertFlowEvent(EventName.RevealGuessResult);
-    const [state, setState] = FlowContext.current<AppState>();
-    const {
-        buttonAnswerMap,
-        guessButtonIndex, /////////
-        timer,
-    } = state;
+    const { state, flow, timer } = AppContext.current(
+        EventName.RevealGuessResult,
+    );
+    const { buttonAnswerMap, guessButtonIndex } = state;
     const button = buttonAnswerMap[guessButtonIndex]!;
 
     const buttonRef = Anime.GuessButton(guessButtonIndex);
@@ -37,7 +26,10 @@ export async function RevealGuessResult() {
     });
 
     if (button.buttonStyle === ButtonStyle.wrong) {
-        setState((state) => ({ ...state, eventName: EventName.ConcludeWrongGuess }));
+        flow.dispatch((state) => ({
+            ...state,
+            eventName: EventName.ConcludeWrongGuess,
+        }));
         return;
     }
 
@@ -65,12 +57,17 @@ export async function RevealGuessResult() {
     _logScoreDetails(itemScore, quizScore, secondsRemaining);
 
     ///
-    await _concludeFinalGuess(buttonRef, buttonAnswerMap, guessButtonIndex, itemScore);
+    await _concludeFinalGuess(
+        buttonRef,
+        buttonAnswerMap,
+        guessButtonIndex,
+        itemScore,
+    );
     quizScore += itemScore;
     if (itemScore > 0) {
         quizScore += secondsRemaining;
     }
-    setState((state) => ({
+    flow.dispatch((state) => ({
         ...state,
         quizScore,
         eventName: EventName.ConcludeQuestion,
@@ -159,7 +156,10 @@ async function _concludeFinalGuess(
     await _showScoreAndTransition(itemScore, buttonRef);
 }
 
-async function _showScoreAndTransition(itemScore: number, buttonRef: GuessButtonRef) {
+async function _showScoreAndTransition(
+    itemScore: number,
+    buttonRef: GuessButtonRef,
+) {
     const scoreRef = Anime.GuessPoints;
     scoreRef.opacity = 1;
 
@@ -228,5 +228,8 @@ async function _showScoreAndTransition(itemScore: number, buttonRef: GuessButton
     scoreRef.opacity = 0;
     bonusRef.opacity = 0;
 
-    Anime.QuestionTimer.color = ThemeVars.getRef(TV, TV.QuestionTimer_NORMAL_color);
+    Anime.QuestionTimer.color = ThemeVars.getRef(
+        TV,
+        TV.QuestionTimer_NORMAL_color,
+    );
 }

@@ -1,42 +1,22 @@
-import { Timer } from "../code/Timer";
-import { TimerStatus } from "../code/Timer";
-import { FlowContext } from "../libs/flow-context/FlowContext";
-import { Task } from "../libs/friendlies/Task";
-import { ButtonStyle } from "../code/ButtonStyle";
-import { assertFlowEvent, EventName } from "../code/EventName";
+import { AppContext } from "../app/App.context";
 import { AppState } from "../app/App.state";
+import { ButtonStyle } from "../code/ButtonStyle";
+import { EventName } from "../code/EventName";
+import { Timer, TimerStatus } from "../code/Timer";
 
 export async function TriggerGuess(bidx: number) {
-    try {
-        assertFlowEvent(EventName.AwaitGuess);
-    } catch {
-        await Task.delay(100);
+    const { state, flow, timer } = AppContext.current();
+    if (abandonTrigger(state, timer)) {
         return;
     }
 
-    if (
-        Timer.instance().status !== TimerStatus.Running ||
-        Timer.instance().secondsRemaining < 1
-    ) {
-        return;
-    }
-
-    const [state, setState] = FlowContext.current<AppState>();
     const { buttonAnswerMap } = state;
     if (buttonAnswerMap[bidx]!.buttonStyle !== ButtonStyle.normal) {
         return;
     }
 
-    setState((state) => {
-        const { eventName } = state;
-        if (eventName !== EventName.AwaitGuess) {
-            return state;
-        }
-
-        if (
-            Timer.instance().status !== TimerStatus.Running ||
-            Timer.instance().secondsRemaining < 1
-        ) {
+    flow.dispatch((state) => {
+        if (abandonTrigger(state, timer)) {
             return state;
         }
 
@@ -46,4 +26,13 @@ export async function TriggerGuess(bidx: number) {
             eventName: EventName.PrepGuessResult,
         };
     });
+}
+
+function abandonTrigger(state: AppState, timer: Timer) {
+    const { eventName } = state;
+    return (
+        eventName !== EventName.AwaitGuess ||
+        timer.status !== TimerStatus.Running ||
+        timer.secondsRemaining < 1
+    );
 }

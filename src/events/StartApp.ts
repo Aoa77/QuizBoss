@@ -1,15 +1,11 @@
-import { assertFlowEvent, EventName } from "../code/EventName";
-import { AppState } from "../app/App.state";
-import { $ease, $time } from "../libs/anime-context/AnimeContext.constants";
 import { Anime } from "../code/Anime";
-import { FlowContext } from "../libs/flow-context/FlowContext";
+import { AppContext } from "../app/App.context";
+import { EventName } from "../code/EventName";
+import { $ease, $time } from "../libs/anime-context/AnimeContext.constants";
 
 export async function StartApp() {
     ///
-    assertFlowEvent(EventName.StartApp);
-
-    ///
-    const [state, setState] = FlowContext.current<AppState>();
+    const { state, flow } = AppContext.current(EventName.StartApp);
     const { quizModule } = state;
 
     ///
@@ -21,7 +17,7 @@ export async function StartApp() {
     });
 
     ///
-    setState((state) => ({
+    flow.dispatch((state) => ({
         ...state,
         eventName: quizModule ? EventName.StartQuiz : EventName.LoadQuizModule,
     }));

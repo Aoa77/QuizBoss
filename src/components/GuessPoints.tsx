@@ -1,17 +1,18 @@
-import { useAnimeRef } from "../libs/anime-context/AnimeContext.hooks";
-import { FlowContext } from "../libs/flow-context/FlowContext";
-import { ThemeVars } from "../libs/theme-vars/ThemeVars";
+import { useAppContext } from "../app/App.context";
 import { AnimeComponent } from "../code/Anime";
-import { AppState } from "../app/App.state";
 import { TV } from "../code/Theme";
+import { useAnimeRef } from "../libs/anime-context/AnimeContext.hooks";
+import { ThemeVars } from "../libs/theme-vars/ThemeVars";
 import { useStyle } from "./GuessPoints.style";
 
 export function GuessPoints() {
     ////
+    const { state } = useAppContext();
+    const { itemScore } = state;
     const animation = useAnimeRef(AnimeComponent.GuessPoints);
     const style = useStyle({ timeBonus: false });
-    const [state] = FlowContext.current<AppState>();
-    const { itemScore } = state;
+
+    ///
     const label = itemScore === 1 ? "point" : "points";
     const render = itemScore ? `+${itemScore} ${label}` : "no points";
     style.section.color = itemScore

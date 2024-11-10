@@ -1,19 +1,20 @@
 import { useStyle } from "./GuessButtons.style";
-import { AppState } from "../app/App.state";
-import { AnimeComponent } from "../code/Anime";
-import { FlowContext } from "../libs/flow-context/FlowContext";
 import { useAnimeRefs } from "../libs/anime-context/AnimeContext.hooks";
+import { useAppContext } from "../app/App.context";
+import { AnimeComponent } from "../code/Anime";
 import { TriggerGuess } from "../events/TriggerGuess";
 
 export function GuessButtons() {
-    const style = useStyle();
-    const [state] = FlowContext.current<AppState>();
-    const { buttonAnswerMap, settings } = state;
+    const { state, settings } = useAppContext();
     const { guessButtonCount } = settings;
+    const { buttonAnswerMap } = state;
+    const style = useStyle();
+    const animations = useAnimeRefs(
+        AnimeComponent.GuessButton,
+        guessButtonCount,
+    );
+    
     const buttonJsx = [];
-
-    const animations = useAnimeRefs(AnimeComponent.GuessButton, guessButtonCount);
-
     for (let bidx = 0; bidx < guessButtonCount; bidx++) {
         const item = buttonAnswerMap[bidx];
         if (!item) {

@@ -1,5 +1,5 @@
-import { useAnimeRef } from "../libs/anime-context/AnimeContext.hooks";
 import { AnimeComponent } from "../code/Anime";
+import { useAnimeRef } from "../libs/anime-context/AnimeContext.hooks";
 import { useStyle } from "./LoadingProgress.style";
 
 export function LoadingProgress() {
