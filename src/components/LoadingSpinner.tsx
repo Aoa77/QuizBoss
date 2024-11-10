@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import anime from "animejs";
 
 ///
-import { useAnimeRef } from "../libs/anime-context/AnimeContext.hooks";
+import { useAnimeRef } from "../libs/anime-context/AnimeContext";
 import { $ease } from "../libs/anime-context/AnimeContext.constants";
 import { SvgThings } from "../libs/theme-vars/SvgThings";
 import { AnimeComponent } from "../code/Anime";

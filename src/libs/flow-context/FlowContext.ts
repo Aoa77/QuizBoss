@@ -69,9 +69,7 @@ class FlowContext<Tstate> {
     public static init<Tstate>(
         context: [Tstate, Dispatch<SetStateAction<Tstate>>],
     ): void {
-        // if (this._instance) {
-        //     throw new Error("FlowContext instance already initialized");
-        // }
+        // NOTE: it is ok that this is initialized multiple times
         this._instance = new FlowContext(context);
     }
 }

@@ -85,6 +85,3 @@ export const $ease = {
     },
 };
 
-export const TransformRegex = {
-    scale: /scale\((\d+(\.\d+)?)\)/,
-};

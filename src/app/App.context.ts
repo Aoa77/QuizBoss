@@ -85,6 +85,8 @@ export function useAppContextSetup(settings: AppSettings) {
         flow: { dispatch: flow[1] },
         settings,
         state: flow[0],
+
+        // using memo to use the same instance of Timer across renders
         timer: useMemo(() => new Timer({ timerSeconds }), [timerSeconds]),
     });
 }
@@ -100,10 +102,9 @@ export class AppContext {
         }
         return this._current;
     }
+
     public static init(context: AppFlowContext): void {
-        // if (this._current) {
-        //     throw new Error("AppContext instance already initialized");
-        // }
+        // NOTE: it is ok that this is initialized multiple times
         this._current = context;
     }
 

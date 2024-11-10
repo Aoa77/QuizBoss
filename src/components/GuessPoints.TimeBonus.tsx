@@ -1,7 +1,7 @@
 import { useAppContext } from "../app/App.context";
 import { AnimeComponent } from "../code/Anime";
 import { TV } from "../code/Theme";
-import { useAnimeRef } from "../libs/anime-context/AnimeContext.hooks";
+import { useAnimeRef } from "../libs/anime-context/AnimeContext";
 import { ThemeVars } from "../libs/theme-vars/ThemeVars";
 import { useStyle } from "./GuessPoints.style";
 

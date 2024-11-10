@@ -1,5 +1,5 @@
 import { useStyle } from "./GuessButtons.style";
-import { useAnimeRefs } from "../libs/anime-context/AnimeContext.hooks";
+import { useAnimeRefs } from "../libs/anime-context/AnimeContext";
 import { useAppContext } from "../app/App.context";
 import { AnimeComponent } from "../code/Anime";
 import { TriggerGuess } from "../events/TriggerGuess";
