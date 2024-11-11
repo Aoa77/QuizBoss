@@ -9,7 +9,7 @@ interface Style {
 }
 
 export function useStyle(): Style | null {
-    return null;
+    // return null;  // INLINE STYLES;
     return {
         section: {
             opacity: 1,

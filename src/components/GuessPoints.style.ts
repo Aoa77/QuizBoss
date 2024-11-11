@@ -8,7 +8,7 @@ interface Style {
 }
 
 export function useStyle(params: { timeBonus: boolean }): Style | null {
-    return null;
+    // return null;  // INLINE STYLES;
     return {
         section: {
             alignContent: "normal",

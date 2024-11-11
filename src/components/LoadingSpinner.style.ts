@@ -14,7 +14,7 @@ interface Style {
 }
 
 export function useStyle(): Style | null {
-    return null;
+    // return null;  // INLINE STYLES;
     const style: Style = {
         ///
         cxArray: [45, 70, 95],
