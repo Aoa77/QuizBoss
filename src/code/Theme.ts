@@ -62,10 +62,7 @@ export enum TV {
 
     ///
     LoadingSpinner_fill                  = "--tv-LoadingSpinner_fill",
-    LoadingProgress_BAR_backgroundColor  = "--tv-LoadingProgress_BAR_backgroundColor",
-    LoadingProgress_BAR_color            = "--tv-LoadingProgress_BAR_color",
-    LoadingProgress_BAR_width            = "--tv-LoadingProgress_BAR_width",
-    LoadingProgress_TEXT_color           = "--tv-LoadingProgress_TEXT_color",
+    LoadingSpinner_color                 = "--tv-LoadingSpinner_color",
     
     ///
     QuestionImage_shadow                 = "--tv-QuestionImage_shadow",

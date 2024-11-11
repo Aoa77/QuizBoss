@@ -5,7 +5,6 @@ export enum AnimeComponent {
     GuessButton      = "GuessButton",
     GuessPoints      = "GuessPoints",
     TimeBonus        = "TimeBonus",
-    LoadingProgress  = "LoadingProgress",
     LoadingSpinner   = "LoadingSpinner",
     QuestionImage    = "QuestionImage",
     QuestionText     = "QuestionText",
@@ -43,10 +42,6 @@ export class Anime {
 
     public static get TimeBonus(): AnimeRef {
         return AnimeContext.get(AnimeComponent.TimeBonus)!;
-    }
-
-    public static get LoadingProgress(): AnimeRef {
-        return AnimeContext.get(AnimeComponent.LoadingProgress)!;
     }
 
     public static get LoadingSpinner(): AnimeRef {

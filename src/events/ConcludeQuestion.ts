@@ -1,7 +1,7 @@
 import { AppContext } from "../app/App.context";
 import { Anime } from "../code/Anime";
 import { EventName } from "../code/EventName";
-import { $ease, $time } from "../libs/anime-context/AnimeContext.constants";
+import { $ease, $time } from "../libs/anime-context/AnimeConstants";
 import { TaskGroup } from "../libs/friendlies/Task";
 
 export async function ConcludeQuestion() {

@@ -2,7 +2,7 @@ import { Anime } from "../code/Anime";
 import { ButtonStyle } from "../code/ButtonStyle";
 import { EventName } from "../code/EventName";
 import { AppContext } from "../app/App.context";
-import { $time, $ease } from "../libs/anime-context/AnimeContext.constants";
+import { $time, $ease } from "../libs/anime-context/AnimeConstants";
 import { Task, TaskGroup } from "../libs/friendlies/Task";
 
 export async function AskQuestion() {

@@ -7,7 +7,7 @@ import { DEMO, DemoMode } from "../code/DemoMode";
 import { EventName } from "../code/EventName";
 import { TimerStatus } from "../code/Timer";
 import { Task } from "../libs/friendlies/Task";
-import { $ease, $time } from "../libs/anime-context/AnimeContext.constants";
+import { $ease, $time } from "../libs/anime-context/AnimeConstants";
 import { randomInt } from "../libs/randos/randomInt";
 import { randomIntInclusive } from "../libs/randos/randomIntInclusive";
 import { TriggerGuess } from "./TriggerGuess";

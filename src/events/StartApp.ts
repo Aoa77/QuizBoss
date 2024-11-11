@@ -1,7 +1,7 @@
-import { Anime } from "../code/Anime";
+//import { Anime } from "../code/Anime";
 import { AppContext } from "../app/App.context";
 import { EventName } from "../code/EventName";
-import { $ease, $time } from "../libs/anime-context/AnimeContext.constants";
+//import { $ease, $time } from "../libs/anime-context/AnimeConstants";
 
 export async function StartApp() {
     ///
@@ -9,12 +9,12 @@ export async function StartApp() {
     const { quizModule } = state;
 
     ///
-    await Anime.LoadingProgress.run({
-        opacity: [0, 1],
-        delay: $time.ticks(0.25),
-        duration: $time.tick,
-        easing: $ease.linear,
-    });
+    // await Anime.LoadingProgress.run({
+    //     opacity: [0, 1],
+    //     delay: $time.ticks(0.25),
+    //     duration: $time.tick,
+    //     easing: $ease.linear,
+    // });
 
     ///
     flow.dispatch((state) => ({

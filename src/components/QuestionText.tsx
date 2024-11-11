@@ -1,6 +1,6 @@
 import { useAppContext } from "../app/App.context";
 import { AnimeComponent } from "../code/Anime";
-import { useAnimeRef } from "../libs/anime-context/AnimeContext";
+import { useAnimeRef } from "../libs/anime-context/AnimeHooks";
 import { useStyle } from "./QuestionText.style";
 
 export function QuestionText() {

@@ -7,7 +7,6 @@ import { useAppContextSetup } from "./App.context";
 import { GuessButtons } from "../components/GuessButtons";
 import { GuessPoints } from "../components/GuessPoints";
 import { TimeBonus } from "../components/GuessPoints.TimeBonus";
-import { LoadingProgress } from "../components/LoadingProgress";
 import { LoadingSpinner } from "../components/LoadingSpinner";
 import { QuestionImage } from "../components/QuestionImage";
 import { QuestionText } from "../components/QuestionText";
@@ -23,7 +22,6 @@ export function App(settings: AppSettings) {
         <main>
             <QuizTitle />
             <LoadingSpinner />
-            <LoadingProgress />
             <QuestionImage />
             <QuestionText />
             <QuestionTimer />

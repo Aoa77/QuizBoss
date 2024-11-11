@@ -2,7 +2,7 @@ import { AppContext } from "../app/App.context";
 import { Anime } from "../code/Anime";
 import { ButtonStyle } from "../code/ButtonStyle";
 import { EventName } from "../code/EventName";
-import { $ease, $time } from "../libs/anime-context/AnimeContext.constants";
+import { $ease, $time } from "../libs/anime-context/AnimeConstants";
 
 export async function ConcludeWrongGuess() {
     const { state, flow } = AppContext.current(EventName.ConcludeWrongGuess);

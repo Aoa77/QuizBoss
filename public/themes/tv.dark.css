@@ -37,10 +37,7 @@
 
     /**/
     --tv-LoadingSpinner_fill                  : "#1c4c5bff";
-    --tv-LoadingProgress_BAR_backgroundColor  : "#1c4c5bff";
-    --tv-LoadingProgress_BAR_color            : "#ffffff33";
-    --tv-LoadingProgress_BAR_width            : "0%";
-    --tv-LoadingProgress_TEXT_color           : "#1c4c5bff";
+    --tv-LoadingSpinner_color                 : "#1c4c5bff";
     
     /**/
     --tv-QuestionImage_shadow                 : "#a5a5c877";

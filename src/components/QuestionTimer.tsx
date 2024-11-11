@@ -1,5 +1,5 @@
 import { AnimeComponent } from "../code/Anime";
-import { useAnimeRef } from "../libs/anime-context/AnimeContext";
+import { useAnimeRef } from "../libs/anime-context/AnimeHooks";
 import { useStyle } from "./QuestionTimer.style";
 
 export function QuestionTimer() {

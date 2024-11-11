@@ -6,7 +6,7 @@ import { QuizItem } from "../code/QuizItem";
 import { TimerStatus } from "../code/Timer";
 import { TV } from "../code/Theme";
 import { ThemeVars } from "../libs/theme-vars/ThemeVars";
-import { $ease, $time } from "../libs/anime-context/AnimeContext.constants";
+import { $ease, $time } from "../libs/anime-context/AnimeConstants";
 import { TaskGroup } from "../libs/friendlies/Task";
 
 export async function RevealGuessResult() {
