@@ -7,7 +7,8 @@ interface Style {
     section: CSSProperties;
 }
 
-export function useStyle(): Style {
+export function useStyle(): Style | null {
+    return null;
     return {
         section: {
             alignContent: "normal",
@@ -18,4 +19,3 @@ export function useStyle(): Style {
         },
     };
 }
-

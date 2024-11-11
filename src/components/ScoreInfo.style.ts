@@ -8,7 +8,8 @@ interface Style {
     span: CSSProperties;
 }
 
-export function useStyle(): Style {
+export function useStyle(): Style | null {
+    return null;
     return {
         section: {
             alignContent: "normal",
@@ -22,7 +23,6 @@ export function useStyle(): Style {
         span: {
             color: ThemeVars.getRef(TV, TV.QuestionText_color),
             fontWeight: "normal",
-        }
+        },
     };
 }
-

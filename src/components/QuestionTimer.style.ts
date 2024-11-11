@@ -8,7 +8,8 @@ interface Style {
     digits: CSSProperties;
 }
 
-export function useStyle(): Style {
+export function useStyle(): Style | null {
+    return null;
     return {
         section: {
             opacity: 1,
@@ -25,6 +26,6 @@ export function useStyle(): Style {
             opacity: 0,
             backgroundColor: "#00ffff00",
             display: "inline-block",
-        }
+        },
     };
 }

@@ -3,13 +3,13 @@ import { CssUnit } from "../libs/theme-vars/CssUnit";
 import { ThemeVars } from "../libs/theme-vars/ThemeVars";
 import { TV } from "../code/Theme";
 
-
-interface Style  {
+interface Style {
     image: CSSProperties;
     section: CSSProperties;
 }
 
-export function useStyle(): Style {
+export function useStyle(): Style | null {
+    return null;
     const style: Style = {
         ///
         image: {},
@@ -35,4 +35,3 @@ export function useStyle(): Style {
     ///
     return style;
 }
-

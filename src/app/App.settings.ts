@@ -4,14 +4,15 @@ import { ThemeName } from "../code/Theme";
 export interface AppSettings {
     quizModuleName: string;
     errorHandler?: (error: unknown) => void;
+    strictMode: boolean;
 
+    demoMode: DemoMode;
     demoDelayMax: number;
     demoDelayMin: number;
-    demoMode: DemoMode;
+
+    theme: ThemeName;
     guessButtonCount: number;
     maxQuestions: number;
-    preloadImageCount: number;
-    theme: ThemeName;
     timerSeconds: number;
 }
 

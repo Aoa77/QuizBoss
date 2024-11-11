@@ -7,7 +7,8 @@ interface Style {
     section: CSSProperties;
 }
 
-export function useStyle(params: { timeBonus: boolean }): Style {
+export function useStyle(params: { timeBonus: boolean }): Style | null {
+    return null;
     return {
         section: {
             alignContent: "normal",
@@ -20,4 +21,3 @@ export function useStyle(params: { timeBonus: boolean }): Style {
         },
     };
 }
-

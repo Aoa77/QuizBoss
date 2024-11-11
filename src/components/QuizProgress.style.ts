@@ -7,7 +7,8 @@ interface Style {
     section: CSSProperties;
 }
 
-export function useStyle(): Style {
+export function useStyle(): Style | null {
+    return null;
     const style: Style = {
         section: {},
     };

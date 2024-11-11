@@ -101,7 +101,7 @@ export class ThemeVars {
         if (true !== this._vars?.includes(key)) {
             throw new Error(`Unknown variable: ${key}`);
         }
-        document.documentElement.style.setProperty(key, value.trim());
+        document.documentElement.style?.setProperty(key, value.trim());
     }
 
     private static initNames<TName extends string>(

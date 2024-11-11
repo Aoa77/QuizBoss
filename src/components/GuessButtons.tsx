@@ -23,8 +23,8 @@ export function GuessButtons() {
 
         const buttonText = item.name;
         const buttonStyle = {
-            ...style.span, //////////
-            ...style.button.get(item.buttonStyle),
+            ...style?.span, //////////
+            ...style?.button.get(item.buttonStyle),
         };
 
         const anim = animations[bidx];
@@ -39,7 +39,7 @@ export function GuessButtons() {
         );
     }
 
-    return <section style={style.section}>{buttonJsx}</section>;
+    return <section style={style?.section}>{buttonJsx}</section>;
 }
 
 function onPointerDown(bidx: number) {

@@ -13,12 +13,12 @@ export function LoadingSpinner() {
     const style = useStyle();
     const animation = useAnimeRef(AnimeComponent.LoadingSpinner);
 
-    const balls = style.cxArray.map((cx, key) => (
+    const balls = style?.cxArray.map((cx, key) => (
         <circle /////////////////////
             key={key}
             cx={cx}
-            cy={style.cy}
-            r={style.radiusBase}
+            cy={style?.cy}
+            r={style?.radiusBase}
             will-change="r"
         />
     ));
@@ -35,8 +35,8 @@ export function LoadingSpinner() {
     }, []);
 
     return (
-        <section id={animation.id} style={style.section}>
-            <svg style={style.svg} viewBox={style.viewBox} xmlns={SvgThings.xmlns}>
+        <section id={animation.id} style={style?.section}>
+            <svg style={style?.svg} viewBox={style?.viewBox} xmlns={SvgThings.xmlns}>
                 {balls}
             </svg>
         </section>

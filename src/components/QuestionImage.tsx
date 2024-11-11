@@ -10,19 +10,21 @@ export function QuestionImage() {
 
     ///
     const { state } = useAppContext();
-    const { currentItem } = state;
-    if (currentItem === null) {
+    const { currentItem, quizModule } = state;
+    if (currentItem === null || quizModule === null) {
         return null;
     }
+    const { quizData } = quizModule;
+    const { items } = quizData;
+
+    const images = items.reverse().map((item, index) => (
+        <img key={index} src={item.imageSrc} style={style?.image} alt="" />
+    ));
 
     ///
     return (
-        <section id={animation.id} style={style.section}>
-            <img
-                src={currentItem.imageSrc}
-                style={style.image}
-                alt=""
-            />
+        <section id={animation.id} style={style?.section}>
+            {images}
         </section>
     );
 }

@@ -66,7 +66,7 @@ export function useAnimeRefs<T extends string>(
             },
             set color(value: string) {
                 const el = this.element;
-                if (!el) {
+                if (!el?.style) {
                     return;
                 }
                 el.style.color = value;
@@ -78,7 +78,7 @@ export function useAnimeRefs<T extends string>(
             },
             set opacity(value: number) {
                 const el = this.element;
-                if (!el) {
+                if (!el?.style) {
                     return;
                 }
                 el.style.opacity = value.toString();
@@ -95,14 +95,14 @@ export function useAnimeRefs<T extends string>(
             },
             set scale(value: number) {
                 const el = this.element;
-                if (!el) {
+                if (!el?.style) {
                     return;
                 }
-                if (!el.style.transform) {
+                if (!el.style?.transform) {
                     el.style.transform = `scale(${value})`;
                     return;
                 }
-                el.style.transform = el.style.transform.replace(
+                el.style.transform = el.style?.transform.replace(
                     TransformRegex.scale,
                     `scale(${value})`,
                 );
@@ -115,7 +115,7 @@ export function useAnimeRefs<T extends string>(
             },
             clearTransforms() {
                 const el = this.element;
-                if (!el) {
+                if (!el?.style) {
                     return;
                 }
                 el.style.transform = "";

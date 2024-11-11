@@ -4,11 +4,9 @@ import { EventName } from "../code/EventName";
 import { QuizData } from "../code/QuizData";
 import { QuizItem } from "../code/QuizItem";
 import { QuizModule } from "../code/QuizModule";
-import { TV } from "../code/Theme";
 import { LocalStore } from "../libs/friendlies/LocalStore";
 import { generateRandomString } from "../libs/randos/generateRandomString";
 import { shuffle } from "../libs/randos/shuffle";
-import { ThemeVars } from "../libs/theme-vars/ThemeVars";
 
 const count = {
     imagesLoaded: 0,
@@ -16,7 +14,7 @@ const count = {
 
 export async function LoadQuizModule() {
     const { settings, flow } = AppContext.current(EventName.LoadQuizModule);
-    const { maxQuestions, guessButtonCount, preloadImageCount } = settings;
+    const { maxQuestions, guessButtonCount } = settings;
     count.imagesLoaded = 0;
 
     const bestScore = LocalStore.numbers.get("bestScore", 0)!;
@@ -39,7 +37,7 @@ export async function LoadQuizModule() {
     }
     const totalItems = quizData.items.length;
 
-    await loadImages(preloadImageCount, quizData);
+    // await loadImages(quizData);
     flow.dispatch((state) => ({
         ...state,
         totalItems,
@@ -113,48 +111,23 @@ function randomizeGuessPool(
     shuffle(quizData.randomizedGuessPool);
 }
 
-async function loadImages(
-    preloadImageCount: number,
-    quizData: QuizData,
-): Promise<void> {
-    ///
-    console.info("Loading quiz images...");
-    if (preloadImageCount < 1) {
-        preloadImageCount = quizData.items.length;
-    }
+// async function loadImages(quizData: QuizData): Promise<void> {
+//     ///
+//     console.info("Loading quiz images...");
 
-    ///
-    for (const item of quizData.items) {
-        if (count.imagesLoaded < preloadImageCount) {
-            await fetchImage(item);
-            const progress = Math.round(
-                (++count.imagesLoaded / preloadImageCount) * 100,
-            );
-            ThemeVars.setValue(TV.LoadingProgress_BAR_width, `${progress}%`);
-            continue;
-        }
-        fetchImage(item);
-    }
-}
+//     ///
+//     for (const item of quizData.items) {
+//         await fetchImage(item);
+//         const progress = Math.round(
+//             (++count.imagesLoaded / quizData.items.length) * 100,
+//         );
+//         ThemeVars.setValue(TV.LoadingProgress_BAR_width, `${progress}%`);
+//     }
+// }
 
-async function fetchImage(item: QuizItem): Promise<void> {
-    const response = await fetch(item.imageSrc);
-    if (!response.ok) {
-        throw new Error(`Failed to load image: ${item.imageSrc}`);
-    }
-
-    const blob = await response.blob();
-    const img = new Image();
-    const load = new Promise<[number, number]>((resolve) => {
-        img.onload = () => {
-            const size: [number, number] = [img.width, img.height];
-            console.debug(`Image ${item.imageSrc} loaded:`, size);
-            resolve(size);
-        };
-    });
-
-    img.src = URL.createObjectURL(blob);
-    const [width, height] = await load;
-    item.imageWidth = width;
-    item.imageHeight = height;
-}
+// async function fetchImage(item: QuizItem): Promise<void> {
+//     const img = new Image(3);
+//     img.id = `preload-image-${item.index}`;
+//     img.src = item.imageSrc;
+//     document.getElementById("preload")!.appendChild(img);
+// }

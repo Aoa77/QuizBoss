@@ -11,9 +11,9 @@ export function ScoreInfo() {
     const { quizScore } = state;
 
     return (
-        <section id={animation.id} style={style.section}>
+        <section id={animation.id} style={style?.section}>
             <div></div>
-            <span style={style.span}>SCORE: </span>
+            <span style={style?.span}>SCORE: </span>
             {quizScore}
         </section>
     );

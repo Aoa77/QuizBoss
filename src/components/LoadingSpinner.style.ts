@@ -13,7 +13,8 @@ interface Style {
     viewBox: string;
 }
 
-export function useStyle(): Style {
+export function useStyle(): Style | null {
+    return null;
     const style: Style = {
         ///
         cxArray: [45, 70, 95],

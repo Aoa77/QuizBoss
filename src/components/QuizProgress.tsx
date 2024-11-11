@@ -19,7 +19,7 @@ export function QuizProgress() {
 
     ///
     return (
-        <section id={animation.id} style={style.section}>
+        <section id={animation.id} style={style?.section}>
             {currentItemIndex + 1} / {items.length}
         </section>
     );

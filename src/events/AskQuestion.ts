@@ -8,7 +8,15 @@ import { Task, TaskGroup } from "../libs/friendlies/Task";
 export async function AskQuestion() {
     const { settings, state, flow } = AppContext.current(EventName.AskQuestion);
     const { guessButtonCount } = settings;
-    const { buttonAnswerMap } = state;
+    const { buttonAnswerMap, /*currentItemIndex*/ } = state;
+
+    // const lastImage = Anime.QuestionImage.element!.firstChild;
+    // if (lastImage) {
+    //     document.getElementById("preload")!.appendChild(lastImage);
+    // }
+    // const img = document.getElementById(`preload-image-${currentItemIndex}`);
+    // img?.removeAttribute("width");
+    // Anime.QuestionImage.element!.appendChild(img!);
 
     const anims = TaskGroup.create();
     anims.add(() =>

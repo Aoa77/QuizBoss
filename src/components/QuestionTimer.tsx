@@ -7,8 +7,8 @@ export function QuestionTimer() {
     const style = useStyle();
 
     return (
-        <section style={style.section}>
-            <div id={animation.id} style={style.digits}></div>
+        <section style={style?.section}>
+            <div id={animation.id} style={style?.digits}></div>
         </section>
     );
 }

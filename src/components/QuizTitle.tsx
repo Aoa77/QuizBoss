@@ -17,7 +17,7 @@ export function QuizTitle() {
     return (
         <section
             id={animation.id}
-            style={style.section}>
+            style={style?.section}>
             {title}
         </section>
     );
