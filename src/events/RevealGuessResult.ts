@@ -49,7 +49,7 @@ export async function RevealGuessResult() {
     } else if (button.buttonStyle === ButtonStyle.reveal) {
         tv = TV.QuestionTimer_BAD_color;
     }
-    anim.color = ThemeVars.getRef(TV, tv);
+    anim.update({ color: ThemeVars.getRef(TV, tv) });
     anim.run({
         opacity: 1,
         duration: $time.ticks(1),
@@ -116,8 +116,7 @@ async function _concludeFinalGuess(
                     easing: $ease.linear,
                 })
                 .then(() => {
-                    button.opacity = 0;
-                    button.scale = 0
+                    button.update({ opacity: 0, scale: 0 });
                 }),
         );
         ++otherButton;
@@ -161,16 +160,12 @@ async function _concludeFinalGuess(
     await _showScoreAndTransition(itemScore, buttonRef);
 }
 
-async function _showScoreAndTransition(
-    itemScore: number,
-    buttonRef: AnimeRef,
-) {
+async function _showScoreAndTransition(itemScore: number, buttonRef: AnimeRef) {
     const scoreRef = Animation.GuessPoints;
-    scoreRef.opacity = 1;
+    scoreRef.update({ opacity: 1 });
 
     const bonusRef = Animation.TimeBonus;
-    bonusRef.scale = 0;
-    bonusRef.opacity = 1;
+    bonusRef.update({ opacity: 1, scale: 0 });
 
     const scoreAnims = TaskGroup.create();
     scoreAnims.add(() =>
@@ -226,15 +221,11 @@ async function _showScoreAndTransition(
     ///
     await anims.all();
     buttonRef.clearTransforms();
+    buttonRef.update({ opacity: 0, scale: 0 });
+    scoreRef.update({ opacity: 0, scale: 0 });
 
-    scoreRef.scale = 0;
-    bonusRef.scale = 0;
-
-    scoreRef.opacity = 0;
-    bonusRef.opacity = 0;
-
-    Animation.QuestionTimer.color = ThemeVars.getRef(
-        TV,
-        TV.QuestionTimer_NORMAL_color,
-    );
+    const timerRef = Animation.QuestionTimer;
+    timerRef.update({
+        color: ThemeVars.getRef(TV, TV.QuestionTimer_NORMAL_color),
+    });
 }

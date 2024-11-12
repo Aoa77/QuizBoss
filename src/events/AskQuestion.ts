@@ -8,12 +8,10 @@ import { Task, TaskGroup } from "../libs/friendlies/Task";
 export async function AskQuestion() {
     const { settings, state, flow } = AppContext.current(EventName.AskQuestion);
     const { guessButtonCount } = settings;
-    const { buttonAnswerMap, /*currentItemIndex*/ } = state;
+    const { buttonAnswerMap } = state;
 
-    Animation.QuizProgress.opacity = 0;
-    Animation.QuizProgress.scale = 1;
-
-
+    const progRef = Animation.QuizProgress;
+    progRef.update({ opacity: 0, scale: 1 });
 
     const anims = TaskGroup.create();
     anims.add(() =>

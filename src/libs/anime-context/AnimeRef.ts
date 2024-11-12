@@ -29,7 +29,7 @@ export class AnimeRef {
         return el?.style?.color ?? "";
     }
 
-    public set color(value: string) {
+    private set color(value: string) {
         const el = this.element;
         if (!el?.style) {
             return;
@@ -43,7 +43,7 @@ export class AnimeRef {
         return value >= 0 ? value : null;
     }
 
-    public set opacity(value: number) {
+    private set opacity(value: number) {
         const el = this.element;
         if (!el?.style) {
             return;
@@ -62,7 +62,7 @@ export class AnimeRef {
         return value >= 0 ? value : null;
     }
 
-    public set scale(value: number) {
+    private set scale(value: number) {
         const el = this.element;
         if (!el?.style) {
             return;
@@ -94,5 +94,22 @@ export class AnimeRef {
 
     public run(params: AnimeParams) {
         return AnimeTask.run(this.build(params));
+    }
+
+    public update(params: {
+        color?: string;
+        opacity?: number;
+        scale?: number;
+    }) {
+        const { color, opacity, scale } = params;
+        if (color) {
+            this.color = color;
+        }
+        if (opacity || opacity === 0) {
+            this.opacity = opacity;
+        }
+        if (scale || scale === 0) {
+            this.scale = scale;
+        }
     }
 }

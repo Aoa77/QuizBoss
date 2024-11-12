@@ -10,7 +10,7 @@ export async function StartApp() {
     const { quizModule } = state;
 
     //
-    Animation.LoadingSpinner.opacity = 1;
+    Animation.LoadingSpinner.update({ opacity: 1 });
     await Task.delay($time.seconds(3));
 
     //
