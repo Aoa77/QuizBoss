@@ -8,7 +8,7 @@ export const SETTINGS: AppSettings = {
     errorHandler: showErrorUI,
     strictMode: false,
 
-    demoMode: DemoMode.RIGHT,
+    demoMode: DemoMode.OFF,
     demoDelayMin: 800,
     demoDelayMax: 990,
 

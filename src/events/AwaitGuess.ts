@@ -24,11 +24,6 @@ export async function AwaitGuess() {
     }
 
     if (timer.status === TimerStatus.Reset) {
-        await Anim.QuestionText.run({
-            opacity: [1, 0],
-            duration: $time.ticks(0.25),
-            easing: $ease.linear,
-        });
         timer.start();
     }
 

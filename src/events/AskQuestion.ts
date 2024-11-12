@@ -24,55 +24,63 @@ export async function AskQuestion() {
                 easing: $ease.linear,
             }),
         () =>
-            Anim.QuestionText.run({
-                opacity: [0, 1],
+            Anim.QuestionText.immediate({ opacity: 1, scale: 0 }).run({
+                scale: [0, 1],
                 delay: $time.ticks(2),
-                duration: $time.ticks(1.25),
-                easing: $ease.linear,
+                duration: $time.ticks(0.5),
             }),
         () =>
-            Anim.QuestionText.run({
-                // scale: [1, 1.3],
-                delay: $time.ticks(2),
-                duration: $time.ticks(0.25),
+            Anim.QuizProgress.immediate({ opacity: 1, scale: 0 }).run({
+                scale: [0, 1],
+                delay: $time.ticks(3),
+                duration: $time.ticks(0.5),
             }),
     );
 
-    // anims.add(() =>
-    //     Anim.QuizProgress.run({
-    //         opacity: [0, 1],
-    //         delay: $time.ticks(1.5),
-    //         duration: $time.ticks(2),
-    //         easing: $ease.linear,
-    //     }),
-    // );
+    const anims = TaskGroup.create(
+        () =>
+            Anim.QuestionText.run({
+                opacity: [1, 0],
+                duration: $time.ticks(3.25),
+                easing: $ease.linear,
+            }),
 
+        () =>
+            Anim.QuizProgress.run({
+                opacity: [1, 0],
+                duration: $time.ticks(3.25),
+                easing: $ease.linear,
+            }),
+    );
 
-    // for (let i = 0; i < guessButtonCount; i++) {
-    //     anims.add(() =>
-    //         Anim.GuessButton(i).run({
-    //             opacity: [0, 1],
-    //             delay: i * $time.ticks(0.4),
-    //             duration: $time.ticks(0.125),
-    //             easing: $ease.in.back,
-    //         }),
-    //     );
-    // }
+    for (let i = 0; i < guessButtonCount; i++) {
+        anims.add(() =>
+            Anim.GuessButton(i)
+                .immediate({ opacity: 0, scale: 1 })
+                .run({
+                    opacity: [0, 1],
+                    delay: i * $time.ticks(0.4),
+                    duration: $time.ticks(0.125),
+                    easing: $ease.in.back,
+                }),
+        );
+    }
 
-    // if (Anim.ScoreInfo.opacity !== 0.5) {
-    //     anims.add(() =>
-    //         Anim.ScoreInfo.run({
-    //             opacity: [0, 0.5],
-    //             duration: $time.ticks(1),
-    //             easing: $ease.linear,
-    //         }),
-    //     );
-    //}
+    if (Anim.ScoreInfo.opacity !== 0.5) {
+        anims.add(() =>
+            Anim.ScoreInfo.run({
+                opacity: [0, 0.5],
+                duration: $time.ticks(1),
+                easing: $ease.linear,
+            }),
+        );
+    }
 
+    await anims.all();
     buttonAnswerMap.forEach((item) => {
         item!.buttonStyle = ButtonStyle.normal;
     });
-    await Task.delay($time.ticks(10000));
+    // await Task.delay($time.ticks(1));
 
     flow.dispatch((state) => ({ ...state, eventName: EventName.AwaitGuess }));
 }

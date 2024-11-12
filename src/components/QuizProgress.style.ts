@@ -19,7 +19,7 @@ export function useStyle(): Style | null {
         fontFamily: ThemeFont.mono,
         fontSize: CssUnit.rem(2.3),
         fontWeight: "bold",
-        marginTop: CssUnit.cqh(33),
+        marginTop: CssUnit.cqh(41),
     };
 
     ///

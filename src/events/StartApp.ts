@@ -11,7 +11,7 @@ export async function StartApp() {
 
     //
     Anim.LoadingSpinner.immediate({ opacity: 1 });
-    await Task.delay($time.milliseconds(3));
+    await Task.delay($time.milliseconds(1));
 
     //
     flow.dispatch((state) => ({

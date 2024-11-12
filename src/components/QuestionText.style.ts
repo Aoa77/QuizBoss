@@ -12,7 +12,6 @@ export function useStyle(): Style | null {
     return {
         section: {
             alignContent: "normal",
-            backgroundColor: "rebeccapurple",
             color: ThemeVars.getRef(TV, TV.QuestionText_color),
             fontFamily: ThemeFont.sans,
             fontSize: CssUnit.rem(3.3),

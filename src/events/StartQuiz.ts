@@ -14,6 +14,7 @@ export async function StartQuiz() {
             opacity: [0, 1],
             delay: $time.ticks(0.5),
             duration: $time.ticks(1),
+            endDelay: $time.milliseconds(666),
             easing: $ease.linear,
         }),
     );
