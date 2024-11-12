@@ -11,9 +11,12 @@ import { ThemeVars } from "../libs/theme-vars/ThemeVars";
 //////////////////////////////////////////////////
 
 const root: HTMLElement = document.getElementById("root")!;
+
+
+
 try {
     await ThemeVars.config(ThemeName, TV, "themes");
-    await ThemeVars.apply(SETTINGS.theme);
+    ThemeVars.apply(SETTINGS.theme);
     if (SETTINGS.strictMode) {
         console.warn("== STRICT MODE ENABLED ==");
         createRoot(root).render(

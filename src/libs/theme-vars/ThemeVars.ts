@@ -67,7 +67,7 @@ export class ThemeVars {
         }
     }
 
-    public static async apply(themeName: string): Promise<void> {
+    public static apply(themeName: string): void {
         const map = this._map.get(themeName);
         if (!map) {
             throw new Error(`Unknown theme: ${themeName}`);
