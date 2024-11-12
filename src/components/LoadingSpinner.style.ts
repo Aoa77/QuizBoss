@@ -1,7 +1,8 @@
 import { CSSProperties } from "react";
 import { CssUnit } from "../libs/theme-vars/CssUnit";
 import { ThemeVars } from "../libs/theme-vars/ThemeVars";
-import { TV } from "../code/Theme";
+import { ThemeFont, TV } from "../code/Theme";
+import "./LoadingSpinner.style.css";
 
 interface Style {
     image: CSSProperties;
@@ -18,8 +19,12 @@ export function useStyle(): Style | null {
 
     ///
     style.section = {
-        height: CssUnit.cqh(20),
-        marginTop: CssUnit.cqh(14),
+        color: ThemeVars.getRef(TV, TV.LoadingSpinner_color),
+        height: CssUnit.cqh(2),
+        marginTop: CssUnit.cqh(15),
+        fontFamily: ThemeFont.mono,
+        fontSize: CssUnit.rem(3),
+        fontWeight: "bold",
     };
 
     ///

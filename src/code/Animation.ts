@@ -1,10 +1,11 @@
 import { AnimeContext } from "../libs/anime-context/AnimeContext";
 import { AnimeRef } from "../libs/anime-context/AnimeRef";
 
-export enum AnimeComponent {
+export enum AnimComponent {
     GuessButton      = "GuessButton",
     GuessPoints      = "GuessPoints",
     TimeBonus        = "TimeBonus",
+    LoadingMessage   = "LoadingMessage",
     LoadingSpinner   = "LoadingSpinner",
     QuestionImage    = "QuestionImage",
     QuestionText     = "QuestionText",
@@ -21,9 +22,9 @@ export interface GuessButtonRef extends AnimeRef {
     scaleDown: number[];
 }
 
-export class Anime {
+export class Animation {
     public static GuessButton(index: number): GuessButtonRef {
-        const animeRef = AnimeContext.get(AnimeComponent.GuessButton, index)!;
+        const animeRef = AnimeContext.get(AnimComponent.GuessButton, index)!;
         const buttonRef: GuessButtonRef = {
             ...animeRef,
             scaleMin: 1.0,
@@ -37,38 +38,42 @@ export class Anime {
     }
 
     public static get GuessPoints(): AnimeRef {
-        return AnimeContext.get(AnimeComponent.GuessPoints)!;
+        return AnimeContext.get(AnimComponent.GuessPoints)!;
     }
 
     public static get TimeBonus(): AnimeRef {
-        return AnimeContext.get(AnimeComponent.TimeBonus)!;
+        return AnimeContext.get(AnimComponent.TimeBonus)!;
+    }
+
+    public static get LoadingMessage(): AnimeRef {
+        return AnimeContext.get(AnimComponent.LoadingMessage)!;
     }
 
     public static get LoadingSpinner(): AnimeRef {
-        return AnimeContext.get(AnimeComponent.LoadingSpinner)!;
+        return AnimeContext.get(AnimComponent.LoadingSpinner)!;
     }
 
     public static get QuestionImage(): AnimeRef {
-        return AnimeContext.get(AnimeComponent.QuestionImage)!;
+        return AnimeContext.get(AnimComponent.QuestionImage)!;
     }
 
     public static get QuestionText(): AnimeRef {
-        return AnimeContext.get(AnimeComponent.QuestionText)!;
+        return AnimeContext.get(AnimComponent.QuestionText)!;
     }
 
     public static get QuestionTimer(): AnimeRef {
-        return AnimeContext.get(AnimeComponent.QuestionTimer)!;
+        return AnimeContext.get(AnimComponent.QuestionTimer)!;
     }
 
     public static get QuizProgress(): AnimeRef {
-        return AnimeContext.get(AnimeComponent.QuizProgress)!;
+        return AnimeContext.get(AnimComponent.QuizProgress)!;
     }
 
     public static get QuizTitle(): AnimeRef {
-        return AnimeContext.get(AnimeComponent.QuizTitle)!;
+        return AnimeContext.get(AnimComponent.QuizTitle)!;
     }
 
     public static get ScoreInfo(): AnimeRef {
-        return AnimeContext.get(AnimeComponent.ScoreInfo)!;
+        return AnimeContext.get(AnimComponent.ScoreInfo)!;
     }
 }

@@ -1,5 +1,5 @@
-import { AppContext } from "../app/App.context";
-import { AppState } from "../app/App.state";
+import { AppContext } from "../app/context";
+import { AppState } from "../app/state";
 import { ButtonStyle } from "../code/ButtonStyle";
 import { EventName } from "../code/EventName";
 import { Timer, TimerStatus } from "../code/Timer";

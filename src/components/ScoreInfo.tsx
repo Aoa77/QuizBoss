@@ -1,11 +1,11 @@
-import { useAppContext } from "../app/App.context";
-import { AnimeComponent } from "../code/Anime";
+import { useAppContext } from "../app/context";
+import { AnimComponent } from "../code/Animation";
 import { useAnimeRef } from "../libs/anime-context/AnimeHooks";
 import { useStyle } from "./ScoreInfo.style";
 
 export function ScoreInfo() {
     ////
-    const animation = useAnimeRef(AnimeComponent.ScoreInfo);
+    const animation = useAnimeRef(AnimComponent.ScoreInfo);
     const style = useStyle();
     const { state } = useAppContext();
     const { quizScore } = state;

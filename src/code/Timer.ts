@@ -1,7 +1,7 @@
 import { $ease, $time } from "../libs/anime-context/AnimeConstants";
 import { AnimeRef } from "../libs/anime-context/AnimeRef";
 import { Lazy } from "../libs/friendlies/Lazy";
-import { Anime } from "./Anime";
+import { Animation } from "./Animation";
 import { Task } from "../libs/friendlies/Task";
 
 export enum TimerStatus {
@@ -79,7 +79,7 @@ export class Timer {
 
     private _secondsRemaining: number = 0;
     private readonly _animation: Lazy<AnimeRef> = new Lazy<AnimeRef>(() => {
-        return Anime.QuestionTimer;
+        return Animation.QuestionTimer;
     });
 
     private async pulse() {
@@ -115,13 +115,13 @@ export class Timer {
 
         anim.run({
             scale: [this._pulseScale, nextScale],
-            duration: $time.second,
+            duration: $time.seconds(1),
             easing: $ease.linear,
         });
 
         await anim.run({
             opacity: [1, 0.2],
-            duration: $time.second,
+            duration: $time.seconds(1),
             easing: $ease.linear,
         });
         this._pulseScale = nextScale;

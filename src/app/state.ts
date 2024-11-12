@@ -12,6 +12,7 @@ export interface AppState {
     eventName: EventName;
     guessButtonIndex: number;
     itemScore: number;
+    loadingMessage: string;
     quizModule: QuizModule | null;
     quizScore: number;
     totalItems: number;
@@ -31,6 +32,7 @@ export function initAppState(params: { guessButtonCount: number }): AppState {
         eventName: EventName.StartApp,
         guessButtonIndex: -1,
         itemScore: 0,
+        loadingMessage: "QuizBoss",
         quizModule: null,
         quizScore: 0,
         totalItems: 0,

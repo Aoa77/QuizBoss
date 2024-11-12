@@ -1,7 +1,7 @@
 import { useStyle } from "./GuessButtons.style";
 import { useAnimeRefs } from "../libs/anime-context/AnimeHooks";
-import { useAppContext } from "../app/App.context";
-import { AnimeComponent } from "../code/Anime";
+import { useAppContext } from "../app/context";
+import { AnimComponent } from "../code/Animation";
 import { TriggerGuess } from "../events/TriggerGuess";
 
 export function GuessButtons() {
@@ -10,7 +10,7 @@ export function GuessButtons() {
     const { buttonAnswerMap } = state;
     const style = useStyle();
     const animations = useAnimeRefs(
-        AnimeComponent.GuessButton,
+        AnimComponent.GuessButton,
         guessButtonCount,
     );
     

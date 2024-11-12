@@ -1,4 +1,4 @@
-import { AppContext } from "../app/App.context";
+import { AppContext } from "../app/context";
 import { ButtonStyle } from "../code/ButtonStyle";
 import { EventName } from "../code/EventName";
 

@@ -19,8 +19,8 @@
         "explorer.fileNesting.enabled": true,
         "editor.wordWrap": "on",
         "explorer.fileNesting.patterns": {
-            "*.ts": "$(capture)*",
-            "*.tsx": "$(capture)*"
+            "*.ts": "$(capture).*",
+            "*.tsx": "$(capture).*"
         },
         "colorize.include": ["**/*.ts", "**/*.tsx", "**/*.css"],
         "runTerminalCommand.commands": [

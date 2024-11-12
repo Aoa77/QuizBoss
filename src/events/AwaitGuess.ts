@@ -1,7 +1,7 @@
-import { AppContext, AppFlow } from "../app/App.context";
-import { AppSettings } from "../app/App.settings";
-import { AppState } from "../app/App.state";
-import { Anime } from "../code/Anime";
+import { AppContext, AppFlow } from "../app/context";
+import { AppSettings } from "../app/settings";
+import { AppState } from "../app/state";
+import { Animation } from "../code/Animation";
 import { ButtonStyle } from "../code/ButtonStyle";
 import { DEMO, DemoMode } from "../code/DemoMode";
 import { EventName } from "../code/EventName";
@@ -24,7 +24,7 @@ export async function AwaitGuess() {
     }
 
     if (timer.status === TimerStatus.Reset) {
-        await Anime.QuestionText.run({
+        await Animation.QuestionText.run({
             opacity: [1, 0],
             duration: $time.ticks(0.25),
             easing: $ease.linear,

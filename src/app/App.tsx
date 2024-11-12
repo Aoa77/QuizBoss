@@ -1,7 +1,7 @@
 ///
-import "./App.style.css";
-import { AppSettings } from "./App.settings";
-import { useAppContextSetup } from "./App.context";
+import "./style.css";
+import { AppSettings } from "./settings";
+import { useAppContextSetup } from "./context";
 
 ///
 import { GuessButtons } from "../components/GuessButtons";

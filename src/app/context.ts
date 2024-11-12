@@ -8,8 +8,8 @@ import {
 } from "../libs/flow-context/FlowContext";
 
 ///
-import { AppSettings } from "./App.settings";
-import { AppState, initAppState } from "./App.state";
+import { AppSettings } from "./settings";
+import { AppState, initAppState } from "./state";
 
 ////
 import { Timer } from "../code/Timer";

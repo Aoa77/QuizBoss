@@ -1,7 +1,7 @@
-import { Anime } from "../code/Anime";
+import { Animation } from "../code/Animation";
 import { ButtonStyle } from "../code/ButtonStyle";
 import { EventName } from "../code/EventName";
-import { AppContext } from "../app/App.context";
+import { AppContext } from "../app/context";
 import { $time, $ease } from "../libs/anime-context/AnimeConstants";
 import { Task, TaskGroup } from "../libs/friendlies/Task";
 
@@ -20,14 +20,14 @@ export async function AskQuestion() {
 
     const anims = TaskGroup.create();
     anims.add(() =>
-        Anime.LoadingSpinner.run({
+        Animation.LoadingSpinner.run({
             opacity: [1, 0],
             duration: $time.ticks(1.25),
             easing: $ease.linear,
         }),
     );
     anims.add(() =>
-        Anime.QuestionImage.run({
+        Animation.QuestionImage.run({
             opacity: [0, 1],
             duration: $time.ticks(2),
             easing: $ease.linear,
@@ -35,7 +35,7 @@ export async function AskQuestion() {
     );
 
     anims.add(() =>
-        Anime.QuestionText.run({
+        Animation.QuestionText.run({
             opacity: [0, 1],
             delay: $time.ticks(1),
             duration: $time.ticks(2),
@@ -43,7 +43,7 @@ export async function AskQuestion() {
         }),
     );
     anims.add(() =>
-        Anime.QuizProgress.run({
+        Animation.QuizProgress.run({
             opacity: [0, 1],
             delay: $time.ticks(1.5),
             duration: $time.ticks(2),
@@ -55,7 +55,7 @@ export async function AskQuestion() {
     //         opacity: [1.0, 0.5],
     //         scale: [1.25, 1.0],
     //         delay: $time.ticks(1.5),
-    //         duration: $time.tick,
+    //         duration: $time.ticks(1),
     //         easing: $ease.linear,
     //     }),
     // );
@@ -65,7 +65,7 @@ export async function AskQuestion() {
 
     for (let i = 0; i < guessButtonCount; i++) {
         anims.add(() =>
-            Anime.GuessButton(i).run({
+            Animation.GuessButton(i).run({
                 opacity: [0, 1],
                 delay: i * $time.ticks(0.4),
                 duration: $time.ticks(0.125),
@@ -74,11 +74,11 @@ export async function AskQuestion() {
         );
     }
 
-    if (Anime.ScoreInfo.opacity !== 0.5) {
+    if (Animation.ScoreInfo.opacity !== 0.5) {
         anims.add(() =>
-            Anime.ScoreInfo.run({
+            Animation.ScoreInfo.run({
                 opacity: [0, 0.5],
-                duration: $time.tick,
+                duration: $time.ticks(1),
                 easing: $ease.linear,
             }),
         );
@@ -88,7 +88,7 @@ export async function AskQuestion() {
     buttonAnswerMap.forEach((item) => {
         item!.buttonStyle = ButtonStyle.normal;
     });
-    await Task.delay($time.tick);
+    await Task.delay($time.ticks(1));
 
     flow.dispatch((state) => ({ ...state, eventName: EventName.AwaitGuess }));
 }

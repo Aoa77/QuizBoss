@@ -1,25 +1,23 @@
 export class $time {
-    public static get millisecond() {
-        return 1;
-    }
-    public static get second() {
-        return 1000;
-    }
     public static milliseconds(ms: number) {
         return ms;
     }
+    
     public static seconds(s: number) {
-        return s * 1000;
+        return this.milliseconds(s * 1000);
     }
-    public static get tick() {
-        return this._tick;
-    }
+    
     public static ticks(t: number) {
-        return t * this._tick;
+        if (this._tick < 1) {
+            throw new Error("Tick milliseconds not set.");
+        }
+        return this.milliseconds(t * this._tick);
     }
-    private static _tick: number = 500;
-    public static setTickTime(tick: number) {
-        this._tick = tick;
+
+    private static _tick: number = -1;
+    public static setTickMilliseconds(ms: number) : number{
+        this._tick = ms;
+        return this._tick;
     }
 }
 

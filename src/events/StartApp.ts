@@ -1,22 +1,19 @@
-//import { Anime } from "../code/Anime";
-import { AppContext } from "../app/App.context";
+import { Animation } from "../code/Animation";
+import { AppContext } from "../app/context";
 import { EventName } from "../code/EventName";
-//import { $ease, $time } from "../libs/anime-context/AnimeConstants";
+import { $time } from "../libs/anime-context/AnimeConstants";
+import { Task } from "../libs/friendlies/Task";
 
 export async function StartApp() {
-    ///
+    //
     const { state, flow } = AppContext.current(EventName.StartApp);
     const { quizModule } = state;
 
-    ///
-    // await Anime.LoadingProgress.run({
-    //     opacity: [0, 1],
-    //     delay: $time.ticks(0.25),
-    //     duration: $time.tick,
-    //     easing: $ease.linear,
-    // });
+    //
+    Animation.LoadingSpinner.opacity = 1;
+    await Task.delay($time.seconds(3));
 
-    ///
+    //
     flow.dispatch((state) => ({
         ...state,
         eventName: quizModule ? EventName.StartQuiz : EventName.LoadQuizModule,
