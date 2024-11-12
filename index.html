@@ -5,9 +5,23 @@
         <link rel="icon" type="image/svg+xml" href="/vite.svg" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>QuizBoss - World Flags Quiz</title>
+        <link rel="stylesheet" href="/style.css" />
+        <link rel="stylesheet" href="/spinner.css" />
     </head>
     <body>
-        <div id="root"></div>
+        <div id="root">
+            <section id="preload">
+                <div>QuizBoss</div>
+                <div>
+                    <div class="lds-ellipsis">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                </div>
+            </section>
+        </div>
         <script type="module" src="/src/app/main.tsx"></script>
     </body>
 </html>

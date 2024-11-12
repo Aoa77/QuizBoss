@@ -1,5 +1,4 @@
 ///
-import "./style.css";
 import { AppSettings } from "./settings";
 import { useAppContextSetup } from "./context";
 

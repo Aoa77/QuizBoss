@@ -37,12 +37,12 @@ export interface AppFlowContext {
 }
 
 ///
-export function useAppContext() {
+export function useAppContext(): AppFlowContext {
     return AppContext.current();
 }
 
 ///
-export function useAppContextSetup(settings: AppSettings) {
+export function useAppContextSetup(settings: AppSettings): AppFlowContext {
     ///
     useFlowContextSetup<AppState, EventName>({
         initialState: initAppState(settings),
@@ -89,6 +89,8 @@ export function useAppContextSetup(settings: AppSettings) {
         // using memo to use the same instance of Timer across renders
         timer: useMemo(() => new Timer({ timerSeconds }), [timerSeconds]),
     });
+
+    return AppContext.current();
 }
 
 export class AppContext {

@@ -1,7 +1,7 @@
 import { DemoMode } from "../code/DemoMode";
 import { ThemeName } from "../code/Theme";
-import { $time } from "../libs/anime-context/AnimeConstants";
 import { showErrorUI } from "./errors";
+import { $time } from "../libs/anime-context/AnimeConstants";
 
 export const SETTINGS: AppSettings = {
     quizModuleName: "quizboss-world-flags",
@@ -21,17 +21,15 @@ export const SETTINGS: AppSettings = {
 };
 
 export interface AppSettings {
-    quizModuleName: string;
-    errorHandler?: (error: unknown) => void;
-    strictMode: boolean;
-
-    demoMode: DemoMode;
     demoDelayMax: number;
     demoDelayMin: number;
-
-    theme: ThemeName;
+    demoMode: DemoMode;
+    errorHandler?: (error: unknown) => void;
     guessButtonCount: number;
     maxQuestions: number;
+    quizModuleName: string;
+    strictMode: boolean;
+    theme: ThemeName;
     tickMilliseconds: number;
     timerSeconds: number;
 }
