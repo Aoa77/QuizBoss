@@ -47,7 +47,7 @@ export class ThemeVars {
                 }
                 const split = data.split(":");
                 const key = split[0].trim();
-                const value = split[1].trim().split('"')[1].trim();
+                const value = split[1].trim().replace(/;$/, "");
 
                 console.debug({ key, value });
 

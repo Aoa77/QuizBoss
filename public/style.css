@@ -16,11 +16,6 @@
     /* vertical */
     --appCenterHeight: calc(var(--height) / 2);
     --mainCenterTop: calc(var(--deviceCenterHeight) - var(--appCenterHeight));
-
-    /* initial colors */
-    --tv-BODY_backgroundColor: #000;
-    --tv-MAIN_backgroundColor: #555;
-    --tv-LoadingSpinner_color: #fff;
 }
 
 /* normalize box-sizing for all elements */
