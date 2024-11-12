@@ -1,4 +1,4 @@
-import { Animation } from "../code/Animation";
+import { Anim } from "../code/Animation";
 import { ButtonStyle } from "../code/ButtonStyle";
 import { EventName } from "../code/EventName";
 import { AppContext } from "../app/context";
@@ -10,19 +10,19 @@ export async function AskQuestion() {
     const { guessButtonCount } = settings;
     const { buttonAnswerMap } = state;
 
-    const progRef = Animation.QuizProgress;
+    const progRef = Anim.QuizProgress;
     progRef.update({ opacity: 0, scale: 1 });
 
     const anims = TaskGroup.create();
     anims.add(() =>
-        Animation.LoadingSpinner.run({
+        Anim.LoadingSpinner.run({
             scale: [1, 0],
             duration: $time.ticks(1.25),
             easing: $ease.linear,
         }),
     );
     anims.add(() =>
-        Animation.QuestionImage.run({
+        Anim.QuestionImage.run({
             opacity: [0, 1],
             duration: $time.ticks(2),
             easing: $ease.linear,
@@ -30,7 +30,7 @@ export async function AskQuestion() {
     );
 
     anims.add(() =>
-        Animation.QuestionText.run({
+        Anim.QuestionText.run({
             opacity: [0, 1],
             delay: $time.ticks(1),
             duration: $time.ticks(2),
@@ -38,7 +38,7 @@ export async function AskQuestion() {
         }),
     );
     anims.add(() =>
-        Animation.QuizProgress.run({
+        Anim.QuizProgress.run({
             opacity: [0, 1],
             delay: $time.ticks(1.5),
             duration: $time.ticks(2),
@@ -46,7 +46,7 @@ export async function AskQuestion() {
         }),
     );
     anims.add(() =>
-        Animation.QuizProgress.run({
+        Anim.QuizProgress.run({
             scale: [1, 0],
             delay: $time.ticks(3),
             duration: $time.ticks(1),
@@ -58,7 +58,7 @@ export async function AskQuestion() {
 
     for (let i = 0; i < guessButtonCount; i++) {
         anims.add(() =>
-            Animation.GuessButton(i).run({
+            Anim.GuessButton(i).run({
                 opacity: [0, 1],
                 delay: i * $time.ticks(0.4),
                 duration: $time.ticks(0.125),
@@ -67,9 +67,9 @@ export async function AskQuestion() {
         );
     }
 
-    if (Animation.ScoreInfo.opacity !== 0.5) {
+    if (Anim.ScoreInfo.opacity !== 0.5) {
         anims.add(() =>
-            Animation.ScoreInfo.run({
+            Anim.ScoreInfo.run({
                 opacity: [0, 0.5],
                 duration: $time.ticks(1),
                 easing: $ease.linear,

@@ -12,7 +12,7 @@ import { AppSettings } from "./settings";
 import { AppState, initAppState } from "./state";
 
 ////
-import { Timer } from "../code/Timer";
+import { Timer } from "../libs/anime-context/Timer";
 import { EventName } from "../code/EventName";
 import { AskQuestion } from "../events/AskQuestion";
 import { AwaitGuess } from "../events/AwaitGuess";
@@ -24,6 +24,7 @@ import { PrepQuestion } from "../events/PrepQuestion";
 import { RevealGuessResult } from "../events/RevealGuessResult";
 import { StartApp } from "../events/StartApp";
 import { StartQuiz } from "../events/StartQuiz";
+import { Anim } from "../code/Animation";
 
 export interface AppFlow {
     dispatch: Dispatch<SetStateAction<AppState>>;
@@ -79,15 +80,21 @@ export function useAppContextSetup(settings: AppSettings): AppFlowContext {
 
     ///
     const flow = useFlowContext<AppState>();
+
+    // using memo to use the same instance of Timer across renders
     const { timerSeconds } = settings;
+    const timer = useMemo(() => {
+        return new Timer({
+            animeRef: () => Anim.QuestionTimer,
+            timerSeconds: timerSeconds,
+        });
+    }, [timerSeconds]);
 
     AppContext.init({
         flow: { dispatch: flow[1] },
         settings,
         state: flow[0],
-
-        // using memo to use the same instance of Timer across renders
-        timer: useMemo(() => new Timer({ timerSeconds }), [timerSeconds]),
+        timer,
     });
 
     return AppContext.current();

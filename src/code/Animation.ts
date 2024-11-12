@@ -14,7 +14,7 @@ export enum ANIM {
     ScoreInfo        = "ScoreInfo",
 }
 
-export class Animation {
+export class Anim {
     public static GuessButton(index: number): AnimeRef {
         return AnimeContext.get(ANIM.GuessButton, index)!;
     }

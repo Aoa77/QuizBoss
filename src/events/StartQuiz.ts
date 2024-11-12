@@ -1,5 +1,5 @@
 import { AppContext } from "../app/context";
-import { Animation } from "../code/Animation";
+import { Anim } from "../code/Animation";
 import { EventName } from "../code/EventName";
 import { $ease, $time } from "../libs/anime-context/constants";
 import { TaskGroup } from "../libs/friendlies/Task";
@@ -10,7 +10,7 @@ export async function StartQuiz() {
     ///
     const anims = TaskGroup.create();
     anims.add(() =>
-        Animation.QuizTitle.run({
+        Anim.QuizTitle.run({
             opacity: [0, 1],
             delay: $time.ticks(0.5),
             duration: $time.ticks(1),
@@ -18,7 +18,7 @@ export async function StartQuiz() {
         }),
     );
     anims.add(() =>
-        Animation.LoadingMessage.run({
+        Anim.LoadingMessage.run({
             opacity: [1, 0],
             delay: $time.ticks(0.5),
             duration: $time.ticks(1),

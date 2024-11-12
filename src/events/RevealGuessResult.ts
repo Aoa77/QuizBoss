@@ -1,11 +1,11 @@
 import { AppContext } from "../app/context";
 
 // code
-import { Animation } from "../code/Animation";
+import { Anim } from "../code/Animation";
 import { ButtonStyle } from "../code/ButtonStyle";
 import { EventName } from "../code/EventName";
 import { QuizItem } from "../code/QuizItem";
-import { TimerStatus } from "../code/Timer";
+import { TimerStatus } from "../libs/anime-context/Timer";
 import { TV } from "../code/Theme";
 
 /// libs
@@ -21,7 +21,7 @@ export async function RevealGuessResult() {
     const { buttonAnswerMap, guessButtonIndex } = state;
     const button = buttonAnswerMap[guessButtonIndex]!;
 
-    const buttonRef = Animation.GuessButton(guessButtonIndex);
+    const buttonRef = Anim.GuessButton(guessButtonIndex);
     await buttonRef.run({
         scale: [1.0, 1.3],
         delay: 0,
@@ -42,7 +42,7 @@ export async function RevealGuessResult() {
     await timer.stop();
     const { secondsRemaining } = timer;
 
-    const anim = Animation.QuestionTimer;
+    const anim = Anim.QuestionTimer;
     let tv = TV.QuestionTimer_GOOD_color;
     if (timer.status === TimerStatus.TimedOut) {
         tv = TV.QuestionTimer_BAD_color;
@@ -106,7 +106,7 @@ async function _concludeFinalGuess(
         if (bidx === guessButtonIndex) {
             return;
         }
-        const button: AnimeRef = Animation.GuessButton(bidx);
+        const button: AnimeRef = Anim.GuessButton(bidx);
         anims.add(() =>
             button
                 .run({
@@ -126,7 +126,7 @@ async function _concludeFinalGuess(
     await anims.all();
 
     ///
-    const questionText = Animation.QuestionText;
+    const questionText = Anim.QuestionText;
     const translateY = questionText.rect!.top - buttonRef.rect!.top;
 
     await buttonRef.run({
@@ -138,7 +138,7 @@ async function _concludeFinalGuess(
 
     const slide = TaskGroup.create();
     slide.add(() =>
-        Animation.QuestionTimer.run({
+        Anim.QuestionTimer.run({
             opacity: 0,
             delay: $time.ticks(0.125),
             duration: $time.ticks(0.25),
@@ -161,10 +161,10 @@ async function _concludeFinalGuess(
 }
 
 async function _showScoreAndTransition(itemScore: number, buttonRef: AnimeRef) {
-    const scoreRef = Animation.GuessPoints;
+    const scoreRef = Anim.GuessPoints;
     scoreRef.update({ opacity: 1 });
 
-    const bonusRef = Animation.TimeBonus;
+    const bonusRef = Anim.TimeBonus;
     bonusRef.update({ opacity: 1, scale: 0 });
 
     const scoreAnims = TaskGroup.create();
@@ -224,7 +224,7 @@ async function _showScoreAndTransition(itemScore: number, buttonRef: AnimeRef) {
     buttonRef.update({ opacity: 0, scale: 0 });
     scoreRef.update({ opacity: 0, scale: 0 });
 
-    const timerRef = Animation.QuestionTimer;
+    const timerRef = Anim.QuestionTimer;
     timerRef.update({
         color: ThemeVars.getRef(TV, TV.QuestionTimer_NORMAL_color),
     });

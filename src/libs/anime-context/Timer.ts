@@ -1,8 +1,7 @@
-import { $ease, $time } from "../libs/anime-context/constants";
-import { AnimeRef } from "../libs/anime-context/AnimeRef";
-import { Lazy } from "../libs/friendlies/Lazy";
-import { Animation } from "./Animation";
-import { Task } from "../libs/friendlies/Task";
+import { AnimeRef } from "./AnimeRef";
+import { $ease, $time } from "./constants";
+import { Lazy } from "../friendlies/Lazy";
+import { Task } from "../friendlies/Task";
 
 export enum TimerStatus {
     None = "None",
@@ -14,12 +13,19 @@ export enum TimerStatus {
 }
 
 export class Timer {
-    public constructor(params: { timerSeconds: number }) {
+    public constructor(params: {
+        animeRef: () => AnimeRef;
+        timerSeconds: number;
+    }) {
+        this._animation = new Lazy(params.animeRef);
         this._timerSeconds = params.timerSeconds;
     }
 
+    private readonly _animation: Lazy<AnimeRef>;
+    private _secondsRemaining: number = 0;
     private _timerSeconds: number = 0;
     private _pulseScale: number = 0;
+
     private _status: TimerStatus = TimerStatus.None;
     public get status(): TimerStatus {
         return this._status;
@@ -74,11 +80,6 @@ export class Timer {
             await Task.delay(100);
         }
     }
-
-    private _secondsRemaining: number = 0;
-    private readonly _animation: Lazy<AnimeRef> = new Lazy<AnimeRef>(() => {
-        return Animation.QuestionTimer;
-    });
 
     private async pulse() {
         ///

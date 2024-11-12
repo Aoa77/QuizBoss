@@ -1,4 +1,4 @@
-import { Animation } from "../code/Animation";
+import { Anim } from "../code/Animation";
 import { AppContext } from "../app/context";
 import { EventName } from "../code/EventName";
 import { $time } from "../libs/anime-context/constants";
@@ -10,8 +10,8 @@ export async function StartApp() {
     const { quizModule } = state;
 
     //
-    Animation.LoadingSpinner.update({ opacity: 1 });
-    await Task.delay($time.seconds(3));
+    Anim.LoadingSpinner.update({ opacity: 1 });
+    await Task.delay($time.milliseconds(3));
 
     //
     flow.dispatch((state) => ({
