@@ -2,7 +2,7 @@ import { AppContext } from "../app/context";
 import { Animation } from "../code/Animation";
 import { ButtonStyle } from "../code/ButtonStyle";
 import { EventName } from "../code/EventName";
-import { $ease, $time } from "../libs/anime-context/AnimeConstants";
+import { $ease, $time } from "../libs/anime-context/constants";
 
 export async function ConcludeWrongGuess() {
     const { state, flow } = AppContext.current(EventName.ConcludeWrongGuess);
@@ -10,7 +10,7 @@ export async function ConcludeWrongGuess() {
 
     const buttonRef = Animation.GuessButton(guessButtonIndex);
     await buttonRef.run({
-        scale: buttonRef.scaleDown,
+        scale: [1.3, 1.0],
         delay: $time.ticks(1.05),
         duration: $time.ticks(1),
         easing: $ease.out.elastic(3, 1),

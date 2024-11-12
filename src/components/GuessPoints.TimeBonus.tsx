@@ -1,13 +1,13 @@
-import { useAppContext } from "../app/context";
-import { AnimComponent } from "../code/Animation";
+import { ANIM } from "../code/Animation";
 import { TV } from "../code/Theme";
-import { useAnimeRef } from "../libs/anime-context/AnimeHooks";
+import { useAppContext } from "../app/context";
+import { useAnimeRef } from "../libs/anime-context/hooks";
 import { ThemeVars } from "../libs/theme-vars/ThemeVars";
 import { useStyle } from "./GuessPoints.style";
 
 export function TimeBonus() {
     ////
-    const animation = useAnimeRef(AnimComponent.TimeBonus);
+    const animation = useAnimeRef(ANIM.TimeBonus);
     const { timer } = useAppContext();
     const { secondsRemaining: bonus } = timer;
     const render = bonus ? `+${bonus} time bonus` : "no time bonus";

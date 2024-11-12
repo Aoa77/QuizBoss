@@ -1,11 +1,11 @@
 import { useAppContext } from "../app/context";
-import { AnimComponent } from "../code/Animation";
-import { useAnimeRef } from "../libs/anime-context/AnimeHooks";
+import { ANIM } from "../code/Animation";
+import { useAnimeRef } from "../libs/anime-context/hooks";
 import { useStyle } from "./QuestionText.style";
 
 export function QuestionText() {
     ////
-    const animation = useAnimeRef(AnimComponent.QuestionText);
+    const animation = useAnimeRef(ANIM.QuestionText);
     const style = useStyle();
     const { state } = useAppContext();
     const { quizModule } = state;

@@ -1,7 +1,7 @@
 import { DemoMode } from "../code/DemoMode";
 import { ThemeName } from "../code/Theme";
 import { showErrorUI } from "./errors";
-import { $time } from "../libs/anime-context/AnimeConstants";
+import { $time } from "../libs/anime-context/constants";
 
 export const SETTINGS: AppSettings = {
     quizModuleName: "quizboss-world-flags",

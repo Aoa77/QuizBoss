@@ -1,4 +1,4 @@
-import { $ease, $time } from "../libs/anime-context/AnimeConstants";
+import { $ease, $time } from "../libs/anime-context/constants";
 import { AnimeRef } from "../libs/anime-context/AnimeRef";
 import { Lazy } from "../libs/friendlies/Lazy";
 import { Animation } from "./Animation";

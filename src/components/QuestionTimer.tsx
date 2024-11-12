@@ -1,9 +1,9 @@
-import { AnimComponent } from "../code/Animation";
-import { useAnimeRef } from "../libs/anime-context/AnimeHooks";
+import { ANIM } from "../code/Animation";
+import { useAnimeRef } from "../libs/anime-context/hooks";
 import { useStyle } from "./QuestionTimer.style";
 
 export function QuestionTimer() {
-    const animation = useAnimeRef(AnimComponent.QuestionTimer);
+    const animation = useAnimeRef(ANIM.QuestionTimer);
     const style = useStyle();
 
     return (

@@ -1,13 +1,13 @@
+import { ANIM } from "../code/Animation";
 import { useAppContext } from "../app/context";
-import { AnimComponent } from "../code/Animation";
-import { useAnimeRef } from "../libs/anime-context/AnimeHooks";
+import { useAnimeRef } from "../libs/anime-context/hooks";
 import { useStyle } from "./LoadingSpinner.style";
 
 export function LoadingSpinner() {
     const { state } = useAppContext();
     const { loadingMessage } = state;
-    const sectionRef = useAnimeRef(AnimComponent.LoadingSpinner);
-    const messageRef = useAnimeRef(AnimComponent.LoadingMessage);
+    const sectionRef = useAnimeRef(ANIM.LoadingSpinner);
+    const messageRef = useAnimeRef(ANIM.LoadingMessage);
     const style = useStyle();
     ///
     return (

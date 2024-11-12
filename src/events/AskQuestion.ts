@@ -2,7 +2,7 @@ import { Animation } from "../code/Animation";
 import { ButtonStyle } from "../code/ButtonStyle";
 import { EventName } from "../code/EventName";
 import { AppContext } from "../app/context";
-import { $time, $ease } from "../libs/anime-context/AnimeConstants";
+import { $time, $ease } from "../libs/anime-context/constants";
 import { Task, TaskGroup } from "../libs/friendlies/Task";
 
 export async function AskQuestion() {
@@ -10,18 +10,15 @@ export async function AskQuestion() {
     const { guessButtonCount } = settings;
     const { buttonAnswerMap, /*currentItemIndex*/ } = state;
 
-    // const lastImage = Anime.QuestionImage.element!.firstChild;
-    // if (lastImage) {
-    //     document.getElementById("preload")!.appendChild(lastImage);
-    // }
-    // const img = document.getElementById(`preload-image-${currentItemIndex}`);
-    // img?.removeAttribute("width");
-    // Anime.QuestionImage.element!.appendChild(img!);
+    Animation.QuizProgress.opacity = 0;
+    Animation.QuizProgress.scale = 1;
+
+
 
     const anims = TaskGroup.create();
     anims.add(() =>
         Animation.LoadingSpinner.run({
-            opacity: [1, 0],
+            scale: [1, 0],
             duration: $time.ticks(1.25),
             easing: $ease.linear,
         }),
@@ -50,15 +47,13 @@ export async function AskQuestion() {
             easing: $ease.linear,
         }),
     );
-    // anims.add(() =>
-    //     Anime.QuizProgress.run({
-    //         opacity: [1.0, 0.5],
-    //         scale: [1.25, 1.0],
-    //         delay: $time.ticks(1.5),
-    //         duration: $time.ticks(1),
-    //         easing: $ease.linear,
-    //     }),
-    // );
+    anims.add(() =>
+        Animation.QuizProgress.run({
+            scale: [1, 0],
+            delay: $time.ticks(3),
+            duration: $time.ticks(1),
+        }),
+    );
 
     await anims.all();
     // await Task.delay($time.ticks(2));

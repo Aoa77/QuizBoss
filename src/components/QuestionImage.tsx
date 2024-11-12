@@ -1,13 +1,13 @@
 import { CSSProperties } from "react";
 import { useAppContext } from "../app/context";
-import { AnimComponent } from "../code/Animation";
-import { useAnimeRef } from "../libs/anime-context/AnimeHooks";
+import { ANIM } from "../code/Animation";
+import { useAnimeRef } from "../libs/anime-context/hooks";
 import { useStyle } from "./QuestionImage.style";
 
 export function QuestionImage() {
     ///
     const style = useStyle();
-    const animation = useAnimeRef(AnimComponent.QuestionImage);
+    const animation = useAnimeRef(ANIM.QuestionImage);
 
     ///
     const { state } = useAppContext();

@@ -1,15 +1,15 @@
-import { useAppContext } from "../app/context";
-import { AnimComponent } from "../code/Animation";
+import { ANIM } from "../code/Animation";
 import { TV } from "../code/Theme";
-import { useAnimeRef } from "../libs/anime-context/AnimeHooks";
+import { useAnimeRef } from "../libs/anime-context/hooks";
 import { ThemeVars } from "../libs/theme-vars/ThemeVars";
+import { useAppContext } from "../app/context";
 import { useStyle } from "./GuessPoints.style";
 
 export function GuessPoints() {
     ////
     const { state } = useAppContext();
     const { itemScore } = state;
-    const animation = useAnimeRef(AnimComponent.GuessPoints);
+    const animation = useAnimeRef(ANIM.GuessPoints);
     
     const style = useStyle({ timeBonus: false });
 

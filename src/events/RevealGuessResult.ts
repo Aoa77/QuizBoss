@@ -1,13 +1,18 @@
 import { AppContext } from "../app/context";
-import { Animation, GuessButtonRef } from "../code/Animation";
+
+// code
+import { Animation } from "../code/Animation";
 import { ButtonStyle } from "../code/ButtonStyle";
 import { EventName } from "../code/EventName";
 import { QuizItem } from "../code/QuizItem";
 import { TimerStatus } from "../code/Timer";
 import { TV } from "../code/Theme";
-import { ThemeVars } from "../libs/theme-vars/ThemeVars";
-import { $ease, $time } from "../libs/anime-context/AnimeConstants";
+
+/// libs
+import { $ease, $time } from "../libs/anime-context/constants";
 import { TaskGroup } from "../libs/friendlies/Task";
+import { ThemeVars } from "../libs/theme-vars/ThemeVars";
+import { AnimeRef } from "../libs/anime-context";
 
 export async function RevealGuessResult() {
     const { state, flow, timer } = AppContext.current(
@@ -18,7 +23,7 @@ export async function RevealGuessResult() {
 
     const buttonRef = Animation.GuessButton(guessButtonIndex);
     await buttonRef.run({
-        scale: buttonRef.scaleUp,
+        scale: [1.0, 1.3],
         delay: 0,
         duration: $time.ticks(0.25),
         endDelay: 0,
@@ -87,7 +92,7 @@ function _logScoreDetails(
 }
 
 async function _concludeFinalGuess(
-    buttonRef: GuessButtonRef,
+    buttonRef: AnimeRef,
     buttonAnswerMap: (QuizItem | null)[],
     guessButtonIndex: number,
     itemScore: number,
@@ -101,7 +106,7 @@ async function _concludeFinalGuess(
         if (bidx === guessButtonIndex) {
             return;
         }
-        const button: GuessButtonRef = Animation.GuessButton(bidx);
+        const button: AnimeRef = Animation.GuessButton(bidx);
         anims.add(() =>
             button
                 .run({
@@ -112,7 +117,7 @@ async function _concludeFinalGuess(
                 })
                 .then(() => {
                     button.opacity = 0;
-                    button.scale = button.scaleMin;
+                    button.scale = 0
                 }),
         );
         ++otherButton;
@@ -126,7 +131,7 @@ async function _concludeFinalGuess(
     const translateY = questionText.rect!.top - buttonRef.rect!.top;
 
     await buttonRef.run({
-        scale: [buttonRef.scaleDown],
+        scale: [1.3, 1.0],
         delay: 0,
         duration: $time.ticks(0.5),
         easing: $ease.out.elastic(3, 0.75),
@@ -158,7 +163,7 @@ async function _concludeFinalGuess(
 
 async function _showScoreAndTransition(
     itemScore: number,
-    buttonRef: GuessButtonRef,
+    buttonRef: AnimeRef,
 ) {
     const scoreRef = Animation.GuessPoints;
     scoreRef.opacity = 1;
