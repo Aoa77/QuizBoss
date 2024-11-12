@@ -14,7 +14,7 @@ export function useStyle(): Style | null {
         section: {
             alignContent: "normal",
             color: ThemeVars.getRef(TV, TV.QuizTitle_color),
-            fontFamily: ThemeFont.serif,
+            fontFamily: ThemeFont.cursive,
             fontSize: CssUnit.rem(6.5),
             height: CssUnit.cqh(10),
             marginTop: CssUnit.cqh(5),

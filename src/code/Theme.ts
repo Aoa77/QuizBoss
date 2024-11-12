@@ -1,6 +1,7 @@
 export enum ThemeFont {
-    mono = `"Courier New", monospace`,
-    sans = `"Tahoma", sans-serif`,
+    cursive = `"Rosarivo", cursive`,
+    mono = `"Share Tech Mono", "Courier New", monospace`,
+    sans = `"Strait", "Tahoma", sans-serif`,
     serif = `"Garamond", serif`,
 }
 

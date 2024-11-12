@@ -33,10 +33,11 @@ html {
     font-size: calc(0.5 * (var(--fw) + var(--fh)));
 }
 
-/* set background colors */
+/* set background colors, default font */
 body {
     background-color: var(--tv-BODY_backgroundColor);
     overflow: hidden;
+    font-family: "Strait", "Tahoma", sans-serif;
 }
 main {
     background-color: var(--tv-MAIN_backgroundColor);
@@ -57,9 +58,6 @@ main {
 /* use margin to offset */
 section {
     position: absolute;
-    /* top: 0;
-    left: 0; */
-
     width: 100cqw;
     height: 100cqh;
 

@@ -2,8 +2,8 @@ section#LoadingSpinner-0 {
     color: var(--tv-LoadingSpinner_color);
     height: 2cqh;
     margin-top: 15cqh;
-    font-family: "monospace";
-    font-size: 6rem;
+    font-family: "Share Tech Mono", "Courier New", monospace;
+    font-size: 3rem;
     font-weight: bold;
     opacity: 1;
 }
