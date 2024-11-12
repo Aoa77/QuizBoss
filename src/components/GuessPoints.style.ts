@@ -16,7 +16,6 @@ export function useStyle(params: { timeBonus: boolean }): Style | null {
             fontFamily: ThemeFont.mono,
             fontWeight: "bold",
             fontSize: CssUnit.rem(3),
-            height: CssUnit.cqh(4),
             marginTop: CssUnit.cqh(params.timeBonus ? 57 : 51),
         },
     };

@@ -33,7 +33,7 @@ export class Timer {
 
     public reset() {
         const animation = this._animation.instance;
-        animation.update({ opacity: 1, scale: 0 });
+        animation.immediate({ opacity: 1, scale: 0 });
         this._secondsRemaining = this._timerSeconds;
         this.updateUi();
         this._status = TimerStatus.Reset;
@@ -52,7 +52,7 @@ export class Timer {
         ///
 
         const anim = this._animation.instance;
-        anim.update({ opacity: 1, scale: 1 });
+        anim.immediate({ opacity: 1, scale: 1 });
         this.updateUi();
 
         await anim.run({
@@ -106,7 +106,7 @@ export class Timer {
 
     private async pulseAnimation() {
         const anim = this._animation.instance;
-        anim.update({ opacity: 1 });
+        anim.immediate({ opacity: 1 });
         if (this._pulseScale === 0) {
             this._pulseScale = 1.5;
         }

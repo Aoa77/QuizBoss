@@ -59,8 +59,9 @@ main {
 section {
     position: absolute;
     width: 100cqw;
-    height: 100cqh;
+    height: auto;
 
+    
     align-content: center;
     text-align: center;
 

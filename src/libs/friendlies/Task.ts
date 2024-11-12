@@ -1,4 +1,16 @@
 export class Task {
+    public static async all(
+        ...tasks: (() => Promise<unknown>)[]
+    ): Promise<void> {
+        await TaskGroup.create(...tasks).all();
+    }
+
+    public static async any(
+        ...tasks: (() => Promise<unknown>)[]
+    ): Promise<void> {
+        await TaskGroup.create(...tasks).any();
+    }
+
     public static delay(ms: number): Promise<void> {
         return new Promise((resolve) => setTimeout(resolve, ms));
     }
@@ -24,17 +36,22 @@ export class Task {
 
 export class TaskGroup {
     ////
-    public static create(): TaskGroup {
-        return new TaskGroup();
+    public static create(...tasks: (() => Promise<unknown>)[]): TaskGroup {
+        const group = new TaskGroup();
+        group.add(...tasks);
+        return group;
     }
 
     private readonly _tasks: (() => Promise<unknown>)[] = [];
 
-    public add(task: () => Promise<unknown>) {
-        this._tasks.push(task);
+    public add(...tasks: (() => Promise<unknown>)[]): TaskGroup {
+        for (const task of tasks) {
+            this._tasks.push(task);
+        }
+        return this;
     }
 
-    public async all() {
+    public async all(): Promise<void> {
         const promises = [];
         while (this._tasks.length > 0) {
             promises.push(this._tasks.shift()!());
@@ -42,7 +59,7 @@ export class TaskGroup {
         await Promise.all(promises);
     }
 
-    public async any() {
+    public async any(): Promise<void> {
         const promises = [];
         while (this._tasks.length > 0) {
             promises.push(this._tasks.shift()!());

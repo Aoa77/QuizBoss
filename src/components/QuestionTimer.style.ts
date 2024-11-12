@@ -19,7 +19,6 @@ export function useStyle(): Style | null {
             fontWeight: "bold",
             fontSize: CssUnit.rem(3),
             marginTop: CssUnit.cqh(39),
-            height: CssUnit.cqh(6),
             backgroundColor: "#ff00ff00",
         },
         digits: {

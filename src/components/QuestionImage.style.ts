@@ -18,14 +18,13 @@ export function useStyle(): Style | null {
 
     ///
     style.section = {
-        height: CssUnit.cqh(20),
         marginTop: CssUnit.cqh(14),
     };
 
     ///
     style.image = {
         cursor: "pointer",
-        height: style.section.height,
+        height: CssUnit.cqh(20),
         boxShadow: `0 0 ${CssUnit.cqw(16)} ${CssUnit.cqw(3)} ${ThemeVars.getRef(
             TV,
             TV.QuestionImage_shadow,

@@ -16,7 +16,6 @@ export function useStyle(): Style | null {
             color: ThemeVars.getRef(TV, TV.QuizTitle_color),
             fontFamily: ThemeFont.cursive,
             fontSize: CssUnit.rem(6.5),
-            height: CssUnit.cqh(10),
             marginTop: CssUnit.cqh(5),
         },
     };

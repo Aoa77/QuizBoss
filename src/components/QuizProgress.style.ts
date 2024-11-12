@@ -19,7 +19,6 @@ export function useStyle(): Style | null {
         fontFamily: ThemeFont.mono,
         fontSize: CssUnit.rem(2.3),
         fontWeight: "bold",
-        height: CssUnit.cqh(20),
         marginTop: CssUnit.cqh(33),
     };
 

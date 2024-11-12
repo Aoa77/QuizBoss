@@ -17,7 +17,6 @@ export function useStyle(): Style | null {
             fontFamily: ThemeFont.mono,
             fontWeight: "bold",
             fontSize: CssUnit.rem(3),
-            height: CssUnit.cqh(10),
             marginTop: CssUnit.cqh(90),
         },
         span: {

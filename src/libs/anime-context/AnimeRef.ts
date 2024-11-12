@@ -1,4 +1,4 @@
-import anime from "animejs";
+import anime, { AnimeInstance } from "animejs";
 import { AnimeParams } from "animejs";
 import { AnimeTask } from "./AnimeTask";
 
@@ -77,30 +77,31 @@ export class AnimeRef {
         );
     }
 
-    public build(params: AnimeParams) {
+    public build(params: AnimeParams): AnimeInstance {
         return anime({
             targets: this.target,
             ...params,
         });
     }
 
-    public clearTransforms() {
+    public clearTransforms(): AnimeRef {
         const el = this.element;
         if (!el?.style) {
-            return;
+            return this;
         }
         el.style.transform = "";
+        return this;
     }
 
-    public run(params: AnimeParams) {
-        return AnimeTask.run(this.build(params));
+    public async run(params: AnimeParams): Promise<void> {
+        await AnimeTask.run(this.build(params));
     }
 
-    public update(params: {
+    public immediate(params: {
         color?: string;
         opacity?: number;
         scale?: number;
-    }) {
+    }): AnimeRef {
         const { color, opacity, scale } = params;
         if (color) {
             this.color = color;
@@ -111,5 +112,6 @@ export class AnimeRef {
         if (scale || scale === 0) {
             this.scale = scale;
         }
+        return this;
     }
 }

@@ -9,8 +9,8 @@ export const SETTINGS: AppSettings = {
     strictMode: false,
 
     demoMode: DemoMode.RIGHT,
-    demoDelayMin: 0,
-    demoDelayMax: 0,
+    demoDelayMin: 800,
+    demoDelayMax: 990,
 
     theme: ThemeName.dark,
     guessButtonCount: 4,

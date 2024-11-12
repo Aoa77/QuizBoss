@@ -13,18 +13,5 @@ export function useStyle(): Style | null {
         ///
         section: {},
     };
-
-    ///
-    // style.section = {
-    //     color: ThemeVars.getRef(TV, TV.LoadingSpinner_color),
-    //     height: CssUnit.cqh(2),
-    //     marginTop: CssUnit.cqh(15),
-    //     fontFamily: ThemeFont.mono,
-    //     fontSize: CssUnit.rem(3),
-    //     fontWeight: "bold",
-    // };
-
-
-    ///
     return style;
 }
