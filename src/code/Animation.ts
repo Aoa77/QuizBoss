@@ -1,10 +1,10 @@
 import { AnimeContext, AnimeRef } from "../libs/anime-context";
 
 export enum ANIM {
+    AnswerPoints = "AnswerPoints",
+    AnswerPointsTimeBonus = "AnswerPointsTimeBonus",
     AppTitle = "AppTitle",
     GuessButton = "GuessButton",
-    GuessPoints = "GuessPoints",
-    TimeBonus = "TimeBonus",
     LoadingSpinner = "LoadingSpinner",
     QuestionImage = "QuestionImage",
     QuestionText = "QuestionText",
@@ -15,20 +15,20 @@ export enum ANIM {
 }
 
 export class Anim {
+    public static get AnswerPoints(): AnimeRef {
+        return AnimeContext.get(ANIM.AnswerPoints)!;
+    }
+
+    public static get AnswerPointsTimeBonus(): AnimeRef {
+        return AnimeContext.get(ANIM.AnswerPointsTimeBonus)!;
+    }
+
     public static get AppTitle(): AnimeRef {
         return AnimeContext.get(ANIM.AppTitle)!;
     }
 
     public static GuessButton(index: number): AnimeRef {
         return AnimeContext.get(ANIM.GuessButton, index)!;
-    }
-
-    public static get GuessPoints(): AnimeRef {
-        return AnimeContext.get(ANIM.GuessPoints)!;
-    }
-
-    public static get TimeBonus(): AnimeRef {
-        return AnimeContext.get(ANIM.TimeBonus)!;
     }
 
     public static get LoadingSpinner(): AnimeRef {

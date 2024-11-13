@@ -3,11 +3,11 @@ import { TV } from "../code/Theme";
 import { useAppContext } from "../app/context";
 import { useAnimeRef } from "../libs/anime-context/hooks";
 import { ThemeVars } from "../libs/theme-vars/ThemeVars";
-import { useStyle } from "./GuessPoints.style";
+import { useStyle } from "./AnswerPoints.style";
 
-export function TimeBonus() {
+export function AnswerPointsTimeBonus() {
     ////
-    const animation = useAnimeRef(ANIM.TimeBonus);
+    const animation = useAnimeRef(ANIM.AnswerPointsTimeBonus);
     const { timer } = useAppContext();
     const { secondsRemaining: bonus } = timer;
     const render = bonus ? `+${bonus} time bonus` : "no time bonus";

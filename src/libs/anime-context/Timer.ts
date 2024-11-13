@@ -24,7 +24,6 @@ export class Timer {
     private readonly _animation: Lazy<AnimeRef>;
     private _secondsRemaining: number = 0;
     private _timerSeconds: number = 0;
-    private _pulseScale: number = 0;
 
     private _status: TimerStatus = TimerStatus.None;
     public get status(): TimerStatus {
@@ -56,10 +55,9 @@ export class Timer {
         this.updateUi();
 
         await anim.run({
-            scale: [0, 1.5],
+            scale: [0, 1],
             duration: $time.seconds(0.25),
         });
-        this._pulseScale = 1.5;
         this.pulse();
     }
 
@@ -107,23 +105,11 @@ export class Timer {
     private async pulseAnimation() {
         const anim = this._animation.instance;
         anim.immediate({ opacity: 1 });
-        if (this._pulseScale === 0) {
-            this._pulseScale = 1.5;
-        }
-        const nextScale = this._pulseScale - 0.05;
-
-        anim.run({
-            scale: [this._pulseScale, nextScale],
-            duration: $time.seconds(1),
-            easing: $ease.linear,
-        });
-
         await anim.run({
-            opacity: [1, 0.2],
+            opacity: [1, 0.5],
             duration: $time.seconds(1),
             easing: $ease.linear,
         });
-        this._pulseScale = nextScale;
     }
 
     private shouldStopTimer(): boolean {

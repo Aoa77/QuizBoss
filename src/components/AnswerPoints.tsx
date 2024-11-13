@@ -3,13 +3,13 @@ import { TV } from "../code/Theme";
 import { useAnimeRef } from "../libs/anime-context/hooks";
 import { ThemeVars } from "../libs/theme-vars/ThemeVars";
 import { useAppContext } from "../app/context";
-import { useStyle } from "./GuessPoints.style";
+import { useStyle } from "./AnswerPoints.style";
 
-export function GuessPoints() {
+export function AnswerPoints() {
     ////
     const { state } = useAppContext();
     const { itemScore } = state;
-    const animation = useAnimeRef(ANIM.GuessPoints);
+    const animation = useAnimeRef(ANIM.AnswerPoints);
     
     const style = useStyle({ timeBonus: false });
 

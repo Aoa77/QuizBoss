@@ -17,7 +17,7 @@ export function useStyle(): Style | null {
             color: ThemeVars.getRef(TV, TV.QuestionTimer_NORMAL_color),
             fontFamily: ThemeFont.mono,
             fontWeight: "bold",
-            fontSize: CssUnit.rem(3),
+            fontSize: CssUnit.rem(4),
             marginTop: CssUnit.cqh(39),
             backgroundColor: "#ff00ff00",
         },

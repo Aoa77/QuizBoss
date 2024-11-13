@@ -2,19 +2,14 @@ import { AppContext } from "../app/context";
 import { Anim } from "../code/Animation";
 import { ButtonStyle } from "../code/ButtonStyle";
 import { EventName } from "../code/EventName";
-import { $ease, $time } from "../libs/anime-context/constants";
+import { ConcludeButtonReveal } from "./ConcludeButtonReveal";
 
 export async function ConcludeWrongGuess() {
     const { state, flow } = AppContext.current(EventName.ConcludeWrongGuess);
     const { buttonAnswerMap, guessButtonIndex } = state;
 
     const buttonRef = Anim.GuessButton(guessButtonIndex);
-    await buttonRef.run({
-        scale: [1.3, 1.0],
-        delay: $time.ticks(1.05),
-        duration: $time.ticks(1),
-        easing: $ease.out.elastic(3, 1),
-    });
+    await ConcludeButtonReveal(buttonRef, 4);
 
     buttonAnswerMap.forEach((_item) => {
         const item = _item!;
@@ -30,3 +25,4 @@ export async function ConcludeWrongGuess() {
 
     flow.dispatch((state) => ({ ...state, eventName: EventName.AwaitGuess }));
 }
+
