@@ -1,4 +1,4 @@
-import { Anim } from "../code/Animation";
+import { Anim } from "../code/animation";
 import { AppContext } from "../app/context";
 import { EventName } from "../code/game";
 import { $ease, $time } from "../libs/anime-context/constants";

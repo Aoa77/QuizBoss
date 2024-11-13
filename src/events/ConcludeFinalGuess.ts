@@ -1,4 +1,4 @@
-import { Anim } from "../code/Animation";
+import { Anim } from "../code/animation";
 import { QuizItem } from "../code/QuizItem";
 import { AnimeRef } from "../libs/anime-context";
 import { $time, $ease } from "../libs/anime-context/constants";

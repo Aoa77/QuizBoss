@@ -1,4 +1,4 @@
-import { ANIM } from "../code/Animation";
+import { ANIM } from "../code/animation";
 import { TV } from "../code/Theme";
 import { useAnimeRef } from "../libs/anime-context/hooks";
 import { ThemeVars } from "../libs/theme-vars/ThemeVars";

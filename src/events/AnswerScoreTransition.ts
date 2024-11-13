@@ -1,4 +1,4 @@
-import { Anim } from "../code/Animation";
+import { Anim } from "../code/animation";
 import { TV } from "../code/Theme";
 import { AnimeRef } from "../libs/anime-context";
 import { $time, $ease } from "../libs/anime-context/constants";

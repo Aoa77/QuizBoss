@@ -1,4 +1,4 @@
-import { ANIM } from "../code/Animation";
+import { ANIM } from "../code/animation";
 import { useAppContext } from "../app/context";
 import { TriggerGuess } from "../events/TriggerGuess";
 import { useAnimeRefs } from "../libs/anime-context/hooks";

@@ -1,4 +1,4 @@
-import { ANIM } from "../code/Animation";
+import { ANIM } from "../code/animation";
 import { SectionStyle } from "../code/SectionStyle";
 import { TV, ThemeFont } from "../code/Theme";
 import { useAppContext } from "../app/context";

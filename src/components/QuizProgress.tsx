@@ -1,5 +1,5 @@
 import { useAppContext } from "../app/context";
-import { ANIM } from "../code/Animation";
+import { ANIM } from "../code/animation";
 import { useAnimeRef } from "../libs/anime-context/hooks";
 import { useStyle } from "./QuizProgress.style";
 

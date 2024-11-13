@@ -1,5 +1,5 @@
 import { AppContext } from "../app/context";
-import { Anim } from "../code/Animation";
+import { Anim } from "../code/animation";
 import { ButtonState, EventName } from "../code/game";
 import { ConcludeButtonReveal } from "./ConcludeButtonReveal";
 
