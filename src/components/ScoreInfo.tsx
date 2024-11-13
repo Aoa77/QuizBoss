@@ -1,7 +1,10 @@
+import { CSSProperties } from "react";
 import { useAppContext } from "../app/context";
 import { ANIM } from "../code/animation";
+import { SectionStyle, ThemeFont, TV } from "../code/style";
 import { useAnimeRef } from "../libs/anime-context/hooks";
-import { useStyle } from "./ScoreInfo.style";
+import { CssUnit } from "../libs/theme-vars/CssUnit";
+import { ThemeVars } from "../libs/theme-vars/ThemeVars";
 
 export function ScoreInfo() {
     ////
@@ -17,4 +20,26 @@ export function ScoreInfo() {
             {quizScore}
         </section>
     );
+}
+
+interface Style extends SectionStyle {
+    span: CSSProperties;
+}
+
+function useStyle(): Style | null {
+    // return null;  // INLINE STYLES;
+    return {
+        section: {
+            alignContent: "normal",
+            color: ThemeVars.getRef(TV, TV.ScoreInfo_VALUE_color),
+            fontFamily: ThemeFont.mono,
+            fontWeight: "bold",
+            fontSize: CssUnit.rem(3),
+            marginTop: CssUnit.cqh(89),
+        },
+        span: {
+            color: ThemeVars.getRef(TV, TV.ScoreInfo_TEXT_color),
+            fontWeight: "normal",
+        },
+    };
 }
