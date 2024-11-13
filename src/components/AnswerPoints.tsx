@@ -1,5 +1,5 @@
 import { ANIM } from "../code/animation";
-import { TV } from "../code/Theme";
+import { TV } from "../code/style";
 import { useAnimeRef } from "../libs/anime-context/hooks";
 import { ThemeVars } from "../libs/theme-vars/ThemeVars";
 import { useAppContext } from "../app/context";

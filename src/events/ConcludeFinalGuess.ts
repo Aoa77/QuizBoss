@@ -1,5 +1,5 @@
 import { Anim } from "../code/animation";
-import { QuizItem } from "../code/QuizItem";
+import { QuizItem } from "../code/data";
 import { AnimeRef } from "../libs/anime-context";
 import { $time, $ease } from "../libs/anime-context/constants";
 import { TaskGroup } from "../libs/friendlies/Task";

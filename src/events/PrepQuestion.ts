@@ -1,6 +1,6 @@
 import { AppContext } from "../app/context";
 import { ButtonState, EventName } from "../code/game";
-import { QuizItem } from "../code/QuizItem";
+import { QuizItem } from "../code/data";
 import { DEMO, DemoMode } from "../code/demo";
 import { randomInt } from "../libs/randos/randomInt";
 

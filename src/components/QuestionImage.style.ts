@@ -1,7 +1,7 @@
 import { CSSProperties } from "react";
 import { CssUnit } from "../libs/theme-vars/CssUnit";
 import { ThemeVars } from "../libs/theme-vars/ThemeVars";
-import { TV } from "../code/Theme";
+import { TV } from "../code/style";
 
 interface Style {
     image: CSSProperties;

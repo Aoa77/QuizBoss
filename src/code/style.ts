@@ -1,3 +1,9 @@
+import { CSSProperties } from "react";
+
+export interface SectionStyle {
+    section: CSSProperties;
+}
+
 export enum ThemeFont {
     cursive = `"Rosarivo", cursive`,
     mono = `"Share Tech Mono", "Courier New", monospace`,

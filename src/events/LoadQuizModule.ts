@@ -1,20 +1,13 @@
 import { AppContext } from "../app/context";
 import { ButtonState, EventName } from "../code/game";
-import { QuizData } from "../code/QuizData";
-import { QuizItem } from "../code/QuizItem";
-import { QuizModule } from "../code/QuizModule";
+import { QuizData, QuizItem, QuizModule } from "../code/data";
 import { LocalStore } from "../libs/friendlies/LocalStore";
 import { generateRandomString } from "../libs/randos/generateRandomString";
 import { shuffle } from "../libs/randos/shuffle";
 
-const count = {
-    imagesLoaded: 0,
-};
-
 export async function LoadQuizModule() {
     const { settings, flow } = AppContext.current(EventName.LoadQuizModule);
     const { maxQuestions, guessButtonCount } = settings;
-    count.imagesLoaded = 0;
 
     const bestScore = LocalStore.numbers.get("bestScore", 0)!;
     console.info("Best score restored: ", bestScore);
@@ -109,24 +102,3 @@ function randomizeGuessPool(
     }
     shuffle(quizData.randomizedGuessPool);
 }
-
-// async function loadImages(quizData: QuizData): Promise<void> {
-//     ///
-//     console.info("Loading quiz images...");
-
-//     ///
-//     for (const item of quizData.items) {
-//         await fetchImage(item);
-//         const progress = Math.round(
-//             (++count.imagesLoaded / quizData.items.length) * 100,
-//         );
-//         ThemeVars.setValue(TV.LoadingProgress_BAR_width, `${progress}%`);
-//     }
-// }
-
-// async function fetchImage(item: QuizItem): Promise<void> {
-//     const img = new Image(3);
-//     img.id = `preload-image-${item.index}`;
-//     img.src = item.imageSrc;
-//     document.getElementById("preload")!.appendChild(img);
-// }

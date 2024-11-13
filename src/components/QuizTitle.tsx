@@ -1,6 +1,5 @@
 import { ANIM } from "../code/animation";
-import { SectionStyle } from "../code/SectionStyle";
-import { TV, ThemeFont } from "../code/Theme";
+import { SectionStyle, TV, ThemeFont } from "../code/style";
 import { useAppContext } from "../app/context";
 import { useAnimeRef } from "../libs/anime-context/hooks";
 import { CssUnit } from "../libs/theme-vars/CssUnit";

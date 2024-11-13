@@ -4,7 +4,7 @@ import { AppContext } from "../app/context";
 import { Anim } from "../code/animation";
 import { ButtonState, EventName } from "../code/game";
 import { TimerStatus } from "../libs/anime-context/Timer";
-import { TV } from "../code/Theme";
+import { TV } from "../code/style";
 
 /// libs
 import { $ease, $time } from "../libs/anime-context/constants";

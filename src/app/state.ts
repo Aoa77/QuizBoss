@@ -1,6 +1,5 @@
+import { QuizItem, QuizModule } from "../code/data";
 import { EventName } from "../code/game";
-import { QuizItem } from "../code/QuizItem";
-import { QuizModule } from "../code/QuizModule";
 
 export interface AppState {
     ///
