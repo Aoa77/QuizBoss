@@ -13,14 +13,14 @@ export function useStyle(): Style | null {
     return {
         section: {
             alignContent: "normal",
-            color: ThemeVars.getRef(TV, TV.GuessPoints_CORRECT_color),
+            color: ThemeVars.getRef(TV, TV.ScoreInfo_VALUE_color),
             fontFamily: ThemeFont.mono,
             fontWeight: "bold",
             fontSize: CssUnit.rem(3),
-            marginTop: CssUnit.cqh(90),
+            marginTop: CssUnit.cqh(89),
         },
         span: {
-            color: ThemeVars.getRef(TV, TV.QuestionText_color),
+            color: ThemeVars.getRef(TV, TV.ScoreInfo_TEXT_color),
             fontWeight: "normal",
         },
     };

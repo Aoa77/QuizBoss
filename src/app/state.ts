@@ -4,6 +4,7 @@ import { QuizModule } from "../code/QuizModule";
 
 export interface AppState {
     ///
+    appTitle: string;
     bestScore: number;
     buttonAnswerMap: (QuizItem | null)[];
     correctAnswerButtonIndex: number;
@@ -12,7 +13,6 @@ export interface AppState {
     eventName: EventName;
     guessButtonIndex: number;
     itemScore: number;
-    loadingMessage: string;
     quizModule: QuizModule | null;
     quizScore: number;
     totalItems: number;
@@ -24,6 +24,7 @@ export function initAppState(params: { guessButtonCount: number }): AppState {
         buttonAnswerMap.push(null);
     }
     return {
+        appTitle: "QuizBoss",
         bestScore: 0,
         buttonAnswerMap,
         correctAnswerButtonIndex: -1,
@@ -32,7 +33,6 @@ export function initAppState(params: { guessButtonCount: number }): AppState {
         eventName: EventName.StartApp,
         guessButtonIndex: -1,
         itemScore: 0,
-        loadingMessage: "QuizBoss",
         quizModule: null,
         quizScore: 0,
         totalItems: 0,

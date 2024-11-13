@@ -1,14 +1,18 @@
+section#AppTitle-0 {
+    color: var(--tv-QuestionText_color);
+    font-size: 5rem;
+    margin-top: 15cqh;
+    opacity: 1;
+}
+
 section#LoadingSpinner-0 {
     color: var(--tv-LoadingSpinner_color);
-    margin-top: 15cqh;
-    font-family: "Share Tech Mono", "Courier New", monospace;
-    font-size: 3rem;
-    font-weight: bold;
+    margin-top: 20cqh;
     opacity: 1;
 }
 
 :root {
-    --SR: 0.11;
+    --SR: 0.13;
 }
 
 .lds-ellipsis,

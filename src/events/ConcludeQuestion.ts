@@ -11,13 +11,14 @@ export async function ConcludeQuestion() {
     anims.add(() =>
         Anim.QuestionImage.run({
             opacity: [1, 0],
-            duration: $time.ticks(1.25),
+            duration: $time.ticks(2),
             easing: $ease.linear,
         }),
     );
     anims.add(() =>
         Anim.LoadingSpinner.run({
             opacity: [0, 1],
+            delay: $time.ticks(2),
             duration: $time.ticks(2),
             easing: $ease.linear,
         }),

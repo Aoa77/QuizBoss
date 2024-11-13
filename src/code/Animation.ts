@@ -1,20 +1,24 @@
 import { AnimeContext, AnimeRef } from "../libs/anime-context";
 
 export enum ANIM {
-    GuessButton      = "GuessButton",
-    GuessPoints      = "GuessPoints",
-    TimeBonus        = "TimeBonus",
-    LoadingMessage   = "LoadingMessage",
-    LoadingSpinner   = "LoadingSpinner",
-    QuestionImage    = "QuestionImage",
-    QuestionText     = "QuestionText",
-    QuestionTimer    = "QuestionTimer",
-    QuizProgress     = "QuizProgress",
-    QuizTitle        = "QuizTitle",
-    ScoreInfo        = "ScoreInfo",
+    AppTitle = "AppTitle",
+    GuessButton = "GuessButton",
+    GuessPoints = "GuessPoints",
+    TimeBonus = "TimeBonus",
+    LoadingSpinner = "LoadingSpinner",
+    QuestionImage = "QuestionImage",
+    QuestionText = "QuestionText",
+    QuestionTimer = "QuestionTimer",
+    QuizProgress = "QuizProgress",
+    QuizTitle = "QuizTitle",
+    ScoreInfo = "ScoreInfo",
 }
 
 export class Anim {
+    public static get AppTitle(): AnimeRef {
+        return AnimeContext.get(ANIM.AppTitle)!;
+    }
+
     public static GuessButton(index: number): AnimeRef {
         return AnimeContext.get(ANIM.GuessButton, index)!;
     }
@@ -25,10 +29,6 @@ export class Anim {
 
     public static get TimeBonus(): AnimeRef {
         return AnimeContext.get(ANIM.TimeBonus)!;
-    }
-
-    public static get LoadingMessage(): AnimeRef {
-        return AnimeContext.get(ANIM.LoadingMessage)!;
     }
 
     public static get LoadingSpinner(): AnimeRef {

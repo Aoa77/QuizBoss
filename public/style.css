@@ -39,19 +39,21 @@ body {
     overflow: hidden;
     font-family: "Strait", "Tahoma", sans-serif;
 }
-main {
-    background-color: var(--tv-MAIN_backgroundColor);
-    overflow: hidden;
-}
 
 /* <main> is the app container */
 /* 100cqw and 100cqh are equal to its width and height */
-main {
+main, div#app-loader {
+    background-color: var(--tv-MAIN_backgroundColor);
+    overflow: hidden;
     margin-left: var(--mainCenterLeft);
     margin-top: var(--mainCenterTop);
     width: var(--width);
     height: var(--height);
     container-type: size;
+}
+div#app-loader {
+    position: relative;
+    top: calc(-1 * calc(var(--mainCenterTop) + var(--height)));
 }
 
 /* each section overlays <main> */

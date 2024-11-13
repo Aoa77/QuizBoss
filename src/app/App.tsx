@@ -13,14 +13,16 @@ import { QuestionTimer } from "../components/QuestionTimer";
 import { QuizProgress } from "../components/QuizProgress";
 import { QuizTitle } from "../components/QuizTitle";
 import { ScoreInfo } from "../components/ScoreInfo";
+import { AppTitle } from "../components/AppTitle";
 
 ///
 export function App(settings: AppSettings) {
     useAppContextSetup(settings);
     return (
         <main>
-            <QuizTitle />
+            <AppTitle />
             <LoadingSpinner />
+            <QuizTitle />
             <QuestionImage />
             <QuestionText />
             <QuestionTimer />

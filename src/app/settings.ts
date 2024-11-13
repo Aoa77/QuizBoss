@@ -16,7 +16,7 @@ export const SETTINGS: AppSettings = {
     guessButtonCount: 4,
     maxQuestions: 10,
 
-    tickMilliseconds: $time.setTickMilliseconds(888),
+    tickMilliseconds: $time.setTickMilliseconds(250),
     timerSeconds: 10,
 };
 

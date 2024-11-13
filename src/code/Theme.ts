@@ -77,4 +77,8 @@ export enum TV {
     ///
     QuizProgress_color                   = "--tv-QuizProgress_color",
     QuizTitle_color                      = "--tv-QuizTitle_color",
+
+    ///
+    ScoreInfo_TEXT_color                 = "--tv-ScoreInfo_TEXT_color",
+    ScoreInfo_VALUE_color                = "--tv-ScoreInfo_VALUE_color",
 }

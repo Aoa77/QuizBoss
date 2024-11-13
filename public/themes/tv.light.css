@@ -51,4 +51,8 @@
     /**/
     --tv-QuizProgress_color                   : #00ffffff;
     --tv-QuizTitle_color                      : #ffffffff;
+
+    /**/
+    --tv-ScoreInfo_TEXT_color                 : #00ffffff;
+    --tv-ScoreInfo_VALUE_color                : #ffffffff;
 }

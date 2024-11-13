@@ -12,17 +12,23 @@ export async function StartQuiz() {
     anims.add(() =>
         Anim.QuizTitle.run({
             opacity: [0, 1],
-            delay: $time.ticks(0.5),
-            duration: $time.ticks(1),
-            endDelay: $time.milliseconds(666),
+            delay: $time.ticks(2),
+            duration: $time.ticks(4),
             easing: $ease.linear,
         }),
     );
     anims.add(() =>
-        Anim.LoadingMessage.run({
+        Anim.AppTitle.run({
             opacity: [1, 0],
-            delay: $time.ticks(0.5),
-            duration: $time.ticks(1),
+            duration: $time.ticks(2),
+            easing: $ease.linear,
+        }),
+    );
+    anims.add(() =>
+        Anim.LoadingSpinner.immediate({ opacity: 0, scale: 1 }).run({
+            opacity: [0, 1],
+            delay: $time.ticks(2),
+            duration: $time.ticks(2),
             easing: $ease.linear,
         }),
     );

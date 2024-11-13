@@ -11,6 +11,10 @@ export class Task {
         await TaskGroup.create(...tasks).any();
     }
 
+    public static createGroup(): TaskGroup {
+        return new TaskGroup();
+    }
+
     public static delay(ms: number): Promise<void> {
         return new Promise((resolve) => setTimeout(resolve, ms));
     }
