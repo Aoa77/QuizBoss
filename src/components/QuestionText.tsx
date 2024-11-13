@@ -1,7 +1,9 @@
 import { useAppContext } from "../app/context";
 import { ANIM } from "../code/animation";
+import { SectionStyle, TV, ThemeFont } from "../code/style";
 import { useAnimeRef } from "../libs/anime-context/hooks";
-import { useStyle } from "./QuestionText.style";
+import { CssUnit } from "../libs/theme-vars/CssUnit";
+import { ThemeVars } from "../libs/theme-vars/ThemeVars";
 
 export function QuestionText() {
     ////
@@ -20,4 +22,17 @@ export function QuestionText() {
             {questionText}
         </section>
     );
+}
+
+function useStyle(): SectionStyle | null {
+    // return null;  // INLINE STYLES;
+    return {
+        section: {
+            alignContent: "normal",
+            color: ThemeVars.getRef(TV, TV.QuestionText_color),
+            fontFamily: ThemeFont.sans,
+            fontSize: CssUnit.rem(3.3),
+            marginTop: CssUnit.cqh(37),
+        },
+    };
 }

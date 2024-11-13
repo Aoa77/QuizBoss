@@ -10,6 +10,7 @@ printf "Current directory:\n$(pwd)\n\n"
 set -x
 ###############################################################
 tsc -b && vite build
+echo $(date) > ./public/version
 ###############################################################
 set +x
 echo

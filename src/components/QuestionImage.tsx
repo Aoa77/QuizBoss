@@ -2,7 +2,9 @@ import { CSSProperties } from "react";
 import { useAppContext } from "../app/context";
 import { ANIM } from "../code/animation";
 import { useAnimeRef } from "../libs/anime-context/hooks";
-import { useStyle } from "./QuestionImage.style";
+import { SectionStyle, TV } from "../code/style";
+import { CssUnit } from "../libs/theme-vars/CssUnit";
+import { ThemeVars } from "../libs/theme-vars/ThemeVars";
 
 export function QuestionImage() {
     ///
@@ -46,5 +48,38 @@ function computeImageStyle(
     if (index === currentItemIndex) {
         style = { ...style, display: "unset" };
     }
+    return style;
+}
+
+
+interface Style extends SectionStyle {
+    image: CSSProperties;
+}
+
+function useStyle(): Style | null {
+    // return null;  // INLINE STYLES;
+    const style: Style = {
+        ///
+        image: {},
+        section: {},
+    };
+
+    ///
+    style.section = {
+        marginTop: CssUnit.cqh(14),
+    };
+
+    ///
+    style.image = {
+        cursor: "pointer",
+        height: CssUnit.cqh(20),
+        boxShadow: `0 0 ${CssUnit.cqw(16)} ${CssUnit.cqw(3)} ${ThemeVars.getRef(
+            TV,
+            TV.QuestionImage_shadow,
+        )}`,
+        display: "none",
+    };
+
+    ///
     return style;
 }
