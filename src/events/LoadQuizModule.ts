@@ -1,6 +1,5 @@
 import { AppContext } from "../app/context";
-import { ButtonState } from "../code/ButtonStyle";
-import { EventName } from "../code/EventName";
+import { ButtonState, EventName } from "../code/game";
 import { QuizData } from "../code/QuizData";
 import { QuizItem } from "../code/QuizItem";
 import { QuizModule } from "../code/QuizModule";

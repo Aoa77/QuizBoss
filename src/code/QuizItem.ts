@@ -1,4 +1,4 @@
-import { ButtonState } from "./ButtonStyle";
+import { ButtonState } from "./game";
 
 export interface QuizItem {
     index: number;

@@ -3,17 +3,19 @@ import { Dispatch, SetStateAction, useMemo } from "react";
 
 ///
 import {
-    useFlowContext,
     useFlowContextSetup,
 } from "../libs/flow-context/FlowContext";
+import { Timer } from "../libs/anime-context/Timer";
 
 ///
 import { AppSettings } from "./settings";
 import { AppState, initAppState } from "./state";
 
+///
+import { Anim } from "../code/Animation";
+import { EventName } from "../code/game";
+
 ////
-import { Timer } from "../libs/anime-context/Timer";
-import { EventName } from "../code/EventName";
 import { AskQuestion } from "../events/AskQuestion";
 import { AwaitGuess } from "../events/AwaitGuess";
 import { ConcludeQuestion } from "../events/ConcludeQuestion";
@@ -24,7 +26,6 @@ import { PrepQuestion } from "../events/PrepQuestion";
 import { RevealGuessResult } from "../events/RevealGuessResult";
 import { StartApp } from "../events/StartApp";
 import { StartQuiz } from "../events/StartQuiz";
-import { Anim } from "../code/Animation";
 
 export interface AppFlow {
     dispatch: Dispatch<SetStateAction<AppState>>;
@@ -45,7 +46,7 @@ export function useAppContext(): AppFlowContext {
 ///
 export function useAppContextSetup(settings: AppSettings): AppFlowContext {
     ///
-    useFlowContextSetup<AppState, EventName>({
+    const flow = useFlowContextSetup<AppState, EventName>({
         initialState: initAppState(settings),
         flowProperty: (state) => {
             const { eventName } = state;
@@ -78,9 +79,6 @@ export function useAppContextSetup(settings: AppSettings): AppFlowContext {
         },
     });
 
-    ///
-    const flow = useFlowContext<AppState>();
-
     // using memo to use the same instance of Timer across renders
     const { timerSeconds } = settings;
     const timer = useMemo(() => {
@@ -90,14 +88,12 @@ export function useAppContextSetup(settings: AppSettings): AppFlowContext {
         });
     }, [timerSeconds]);
 
-    AppContext.init({
+    return AppContext.init({
         flow: { dispatch: flow[1] },
         settings,
         state: flow[0],
         timer,
     });
-
-    return AppContext.current();
 }
 
 export class AppContext {
@@ -112,9 +108,10 @@ export class AppContext {
         return this._current;
     }
 
-    public static init(context: AppFlowContext): void {
+    public static init(context: AppFlowContext): AppFlowContext {
         // NOTE: it is ok that this is initialized multiple times
         this._current = context;
+        return this._current;
     }
 
     private static assertFlowEvent(expected: EventName) {

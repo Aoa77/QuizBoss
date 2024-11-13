@@ -2,8 +2,7 @@ import { AppContext } from "../app/context";
 
 // code
 import { Anim } from "../code/Animation";
-import { ButtonState } from "../code/ButtonStyle";
-import { EventName } from "../code/EventName";
+import { ButtonState, EventName } from "../code/game";
 import { TimerStatus } from "../libs/anime-context/Timer";
 import { TV } from "../code/Theme";
 
@@ -83,4 +82,3 @@ function _logScoreDetails(
     console.info("secondsRemaining", secondsRemaining);
     console.groupEnd();
 }
-

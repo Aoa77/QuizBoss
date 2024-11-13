@@ -1,17 +1,13 @@
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { Task } from "../friendlies/Task";
 
-export function useFlowContext<Tstate>() {
-    return FlowContext.current<Tstate>();
-}
-
 export function useFlowContextSetup<Tstate, Tflow>(params: {
     errorHandler?: (error: unknown) => void;
     stateLogger?: (state: Tstate) => void;
     initialState: Tstate;
     flowProperty: (state: Tstate) => Tflow;
     flowEvents: Map<Tflow, () => Promise<void>>;
-}): void {
+}): [Tstate, Dispatch<SetStateAction<Tstate>>] {
     ///
     const errorHandler = params.errorHandler ?? Task.throwError;
     const { initialState, flowProperty, flowEvents, stateLogger } = params;
@@ -45,7 +41,7 @@ export function useFlowContextSetup<Tstate, Tflow>(params: {
         stateLogger,
     ]);
 
-    FlowContext.init([state, setState]);
+    return FlowContext.init([state, setState]);
 }
 
 class FlowContext<Tstate> {
@@ -68,8 +64,9 @@ class FlowContext<Tstate> {
 
     public static init<Tstate>(
         context: [Tstate, Dispatch<SetStateAction<Tstate>>],
-    ): void {
+    ): [Tstate, Dispatch<SetStateAction<Tstate>>] {
         // NOTE: it is ok that this is initialized multiple times
         this._instance = new FlowContext(context);
+        return this.current();
     }
 }

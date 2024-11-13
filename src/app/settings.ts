@@ -1,4 +1,4 @@
-import { DemoMode } from "../code/DemoMode";
+import { DemoMode } from "../code/demo";
 import { ThemeName } from "../code/Theme";
 import { showErrorUI } from "./errors";
 import { $time } from "../libs/anime-context/constants";

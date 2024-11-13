@@ -1,4 +1,4 @@
-import { EventName } from "../code/EventName";
+import { EventName } from "../code/game";
 import { QuizItem } from "../code/QuizItem";
 import { QuizModule } from "../code/QuizModule";
 
