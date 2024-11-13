@@ -1,4 +1,4 @@
-import { ButtonStyle } from "./ButtonStyle";
+import { ButtonState } from "./ButtonStyle";
 
 export interface QuizItem {
     index: number;
@@ -10,6 +10,6 @@ export interface QuizItem {
     imageWidth: number;
     imageHeight: number;
     answeredCorrectly: boolean;
-    buttonStyle: ButtonStyle;
+    buttonStyle: ButtonState;
 }
 

@@ -1,5 +1,5 @@
 import { Anim } from "../code/Animation";
-import { ButtonStyle } from "../code/ButtonStyle";
+import { ButtonState } from "../code/ButtonStyle";
 import { EventName } from "../code/EventName";
 import { AppContext } from "../app/context";
 import { $time, $ease } from "../libs/anime-context/constants";
@@ -48,7 +48,7 @@ export async function AskQuestion() {
     }
 
     buttonAnswerMap.forEach((item) => {
-        item!.buttonStyle = ButtonStyle.normal;
+        item!.buttonStyle = ButtonState.normal;
     });
 
     flow.dispatch((state) => ({ ...state, eventName: EventName.AwaitGuess }));

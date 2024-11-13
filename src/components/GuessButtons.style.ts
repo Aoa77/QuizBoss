@@ -2,12 +2,12 @@ import { CSSProperties } from "react";
 import { CssUnit } from "../libs/theme-vars/CssUnit";
 import { ThemeVars } from "../libs/theme-vars/ThemeVars";
 import { TV, ThemeFont } from "../code/Theme";
-import { ButtonStyle } from "../code/ButtonStyle";
+import { ButtonState } from "../code/ButtonStyle";
 
 interface Style {
     section: CSSProperties;
     span: CSSProperties;
-    button: Map<ButtonStyle, CSSProperties>;
+    button: Map<ButtonState, CSSProperties>;
 }
 
 export function useStyle(): Style | null{
@@ -16,7 +16,7 @@ export function useStyle(): Style | null{
     const style: Style = {
         section: {},
         span: {},
-        button: new Map<ButtonStyle, CSSProperties>(),
+        button: new Map<ButtonState, CSSProperties>(),
     };
 
     ///
@@ -47,32 +47,32 @@ export function useStyle(): Style | null{
         height: CssUnit.cqh(7),
     };
 
-    style.button.set(ButtonStyle.normal, {
+    style.button.set(ButtonState.normal, {
         backgroundColor: ThemeVars.getRef(TV, TV.GuessButton_NORMAL_backgroundColor),
         borderColor: ThemeVars.getRef(TV, TV.GuessButton_NORMAL_borderColor),
         color: ThemeVars.getRef(TV, TV.GuessButton_NORMAL_color),
     });
 
-    style.button.set(ButtonStyle.dimmed, {
+    style.button.set(ButtonState.dimmed, {
         backgroundColor: ThemeVars.getRef(TV, TV.GuessButton_DIMMED_backgroundColor),
         borderColor: ThemeVars.getRef(TV, TV.GuessButton_DIMMED_borderColor),
         color: ThemeVars.getRef(TV, TV.GuessButton_DIMMED_color),
     });
-    style.button.set(ButtonStyle.disabled, style.button.get(ButtonStyle.dimmed)!);
+    style.button.set(ButtonState.disabled, style.button.get(ButtonState.dimmed)!);
 
-    style.button.set(ButtonStyle.correct, {
+    style.button.set(ButtonState.correct, {
         backgroundColor: ThemeVars.getRef(TV, TV.GuessButton_CORRECT_backgroundColor),
         borderColor: ThemeVars.getRef(TV, TV.GuessButton_CORRECT_borderColor),
         color: ThemeVars.getRef(TV, TV.GuessButton_CORRECT_color),
     });
 
-    style.button.set(ButtonStyle.wrong, {
+    style.button.set(ButtonState.wrong, {
         backgroundColor: ThemeVars.getRef(TV, TV.GuessButton_WRONG_backgroundColor),
         borderColor: ThemeVars.getRef(TV, TV.GuessButton_WRONG_borderColor),
         color: ThemeVars.getRef(TV, TV.GuessButton_WRONG_color),
     });
 
-    style.button.set(ButtonStyle.reveal, {
+    style.button.set(ButtonState.reveal, {
         backgroundColor: ThemeVars.getRef(TV, TV.GuessButton_REVEAL_backgroundColor),
         borderColor: ThemeVars.getRef(TV, TV.GuessButton_REVEAL_borderColor),
         color: ThemeVars.getRef(TV, TV.GuessButton_REVEAL_color),

@@ -2,7 +2,7 @@ import { AppContext } from "../app/context";
 
 // code
 import { Anim } from "../code/Animation";
-import { ButtonStyle } from "../code/ButtonStyle";
+import { ButtonState } from "../code/ButtonStyle";
 import { EventName } from "../code/EventName";
 import { TimerStatus } from "../libs/anime-context/Timer";
 import { TV } from "../code/Theme";
@@ -28,7 +28,7 @@ export async function RevealGuessResult() {
         easing: $ease.out.elastic(3, 1),
     });
 
-    if (button.buttonStyle === ButtonStyle.wrong) {
+    if (button.buttonStyle === ButtonState.wrong) {
         flow.dispatch((state) => ({
             ...state,
             eventName: EventName.ConcludeWrongGuess,
@@ -44,7 +44,7 @@ export async function RevealGuessResult() {
     let tv = TV.QuestionTimer_GOOD_color;
     if (timer.status === TimerStatus.TimedOut) {
         tv = TV.QuestionTimer_BAD_color;
-    } else if (button.buttonStyle === ButtonStyle.reveal) {
+    } else if (button.buttonStyle === ButtonState.reveal) {
         tv = TV.QuestionTimer_BAD_color;
     }
     anim.immediate({ color: ThemeVars.getRef(TV, tv) });

@@ -1,5 +1,5 @@
 import { AppContext } from "../app/context";
-import { ButtonStyle } from "../code/ButtonStyle";
+import { ButtonState } from "../code/ButtonStyle";
 import { EventName } from "../code/EventName";
 import { QuizData } from "../code/QuizData";
 import { QuizItem } from "../code/QuizItem";
@@ -104,7 +104,7 @@ function randomizeGuessPool(
             imageWidth: 0,
             imageHeight: 0,
             answeredCorrectly: false,
-            buttonStyle: ButtonStyle.normal,
+            buttonStyle: ButtonState.normal,
         };
         quizData.randomizedGuessPool.push(dummyItem);
     }

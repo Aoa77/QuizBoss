@@ -1,5 +1,5 @@
 import { AppContext } from "../app/context";
-import { ButtonStyle } from "../code/ButtonStyle";
+import { ButtonState } from "../code/ButtonStyle";
 import { EventName } from "../code/EventName";
 import { QuizItem } from "../code/QuizItem";
 import { DEMO, DemoMode } from "../code/DemoMode";
@@ -46,7 +46,7 @@ export async function PrepQuestion() {
 
     ///
     buttonAnswerMap.forEach((item) => {
-        item!.buttonStyle = ButtonStyle.disabled;
+        item!.buttonStyle = ButtonState.disabled;
     });
     const itemScore = buttonAnswerMap.length - 1;
 

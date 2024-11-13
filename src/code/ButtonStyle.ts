@@ -1,4 +1,4 @@
-export enum ButtonStyle {
+export enum ButtonState {
     correct = "correct",
     dimmed = "dimmed",
     disabled = "disabled",
@@ -6,7 +6,3 @@ export enum ButtonStyle {
     reveal = "reveal",
     wrong = "wrong",
 }
-
-
-
-

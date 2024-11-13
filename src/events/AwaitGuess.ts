@@ -1,7 +1,7 @@
 import { AppContext, AppFlow } from "../app/context";
 import { AppSettings } from "../app/settings";
 import { AppState } from "../app/state";
-import { ButtonStyle } from "../code/ButtonStyle";
+import { ButtonState } from "../code/ButtonStyle";
 import { DEMO, DemoMode } from "../code/DemoMode";
 import { EventName } from "../code/EventName";
 import { TimerStatus } from "../libs/anime-context/Timer";
@@ -45,7 +45,7 @@ export async function AwaitGuess() {
 function countAvailableGuesses(state: AppState) {
     const { buttonAnswerMap } = state;
     return buttonAnswerMap.filter(
-        (item) => item!.buttonStyle === ButtonStyle.normal,
+        (item) => item!.buttonStyle === ButtonState.normal,
     );
 }
 
@@ -88,11 +88,11 @@ function runFailTransition(state: AppState, flow: AppFlow): void {
     const { buttonAnswerMap, correctAnswerButtonIndex } = state;
 
     buttonAnswerMap.forEach((_item) => {
-        _item!.buttonStyle = ButtonStyle.disabled;
+        _item!.buttonStyle = ButtonState.disabled;
     });
 
     const button = buttonAnswerMap[correctAnswerButtonIndex]!;
-    button.buttonStyle = ButtonStyle.reveal;
+    button.buttonStyle = ButtonState.reveal;
 
     flow.dispatch((state) => {
         const { eventName } = state;

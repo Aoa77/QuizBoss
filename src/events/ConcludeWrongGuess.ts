@@ -1,6 +1,6 @@
 import { AppContext } from "../app/context";
 import { Anim } from "../code/Animation";
-import { ButtonStyle } from "../code/ButtonStyle";
+import { ButtonState } from "../code/ButtonStyle";
 import { EventName } from "../code/EventName";
 import { ConcludeButtonReveal } from "./ConcludeButtonReveal";
 
@@ -14,11 +14,11 @@ export async function ConcludeWrongGuess() {
     buttonAnswerMap.forEach((_item) => {
         const item = _item!;
         switch (item.buttonStyle) {
-            case ButtonStyle.wrong:
-                item.buttonStyle = ButtonStyle.disabled;
+            case ButtonState.wrong:
+                item.buttonStyle = ButtonState.disabled;
                 return;
-            case ButtonStyle.dimmed:
-                item.buttonStyle = ButtonStyle.normal;
+            case ButtonState.dimmed:
+                item.buttonStyle = ButtonState.normal;
                 return;
         }
     });

@@ -1,6 +1,6 @@
 import { AppContext } from "../app/context";
 import { AppState } from "../app/state";
-import { ButtonStyle } from "../code/ButtonStyle";
+import { ButtonState } from "../code/ButtonStyle";
 import { EventName } from "../code/EventName";
 import { Timer, TimerStatus } from "../libs/anime-context/Timer";
 
@@ -11,7 +11,7 @@ export async function TriggerGuess(bidx: number) {
     }
 
     const { buttonAnswerMap } = state;
-    if (buttonAnswerMap[bidx]!.buttonStyle !== ButtonStyle.normal) {
+    if (buttonAnswerMap[bidx]!.buttonStyle !== ButtonState.normal) {
         return;
     }
 
