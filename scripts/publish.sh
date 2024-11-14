@@ -42,7 +42,11 @@ echo $vtext >./public/version
 # commit the version file change
 git add . && git commit -m "$vtext"
 
-# create a deployment tag with the branch name on 
+# create a deployment tag with the branch name.
+# this will point to the commit used for deployment,
+# which is always the version string update.
+# Note: the version string itself always points to the
+# previous commit hash.
 tag="$branch-deploy"
 git tag "$tag" --force
 

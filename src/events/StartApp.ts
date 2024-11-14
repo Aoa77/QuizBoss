@@ -24,6 +24,28 @@ export async function StartApp() {
         document.getElementById("app-loader")!.style.display = "none";
     }
 
+    function initVisibleSections() {
+        Anim.AppTitle.immediate({ opacity: 1, scale: 1 });
+        Anim.AppVersion.immediate({ opacity: 0.25, scale: 1 });
+        Anim.LoadingSpinner.immediate({ opacity: 0, scale: 1 });
+    }
+
+    async function fetchAppVersion() {
+        const response = await fetch("version", {
+            headers: {
+                "Cache-Control": "no-cache",
+                "Content-Type": "text/plain",
+                Accept: "text/plain",
+            },
+        });
+        if (!response.ok) {
+            throw new Error(`Failed to fetch version file.`);
+        }
+        const appVersion = await response.text();
+        Anim.AppVersion.element!.innerText = appVersion;
+        return appVersion;
+    }
+
     //
     let appVersion = "";
     try {
@@ -38,26 +60,4 @@ export async function StartApp() {
         appVersion,
         eventName: EventName.LoadQuizModule,
     }));
-}
-
-function initVisibleSections() {
-    Anim.AppTitle.immediate({ opacity: 1, scale: 1 });
-    Anim.AppVersion.immediate({ opacity: 1, scale: 1 });
-    Anim.LoadingSpinner.immediate({ opacity: 0, scale: 1 });
-}
-
-async function fetchAppVersion() {
-    const response = await fetch("version", {
-        headers: {
-            "Cache-Control": "no-cache",
-            "Content-Type": "text/plain",
-            Accept: "text/plain",
-        },
-    });
-    if (!response.ok) {
-        throw new Error(`Failed to fetch version file.`);
-    }
-    const appVersion = await response.text();
-    Anim.AppVersion.element!.innerText = appVersion;
-    return appVersion;
 }
