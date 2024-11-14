@@ -1,5 +1,5 @@
 import { QuizItem, QuizModule } from "./quiz";
-import { AppEvent } from "./events";
+import { EventKey } from "../events";
 
 export interface AppState {
     ///
@@ -10,7 +10,7 @@ export interface AppState {
     correctAnswerButtonIndex: number;
     currentItem: QuizItem | null;
     currentItemIndex: number;
-    eventName: AppEvent;
+    eventName: EventKey;
     guessButtonIndex: number;
     itemScore: number;
     quizModule: QuizModule | null;
