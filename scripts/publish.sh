@@ -8,8 +8,8 @@ line=$(printf "%${LEN}s" | tr " " "$CHAR")
 printf "\n%s\n%s\n%s\n\n" "$line" "$script" "$line"
 printf "Current directory:\n$(pwd)\n\n"
 ###############################################################
-set -x  # Enable debugging mode
 set -e  # Exit immediately on error
+set -x  # Enable debugging mode
 ###############################################################
 # save the git branch name in a string variable
 branch=$(git rev-parse --abbrev-ref HEAD)
