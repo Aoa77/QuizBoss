@@ -1,7 +1,7 @@
 import { AppState } from "./state";
 import { Timer, TimerStatus } from "../libs/anime-context";
 import { AppContext } from "./context";
-import { AppEvent } from "./events";
+import { EventKey } from "../events";
 
 export enum ButtonState {
     correct = "correct",
