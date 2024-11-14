@@ -1,4 +1,4 @@
-import { AppContext } from "../app/context";
+import { AppContext } from "../code/context";
 import { ButtonState, EventName } from "../code/game";
 
 export async function PrepGuessResult() {

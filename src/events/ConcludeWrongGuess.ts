@@ -1,14 +1,14 @@
-import { AppContext } from "../app/context";
+import { AppContext } from "../code/context";
 import { Anim } from "../code/animation";
 import { ButtonState, EventName } from "../code/game";
-import { ConcludeButtonReveal } from "./ConcludeButtonReveal";
+import { concludeButtonReveal } from "./animations/concludeButtonReveal";
 
 export async function ConcludeWrongGuess() {
     const { state, flow } = AppContext.current(EventName.ConcludeWrongGuess);
     const { buttonAnswerMap, guessButtonIndex } = state;
 
     const buttonRef = Anim.GuessButton(guessButtonIndex);
-    await ConcludeButtonReveal(buttonRef, 4);
+    await concludeButtonReveal({ buttonRef, delayTicks: 2 });
 
     buttonAnswerMap.forEach((_item) => {
         const item = _item!;
@@ -24,4 +24,3 @@ export async function ConcludeWrongGuess() {
 
     flow.dispatch((state) => ({ ...state, eventName: EventName.AwaitGuess }));
 }
-

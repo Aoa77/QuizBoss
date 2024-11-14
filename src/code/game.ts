@@ -15,7 +15,6 @@ export enum EventName {
     LoadQuizModule = "LoadQuizModule",
     PrepGuessResult = "PrepGuessResult",
     PrepQuestion = "PrepQuestion",
-    QuizComplete = "QuizComplete",
     RevealGuessResult = "RevealGuessResult",
     StartApp = "StartApp",
     StartQuiz = "StartQuiz",

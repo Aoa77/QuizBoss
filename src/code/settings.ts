@@ -1,20 +1,20 @@
-import { DemoMode } from "../code/demo";
-import { ThemeName } from "../code/style";
-import { showErrorUI } from "./errors";
-import { $time } from "../libs/anime-context/constants";
+import { DemoMode } from "./demo";
+import { ThemeName } from "./style";
+import { showErrorUI } from "../app/errors";
+import { $time } from "../libs/anime-context";
 
 export const SETTINGS: AppSettings = {
     quizModuleName: "quizboss-world-flags",
     errorHandler: showErrorUI,
     strictMode: false,
 
-    demoMode: DemoMode.OFF,
-    demoDelayMin: 800,
-    demoDelayMax: 990,
+    demoMode: DemoMode.RIGHT,
+    demoDelayMin: 400,
+    demoDelayMax: 3600,
 
     theme: ThemeName.dark,
     guessButtonCount: 4,
-    maxQuestions: 10,
+    maxQuestions: 0,
 
     tickMilliseconds: $time.setTickMilliseconds(250),
     timerSeconds: 10,

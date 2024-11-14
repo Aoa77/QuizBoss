@@ -1,4 +1,4 @@
-import { AppContext } from "../app/context";
+import { AppContext } from "../code/context";
 import { EventName } from "../code/game";
 
 export async function StartApp() {

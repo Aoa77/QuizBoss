@@ -1,4 +1,4 @@
-import { useAppContext } from "../app/context";
+import { useAppContext } from "../code/context";
 import { ANIM } from "../code/animation";
 import { useAnimeRef } from "../libs/anime-context/hooks";
 

@@ -11,8 +11,8 @@ export class Task {
         await TaskGroup.create(...tasks).any();
     }
 
-    public static createGroup(): TaskGroup {
-        return new TaskGroup();
+    public static createGroup(...tasks: (() => Promise<unknown>)[]): TaskGroup {
+        return TaskGroup.create(...tasks);
     }
 
     public static delay(ms: number): Promise<void> {
@@ -47,6 +47,10 @@ export class TaskGroup {
     }
 
     private readonly _tasks: (() => Promise<unknown>)[] = [];
+
+    public get length(): number {
+        return this._tasks.length;
+    }
 
     public add(...tasks: (() => Promise<unknown>)[]): TaskGroup {
         for (const task of tasks) {

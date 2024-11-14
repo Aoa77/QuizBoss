@@ -1,5 +1,5 @@
 import { CSSProperties, useMemo } from "react";
-import { useAppContext } from "../app/context";
+import { useAppContext } from "../code/context";
 import { ANIM } from "../code/animation";
 import { SectionStyle, TV, ThemeFont } from "../code/style";
 import { useAnimeRef } from "../libs/anime-context/hooks";

@@ -1,9 +1,9 @@
-import { AppContext } from "../app/context";
-import { AppState } from "../app/state";
-import { ButtonState, EventName } from "../code/game";
-import { Timer, TimerStatus } from "../libs/anime-context/Timer";
+import { AppContext } from "./context";
+import { AppState } from "./state";
+import { ButtonState, EventName } from "./game";
+import { Timer, TimerStatus } from "../libs/anime-context";
 
-export async function TriggerGuess(bidx: number) {
+export async function triggerGuess(bidx: number) {
     const { state, flow, timer } = AppContext.current();
     if (abandonTrigger(state, timer)) {
         return;

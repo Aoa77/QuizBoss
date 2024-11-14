@@ -1,14 +1,14 @@
-import { AppContext } from "../app/context";
+import { AppContext } from "../code/context";
 import { QuizData, QuizItem, QuizModule } from "../code/data";
 import { ButtonState, EventName } from "../code/game";
 import { LocalStore } from "../libs/friendlies/LocalStore";
 import { generateRandomString } from "../libs/randos/generateRandomString";
 import { shuffle } from "../libs/randos/shuffle";
-import { HideAppLoader } from "./HideAppLoader";
+import { hideAppLoader } from "./animations/hideAppLoader";
 
 export async function LoadQuizModule() {
     /////////////////////////////
-    await HideAppLoader();
+    await hideAppLoader();
     /////////////////////////////
     const { settings, flow } = AppContext.current(EventName.LoadQuizModule);
     const { maxQuestions, guessButtonCount } = settings;

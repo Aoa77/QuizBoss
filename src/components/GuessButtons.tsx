@@ -1,9 +1,9 @@
 import { CSSProperties } from "react";
-import { useAppContext } from "../app/context";
+import { useAppContext } from "../code/context";
 import { ANIM } from "../code/animation";
 import { ButtonState } from "../code/game";
 import { SectionStyle, ThemeFont, TV } from "../code/style";
-import { TriggerGuess } from "../events/TriggerGuess";
+import { triggerGuess } from "../code/triggers";
 import { useAnimeRefs } from "../libs/anime-context/hooks";
 import { CssUnit } from "../libs/theme-vars/CssUnit";
 import { ThemeVars } from "../libs/theme-vars/ThemeVars";
@@ -47,7 +47,7 @@ export function GuessButtons() {
 }
 
 function onPointerDown(bidx: number) {
-    TriggerGuess(bidx);
+    triggerGuess(bidx);
 }
 
 

@@ -1,9 +1,9 @@
 import anime from "animejs";
-import { AnimeTask } from "../libs/anime-context/AnimeTask";
-import { $time, $ease } from "../libs/anime-context/constants";
-import { Anim } from "../code/animation";
+import { AnimeTask } from "../../libs/anime-context/AnimeTask";
+import { $time, $ease } from "../../libs/anime-context/constants";
+import { Anim } from "../../code/animation";
 
-export async function HideAppLoader(): Promise<void> {
+export async function hideAppLoader(): Promise<void> {
     ///
     Anim.AppTitle.immediate({ opacity: 1, scale: 1 });
     Anim.AppVersion.immediate({ opacity: 0.42, scale: 1 });
