@@ -1,6 +1,6 @@
-import { Anim } from "../../code/AnimationManager";
-import { AnimeRef, $time, $ease } from "../../libs/anime-context";
-import { Task } from "../../libs/friendlies/Task";
+import { Anim } from ".";
+import { AnimeRef, $time, $ease } from "../libs/anime-context";
+import { Task } from "../libs/friendlies/Task";
 
 export async function buttonSlide(buttonRef: AnimeRef) {
     const translateY = Anim.QuestionText.rect!.top - buttonRef.rect!.top;

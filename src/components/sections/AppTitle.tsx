@@ -1,10 +1,10 @@
-import { useAppContext } from "../app/context";
-import { ANIM } from "../code/AnimationManager";
-import { useAnimeRef } from "../libs/anime-context/hooks";
+import { useAppContext } from "../../game/context";
+import { AnimKey } from "../../animations";
+import { useAnimeRef } from "../../libs/anime-context/hooks";
 
 export function AppTitle() {
     // style is also used outside the react app in app-loader.css
-    const animation = useAnimeRef(ANIM.AppTitle);
+    const animation = useAnimeRef(AnimKey.AppTitle);
     const { state } = useAppContext();
     const { appTitle } = state;
 

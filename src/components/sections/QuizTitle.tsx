@@ -1,12 +1,12 @@
-import { ANIM } from "../code/AnimationManager";
-import { SectionStyle, TV, ThemeFont } from "../app/themes";
-import { useAppContext } from "../app/context";
-import { useAnimeRef } from "../libs/anime-context/hooks";
-import { CssUnit } from "../libs/theme-vars/CssUnit";
-import { ThemeVars } from "../libs/theme-vars/ThemeVars";
+import { AnimKey } from "../../animations";
+import { SectionStyle, TV, ThemeFont } from "../../game/themes";
+import { useAppContext } from "../../game/context";
+import { useAnimeRef } from "../../libs/anime-context/hooks";
+import { CssUnit } from "../../libs/theme-vars/CssUnit";
+import { ThemeVars } from "../../libs/theme-vars/ThemeVars";
 
 export function QuizTitle() {
-    const animation = useAnimeRef(ANIM.QuizTitle);
+    const animation = useAnimeRef(AnimKey.QuizTitle);
     const style = useStyle();
     const { state } = useAppContext();
     const { quizModule } = state;

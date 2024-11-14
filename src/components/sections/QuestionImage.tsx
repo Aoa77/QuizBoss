@@ -1,15 +1,15 @@
 import { CSSProperties } from "react";
-import { useAppContext } from "../app/context";
-import { ANIM } from "../code/AnimationManager";
-import { useAnimeRef } from "../libs/anime-context/hooks";
-import { SectionStyle, TV } from "../app/themes";
-import { CssUnit } from "../libs/theme-vars/CssUnit";
-import { ThemeVars } from "../libs/theme-vars/ThemeVars";
+import { useAppContext } from "../../game/context";
+import { AnimKey } from "../../animations";
+import { useAnimeRef } from "../../libs/anime-context/hooks";
+import { SectionStyle, TV } from "../../game/themes";
+import { CssUnit } from "../../libs/theme-vars/CssUnit";
+import { ThemeVars } from "../../libs/theme-vars/ThemeVars";
 
 export function QuestionImage() {
     ///
     const style = useStyle();
-    const animation = useAnimeRef(ANIM.QuestionImage);
+    const animation = useAnimeRef(AnimKey.QuestionImage);
 
     ///
     const { state } = useAppContext();

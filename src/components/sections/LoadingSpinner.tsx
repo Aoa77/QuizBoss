@@ -1,9 +1,9 @@
-import { ANIM } from "../code/AnimationManager";
-import { useAnimeRef } from "../libs/anime-context/hooks";
+import { AnimKey } from "../../animations";
+import { useAnimeRef } from "../../libs/anime-context/hooks";
 
 export function LoadingSpinner() {
     // style is also used outside the react app in app-loader.css
-    const animation = useAnimeRef(ANIM.LoadingSpinner);
+    const animation = useAnimeRef(AnimKey.LoadingSpinner);
     ///
     return (
         <section id={animation.id}>

@@ -1,6 +1,6 @@
-import { DemoMode } from "../code/DemoMode";
+import { DemoMode } from "./demo";
 import { ThemeName } from "./themes";
-import { showErrorUI } from "./errors";
+import { showErrorUI } from "../components/app/errors";
 import { $time } from "../libs/anime-context";
 
 export const SETTINGS: AppSettings = {

@@ -1,8 +1,8 @@
-import { Anim } from "../../code/AnimationManager";
-import { TV } from "../../app/themes";
-import { AnimeRef, $time, $ease } from "../../libs/anime-context";
-import { TaskGroup } from "../../libs/friendlies/Task";
-import { ThemeVars } from "../../libs/theme-vars/ThemeVars";
+import { Anim } from ".";
+import { TV } from "../game/themes";
+import { AnimeRef, $time, $ease } from "../libs/anime-context";
+import { TaskGroup } from "../libs/friendlies/Task";
+import { ThemeVars } from "../libs/theme-vars/ThemeVars";
 
 export async function answerScoreTransition(
     itemScore: number,

@@ -1,7 +1,7 @@
-import { AppState } from "../app/state";
+import { AppState } from "./state";
 import { Timer, TimerStatus } from "../libs/anime-context";
-import { AppContext } from "../app/context";
-import { AppEvent } from "../app/events";
+import { AppContext } from "./context";
+import { AppEvent } from "./events";
 
 export enum ButtonState {
     correct = "correct",
@@ -12,7 +12,7 @@ export enum ButtonState {
     wrong = "wrong",
 }
 
-export async function triggerGuess(bidx: number) {
+export async function buttonTrigger(bidx: number) {
 
     function abandonTrigger(state: AppState, timer: Timer) {
         const { eventName } = state;

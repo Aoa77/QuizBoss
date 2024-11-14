@@ -1,14 +1,14 @@
 import { CSSProperties } from "react";
-import { useAppContext } from "../app/context";
-import { ANIM } from "../code/AnimationManager";
-import { SectionStyle, ThemeFont, TV } from "../app/themes";
-import { useAnimeRef } from "../libs/anime-context/hooks";
-import { CssUnit } from "../libs/theme-vars/CssUnit";
-import { ThemeVars } from "../libs/theme-vars/ThemeVars";
+import { useAppContext } from "../../game/context";
+import { AnimKey } from "../../animations";
+import { SectionStyle, ThemeFont, TV } from "../../game/themes";
+import { useAnimeRef } from "../../libs/anime-context/hooks";
+import { CssUnit } from "../../libs/theme-vars/CssUnit";
+import { ThemeVars } from "../../libs/theme-vars/ThemeVars";
 
 export function ScoreInfo() {
     ////
-    const animation = useAnimeRef(ANIM.ScoreInfo);
+    const animation = useAnimeRef(AnimKey.ScoreInfo);
     const style = useStyle();
     const { state } = useAppContext();
     const { quizScore } = state;

@@ -1,8 +1,8 @@
-import { AppContext } from "../app/context";
-import { AppEvent } from "../app/events";
-import { ButtonState } from "../code/ButtonState";
-import { QuizItem } from "../code/QuizModule";
-import { DEMO, DemoMode } from "../code/DemoMode";
+import { AppContext } from "../game/context";
+import { AppEvent } from "../game/events";
+import { ButtonState } from "../game/buttons";
+import { QuizItem } from "../game/quiz";
+import { DEMO, DemoMode } from "../game/demo";
 import { randomInt } from "../libs/randos/randomInt";
 
 export async function PrepQuestion() {

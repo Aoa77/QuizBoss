@@ -1,11 +1,11 @@
-import { AppContext } from "../app/context";
-import { QuizData, QuizItem, QuizModule } from "../code/QuizModule";
-import { AppEvent } from "../app/events";
-import { ButtonState } from "../code/ButtonState";
+import { AppContext } from "../game/context";
+import { QuizData, QuizItem, QuizModule } from "../game/quiz";
+import { AppEvent } from "../game/events";
+import { ButtonState } from "../game/buttons";
 import { LocalStore } from "../libs/friendlies/LocalStore";
 import { generateRandomString } from "../libs/randos/generateRandomString";
 import { shuffle } from "../libs/randos/shuffle";
-import { hideAppLoader } from "./animations/hideAppLoader";
+import { hideAppLoader } from "../animations/hideAppLoader";
 
 export async function LoadQuizModule() {
     /////////////////////////////

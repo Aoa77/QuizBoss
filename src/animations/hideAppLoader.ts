@@ -1,7 +1,7 @@
 import anime from "animejs";
-import { AnimeTask } from "../../libs/anime-context/AnimeTask";
-import { $time, $ease } from "../../libs/anime-context/constants";
-import { Anim } from "../../code/AnimationManager";
+import { AnimeTask } from "../libs/anime-context/AnimeTask";
+import { $time, $ease } from "../libs/anime-context/constants";
+import { Anim } from ".";
 
 export async function hideAppLoader(): Promise<void> {
     ///

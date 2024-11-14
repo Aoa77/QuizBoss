@@ -1,4 +1,4 @@
-import { QuizItem, QuizModule } from "../code/QuizModule";
+import { QuizItem, QuizModule } from "./quiz";
 import { AppEvent } from "./events";
 
 export interface AppState {

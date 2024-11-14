@@ -1,11 +1,11 @@
-import { AppContext } from "../app/context";
-import { Anim } from "../code/AnimationManager";
-import { AppEvent } from "../app/events";
-import { ButtonState } from "../code/ButtonState";
-import { TV } from "../app/themes";
+import { AppContext } from "../game/context";
+import { Anim } from "../animations";
+import { AppEvent } from "../game/events";
+import { ButtonState } from "../game/buttons";
+import { TV } from "../game/themes";
 import { $time, $ease, TimerStatus } from "../libs/anime-context";
 import { ThemeVars } from "../libs/theme-vars/ThemeVars";
-import { concludeFinalGuess } from "./animations/concludeFinalGuess";
+import { concludeFinalGuess } from "../animations/concludeFinalGuess";
 
 export async function RevealGuessResult() {
     const { state, flow, timer } = AppContext.current(

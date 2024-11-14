@@ -1,19 +1,10 @@
-///
 import { Dispatch, SetStateAction, useMemo } from "react";
-
-///
 import { Timer } from "../libs/anime-context";
 import { useFlowContextSetup } from "../libs/flow-context";
-
-///
 import { AppSettings } from "./settings";
 import { AppState, initAppState } from "./state";
-
-///
-import { Anim } from "../code/AnimationManager";
+import { Anim } from "../animations";
 import { AppEvent } from "./events";
-
-////
 import { AskQuestion } from "../events/AskQuestion";
 import { AwaitGuess } from "../events/AwaitGuess";
 import { ConcludeQuestion } from "../events/ConcludeQuestion";

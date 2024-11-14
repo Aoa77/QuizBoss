@@ -1,9 +1,9 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { App } from "./App";
-import { SETTINGS } from "./settings";
-import { ThemeName, TV } from "./themes";
-import { ThemeVars } from "../libs/theme-vars/ThemeVars";
+import { SETTINGS } from "../../game/settings";
+import { ThemeName, TV } from "../../game/themes";
+import { ThemeVars } from "../../libs/theme-vars/ThemeVars";
 
 /////////////////////////////////////////////////////////////
 const root: HTMLElement = document.getElementById("root")!;

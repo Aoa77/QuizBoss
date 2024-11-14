@@ -1,5 +1,5 @@
-import { QuizItem } from "../../code/QuizModule";
-import { AnimeRef } from "../../libs/anime-context";
+import { QuizItem } from "../game/quiz";
+import { AnimeRef } from "../libs/anime-context";
 import { answerScoreTransition } from "./answerScoreTransition";
 import { buttonSlide } from "./buttonSlide";
 import { revealCorrectButton } from "./revealCorrectButton";

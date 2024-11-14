@@ -1,14 +1,14 @@
-import { AppContext, AppFlow } from "../app/context";
-import { AppSettings } from "../app/settings";
-import { AppState } from "../app/state";
-import { AppEvent } from "../app/events";
-import { ButtonState } from "../code/ButtonState";
-import { DEMO, DemoMode } from "../code/DemoMode";
+import { AppContext, AppFlow } from "../game/context";
+import { AppSettings } from "../game/settings";
+import { AppState } from "../game/state";
+import { AppEvent } from "../game/events";
+import { ButtonState } from "../game/buttons";
+import { DEMO, DemoMode } from "../game/demo";
 import { TimerStatus } from "../libs/anime-context/Timer";
 import { Task } from "../libs/friendlies/Task";
 import { randomInt } from "../libs/randos/randomInt";
 import { randomIntInclusive } from "../libs/randos/randomIntInclusive";
-import { triggerGuess } from "../code/ButtonState";
+import { buttonTrigger } from "../game/buttons";
 
 export async function AwaitGuess() {
     ///
@@ -80,7 +80,7 @@ function triggerDemoGuess(settings: AppSettings, state: AppState): void {
     }
 
     const delay = randomIntInclusive(demoDelayMin, demoDelayMax);
-    Task.delay(delay).then(() => triggerGuess(DEMO.guess.shift()!));
+    Task.delay(delay).then(() => buttonTrigger(DEMO.guess.shift()!));
 }
 
 function runFailTransition(state: AppState, flow: AppFlow): void {

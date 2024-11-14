@@ -1,12 +1,12 @@
 import { CSSProperties } from "react";
-import { useAppContext } from "../app/context";
-import { ANIM } from "../code/AnimationManager";
-import { ButtonState } from "../code/ButtonState";
-import { SectionStyle, ThemeFont, TV } from "../app/themes";
-import { triggerGuess } from "../code/ButtonState";
-import { useAnimeRefs } from "../libs/anime-context/hooks";
-import { CssUnit } from "../libs/theme-vars/CssUnit";
-import { ThemeVars } from "../libs/theme-vars/ThemeVars";
+import { useAppContext } from "../../game/context";
+import { ButtonState } from "../../game/buttons";
+import { SectionStyle, ThemeFont, TV } from "../../game/themes";
+import { buttonTrigger } from "../../game/buttons";
+import { useAnimeRefs } from "../../libs/anime-context/hooks";
+import { CssUnit } from "../../libs/theme-vars/CssUnit";
+import { ThemeVars } from "../../libs/theme-vars/ThemeVars";
+import { AnimKey } from "../../animations/AnimKey";
 
 export function GuessButtons() {
     const { state, settings } = useAppContext();
@@ -14,7 +14,7 @@ export function GuessButtons() {
     const { buttonAnswerMap } = state;
     const style = useStyle();
     const animations = useAnimeRefs(
-        ANIM.GuessButton,
+        AnimKey.GuessButton,
         guessButtonCount,
     );
     
@@ -47,7 +47,7 @@ export function GuessButtons() {
 }
 
 function onPointerDown(bidx: number) {
-    triggerGuess(bidx);
+    buttonTrigger(bidx);
 }
 
 

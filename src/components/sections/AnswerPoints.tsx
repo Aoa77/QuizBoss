@@ -1,16 +1,16 @@
 import { useMemo } from "react";
-import { useAppContext } from "../app/context";
-import { ANIM } from "../code/AnimationManager";
-import { SectionStyle, ThemeFont, TV } from "../app/themes";
-import { useAnimeRef } from "../libs/anime-context/hooks";
-import { CssUnit } from "../libs/theme-vars/CssUnit";
-import { ThemeVars } from "../libs/theme-vars/ThemeVars";
+import { useAppContext } from "../../game/context";
+import { AnimKey } from "../../animations";
+import { SectionStyle, ThemeFont, TV } from "../../game/themes";
+import { useAnimeRef } from "../../libs/anime-context/hooks";
+import { CssUnit } from "../../libs/theme-vars/CssUnit";
+import { ThemeVars } from "../../libs/theme-vars/ThemeVars";
 
 export function AnswerPoints() {
     ////
     const { state } = useAppContext();
     const { itemScore } = state;
-    const animation = useAnimeRef(ANIM.AnswerPoints);
+    const animation = useAnimeRef(AnimKey.AnswerPoints);
 
     const style = useStyle({ timeBonus: false });
 
@@ -27,7 +27,7 @@ export function AnswerPoints() {
 
 export function AnswerPointsTimeBonus() {
     ////
-    const animation = useAnimeRef(ANIM.AnswerPointsTimeBonus);
+    const animation = useAnimeRef(AnimKey.AnswerPointsTimeBonus);
     const { timer } = useAppContext();
     const { secondsRemaining: bonus } = timer;
     const render = bonus ? `+${bonus} time bonus` : "no time bonus";

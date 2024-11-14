@@ -1,4 +1,4 @@
-import { AnimeRef, $time, $ease } from "../../libs/anime-context";
+import { AnimeRef, $time, $ease } from "../libs/anime-context";
 
 export async function concludeButtonReveal(params: {
     buttonRef: AnimeRef;

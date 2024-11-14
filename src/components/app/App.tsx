@@ -1,7 +1,7 @@
 ///
-import { AppSettings } from "./settings";
-import { useAppContextSetup } from "./context";
-import * as component from "../components";
+import { AppSettings } from "../../game/settings";
+import { useAppContextSetup } from "../../game/context";
+import * as component from "../sections";
 
 ///
 export function App(settings: AppSettings) {
