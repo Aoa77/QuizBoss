@@ -1,4 +1,4 @@
-import { useAppContext } from "../../game/context";
+import { useAppContext } from "../../core/context";
 import { AnimKey } from "../../animations";
 import { useAnimeRef } from "../../libs/anime-context/hooks";
 

@@ -1,7 +1,7 @@
-import { AppContext } from "../game/context";
-import { QuizData, QuizItem, QuizModule } from "../game/quiz";
-import { AppEvent } from "../game/events";
-import { ButtonState } from "../game/buttons";
+import { AppContext } from "../core/context";
+import { QuizData, QuizItem, QuizModule } from "../core/quiz";
+import { AppEvent } from "../core/events";
+import { ButtonState } from "../core/buttons";
 import { LocalStore } from "../libs/friendlies/LocalStore";
 import { generateRandomString } from "../libs/randos/generateRandomString";
 import { shuffle } from "../libs/randos/shuffle";

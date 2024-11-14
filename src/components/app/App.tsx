@@ -1,25 +1,25 @@
 ///
-import { AppSettings } from "../../game/settings";
-import { useAppContextSetup } from "../../game/context";
-import * as component from "../sections";
+import { AppSettings } from "../../core/settings";
+import { useAppContextSetup } from "../../core/context";
+import * as section from "../sections";
 
 ///
 export function App(settings: AppSettings) {
     useAppContextSetup(settings);
     return (
         <main>
-            <component.AnswerPoints />
-            <component.AnswerPointsTimeBonus />
-            <component.AppTitle />
-            <component.AppVersion />
-            <component.GuessButtons />
-            <component.LoadingSpinner />
-            <component.QuestionImage />
-            <component.QuestionText />
-            <component.QuestionTimer />
-            <component.QuizProgress />
-            <component.QuizTitle />
-            <component.ScoreInfo />
+            <section.AnswerPoints />
+            <section.AnswerPointsTimeBonus />
+            <section.AppTitle />
+            <section.AppVersion />
+            <section.GuessButtons />
+            <section.LoadingSpinner />
+            <section.QuestionImage />
+            <section.QuestionText />
+            <section.QuestionTimer />
+            <section.QuizProgress />
+            <section.QuizTitle />
+            <section.ScoreInfo />
         </main>
     );
 }

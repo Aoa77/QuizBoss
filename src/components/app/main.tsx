@@ -1,8 +1,8 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { App } from "./App";
-import { SETTINGS } from "../../game/settings";
-import { ThemeName, TV } from "../../game/themes";
+import { SETTINGS } from "../../core/settings";
+import { ThemeName, TV } from "../../core/themes";
 import { ThemeVars } from "../../libs/theme-vars/ThemeVars";
 
 /////////////////////////////////////////////////////////////

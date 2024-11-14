@@ -1,8 +1,8 @@
 import { CSSProperties } from "react";
-import { useAppContext } from "../../game/context";
-import { ButtonState } from "../../game/buttons";
-import { SectionStyle, ThemeFont, TV } from "../../game/themes";
-import { buttonTrigger } from "../../game/buttons";
+import { useAppContext } from "../../core/context";
+import { ButtonState } from "../../core/buttons";
+import { SectionStyle, ThemeFont, TV } from "../../core/themes";
+import { buttonTrigger } from "../../core/buttons";
 import { useAnimeRefs } from "../../libs/anime-context/hooks";
 import { CssUnit } from "../../libs/theme-vars/CssUnit";
 import { ThemeVars } from "../../libs/theme-vars/ThemeVars";

@@ -1,5 +1,5 @@
 import { Anim } from ".";
-import { TV } from "../game/themes";
+import { TV } from "../core/themes";
 import { AnimeRef, $time, $ease } from "../libs/anime-context";
 import { TaskGroup } from "../libs/friendlies/Task";
 import { ThemeVars } from "../libs/theme-vars/ThemeVars";

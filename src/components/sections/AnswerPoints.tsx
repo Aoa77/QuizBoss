@@ -1,7 +1,7 @@
 import { useMemo } from "react";
-import { useAppContext } from "../../game/context";
+import { useAppContext } from "../../core/context";
 import { AnimKey } from "../../animations";
-import { SectionStyle, ThemeFont, TV } from "../../game/themes";
+import { SectionStyle, ThemeFont, TV } from "../../core/themes";
 import { useAnimeRef } from "../../libs/anime-context/hooks";
 import { CssUnit } from "../../libs/theme-vars/CssUnit";
 import { ThemeVars } from "../../libs/theme-vars/ThemeVars";

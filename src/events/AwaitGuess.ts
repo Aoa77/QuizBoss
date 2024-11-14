@@ -1,14 +1,14 @@
-import { AppContext, AppFlow } from "../game/context";
-import { AppSettings } from "../game/settings";
-import { AppState } from "../game/state";
-import { AppEvent } from "../game/events";
-import { ButtonState } from "../game/buttons";
-import { DEMO, DemoMode } from "../game/demo";
+import { AppContext, AppFlow } from "../core/context";
+import { AppSettings } from "../core/settings";
+import { AppState } from "../core/state";
+import { AppEvent } from "../core/events";
+import { ButtonState } from "../core/buttons";
+import { DEMO, DemoMode } from "../core/demo";
 import { TimerStatus } from "../libs/anime-context/Timer";
 import { Task } from "../libs/friendlies/Task";
 import { randomInt } from "../libs/randos/randomInt";
 import { randomIntInclusive } from "../libs/randos/randomIntInclusive";
-import { buttonTrigger } from "../game/buttons";
+import { buttonTrigger } from "../core/buttons";
 
 export async function AwaitGuess() {
     ///

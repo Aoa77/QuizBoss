@@ -1,7 +1,7 @@
-import { AppContext } from "../game/context";
+import { AppContext } from "../core/context";
 import { Anim } from "../animations";
-import { AppEvent } from "../game/events";
-import { ButtonState } from "../game/buttons";
+import { AppEvent } from "../core/events";
+import { ButtonState } from "../core/buttons";
 import { concludeButtonReveal } from "../animations/concludeButtonReveal";
 
 export async function ConcludeWrongGuess() {
