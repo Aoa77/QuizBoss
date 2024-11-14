@@ -15,8 +15,8 @@ export function AppVersion() {
 
     ///
     return useMemo(() => {
-        console.debug("AppVersion", { id, style, appVersion });
         const v = appVersion.split(" ");
+        console.log("AppVersion", { id, style, appVersion, v });
         return (
             <section id={id} style={style}>
                 <div>{v[0]} {v[1]}</div>
