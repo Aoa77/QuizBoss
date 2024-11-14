@@ -1,11 +1,11 @@
 import { DemoMode } from "./demo";
 import { ThemeName } from "./themes";
-import { showErrorUI } from "../components/app/errors";
+import { uiErrorDisplay } from "./errors";
 import { $time } from "../libs/anime-context";
 
 export const SETTINGS: AppSettings = {
     quizModuleName: "quizboss-world-flags",
-    errorHandler: showErrorUI,
+    errorHandler: uiErrorDisplay,
     strictMode: false,
 
     demoMode: DemoMode.RIGHT,
