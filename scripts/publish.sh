@@ -21,7 +21,7 @@ git add . && git commit -m "[$branch] deployment"
 commit=$(git rev-parse --short HEAD)
 
 # save the current date and time in a string variable
-vdate = $(date +"%Y-%m-%d %H:%M:%S");
+vdate=$(date +"%Y-%m-%d %H:%M:%S");
 
 # update the version file
 echo "[$branch] $commit" >./public/version
