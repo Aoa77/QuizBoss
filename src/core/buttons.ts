@@ -17,7 +17,7 @@ export async function buttonTrigger(bidx: number) {
     function abandonTrigger(state: AppState, timer: Timer) {
         const { eventName } = state;
         return (
-            eventName !== AppEvent.AwaitGuess ||
+            eventName !== EventKey.AwaitGuess ||
             timer.status !== TimerStatus.Running ||
             timer.secondsRemaining < 1
         );
@@ -41,7 +41,7 @@ export async function buttonTrigger(bidx: number) {
         return {
             ...state,
             guessButtonIndex: bidx,
-            eventName: AppEvent.PrepGuessResult,
+            eventName: EventKey.PrepGuessResult,
         };
     });
 }

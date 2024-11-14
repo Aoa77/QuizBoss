@@ -1,12 +1,12 @@
 import { Anim } from "../animations";
-import { AppEvent } from "../core/events";
+import { EventKey } from ".";
 import { ButtonState } from "../core/buttons";
 import { AppContext } from "../core/context";
 import { $time, $ease } from "../libs/anime-context/constants";
 import { Task } from "../libs/friendlies/Task";
 
 export async function AskQuestion() {
-    const { settings, state, flow } = AppContext.current(AppEvent.AskQuestion);
+    const { settings, state, flow } = AppContext.current(EventKey.AskQuestion);
     const { guessButtonCount } = settings;
     const { buttonAnswerMap } = state;
 
@@ -51,7 +51,7 @@ export async function AskQuestion() {
         item!.buttonStyle = ButtonState.normal;
     });
 
-    flow.dispatch((state) => ({ ...state, eventName: AppEvent.AwaitGuess }));
+    flow.dispatch((state) => ({ ...state, eventName: EventKey.AwaitGuess }));
 }
 
 async function fadeInScoreAndProgress() {

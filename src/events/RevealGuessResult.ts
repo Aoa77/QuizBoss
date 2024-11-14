@@ -1,6 +1,6 @@
 import { AppContext } from "../core/context";
 import { Anim } from "../animations";
-import { AppEvent } from "../core/events";
+import { EventKey } from ".";
 import { ButtonState } from "../core/buttons";
 import { TV } from "../core/themes";
 import { $time, $ease, TimerStatus } from "../libs/anime-context";
@@ -9,7 +9,7 @@ import { concludeFinalGuess } from "../animations/concludeFinalGuess";
 
 export async function RevealGuessResult() {
     const { state, flow, timer } = AppContext.current(
-        AppEvent.RevealGuessResult,
+        EventKey.RevealGuessResult,
     );
     const { buttonAnswerMap, guessButtonIndex } = state;
     const button = buttonAnswerMap[guessButtonIndex]!;
@@ -26,7 +26,7 @@ export async function RevealGuessResult() {
     if (button.buttonStyle === ButtonState.wrong) {
         flow.dispatch((state) => ({
             ...state,
-            eventName: AppEvent.ConcludeWrongGuess,
+            eventName: EventKey.ConcludeWrongGuess,
         }));
         return;
     }
@@ -63,7 +63,7 @@ export async function RevealGuessResult() {
     flow.dispatch((state) => ({
         ...state,
         quizScore,
-        eventName: AppEvent.ConcludeQuestion,
+        eventName: EventKey.ConcludeQuestion,
     }));
 }
 

@@ -5,19 +5,7 @@ import { AppSettings } from "./settings";
 import { AppState, initAppState } from "./state";
 import { Anim } from "../animations";
 import * as event from "../events";
-
-export enum AppEvent {
-    AskQuestion = "AskQuestion",
-    AwaitGuess = "AwaitGuess",
-    ConcludeQuestion = "ConcludeQuestion",
-    ConcludeWrongGuess = "ConcludeWrongGuess",
-    LoadQuizModule = "LoadQuizModule",
-    PrepGuessResult = "PrepGuessResult",
-    PrepQuestion = "PrepQuestion",
-    RevealGuessResult = "RevealGuessResult",
-    StartApp = "StartApp",
-    StartQuiz = "StartQuiz",
-}
+import { EventKey } from "../events/EventKey";
 
 export interface AppFlow {
     dispatch: Dispatch<SetStateAction<AppState>>;
@@ -38,23 +26,23 @@ export function useAppContext(): AppFlowContext {
 ///
 export function useAppContextSetup(settings: AppSettings): AppFlowContext {
     ///
-    const flow = useFlowContextSetup<AppState, AppEvent>({
+    const flow = useFlowContextSetup<AppState, EventKey>({
         initialState: initAppState(settings),
         flowProperty: (state) => {
             const { eventName } = state;
             return eventName;
         },
-        flowEvents: new Map<AppEvent, () => Promise<void>>([
-            [AppEvent.AskQuestion, event.AskQuestion],
-            [AppEvent.AwaitGuess, event.AwaitGuess],
-            [AppEvent.ConcludeQuestion, event.ConcludeQuestion],
-            [AppEvent.ConcludeWrongGuess, event.ConcludeWrongGuess],
-            [AppEvent.LoadQuizModule, event.LoadQuizModule],
-            [AppEvent.PrepGuessResult, event.PrepGuessResult],
-            [AppEvent.PrepQuestion, event.PrepQuestion],
-            [AppEvent.RevealGuessResult, event.RevealGuessResult],
-            [AppEvent.StartApp, event.StartApp],
-            [AppEvent.StartQuiz, event.StartQuiz],
+        flowEvents: new Map<EventKey, () => Promise<void>>([
+            [EventKey.AskQuestion, event.AskQuestion],
+            [EventKey.AwaitGuess, event.AwaitGuess],
+            [EventKey.ConcludeQuestion, event.ConcludeQuestion],
+            [EventKey.ConcludeWrongGuess, event.ConcludeWrongGuess],
+            [EventKey.LoadQuizModule, event.LoadQuizModule],
+            [EventKey.PrepGuessResult, event.PrepGuessResult],
+            [EventKey.PrepQuestion, event.PrepQuestion],
+            [EventKey.RevealGuessResult, event.RevealGuessResult],
+            [EventKey.StartApp, event.StartApp],
+            [EventKey.StartQuiz, event.StartQuiz],
         ]),
         errorHandler: settings.errorHandler,
         stateLogger(state) {
@@ -90,7 +78,7 @@ export function useAppContextSetup(settings: AppSettings): AppFlowContext {
 
 export class AppContext {
     private static _current: AppFlowContext | null = null;
-    public static current(flowEvent?: AppEvent): AppFlowContext {
+    public static current(flowEvent?: EventKey): AppFlowContext {
         if (!this._current) {
             throw new Error("AppContext instance not initialized");
         }
@@ -106,7 +94,7 @@ export class AppContext {
         return this._current;
     }
 
-    private static assertFlowEvent(expected: AppEvent) {
+    private static assertFlowEvent(expected: EventKey) {
         const { state } = this._current!;
         const { eventName } = state;
         console.group("assertFlowEvent");

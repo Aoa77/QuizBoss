@@ -31,7 +31,7 @@ export function initAppState(params: { guessButtonCount: number }): AppState {
         correctAnswerButtonIndex: -1,
         currentItem: null,
         currentItemIndex: -1,
-        eventName: AppEvent.StartApp,
+        eventName: EventKey.StartApp,
         guessButtonIndex: -1,
         itemScore: 0,
         quizModule: null,

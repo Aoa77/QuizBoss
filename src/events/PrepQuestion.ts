@@ -1,5 +1,5 @@
 import { AppContext } from "../core/context";
-import { AppEvent } from "../core/events";
+import { EventKey } from ".";
 import { ButtonState } from "../core/buttons";
 import { QuizItem } from "../core/quiz";
 import { DEMO, DemoMode } from "../core/demo";
@@ -8,7 +8,7 @@ import { randomInt } from "../libs/randos/randomInt";
 export async function PrepQuestion() {
     ///
     const { settings, state, flow, timer } = AppContext.current(
-        AppEvent.PrepQuestion,
+        EventKey.PrepQuestion,
     );
     const { buttonAnswerMap, quizModule } = state;
 
@@ -67,7 +67,7 @@ export async function PrepQuestion() {
         currentItem,
         currentItemIndex,
         correctAnswerButtonIndex,
-        eventName: AppEvent.AskQuestion,
+        eventName: EventKey.AskQuestion,
     }));
 }
 
