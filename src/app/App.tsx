@@ -1,5 +1,5 @@
 ///
-import { AppSettings } from "../code/settings";
+import { AppSettings } from "./settings";
 import { useAppContextSetup } from "../code/AppContext";
 import * as component from "../components";
 

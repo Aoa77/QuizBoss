@@ -6,8 +6,8 @@ import { Timer } from "../libs/anime-context";
 import { useFlowContextSetup } from "../libs/flow-context";
 
 ///
-import { AppSettings } from "./settings";
-import { AppState, initAppState } from "./state";
+import { AppSettings } from "../app/settings";
+import { AppState, initAppState } from "./AppState";
 
 ///
 import { Anim } from "./AnimationManager";

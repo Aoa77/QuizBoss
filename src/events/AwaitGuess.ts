@@ -1,6 +1,6 @@
 import { AppContext, AppFlow } from "../code/AppContext";
-import { AppSettings } from "../code/settings";
-import { AppState } from "../code/state";
+import { AppSettings } from "../app/settings";
+import { AppState } from "../code/AppState";
 import { AppEvent } from "../code/AppEvent";
 import { ButtonState } from "../code/ButtonState";
 import { DEMO, DemoMode } from "../code/DemoMode";

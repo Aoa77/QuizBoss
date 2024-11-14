@@ -1,5 +1,5 @@
 import { AppContext } from "./AppContext";
-import { AppState } from "./state";
+import { AppState } from "./AppState";
 import { AppEvent } from "./AppEvent";
 import { ButtonState } from "./ButtonState";
 import { Timer, TimerStatus } from "../libs/anime-context";
