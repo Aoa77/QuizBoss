@@ -1,6 +1,6 @@
-import { AppContext } from "../code/context";
-import { QuizData, QuizItem, QuizModule } from "../code/data";
-import { EventName } from "../code/game";
+import { AppContext } from "../code/AppContext";
+import { QuizData, QuizItem, QuizModule } from "../code/QuizModule";
+import { AppEvent } from "../code/AppEvent";
 import { ButtonState } from "../code/ButtonState";
 import { LocalStore } from "../libs/friendlies/LocalStore";
 import { generateRandomString } from "../libs/randos/generateRandomString";
@@ -11,7 +11,7 @@ export async function LoadQuizModule() {
     /////////////////////////////
     await hideAppLoader();
     /////////////////////////////
-    const { settings, flow } = AppContext.current(EventName.LoadQuizModule);
+    const { settings, flow } = AppContext.current(AppEvent.LoadQuizModule);
     const { maxQuestions, guessButtonCount } = settings;
 
     const bestScore = LocalStore.numbers.get("bestScore", 0)!;
@@ -38,7 +38,7 @@ export async function LoadQuizModule() {
         ...state,
         totalItems,
         quizModule,
-        eventName: EventName.StartQuiz,
+        eventName: AppEvent.StartQuiz,
     }));
 }
 

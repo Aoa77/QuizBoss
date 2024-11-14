@@ -1,4 +1,4 @@
-import { QuizItem } from "../../code/data";
+import { QuizItem } from "../../code/QuizModule";
 import { AnimeRef } from "../../libs/anime-context";
 import { answerScoreTransition } from "./answerScoreTransition";
 import { buttonSlide } from "./buttonSlide";

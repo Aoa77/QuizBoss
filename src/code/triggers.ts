@@ -1,6 +1,6 @@
-import { AppContext } from "./context";
+import { AppContext } from "./AppContext";
 import { AppState } from "./state";
-import { EventName } from "./game";
+import { AppEvent } from "./AppEvent";
 import { ButtonState } from "./ButtonState";
 import { Timer, TimerStatus } from "../libs/anime-context";
 
@@ -23,7 +23,7 @@ export async function triggerGuess(bidx: number) {
         return {
             ...state,
             guessButtonIndex: bidx,
-            eventName: EventName.PrepGuessResult,
+            eventName: AppEvent.PrepGuessResult,
         };
     });
 }
@@ -31,7 +31,7 @@ export async function triggerGuess(bidx: number) {
 function abandonTrigger(state: AppState, timer: Timer) {
     const { eventName } = state;
     return (
-        eventName !== EventName.AwaitGuess ||
+        eventName !== AppEvent.AwaitGuess ||
         timer.status !== TimerStatus.Running ||
         timer.secondsRemaining < 1
     );

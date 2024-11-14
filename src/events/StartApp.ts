@@ -1,9 +1,9 @@
-import { AppContext } from "../code/context";
-import { EventName } from "../code/game";
+import { AppContext } from "../code/AppContext";
+import { AppEvent } from "../code/AppEvent";
 
 export async function StartApp() {
     //
-    const { flow } = AppContext.current(EventName.StartApp);
+    const { flow } = AppContext.current(AppEvent.StartApp);
 
     async function fetchAppVersion() {
         const response = await fetch("version", {
@@ -28,7 +28,7 @@ export async function StartApp() {
         flow.dispatch((state) => ({
             ...state,
             appVersion,
-            eventName: EventName.LoadQuizModule,
+            eventName: AppEvent.LoadQuizModule,
         }));
     }
 }

@@ -1,11 +1,11 @@
-import { AppContext } from "../code/context";
+import { AppContext } from "../code/AppContext";
 import { Anim } from "../code/AnimationManager";
-import { EventName } from "../code/game";
+import { AppEvent } from "../code/AppEvent";
 import { $ease, $time } from "../libs/anime-context/constants";
 import { TaskGroup } from "../libs/friendlies/Task";
 
 export async function StartQuiz() {
-    const { flow } = AppContext.current(EventName.StartQuiz);
+    const { flow } = AppContext.current(AppEvent.StartQuiz);
 
     ///
     const anims = TaskGroup.create();
@@ -42,5 +42,5 @@ export async function StartQuiz() {
     await anims.all();
 
     //
-    flow.dispatch((state) => ({ ...state, eventName: EventName.PrepQuestion }));
+    flow.dispatch((state) => ({ ...state, eventName: AppEvent.PrepQuestion }));
 }

@@ -1,9 +1,9 @@
-import { AppContext, AppFlow } from "../code/context";
+import { AppContext, AppFlow } from "../code/AppContext";
 import { AppSettings } from "../code/settings";
 import { AppState } from "../code/state";
-import { EventName } from "../code/game";
+import { AppEvent } from "../code/AppEvent";
 import { ButtonState } from "../code/ButtonState";
-import { DEMO, DemoMode } from "../code/demo";
+import { DEMO, DemoMode } from "../code/DemoMode";
 import { TimerStatus } from "../libs/anime-context/Timer";
 import { Task } from "../libs/friendlies/Task";
 import { randomInt } from "../libs/randos/randomInt";
@@ -13,7 +13,7 @@ import { triggerGuess } from "../code/triggers";
 export async function AwaitGuess() {
     ///
     const { settings, state, flow, timer } = AppContext.current(
-        EventName.AwaitGuess,
+        AppEvent.AwaitGuess,
     );
 
     if (countAvailableGuesses(state).length === 1) {
@@ -96,7 +96,7 @@ function runFailTransition(state: AppState, flow: AppFlow): void {
 
     flow.dispatch((state) => {
         const { eventName } = state;
-        if (eventName !== EventName.AwaitGuess) {
+        if (eventName !== AppEvent.AwaitGuess) {
             return state;
         }
         return {
@@ -104,7 +104,7 @@ function runFailTransition(state: AppState, flow: AppFlow): void {
             itemScore: 0,
             buttonAnswerMap,
             guessButtonIndex: correctAnswerButtonIndex,
-            eventName: EventName.RevealGuessResult,
+            eventName: AppEvent.RevealGuessResult,
         };
     });
 }

@@ -1,5 +1,5 @@
 import { Anim } from "../../code/AnimationManager";
-import { QuizItem } from "../../code/data";
+import { QuizItem } from "../../code/QuizModule";
 import { AnimeRef, $time, $ease } from "../../libs/anime-context";
 import { Task } from "../../libs/friendlies/Task";
 import { concludeButtonReveal } from "./concludeButtonReveal";

@@ -1,5 +1,5 @@
-import { QuizItem, QuizModule } from "./data";
-import { EventName } from "./game";
+import { QuizItem, QuizModule } from "./QuizModule";
+import { AppEvent } from "./AppEvent";
 
 export interface AppState {
     ///
@@ -10,7 +10,7 @@ export interface AppState {
     correctAnswerButtonIndex: number;
     currentItem: QuizItem | null;
     currentItemIndex: number;
-    eventName: EventName;
+    eventName: AppEvent;
     guessButtonIndex: number;
     itemScore: number;
     quizModule: QuizModule | null;
@@ -31,7 +31,7 @@ export function initAppState(params: { guessButtonCount: number }): AppState {
         correctAnswerButtonIndex: -1,
         currentItem: null,
         currentItemIndex: -1,
-        eventName: EventName.StartApp,
+        eventName: AppEvent.StartApp,
         guessButtonIndex: -1,
         itemScore: 0,
         quizModule: null,

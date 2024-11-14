@@ -1,4 +1,4 @@
-export enum EventName {
+export enum AppEvent {
     AskQuestion = "AskQuestion",
     AwaitGuess = "AwaitGuess",
     ConcludeQuestion = "ConcludeQuestion",

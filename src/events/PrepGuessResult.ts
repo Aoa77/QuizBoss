@@ -1,9 +1,9 @@
-import { AppContext } from "../code/context";
-import { EventName } from "../code/game";
+import { AppContext } from "../code/AppContext";
+import { AppEvent } from "../code/AppEvent";
 import { ButtonState } from "../code/ButtonState";
 
 export async function PrepGuessResult() {
-    const { state, flow } = AppContext.current(EventName.PrepGuessResult);
+    const { state, flow } = AppContext.current(AppEvent.PrepGuessResult);
     const { buttonAnswerMap, guessButtonIndex, correctAnswerButtonIndex } =
         state;
     let { itemScore } = state;
@@ -28,6 +28,6 @@ export async function PrepGuessResult() {
         ...state,
         buttonAnswerMap,
         itemScore,
-        eventName: EventName.RevealGuessResult,
+        eventName: AppEvent.RevealGuessResult,
     }));
 }

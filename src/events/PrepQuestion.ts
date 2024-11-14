@@ -1,14 +1,14 @@
-import { AppContext } from "../code/context";
-import { EventName } from "../code/game";
+import { AppContext } from "../code/AppContext";
+import { AppEvent } from "../code/AppEvent";
 import { ButtonState } from "../code/ButtonState";
-import { QuizItem } from "../code/data";
-import { DEMO, DemoMode } from "../code/demo";
+import { QuizItem } from "../code/QuizModule";
+import { DEMO, DemoMode } from "../code/DemoMode";
 import { randomInt } from "../libs/randos/randomInt";
 
 export async function PrepQuestion() {
     ///
     const { settings, state, flow, timer } = AppContext.current(
-        EventName.PrepQuestion,
+        AppEvent.PrepQuestion,
     );
     const { buttonAnswerMap, quizModule } = state;
 
@@ -67,7 +67,7 @@ export async function PrepQuestion() {
         currentItem,
         currentItemIndex,
         correctAnswerButtonIndex,
-        eventName: EventName.AskQuestion,
+        eventName: AppEvent.AskQuestion,
     }));
 }
 

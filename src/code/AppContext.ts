@@ -11,7 +11,7 @@ import { AppState, initAppState } from "./state";
 
 ///
 import { Anim } from "./AnimationManager";
-import { EventName } from "../code/game";
+import { AppEvent } from "./AppEvent";
 
 ////
 import { AskQuestion } from "../events/AskQuestion";
@@ -38,29 +38,31 @@ export interface AppFlowContext {
 
 ///
 export function useAppContext(): AppFlowContext {
+
+
     return AppContext.current();
 }
 
 ///
 export function useAppContextSetup(settings: AppSettings): AppFlowContext {
     ///
-    const flow = useFlowContextSetup<AppState, EventName>({
+    const flow = useFlowContextSetup<AppState, AppEvent>({
         initialState: initAppState(settings),
         flowProperty: (state) => {
             const { eventName } = state;
             return eventName;
         },
-        flowEvents: new Map<EventName, () => Promise<void>>([
-            [EventName.AskQuestion, AskQuestion],
-            [EventName.AwaitGuess, AwaitGuess],
-            [EventName.ConcludeQuestion, ConcludeQuestion],
-            [EventName.ConcludeWrongGuess, ConcludeWrongGuess],
-            [EventName.LoadQuizModule, LoadQuizModule],
-            [EventName.PrepGuessResult, PrepGuessResult],
-            [EventName.PrepQuestion, PrepQuestion],
-            [EventName.RevealGuessResult, RevealGuessResult],
-            [EventName.StartApp, StartApp],
-            [EventName.StartQuiz, StartQuiz],
+        flowEvents: new Map<AppEvent, () => Promise<void>>([
+            [AppEvent.AskQuestion, AskQuestion],
+            [AppEvent.AwaitGuess, AwaitGuess],
+            [AppEvent.ConcludeQuestion, ConcludeQuestion],
+            [AppEvent.ConcludeWrongGuess, ConcludeWrongGuess],
+            [AppEvent.LoadQuizModule, LoadQuizModule],
+            [AppEvent.PrepGuessResult, PrepGuessResult],
+            [AppEvent.PrepQuestion, PrepQuestion],
+            [AppEvent.RevealGuessResult, RevealGuessResult],
+            [AppEvent.StartApp, StartApp],
+            [AppEvent.StartQuiz, StartQuiz],
         ]),
         errorHandler: settings.errorHandler,
         stateLogger(state) {
@@ -96,7 +98,7 @@ export function useAppContextSetup(settings: AppSettings): AppFlowContext {
 
 export class AppContext {
     private static _current: AppFlowContext | null = null;
-    public static current(flowEvent?: EventName): AppFlowContext {
+    public static current(flowEvent?: AppEvent): AppFlowContext {
         if (!this._current) {
             throw new Error("AppContext instance not initialized");
         }
@@ -112,7 +114,7 @@ export class AppContext {
         return this._current;
     }
 
-    private static assertFlowEvent(expected: EventName) {
+    private static assertFlowEvent(expected: AppEvent) {
         const { state } = this._current!;
         const { eventName } = state;
         console.group("assertFlowEvent");
