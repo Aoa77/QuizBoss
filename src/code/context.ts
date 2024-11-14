@@ -2,10 +2,8 @@
 import { Dispatch, SetStateAction, useMemo } from "react";
 
 ///
-import {
-    useFlowContextSetup,
-} from "../libs/flow-context/FlowContext";
-import { Timer } from "../libs/anime-context/Timer";
+import { Timer } from "../libs/anime-context";
+import { useFlowContextSetup } from "../libs/flow-context";
 
 ///
 import { AppSettings } from "./settings";
