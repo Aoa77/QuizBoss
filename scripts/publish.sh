@@ -18,7 +18,7 @@ branch=$(git rev-parse --abbrev-ref HEAD)
 echo $(date +"%Y-%m-%d %H:%M:%S") >./public/version
 
 # commit the changes
-git add . && git commit -m "[$(branch)] deployment"
+git add . && git commit -m "[$branch] deployment"
 
 # write the current branch and commit hash to the version file
 # echo $(git rev-parse --abbrev-ref HEAD) >>./public/version
