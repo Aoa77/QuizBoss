@@ -17,6 +17,9 @@ vdate=$(date +"%Y-%m-%d %H:%M:%S")
 # save the git branch name in a string variable
 branch=$(git rev-parse --abbrev-ref HEAD)
 
+# build the project
+tsc -b && vite build
+
 # check if there are any changes to commit
 if [ -n "$(git status --porcelain)" ]; then
     # commit all changes
@@ -30,9 +33,6 @@ fi
 # save the commit hash in a string variable
 commit=$(git rev-parse --short HEAD)
 
-# save the current date and time in a string variable
-vdate=$(date +"%Y-%m-%d %H:%M:%S")
-
 # format the string to be used as a version
 vtext="version [$branch:$commit] $vdate"
 
@@ -42,11 +42,10 @@ echo $vtext >./public/version
 # commit the version file change
 git add . && git commit -m "$vtext"
 
-# combine the last two commits into one, keeping the commit hash from the first one
-git reset --soft HEAD~2
-git commit --amend -m "$vtext"
+# create a deployment tag with the branch name on 
+tag="[$branch] DEPLOY"
+git tag $tag --force
 
-# build and push
-tsc -b && vite build
-git push --force
+# push
+git push --follow-tags
 ###############################################################
