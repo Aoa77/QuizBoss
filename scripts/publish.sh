@@ -23,7 +23,7 @@ if [ -n "$(git status --porcelain)" ]; then
     git add . && git commit -m "publishing [$branch]"
 else
     ##########################################
-    echo "No changes. Using last commit..."
+    echo "No changes. Using last commit....."
     ##########################################
 fi
 
