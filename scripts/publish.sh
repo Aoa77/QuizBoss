@@ -43,7 +43,7 @@ echo $vtext >./public/version
 git add . && git commit -m "$vtext"
 
 # create a deployment tag with the branch name on 
-tag="[$branch] DEPLOY"
+tag="$branch deploy"
 git tag "$tag" --force
 
 # push
