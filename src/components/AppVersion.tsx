@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import { useAppContext } from "../app/context";
 import { ANIM } from "../code/animation";
 import { SectionStyle, TV, ThemeFont } from "../code/style";
@@ -7,34 +8,40 @@ import { ThemeVars } from "../libs/theme-vars/ThemeVars";
 
 export function AppVersion() {
     ////
-    const animation = useAnimeRef(ANIM.AppVersion);
-    const style = useStyle();
+    const id = useAnimeRef(ANIM.AppVersion).id;
+    const style = useStyle()?.section;
     const { state } = useAppContext();
     const { appVersion } = state;
 
     ///
-    return (
-        <section id={animation.id} style={style?.section}>
-            {appVersion}
-        </section>
-    );
+    return useMemo(() => {
+        console.debug("AppVersion", { id, style, appVersion });
+        const v = appVersion.split(" ");
+        return (
+            <section id={id} style={style}>
+                <div>{v[0]} {v[1]}</div>
+                <div>{v[2]} {v[3]}</div>
+            </section>
+        );
+    }, [id, style, appVersion]);
 }
 
 function useStyle(): SectionStyle | null {
-    // return null;  // INLINE STYLES;
-    const style: SectionStyle = {
-        section: {},
-    };
+    return useMemo(() => {
+        const style: SectionStyle = {
+            section: {},
+        };
 
-    ///
-    style.section = {
-        color: ThemeVars.getRef(TV, TV.QuizProgress_color),
-        fontFamily: ThemeFont.mono,
-        fontSize: CssUnit.rem(2.3),
-        fontWeight: "bold",
-        marginTop: CssUnit.cqh(28),
-    };
+        ///
+        style.section = {
+            color: ThemeVars.getRef(TV, TV.QuizProgress_color),
+            fontFamily: ThemeFont.mono,
+            fontSize: CssUnit.rem(2.3),
+            fontWeight: "bold",
+            marginTop: CssUnit.cqh(28),
+        };
 
-    ///
-    return style;
+        ///
+        return style;
+    }, []);
 }

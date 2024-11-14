@@ -15,18 +15,19 @@ export async function StartApp() {
             anime({
                 targets: "#app-loader",
                 opacity: [1, 0],
-                delay: $time.ticks(4),
-                duration: $time.ticks(8),
-                endDelay: $time.ticks(4),
+                delay: $time.ticks(16),
+                duration: $time.ticks(4),
+                endDelay: $time.ticks(160000),
                 easing: $ease.linear,
             }),
         );
-        document.getElementById("app-loader")!.style.display = "none";
+        const el = document.getElementById("app-loader")!;
+        el.style.display = "none";
     }
 
     function initVisibleSections() {
         Anim.AppTitle.immediate({ opacity: 1, scale: 1 });
-        Anim.AppVersion.immediate({ opacity: 0.23, scale: 1 });
+        Anim.AppVersion.immediate({ opacity: 0.5, scale: 1 });
         Anim.LoadingSpinner.immediate({ opacity: 0, scale: 1 });
     }
 
