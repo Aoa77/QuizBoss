@@ -4,17 +4,20 @@ import { useFlowContextSetup } from "../libs/flow-context";
 import { AppSettings } from "./settings";
 import { AppState, initAppState } from "./state";
 import { Anim } from "../animations";
-import { AppEvent } from "./events";
-import { AskQuestion } from "../events/AskQuestion";
-import { AwaitGuess } from "../events/AwaitGuess";
-import { ConcludeQuestion } from "../events/ConcludeQuestion";
-import { ConcludeWrongGuess } from "../events/ConcludeWrongGuess";
-import { LoadQuizModule } from "../events/LoadQuizModule";
-import { PrepGuessResult } from "../events/PrepGuessResult";
-import { PrepQuestion } from "../events/PrepQuestion";
-import { RevealGuessResult } from "../events/RevealGuessResult";
-import { StartApp } from "../events/StartApp";
-import { StartQuiz } from "../events/StartQuiz";
+import * as event from "../events";
+
+export enum AppEvent {
+    AskQuestion = "AskQuestion",
+    AwaitGuess = "AwaitGuess",
+    ConcludeQuestion = "ConcludeQuestion",
+    ConcludeWrongGuess = "ConcludeWrongGuess",
+    LoadQuizModule = "LoadQuizModule",
+    PrepGuessResult = "PrepGuessResult",
+    PrepQuestion = "PrepQuestion",
+    RevealGuessResult = "RevealGuessResult",
+    StartApp = "StartApp",
+    StartQuiz = "StartQuiz",
+}
 
 export interface AppFlow {
     dispatch: Dispatch<SetStateAction<AppState>>;
@@ -29,8 +32,6 @@ export interface AppFlowContext {
 
 ///
 export function useAppContext(): AppFlowContext {
-
-
     return AppContext.current();
 }
 
@@ -44,16 +45,16 @@ export function useAppContextSetup(settings: AppSettings): AppFlowContext {
             return eventName;
         },
         flowEvents: new Map<AppEvent, () => Promise<void>>([
-            [AppEvent.AskQuestion, AskQuestion],
-            [AppEvent.AwaitGuess, AwaitGuess],
-            [AppEvent.ConcludeQuestion, ConcludeQuestion],
-            [AppEvent.ConcludeWrongGuess, ConcludeWrongGuess],
-            [AppEvent.LoadQuizModule, LoadQuizModule],
-            [AppEvent.PrepGuessResult, PrepGuessResult],
-            [AppEvent.PrepQuestion, PrepQuestion],
-            [AppEvent.RevealGuessResult, RevealGuessResult],
-            [AppEvent.StartApp, StartApp],
-            [AppEvent.StartQuiz, StartQuiz],
+            [AppEvent.AskQuestion, event.AskQuestion],
+            [AppEvent.AwaitGuess, event.AwaitGuess],
+            [AppEvent.ConcludeQuestion, event.ConcludeQuestion],
+            [AppEvent.ConcludeWrongGuess, event.ConcludeWrongGuess],
+            [AppEvent.LoadQuizModule, event.LoadQuizModule],
+            [AppEvent.PrepGuessResult, event.PrepGuessResult],
+            [AppEvent.PrepQuestion, event.PrepQuestion],
+            [AppEvent.RevealGuessResult, event.RevealGuessResult],
+            [AppEvent.StartApp, event.StartApp],
+            [AppEvent.StartQuiz, event.StartQuiz],
         ]),
         errorHandler: settings.errorHandler,
         stateLogger(state) {
