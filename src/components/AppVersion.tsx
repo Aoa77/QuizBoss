@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { CSSProperties, useMemo } from "react";
 import { useAppContext } from "../app/context";
 import { ANIM } from "../code/animation";
 import { SectionStyle, TV, ThemeFont } from "../code/style";
@@ -9,7 +9,7 @@ import { ThemeVars } from "../libs/theme-vars/ThemeVars";
 export function AppVersion() {
     ////
     const id = useAnimeRef(ANIM.AppVersion).id;
-    const style = useStyle()?.section;
+    const style = useStyle();
     const { state } = useAppContext();
     const { appVersion } = state;
 
@@ -18,18 +18,25 @@ export function AppVersion() {
         const v = appVersion.split(" ");
         console.log("AppVersion", { id, style, appVersion, v });
         return (
-            <section id={id} style={style}>
-                <div>{v[0]} {v[1]}</div>
-                <div>{v[2]} {v[3]}</div>
+            <section id={id} style={style?.section}>
+                <div>{v[0]}</div>
+                <div style={style?.versionDate}>
+                    {v[1]} {v[2]}
+                </div>
             </section>
         );
     }, [id, style, appVersion]);
 }
 
-function useStyle(): SectionStyle | null {
+interface Style extends SectionStyle {
+    versionDate: CSSProperties;
+}
+
+function useStyle(): Style | null {
     return useMemo(() => {
-        const style: SectionStyle = {
+        const style: Style = {
             section: {},
+            versionDate: {},
         };
 
         ///
@@ -38,7 +45,12 @@ function useStyle(): SectionStyle | null {
             fontFamily: ThemeFont.mono,
             fontSize: CssUnit.rem(2.3),
             fontWeight: "bold",
-            marginTop: CssUnit.cqh(28),
+            marginTop: CssUnit.cqh(22),
+        };
+
+        ///
+        style.versionDate = {
+            marginTop: CssUnit.cqh(1),
         };
 
         ///

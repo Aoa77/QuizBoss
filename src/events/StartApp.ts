@@ -1,16 +1,9 @@
 import { AppContext } from "../app/context";
-import { Anim } from "../code/animation";
 import { EventName } from "../code/game";
 
 export async function StartApp() {
     //
     const { flow } = AppContext.current(EventName.StartApp);
-
-    function initVisibleSections() {
-        Anim.AppTitle.immediate({ opacity: 1, scale: 1 });
-        Anim.AppVersion.immediate({ opacity: 0.5, scale: 1 });
-        Anim.LoadingSpinner.immediate({ opacity: 0, scale: 1 });
-    }
 
     async function fetchAppVersion() {
         const response = await fetch("version", {
@@ -30,7 +23,6 @@ export async function StartApp() {
     //
     let appVersion = "";
     try {
-        initVisibleSections();
         appVersion = await fetchAppVersion();
     } finally {
         flow.dispatch((state) => ({

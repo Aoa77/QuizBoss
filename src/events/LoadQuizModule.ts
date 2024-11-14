@@ -1,15 +1,15 @@
 import { AppContext } from "../app/context";
-import { ButtonState, EventName } from "../code/game";
 import { QuizData, QuizItem, QuizModule } from "../code/data";
+import { ButtonState, EventName } from "../code/game";
 import { LocalStore } from "../libs/friendlies/LocalStore";
 import { generateRandomString } from "../libs/randos/generateRandomString";
 import { shuffle } from "../libs/randos/shuffle";
-import anime from "animejs";
-import { AnimeTask } from "../libs/anime-context/AnimeTask";
-import { $time, $ease } from "../libs/anime-context/constants";
+import { HideAppLoader } from "./HideAppLoader";
 
 export async function LoadQuizModule() {
-    await hideAppLoader();
+    /////////////////////////////
+    await HideAppLoader();
+    /////////////////////////////
     const { settings, flow } = AppContext.current(EventName.LoadQuizModule);
     const { maxQuestions, guessButtonCount } = settings;
 
@@ -42,21 +42,6 @@ export async function LoadQuizModule() {
 }
 
 //
-async function hideAppLoader(): Promise<void> {
-    await AnimeTask.run(
-        anime({
-            targets: "#app-loader",
-            opacity: [1, 0],
-            delay: $time.ticks(16),
-            duration: $time.ticks(4),
-            endDelay: $time.ticks(160000),
-            easing: $ease.linear,
-        }),
-    );
-    const el = document.getElementById("app-loader")!;
-    el.style.display = "none";
-}
-
 async function fetchQuizModule(quizModuleName: string): Promise<QuizModule> {
     const response = await fetch(`${quizModuleName}/package.json`, {
         headers: {
