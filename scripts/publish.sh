@@ -44,7 +44,7 @@ git add . && git commit -m "$vtext"
 
 # create a deployment tag with the branch name on 
 tag="[$branch] DEPLOY"
-git tag $tag --force
+git tag "$tag" --force
 
 # push
 git push --follow-tags
