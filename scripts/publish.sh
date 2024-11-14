@@ -21,7 +21,7 @@ echo $(date +"%Y-%m-%d %H:%M:%S") >./public/version
 git add . && git commit -m "[$(branch)] deployment"
 
 # write the current branch and commit hash to the version file
-echo $(git rev-parse --abbrev-ref HEAD) >>./public/version
+# echo $(git rev-parse --abbrev-ref HEAD) >>./public/version
 
 #####
 # tsc -b && vite build
