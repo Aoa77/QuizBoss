@@ -24,8 +24,7 @@ commit=$(git rev-parse --short HEAD)
 vdate=$(date +"%Y-%m-%d %H:%M:%S");
 
 # update the version file
-echo "[$branch] $commit" >./public/version
-echo $vdate >>./public/version
+echo "[$branch] $commit $vdate" >./public/version
 
 # write the current branch and commit hash to the version file
 # echo $(git rev-parse --abbrev-ref HEAD) >>./public/version
