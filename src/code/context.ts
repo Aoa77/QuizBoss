@@ -10,7 +10,7 @@ import { AppSettings } from "./settings";
 import { AppState, initAppState } from "./state";
 
 ///
-import { Anim } from "../code/animation";
+import { Anim } from "./AnimationManager";
 import { EventName } from "../code/game";
 
 ////

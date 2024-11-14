@@ -1,4 +1,4 @@
-import { Anim } from "../../code/animation";
+import { Anim } from "../../code/AnimationManager";
 import { AnimeRef, $time, $ease } from "../../libs/anime-context";
 import { Task } from "../../libs/friendlies/Task";
 

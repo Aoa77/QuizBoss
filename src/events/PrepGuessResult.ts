@@ -1,5 +1,6 @@
 import { AppContext } from "../code/context";
-import { ButtonState, EventName } from "../code/game";
+import { EventName } from "../code/game";
+import { ButtonState } from "../code/ButtonState";
 
 export async function PrepGuessResult() {
     const { state, flow } = AppContext.current(EventName.PrepGuessResult);

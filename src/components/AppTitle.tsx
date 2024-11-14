@@ -1,5 +1,5 @@
 import { useAppContext } from "../code/context";
-import { ANIM } from "../code/animation";
+import { ANIM } from "../code/AnimationManager";
 import { useAnimeRef } from "../libs/anime-context/hooks";
 
 export function AppTitle() {

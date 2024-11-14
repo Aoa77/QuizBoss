@@ -1,4 +1,4 @@
-import { ANIM } from "../code/animation";
+import { ANIM } from "../code/AnimationManager";
 import { SectionStyle, TV, ThemeFont } from "../code/style";
 import { useAppContext } from "../code/context";
 import { useAnimeRef } from "../libs/anime-context/hooks";

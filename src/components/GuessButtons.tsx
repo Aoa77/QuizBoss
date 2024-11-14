@@ -1,7 +1,7 @@
 import { CSSProperties } from "react";
 import { useAppContext } from "../code/context";
-import { ANIM } from "../code/animation";
-import { ButtonState } from "../code/game";
+import { ANIM } from "../code/AnimationManager";
+import { ButtonState } from "../code/ButtonState";
 import { SectionStyle, ThemeFont, TV } from "../code/style";
 import { triggerGuess } from "../code/triggers";
 import { useAnimeRefs } from "../libs/anime-context/hooks";

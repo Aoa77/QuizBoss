@@ -1,7 +1,8 @@
 import { AppContext, AppFlow } from "../code/context";
 import { AppSettings } from "../code/settings";
 import { AppState } from "../code/state";
-import { ButtonState, EventName } from "../code/game";
+import { EventName } from "../code/game";
+import { ButtonState } from "../code/ButtonState";
 import { DEMO, DemoMode } from "../code/demo";
 import { TimerStatus } from "../libs/anime-context/Timer";
 import { Task } from "../libs/friendlies/Task";

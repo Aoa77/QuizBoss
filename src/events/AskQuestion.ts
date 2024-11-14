@@ -1,5 +1,6 @@
-import { Anim } from "../code/animation";
-import { ButtonState, EventName } from "../code/game";
+import { Anim } from "../code/AnimationManager";
+import { EventName } from "../code/game";
+import { ButtonState } from "../code/ButtonState";
 import { AppContext } from "../code/context";
 import { $time, $ease } from "../libs/anime-context/constants";
 import { Task } from "../libs/friendlies/Task";

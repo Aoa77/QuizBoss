@@ -1,4 +1,4 @@
-import { ButtonState } from "./game";
+import { ButtonState } from "./ButtonState";
 
 export interface QuizModule {
     name: string;

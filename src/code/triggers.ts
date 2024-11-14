@@ -1,6 +1,7 @@
 import { AppContext } from "./context";
 import { AppState } from "./state";
-import { ButtonState, EventName } from "./game";
+import { EventName } from "./game";
+import { ButtonState } from "./ButtonState";
 import { Timer, TimerStatus } from "../libs/anime-context";
 
 export async function triggerGuess(bidx: number) {

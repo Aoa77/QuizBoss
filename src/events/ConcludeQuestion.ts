@@ -1,5 +1,5 @@
 import { AppContext } from "../code/context";
-import { Anim } from "../code/animation";
+import { Anim } from "../code/AnimationManager";
 import { EventName } from "../code/game";
 import { $ease, $time } from "../libs/anime-context/constants";
 import { TaskGroup } from "../libs/friendlies/Task";
