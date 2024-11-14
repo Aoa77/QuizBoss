@@ -11,6 +11,7 @@ export function App(settings: AppSettings) {
             <component.AnswerPoints />
             <component.AnswerPointsTimeBonus />
             <component.AppTitle />
+            <component.AppVersion />
             <component.GuessButtons />
             <component.LoadingSpinner />
             <component.QuestionImage />

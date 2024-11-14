@@ -4,6 +4,7 @@ export enum ANIM {
     AnswerPoints = "AnswerPoints",
     AnswerPointsTimeBonus = "AnswerPointsTimeBonus",
     AppTitle = "AppTitle",
+    AppVersion = "AppVersion",
     GuessButton = "GuessButton",
     LoadingSpinner = "LoadingSpinner",
     QuestionImage = "QuestionImage",
@@ -25,6 +26,10 @@ export class Anim {
 
     public static get AppTitle(): AnimeRef {
         return AnimeContext.get(ANIM.AppTitle)!;
+    }
+
+    public static get AppVersion(): AnimeRef {
+        return AnimeContext.get(ANIM.AppVersion)!;
     }
 
     public static GuessButton(index: number): AnimeRef {

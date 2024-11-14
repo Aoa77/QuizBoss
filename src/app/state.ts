@@ -4,6 +4,7 @@ import { EventName } from "../code/game";
 export interface AppState {
     ///
     appTitle: string;
+    appVersion: string;
     bestScore: number;
     buttonAnswerMap: (QuizItem | null)[];
     correctAnswerButtonIndex: number;
@@ -24,6 +25,7 @@ export function initAppState(params: { guessButtonCount: number }): AppState {
     }
     return {
         appTitle: "QuizBoss",
+        appVersion: "",
         bestScore: 0,
         buttonAnswerMap,
         correctAnswerButtonIndex: -1,

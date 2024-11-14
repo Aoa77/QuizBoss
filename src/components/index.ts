@@ -1,5 +1,6 @@
 export * from "./AnswerPoints";
 export * from "./AppTitle";
+export * from "./AppVersion";
 export * from "./GuessButtons";
 export * from "./LoadingSpinner";
 export * from "./QuestionImage";

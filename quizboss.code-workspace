@@ -22,7 +22,7 @@
             "*.ts": "$(capture).*",
             "*.tsx": "$(capture).*"
         },
-        "colorize.include": ["**/*.ts", "**/*.tsx", "**/*.css"],
+        "colorize.include": ["**/*.css"],
         "runTerminalCommand.commands": [
             {
                 "name": "build",
@@ -46,8 +46,8 @@
                 "auto": true
             },
             {
-                "name": "version",
-                "command": "npm run version",
+                "name": "publish",
+                "command": "npm run publish",
                 "auto": true
             }
         ]
