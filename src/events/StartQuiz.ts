@@ -25,6 +25,13 @@ export async function StartQuiz() {
         }),
     );
     anims.add(() =>
+        Anim.AppVersion.run({
+            opacity: 0,
+            duration: $time.ticks(2),
+            easing: $ease.linear,
+        }),
+    );
+    anims.add(() =>
         Anim.LoadingSpinner.immediate({ opacity: 0, scale: 1 }).run({
             opacity: [0, 1],
             delay: $time.ticks(2),

@@ -29,7 +29,6 @@ export async function LoadQuizModule() {
     }
     const totalItems = quizData.items.length;
 
-    // await loadImages(quizData);
     flow.dispatch((state) => ({
         ...state,
         totalItems,

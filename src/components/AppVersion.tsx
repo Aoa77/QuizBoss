@@ -32,7 +32,7 @@ function useStyle(): SectionStyle | null {
         fontFamily: ThemeFont.mono,
         fontSize: CssUnit.rem(2.3),
         fontWeight: "bold",
-        marginTop: CssUnit.cqh(93),
+        marginTop: CssUnit.cqh(28),
     };
 
     ///

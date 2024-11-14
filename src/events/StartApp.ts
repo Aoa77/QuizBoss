@@ -26,7 +26,7 @@ export async function StartApp() {
 
     function initVisibleSections() {
         Anim.AppTitle.immediate({ opacity: 1, scale: 1 });
-        Anim.AppVersion.immediate({ opacity: 0.25, scale: 1 });
+        Anim.AppVersion.immediate({ opacity: 0.23, scale: 1 });
         Anim.LoadingSpinner.immediate({ opacity: 0, scale: 1 });
     }
 
