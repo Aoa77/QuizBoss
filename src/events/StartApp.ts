@@ -1,5 +1,5 @@
-import { AppContext } from "../code/AppContext";
-import { AppEvent } from "../code/AppEvent";
+import { AppContext } from "../app/context";
+import { AppEvent } from "../app/events";
 
 export async function StartApp() {
     //

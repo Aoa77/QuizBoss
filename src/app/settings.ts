@@ -1,5 +1,5 @@
 import { DemoMode } from "../code/DemoMode";
-import { ThemeName } from "../code/style";
+import { ThemeName } from "./themes";
 import { showErrorUI } from "./errors";
 import { $time } from "../libs/anime-context";
 

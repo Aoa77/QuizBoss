@@ -6,12 +6,12 @@ import { Timer } from "../libs/anime-context";
 import { useFlowContextSetup } from "../libs/flow-context";
 
 ///
-import { AppSettings } from "../app/settings";
-import { AppState, initAppState } from "./AppState";
+import { AppSettings } from "./settings";
+import { AppState, initAppState } from "./state";
 
 ///
-import { Anim } from "./AnimationManager";
-import { AppEvent } from "./AppEvent";
+import { Anim } from "../code/AnimationManager";
+import { AppEvent } from "./events";
 
 ////
 import { AskQuestion } from "../events/AskQuestion";

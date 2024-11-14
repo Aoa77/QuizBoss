@@ -2,7 +2,7 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { App } from "./App";
 import { SETTINGS } from "./settings";
-import { ThemeName, TV } from "../code/style";
+import { ThemeName, TV } from "./themes";
 import { ThemeVars } from "../libs/theme-vars/ThemeVars";
 
 /////////////////////////////////////////////////////////////

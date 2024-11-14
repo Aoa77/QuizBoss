@@ -1,8 +1,8 @@
-import { AppContext } from "../code/AppContext";
+import { AppContext } from "../app/context";
 import { Anim } from "../code/AnimationManager";
-import { AppEvent } from "../code/AppEvent";
+import { AppEvent } from "../app/events";
 import { ButtonState } from "../code/ButtonState";
-import { TV } from "../code/style";
+import { TV } from "../app/themes";
 import { $time, $ease, TimerStatus } from "../libs/anime-context";
 import { ThemeVars } from "../libs/theme-vars/ThemeVars";
 import { concludeFinalGuess } from "./animations/concludeFinalGuess";

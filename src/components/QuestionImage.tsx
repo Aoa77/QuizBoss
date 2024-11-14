@@ -1,8 +1,8 @@
 import { CSSProperties } from "react";
-import { useAppContext } from "../code/AppContext";
+import { useAppContext } from "../app/context";
 import { ANIM } from "../code/AnimationManager";
 import { useAnimeRef } from "../libs/anime-context/hooks";
-import { SectionStyle, TV } from "../code/style";
+import { SectionStyle, TV } from "../app/themes";
 import { CssUnit } from "../libs/theme-vars/CssUnit";
 import { ThemeVars } from "../libs/theme-vars/ThemeVars";
 

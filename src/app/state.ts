@@ -1,5 +1,5 @@
-import { QuizItem, QuizModule } from "./QuizModule";
-import { AppEvent } from "./AppEvent";
+import { QuizItem, QuizModule } from "../code/QuizModule";
+import { AppEvent } from "./events";
 
 export interface AppState {
     ///
