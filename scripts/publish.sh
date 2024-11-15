@@ -33,6 +33,9 @@ fi
 # save the commit hash in a string variable
 commit=$(git rev-parse --short HEAD)
 
+# tag as the source commit
+git tag "$branch-source" --force
+
 # format the string to be used as a version
 vtext="$branch:$commit $vdate"
 
@@ -42,17 +45,14 @@ echo $vtext >./public/version
 # commit the version file change
 git add . && git commit -m "$vtext"
 
-# create a deployment tag with the branch name.
-# this will point to the commit used for deployment,
-# which is always the version string update.
-# Note: the version string itself always points to the
-# previous commit hash.
-tag="$branch-deploy"
-git tag "$tag" --force
+# tag as the deploy commit
+git tag "$branch-deploy" --force
 
-# push
+# push commits and tags
+git push
 git push --tags --force
 
+# print the version string
 echo ""
 echo "================================="
 echo "New version deployed:"
