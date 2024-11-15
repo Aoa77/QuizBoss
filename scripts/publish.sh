@@ -34,7 +34,7 @@ fi
 commit=$(git rev-parse --short HEAD)
 
 # format the string to be used as a version
-vtext="[$branch:$commit] $vdate"
+vtext="$branch:$commit $vdate"
 
 # update the version file
 echo $vtext >./public/version
