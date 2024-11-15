@@ -9,7 +9,7 @@ printf "\n%s\n%s\n%s\n\n" "$line" "$script" "$line"
 printf "Current directory:\n$(pwd)\n\n"
 ###############################################################
 set -e # Exit immediately on error
-set -x # Enable debugging mode
+# set -x # Enable debugging mode
 ###############################################################
 # save the current date and time in a string variable
 vdate=$(date +"%Y-%m-%d %H:%M:%S")
@@ -52,4 +52,9 @@ git tag "$tag" --force
 
 # push
 git push --follow-tags
+
+echo ""
+echo "New version deployed:"
+echo $vtext
+echo ""
 ###############################################################
