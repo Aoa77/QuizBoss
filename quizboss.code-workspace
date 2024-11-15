@@ -25,11 +25,6 @@
         "colorize.include": ["**/*.css"],
         "runTerminalCommand.commands": [
             {
-                "name": "publish",
-                "command": "npm run publish",
-                "auto": true
-            },
-            {
                 "name": "build",
                 "command": "npm run build",
                 "auto": true
@@ -48,6 +43,11 @@
             {
                 "name": "preview",
                 "command": "npm run preview",
+                "auto": true
+            },
+            {
+                "name": "publish",
+                "command": "npm run publish",
                 "auto": true
             }
         ]
