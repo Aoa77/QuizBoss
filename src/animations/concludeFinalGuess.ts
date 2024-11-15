@@ -6,7 +6,7 @@ import { revealCorrectButton } from "./revealCorrectButton";
 
 export async function concludeFinalGuess(
     buttonRef: AnimeRef,
-    buttonAnswerMap: (QuizItem | null)[],
+    buttonAnswerMap: QuizItem | null)[],
     guessButtonIndex: number,
     itemScore: number,
 ) {
