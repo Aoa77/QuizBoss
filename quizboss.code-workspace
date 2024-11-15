@@ -33,7 +33,7 @@
                 "name": "dev",
                 "command": "npm run dev",
                 "auto": true,
-                "preserve": true
+                "preserve": false
             },
             {
                 "name": "lint",
