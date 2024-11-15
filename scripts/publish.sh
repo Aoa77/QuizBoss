@@ -17,8 +17,8 @@ vdate=$(date +"%Y-%m-%d %H:%M:%S")
 # save the git branch name in a string variable
 branch=$(git rev-parse --abbrev-ref HEAD)
 
-# build the project
-tsc -b && vite build
+# build the project, do not continue if the build fails
+npm run build
 
 # check if there are any changes to commit
 if [ -n "$(git status --porcelain)" ]; then
