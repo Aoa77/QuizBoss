@@ -54,7 +54,9 @@ git tag "$tag" --force
 git push --follow-tags
 
 echo ""
+echo "=================================""
 echo "New version deployed:"
+echo "=================================""
 echo $vtext
 echo ""
 ###############################################################
