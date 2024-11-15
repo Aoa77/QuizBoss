@@ -25,9 +25,13 @@ if [ -n "$(git status --porcelain)" ]; then
     # commit all changes
     git add . && git commit -m "publishing [$branch]"
 else
-    ##########################################
-    echo "No changes. Using last commit....."
-    ##########################################
+    echo ""
+    echo "========================================"
+    echo "No changes to commit. Skipping publish."
+    echo "========================================"
+    echo $vtext
+    echo ""
+    exit 0
 fi
 
 # save the commit hash in a string variable
