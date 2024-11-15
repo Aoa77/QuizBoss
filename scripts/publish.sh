@@ -51,7 +51,7 @@ tag="$branch-deploy"
 git tag "$tag" --force
 
 # push
-git push --follow-tags
+git push --tags
 
 echo ""
 echo "================================="
